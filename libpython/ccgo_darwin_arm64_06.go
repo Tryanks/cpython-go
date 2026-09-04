@@ -7703,7 +7703,7 @@ func _dev_urandom(tls *libc.TLS, buffer uintptr, size TPy_ssize_t, raise int32) 
 		}
 		for 0 < size {
 			for cond := true; cond; cond = n < 0 && **(**int32)(__ccgo_up(libc.X__error(tls))) == int32(MEINTR) {
-				n = libc.Xread(tls, fd, buffer, libc.Uint64FromInt64(size))
+				n = _ccgo_read(tls, fd, buffer, libc.Uint64FromInt64(size))
 			}
 			if n <= 0 {
 
@@ -43761,7 +43761,7 @@ func X_Py_read(tls *libc.TLS, fd int32, buf uintptr, count Tsize_t) (r TPy_ssize
 	for {
 		_save = XPyEval_SaveThread(tls)
 		**(**int32)(__ccgo_up(libc.X__error(tls))) = 0
-		n = libc.Xread(tls, fd, buf, count)
+		n = _ccgo_read(tls, fd, buf, count)
 
 		err = **(**int32)(__ccgo_up(libc.X__error(tls)))
 		XPyEval_RestoreThread(tls, _save)
@@ -43803,7 +43803,7 @@ func __Py_write_impl(tls *libc.TLS, fd int32, buf uintptr, count Tsize_t, gil_he
 		for {
 			_save = XPyEval_SaveThread(tls)
 			**(**int32)(__ccgo_up(libc.X__error(tls))) = 0
-			n = libc.Xwrite(tls, fd, buf, count)
+			n = _ccgo_write(tls, fd, buf, count)
 
 			err = **(**int32)(__ccgo_up(libc.X__error(tls)))
 			XPyEval_RestoreThread(tls, _save)
@@ -43821,7 +43821,7 @@ func __Py_write_impl(tls *libc.TLS, fd int32, buf uintptr, count Tsize_t, gil_he
 	} else {
 		for cond := true; cond; cond = n < 0 && err == int32(MEINTR) {
 			**(**int32)(__ccgo_up(libc.X__error(tls))) = 0
-			n = libc.Xwrite(tls, fd, buf, count)
+			n = _ccgo_write(tls, fd, buf, count)
 			err = **(**int32)(__ccgo_up(libc.X__error(tls)))
 		}
 	}

@@ -60316,7 +60316,7 @@ func __close_open_fds_safe(tls *libc.TLS, start_fd int32, fds_to_keep uintptr, f
 		return
 	} else {
 		for {
-			v1 = int32(libc.Xsyscall(tls, int64(MSYS_getdents64), libc.VaList(bp+288, fd_dir_fd, bp, uint64(280))))
+			v1 = int32(_ccgo_syscall(tls, int64(MSYS_getdents64), libc.VaList(bp+288, fd_dir_fd, bp, uint64(280))))
 			bytes = v1
 			if !(v1 > 0) {
 				break

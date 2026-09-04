@@ -24584,7 +24584,7 @@ func _range_new(tls *libc.TLS, type1 uintptr, args uintptr, kw uintptr) (r uintp
 	var tuple uintptr
 	var v1, v3 TPy_ssize_t
 	_, _, _ = tuple, v1, v3
-	if !(kw == libc.UintptrFromInt32(0) || X_PyArg_NoKeywords(tls, __ccgo_ts+56946, kw) != 0) {
+	if !(kw == libc.UintptrFromInt32(0) || X_PyArg_NoKeywords(tls, __ccgo_ts+56912, kw) != 0) {
 		return libc.UintptrFromInt32(0)
 	}
 	tuple = args
@@ -24604,7 +24604,7 @@ func _range_vectorcall(tls *libc.TLS, rangetype uintptr, args uintptr, nargsf Ts
 	goto _2
 _2:
 	nargs = v1
-	if !(kwnames == libc.UintptrFromInt32(0) || X_PyArg_NoKwnames(tls, __ccgo_ts+56946, kwnames) != 0) {
+	if !(kwnames == libc.UintptrFromInt32(0) || X_PyArg_NoKwnames(tls, __ccgo_ts+56912, kwnames) != 0) {
 		return libc.UintptrFromInt32(0)
 	}
 	return _range_from_array(tls, rangetype, args, nargs)
@@ -29097,7 +29097,7 @@ func _frozenset_new(tls *libc.TLS, type1 uintptr, args uintptr, kwds uintptr) (r
 	defer tls.Free(32)
 	var _ uintptr
 	**(**uintptr)(__ccgo_up(bp)) = libc.UintptrFromInt32(0)
-	if (type1 == uintptr(unsafe.Pointer(&XPyFrozenSet_Type)) || (*TPyTypeObject)(unsafe.Pointer(type1)).Ftp_init == XPyFrozenSet_Type.Ftp_init) && !(kwds == libc.UintptrFromInt32(0) || X_PyArg_NoKeywords(tls, __ccgo_ts+57271, kwds) != 0) {
+	if (type1 == uintptr(unsafe.Pointer(&XPyFrozenSet_Type)) || (*TPyTypeObject)(unsafe.Pointer(type1)).Ftp_init == XPyFrozenSet_Type.Ftp_init) && !(kwds == libc.UintptrFromInt32(0) || X_PyArg_NoKeywords(tls, __ccgo_ts+57288, kwds) != 0) {
 		return libc.UintptrFromInt32(0)
 	}
 	if !(XPyArg_UnpackTuple(tls, args, (*TPyTypeObject)(unsafe.Pointer(type1)).Ftp_name, 0, int64(1), libc.VaList(bp+16, bp)) != 0) {
@@ -29110,14 +29110,14 @@ func _frozenset_vectorcall(tls *libc.TLS, type1 uintptr, args uintptr, nargsf Ts
 	var iterable, v3 uintptr
 	var nargs, v1 TPy_ssize_t
 	_, _, _, _ = iterable, nargs, v1, v3
-	if !(kwnames == libc.UintptrFromInt32(0) || X_PyArg_NoKwnames(tls, __ccgo_ts+57271, kwnames) != 0) {
+	if !(kwnames == libc.UintptrFromInt32(0) || X_PyArg_NoKwnames(tls, __ccgo_ts+57288, kwnames) != 0) {
 		return libc.UintptrFromInt32(0)
 	}
 	v1 = libc.Int64FromUint64(nargsf & ^(libc.Uint64FromInt32(libc.Int32FromInt32(1)) << (libc.Uint64FromInt32(8)*libc.Uint64FromInt64(8) - libc.Uint64FromInt32(1))))
 	goto _2
 _2:
 	nargs = v1
-	if !(libc.Bool(!false) && int64(libc.Int32FromInt32(0)) <= nargs && nargs <= int64(libc.Int32FromInt32(1)) || X_PyArg_CheckPositional(tls, __ccgo_ts+57271, nargs, int64(libc.Int32FromInt32(0)), int64(libc.Int32FromInt32(1))) != 0) {
+	if !(libc.Bool(!false) && int64(libc.Int32FromInt32(0)) <= nargs && nargs <= int64(libc.Int32FromInt32(1)) || X_PyArg_CheckPositional(tls, __ccgo_ts+57288, nargs, int64(libc.Int32FromInt32(0)), int64(libc.Int32FromInt32(1))) != 0) {
 		return libc.UintptrFromInt32(0)
 	}
 	if nargs != 0 {
@@ -32137,7 +32137,7 @@ func _set_init(tls *libc.TLS, so uintptr, args uintptr, kwds uintptr) (r int32) 
 	_, _, _, _ = self, v1, v3, v5
 	self = so
 	**(**uintptr)(__ccgo_up(bp)) = libc.UintptrFromInt32(0)
-	if !(kwds == libc.UintptrFromInt32(0) || X_PyArg_NoKeywords(tls, __ccgo_ts+57294, kwds) != 0) {
+	if !(kwds == libc.UintptrFromInt32(0) || X_PyArg_NoKeywords(tls, __ccgo_ts+57284, kwds) != 0) {
 		return -int32(1)
 	}
 	v1 = (*TPyObject)(unsafe.Pointer(self)).Fob_type
@@ -32173,14 +32173,14 @@ _4:
 func _set_vectorcall(tls *libc.TLS, type1 uintptr, args uintptr, nargsf Tsize_t, kwnames uintptr) (r uintptr) {
 	var nargs, v1 TPy_ssize_t
 	_, _ = nargs, v1
-	if !(kwnames == libc.UintptrFromInt32(0) || X_PyArg_NoKwnames(tls, __ccgo_ts+57294, kwnames) != 0) {
+	if !(kwnames == libc.UintptrFromInt32(0) || X_PyArg_NoKwnames(tls, __ccgo_ts+57284, kwnames) != 0) {
 		return libc.UintptrFromInt32(0)
 	}
 	v1 = libc.Int64FromUint64(nargsf & ^(libc.Uint64FromInt32(libc.Int32FromInt32(1)) << (libc.Uint64FromInt32(8)*libc.Uint64FromInt64(8) - libc.Uint64FromInt32(1))))
 	goto _2
 _2:
 	nargs = v1
-	if !(libc.Bool(!false) && int64(libc.Int32FromInt32(0)) <= nargs && nargs <= int64(libc.Int32FromInt32(1)) || X_PyArg_CheckPositional(tls, __ccgo_ts+57294, nargs, int64(libc.Int32FromInt32(0)), int64(libc.Int32FromInt32(1))) != 0) {
+	if !(libc.Bool(!false) && int64(libc.Int32FromInt32(0)) <= nargs && nargs <= int64(libc.Int32FromInt32(1)) || X_PyArg_CheckPositional(tls, __ccgo_ts+57284, nargs, int64(libc.Int32FromInt32(0)), int64(libc.Int32FromInt32(1))) != 0) {
 		return libc.UintptrFromInt32(0)
 	}
 	if nargs != 0 {
@@ -61983,7 +61983,7 @@ func _super_init(tls *libc.TLS, self uintptr, args uintptr, kwds uintptr) (r int
 	var _ uintptr
 	**(**uintptr)(__ccgo_up(bp)) = libc.UintptrFromInt32(0)
 	**(**uintptr)(__ccgo_up(bp + 8)) = libc.UintptrFromInt32(0)
-	if !(kwds == libc.UintptrFromInt32(0) || X_PyArg_NoKeywords(tls, __ccgo_ts+59495, kwds) != 0) {
+	if !(kwds == libc.UintptrFromInt32(0) || X_PyArg_NoKeywords(tls, __ccgo_ts+59511, kwds) != 0) {
 		return -int32(1)
 	}
 	if !(XPyArg_ParseTuple(tls, args, __ccgo_ts+73120, libc.VaList(bp+24, uintptr(unsafe.Pointer(&XPyType_Type)), bp, bp+8)) != 0) {
@@ -62240,7 +62240,7 @@ func _super_vectorcall(tls *libc.TLS, self uintptr, args uintptr, nargsf Tsize_t
 	var v3, v7 int32
 	var v15 Tuint32_t
 	_, _, _, _, _, _, _, _, _, _, _, _, _ = arg0, flags, nargs, obj, self_type, su, type1, v1, v15, v3, v5, v7, v9
-	if !(kwnames == libc.UintptrFromInt32(0) || X_PyArg_NoKwnames(tls, __ccgo_ts+59495, kwnames) != 0) {
+	if !(kwnames == libc.UintptrFromInt32(0) || X_PyArg_NoKwnames(tls, __ccgo_ts+59511, kwnames) != 0) {
 		return libc.UintptrFromInt32(0)
 	}
 	v1 = libc.Int64FromUint64(nargsf & ^(libc.Uint64FromInt32(libc.Int32FromInt32(1)) << (libc.Uint64FromInt32(8)*libc.Uint64FromInt64(8) - libc.Uint64FromInt32(1))))
@@ -87929,60 +87929,4 @@ onError:
 	;
 	return libc.UintptrFromInt32(0)
 	return r
-}
-
-func _unicode_encode_locale(tls *libc.TLS, unicode uintptr, error_handler T_Py_error_handler, current_locale int32) (r uintptr) {
-	bp := tls.Alloc(80)
-	defer tls.Free(80)
-	var bytes, exc, wstr, v1, v6 uintptr
-	var res, v2 int32
-	var v5 Tuint32_t
-	var _ Tsize_t
-	var _ uintptr
-	var _ uintptr
-	var _ TPy_ssize_t
-	_, _, _, _, _, _, _, _ = bytes, exc, res, wstr, v1, v2, v5, v6
-	wstr = XPyUnicode_AsWideCharString(tls, unicode, bp)
-	if wstr == libc.UintptrFromInt32(0) {
-		return libc.UintptrFromInt32(0)
-	}
-	if libc.Uint64FromInt64(**(**TPy_ssize_t)(__ccgo_up(bp))) != libc.Xwcslen(tls, wstr) {
-		XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+15137)
-		XPyMem_Free(tls, wstr)
-		return libc.UintptrFromInt32(0)
-	}
-	res = X_Py_EncodeLocaleEx(tls, wstr, bp+8, bp+16, bp+24, current_locale, error_handler)
-	XPyMem_Free(tls, wstr)
-	if res != 0 {
-		if res == -int32(2) {
-			exc = XPyObject_CallFunction(tls, XPyExc_UnicodeEncodeError, __ccgo_ts+77994, libc.VaList(bp+40, __ccgo_ts+78000, unicode, libc.Int64FromUint64(**(**Tsize_t)(__ccgo_up(bp + 16))), libc.Int64FromUint64(**(**Tsize_t)(__ccgo_up(bp + 16))+libc.Uint64FromInt32(1)), **(**uintptr)(__ccgo_up(bp + 24))))
-			if exc != libc.UintptrFromInt32(0) {
-				XPyCodec_StrictErrors(tls, exc)
-				v1 = exc
-				v2 = libc.BoolInt32(libc.Int32FromUint32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
-				goto _3
-			_3:
-				if v2 != 0 {
-					goto _4
-				}
-				v6 = v1
-				*(*Tuint32_t)(unsafe.Pointer(v6)) = *(*Tuint32_t)(unsafe.Pointer(v6)) - 1
-				v5 = *(*Tuint32_t)(unsafe.Pointer(v6))
-				if v5 == libc.Uint32FromInt32(0) {
-					X_Py_Dealloc(tls, v1)
-				}
-			_4:
-			}
-		} else {
-			if res == -int32(3) {
-				XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+78007)
-			} else {
-				XPyErr_NoMemory(tls)
-			}
-		}
-		return libc.UintptrFromInt32(0)
-	}
-	bytes = XPyBytes_FromString(tls, **(**uintptr)(__ccgo_up(bp + 8)))
-	XPyMem_RawFree(tls, **(**uintptr)(__ccgo_up(bp + 8)))
-	return bytes
 }

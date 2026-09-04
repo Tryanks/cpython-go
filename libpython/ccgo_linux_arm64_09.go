@@ -4320,7 +4320,7 @@ func _signal_pause_impl(tls *libc.TLS, module uintptr) (r uintptr) {
 	var _save uintptr
 	_ = _save
 	_save = XPyEval_SaveThread(tls)
-	libc.Xpause(tls)
+	_ccgo_pause(tls)
 	XPyEval_RestoreThread(tls, _save)
 
 	if XPyErr_CheckSignals(tls) != 0 {
@@ -4565,7 +4565,7 @@ func _signal_setitimer_impl(tls *libc.TLS, module uintptr, which int32, seconds 
 	if _timeval_from_double(tls, interval, bp) < 0 {
 		return libc.UintptrFromInt32(0)
 	}
-	if libc.Xsetitimer(tls, which, bp, bp+32) != 0 {
+	if _ccgo_setitimer(tls, which, bp, bp+32) != 0 {
 		XPyErr_SetFromErrno(tls, (*T_signal_module_state)(unsafe.Pointer(modstate)).Fitimer_error)
 		return libc.UintptrFromInt32(0)
 	}
@@ -4580,7 +4580,7 @@ func _signal_getitimer_impl(tls *libc.TLS, module uintptr, which int32) (r uintp
 	var _ Titimerval
 	_ = modstate
 	modstate = _get_signal_state(tls, module)
-	if libc.Xgetitimer(tls, which, bp) != 0 {
+	if _ccgo_getitimer(tls, which, bp) != 0 {
 		XPyErr_SetFromErrno(tls, (*T_signal_module_state)(unsafe.Pointer(modstate)).Fitimer_error)
 		return libc.UintptrFromInt32(0)
 	}
@@ -4933,7 +4933,7 @@ func _signal_pidfd_send_signal_impl(tls *libc.TLS, module uintptr, pidfd int32, 
 		XPyErr_SetString(tls, XPyExc_TypeError, __ccgo_ts+254026)
 		return libc.UintptrFromInt32(0)
 	}
-	if libc.Xsyscall(tls, int64(M__NR_pidfd_send_signal), libc.VaList(bp+8, pidfd, signalnum, libc.UintptrFromInt32(0), flags)) < 0 {
+	if _ccgo_syscall(tls, int64(M__NR_pidfd_send_signal), libc.VaList(bp+8, pidfd, signalnum, libc.UintptrFromInt32(0), flags)) < 0 {
 		XPyErr_SetFromErrno(tls, XPyExc_OSError)
 		return libc.UintptrFromInt32(0)
 	}
@@ -85960,7 +85960,7 @@ func _pysleep(tls *libc.TLS, timeout TPyTime_t) (r int32) {
 	}
 	for cond := true; cond; cond = int32(1) != 0 {
 		_save = XPyEval_SaveThread(tls)
-		ret = libc.Xclock_nanosleep(tls, int32(MCLOCK_MONOTONIC), int32(MTIMER_ABSTIME), bp, libc.UintptrFromInt32(0))
+		ret = _ccgo_clock_nanosleep(tls, int32(MCLOCK_MONOTONIC), int32(MTIMER_ABSTIME), bp, libc.UintptrFromInt32(0))
 		err = ret
 		XPyEval_RestoreThread(tls, _save)
 		if ret == 0 {

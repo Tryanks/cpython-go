@@ -25068,7 +25068,7 @@ func X_PyBuiltin_Init(tls *libc.TLS, interp uintptr) (r uintptr) {
 	if XPyDict_SetItemString(tls, dict, __ccgo_ts+40931, uintptr(unsafe.Pointer(&XPyDict_Type))) < 0 {
 		return libc.UintptrFromInt32(0)
 	}
-	if XPyDict_SetItemString(tls, dict, __ccgo_ts+26492, uintptr(unsafe.Pointer(&XPyEnum_Type))) < 0 {
+	if XPyDict_SetItemString(tls, dict, __ccgo_ts+26483, uintptr(unsafe.Pointer(&XPyEnum_Type))) < 0 {
 		return libc.UintptrFromInt32(0)
 	}
 	if XPyDict_SetItemString(tls, dict, __ccgo_ts+117007, uintptr(unsafe.Pointer(&XPyFilter_Type))) < 0 {
@@ -25077,10 +25077,10 @@ func X_PyBuiltin_Init(tls *libc.TLS, interp uintptr) (r uintptr) {
 	if XPyDict_SetItemString(tls, dict, __ccgo_ts+36953, uintptr(unsafe.Pointer(&XPyFloat_Type))) < 0 {
 		return libc.UintptrFromInt32(0)
 	}
-	if XPyDict_SetItemString(tls, dict, __ccgo_ts+57271, uintptr(unsafe.Pointer(&XPyFrozenSet_Type))) < 0 {
+	if XPyDict_SetItemString(tls, dict, __ccgo_ts+57288, uintptr(unsafe.Pointer(&XPyFrozenSet_Type))) < 0 {
 		return libc.UintptrFromInt32(0)
 	}
-	if XPyDict_SetItemString(tls, dict, __ccgo_ts+24148, uintptr(unsafe.Pointer(&XPyProperty_Type))) < 0 {
+	if XPyDict_SetItemString(tls, dict, __ccgo_ts+24065, uintptr(unsafe.Pointer(&XPyProperty_Type))) < 0 {
 		return libc.UintptrFromInt32(0)
 	}
 	if XPyDict_SetItemString(tls, dict, __ccgo_ts+43341, uintptr(unsafe.Pointer(&XPyLong_Type))) < 0 {
@@ -25095,13 +25095,13 @@ func X_PyBuiltin_Init(tls *libc.TLS, interp uintptr) (r uintptr) {
 	if XPyDict_SetItemString(tls, dict, __ccgo_ts+30118, uintptr(unsafe.Pointer(&XPyBaseObject_Type))) < 0 {
 		return libc.UintptrFromInt32(0)
 	}
-	if XPyDict_SetItemString(tls, dict, __ccgo_ts+56946, uintptr(unsafe.Pointer(&XPyRange_Type))) < 0 {
+	if XPyDict_SetItemString(tls, dict, __ccgo_ts+56912, uintptr(unsafe.Pointer(&XPyRange_Type))) < 0 {
 		return libc.UintptrFromInt32(0)
 	}
-	if XPyDict_SetItemString(tls, dict, __ccgo_ts+26483, uintptr(unsafe.Pointer(&XPyReversed_Type))) < 0 {
+	if XPyDict_SetItemString(tls, dict, __ccgo_ts+26493, uintptr(unsafe.Pointer(&XPyReversed_Type))) < 0 {
 		return libc.UintptrFromInt32(0)
 	}
-	if XPyDict_SetItemString(tls, dict, __ccgo_ts+57294, uintptr(unsafe.Pointer(&XPySet_Type))) < 0 {
+	if XPyDict_SetItemString(tls, dict, __ccgo_ts+57284, uintptr(unsafe.Pointer(&XPySet_Type))) < 0 {
 		return libc.UintptrFromInt32(0)
 	}
 	if XPyDict_SetItemString(tls, dict, __ccgo_ts+57762, uintptr(unsafe.Pointer(&XPySlice_Type))) < 0 {
@@ -25113,7 +25113,7 @@ func X_PyBuiltin_Init(tls *libc.TLS, interp uintptr) (r uintptr) {
 	if XPyDict_SetItemString(tls, dict, __ccgo_ts+15133, uintptr(unsafe.Pointer(&XPyUnicode_Type))) < 0 {
 		return libc.UintptrFromInt32(0)
 	}
-	if XPyDict_SetItemString(tls, dict, __ccgo_ts+59495, uintptr(unsafe.Pointer(&XPySuper_Type))) < 0 {
+	if XPyDict_SetItemString(tls, dict, __ccgo_ts+59511, uintptr(unsafe.Pointer(&XPySuper_Type))) < 0 {
 		return libc.UintptrFromInt32(0)
 	}
 	if XPyDict_SetItemString(tls, dict, __ccgo_ts+2154, uintptr(unsafe.Pointer(&XPyTuple_Type))) < 0 {
@@ -71563,7 +71563,7 @@ func _can_optimize_super_call(tls *libc.TLS, c uintptr, attr Texpr_ty) (r int32)
 		Ffunc1    Texpr_ty
 		Fargs     uintptr
 		Fkeywords uintptr
-	})(unsafe.Pointer(&(*T_expr)(unsafe.Pointer(e)).Fv))).Ffunc1)).Fv))).Fid, __ccgo_ts+59495) != 0) || X_PyUnicode_EqualToASCIIString(tls, (*(*struct {
+	})(unsafe.Pointer(&(*T_expr)(unsafe.Pointer(e)).Fv))).Ffunc1)).Fv))).Fid, __ccgo_ts+59511) != 0) || X_PyUnicode_EqualToASCIIString(tls, (*(*struct {
 		Fvalue Texpr_ty
 		Fattr  Tidentifier
 		Fctx   Texpr_context_ty
@@ -80269,54 +80269,4 @@ _4:
 
 func X_PyCompile_Mangle(tls *libc.TLS, c uintptr, name uintptr) (r uintptr) {
 	return X_Py_Mangle(tls, (*Tcompiler_unit)(unsafe.Pointer((*Tcompiler)(unsafe.Pointer(c)).Fu)).Fu_private, name)
-}
-
-func X_PyCompile_MaybeMangle(tls *libc.TLS, c uintptr, name uintptr) (r uintptr) {
-	return X_Py_MaybeMangle(tls, (*Tcompiler_unit)(unsafe.Pointer((*Tcompiler)(unsafe.Pointer(c)).Fu)).Fu_private, (*Tcompiler_unit)(unsafe.Pointer((*Tcompiler)(unsafe.Pointer(c)).Fu)).Fu_ste, name)
-}
-
-func X_PyCompile_InstrSequence(tls *libc.TLS, c uintptr) (r uintptr) {
-	return (*Tcompiler_unit)(unsafe.Pointer((*Tcompiler)(unsafe.Pointer(c)).Fu)).Fu_instr_sequence
-}
-
-func X_PyCompile_StartAnnotationSetup(tls *libc.TLS, c uintptr) (r int32) {
-	var new_seq uintptr
-	_ = new_seq
-	new_seq = X_PyInstructionSequence_New(tls)
-	if new_seq == libc.UintptrFromInt32(0) {
-		return -int32(1)
-	}
-	(*Tcompiler_unit)(unsafe.Pointer((*T_PyCompiler)(unsafe.Pointer(c)).Fu)).Fu_stashed_instr_sequence = (*Tcompiler_unit)(unsafe.Pointer((*T_PyCompiler)(unsafe.Pointer(c)).Fu)).Fu_instr_sequence
-	(*Tcompiler_unit)(unsafe.Pointer((*T_PyCompiler)(unsafe.Pointer(c)).Fu)).Fu_instr_sequence = new_seq
-	return 0
-}
-
-func X_PyCompile_EndAnnotationSetup(tls *libc.TLS, c uintptr) (r int32) {
-	var anno_seq, parent_seq, v1, v6 uintptr
-	var v2 int32
-	var v5 Tuint32_t
-	_, _, _, _, _, _ = anno_seq, parent_seq, v1, v2, v5, v6
-	parent_seq = (*Tcompiler_unit)(unsafe.Pointer((*T_PyCompiler)(unsafe.Pointer(c)).Fu)).Fu_stashed_instr_sequence
-	anno_seq = (*Tcompiler_unit)(unsafe.Pointer((*T_PyCompiler)(unsafe.Pointer(c)).Fu)).Fu_instr_sequence
-	(*Tcompiler_unit)(unsafe.Pointer((*T_PyCompiler)(unsafe.Pointer(c)).Fu)).Fu_stashed_instr_sequence = libc.UintptrFromInt32(0)
-	(*Tcompiler_unit)(unsafe.Pointer((*T_PyCompiler)(unsafe.Pointer(c)).Fu)).Fu_instr_sequence = parent_seq
-	if X_PyInstructionSequence_SetAnnotationsCode(tls, parent_seq, anno_seq) == -int32(1) {
-		v1 = anno_seq
-		v2 = libc.BoolInt32(libc.Int32FromUint32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
-		goto _3
-	_3:
-		if v2 != 0 {
-			goto _4
-		}
-		v6 = v1
-		*(*Tuint32_t)(unsafe.Pointer(v6)) = *(*Tuint32_t)(unsafe.Pointer(v6)) - 1
-		v5 = *(*Tuint32_t)(unsafe.Pointer(v6))
-		if v5 == libc.Uint32FromInt32(0) {
-			X_Py_Dealloc(tls, v1)
-		}
-	_4:
-		;
-		return -int32(1)
-	}
-	return 0
 }

@@ -5,6 +5,8 @@
 package libpython
 
 import (
+	"fmt"
+	"os"
 	"sync"
 	"syscall"
 	"time"
@@ -187,3 +189,159 @@ func _ccgo_kill(tls *libc.TLS, pid, sig int32) int32 {
 }
 
 func _ccgo_raise(tls *libc.TLS, sig int32) int32 { return _ccgo_kill(tls, int32(unix.Getpid()), sig) }
+
+func _ccgo_clock_nanosleep(tls *libc.TLS, clock, flags int32, request, remainder uintptr) int32 {
+	const timerAbsTime = 1
+	req := (*Ttimespec)(unsafe.Pointer(request))
+	if req.Ftv_sec < 0 || req.Ftv_nsec < 0 || req.Ftv_nsec >= int64(time.Second) {
+		return int32(errno.EINVAL)
+	}
+	if consumeSignalDelivery() {
+		return int32(errno.EINTR)
+	}
+	for {
+		var duration time.Duration
+		if flags&timerAbsTime != 0 {
+			var now unix.Timespec
+			if err := unix.ClockGettime(clock, &now); err != nil {
+				return int32(syscallErrno(err))
+			}
+			duration = time.Duration(req.Ftv_sec-now.Sec)*time.Second + time.Duration(req.Ftv_nsec-now.Nsec)
+		} else {
+			duration = time.Duration(req.Ftv_sec)*time.Second + time.Duration(req.Ftv_nsec)
+		}
+		if duration <= 0 {
+			return 0
+		}
+		if duration > 10*time.Millisecond {
+			duration = 10 * time.Millisecond
+		}
+		time.Sleep(duration)
+		if consumeSignalDelivery() {
+			if remainder != 0 && flags&timerAbsTime == 0 {
+				rem := (*Ttimespec)(unsafe.Pointer(remainder))
+				rem.Ftv_sec = 0
+				rem.Ftv_nsec = 0
+			}
+			return int32(errno.EINTR)
+		}
+	}
+}
+
+type linuxIntervalTimer struct {
+	timer    *time.Timer
+	deadline time.Time
+	repeat   time.Duration
+}
+
+var (
+	linuxIntervalMu     sync.Mutex
+	linuxIntervalTimers [3]linuxIntervalTimer
+)
+
+func linuxIntervalValue(which int32, value uintptr) int32 {
+	if which < 0 || which >= int32(len(linuxIntervalTimers)) || value == 0 {
+		return -1
+	}
+	state := &linuxIntervalTimers[which]
+	it := (*Titimerval)(unsafe.Pointer(value))
+	*it = Titimerval{}
+	remaining := time.Until(state.deadline)
+	if state.timer == nil || remaining < 0 {
+		remaining = 0
+	}
+	it.Fit_value.Ftv_sec = int64(remaining / time.Second)
+	it.Fit_value.Ftv_usec = int64(remaining % time.Second / time.Microsecond)
+	it.Fit_interval.Ftv_sec = int64(state.repeat / time.Second)
+	it.Fit_interval.Ftv_usec = int64(state.repeat % time.Second / time.Microsecond)
+	return 0
+}
+
+func _ccgo_getitimer(tls *libc.TLS, which int32, value uintptr) int32 {
+	linuxIntervalMu.Lock()
+	defer linuxIntervalMu.Unlock()
+	if linuxIntervalValue(which, value) != 0 {
+		setErrno(tls, int32(errno.EINVAL))
+		return -1
+	}
+	return 0
+}
+
+func _ccgo_setitimer(tls *libc.TLS, which int32, value, old uintptr) int32 {
+	if which < 0 || which >= int32(len(linuxIntervalTimers)) || value == 0 {
+		setErrno(tls, int32(errno.EINVAL))
+		return -1
+	}
+	it := (*Titimerval)(unsafe.Pointer(value))
+	if it.Fit_value.Ftv_sec < 0 || it.Fit_value.Ftv_usec < 0 || it.Fit_value.Ftv_usec >= 1_000_000 || it.Fit_interval.Ftv_sec < 0 || it.Fit_interval.Ftv_usec < 0 || it.Fit_interval.Ftv_usec >= 1_000_000 {
+		setErrno(tls, int32(errno.EINVAL))
+		return -1
+	}
+	initial := time.Duration(it.Fit_value.Ftv_sec)*time.Second + time.Duration(it.Fit_value.Ftv_usec)*time.Microsecond
+	repeat := time.Duration(it.Fit_interval.Ftv_sec)*time.Second + time.Duration(it.Fit_interval.Ftv_usec)*time.Microsecond
+
+	linuxIntervalMu.Lock()
+	defer linuxIntervalMu.Unlock()
+	if old != 0 {
+		linuxIntervalValue(which, old)
+	}
+	state := &linuxIntervalTimers[which]
+	if state.timer != nil {
+		state.timer.Stop()
+		state.timer = nil
+	}
+	state.repeat = repeat
+	if initial == 0 {
+		return 0
+	}
+	signalNumber := [...]int32{int32(syscall.SIGALRM), int32(syscall.SIGVTALRM), int32(syscall.SIGPROF)}[which]
+	var fire func()
+	fire = func() {
+		dtls := libc.NewTLS()
+		selfSignal(dtls, signalNumber)
+		dtls.Close()
+		noteSignalDelivery()
+		linuxIntervalMu.Lock()
+		defer linuxIntervalMu.Unlock()
+		current := &linuxIntervalTimers[which]
+		if current.repeat != 0 {
+			current.deadline = time.Now().Add(current.repeat)
+			current.timer = time.AfterFunc(current.repeat, fire)
+		} else {
+			current.timer = nil
+		}
+	}
+	state.deadline = time.Now().Add(initial)
+	state.timer = time.AfterFunc(initial, fire)
+	return 0
+}
+
+func _ccgo_pause(tls *libc.TLS) int32 {
+	generation := deliveredSignalGeneration.Load()
+	for deliveredSignalGeneration.Load() == generation {
+		time.Sleep(10 * time.Millisecond)
+	}
+	observedSignalGeneration.Store(deliveredSignalGeneration.Load())
+	setErrno(tls, int32(errno.EINTR))
+	return -1
+}
+
+func _ccgo_syscall(tls *libc.TLS, number int64, args uintptr) int64 {
+	const sysPidfdSendSignal = 424
+	if number != sysPidfdSendSignal {
+		return libc.Xsyscall(tls, number, args)
+	}
+	ap := args
+	pidfd := int(libc.VaInt64(&ap))
+	signalNumber := int32(libc.VaInt64(&ap))
+	siginfo := uintptr(libc.VaInt64(&ap))
+	flags := int32(libc.VaInt64(&ap))
+	if siginfo == 0 && flags == 0 {
+		if target, err := os.Readlink(fmt.Sprintf("/proc/self/fd/%d", pidfd)); err == nil && target == fmt.Sprintf("/proc/%d", unix.Getpid()) {
+			if selfSignal(tls, signalNumber) {
+				return 0
+			}
+		}
+	}
+	return libc.Xsyscall(tls, number, args)
+}

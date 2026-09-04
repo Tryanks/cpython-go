@@ -777,6 +777,41 @@ func _ccgo_alarm(tls *libc.TLS, seconds uint32) uint32 {
 	return remaining
 }
 
+func _ccgo_nanosleep(tls *libc.TLS, request, remainder uintptr) int32 {
+	req := (*Ttimespec)(unsafe.Pointer(request))
+	duration := time.Duration(req.Ftv_sec)*time.Second + time.Duration(req.Ftv_nsec)
+	if duration < 0 || req.Ftv_nsec < 0 || req.Ftv_nsec >= int64(time.Second) {
+		setErrno(tls, int32(errno.EINVAL))
+		return -1
+	}
+	if consumeSignalDelivery() {
+		setErrno(tls, int32(errno.EINTR))
+		return -1
+	}
+	deadline := time.Now().Add(duration)
+	for time.Now().Before(deadline) {
+		remaining := time.Until(deadline)
+		if remaining > 10*time.Millisecond {
+			remaining = 10 * time.Millisecond
+		}
+		time.Sleep(remaining)
+		if consumeSignalDelivery() {
+			if remainder != 0 {
+				left := time.Until(deadline)
+				if left < 0 {
+					left = 0
+				}
+				rem := (*Ttimespec)(unsafe.Pointer(remainder))
+				rem.Ftv_sec = int64(left / time.Second)
+				rem.Ftv_nsec = int64(left % time.Second)
+			}
+			setErrno(tls, int32(errno.EINTR))
+			return -1
+		}
+	}
+	return 0
+}
+
 func _getitimer(tls *libc.TLS, which int32, value uintptr) int32 {
 	if which != 0 || value == 0 {
 		setErrno(tls, int32(errno.EINVAL))

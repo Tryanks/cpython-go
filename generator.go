@@ -302,6 +302,9 @@ func main() {
 // export this platform's _sysconfigdata__<os>_<multiarch>.py into
 // stdlib/sysconfigdata/, which mkstdlib packs into the embedded stdlib.
 func sysconfigdata() {
+	if goos == "darwin" && goarch != runtime.GOARCH {
+		return // both darwin arches share _sysconfigdata__darwin_darwin.py; keep the native one
+	}
 	shell("make", "-C", build, "-j", j, "python.exe", "pybuilddir.txt")
 	files, _ := filepath.Glob(filepath.Join(build, "build", "lib.*", "_sysconfigdata__*.py"))
 	if len(files) != 1 {
@@ -361,8 +364,7 @@ var threadLocals = [][2]string{
 }
 
 // shimmedLibc lists, per GOOS, the libc.X<name> calls rewritten to
-// _ccgo_<name> (defined in libpython/libc_<goos>.go). Keep sorted. Linux uses
-// the transpiled musl in modernc.org/libc and needs none so far.
+// _ccgo_<name> (defined in libpython/libc_<goos>.go). Keep sorted.
 var shimmedLibc = map[string][]string{"darwin": {
 	"__builtin___snprintf_chk",
 	"__builtin___sprintf_chk",
@@ -399,6 +401,7 @@ var shimmedLibc = map[string][]string{"darwin": {
 	"mbstowcs",
 	"mktime",
 	"mknod",
+	"nanosleep",
 	"nl_langinfo",
 	"openpty",
 	"pathconf",
@@ -406,6 +409,7 @@ var shimmedLibc = map[string][]string{"darwin": {
 	"printf",
 	"pthread_key_delete",
 	"raise",
+	"read",
 	"readv",
 	"recvfrom",
 	"recvmsg",
@@ -423,15 +427,23 @@ var shimmedLibc = map[string][]string{"darwin": {
 	"truncate",
 	"ungetc",
 	"vfprintf",
+	"write",
 }, "linux": {
 	// modernc's transpiled musl stdio locking hits an unsupported inline
 	// asm barrier (atomic_arch.h) and aborts; the interpreter serializes
 	// stdio itself.
+	"clock_nanosleep",
 	"flockfile",
 	"funlockfile",
+	"getitimer",
 	"kill",
+	"pause",
 	"raise",
+	"read",
+	"setitimer",
 	"sigaction",
+	"syscall",
+	"write",
 }}
 
 // prepareSource copies $CPYTHON_SRC (a CPython 3.14 checkout) to tmp/cpython

@@ -85966,7 +85966,7 @@ func _pysleep(tls *libc.TLS, timeout TPyTime_t) (r int32) {
 			return -int32(1)
 		}
 		_save = XPyEval_SaveThread(tls)
-		ret = libc.Xnanosleep(tls, bp, libc.UintptrFromInt32(0))
+		ret = _ccgo_nanosleep(tls, bp, libc.UintptrFromInt32(0))
 		err = **(**int32)(__ccgo_up(libc.X__error(tls)))
 		XPyEval_RestoreThread(tls, _save)
 		if ret == 0 {

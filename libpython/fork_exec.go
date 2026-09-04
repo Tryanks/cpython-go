@@ -40,9 +40,16 @@ func pyStringBytes(tls *libc.TLS, obj uintptr) (string, bool) {
 	if pyIsTypeOrSubtype(tls, obj, uintptr(unsafe.Pointer(&XPyBytes_Type))) {
 		data = XPyBytes_AsString(tls, obj)
 		size = XPyBytes_Size(tls, obj)
-	} else {
+	} else if pyIsTypeOrSubtype(tls, obj, uintptr(unsafe.Pointer(&XPyUnicode_Type))) {
 		data = XPyUnicode_AsUTF8AndSize(tls, obj, sizep)
 		size = *(*int64)(unsafe.Pointer(sizep))
+	} else {
+		path := XPyOS_FSPath(tls, obj)
+		if path == 0 {
+			return "", false
+		}
+		defer XPy_DecRef(tls, path)
+		return pyStringBytes(tls, path)
 	}
 	if data == 0 || size < 0 {
 		return "", false

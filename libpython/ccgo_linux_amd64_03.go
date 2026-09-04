@@ -18,6 +18,62 @@ var _ reflect.Type
 
 var _ unsafe.Pointer
 
+func _unicode_encode_locale(tls *libc.TLS, unicode uintptr, error_handler T_Py_error_handler, current_locale int32) (r uintptr) {
+	bp := tls.Alloc(80)
+	defer tls.Free(80)
+	var bytes, exc, wstr, v1, v6 uintptr
+	var res, v2 int32
+	var v5 Tuint32_t
+	var _ Tsize_t
+	var _ uintptr
+	var _ uintptr
+	var _ TPy_ssize_t
+	_, _, _, _, _, _, _, _ = bytes, exc, res, wstr, v1, v2, v5, v6
+	wstr = XPyUnicode_AsWideCharString(tls, unicode, bp)
+	if wstr == libc.UintptrFromInt32(0) {
+		return libc.UintptrFromInt32(0)
+	}
+	if libc.Uint64FromInt64(**(**TPy_ssize_t)(__ccgo_up(bp))) != libc.Xwcslen(tls, wstr) {
+		XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+15137)
+		XPyMem_Free(tls, wstr)
+		return libc.UintptrFromInt32(0)
+	}
+	res = X_Py_EncodeLocaleEx(tls, wstr, bp+8, bp+16, bp+24, current_locale, error_handler)
+	XPyMem_Free(tls, wstr)
+	if res != 0 {
+		if res == -int32(2) {
+			exc = XPyObject_CallFunction(tls, XPyExc_UnicodeEncodeError, __ccgo_ts+77994, libc.VaList(bp+40, __ccgo_ts+78000, unicode, libc.Int64FromUint64(**(**Tsize_t)(__ccgo_up(bp + 16))), libc.Int64FromUint64(**(**Tsize_t)(__ccgo_up(bp + 16))+libc.Uint64FromInt32(1)), **(**uintptr)(__ccgo_up(bp + 24))))
+			if exc != libc.UintptrFromInt32(0) {
+				XPyCodec_StrictErrors(tls, exc)
+				v1 = exc
+				v2 = libc.BoolInt32(libc.Int32FromUint32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
+				goto _3
+			_3:
+				if v2 != 0 {
+					goto _4
+				}
+				v6 = v1
+				*(*Tuint32_t)(unsafe.Pointer(v6)) = *(*Tuint32_t)(unsafe.Pointer(v6)) - 1
+				v5 = *(*Tuint32_t)(unsafe.Pointer(v6))
+				if v5 == libc.Uint32FromInt32(0) {
+					X_Py_Dealloc(tls, v1)
+				}
+			_4:
+			}
+		} else {
+			if res == -int32(3) {
+				XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+78007)
+			} else {
+				XPyErr_NoMemory(tls)
+			}
+		}
+		return libc.UintptrFromInt32(0)
+	}
+	bytes = XPyBytes_FromString(tls, **(**uintptr)(__ccgo_up(bp + 8)))
+	XPyMem_RawFree(tls, **(**uintptr)(__ccgo_up(bp + 8)))
+	return bytes
+}
+
 func XPyUnicode_EncodeLocale(tls *libc.TLS, unicode uintptr, errors uintptr) (r uintptr) {
 	var error_handler T_Py_error_handler
 	_ = error_handler

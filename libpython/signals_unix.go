@@ -61,6 +61,7 @@ func installSigaction(signum int32, next *goSigaction) goSigaction {
 			fn := *(*func(*libc.TLS, int32))(unsafe.Pointer(&struct{ uintptr }{handler}))
 			for received := range ch {
 				fn(dtls, int32(received.(syscall.Signal)))
+				noteSignalDelivery()
 			}
 		}()
 	}

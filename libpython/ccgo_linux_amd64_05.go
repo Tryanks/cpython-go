@@ -18,6 +18,56 @@ var _ reflect.Type
 
 var _ unsafe.Pointer
 
+func X_PyCompile_MaybeMangle(tls *libc.TLS, c uintptr, name uintptr) (r uintptr) {
+	return X_Py_MaybeMangle(tls, (*Tcompiler_unit)(unsafe.Pointer((*Tcompiler)(unsafe.Pointer(c)).Fu)).Fu_private, (*Tcompiler_unit)(unsafe.Pointer((*Tcompiler)(unsafe.Pointer(c)).Fu)).Fu_ste, name)
+}
+
+func X_PyCompile_InstrSequence(tls *libc.TLS, c uintptr) (r uintptr) {
+	return (*Tcompiler_unit)(unsafe.Pointer((*Tcompiler)(unsafe.Pointer(c)).Fu)).Fu_instr_sequence
+}
+
+func X_PyCompile_StartAnnotationSetup(tls *libc.TLS, c uintptr) (r int32) {
+	var new_seq uintptr
+	_ = new_seq
+	new_seq = X_PyInstructionSequence_New(tls)
+	if new_seq == libc.UintptrFromInt32(0) {
+		return -int32(1)
+	}
+	(*Tcompiler_unit)(unsafe.Pointer((*T_PyCompiler)(unsafe.Pointer(c)).Fu)).Fu_stashed_instr_sequence = (*Tcompiler_unit)(unsafe.Pointer((*T_PyCompiler)(unsafe.Pointer(c)).Fu)).Fu_instr_sequence
+	(*Tcompiler_unit)(unsafe.Pointer((*T_PyCompiler)(unsafe.Pointer(c)).Fu)).Fu_instr_sequence = new_seq
+	return 0
+}
+
+func X_PyCompile_EndAnnotationSetup(tls *libc.TLS, c uintptr) (r int32) {
+	var anno_seq, parent_seq, v1, v6 uintptr
+	var v2 int32
+	var v5 Tuint32_t
+	_, _, _, _, _, _ = anno_seq, parent_seq, v1, v2, v5, v6
+	parent_seq = (*Tcompiler_unit)(unsafe.Pointer((*T_PyCompiler)(unsafe.Pointer(c)).Fu)).Fu_stashed_instr_sequence
+	anno_seq = (*Tcompiler_unit)(unsafe.Pointer((*T_PyCompiler)(unsafe.Pointer(c)).Fu)).Fu_instr_sequence
+	(*Tcompiler_unit)(unsafe.Pointer((*T_PyCompiler)(unsafe.Pointer(c)).Fu)).Fu_stashed_instr_sequence = libc.UintptrFromInt32(0)
+	(*Tcompiler_unit)(unsafe.Pointer((*T_PyCompiler)(unsafe.Pointer(c)).Fu)).Fu_instr_sequence = parent_seq
+	if X_PyInstructionSequence_SetAnnotationsCode(tls, parent_seq, anno_seq) == -int32(1) {
+		v1 = anno_seq
+		v2 = libc.BoolInt32(libc.Int32FromUint32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
+		goto _3
+	_3:
+		if v2 != 0 {
+			goto _4
+		}
+		v6 = v1
+		*(*Tuint32_t)(unsafe.Pointer(v6)) = *(*Tuint32_t)(unsafe.Pointer(v6)) - 1
+		v5 = *(*Tuint32_t)(unsafe.Pointer(v6))
+		if v5 == libc.Uint32FromInt32(0) {
+			X_Py_Dealloc(tls, v1)
+		}
+	_4:
+		;
+		return -int32(1)
+	}
+	return 0
+}
+
 func X_PyCompile_FutureFeatures(tls *libc.TLS, c uintptr) (r int32) {
 	return (*Tcompiler)(unsafe.Pointer(c)).Fc_future.Fff_features
 }
@@ -2747,7 +2797,7 @@ var _PyContextVar_methods = [5]TPyMethodDef{
 		Fml_doc:   uintptr(unsafe.Pointer(&__contextvars_ContextVar_get__doc__)),
 	},
 	1: {
-		Fml_name:  __ccgo_ts + 57294,
+		Fml_name:  __ccgo_ts + 57284,
 		Fml_flags: int32(MMETH_O),
 		Fml_doc:   uintptr(unsafe.Pointer(&__contextvars_ContextVar_set__doc__)),
 	},
@@ -30518,7 +30568,7 @@ func _hamt_py_set(tls *libc.TLS, op uintptr, args uintptr) (r uintptr) {
 	var _ uintptr
 	var _ uintptr
 	_ = self
-	if !(XPyArg_UnpackTuple(tls, args, __ccgo_ts+57294, int64(2), int64(2), libc.VaList(bp+24, bp, bp+8)) != 0) {
+	if !(XPyArg_UnpackTuple(tls, args, __ccgo_ts+57284, int64(2), int64(2), libc.VaList(bp+24, bp, bp+8)) != 0) {
 		return libc.UintptrFromInt32(0)
 	}
 	self = op
@@ -30612,7 +30662,7 @@ func _hamt_py_keys(tls *libc.TLS, op uintptr, _unused_args uintptr) (r uintptr) 
 
 var _PyHamt_methods = [7]TPyMethodDef{
 	0: {
-		Fml_name:  __ccgo_ts + 57294,
+		Fml_name:  __ccgo_ts + 57284,
 		Fml_flags: int32(MMETH_VARARGS),
 	},
 	1: {
@@ -50408,7 +50458,7 @@ var __PyBranchesIterator = TPyTypeObject{
 			Fob_type: uintptr(unsafe.Pointer(&XPyType_Type)),
 		},
 	},
-	Ftp_name:      __ccgo_ts + 21243,
+	Ftp_name:      __ccgo_ts + 21267,
 	Ftp_basicsize: int64(32),
 	Ftp_flags:     libc.Uint64FromInt32(libc.Int32FromInt32(MPy_TPFLAGS_HAVE_STACKLESS_EXTENSION)|libc.Int32FromInt32(0)) | libc.Uint64FromUint64(1)<<libc.Int32FromInt32(10),
 }

@@ -43803,7 +43803,7 @@ func __Py_write_impl(tls *libc.TLS, fd int32, buf uintptr, count Tsize_t, gil_he
 		for {
 			_save = XPyEval_SaveThread(tls)
 			**(**int32)(__ccgo_up(libc.X__error(tls))) = 0
-			n = libc.Xwrite(tls, fd, buf, count)
+			n = _ccgo_write(tls, fd, buf, count)
 
 			err = **(**int32)(__ccgo_up(libc.X__error(tls)))
 			XPyEval_RestoreThread(tls, _save)
@@ -43821,7 +43821,7 @@ func __Py_write_impl(tls *libc.TLS, fd int32, buf uintptr, count Tsize_t, gil_he
 	} else {
 		for cond := true; cond; cond = n < 0 && err == int32(MEINTR) {
 			**(**int32)(__ccgo_up(libc.X__error(tls))) = 0
-			n = libc.Xwrite(tls, fd, buf, count)
+			n = _ccgo_write(tls, fd, buf, count)
 			err = **(**int32)(__ccgo_up(libc.X__error(tls)))
 		}
 	}
