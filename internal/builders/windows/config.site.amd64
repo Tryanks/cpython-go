@@ -1,0 +1,47 @@
+# CPython Misc/config_mingw and Misc/cross_mingw32 defaults, plus answers
+# required for a non-runnable x86_64-w64-mingw32 cross target.
+ac_cv_func_ftruncate=ignore
+ac_cv_func_truncate=ignore
+ac_cv_func_alarm=ignore
+ac_cv_file__dev_ptmx=ignore
+ac_cv_file__dev_ptc=no
+ac_cv_func_getpeername=yes
+ac_cv_little_endian_double=yes
+ac_cv_big_endian_double=no
+ac_cv_mixed_endian_double=no
+ac_cv_tanh_preserves_zero_sign=yes
+ac_cv_wchar_t_signed=no
+ac_cv_have_size_t_format=no
+
+# cpython-go policy: no dlopen, host pkg-config libraries, x87, or SIMD asm.
+ac_cv_func_dlopen=no
+ac_cv_lib_dl_dlopen=no
+ac_cv_header_zlib_h=no
+ac_cv_gcc_asm_for_x87=no
+ac_cv_gcc_asm_for_mc68881=no
+ax_cv_check_cflags__Werror__mavx2=no
+ax_cv_check_cflags__Werror__msse__msse2__msse3__msse4_1__msse4_2=no
+
+py_cv_module__crypt=n/a
+py_cv_module__multiprocessing=n/a
+py_cv_module__posixshmem=n/a
+py_cv_module_syslog=n/a
+py_cv_module__bz2=n/a
+py_cv_module__ctypes=n/a
+py_cv_module__curses=n/a
+py_cv_module__curses_panel=n/a
+py_cv_module__dbm=n/a
+py_cv_module__decimal=n/a
+py_cv_module__gdbm=n/a
+py_cv_module__hashlib=n/a
+py_cv_module__lzma=n/a
+py_cv_module__scproxy=n/a
+py_cv_module__sqlite3=n/a
+py_cv_module__ssl=n/a
+py_cv_module__tkinter=n/a
+py_cv_module__uuid=n/a
+py_cv_module__wmi=n/a
+py_cv_module_nis=n/a
+py_cv_module_readline=n/a
+py_cv_module_zlib=n/a
+py_cv_module__zstd=n/a
