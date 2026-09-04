@@ -38,12 +38,13 @@ is parked here.
   (fd inherited by a subprocess through ForkExec; not yet diagnosed).
 - test_signal/test_unittest: pending-signal semantics (sigpending, sigwait,
   masks, ITIMER_VIRTUAL/PROF) and delayed delivery of external signals.
-- test_weakref, test_dataclasses, test_copy: finalizers/weakref callbacks run
-  later than CPython expects (GC timing).
+- Returned-local reference leaks are fixed on darwin/arm64 (see
+  docs/refleak.md); regenerate the other targets from the updated C patch.
+  test_weakref's isolated atexit child needs the test-inclusive stdlib.
 - test_math: gamma() is ~30 ulps off (Go math.Gamma vs libm tgamma).
 - test_locale: collation is ordinal (strcoll/wcscoll).
 - test_datetime (3): StaticTypes/ExtensionModule tests (test modules absent).
-- test_json/test_re/test_struct/test_itertools/test_functools/test_argparse:
+- test_json/test_re/test_argparse:
   one or a few failures each, not yet triaged.
 - Tests that spawn `sys.executable -I/-E` need the test package inside the
   binary: build with `-tags cpython_test` after `make stdlib-tests`

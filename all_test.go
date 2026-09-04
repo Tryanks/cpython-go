@@ -60,3 +60,75 @@ print(A().x, isinstance(A(), object))`, "1 True"},
 		}
 	}
 }
+
+// Returning a borrowed local must transfer the owned reference created when
+// making the stack reference heap-safe. Exercise the generated evaluator.
+func TestReturnedLocalOwnership(t *testing.T) {
+	got := run(t, "-c", `
+import gc, sys, weakref
+
+def outer():
+    def inner(): pass
+    return inner
+
+f = outer()
+assert sys.getrefcount(f) == 2
+called = []
+r = weakref.ref(f, lambda w: called.append(True))
+del f
+assert r() is None
+assert called == [True]
+
+for expression in ('[]', '{}', 'lambda: None',
+                   '(lambda x: lambda: x)(42)',
+                   'type("A", (), {})()', '(x for x in ())'):
+    scope = {}
+    exec('def factory():\n obj = ' + expression + '\n return obj', scope)
+    obj = scope['factory']()
+    assert sys.getrefcount(obj) == 2, expression
+
+def yielding():
+    obj = []
+    yield obj
+
+g = yielding()
+obj = next(g)
+assert sys.getrefcount(obj) == 3
+g.close()
+assert sys.getrefcount(obj) == 2
+
+class AsyncIterator:
+    def __aiter__(self):
+        return self
+
+obj = AsyncIterator()
+async def consume():
+    async for item in obj:
+        pass
+
+c = consume()
+try:
+    c.send(None)
+except TypeError:
+    pass
+else:
+    raise AssertionError('missing __anext__ must raise TypeError')
+assert sys.getrefcount(obj) == 2
+
+def cycle():
+    class A: pass
+    obj = A()
+    obj.self = obj
+    return obj
+
+obj = cycle()
+r = weakref.ref(obj)
+del obj
+assert gc.collect() > 0
+assert r() is None
+print('ok')
+`)
+	if got != "ok" {
+		t.Fatalf("unexpected output: %q", got)
+	}
+}

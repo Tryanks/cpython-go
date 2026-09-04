@@ -373,3 +373,25 @@ diff --color -ruN a/Modules/hmacmodule.c b/Modules/hmacmodule.c
      __cpuid_count(1, 0, eax1, ebx1, ecx1, edx1);
      __cpuid_count(7, 0, eax7, ebx7, ecx7, edx7);
  #elif defined(_M_X64)
+
+pycore_stackref.h: ccgo spills the by-value _PyStackRef union parameter
+when accessing ref.bits, but returns the original parameter after a member
+assignment. PyStackRef_MakeHeapSafe increments the object reference count
+then returns the old borrowed tag, leaking the newly owned reference on
+return/yield. Initialize and return a fresh union instead.
+--- a/Include/internal/pycore_stackref.h
++++ b/Include/internal/pycore_stackref.h
+@@ -633,7 +633,10 @@
+     }
+     PyObject *obj = BITS_TO_PTR_MASKED(ref);
+     Py_INCREF(obj);
+-    ref.bits = (uintptr_t)obj;
+-    PyStackRef_CheckValid(ref);
+-    return ref;
++    /* ccgo loses writes to a by-value union parameter when returning it:
++       it updates the spilled copy but returns the original tagged value.
++       Construct a new stackref so the owned reference has its tag cleared. */
++    _PyStackRef result = { .bits = (uintptr_t)obj };
++    PyStackRef_CheckValid(result);
++    return result;
+ }
