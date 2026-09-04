@@ -5,11 +5,9 @@ is parked here.
 
 ## Platforms
 
-- windows/amd64, windows/arm64 — not started. CPython's Windows port is a
-  separate code path (PC/, no configure); the realistic route is the MSYS2
-  mingw-w64 patch set + `--host=x86_64-w64-mingw32` under ccgo with a mingw
-  toolchain, plus a windows libc supplement (modernc.org/libc on windows is
-  as thin as on darwin).
+- windows/amd64, windows/arm64 — in progress, see docs/windows.md
+  (llvm-mingw cross generation from a Linux container + MSYS2 patch set +
+  a Win32 supplement in libpython/libc_windows.go).
 - linux/386, linux/arm, linux/ppc64le, linux/riscv64, linux/s390x — parked.
   `internal/builders/linux/run.sh <arch>` generates them under qemu-user
   (works for all but loong64, which has no container image); expect hours per
