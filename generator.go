@@ -1,0 +1,507 @@
+// Copyright 2026 The cpython-go Authors. All rights reserved.
+// Use of this source code is governed by the MIT
+// license that can be found in the LICENSE file.
+
+//go:build ignore
+
+// Command generator transpiles CPython to Go using ccgo.
+//
+// Usage:
+//
+//	CPYTHON_SRC=/path/to/cpython-3.14 go run generator.go
+//
+// Steps:
+//  1. Configure CPython natively in tmp/build (out-of-tree), static, no
+//     dynamic loading, no external libraries.
+//  2. Run `make libpython3.14.a` under ccgo -exec, so every cc/ar invocation
+//     is shadowed: the real compiler builds native objects (needed for the
+//     build-time helpers _freeze_module/_bootstrap_python) and ccgo emits a
+//     .o.go beside each .o.
+//  3. Link the .ago archives into libpython/ccgo_<goos>_<goarch>.go.
+package main
+
+import (
+	"fmt"
+	"os"
+	"os/exec"
+	"path/filepath"
+	"runtime"
+	"strconv"
+	"strings"
+
+	cc "modernc.org/cc/v4"
+	ccgo "modernc.org/ccgo/v4/lib"
+	util "modernc.org/fileutil/ccgo"
+)
+
+const (
+	pyVer   = "3.14"
+	libName = "libpython" + pyVer + ".a"
+	tmp     = "tmp"
+	outDir  = "libpython"
+)
+
+var (
+	ccArgs = []string{
+		"--prefix-enumerator=E",
+		"--prefix-external=x_",
+		"--prefix-field=F",
+		"--prefix-macro=M",
+		"--prefix-static-internal=_",
+		"--prefix-static-none=_",
+		"--prefix-tagged-enum=_",
+		"--prefix-tagged-struct=T",
+		"--prefix-tagged-union=T",
+		"--prefix-typename=T",
+		"--prefix-undefined=_",
+		// Marks ccgo-only code paths in internal/patch (see _posixsubprocess.c).
+		"-DCCGO=1",
+		"-DNDEBUG",
+		// FLT_ROUNDS expands to builtins libc does not provide.
+		"-D__builtin_flt_rounds()=1",
+		// 3.14 measures C stack depth through the machine stack pointer;
+		// transpiled code has no C stack, so route it to a virtual one kept
+		// per libc.TLS in libpython/libc_darwin.go.
+		"-D__builtin_frame_address(x)=ccgo_frame_address()",
+		"-U__SIZEOF_INT128__",
+		"-eval-all-macros",
+		"-extended-errors",
+		// Modules/_blake2/impl/blake2-impl.h uses an empty asm memory barrier.
+		"-ignore-asm-errors",
+		"-ignore-link-errors",
+		"-ignore-unsupported-alignment",
+	}
+	// configureEnv pins configure decisions that the host would otherwise get
+	// wrong for a ccgo build: no dlopen (no dynamic extension modules), all
+	// stdlib modules static, no pkg-config so no host libraries (libb2, zlib,
+	// openssl, ...) leak into the build.
+	configureEnv = []string{
+		"MODULE_BUILDTYPE=static",
+		// configure re-detects pkg-config from PATH, so PKG_CONFIG=false is not
+		// enough; an empty .pc search path makes every module fall back to
+		// its vendored copy (libb2, expat, mpdecimal...).
+		"PKG_CONFIG_LIBDIR=/nonexistent",
+		"PKG_CONFIG_PATH=",
+		"ac_cv_func_dlopen=no",
+		"ac_cv_lib_dl_dlopen=no",
+		"ac_cv_header_zlib_h=no",
+		// x87 control-word inline asm (Python/pymath.c) cannot be transpiled.
+		"ac_cv_gcc_asm_for_x87=no",
+		"ac_cv_gcc_asm_for_mc68881=no",
+		// HACL* SIMD (SSE/AVX2 intrinsics) cannot be transpiled.
+		"ax_cv_check_cflags__Werror__mavx2=no",
+		"ax_cv_check_cflags__Werror__msse__msse2__msse3__msse4_1__msse4_2=no",
+		"py_cv_module__crypt=n/a",
+		"py_cv_module__multiprocessing=n/a",
+		"py_cv_module__posixshmem=n/a",
+		"py_cv_module_syslog=n/a",
+		"py_cv_module__bz2=n/a",
+		"py_cv_module__ctypes=n/a",
+		"py_cv_module__curses=n/a",
+		"py_cv_module__curses_panel=n/a",
+		"py_cv_module__dbm=n/a",
+		"py_cv_module__decimal=n/a",
+		"py_cv_module__gdbm=n/a",
+		"py_cv_module__hashlib=n/a",
+		"py_cv_module__lzma=n/a",
+		"py_cv_module__scproxy=n/a",
+		"py_cv_module__sqlite3=n/a",
+		"py_cv_module__ssl=n/a",
+		"py_cv_module__tkinter=n/a",
+		"py_cv_module__uuid=n/a",
+		"py_cv_module_nis=n/a",
+		"py_cv_module_readline=n/a",
+		"py_cv_module_zlib=n/a",
+		"py_cv_module__zstd=n/a",
+	}
+	// configureEnvOS: functions modernc.org/libc lacks on a platform; CPython
+	// has fallbacks for all of them.
+	configureEnvOS = map[string][]string{
+		"darwin": {
+			"ac_cv_func_faccessat=no",
+			"ac_cv_func_fchmodat=no",
+			"ac_cv_func_fchownat=no",
+			"ac_cv_func_fdopendir=no",
+			"ac_cv_func_fstatat=no",
+			"ac_cv_func_futimens=no",
+			"ac_cv_func_getloadavg=no",
+			"ac_cv_func_kqueue=no",
+			"ac_cv_func_lchmod=no",
+			"ac_cv_func_linkat=no",
+			"ac_cv_func_mkdirat=no",
+			"ac_cv_func_mkfifoat=no",
+			"ac_cv_func_mknodat=no",
+			"ac_cv_func_openat=no",
+			"ac_cv_func_posix_spawn=no",
+			"ac_cv_func_posix_spawnp=no",
+			"ac_cv_func_readlinkat=no",
+			"ac_cv_func_renameat=no",
+			"ac_cv_func_sigaltstack=no",
+			"ac_cv_func_symlinkat=no",
+			"ac_cv_func_unlinkat=no",
+			"ac_cv_func_utimensat=no",
+			"ac_cv_func_waitid=no",
+			"ac_cv_func_posix_openpt=no",
+			"ac_cv_func_grantpt=no",
+			"ac_cv_func_unlockpt=no",
+			"ac_cv_func_ptsname=no",
+			"ac_cv_func_ptsname_r=no",
+			"ac_cv_func_pthread_getname_np=no",
+			"ac_cv_func_pthread_setname_np=no",
+			"ac_cv_func_getlogin_r=no",
+		},
+		"linux": {
+			// transpiled musl: no semaphores, scheduler, condattr clocks, ...
+			"ac_cv_func_forkpty=no",
+			"ac_cv_func_posix_spawn=no",
+			"ac_cv_func_posix_spawnp=no",
+			"ac_cv_func_pthread_condattr_setclock=no",
+			"ac_cv_func_pthread_getname_np=no",
+			"ac_cv_func_pthread_setname_np=no",
+			"ac_cv_func_pthread_getcpuclockid=no",
+			"ac_cv_func_pthread_kill=no",
+			"ac_cv_func_sched_get_priority_max=no",
+			"ac_cv_func_sched_getaffinity=no",
+			"ac_cv_func_sched_getparam=no",
+			"ac_cv_func_sched_getscheduler=no",
+			"ac_cv_func_sched_rr_get_interval=no",
+			"ac_cv_func_sched_setaffinity=no",
+			"ac_cv_func_sched_setparam=no",
+			"ac_cv_func_sched_setscheduler=no",
+			"ac_cv_posix_semaphores_enabled=no",
+		},
+	}
+	configureArgs = []string{
+		"--disable-ipv6",
+		"--disable-shared",
+		"--disable-test-modules",
+		"--with-static-libpython",
+		"--without-computed-gotos",
+		"--without-ensurepip",
+		"--without-mimalloc",
+		// sys.remote_exec needs mach_vm_* / proc_regionfilename; not portable.
+		"--without-remote-debug",
+		"--without-pymalloc",
+	}
+	dev    = os.Getenv("GO_GENERATE_DEV") != ""
+	goarch = env("TARGET_GOARCH", env("GOARCH", runtime.GOARCH))
+	goos   = env("TARGET_GOOS", env("GOOS", runtime.GOOS))
+	gsed   = "sed"
+	j      = strconv.Itoa(runtime.GOMAXPROCS(-1))
+	target = fmt.Sprintf("%s/%s", goos, goarch)
+	// Per-target scratch dirs so several targets can be generated side by side.
+	build   = filepath.Join(tmp, goos+"_"+goarch, "build")
+	srcCopy = filepath.Join(tmp, goos+"_"+goarch, "cpython")
+)
+
+func env(name, deflt string) (r string) {
+	r = deflt
+	if s := os.Getenv(name); s != "" {
+		r = s
+	}
+	return r
+}
+
+func fail(rc int, msg string, args ...any) {
+	fmt.Fprintln(os.Stderr, strings.TrimSpace(fmt.Sprintf("FAIL: "+msg, args...)))
+	os.Exit(rc)
+}
+
+func main() {
+	if ccgo.IsExecEnv() {
+		// Acting as the cc/ar shim inside `make`. Errors are reported but
+		// never fatal: the native build must go on so the build-time helpers
+		// get linked; missing .o.go files surface at the final link.
+		if err := ccgo.NewTask(goos, goarch, os.Args, os.Stdout, os.Stderr, nil).Main(); err != nil {
+			fmt.Fprintln(os.Stderr, err)
+		}
+		return
+	}
+
+	src, err := filepath.Abs(srcCopy)
+	if err != nil {
+		fail(1, "%v", err)
+	}
+
+	if s := cc.LongDouble64Flag(goos, goarch); s != "" {
+		ccArgs = append(ccArgs, s)
+	}
+	if dev {
+		ccArgs = append(ccArgs, "-absolute-paths", "-keep-object-files", "-positions")
+	}
+	switch target {
+	case "darwin/arm64", "darwin/amd64":
+		gsed = "gsed"
+		// ccgo resolves <limits.h> to clang's builtin header whose
+		// #include_next never reaches the SDK copy, losing SSIZE_MAX,
+		// PATH_MAX, IOV_MAX, ... Search the SDK before the builtin headers
+		// but after the -I dirs (the SDK ships an expat.h too).
+		sdk, err := exec.Command("xcrun", "--show-sdk-path").Output()
+		if err != nil {
+			fail(1, "xcrun --show-sdk-path: %v", err)
+		}
+		ccArgs = append(ccArgs,
+			"-isystem", filepath.Join(strings.TrimSpace(string(sdk)), "usr", "include"),
+			"-ignore-static-asserts",
+			// modernc.org/libc (darwin) declares these with the wrong Go
+			// signature; route them to our shims in libpython/libc_darwin.go.
+			"-Dsched_yield=ccgo_sched_yield",
+			"-Dwcschr=ccgo_wcschr",
+		)
+	}
+	configureEnv = append(configureEnv, configureEnvOS[goos]...)
+	if goos == "darwin" && goarch != runtime.GOARCH {
+		// Cross-generate the other darwin architecture: a compiler wrapper
+		// adds -arch, used both by configure/make (the ccgo cc shim forwards
+		// the flags to the host compiler; Rosetta runs the build helpers) and
+		// by ccgo for the predefined macros (--cpp).
+		arch := map[string]string{"amd64": "x86_64", "arm64": "arm64"}[goarch]
+		mkdirAll(filepath.Dir(build))
+		wrapper, _ := filepath.Abs(filepath.Join(filepath.Dir(build), "cc-"+arch))
+		if err := os.WriteFile(wrapper, []byte("#!/bin/sh\nexec cc -arch "+arch+" \"$@\"\n"), 0o755); err != nil {
+			fail(1, "%v", err)
+		}
+		configureEnv = append(configureEnv, "CC="+wrapper)
+		ccArgs = append(ccArgs, "--cpp="+wrapper)
+	}
+
+	// GO_GENERATE_INCREMENTAL=1 reuses tmp/cpython and tmp/build (make only
+	// rebuilds what changed); GO_GENERATE_SKIP_BUILD=1 only relinks;
+	// GO_GENERATE_POSTPROCESS=1 only re-runs the rewrites and the split on
+	// the existing single file.
+	mkdirAll(outDir)
+	base := fmt.Sprintf("ccgo_%s_%s", goos, goarch)
+	result := filepath.Join(outDir, base+".go")
+	switch {
+	case os.Getenv("GO_GENERATE_POSTPROCESS") != "":
+		postprocess(result, base)
+		return
+	case os.Getenv("GO_GENERATE_SKIP_BUILD") != "":
+	case os.Getenv("GO_GENERATE_INCREMENTAL") != "":
+		ccExec(append(ccArgs, "-exec", "make", "-C", build, "-j", j, libName))
+	default:
+		prepareSource()
+		removeAll(build)
+		mkdirAll(build)
+		configure(src)
+		ccExec(append(ccArgs, "-exec", "make", "-C", build, "-j", j, libName))
+	}
+
+	hacl, _ := filepath.Glob(filepath.Join(build, "Modules", "_hacl", "*.a"))
+	ccMain(append(append(ccArgs,
+		"--package-name", "libpython",
+		"-o", result,
+		filepath.Join(build, libName),
+		filepath.Join(build, "Modules", "expat", "libexpat.a"),
+	), hacl...))
+	postprocess(result, base)
+	sysconfigdata()
+}
+
+// sysconfigdata builds the native python.exe (the .o files are native) to
+// export this platform's _sysconfigdata__<os>_<multiarch>.py into
+// stdlib/sysconfigdata/, which mkstdlib packs into the embedded stdlib.
+func sysconfigdata() {
+	shell("make", "-C", build, "-j", j, "python.exe", "pybuilddir.txt")
+	files, _ := filepath.Glob(filepath.Join(build, "build", "lib.*", "_sysconfigdata__*.py"))
+	if len(files) != 1 {
+		fail(1, "sysconfigdata: found %v", files)
+	}
+	mkdirAll(filepath.Join("stdlib", "sysconfigdata"))
+	shell("cp", files[0], filepath.Join("stdlib", "sysconfigdata", filepath.Base(files[0])))
+}
+
+// postprocess applies the identifier and workaround rewrites to the single
+// linked file, then shards it (internal/cmd/splitgo) into
+// <base>_NN.go + <base>_data.go + <base>_data.bin and removes the single file.
+func postprocess(result, base string) {
+	shell(gsed, "-i", `s/\<T__\([a-zA-Z0-9][a-zA-Z0-9_]\+\)/t__\1/g`, result)
+	shell(gsed, "-i", `s/\<x_\([a-zA-Z0-9_][a-zA-Z0-9_]\+\)/X\1/g`, result)
+	// ccgo emits `__ccgo_fp(Xf)(tls, ...)` for a call through a cast function
+	// designator, `((destructor)PyObject_Free)(op)`; call directly.
+	shell(gsed, "-i", `s/__ccgo_fp(\(X[a-zA-Z0-9_]\+\))(/\1(/g`, result)
+	// `char c = ENUM_CONST` with a value > 127 (pickle opcodes) becomes a
+	// constant conversion Go rejects; make it a runtime conversion.
+	shell(gsed, "-i", `s/\<int8(\(E[a-zA-Z0-9_]\+\))/libc.Int8FromInt32(int32(\1))/g`, result)
+	// Compiler builtins libc does not provide (__builtin_nextafter, ...)
+	// and libc helpers missing in this libc version are routed to
+	// libpython/ccgo_shims.go.
+	shell(gsed, "-i", `s/iqlibc\.X__builtin_\([a-zA-Z0-9_]\+\)(/_ccgo_builtin_\1(/g`, result)
+	shell(gsed, "-i", `s/libc\.Atomic\(Load\|Store\)PUint\(8\|16\)(/_ccgo_Atomic\1PUint\2(/g`, result)
+	// `_Py_FREELIST_FREE(name, op, Py_TYPE(op)->tp_free)` passes a function
+	// pointer field into a static inline function; ccgo emits a direct call
+	// on the uintptr field. Call through the pointer instead.
+	shell(gsed, "-i", `s/(\*TPyTypeObject)(unsafe\.Pointer(\(v[0-9]*\)))\.Ftp_free(tls, \(v[0-9]*\))/(*(*func(*libc.TLS, uintptr))(unsafe.Pointer(\&struct{ uintptr }{(*TPyTypeObject)(unsafe.Pointer(\1)).Ftp_free})))(tls, \2)/g`, result)
+	// ccgo emits a bare `vN` expression statement for an unused local
+	// (Objects/gcmodule.c _PyObject_GC_Resize); Go rejects it.
+	shell(gsed, "-i", `s/^\(\s*\)\(v[0-9]\+\)$/\1_ = \2/`, result)
+	// libc functions whose darwin implementation is incomplete (panics with
+	// TODO for arguments CPython uses) are routed to libpython/libc_darwin.go.
+	for _, nm := range shimmedLibc[goos] {
+		shell(gsed, "-i", fmt.Sprintf(`s/libc\.X%s(/_ccgo_%s(/g`, nm, nm), result)
+	}
+	// C _Thread_local variables become per-libc.TLS slots (libpython/tls.go).
+	for _, v := range threadLocals {
+		shell(gsed, "-i", fmt.Sprintf(`/^var %s /d`, v[0]), result)
+		shell(gsed, "-i", fmt.Sprintf(`s/\<%s\>/(*_ccgo_tls_%s(tls))/g`, v[0], v[1]), result)
+	}
+	old, _ := filepath.Glob(filepath.Join(outDir, base+"_*"))
+	for _, v := range old {
+		removeAll(v)
+	}
+	shell("go", "run", "./internal/cmd/splitgo", "-o", outDir, "-base", base, "-shards", "12", result)
+	removeAll(result)
+}
+
+// threadLocals maps the generated name of each C _Thread_local variable to
+// its slot in libpython.tlsVars.
+var threadLocals = [][2]string{
+	{"X_Py_tss_tstate", "tstate"},
+	{"Xpkgcontext", "pkgcontext"},
+}
+
+// shimmedLibc lists, per GOOS, the libc.X<name> calls rewritten to
+// _ccgo_<name> (defined in libpython/libc_<goos>.go). Keep sorted. Linux uses
+// the transpiled musl in modernc.org/libc and needs none so far.
+var shimmedLibc = map[string][]string{"darwin": {
+	"__builtin___snprintf_chk",
+	"__builtin___sprintf_chk",
+	"__builtin___vsnprintf_chk",
+	"__builtin_log2",
+	"__srget",
+	"accept",
+	"alarm",
+	"cfgetospeed",
+	"chflags",
+	"chown",
+	"confstr",
+	"dup2",
+	"fcntl",
+	"fpathconf",
+	"fprintf",
+	"freeaddrinfo",
+	"gai_strerror",
+	"getaddrinfo",
+	"getegid",
+	"getgid",
+	"getgrgid_r",
+	"getgrnam_r",
+	"getnameinfo",
+	"getpwnam_r",
+	"getpwuid_r",
+	"getsockopt",
+	"inet_ntop",
+	"inet_pton",
+	"kill",
+	"localeconv",
+	"localtime",
+	"localtime_r",
+	"mbstowcs",
+	"mktime",
+	"mknod",
+	"nl_langinfo",
+	"openpty",
+	"pathconf",
+	"poll",
+	"printf",
+	"pthread_key_delete",
+	"raise",
+	"readv",
+	"recvfrom",
+	"recvmsg",
+	"select",
+	"sendmsg",
+	"sendto",
+	"setlocale",
+	"setsockopt",
+	"sigaction",
+	"strftime",
+	"strerror",
+	"sysconf",
+	"tcgetattr",
+	"tcsetattr",
+	"truncate",
+	"ungetc",
+	"vfprintf",
+}, "linux": {
+	// modernc's transpiled musl stdio locking hits an unsupported inline
+	// asm barrier (atomic_arch.h) and aborts; the interpreter serializes
+	// stdio itself.
+	"flockfile",
+	"funlockfile",
+	"kill",
+	"raise",
+	"sigaction",
+}}
+
+// prepareSource copies $CPYTHON_SRC (a CPython 3.14 checkout) to tmp/cpython
+// and applies internal/patch/*.diff there, leaving the original untouched.
+func prepareSource() {
+	orig := os.Getenv("CPYTHON_SRC")
+	if orig == "" {
+		fail(1, "CPYTHON_SRC must point to a CPython %s source tree", pyVer)
+	}
+	if _, err := os.Stat(filepath.Join(orig, "configure")); err != nil {
+		fail(1, "CPYTHON_SRC=%s: %v", orig, err)
+	}
+
+	removeAll(srcCopy)
+	mkdirAll(filepath.Dir(srcCopy))
+	shell("cp", "-R", orig, srcCopy)
+	patches, _ := filepath.Glob(filepath.Join("internal", "patch", "*.diff"))
+	for _, p := range patches {
+		b, err := os.ReadFile(p)
+		if err != nil {
+			fail(1, "%v", err)
+		}
+
+		cmd := exec.Command("patch", "-p1", "-d", srcCopy)
+		cmd.Stdin = strings.NewReader(string(b))
+		cmd.Stdout = os.Stdout
+		cmd.Stderr = os.Stderr
+		if err := cmd.Run(); err != nil {
+			fail(1, "patch %s: %v", p, err)
+		}
+	}
+}
+
+func configure(src string) {
+	cmd := exec.Command(filepath.Join(src, "configure"), configureArgs...)
+	cmd.Dir = build
+	cmd.Env = append(os.Environ(), configureEnv...)
+	cmd.Stdout = os.Stdout
+	cmd.Stderr = os.Stderr
+	if err := cmd.Run(); err != nil {
+		fail(1, "configure: %v", err)
+	}
+}
+
+func shell(cmd string, args ...string) {
+	if out, err := util.Shell(nil, cmd, args...); err != nil {
+		fail(1, "err=%v out=%s", err, out)
+	}
+}
+
+func ccMain(args []string) {
+	if err := ccgo.NewTask(goos, goarch, append([]string{"ccgo"}, args...), os.Stdout, os.Stderr, nil).Main(); err != nil {
+		fail(1, "%v", err)
+	}
+}
+
+func ccExec(args []string) {
+	if err := ccgo.NewTask(goos, goarch, append([]string{"ccgo"}, args...), os.Stdout, os.Stderr, nil).Exec(); err != nil {
+		fail(1, "%v", err)
+	}
+}
+
+func mkdirAll(path string) {
+	if err := os.MkdirAll(path, 0770); err != nil {
+		fail(1, "%v", err)
+	}
+}
+
+func removeAll(path string) {
+	if err := os.RemoveAll(path); err != nil && !os.IsNotExist(err) {
+		fail(1, "%v", err)
+	}
+}

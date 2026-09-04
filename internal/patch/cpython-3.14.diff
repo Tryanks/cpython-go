@@ -1,0 +1,330 @@
+Patches applied by generator.go on top of the CPython 3.14 sources before
+transpiling with ccgo.
+
+pyexpat: ccgo rejects the tentative declaration `handler_info[64]` followed
+by the definition `handler_info[] = { 23 entries + sentinel }` as conflicting
+array types (clang only warns). Size both the same.
+
+pycore_runtime_init.h / pycore_parser.h / action_helpers.c: ccgo emits a
+pointer instead of an array literal for `uint8_t _data[N] = (LITERAL)` when
+the string literal is parenthesized, and miscomputes the layout of a
+designated union-member initializer (`.v.Name.id = ...`) inside a static
+struct initializer. Drop the parentheses; set dummy_name's union fields at
+runtime instead.
+
+pyport.h / sre.c: ccgo drops the body of some `static inline` functions it
+fails to inline (sre_lib.h SRE(match) is recursive; stringlib
+SubString_new_object), leaving undefined references. Make CPython's
+local-inline macros plain statics.
+diff --color -ruN a/Include/internal/pycore_parser.h b/Include/internal/pycore_parser.h
+--- a/Include/internal/pycore_parser.h	2026-09-04 23:00:57
++++ b/Include/internal/pycore_parser.h	2026-09-04 23:00:57
+@@ -20,8 +20,6 @@
+         .mutex = {0}, \
+         .dummy_name = { \
+             .kind = Name_kind, \
+-            .v.Name.id = &_Py_STR(empty), \
+-            .v.Name.ctx = Load, \
+             .lineno = 1, \
+             .col_offset = 0, \
+             .end_lineno = 1, \
+@@ -33,8 +31,6 @@
+     { \
+         .dummy_name = { \
+             .kind = Name_kind, \
+-            .v.Name.id = &_Py_STR(empty), \
+-            .v.Name.ctx = Load, \
+             .lineno = 1, \
+             .col_offset = 0, \
+             .end_lineno = 1, \
+diff --color -ruN a/Include/internal/pycore_runtime_init.h b/Include/internal/pycore_runtime_init.h
+--- a/Include/internal/pycore_runtime_init.h	2026-09-04 23:00:57
++++ b/Include/internal/pycore_runtime_init.h	2026-09-04 23:00:57
+@@ -211,7 +211,7 @@
+ #define _PyASCIIObject_INIT(LITERAL) \
+     { \
+         ._ascii = _PyUnicode_ASCII_BASE_INIT((LITERAL), 1), \
+-        ._data = (LITERAL) \
++        ._data = LITERAL \
+     }
+ #define INIT_STR(NAME, LITERAL) \
+     ._py_ ## NAME = _PyASCIIObject_INIT(LITERAL)
+@@ -224,7 +224,7 @@
+             .utf8 = (UTF8), \
+             .utf8_length = sizeof(UTF8) - 1, \
+         }, \
+-        ._data = (LITERAL), \
++        ._data = LITERAL, \
+     }
+ 
+ #ifdef __cplusplus
+diff --color -ruN a/Include/pyport.h b/Include/pyport.h
+--- a/Include/pyport.h	2026-09-04 23:00:57
++++ b/Include/pyport.h	2026-09-04 23:00:57
+@@ -206,7 +206,7 @@
+ #  define Py_LOCAL_INLINE(type) static __inline type __fastcall
+ #else
+ #  define Py_LOCAL(type) static type
+-#  define Py_LOCAL_INLINE(type) static inline type
++#  define Py_LOCAL_INLINE(type) static type
+ #endif
+ 
+ // Soft deprecated since Python 3.14, use memcpy() instead.
+diff --color -ruN a/Modules/_sre/sre.c b/Modules/_sre/sre.c
+--- a/Modules/_sre/sre.c	2026-09-04 23:00:57
++++ b/Modules/_sre/sre.c	2026-09-04 23:00:57
+@@ -98,7 +98,7 @@
+ /* fastest possible local call under MSVC */
+ #define LOCAL(type) static __inline type __fastcall
+ #else
+-#define LOCAL(type) static inline type
++#define LOCAL(type) static type
+ #endif
+ 
+ /* error codes */
+diff --color -ruN a/Modules/pyexpat.c b/Modules/pyexpat.c
+--- a/Modules/pyexpat.c	2026-09-04 23:00:57
++++ b/Modules/pyexpat.c	2026-09-04 23:00:57
+@@ -120,7 +120,7 @@
+     PyGetSetDef getset;
+ };
+ 
+-static struct HandlerInfo handler_info[64];
++static struct HandlerInfo handler_info[23];
+ 
+ // gh-111178: Use _Py_NO_SANITIZE_UNDEFINED, rather than using the exact
+ // handler API for each handler.
+diff --color -ruN a/Parser/action_helpers.c b/Parser/action_helpers.c
+--- a/Parser/action_helpers.c	2026-09-04 23:00:57
++++ b/Parser/action_helpers.c	2026-09-04 23:00:57
+@@ -10,7 +10,12 @@
+ void *
+ _PyPegen_dummy_name(Parser *p, ...)
+ {
+-    return &_PyRuntime.parser.dummy_name;
++    /* ccgo: the union member designators are set here instead of in
++       _parser_runtime_state_INIT, see internal/patch/cpython-3.14.diff. */
++    struct _expr *e = &_PyRuntime.parser.dummy_name;
++    e->v.Name.id = &_Py_STR(empty);
++    e->v.Name.ctx = Load;
++    return e;
+ }
+ 
+ /* Creates a single-element asdl_seq* that contains a */
+
+ceval.c: ccgo rejects the nested designated union-member initializer
+`{ .op.code = X, .op.arg = Y }` of _Py_CODEUNIT ("too many items in
+initializer"); `{ .op = { .code = X, .arg = Y } }` is accepted.
+diff --color -ruN a/Python/ceval.c b/Python/ceval.c
+--- a/Python/ceval.c	2026-09-04 23:04:22
++++ b/Python/ceval.c	2026-09-04 23:05:40
+@@ -1050,11 +1050,11 @@
+ static const _Py_CODEUNIT _Py_INTERPRETER_TRAMPOLINE_INSTRUCTIONS[] = {
+     /* Put a NOP at the start, so that the IP points into
+     * the code, rather than before it */
+-    { .op.code = NOP, .op.arg = 0 },
+-    { .op.code = INTERPRETER_EXIT, .op.arg = 0 },  /* reached on return */
+-    { .op.code = NOP, .op.arg = 0 },
+-    { .op.code = INTERPRETER_EXIT, .op.arg = 0 },  /* reached on yield */
+-    { .op.code = RESUME, .op.arg = RESUME_OPARG_DEPTH1_MASK | RESUME_AT_FUNC_START }
++    { .op = { .code = NOP, .arg = 0 } },
++    { .op = { .code = INTERPRETER_EXIT, .arg = 0 } },  /* reached on return */
++    { .op = { .code = NOP, .arg = 0 } },
++    { .op = { .code = INTERPRETER_EXIT, .arg = 0 } },  /* reached on yield */
++    { .op = { .code = RESUME, .arg = RESUME_OPARG_DEPTH1_MASK | RESUME_AT_FUNC_START } }
+ };
+ 
+ #ifdef Py_DEBUG
+
+pycore_importdl.h: ccgo does not emit a tagged enum defined inside a nested
+struct definition (undefined type te_Py_ext_module_loader_result_error_kind
+at link time). Hoist the enum and the inner struct to file scope.
+diff --color -ruN a/Include/internal/pycore_importdl.h b/Include/internal/pycore_importdl.h
+--- a/Include/internal/pycore_importdl.h	2026-09-04 23:08:12
++++ b/Include/internal/pycore_importdl.h	2026-09-04 23:08:12
+@@ -63,23 +63,28 @@
+ #endif
+ 
+ /* The result from running an extension module's init function. */
++/* ccgo: the enum and struct below are hoisted out of
++   struct _Py_ext_module_loader_result (same C semantics, tags are file
++   scope either way); ccgo does not emit nested tagged enums. */
++enum _Py_ext_module_loader_result_error_kind {
++    _Py_ext_module_loader_result_EXCEPTION = 0,
++    _Py_ext_module_loader_result_ERR_MISSING = 1,
++    _Py_ext_module_loader_result_ERR_UNREPORTED_EXC = 2,
++    _Py_ext_module_loader_result_ERR_UNINITIALIZED = 3,
++    _Py_ext_module_loader_result_ERR_NONASCII_NOT_MULTIPHASE = 4,
++    _Py_ext_module_loader_result_ERR_NOT_MODULE = 5,
++    _Py_ext_module_loader_result_ERR_MISSING_DEF = 6,
++};
++struct _Py_ext_module_loader_result_error {
++    enum _Py_ext_module_loader_result_error_kind kind;
++    PyObject *exc;
++};
+ struct _Py_ext_module_loader_result {
+     PyModuleDef *def;
+     PyObject *module;
+     _Py_ext_module_kind kind;
+     struct _Py_ext_module_loader_result_error *err;
+-    struct _Py_ext_module_loader_result_error {
+-        enum _Py_ext_module_loader_result_error_kind {
+-            _Py_ext_module_loader_result_EXCEPTION = 0,
+-            _Py_ext_module_loader_result_ERR_MISSING = 1,
+-            _Py_ext_module_loader_result_ERR_UNREPORTED_EXC = 2,
+-            _Py_ext_module_loader_result_ERR_UNINITIALIZED = 3,
+-            _Py_ext_module_loader_result_ERR_NONASCII_NOT_MULTIPHASE = 4,
+-            _Py_ext_module_loader_result_ERR_NOT_MODULE = 5,
+-            _Py_ext_module_loader_result_ERR_MISSING_DEF = 6,
+-        } kind;
+-        PyObject *exc;
+-    } _err;
++    struct _Py_ext_module_loader_result_error _err;
+ };
+ extern void _Py_ext_module_loader_result_clear(
+     struct _Py_ext_module_loader_result *res);
+
+_pickle.c: cc/v4 evaluates the char literal '\x80' as 128 where clang (signed
+char) gives -128, so the opcode enum and `switch ((enum opcode)s[0])` never
+match for protocol >= 2 opcodes ("invalid load key, '\x80'"). Use plain
+integer opcode values and dispatch on the unsigned byte; identical for both
+compilers.
+diff --color -ruN a/Modules/_pickle.c b/Modules/_pickle.c
+--- a/Modules/_pickle.c	2026-09-04 23:29:44
++++ b/Modules/_pickle.c	2026-09-04 23:29:44
+@@ -104,38 +104,38 @@
+     BINFLOAT        = 'G',
+ 
+     /* Protocol 2. */
+-    PROTO       = '\x80',
+-    NEWOBJ      = '\x81',
+-    EXT1        = '\x82',
+-    EXT2        = '\x83',
+-    EXT4        = '\x84',
+-    TUPLE1      = '\x85',
+-    TUPLE2      = '\x86',
+-    TUPLE3      = '\x87',
+-    NEWTRUE     = '\x88',
+-    NEWFALSE    = '\x89',
+-    LONG1       = '\x8a',
+-    LONG4       = '\x8b',
++    PROTO       = 0x80,
++    NEWOBJ      = 0x81,
++    EXT1        = 0x82,
++    EXT2        = 0x83,
++    EXT4        = 0x84,
++    TUPLE1      = 0x85,
++    TUPLE2      = 0x86,
++    TUPLE3      = 0x87,
++    NEWTRUE     = 0x88,
++    NEWFALSE    = 0x89,
++    LONG1       = 0x8a,
++    LONG4       = 0x8b,
+ 
+     /* Protocol 3 (Python 3.x) */
+     BINBYTES       = 'B',
+     SHORT_BINBYTES = 'C',
+ 
+     /* Protocol 4 */
+-    SHORT_BINUNICODE = '\x8c',
+-    BINUNICODE8      = '\x8d',
+-    BINBYTES8        = '\x8e',
+-    EMPTY_SET        = '\x8f',
+-    ADDITEMS         = '\x90',
+-    FROZENSET        = '\x91',
+-    NEWOBJ_EX        = '\x92',
+-    STACK_GLOBAL     = '\x93',
+-    MEMOIZE          = '\x94',
+-    FRAME            = '\x95',
++    SHORT_BINUNICODE = 0x8c,
++    BINUNICODE8      = 0x8d,
++    BINBYTES8        = 0x8e,
++    EMPTY_SET        = 0x8f,
++    ADDITEMS         = 0x90,
++    FROZENSET        = 0x91,
++    NEWOBJ_EX        = 0x92,
++    STACK_GLOBAL     = 0x93,
++    MEMOIZE          = 0x94,
++    FRAME            = 0x95,
+ 
+     /* Protocol 5 */
+-    BYTEARRAY8       = '\x96',
+-    NEXT_BUFFER      = '\x97',
++    BYTEARRAY8       = 0x96,
++    NEXT_BUFFER      = 0x97,
+     READONLY_BUFFER  = '\x98'
+ };
+ 
+@@ -7109,7 +7109,7 @@
+             goto error;
+         }
+ 
+-        switch ((enum opcode)s[0]) {
++        switch ((enum opcode)(unsigned char)s[0]) {
+         OP(NONE, load_none)
+         OP(BININT, load_binint)
+         OP(BININT1, load_binint1)
+
+_posixsubprocess.c: fork() is not available under the Go runtime. When
+compiled by ccgo (-DCCGO), subprocess_fork_exec delegates to ccgo_fork_exec,
+implemented in Go with syscall.ForkExec (libpython/fork_exec.go). The native
+build keeps the original body.
+diff --color -ruN a/Modules/_posixsubprocess.c b/Modules/_posixsubprocess.c
+--- a/Modules/_posixsubprocess.c	2026-09-04 23:41:13
++++ b/Modules/_posixsubprocess.c	2026-09-04 23:41:13
+@@ -1010,6 +1010,22 @@
+ Raises: Only on an error in the parent process.
+ [clinic start generated code]*/
+ 
++#ifdef CCGO
++/* ccgo: fork() cannot be used under the Go runtime; the Go side implements
++   the spawn with syscall.ForkExec (libpython/fork_exec.go). */
++extern PyObject *ccgo_fork_exec(PyObject *process_args,
++                          PyObject *executable_list, int close_fds,
++                          PyObject *py_fds_to_keep, PyObject *cwd_obj,
++                          PyObject *env_list, int p2cread, int p2cwrite,
++                          int c2pread, int c2pwrite, int errread,
++                          int errwrite, int errpipe_read, int errpipe_write,
++                          int restore_signals, int call_setsid,
++                          pid_t pgid_to_set, PyObject *gid_object,
++                          PyObject *extra_groups_packed,
++                          PyObject *uid_object, int child_umask,
++                          PyObject *preexec_fn);
++#endif
++
+ static PyObject *
+ subprocess_fork_exec_impl(PyObject *module, PyObject *process_args,
+                           PyObject *executable_list, int close_fds,
+@@ -1024,6 +1040,14 @@
+                           PyObject *preexec_fn)
+ /*[clinic end generated code: output=288464dc56e373c7 input=5e56eac3e036e349]*/
+ {
++#ifdef CCGO
++    return ccgo_fork_exec(process_args, executable_list, close_fds,
++                          py_fds_to_keep, cwd_obj, env_list, p2cread, p2cwrite,
++                          c2pread, c2pwrite, errread, errwrite, errpipe_read,
++                          errpipe_write, restore_signals, call_setsid,
++                          pgid_to_set, gid_object, extra_groups_packed,
++                          uid_object, child_umask, preexec_fn);
++#endif
+     PyObject *converted_args = NULL, *fast_args = NULL;
+     PyObject *preexec_fn_args_tuple = NULL;
+     gid_t *extra_groups = NULL;
+
+pymacconfig.h: the macOS universal-build header force-defines
+HAVE_GCC_ASM_FOR_X87 on x86_64 regardless of configure; ccgo cannot
+transpile the inline asm (Python/pymath.c), so leave it undefined under CCGO.
+diff --color -ruN a/Include/pymacconfig.h b/Include/pymacconfig.h
+--- a/Include/pymacconfig.h	2026-09-05 04:29:00
++++ b/Include/pymacconfig.h	2026-09-05 04:29:00
+@@ -78,7 +78,9 @@
+ #endif
+ 
+ #if defined(__i386__) || defined(__x86_64__)
+-#  define HAVE_GCC_ASM_FOR_X87
++#  ifndef CCGO /* ccgo cannot transpile the x87 inline asm */
++#    define HAVE_GCC_ASM_FOR_X87
++#  endif
+ #  define ALIGNOF_MAX_ALIGN_T 16
+ #  define HAVE_GCC_ASM_FOR_X64 1
+ #  define SIZEOF_LONG_DOUBLE 16

@@ -1,0 +1,5 @@
+tmp/
+*.test
+*.out
+.idea/
+stdlib/python314_tests.zip.gz
