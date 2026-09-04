@@ -7703,7 +7703,7 @@ func _dev_urandom(tls *libc.TLS, buffer uintptr, size TPy_ssize_t, raise int32) 
 		}
 		for 0 < size {
 			for cond := true; cond; cond = n < 0 && **(**int32)(__ccgo_up(libc.X__error(tls))) == int32(MEINTR) {
-				n = libc.Xread(tls, fd, buffer, libc.Uint64FromInt64(size))
+				n = _ccgo_read(tls, fd, buffer, libc.Uint64FromInt64(size))
 			}
 			if n <= 0 {
 
@@ -18815,7 +18815,7 @@ _27:
 		})(unsafe.Pointer(&(*T_expr)(unsafe.Pointer(e)).Fv))).Fctx == int32(ELoad) && X_PyST_IsFunctionLike(tls, (*Tsymtable)(unsafe.Pointer(st)).Fst_cur) != 0 && X_PyUnicode_EqualToASCIIString(tls, (*(*struct {
 			Fid  Tidentifier
 			Fctx Texpr_context_ty
-		})(unsafe.Pointer(&(*T_expr)(unsafe.Pointer(e)).Fv))).Fid, __ccgo_ts+60249) != 0 {
+		})(unsafe.Pointer(&(*T_expr)(unsafe.Pointer(e)).Fv))).Fid, __ccgo_ts+60265) != 0 {
 			if !(_symtable_add_def(tls, st, uintptr(unsafe.Pointer(&X_PyRuntime))+13416+20712+1232+1984, libc.Int32FromInt32(2)<<libc.Int32FromInt32(3), T_Py_SourceLocation{
 				Flineno:         (*T_expr)(unsafe.Pointer(e)).Flineno,
 				Fend_lineno:     (*T_expr)(unsafe.Pointer(e)).Fend_lineno,
@@ -43761,7 +43761,7 @@ func X_Py_read(tls *libc.TLS, fd int32, buf uintptr, count Tsize_t) (r TPy_ssize
 	for {
 		_save = XPyEval_SaveThread(tls)
 		**(**int32)(__ccgo_up(libc.X__error(tls))) = 0
-		n = libc.Xread(tls, fd, buf, count)
+		n = _ccgo_read(tls, fd, buf, count)
 
 		err = **(**int32)(__ccgo_up(libc.X__error(tls)))
 		XPyEval_RestoreThread(tls, _save)
@@ -59173,84 +59173,4 @@ finally:
 	}
 
 	XPyErr_SetRaisedException(tls, exc)
-}
-
-var _FutureType_methods = [13]TPyMethodDef{
-	0: {
-		Fml_name:  __ccgo_ts + 181262,
-		Fml_flags: int32(MMETH_NOARGS),
-		Fml_doc:   uintptr(unsafe.Pointer(&__asyncio_Future_result__doc__)),
-	},
-	1: {
-		Fml_name:  __ccgo_ts + 170774,
-		Fml_flags: libc.Int32FromInt32(MMETH_METHOD) | libc.Int32FromInt32(MMETH_FASTCALL) | libc.Int32FromInt32(MMETH_KEYWORDS),
-		Fml_doc:   uintptr(unsafe.Pointer(&__asyncio_Future_exception__doc__)),
-	},
-	2: {
-		Fml_name:  __ccgo_ts + 180283,
-		Fml_flags: libc.Int32FromInt32(MMETH_METHOD) | libc.Int32FromInt32(MMETH_FASTCALL) | libc.Int32FromInt32(MMETH_KEYWORDS),
-		Fml_doc:   uintptr(unsafe.Pointer(&__asyncio_Future_set_result__doc__)),
-	},
-	3: {
-		Fml_name:  __ccgo_ts + 180294,
-		Fml_flags: libc.Int32FromInt32(MMETH_METHOD) | libc.Int32FromInt32(MMETH_FASTCALL) | libc.Int32FromInt32(MMETH_KEYWORDS),
-		Fml_doc:   uintptr(unsafe.Pointer(&__asyncio_Future_set_exception__doc__)),
-	},
-	4: {
-		Fml_name:  __ccgo_ts + 180308,
-		Fml_flags: libc.Int32FromInt32(MMETH_METHOD) | libc.Int32FromInt32(MMETH_FASTCALL) | libc.Int32FromInt32(MMETH_KEYWORDS),
-		Fml_doc:   uintptr(unsafe.Pointer(&__asyncio_Future_add_done_callback__doc__)),
-	},
-	5: {
-		Fml_name:  __ccgo_ts + 180326,
-		Fml_flags: libc.Int32FromInt32(MMETH_METHOD) | libc.Int32FromInt32(MMETH_FASTCALL) | libc.Int32FromInt32(MMETH_KEYWORDS),
-		Fml_doc:   uintptr(unsafe.Pointer(&__asyncio_Future_remove_done_callback__doc__)),
-	},
-	6: {
-		Fml_name:  __ccgo_ts + 180347,
-		Fml_flags: libc.Int32FromInt32(MMETH_METHOD) | libc.Int32FromInt32(MMETH_FASTCALL) | libc.Int32FromInt32(MMETH_KEYWORDS),
-		Fml_doc:   uintptr(unsafe.Pointer(&__asyncio_Future_cancel__doc__)),
-	},
-	7: {
-		Fml_name:  __ccgo_ts + 181269,
-		Fml_flags: int32(MMETH_NOARGS),
-		Fml_doc:   uintptr(unsafe.Pointer(&__asyncio_Future_cancelled__doc__)),
-	},
-	8: {
-		Fml_name:  __ccgo_ts + 181279,
-		Fml_flags: int32(MMETH_NOARGS),
-		Fml_doc:   uintptr(unsafe.Pointer(&__asyncio_Future_done__doc__)),
-	},
-	9: {
-		Fml_name:  __ccgo_ts + 181284,
-		Fml_flags: libc.Int32FromInt32(MMETH_METHOD) | libc.Int32FromInt32(MMETH_FASTCALL) | libc.Int32FromInt32(MMETH_KEYWORDS),
-		Fml_doc:   uintptr(unsafe.Pointer(&__asyncio_Future_get_loop__doc__)),
-	},
-	10: {
-		Fml_name:  __ccgo_ts + 181293,
-		Fml_flags: int32(MMETH_NOARGS),
-		Fml_doc:   uintptr(unsafe.Pointer(&__asyncio_Future__make_cancelled_error__doc__)),
-	},
-	11: {
-		Fml_name:  __ccgo_ts + 25978,
-		Fml_flags: libc.Int32FromInt32(MMETH_O) | libc.Int32FromInt32(MMETH_CLASS),
-		Fml_doc:   __ccgo_ts + 181315,
-	},
-	12: {},
-}
-
-func init() {
-	p := unsafe.Pointer(&_FutureType_methods)
-	*(*uintptr)(unsafe.Add(p, 8)) = __ccgo_fp(__asyncio_Future_result)
-	*(*uintptr)(unsafe.Add(p, 40)) = __ccgo_fp(__asyncio_Future_exception)
-	*(*uintptr)(unsafe.Add(p, 72)) = __ccgo_fp(__asyncio_Future_set_result)
-	*(*uintptr)(unsafe.Add(p, 104)) = __ccgo_fp(__asyncio_Future_set_exception)
-	*(*uintptr)(unsafe.Add(p, 136)) = __ccgo_fp(__asyncio_Future_add_done_callback)
-	*(*uintptr)(unsafe.Add(p, 168)) = __ccgo_fp(__asyncio_Future_remove_done_callback)
-	*(*uintptr)(unsafe.Add(p, 200)) = __ccgo_fp(__asyncio_Future_cancel)
-	*(*uintptr)(unsafe.Add(p, 232)) = __ccgo_fp(__asyncio_Future_cancelled)
-	*(*uintptr)(unsafe.Add(p, 264)) = __ccgo_fp(__asyncio_Future_done)
-	*(*uintptr)(unsafe.Add(p, 296)) = __ccgo_fp(__asyncio_Future_get_loop)
-	*(*uintptr)(unsafe.Add(p, 328)) = __ccgo_fp(__asyncio_Future__make_cancelled_error)
-	*(*uintptr)(unsafe.Add(p, 360)) = __ccgo_fp(XPy_GenericAlias)
 }

@@ -18,6 +18,86 @@ var _ reflect.Type
 
 var _ unsafe.Pointer
 
+var _FutureType_methods = [13]TPyMethodDef{
+	0: {
+		Fml_name:  __ccgo_ts + 181262,
+		Fml_flags: int32(MMETH_NOARGS),
+		Fml_doc:   uintptr(unsafe.Pointer(&__asyncio_Future_result__doc__)),
+	},
+	1: {
+		Fml_name:  __ccgo_ts + 170774,
+		Fml_flags: libc.Int32FromInt32(MMETH_METHOD) | libc.Int32FromInt32(MMETH_FASTCALL) | libc.Int32FromInt32(MMETH_KEYWORDS),
+		Fml_doc:   uintptr(unsafe.Pointer(&__asyncio_Future_exception__doc__)),
+	},
+	2: {
+		Fml_name:  __ccgo_ts + 180283,
+		Fml_flags: libc.Int32FromInt32(MMETH_METHOD) | libc.Int32FromInt32(MMETH_FASTCALL) | libc.Int32FromInt32(MMETH_KEYWORDS),
+		Fml_doc:   uintptr(unsafe.Pointer(&__asyncio_Future_set_result__doc__)),
+	},
+	3: {
+		Fml_name:  __ccgo_ts + 180294,
+		Fml_flags: libc.Int32FromInt32(MMETH_METHOD) | libc.Int32FromInt32(MMETH_FASTCALL) | libc.Int32FromInt32(MMETH_KEYWORDS),
+		Fml_doc:   uintptr(unsafe.Pointer(&__asyncio_Future_set_exception__doc__)),
+	},
+	4: {
+		Fml_name:  __ccgo_ts + 180308,
+		Fml_flags: libc.Int32FromInt32(MMETH_METHOD) | libc.Int32FromInt32(MMETH_FASTCALL) | libc.Int32FromInt32(MMETH_KEYWORDS),
+		Fml_doc:   uintptr(unsafe.Pointer(&__asyncio_Future_add_done_callback__doc__)),
+	},
+	5: {
+		Fml_name:  __ccgo_ts + 180326,
+		Fml_flags: libc.Int32FromInt32(MMETH_METHOD) | libc.Int32FromInt32(MMETH_FASTCALL) | libc.Int32FromInt32(MMETH_KEYWORDS),
+		Fml_doc:   uintptr(unsafe.Pointer(&__asyncio_Future_remove_done_callback__doc__)),
+	},
+	6: {
+		Fml_name:  __ccgo_ts + 180347,
+		Fml_flags: libc.Int32FromInt32(MMETH_METHOD) | libc.Int32FromInt32(MMETH_FASTCALL) | libc.Int32FromInt32(MMETH_KEYWORDS),
+		Fml_doc:   uintptr(unsafe.Pointer(&__asyncio_Future_cancel__doc__)),
+	},
+	7: {
+		Fml_name:  __ccgo_ts + 181269,
+		Fml_flags: int32(MMETH_NOARGS),
+		Fml_doc:   uintptr(unsafe.Pointer(&__asyncio_Future_cancelled__doc__)),
+	},
+	8: {
+		Fml_name:  __ccgo_ts + 181279,
+		Fml_flags: int32(MMETH_NOARGS),
+		Fml_doc:   uintptr(unsafe.Pointer(&__asyncio_Future_done__doc__)),
+	},
+	9: {
+		Fml_name:  __ccgo_ts + 181284,
+		Fml_flags: libc.Int32FromInt32(MMETH_METHOD) | libc.Int32FromInt32(MMETH_FASTCALL) | libc.Int32FromInt32(MMETH_KEYWORDS),
+		Fml_doc:   uintptr(unsafe.Pointer(&__asyncio_Future_get_loop__doc__)),
+	},
+	10: {
+		Fml_name:  __ccgo_ts + 181293,
+		Fml_flags: int32(MMETH_NOARGS),
+		Fml_doc:   uintptr(unsafe.Pointer(&__asyncio_Future__make_cancelled_error__doc__)),
+	},
+	11: {
+		Fml_name:  __ccgo_ts + 25978,
+		Fml_flags: libc.Int32FromInt32(MMETH_O) | libc.Int32FromInt32(MMETH_CLASS),
+		Fml_doc:   __ccgo_ts + 181315,
+	},
+	12: {},
+}
+
+func init() {
+	p := unsafe.Pointer(&_FutureType_methods)
+	*(*uintptr)(unsafe.Add(p, 8)) = __ccgo_fp(__asyncio_Future_result)
+	*(*uintptr)(unsafe.Add(p, 40)) = __ccgo_fp(__asyncio_Future_exception)
+	*(*uintptr)(unsafe.Add(p, 72)) = __ccgo_fp(__asyncio_Future_set_result)
+	*(*uintptr)(unsafe.Add(p, 104)) = __ccgo_fp(__asyncio_Future_set_exception)
+	*(*uintptr)(unsafe.Add(p, 136)) = __ccgo_fp(__asyncio_Future_add_done_callback)
+	*(*uintptr)(unsafe.Add(p, 168)) = __ccgo_fp(__asyncio_Future_remove_done_callback)
+	*(*uintptr)(unsafe.Add(p, 200)) = __ccgo_fp(__asyncio_Future_cancel)
+	*(*uintptr)(unsafe.Add(p, 232)) = __ccgo_fp(__asyncio_Future_cancelled)
+	*(*uintptr)(unsafe.Add(p, 264)) = __ccgo_fp(__asyncio_Future_done)
+	*(*uintptr)(unsafe.Add(p, 296)) = __ccgo_fp(__asyncio_Future_get_loop)
+	*(*uintptr)(unsafe.Add(p, 328)) = __ccgo_fp(__asyncio_Future__make_cancelled_error)
+	*(*uintptr)(unsafe.Add(p, 360)) = __ccgo_fp(XPy_GenericAlias)
+}
+
 var _FutureType_getsetlist = [11]TPyGetSetDef{
 	0: {
 		Fname: __ccgo_ts + 181366,
@@ -90890,408 +90970,6 @@ const MHACL_HASH_BLAKE2S_PERSONAL_BYTES = 8
 
 const MHACL_HASH_BLAKE2S_SALT_BYTES = 8
 
-const Mbit_3DNOW = 2147483648
-
-const Mbit_3DNOWP = 1073741824
-
-const Mbit_ABM = 32
-
-const Mbit_ACPI = 4194304
-
-const Mbit_ADX = 524288
-
-const Mbit_AES = 33554432
-
-const Mbit_AESNI = 33554432
-
-const Mbit_AMXBF16 = 4194304
-
-const Mbit_AMXCOMPLEX = 256
-
-const Mbit_AMXFP16 = 2097152
-
-const Mbit_AMXINT8 = 33554432
-
-const Mbit_AMXTILE = 16777216
-
-const Mbit_APIC = 512
-
-const Mbit_APXF = 2097152
-
-const Mbit_AVX = 268435456
-
-const Mbit_AVX10 = 524288
-
-const Mbit_AVX10_256 = 131072
-
-const Mbit_AVX10_512 = 262144
-
-const Mbit_AVX2 = 32
-
-const Mbit_AVX5124FMAPS = 8
-
-const Mbit_AVX5124VNNIW = 4
-
-const Mbit_AVX512BF16 = 32
-
-const Mbit_AVX512BITALG = 4096
-
-const Mbit_AVX512BW = 1073741824
-
-const Mbit_AVX512CD = 268435456
-
-const Mbit_AVX512DQ = 131072
-
-const Mbit_AVX512ER = 134217728
-
-const Mbit_AVX512F = 65536
-
-const Mbit_AVX512FP16 = 8388608
-
-const Mbit_AVX512IFMA = 2097152
-
-const Mbit_AVX512PF = 67108864
-
-const Mbit_AVX512VBMI = 2
-
-const Mbit_AVX512VBMI2 = 64
-
-const Mbit_AVX512VL = 2147483648
-
-const Mbit_AVX512VNNI = 2048
-
-const Mbit_AVX512VP2INTERSECT = 256
-
-const Mbit_AVX512VPOPCNTDQ = 16384
-
-const Mbit_AVXIFMA = 8388608
-
-const Mbit_AVXNECONVERT = 32
-
-const Mbit_AVXVNNI = 16
-
-const Mbit_AVXVNNIINT16 = 1024
-
-const Mbit_AVXVNNIINT8 = 16
-
-const Mbit_BMI = 8
-
-const Mbit_BMI2 = 256
-
-const Mbit_CLDEMOTE = 33554432
-
-const Mbit_CLFLUSHOPT = 8388608
-
-const Mbit_CLFSH = 524288
-
-const Mbit_CLWB = 16777216
-
-const Mbit_CLZERO = 1
-
-const Mbit_CMOV = 32768
-
-const Mbit_CMPCCXADD = 128
-
-const Mbit_CMPXCHG16B = 8192
-
-const Mbit_CMPXCHG8B = 256
-
-const Mbit_CNXTID = 1024
-
-const Mbit_CX8 = 256
-
-const Mbit_DCA = 262144
-
-const Mbit_DE = 4
-
-const Mbit_DS = 2097152
-
-const Mbit_DSCPL = 16
-
-const Mbit_DTES64 = 4
-
-const Mbit_EIST = 128
-
-const Mbit_ENH_MOVSB = 512
-
-const Mbit_ENQCMD = 536870912
-
-const Mbit_F16C = 536870912
-
-const Mbit_FMA = 4096
-
-const Mbit_FMA4 = 65536
-
-const Mbit_FPU = 1
-
-const Mbit_FSGSBASE = 1
-
-const Mbit_FXSAVE = 16777216
-
-const Mbit_FXSR = 16777216
-
-const Mbit_GFNI = 256
-
-const Mbit_HLE = 16
-
-const Mbit_HRESET = 4194304
-
-const Mbit_HTT = 268435456
-
-const Mbit_IBT = 1048576
-
-const Mbit_INVPCID = 1024
-
-const Mbit_LAHF_LM = 1
-
-const Mbit_LM = 536870912
-
-const Mbit_LWP = 32768
-
-const Mbit_LZCNT = 32
-
-const Mbit_MCA = 16384
-
-const Mbit_MCE = 128
-
-const Mbit_MMX = 8388608
-
-const Mbit_MMXEXT = 4194304
-
-const Mbit_MONITOR = 8
-
-const Mbit_MOVBE = 4194304
-
-const Mbit_MOVDIR64B = 268435456
-
-const Mbit_MOVDIRI = 134217728
-
-const Mbit_MPX = 16384
-
-const Mbit_MSR = 32
-
-const Mbit_MTRR = 4096
-
-const Mbit_MWAITX = 536870912
-
-const Mbit_OSPKE = 16
-
-const Mbit_OSXSAVE = 134217728
-
-const Mbit_PAE = 64
-
-const Mbit_PAT = 65536
-
-const Mbit_PBE = 2147483648
-
-const Mbit_PCID = 131072
-
-const Mbit_PCLMUL = 2
-
-const Mbit_PCLMULQDQ = 2
-
-const Mbit_PCONFIG = 262144
-
-const Mbit_PDCM = 32768
-
-const Mbit_PGE = 8192
-
-const Mbit_PKU = 4
-
-const Mbit_POPCNT = 8388608
-
-const Mbit_PREFETCHI = 16384
-
-const Mbit_PREFTCHWT1 = 1
-
-const Mbit_PRFCHW = 256
-
-const Mbit_PSE = 8
-
-const Mbit_PSE36 = 131072
-
-const Mbit_PSN = 262144
-
-const Mbit_PTWRITE = 16
-
-const Mbit_RAOINT = 8
-
-const Mbit_RDPID = 4194304
-
-const Mbit_RDPRU = 16
-
-const Mbit_RDRND = 1073741824
-
-const Mbit_RDSEED = 262144
-
-const Mbit_RTM = 2048
-
-const Mbit_SEP = 2048
-
-const Mbit_SERIALIZE = 16384
-
-const Mbit_SGX = 4
-
-const Mbit_SHA = 536870912
-
-const Mbit_SHA512 = 1
-
-const Mbit_SHSTK = 128
-
-const Mbit_SM3 = 2
-
-const Mbit_SM4 = 4
-
-const Mbit_SMEP = 128
-
-const Mbit_SMX = 64
-
-const Mbit_SS = 134217728
-
-const Mbit_SSE = 33554432
-
-const Mbit_SSE2 = 67108864
-
-const Mbit_SSE3 = 1
-
-const Mbit_SSE41 = 524288
-
-const Mbit_SSE42 = 1048576
-
-const Mbit_SSE4_1 = 524288
-
-const Mbit_SSE4_2 = 1048576
-
-const Mbit_SSE4a = 64
-
-const Mbit_SSSE3 = 512
-
-const Mbit_TBM = 2097152
-
-const Mbit_TM = 536870912
-
-const Mbit_TM2 = 256
-
-const Mbit_TSC = 16
-
-const Mbit_TSCDeadline = 16777216
-
-const Mbit_TSXLDTRK = 65536
-
-const Mbit_UINTR = 32
-
-const Mbit_USERMSR = 32768
-
-const Mbit_VAES = 512
-
-const Mbit_VME = 2
-
-const Mbit_VMX = 32
-
-const Mbit_VPCLMULQDQ = 1024
-
-const Mbit_WAITPKG = 32
-
-const Mbit_WBNOINVD = 512
-
-const Mbit_XOP = 2048
-
-const Mbit_XSAVE = 67108864
-
-const Mbit_XSAVEC = 2
-
-const Mbit_XSAVEOPT = 1
-
-const Mbit_XSAVES = 8
-
-const Mbit_x2APIC = 2097152
-
-const Mbit_xTPR = 16384
-
-const Msignature_AMD_ebx = 1752462657
-
-const Msignature_AMD_ecx = 1145913699
-
-const Msignature_AMD_edx = 1769238117
-
-const Msignature_CENTAUR_ebx = 1953391939
-
-const Msignature_CENTAUR_ecx = 1936487777
-
-const Msignature_CENTAUR_edx = 1215460705
-
-const Msignature_CYRIX_ebx = 1769109827
-
-const Msignature_CYRIX_ecx = 1684104564
-
-const Msignature_CYRIX_edx = 1936607608
-
-const Msignature_HYGON_ebx = 1869052232
-
-const Msignature_HYGON_ecx = 1701734773
-
-const Msignature_HYGON_edx = 1852131182
-
-const Msignature_INTEL_ebx = 1970169159
-
-const Msignature_INTEL_ecx = 1818588270
-
-const Msignature_INTEL_edx = 1231384169
-
-const Msignature_NEXGEN_ebx = 1199072590
-
-const Msignature_NEXGEN_ecx = 1852143209
-
-const Msignature_NEXGEN_edx = 1917087333
-
-const Msignature_NSC_ebx = 1685022023
-
-const Msignature_NSC_ecx = 1129532960
-
-const Msignature_NSC_edx = 2036473957
-
-const Msignature_RISE_ebx = 1702062418
-
-const Msignature_RISE_ecx = 1702062418
-
-const Msignature_RISE_edx = 1702062418
-
-const Msignature_SIS_ebx = 542337363
-
-const Msignature_SIS_ecx = 542337363
-
-const Msignature_SIS_edx = 542337363
-
-const Msignature_TM1_ebx = 1851880020
-
-const Msignature_TM1_ecx = 1431323489
-
-const Msignature_TM1_edx = 1952804211
-
-const Msignature_TM2_ebx = 1970169159
-
-const Msignature_TM2_ecx = 909670477
-
-const Msignature_TM2_edx = 1415933545
-
-const Msignature_UMC_ebx = 541281621
-
-const Msignature_UMC_ecx = 541281621
-
-const Msignature_UMC_edx = 541281621
-
-const Msignature_VIA_ebx = 541149526
-
-const Msignature_VIA_ecx = 541149526
-
-const Msignature_VIA_edx = 541149526
-
-const Msignature_VORTEX_ebx = 1953656662
-
-const Msignature_VORTEX_ecx = 1131369248
-
-const Msignature_VORTEX_edx = 909670501
-
 // C documentation
 //
 //	// zero-initialized by default
@@ -91319,10 +90997,6 @@ func Xdetect_cpu_features(tls *libc.TLS, flags uintptr) {
 		ebx7 = 0
 		ecx7 = 0
 		edx7 = 0
-
-		libc.X__assert_fail(tls, __ccgo_ts+214500, __ccgo_ts+214535, 79, __ccgo_ts+214550)
-
-		libc.X__assert_fail(tls, __ccgo_ts+214500, __ccgo_ts+214535, 80, __ccgo_ts+214550)
 		_ = eax1
 		_ = ebx1
 		_ = ecx1
@@ -91342,4 +91016,28 @@ func Xdetect_cpu_features(tls *libc.TLS, flags uintptr) {
 		(*Tcpu_flags)(unsafe.Pointer(flags)).Fsse42 = libc.BoolUint8(ecx1&(libc.Int32FromInt32(1)<<libc.Int32FromInt32(20)) != 0)
 		(*Tcpu_flags)(unsafe.Pointer(flags)).Fdone = libc.BoolUint8(Mtrue != 0)
 	}
+}
+
+func _FStar_UInt64_eq_mask4(tls *libc.TLS, a Tuint64_t, b Tuint64_t) (r Tuint64_t) {
+	var minus_x, x, Xor_minus_x, xnx Tuint64_t
+	_, _, _, _ = minus_x, x, Xor_minus_x, xnx
+	x = a ^ b
+	minus_x = ^x + uint64(1)
+	Xor_minus_x = x | minus_x
+	xnx = Xor_minus_x >> uint32(63)
+	return xnx - uint64(1)
+}
+
+func _FStar_UInt64_gte_mask4(tls *libc.TLS, a Tuint64_t, b Tuint64_t) (r Tuint64_t) {
+	var q, x, Xsub_y, Xsub_y_xor_y, Xxor_q, Xxor_q_, Xxor_y, y Tuint64_t
+	_, _, _, _, _, _, _, _ = q, x, Xsub_y, Xsub_y_xor_y, Xxor_q, Xxor_q_, Xxor_y, y
+	x = a
+	y = b
+	Xxor_y = x ^ y
+	Xsub_y = x - y
+	Xsub_y_xor_y = Xsub_y ^ y
+	q = Xxor_y | Xsub_y_xor_y
+	Xxor_q = x ^ q
+	Xxor_q_ = Xxor_q >> uint32(63)
+	return Xxor_q_ - uint64(1)
 }

@@ -25061,10 +25061,10 @@ func X_PyBuiltin_Init(tls *libc.TLS, interp uintptr) (r uintptr) {
 	if XPyDict_SetItemString(tls, dict, __ccgo_ts+37260, uintptr(unsafe.Pointer(&XPyFloat_Type))) < 0 {
 		return libc.UintptrFromInt32(0)
 	}
-	if XPyDict_SetItemString(tls, dict, __ccgo_ts+57918, uintptr(unsafe.Pointer(&XPyFrozenSet_Type))) < 0 {
+	if XPyDict_SetItemString(tls, dict, __ccgo_ts+57931, uintptr(unsafe.Pointer(&XPyFrozenSet_Type))) < 0 {
 		return libc.UintptrFromInt32(0)
 	}
-	if XPyDict_SetItemString(tls, dict, __ccgo_ts+24441, uintptr(unsafe.Pointer(&XPyProperty_Type))) < 0 {
+	if XPyDict_SetItemString(tls, dict, __ccgo_ts+24382, uintptr(unsafe.Pointer(&XPyProperty_Type))) < 0 {
 		return libc.UintptrFromInt32(0)
 	}
 	if XPyDict_SetItemString(tls, dict, __ccgo_ts+43759, uintptr(unsafe.Pointer(&XPyLong_Type))) < 0 {
@@ -25085,7 +25085,7 @@ func X_PyBuiltin_Init(tls *libc.TLS, interp uintptr) (r uintptr) {
 	if XPyDict_SetItemString(tls, dict, __ccgo_ts+26763, uintptr(unsafe.Pointer(&XPyReversed_Type))) < 0 {
 		return libc.UintptrFromInt32(0)
 	}
-	if XPyDict_SetItemString(tls, dict, __ccgo_ts+57914, uintptr(unsafe.Pointer(&XPySet_Type))) < 0 {
+	if XPyDict_SetItemString(tls, dict, __ccgo_ts+57927, uintptr(unsafe.Pointer(&XPySet_Type))) < 0 {
 		return libc.UintptrFromInt32(0)
 	}
 	if XPyDict_SetItemString(tls, dict, __ccgo_ts+58442, uintptr(unsafe.Pointer(&XPySlice_Type))) < 0 {
@@ -25097,7 +25097,7 @@ func X_PyBuiltin_Init(tls *libc.TLS, interp uintptr) (r uintptr) {
 	if XPyDict_SetItemString(tls, dict, __ccgo_ts+15207, uintptr(unsafe.Pointer(&XPyUnicode_Type))) < 0 {
 		return libc.UintptrFromInt32(0)
 	}
-	if XPyDict_SetItemString(tls, dict, __ccgo_ts+60249, uintptr(unsafe.Pointer(&XPySuper_Type))) < 0 {
+	if XPyDict_SetItemString(tls, dict, __ccgo_ts+60265, uintptr(unsafe.Pointer(&XPySuper_Type))) < 0 {
 		return libc.UintptrFromInt32(0)
 	}
 	if XPyDict_SetItemString(tls, dict, __ccgo_ts+2154, uintptr(unsafe.Pointer(&XPyTuple_Type))) < 0 {
@@ -71550,7 +71550,7 @@ func _can_optimize_super_call(tls *libc.TLS, c uintptr, attr Texpr_ty) (r int32)
 		Ffunc1    Texpr_ty
 		Fargs     uintptr
 		Fkeywords uintptr
-	})(unsafe.Pointer(&(*T_expr)(unsafe.Pointer(e)).Fv))).Ffunc1)).Fv))).Fid, __ccgo_ts+60249) != 0) || X_PyUnicode_EqualToASCIIString(tls, (*(*struct {
+	})(unsafe.Pointer(&(*T_expr)(unsafe.Pointer(e)).Fv))).Ffunc1)).Fv))).Fid, __ccgo_ts+60265) != 0) || X_PyUnicode_EqualToASCIIString(tls, (*(*struct {
 		Fvalue Texpr_ty
 		Fattr  Tidentifier
 		Fctx   Texpr_context_ty
@@ -80176,40 +80176,4 @@ _21:
 		return -int32(1)
 	}
 	return 0
-}
-
-// C documentation
-//
-//	/* Raises a SyntaxError and returns ERROR.
-//	 * If something goes wrong, a different exception may be raised.
-//	 */
-func X_PyCompile_Error(tls *libc.TLS, c uintptr, loc Tlocation1, format uintptr, va uintptr) (r int32) {
-	var msg, v1, v6 uintptr
-	var vargs Tva_list
-	var v2 int32
-	var v5 Tuint32_t
-	_, _, _, _, _, _ = msg, vargs, v1, v2, v5, v6
-	vargs = va
-	msg = XPyUnicode_FromFormatV(tls, format, vargs)
-	_ = vargs
-	if msg == libc.UintptrFromInt32(0) {
-		return -int32(1)
-	}
-	X_PyErr_RaiseSyntaxError(tls, msg, (*Tcompiler)(unsafe.Pointer(c)).Fc_filename, loc.Flineno, loc.Fcol_offset+int32(1), loc.Fend_lineno, loc.Fend_col_offset+int32(1))
-	v1 = msg
-	v2 = libc.BoolInt32(libc.Int32FromUint32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
-	goto _3
-_3:
-	if v2 != 0 {
-		goto _4
-	}
-	v6 = v1
-	*(*Tuint32_t)(unsafe.Pointer(v6)) = *(*Tuint32_t)(unsafe.Pointer(v6)) - 1
-	v5 = *(*Tuint32_t)(unsafe.Pointer(v6))
-	if v5 == libc.Uint32FromInt32(0) {
-		X_Py_Dealloc(tls, v1)
-	}
-_4:
-	;
-	return -int32(1)
 }

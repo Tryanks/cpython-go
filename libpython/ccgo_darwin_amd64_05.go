@@ -20,6 +20,42 @@ var _ unsafe.Pointer
 
 // C documentation
 //
+//	/* Raises a SyntaxError and returns ERROR.
+//	 * If something goes wrong, a different exception may be raised.
+//	 */
+func X_PyCompile_Error(tls *libc.TLS, c uintptr, loc Tlocation1, format uintptr, va uintptr) (r int32) {
+	var msg, v1, v6 uintptr
+	var vargs Tva_list
+	var v2 int32
+	var v5 Tuint32_t
+	_, _, _, _, _, _ = msg, vargs, v1, v2, v5, v6
+	vargs = va
+	msg = XPyUnicode_FromFormatV(tls, format, vargs)
+	_ = vargs
+	if msg == libc.UintptrFromInt32(0) {
+		return -int32(1)
+	}
+	X_PyErr_RaiseSyntaxError(tls, msg, (*Tcompiler)(unsafe.Pointer(c)).Fc_filename, loc.Flineno, loc.Fcol_offset+int32(1), loc.Fend_lineno, loc.Fend_col_offset+int32(1))
+	v1 = msg
+	v2 = libc.BoolInt32(libc.Int32FromUint32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
+	goto _3
+_3:
+	if v2 != 0 {
+		goto _4
+	}
+	v6 = v1
+	*(*Tuint32_t)(unsafe.Pointer(v6)) = *(*Tuint32_t)(unsafe.Pointer(v6)) - 1
+	v5 = *(*Tuint32_t)(unsafe.Pointer(v6))
+	if v5 == libc.Uint32FromInt32(0) {
+		X_Py_Dealloc(tls, v1)
+	}
+_4:
+	;
+	return -int32(1)
+}
+
+// C documentation
+//
 //	/* Emits a SyntaxWarning and returns 0 on success.
 //	   If a SyntaxWarning raised as error, replaces it with a SyntaxError
 //	   and returns -1.
@@ -2841,7 +2877,7 @@ var _PyContextVar_methods = [5]TPyMethodDef{
 		Fml_doc:   uintptr(unsafe.Pointer(&__contextvars_ContextVar_get__doc__)),
 	},
 	1: {
-		Fml_name:  __ccgo_ts + 57914,
+		Fml_name:  __ccgo_ts + 57927,
 		Fml_flags: int32(MMETH_O),
 		Fml_doc:   uintptr(unsafe.Pointer(&__contextvars_ContextVar_set__doc__)),
 	},
@@ -30609,7 +30645,7 @@ func _hamt_py_set(tls *libc.TLS, op uintptr, args uintptr) (r uintptr) {
 	var _ uintptr
 	var _ uintptr
 	_ = self
-	if !(XPyArg_UnpackTuple(tls, args, __ccgo_ts+57914, int64(2), int64(2), libc.VaList(bp+24, bp, bp+8)) != 0) {
+	if !(XPyArg_UnpackTuple(tls, args, __ccgo_ts+57927, int64(2), int64(2), libc.VaList(bp+24, bp, bp+8)) != 0) {
 		return libc.UintptrFromInt32(0)
 	}
 	self = op
@@ -30703,7 +30739,7 @@ func _hamt_py_keys(tls *libc.TLS, op uintptr, _unused_args uintptr) (r uintptr) 
 
 var _PyHamt_methods = [7]TPyMethodDef{
 	0: {
-		Fml_name:  __ccgo_ts + 57914,
+		Fml_name:  __ccgo_ts + 57927,
 		Fml_flags: int32(MMETH_VARARGS),
 	},
 	1: {

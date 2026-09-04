@@ -18,6 +18,36 @@ var _ reflect.Type
 
 var _ unsafe.Pointer
 
+func _bytearray_mod(tls *libc.TLS, v uintptr, w uintptr) (r uintptr) {
+	var ret, v1, v2, v7, v9 uintptr
+	var v11 bool
+	var v3, v5 int32
+	_, _, _, _, _, _, _, _ = ret, v1, v11, v2, v3, v5, v7, v9
+	v1 = w
+	v2 = uintptr(unsafe.Pointer(&XPyByteArray_Type))
+	v7 = (*TPyObject)(unsafe.Pointer(v1)).Fob_type
+	goto _8
+_8:
+	v5 = libc.BoolInt32(v7 == v2)
+	goto _6
+_6:
+	;
+	if v11 = v5 != 0; !v11 {
+		v9 = (*TPyObject)(unsafe.Pointer(v1)).Fob_type
+		goto _10
+	_10:
+	}
+	v3 = libc.BoolInt32(v11 || XPyType_IsSubtype(tls, v9, v2) != 0)
+	goto _4
+_4:
+	if v3 != 0 {
+		ret = _bytearray_mod_lock_held(tls, v, w)
+	} else {
+		ret = _bytearray_mod_lock_held(tls, v, w)
+	}
+	return ret
+}
+
 var _bytearray_as_number = TPyNumberMethods{}
 
 func init() {
@@ -15762,7 +15792,7 @@ func _method_new(tls *libc.TLS, type1 uintptr, args uintptr, kwargs uintptr) (r 
 	_, _, _, _, _, _, _, _, _, _, _, _, _, _ = base_tp, function, instance, return_value, tuple, v1, v10, v11, v13, v15, v3, v5, v6, v8
 	return_value = libc.UintptrFromInt32(0)
 	base_tp = uintptr(unsafe.Pointer(&XPyMethod_Type))
-	if (type1 == base_tp || (*TPyTypeObject)(unsafe.Pointer(type1)).Ftp_init == (*TPyTypeObject)(unsafe.Pointer(base_tp)).Ftp_init) && !(kwargs == libc.UintptrFromInt32(0) || X_PyArg_NoKeywords(tls, __ccgo_ts+21133, kwargs) != 0) {
+	if (type1 == base_tp || (*TPyTypeObject)(unsafe.Pointer(type1)).Ftp_init == (*TPyTypeObject)(unsafe.Pointer(base_tp)).Ftp_init) && !(kwargs == libc.UintptrFromInt32(0) || X_PyArg_NoKeywords(tls, __ccgo_ts+21118, kwargs) != 0) {
 		goto exit
 	}
 	if v5 = libc.Bool(!false); v5 {
@@ -15792,7 +15822,7 @@ func _method_new(tls *libc.TLS, type1 uintptr, args uintptr, kwargs uintptr) (r 
 		goto _12
 	_12:
 	}
-	if !(v15 || X_PyArg_CheckPositional(tls, __ccgo_ts+21133, v11, int64(libc.Int32FromInt32(2)), int64(libc.Int32FromInt32(2))) != 0) {
+	if !(v15 || X_PyArg_CheckPositional(tls, __ccgo_ts+21118, v11, int64(libc.Int32FromInt32(2)), int64(libc.Int32FromInt32(2))) != 0) {
 		goto exit
 	}
 	function = **(**uintptr)(__ccgo_up(args + 32))
@@ -15814,7 +15844,7 @@ func _instancemethod_new(tls *libc.TLS, type1 uintptr, args uintptr, kwargs uint
 	_, _, _, _, _, _, _, _, _, _, _, _, _ = base_tp, function, return_value, tuple, v1, v10, v11, v13, v15, v3, v5, v6, v8
 	return_value = libc.UintptrFromInt32(0)
 	base_tp = uintptr(unsafe.Pointer(&XPyInstanceMethod_Type))
-	if (type1 == base_tp || (*TPyTypeObject)(unsafe.Pointer(type1)).Ftp_init == (*TPyTypeObject)(unsafe.Pointer(base_tp)).Ftp_init) && !(kwargs == libc.UintptrFromInt32(0) || X_PyArg_NoKeywords(tls, __ccgo_ts+21118, kwargs) != 0) {
+	if (type1 == base_tp || (*TPyTypeObject)(unsafe.Pointer(type1)).Ftp_init == (*TPyTypeObject)(unsafe.Pointer(base_tp)).Ftp_init) && !(kwargs == libc.UintptrFromInt32(0) || X_PyArg_NoKeywords(tls, __ccgo_ts+21125, kwargs) != 0) {
 		goto exit
 	}
 	if v5 = libc.Bool(!false); v5 {
@@ -15844,7 +15874,7 @@ func _instancemethod_new(tls *libc.TLS, type1 uintptr, args uintptr, kwargs uint
 		goto _12
 	_12:
 	}
-	if !(v15 || X_PyArg_CheckPositional(tls, __ccgo_ts+21118, v11, int64(libc.Int32FromInt32(1)), int64(libc.Int32FromInt32(1))) != 0) {
+	if !(v15 || X_PyArg_CheckPositional(tls, __ccgo_ts+21125, v11, int64(libc.Int32FromInt32(1)), int64(libc.Int32FromInt32(1))) != 0) {
 		goto exit
 	}
 	function = **(**uintptr)(__ccgo_up(args + 32))
@@ -30284,7 +30314,7 @@ var __keywords19 = [2]uintptr{
 
 var __parser19 = T_PyArg_Parser{
 	Fkeywords: uintptr(unsafe.Pointer(&__keywords19)),
-	Ffname:    __ccgo_ts + 24428,
+	Ffname:    __ccgo_ts + 24369,
 	Fkwtuple:  uintptr(unsafe.Pointer(&__kwtuple19)) + 16,
 }
 
@@ -30410,7 +30440,7 @@ var __keywords20 = [5]uintptr{
 
 var __parser20 = T_PyArg_Parser{
 	Fkeywords: uintptr(unsafe.Pointer(&__keywords20)),
-	Ffname:    __ccgo_ts + 24441,
+	Ffname:    __ccgo_ts + 24382,
 	Fkwtuple:  uintptr(unsafe.Pointer(&__kwtuple20)) + 16,
 }
 

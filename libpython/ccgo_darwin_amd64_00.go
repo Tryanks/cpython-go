@@ -3168,7 +3168,7 @@ const MTARGET_OS_XR = 0
 
 const MTHREAD_STACK_SIZE = 16777216
 
-const MTIME = "04:29:25"
+const MTIME = "05:43:34"
 
 const MTIME_UTC = 1
 
@@ -89239,34 +89239,4 @@ _17:
 	res = X_PyBytes_FormatEx(tls, v1, v16, w, int32(1))
 	(*TPyByteArrayObject)(unsafe.Pointer(self2)).Fob_exports = (*TPyByteArrayObject)(unsafe.Pointer(self2)).Fob_exports - 1
 	return res
-}
-
-func _bytearray_mod(tls *libc.TLS, v uintptr, w uintptr) (r uintptr) {
-	var ret, v1, v2, v7, v9 uintptr
-	var v11 bool
-	var v3, v5 int32
-	_, _, _, _, _, _, _, _ = ret, v1, v11, v2, v3, v5, v7, v9
-	v1 = w
-	v2 = uintptr(unsafe.Pointer(&XPyByteArray_Type))
-	v7 = (*TPyObject)(unsafe.Pointer(v1)).Fob_type
-	goto _8
-_8:
-	v5 = libc.BoolInt32(v7 == v2)
-	goto _6
-_6:
-	;
-	if v11 = v5 != 0; !v11 {
-		v9 = (*TPyObject)(unsafe.Pointer(v1)).Fob_type
-		goto _10
-	_10:
-	}
-	v3 = libc.BoolInt32(v11 || XPyType_IsSubtype(tls, v9, v2) != 0)
-	goto _4
-_4:
-	if v3 != 0 {
-		ret = _bytearray_mod_lock_held(tls, v, w)
-	} else {
-		ret = _bytearray_mod_lock_held(tls, v, w)
-	}
-	return ret
 }
