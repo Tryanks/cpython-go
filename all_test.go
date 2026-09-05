@@ -6,6 +6,7 @@ package cpython_test
 
 import (
 	"os"
+	"runtime"
 	"os/exec"
 	"path/filepath"
 	"strings"
@@ -42,7 +43,7 @@ func TestSmoke(t *testing.T) {
 	for _, tc := range []struct{ code, want string }{
 		{`print(sum(range(10)))`, "45"},
 		{`import json, re, os; print(json.dumps({"a": [1, 2]}))`, `{"a": [1, 2]}`},
-		{`import sys; print(sys.platform, sys.version_info[:2])`, "darwin (3, 14)"},
+		{`import sys; print(sys.platform, sys.version_info[:2])`, runtime.GOOS + " (3, 14)"},
 		{`print(2**100)`, "1267650600228229401496703205376"},
 		{`print(sorted({"b": 1, "a": 2}.items()))`, "[('a', 2), ('b', 1)]"},
 		{`import re; print(re.sub(r"(\w+)@(\w+)", r"\2 at \1", "me@host"))`, "host at me"},
