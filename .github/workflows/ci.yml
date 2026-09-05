@@ -71,9 +71,7 @@ jobs:
         timeout-minutes: 2
         run: ./cpython-go.exe internal/builders/windows/network_smoke.py
   windows-arm64:
-    # Experimental: generated and cross-built, not yet validated on hardware.
     runs-on: windows-11-arm
-    continue-on-error: true
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-go@v5

@@ -16,12 +16,12 @@ runtime; `subprocess` works via `syscall.ForkExec`).
 
 | GOOS/GOARCH   | Generated | Smoke tests (CI) | CPython test suite |
 |---------------|-----------|------------------|--------------------|
-| darwin/arm64  | yes       | yes              | most modules pass  |
-| darwin/amd64  | yes       | yes (local)      | most modules pass  |
+| darwin/arm64  | yes       | yes              | 79 of 107 modules fully pass |
+| darwin/amd64  | yes       | yes (local)      | 32 of 53 modules fully pass |
 | linux/amd64   | yes       | yes              | not run yet        |
 | linux/arm64   | yes       | yes              | 43 of 72 modules fully pass |
 | windows/amd64 | yes       | yes              | in progress        |
-| windows/arm64 | yes       | experimental CI job | not run yet     |
+| windows/arm64 | yes       | yes              | not run yet        |
 
 Other architectures are parked; see TODO.md. Windows details: docs/windows.md.
 

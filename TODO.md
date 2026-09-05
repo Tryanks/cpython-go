@@ -20,6 +20,10 @@ is parked here.
 - Cross-platform dedupe of identical generated declarations with
   modernc.org/undup (the repo grows ~37MB per target).
 
+- Branch `windows-net` (pushed) holds the start of the Winsock work: CI
+  network probes; the socket shims themselves are still to be written
+  (modernc TODOs: socket/bind/connect/listen/accept/recv/send/select/...).
+
 ## Interpreter gaps
 
 - os.fork: impossible under the Go runtime (raises ENOSYS). multiprocessing
@@ -34,7 +38,11 @@ is parked here.
 - Threads: real thread identity is emulated on libc.TLS goroutines;
   pthread_kill / signal masks / sigwait are stubs.
 
-## Known test failures (CPython test suite, darwin/arm64 and linux/arm64)
+## Known test failures (CPython test suite, darwin/arm64 79/107 and linux/arm64 43/72 modules fully pass)
+
+- darwin: test_socket hits modernc `Xinet_ntoa` TODO (route it); test_logging
+  hangs (~15 min, then SIGALRM watchdog is overridden); test_subprocess and
+  test_fcntl end without a summary line (crash/exit to diagnose).
 
 - test_io, test_subprocess: hang in blocking pipe reads waiting for EOF
   (fd inherited by a subprocess through ForkExec; not yet diagnosed).
