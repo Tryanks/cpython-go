@@ -378,6 +378,7 @@ func main() {
 		"--package-name", "libpython",
 		"-o", result,
 		filepath.Join(build, libName),
+		filepath.Join(build, "Modules", "_decimal", "libmpdec", "libmpdec.a"),
 		filepath.Join(build, "Modules", "expat", "libexpat.a"),
 	)
 	linkArgs = append(linkArgs, hacl...)
