@@ -37,6 +37,7 @@ var (
 	dllKernel32 = windows.NewLazySystemDLL("kernel32.dll")
 	dllAdvapi32 = windows.NewLazySystemDLL("advapi32.dll")
 	dllVersion  = windows.NewLazySystemDLL("version.dll")
+	dllUser32   = windows.NewLazySystemDLL("user32.dll")
 	dllWS2      = windows.NewLazySystemDLL("ws2_32.dll")
 	dllIPHlp    = windows.NewLazySystemDLL("iphlpapi.dll")
 	dllRPCRT4   = windows.NewLazySystemDLL("rpcrt4.dll")
@@ -2156,6 +2157,156 @@ func _ccgo_WSAGetLastError(tls *libc.TLS) int32 {
 
 func _ccgo_WSASetLastError(tls *libc.TLS, value int32) {
 	_WSASetLastError(tls, value)
+}
+
+func _ccgo_time(tls *libc.TLS, location uintptr) int64 {
+	now := time.Now().Unix()
+	if location != 0 {
+		*(*int64)(unsafe.Pointer(location)) = now
+	}
+	return now
+}
+
+func _ccgo_RegOpenKeyExW(tls *libc.TLS, key, subkey uintptr, options, access uint32, result uintptr) int32 {
+	err := windows.RegOpenKeyEx(
+		windows.Handle(key),
+		u16ptr(subkey),
+		options,
+		access,
+		(*windows.Handle)(unsafe.Pointer(result)),
+	)
+	if err == nil {
+		return 0
+	}
+	return int32(winErrno(err, errorInvalidFunction))
+}
+
+func _ccgo_MessageBeep(tls *libc.TLS, kind uint32) int32 {
+	return boolProc(tls, dllUser32, "MessageBeep", uintptr(kind))
+}
+
+type winsockExtensionProc struct {
+	once    sync.Once
+	address uintptr
+	err     error
+}
+
+var (
+	connectExProc     winsockExtensionProc
+	disconnectExProc  winsockExtensionProc
+	wsaidDisconnectEx = windows.GUID{
+		Data1: 0x7fda2e11,
+		Data2: 0x8630,
+		Data3: 0x436f,
+		Data4: [8]byte{0xa0, 0x31, 0xf5, 0x36, 0xa6, 0xee, 0xc1, 0x57},
+	}
+)
+
+func loadWinsockExtension(extension *winsockExtensionProc, guid *windows.GUID) (uintptr, error) {
+	extension.once.Do(func() {
+		socket, err := windows.Socket(windows.AF_INET, windows.SOCK_STREAM, windows.IPPROTO_TCP)
+		if err != nil {
+			extension.err = err
+			return
+		}
+		defer windows.Closesocket(socket)
+
+		var bytesReturned uint32
+		extension.err = windows.WSAIoctl(
+			socket,
+			windows.SIO_GET_EXTENSION_FUNCTION_POINTER,
+			(*byte)(unsafe.Pointer(guid)),
+			uint32(unsafe.Sizeof(*guid)),
+			(*byte)(unsafe.Pointer(&extension.address)),
+			uint32(unsafe.Sizeof(extension.address)),
+			&bytesReturned,
+			nil,
+			0,
+		)
+	})
+	return extension.address, extension.err
+}
+
+// CPython normally calls these Winsock extension functions through pointers
+// returned by WSAIoctl. A native function address is not a ccgo Go function
+// pointer, so the ccgo-only overlapped.c patch routes the calls through these
+// wrappers and syscall.SyscallN (or x/sys direct DLL wrappers) instead.
+func _ccgo_AcceptEx(tls *libc.TLS, listenSocket, acceptSocket uint64, output uintptr, receiveDataLength, localAddressLength, remoteAddressLength uint32, bytesReceived, overlapped uintptr) int32 {
+	err := windows.AcceptEx(
+		windows.Handle(listenSocket),
+		windows.Handle(acceptSocket),
+		byteptr(output),
+		receiveDataLength,
+		localAddressLength,
+		remoteAddressLength,
+		(*uint32)(unsafe.Pointer(bytesReceived)),
+		(*windows.Overlapped)(unsafe.Pointer(overlapped)),
+	)
+	if err != nil {
+		setWSAErrorFrom(tls, err)
+		return 0
+	}
+	return 1
+}
+
+func _ccgo_ConnectEx(tls *libc.TLS, socket uint64, address uintptr, addressLength int32, sendBuffer uintptr, sendDataLength uint32, bytesSent, overlapped uintptr) int32 {
+	procedure, err := loadWinsockExtension(&connectExProc, &windows.WSAID_CONNECTEX)
+	if err != nil {
+		setWSAErrorFrom(tls, err)
+		return 0
+	}
+	result, _, err := syscall.SyscallN(
+		procedure,
+		uintptr(socket),
+		address,
+		uintptr(uint32(addressLength)),
+		sendBuffer,
+		uintptr(sendDataLength),
+		bytesSent,
+		overlapped,
+	)
+	if result == 0 {
+		setWSAErrorFrom(tls, err)
+		return 0
+	}
+	return 1
+}
+
+func _ccgo_DisconnectEx(tls *libc.TLS, socket uint64, overlapped uintptr, flags, reserved uint32) int32 {
+	procedure, err := loadWinsockExtension(&disconnectExProc, &wsaidDisconnectEx)
+	if err != nil {
+		setWSAErrorFrom(tls, err)
+		return 0
+	}
+	result, _, err := syscall.SyscallN(
+		procedure,
+		uintptr(socket),
+		overlapped,
+		uintptr(flags),
+		uintptr(reserved),
+	)
+	if result == 0 {
+		setWSAErrorFrom(tls, err)
+		return 0
+	}
+	return 1
+}
+
+func _ccgo_TransmitFile(tls *libc.TLS, socket uint64, file uintptr, bytesToWrite, bytesPerSend uint32, overlapped, transmitBuffers uintptr, flags uint32) int32 {
+	err := windows.TransmitFile(
+		windows.Handle(socket),
+		windows.Handle(file),
+		bytesToWrite,
+		bytesPerSend,
+		(*windows.Overlapped)(unsafe.Pointer(overlapped)),
+		(*windows.TransmitFileBuffers)(unsafe.Pointer(transmitBuffers)),
+		flags,
+	)
+	if err != nil {
+		setWSAErrorFrom(tls, err)
+		return 0
+	}
+	return 1
 }
 
 func _ccgo_socket(tls *libc.TLS, family, socketType, protocol int32) uint64 {

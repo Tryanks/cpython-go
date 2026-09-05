@@ -3075,7 +3075,7 @@ func XPyOS_StdioReadline(tls *libc.TLS, sys_stdin uintptr, sys_stdout uintptr, p
 						XPyMem_RawFree(tls, wbuf)
 					}
 				} else {
-					libc.Xfprintf(tls, libc.X__acrt_iob_func(tls, uint32(2)), __ccgo_ts+10860, libc.VaList(bp+16, prompt))
+					_ccgo_fprintf(tls, libc.X__acrt_iob_func(tls, uint32(2)), __ccgo_ts+10860, libc.VaList(bp+16, prompt))
 					libc.Xfflush(tls, libc.X__acrt_iob_func(tls, uint32(2)))
 				}
 			}
@@ -3085,7 +3085,7 @@ func XPyOS_StdioReadline(tls *libc.TLS, sys_stdin uintptr, sys_stdout uintptr, p
 	}
 	libc.Xfflush(tls, sys_stdout)
 	if prompt != 0 {
-		libc.Xfprintf(tls, libc.X__acrt_iob_func(tls, uint32(2)), __ccgo_ts+10860, libc.VaList(bp+16, prompt))
+		_ccgo_fprintf(tls, libc.X__acrt_iob_func(tls, uint32(2)), __ccgo_ts+10860, libc.VaList(bp+16, prompt))
 	}
 	libc.Xfflush(tls, libc.X__acrt_iob_func(tls, uint32(2)))
 	n = uint64(0)
@@ -23271,12 +23271,12 @@ func XPyBytes_FromFormatV(tls *libc.TLS, format uintptr, vargs Tva_list) (r uint
 			**(**int8)(__ccgo_up(v2)) = int8(uint8(c))
 		case int32('d'):
 			if longflag != 0 {
-				libc.Xsprintf(tls, bp, __ccgo_ts+17645, libc.VaList(bp+584, libc.VaInt32(&vargs)))
+				_ccgo_sprintf(tls, bp, __ccgo_ts+17645, libc.VaList(bp+584, libc.VaInt32(&vargs)))
 			} else {
 				if size_tflag != 0 {
-					libc.Xsprintf(tls, bp, __ccgo_ts+17649, libc.VaList(bp+584, libc.VaInt64(&vargs)))
+					_ccgo_sprintf(tls, bp, __ccgo_ts+17649, libc.VaList(bp+584, libc.VaInt64(&vargs)))
 				} else {
-					libc.Xsprintf(tls, bp, __ccgo_ts+17653, libc.VaList(bp+584, libc.VaInt32(&vargs)))
+					_ccgo_sprintf(tls, bp, __ccgo_ts+17653, libc.VaList(bp+584, libc.VaInt32(&vargs)))
 				}
 			}
 			s = X_PyBytesWriter_WriteBytes(tls, bp+24, s, bp, int64(libc.Xstrlen(tls, bp)))
@@ -23285,12 +23285,12 @@ func XPyBytes_FromFormatV(tls *libc.TLS, format uintptr, vargs Tva_list) (r uint
 			}
 		case int32('u'):
 			if longflag != 0 {
-				libc.Xsprintf(tls, bp, __ccgo_ts+17656, libc.VaList(bp+584, libc.VaUint32(&vargs)))
+				_ccgo_sprintf(tls, bp, __ccgo_ts+17656, libc.VaList(bp+584, libc.VaUint32(&vargs)))
 			} else {
 				if size_tflag != 0 {
-					libc.Xsprintf(tls, bp, __ccgo_ts+17660, libc.VaList(bp+584, libc.VaUint64(&vargs)))
+					_ccgo_sprintf(tls, bp, __ccgo_ts+17660, libc.VaList(bp+584, libc.VaUint64(&vargs)))
 				} else {
-					libc.Xsprintf(tls, bp, __ccgo_ts+17664, libc.VaList(bp+584, libc.VaUint32(&vargs)))
+					_ccgo_sprintf(tls, bp, __ccgo_ts+17664, libc.VaList(bp+584, libc.VaUint32(&vargs)))
 				}
 			}
 			s = X_PyBytesWriter_WriteBytes(tls, bp+24, s, bp, int64(libc.Xstrlen(tls, bp)))
@@ -23298,13 +23298,13 @@ func XPyBytes_FromFormatV(tls *libc.TLS, format uintptr, vargs Tva_list) (r uint
 				goto error
 			}
 		case int32('i'):
-			libc.Xsprintf(tls, bp, __ccgo_ts+17667, libc.VaList(bp+584, libc.VaInt32(&vargs)))
+			_ccgo_sprintf(tls, bp, __ccgo_ts+17667, libc.VaList(bp+584, libc.VaInt32(&vargs)))
 			s = X_PyBytesWriter_WriteBytes(tls, bp+24, s, bp, int64(libc.Xstrlen(tls, bp)))
 			if s == libc.UintptrFromInt32(0) {
 				goto error
 			}
 		case int32('x'):
-			libc.Xsprintf(tls, bp, __ccgo_ts+17670, libc.VaList(bp+584, libc.VaInt32(&vargs)))
+			_ccgo_sprintf(tls, bp, __ccgo_ts+17670, libc.VaList(bp+584, libc.VaInt32(&vargs)))
 			s = X_PyBytesWriter_WriteBytes(tls, bp+24, s, bp, int64(libc.Xstrlen(tls, bp)))
 			if s == libc.UintptrFromInt32(0) {
 				goto error
@@ -23324,7 +23324,7 @@ func XPyBytes_FromFormatV(tls *libc.TLS, format uintptr, vargs Tva_list) (r uint
 				goto error
 			}
 		case int32('p'):
-			libc.Xsprintf(tls, bp, __ccgo_ts+17673, libc.VaList(bp+584, libc.VaUintptr(&vargs)))
+			_ccgo_sprintf(tls, bp, __ccgo_ts+17673, libc.VaList(bp+584, libc.VaUintptr(&vargs)))
 
 			if int32((**(**[21]int8)(__ccgo_up(bp)))[int32(1)]) == int32('X') {
 				(**(**[21]int8)(__ccgo_up(bp)))[int32(1)] = int8('x')
@@ -52946,7 +52946,7 @@ var __keywords19 = [2]uintptr{
 
 var __parser19 = T_PyArg_Parser{
 	Fkeywords: uintptr(unsafe.Pointer(&__keywords19)),
-	Ffname:    __ccgo_ts + 24064,
+	Ffname:    __ccgo_ts + 24049,
 	Fkwtuple:  uintptr(unsafe.Pointer(&__kwtuple19)) + 16,
 }
 
@@ -53072,7 +53072,7 @@ var __keywords20 = [5]uintptr{
 
 var __parser20 = T_PyArg_Parser{
 	Fkeywords: uintptr(unsafe.Pointer(&__keywords20)),
-	Ffname:    __ccgo_ts + 24077,
+	Ffname:    __ccgo_ts + 24062,
 	Fkwtuple:  uintptr(unsafe.Pointer(&__kwtuple20)) + 16,
 }
 
@@ -66703,7 +66703,7 @@ var _static_exceptions = [68]Tstatic_exception{
 	},
 	13: {
 		Fexc:  uintptr(unsafe.Pointer(&X_PyExc_MemoryError)),
-		Fname: __ccgo_ts + 26772,
+		Fname: __ccgo_ts + 26812,
 	},
 	14: {
 		Fexc:  uintptr(unsafe.Pointer(&__PyExc_NameError)),
@@ -66855,7 +66855,7 @@ var _static_exceptions = [68]Tstatic_exception{
 	},
 	51: {
 		Fexc:  uintptr(unsafe.Pointer(&X_PyExc_IncompleteInputError)),
-		Fname: __ccgo_ts + 26799,
+		Fname: __ccgo_ts + 26772,
 	},
 	52: {
 		Fexc:  uintptr(unsafe.Pointer(&__PyExc_IndexError)),

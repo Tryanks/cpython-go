@@ -41,12 +41,14 @@ jobs:
       - name: Run CPython unittest batch
         id: batch
         continue-on-error: true
-        run: >-
-          go run ./internal/builders/windows/test_batch.go
-          -exe ./cpython-go-tests.exe
-          -timeout 90s
-          -output windows-test-results
-          -label windows/${{ matrix.arch }}
+        shell: pwsh
+        run: |
+          $env:PYTHONPATH = (Resolve-Path cpython-3.14.7/Lib).Path
+          go run ./internal/builders/windows/test_batch.go `
+            -exe ./cpython-go-tests.exe `
+            -timeout 90s `
+            -output windows-test-results `
+            -label windows/${{ matrix.arch }}
       - name: Publish test table
         if: always()
         shell: pwsh

@@ -1802,7 +1802,7 @@ const MS_IXOTH = 1
 
 const MS_IXUSR = 64
 
-const MTIME = "07:27:39"
+const MTIME = "08:46:52"
 
 const MTMP_MAX = 2147483647
 
@@ -106857,7 +106857,7 @@ func _decode_unicode_with_escapes(tls *libc.TLS, parser uintptr, _s uintptr, len
 				goto _29
 			_29:
 				chr = v28
-				libc.Xsprintf(tls, p, __ccgo_ts+8778, libc.VaList(bp+32, chr))
+				_ccgo_sprintf(tls, p, __ccgo_ts+8778, libc.VaList(bp+32, chr))
 				p = p + uintptr(10)
 				goto _24
 			_24:

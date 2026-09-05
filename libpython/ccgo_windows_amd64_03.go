@@ -11065,85 +11065,85 @@ _3:
 	case int32(MF_LONG):
 		switch int32(**(**int8)(__ccgo_up(f))) {
 		case int32('o'):
-			len1 = int64(libc.Xsprintf(tls, bp, __ccgo_ts+76796, libc.VaList(bp+64, libc.VaUint32(&**(**Tva_list)(__ccgo_up(vargs))))))
+			len1 = int64(_ccgo_sprintf(tls, bp, __ccgo_ts+76796, libc.VaList(bp+64, libc.VaUint32(&**(**Tva_list)(__ccgo_up(vargs))))))
 		case int32('u'):
-			len1 = int64(libc.Xsprintf(tls, bp, __ccgo_ts+17656, libc.VaList(bp+64, libc.VaUint32(&**(**Tva_list)(__ccgo_up(vargs))))))
+			len1 = int64(_ccgo_sprintf(tls, bp, __ccgo_ts+17656, libc.VaList(bp+64, libc.VaUint32(&**(**Tva_list)(__ccgo_up(vargs))))))
 		case int32('x'):
-			len1 = int64(libc.Xsprintf(tls, bp, __ccgo_ts+76800, libc.VaList(bp+64, libc.VaUint32(&**(**Tva_list)(__ccgo_up(vargs))))))
+			len1 = int64(_ccgo_sprintf(tls, bp, __ccgo_ts+76800, libc.VaList(bp+64, libc.VaUint32(&**(**Tva_list)(__ccgo_up(vargs))))))
 		case int32('X'):
-			len1 = int64(libc.Xsprintf(tls, bp, __ccgo_ts+76804, libc.VaList(bp+64, libc.VaUint32(&**(**Tva_list)(__ccgo_up(vargs))))))
+			len1 = int64(_ccgo_sprintf(tls, bp, __ccgo_ts+76804, libc.VaList(bp+64, libc.VaUint32(&**(**Tva_list)(__ccgo_up(vargs))))))
 		default:
-			len1 = int64(libc.Xsprintf(tls, bp, __ccgo_ts+17645, libc.VaList(bp+64, libc.VaInt32(&**(**Tva_list)(__ccgo_up(vargs))))))
+			len1 = int64(_ccgo_sprintf(tls, bp, __ccgo_ts+17645, libc.VaList(bp+64, libc.VaInt32(&**(**Tva_list)(__ccgo_up(vargs))))))
 			break
 		}
 	case int32(MF_LONGLONG):
 		switch int32(**(**int8)(__ccgo_up(f))) {
 		case int32('o'):
-			len1 = int64(libc.Xsprintf(tls, bp, __ccgo_ts+76808, libc.VaList(bp+64, libc.VaUint64(&**(**Tva_list)(__ccgo_up(vargs))))))
+			len1 = int64(_ccgo_sprintf(tls, bp, __ccgo_ts+76808, libc.VaList(bp+64, libc.VaUint64(&**(**Tva_list)(__ccgo_up(vargs))))))
 		case int32('u'):
-			len1 = int64(libc.Xsprintf(tls, bp, __ccgo_ts+76813, libc.VaList(bp+64, libc.VaUint64(&**(**Tva_list)(__ccgo_up(vargs))))))
+			len1 = int64(_ccgo_sprintf(tls, bp, __ccgo_ts+76813, libc.VaList(bp+64, libc.VaUint64(&**(**Tva_list)(__ccgo_up(vargs))))))
 		case int32('x'):
-			len1 = int64(libc.Xsprintf(tls, bp, __ccgo_ts+76818, libc.VaList(bp+64, libc.VaUint64(&**(**Tva_list)(__ccgo_up(vargs))))))
+			len1 = int64(_ccgo_sprintf(tls, bp, __ccgo_ts+76818, libc.VaList(bp+64, libc.VaUint64(&**(**Tva_list)(__ccgo_up(vargs))))))
 		case int32('X'):
-			len1 = int64(libc.Xsprintf(tls, bp, __ccgo_ts+76823, libc.VaList(bp+64, libc.VaUint64(&**(**Tva_list)(__ccgo_up(vargs))))))
+			len1 = int64(_ccgo_sprintf(tls, bp, __ccgo_ts+76823, libc.VaList(bp+64, libc.VaUint64(&**(**Tva_list)(__ccgo_up(vargs))))))
 		default:
-			len1 = int64(libc.Xsprintf(tls, bp, __ccgo_ts+76828, libc.VaList(bp+64, libc.VaInt64(&**(**Tva_list)(__ccgo_up(vargs))))))
+			len1 = int64(_ccgo_sprintf(tls, bp, __ccgo_ts+76828, libc.VaList(bp+64, libc.VaInt64(&**(**Tva_list)(__ccgo_up(vargs))))))
 			break
 		}
 	case int32(MF_SIZE):
 		switch int32(**(**int8)(__ccgo_up(f))) {
 		case int32('o'):
-			len1 = int64(libc.Xsprintf(tls, bp, __ccgo_ts+76833, libc.VaList(bp+64, libc.VaUint64(&**(**Tva_list)(__ccgo_up(vargs))))))
+			len1 = int64(_ccgo_sprintf(tls, bp, __ccgo_ts+76833, libc.VaList(bp+64, libc.VaUint64(&**(**Tva_list)(__ccgo_up(vargs))))))
 		case int32('u'):
-			len1 = int64(libc.Xsprintf(tls, bp, __ccgo_ts+17660, libc.VaList(bp+64, libc.VaUint64(&**(**Tva_list)(__ccgo_up(vargs))))))
+			len1 = int64(_ccgo_sprintf(tls, bp, __ccgo_ts+17660, libc.VaList(bp+64, libc.VaUint64(&**(**Tva_list)(__ccgo_up(vargs))))))
 		case int32('x'):
-			len1 = int64(libc.Xsprintf(tls, bp, __ccgo_ts+76837, libc.VaList(bp+64, libc.VaUint64(&**(**Tva_list)(__ccgo_up(vargs))))))
+			len1 = int64(_ccgo_sprintf(tls, bp, __ccgo_ts+76837, libc.VaList(bp+64, libc.VaUint64(&**(**Tva_list)(__ccgo_up(vargs))))))
 		case int32('X'):
-			len1 = int64(libc.Xsprintf(tls, bp, __ccgo_ts+76841, libc.VaList(bp+64, libc.VaUint64(&**(**Tva_list)(__ccgo_up(vargs))))))
+			len1 = int64(_ccgo_sprintf(tls, bp, __ccgo_ts+76841, libc.VaList(bp+64, libc.VaUint64(&**(**Tva_list)(__ccgo_up(vargs))))))
 		default:
-			len1 = int64(libc.Xsprintf(tls, bp, __ccgo_ts+17649, libc.VaList(bp+64, libc.VaInt64(&**(**Tva_list)(__ccgo_up(vargs))))))
+			len1 = int64(_ccgo_sprintf(tls, bp, __ccgo_ts+17649, libc.VaList(bp+64, libc.VaInt64(&**(**Tva_list)(__ccgo_up(vargs))))))
 			break
 		}
 	case int32(MF_PTRDIFF):
 		switch int32(**(**int8)(__ccgo_up(f))) {
 		case int32('o'):
-			len1 = int64(libc.Xsprintf(tls, bp, __ccgo_ts+76845, libc.VaList(bp+64, libc.VaInt64(&**(**Tva_list)(__ccgo_up(vargs))))))
+			len1 = int64(_ccgo_sprintf(tls, bp, __ccgo_ts+76845, libc.VaList(bp+64, libc.VaInt64(&**(**Tva_list)(__ccgo_up(vargs))))))
 		case int32('u'):
-			len1 = int64(libc.Xsprintf(tls, bp, __ccgo_ts+76849, libc.VaList(bp+64, libc.VaInt64(&**(**Tva_list)(__ccgo_up(vargs))))))
+			len1 = int64(_ccgo_sprintf(tls, bp, __ccgo_ts+76849, libc.VaList(bp+64, libc.VaInt64(&**(**Tva_list)(__ccgo_up(vargs))))))
 		case int32('x'):
-			len1 = int64(libc.Xsprintf(tls, bp, __ccgo_ts+76853, libc.VaList(bp+64, libc.VaInt64(&**(**Tva_list)(__ccgo_up(vargs))))))
+			len1 = int64(_ccgo_sprintf(tls, bp, __ccgo_ts+76853, libc.VaList(bp+64, libc.VaInt64(&**(**Tva_list)(__ccgo_up(vargs))))))
 		case int32('X'):
-			len1 = int64(libc.Xsprintf(tls, bp, __ccgo_ts+76857, libc.VaList(bp+64, libc.VaInt64(&**(**Tva_list)(__ccgo_up(vargs))))))
+			len1 = int64(_ccgo_sprintf(tls, bp, __ccgo_ts+76857, libc.VaList(bp+64, libc.VaInt64(&**(**Tva_list)(__ccgo_up(vargs))))))
 		default:
-			len1 = int64(libc.Xsprintf(tls, bp, __ccgo_ts+76861, libc.VaList(bp+64, libc.VaInt64(&**(**Tva_list)(__ccgo_up(vargs))))))
+			len1 = int64(_ccgo_sprintf(tls, bp, __ccgo_ts+76861, libc.VaList(bp+64, libc.VaInt64(&**(**Tva_list)(__ccgo_up(vargs))))))
 			break
 		}
 	case int32(MF_INTMAX):
 		switch int32(**(**int8)(__ccgo_up(f))) {
 		case int32('o'):
-			len1 = int64(libc.Xsprintf(tls, bp, __ccgo_ts+76865, libc.VaList(bp+64, libc.VaUint64(&**(**Tva_list)(__ccgo_up(vargs))))))
+			len1 = int64(_ccgo_sprintf(tls, bp, __ccgo_ts+76865, libc.VaList(bp+64, libc.VaUint64(&**(**Tva_list)(__ccgo_up(vargs))))))
 		case int32('u'):
-			len1 = int64(libc.Xsprintf(tls, bp, __ccgo_ts+76869, libc.VaList(bp+64, libc.VaUint64(&**(**Tva_list)(__ccgo_up(vargs))))))
+			len1 = int64(_ccgo_sprintf(tls, bp, __ccgo_ts+76869, libc.VaList(bp+64, libc.VaUint64(&**(**Tva_list)(__ccgo_up(vargs))))))
 		case int32('x'):
-			len1 = int64(libc.Xsprintf(tls, bp, __ccgo_ts+76873, libc.VaList(bp+64, libc.VaUint64(&**(**Tva_list)(__ccgo_up(vargs))))))
+			len1 = int64(_ccgo_sprintf(tls, bp, __ccgo_ts+76873, libc.VaList(bp+64, libc.VaUint64(&**(**Tva_list)(__ccgo_up(vargs))))))
 		case int32('X'):
-			len1 = int64(libc.Xsprintf(tls, bp, __ccgo_ts+76877, libc.VaList(bp+64, libc.VaUint64(&**(**Tva_list)(__ccgo_up(vargs))))))
+			len1 = int64(_ccgo_sprintf(tls, bp, __ccgo_ts+76877, libc.VaList(bp+64, libc.VaUint64(&**(**Tva_list)(__ccgo_up(vargs))))))
 		default:
-			len1 = int64(libc.Xsprintf(tls, bp, __ccgo_ts+76881, libc.VaList(bp+64, libc.VaInt64(&**(**Tva_list)(__ccgo_up(vargs))))))
+			len1 = int64(_ccgo_sprintf(tls, bp, __ccgo_ts+76881, libc.VaList(bp+64, libc.VaInt64(&**(**Tva_list)(__ccgo_up(vargs))))))
 			break
 		}
 	default:
 		switch int32(**(**int8)(__ccgo_up(f))) {
 		case int32('o'):
-			len1 = int64(libc.Xsprintf(tls, bp, __ccgo_ts+76885, libc.VaList(bp+64, libc.VaUint32(&**(**Tva_list)(__ccgo_up(vargs))))))
+			len1 = int64(_ccgo_sprintf(tls, bp, __ccgo_ts+76885, libc.VaList(bp+64, libc.VaUint32(&**(**Tva_list)(__ccgo_up(vargs))))))
 		case int32('u'):
-			len1 = int64(libc.Xsprintf(tls, bp, __ccgo_ts+17664, libc.VaList(bp+64, libc.VaUint32(&**(**Tva_list)(__ccgo_up(vargs))))))
+			len1 = int64(_ccgo_sprintf(tls, bp, __ccgo_ts+17664, libc.VaList(bp+64, libc.VaUint32(&**(**Tva_list)(__ccgo_up(vargs))))))
 		case int32('x'):
-			len1 = int64(libc.Xsprintf(tls, bp, __ccgo_ts+17670, libc.VaList(bp+64, libc.VaUint32(&**(**Tva_list)(__ccgo_up(vargs))))))
+			len1 = int64(_ccgo_sprintf(tls, bp, __ccgo_ts+17670, libc.VaList(bp+64, libc.VaUint32(&**(**Tva_list)(__ccgo_up(vargs))))))
 		case int32('X'):
-			len1 = int64(libc.Xsprintf(tls, bp, __ccgo_ts+76888, libc.VaList(bp+64, libc.VaUint32(&**(**Tva_list)(__ccgo_up(vargs))))))
+			len1 = int64(_ccgo_sprintf(tls, bp, __ccgo_ts+76888, libc.VaList(bp+64, libc.VaUint32(&**(**Tva_list)(__ccgo_up(vargs))))))
 		default:
-			len1 = int64(libc.Xsprintf(tls, bp, __ccgo_ts+17653, libc.VaList(bp+64, libc.VaInt32(&**(**Tva_list)(__ccgo_up(vargs))))))
+			len1 = int64(_ccgo_sprintf(tls, bp, __ccgo_ts+17653, libc.VaList(bp+64, libc.VaInt32(&**(**Tva_list)(__ccgo_up(vargs))))))
 			break
 		}
 		break
@@ -11219,7 +11219,7 @@ _3:
 	goto _19
 _9:
 	;
-	len1 = int64(libc.Xsprintf(tls, bp+26, __ccgo_ts+17673, libc.VaList(bp+64, libc.VaUintptr(&**(**Tva_list)(__ccgo_up(vargs))))))
+	len1 = int64(_ccgo_sprintf(tls, bp+26, __ccgo_ts+17673, libc.VaList(bp+64, libc.VaUintptr(&**(**Tva_list)(__ccgo_up(vargs))))))
 
 	if int32((**(**[26]int8)(__ccgo_up(bp + 26)))[int32(1)]) == int32('X') {
 		(**(**[26]int8)(__ccgo_up(bp + 26)))[int32(1)] = int8('x')
@@ -24466,7 +24466,7 @@ _102:
 		v9 = **(**TPy_UCS4)(__ccgo_up(v35 + uintptr(v1)*4))
 		goto _112
 	_112:
-		libc.Xsprintf(tls, bp+9, __ccgo_ts+75976, libc.VaList(bp+56, int32(v9)))
+		_ccgo_sprintf(tls, bp+9, __ccgo_ts+75976, libc.VaList(bp+56, int32(v9)))
 		cp = bp + 9
 		for {
 			if !(**(**int8)(__ccgo_up(cp)) != 0) {
@@ -58668,7 +58668,7 @@ func _show_warning(tls *libc.TLS, tstate uintptr, filename uintptr, lineno int32
 		goto error
 	}
 	if X_PySys_GetOptionalAttr(tls, uintptr(unsafe.Pointer(&X_PyRuntime))+13248+20712+1232+36504, bp) <= 0 {
-		libc.Xfprintf(tls, libc.X__acrt_iob_func(tls, uint32(2)), __ccgo_ts+85078, 0)
+		_ccgo_fprintf(tls, libc.X__acrt_iob_func(tls, uint32(2)), __ccgo_ts+85078, 0)
 		goto error
 	}
 

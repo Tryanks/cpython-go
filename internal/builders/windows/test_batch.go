@@ -102,9 +102,7 @@ func runModule(exe, module string, timeout time.Duration, logs string) testResul
 		timer := time.NewTimer(timeout)
 		select {
 		case err = <-done:
-			if !timer.Stop() {
-				<-timer.C
-			}
+			timer.Stop()
 		case <-timer.C:
 			timedOut = true
 			if runtime.GOOS == "windows" {

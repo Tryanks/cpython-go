@@ -3125,7 +3125,7 @@ func __elementtree_Element_set(tls *libc.TLS, self uintptr, args uintptr, nargs 
 	var key, return_value, value uintptr
 	_, _, _ = key, return_value, value
 	return_value = libc.UintptrFromInt32(0)
-	if !(libc.Bool(!false) && int64(libc.Int32FromInt32(2)) <= nargs && nargs <= int64(libc.Int32FromInt32(2)) || X_PyArg_CheckPositional(tls, __ccgo_ts+57258, nargs, int64(libc.Int32FromInt32(2)), int64(libc.Int32FromInt32(2))) != 0) {
+	if !(libc.Bool(!false) && int64(libc.Int32FromInt32(2)) <= nargs && nargs <= int64(libc.Int32FromInt32(2)) || X_PyArg_CheckPositional(tls, __ccgo_ts+57271, nargs, int64(libc.Int32FromInt32(2)), int64(libc.Int32FromInt32(2))) != 0) {
 		goto exit
 	}
 	key = **(**uintptr)(__ccgo_up(args))
@@ -3597,7 +3597,7 @@ var _element_methods = [22]TPyMethodDef{
 		Fml_doc:   uintptr(unsafe.Pointer(&__elementtree_Element_get__doc__)),
 	},
 	2: {
-		Fml_name:  __ccgo_ts + 57258,
+		Fml_name:  __ccgo_ts + 57271,
 		Fml_flags: int32(MMETH_FASTCALL),
 		Fml_doc:   uintptr(unsafe.Pointer(&__elementtree_Element_set__doc__)),
 	},
@@ -84528,6 +84528,14 @@ const MPSWIZB_FINISH = 4
 
 const MPSWIZB_NEXT = 2
 
+const MPy_AcceptEx = "ccgo_AcceptEx"
+
+const MPy_ConnectEx = "ccgo_ConnectEx"
+
+const MPy_DisconnectEx = "ccgo_DisconnectEx"
+
+const MPy_TransmitFile = "ccgo_TransmitFile"
+
 const MQID_SYNC = 4294967295
 
 const MQUERYROPSUPPORT = 40
@@ -92802,117 +92810,7 @@ func _SetFromWindowsErr(tls *libc.TLS, err TDWORD) (r uintptr) {
 	return XPyErr_SetExcFromWindowsErr(tls, exception_type, int32(err))
 }
 
-var _Py_AcceptEx = uintptr(0)
-
-func init() {
-	p := unsafe.Pointer(&_Py_AcceptEx)
-	*(*uintptr)(unsafe.Add(p, 0)) = libc.UintptrFromInt32(0)
-}
-
-var _Py_ConnectEx = uintptr(0)
-
-func init() {
-	p := unsafe.Pointer(&_Py_ConnectEx)
-	*(*uintptr)(unsafe.Add(p, 0)) = libc.UintptrFromInt32(0)
-}
-
-var _Py_DisconnectEx = uintptr(0)
-
-func init() {
-	p := unsafe.Pointer(&_Py_DisconnectEx)
-	*(*uintptr)(unsafe.Add(p, 0)) = libc.UintptrFromInt32(0)
-}
-
-var _Py_TransmitFile = uintptr(0)
-
-func init() {
-	p := unsafe.Pointer(&_Py_TransmitFile)
-	*(*uintptr)(unsafe.Add(p, 0)) = libc.UintptrFromInt32(0)
-}
-
 func _initialize_function_pointers(tls *libc.TLS) (r int32) {
-	bp := tls.Alloc(80)
-	defer tls.Free(80)
-	var s TSOCKET
-	var _ TGUID
-	var _ TGUID
-	var _ TGUID
-	var _ TGUID
-	var _ TDWORD
-	_ = s
-	**(**TGUID)(__ccgo_up(bp)) = TGUID{
-		FData1: uint32(0xb5367df1),
-		FData2: uint16(0xcbac),
-		FData3: uint16(0x11cf),
-		FData4: [8]uint8{
-			0: uint8(0x95),
-			1: uint8(0xca),
-			3: uint8(0x80),
-			4: uint8(0x5f),
-			5: uint8(0x48),
-			6: uint8(0xa1),
-			7: uint8(0x92),
-		},
-	}
-	**(**TGUID)(__ccgo_up(bp + 16)) = TGUID{
-		FData1: uint32(0x25a207b9),
-		FData2: uint16(0xddf3),
-		FData3: uint16(0x4660),
-		FData4: [8]uint8{
-			0: uint8(0x8e),
-			1: uint8(0xe9),
-			2: uint8(0x76),
-			3: uint8(0xe5),
-			4: uint8(0x8c),
-			5: uint8(0x74),
-			6: uint8(0x06),
-			7: uint8(0x3e),
-		},
-	}
-	**(**TGUID)(__ccgo_up(bp + 32)) = TGUID{
-		FData1: uint32(0x7fda2e11),
-		FData2: uint16(0x8630),
-		FData3: uint16(0x436f),
-		FData4: [8]uint8{
-			0: uint8(0xa0),
-			1: uint8(0x31),
-			2: uint8(0xf5),
-			3: uint8(0x36),
-			4: uint8(0xa6),
-			5: uint8(0xee),
-			6: uint8(0xc1),
-			7: uint8(0x57),
-		},
-	}
-	**(**TGUID)(__ccgo_up(bp + 48)) = TGUID{
-		FData1: uint32(0xb5367df0),
-		FData2: uint16(0xcbac),
-		FData3: uint16(0x11cf),
-		FData4: [8]uint8{
-			0: uint8(0x95),
-			1: uint8(0xca),
-			3: uint8(0x80),
-			4: uint8(0x5f),
-			5: uint8(0x48),
-			6: uint8(0xa1),
-			7: uint8(0x92),
-		},
-	}
-	if _Py_AcceptEx != libc.UintptrFromInt32(0) && _Py_ConnectEx != libc.UintptrFromInt32(0) && _Py_DisconnectEx != libc.UintptrFromInt32(0) && _Py_TransmitFile != libc.UintptrFromInt32(0) {
-
-		return 0
-	}
-	s = _ccgo_socket(tls, int32(2), int32(1), int32(6))
-	if s == uint64(^libc.Int32FromInt32(0)) {
-		_SetFromWindowsErr(tls, uint32(_ccgo_WSAGetLastError(tls)))
-		return -int32(1)
-	}
-	if !(-libc.Int32FromInt32(1) != _WSAIoctl(tls, s, uint32(libc.Uint32FromUint32(0x80000000)|libc.Uint32FromInt32(0x40000000)|uint32(libc.Int32FromInt32(MIOC_WS2))|uint32(libc.Int32FromInt32(6))), bp, uint32(16), uintptr(unsafe.Pointer(&_Py_AcceptEx)), uint32(8), bp+64, libc.UintptrFromInt32(0), libc.UintptrFromInt32(0))) || !(-libc.Int32FromInt32(1) != _WSAIoctl(tls, s, uint32(libc.Uint32FromUint32(0x80000000)|libc.Uint32FromInt32(0x40000000)|uint32(libc.Int32FromInt32(MIOC_WS2))|uint32(libc.Int32FromInt32(6))), bp+16, uint32(16), uintptr(unsafe.Pointer(&_Py_ConnectEx)), uint32(8), bp+64, libc.UintptrFromInt32(0), libc.UintptrFromInt32(0))) || !(-libc.Int32FromInt32(1) != _WSAIoctl(tls, s, uint32(libc.Uint32FromUint32(0x80000000)|libc.Uint32FromInt32(0x40000000)|uint32(libc.Int32FromInt32(MIOC_WS2))|uint32(libc.Int32FromInt32(6))), bp+32, uint32(16), uintptr(unsafe.Pointer(&_Py_DisconnectEx)), uint32(8), bp+64, libc.UintptrFromInt32(0), libc.UintptrFromInt32(0))) || !(-libc.Int32FromInt32(1) != _WSAIoctl(tls, s, uint32(libc.Uint32FromUint32(0x80000000)|libc.Uint32FromInt32(0x40000000)|uint32(libc.Int32FromInt32(MIOC_WS2))|uint32(libc.Int32FromInt32(6))), bp+48, uint32(16), uintptr(unsafe.Pointer(&_Py_TransmitFile)), uint32(8), bp+64, libc.UintptrFromInt32(0), libc.UintptrFromInt32(0))) {
-		_ccgo_closesocket(tls, s)
-		_SetFromWindowsErr(tls, uint32(_ccgo_WSAGetLastError(tls)))
-		return -int32(1)
-	}
-	_ccgo_closesocket(tls, s)
 	return 0
 }
 
@@ -94066,7 +93964,7 @@ func __overlapped_Overlapped_AcceptEx_impl(tls *libc.TLS, self uintptr, ListenSo
 	v1 = buf + 32
 	goto _2
 _2:
-	ret = (*(*func(*libc.TLS, TSOCKET, TSOCKET, TPVOID, TDWORD, TDWORD, TDWORD, TLPDWORD, TLPOVERLAPPED) TWINBOOL)(unsafe.Pointer(&struct{ uintptr }{_Py_AcceptEx})))(tls, uint64(ListenSocket), uint64(AcceptSocket), v1, uint32(0), size, size, bp, self+16)
+	ret = _ccgo_AcceptEx(tls, uint64(ListenSocket), uint64(AcceptSocket), v1, uint32(0), size, size, bp, self+16)
 	XPyEval_RestoreThread(tls, _save)
 	if ret != 0 {
 		v4 = 0
@@ -94174,7 +94072,7 @@ func __overlapped_Overlapped_ConnectEx_impl(tls *libc.TLS, self uintptr, Connect
 	(*TOverlappedObject)(unsafe.Pointer(self)).Ftype1 = uint32(ETYPE_CONNECT)
 	(*TOverlappedObject)(unsafe.Pointer(self)).Fhandle = ConnectSocket
 	_save = XPyEval_SaveThread(tls)
-	ret = (*(*func(*libc.TLS, TSOCKET, uintptr, int32, TPVOID, TDWORD, TLPDWORD, TLPOVERLAPPED) TWINBOOL)(unsafe.Pointer(&struct{ uintptr }{_Py_ConnectEx})))(tls, uint64(ConnectSocket), Address, Length, libc.UintptrFromInt32(0), uint32(0), libc.UintptrFromInt32(0), self+16)
+	ret = _ccgo_ConnectEx(tls, uint64(ConnectSocket), Address, Length, libc.UintptrFromInt32(0), uint32(0), libc.UintptrFromInt32(0), self+16)
 	XPyEval_RestoreThread(tls, _save)
 	if ret != 0 {
 		v2 = 0
@@ -94210,7 +94108,7 @@ func __overlapped_Overlapped_DisconnectEx_impl(tls *libc.TLS, self uintptr, Sock
 	(*TOverlappedObject)(unsafe.Pointer(self)).Ftype1 = uint32(ETYPE_DISCONNECT)
 	(*TOverlappedObject)(unsafe.Pointer(self)).Fhandle = Socket
 	_save = XPyEval_SaveThread(tls)
-	ret = (*(*func(*libc.TLS, TSOCKET, TLPOVERLAPPED, TDWORD, TDWORD) TWINBOOL)(unsafe.Pointer(&struct{ uintptr }{_Py_DisconnectEx})))(tls, uint64(Socket), self+16, flags, uint32(0))
+	ret = _ccgo_DisconnectEx(tls, uint64(Socket), self+16, flags, uint32(0))
 	XPyEval_RestoreThread(tls, _save)
 	if ret != 0 {
 		v2 = 0
@@ -94248,7 +94146,7 @@ func __overlapped_Overlapped_TransmitFile_impl(tls *libc.TLS, self uintptr, Sock
 	(*TOverlappedObject)(unsafe.Pointer(self)).Foverlapped.F__ccgo2_16.F__ccgo0_0.FOffset = offset
 	(*TOverlappedObject)(unsafe.Pointer(self)).Foverlapped.F__ccgo2_16.F__ccgo0_0.FOffsetHigh = offset_high
 	_save = XPyEval_SaveThread(tls)
-	ret = (*(*func(*libc.TLS, TSOCKET, THANDLE, TDWORD, TDWORD, TLPOVERLAPPED, TLPTRANSMIT_FILE_BUFFERS, TDWORD) TWINBOOL)(unsafe.Pointer(&struct{ uintptr }{_Py_TransmitFile})))(tls, uint64(Socket), File, count_to_write, count_per_send, self+16, libc.UintptrFromInt32(0), flags)
+	ret = _ccgo_TransmitFile(tls, uint64(Socket), File, count_to_write, count_per_send, self+16, libc.UintptrFromInt32(0), flags)
 	XPyEval_RestoreThread(tls, _save)
 	if ret != 0 {
 		v2 = 0
@@ -96651,7 +96549,7 @@ func _winsound_MessageBeep_impl(tls *libc.TLS, module uintptr, type1 int32) (r u
 	var ok TBOOL
 	_, _ = _save, ok
 	_save = XPyEval_SaveThread(tls)
-	ok = libc.XMessageBeep(tls, uint32(type1))
+	ok = _ccgo_MessageBeep(tls, uint32(type1))
 	XPyEval_RestoreThread(tls, _save)
 	if !(ok != 0) {
 		XPyErr_SetExcFromWindowsErr(tls, XPyExc_RuntimeError, 0)
@@ -112444,4 +112342,50 @@ var __kwtuple196 = struct {
 		1: uintptr(unsafe.Pointer(&X_PyRuntime)) + 13248 + 20712 + 1232 + 13344,
 		2: uintptr(unsafe.Pointer(&X_PyRuntime)) + 13248 + 20712 + 1232 + 20152,
 	},
+}
+
+var __keywords227 = [4]uintptr{
+	0: __ccgo_ts + 28662,
+	1: __ccgo_ts + 146613,
+	2: __ccgo_ts + 240042,
+	3: libc.UintptrFromInt32(0),
+}
+
+var __parser224 = T_PyArg_Parser{
+	Fkeywords: uintptr(unsafe.Pointer(&__keywords227)),
+	Ffname:    __ccgo_ts + 240046,
+	Fkwtuple:  uintptr(unsafe.Pointer(&__kwtuple196)) + 16,
+}
+
+func _os_spawnv(tls *libc.TLS, module uintptr, args uintptr, nargs TPy_ssize_t) (r uintptr) {
+	bp := tls.Alloc(96)
+	defer tls.Free(96)
+	var argv, return_value uintptr
+	var mode int32
+	var _ Tpath_t
+	_, _, _ = argv, mode, return_value
+	return_value = libc.UintptrFromInt32(0)
+	**(**Tpath_t)(__ccgo_up(bp)) = Tpath_t{
+		Ffunction_name: __ccgo_ts + 240053,
+		Fargument_name: __ccgo_ts + 28662,
+		Fmake_wide:     int32(1),
+		Ffd:            -int32(1),
+	}
+	if !(libc.Bool(!false) && int64(libc.Int32FromInt32(3)) <= nargs && nargs <= int64(libc.Int32FromInt32(3)) || X_PyArg_CheckPositional(tls, __ccgo_ts+240053, nargs, int64(libc.Int32FromInt32(3)), int64(libc.Int32FromInt32(3))) != 0) {
+		goto exit
+	}
+	mode = XPyLong_AsInt(tls, **(**uintptr)(__ccgo_up(args)))
+	if mode == -int32(1) && XPyErr_Occurred(tls) != 0 {
+		goto exit
+	}
+	if !(_path_converter(tls, **(**uintptr)(__ccgo_up(args + 1*8)), bp) != 0) {
+		goto exit
+	}
+	argv = **(**uintptr)(__ccgo_up(args + 2*8))
+	return_value = _os_spawnv_impl(tls, module, mode, bp, argv)
+	goto exit
+exit:
+	;
+	_path_cleanup(tls, bp)
+	return return_value
 }
