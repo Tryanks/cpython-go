@@ -30,6 +30,11 @@ is parked here.
 
 ## Interpreter gaps
 
+- IPv6: the build is configured with --disable-ipv6 (socketmodule cannot parse
+  sockaddr_in6); the darwin getaddrinfo shim therefore resolves AF_UNSPEC to
+  IPv4 only. Enable IPv6 in generator.go and regenerate all targets (the
+  shims already build sockaddr_in6).
+
 - os.fork: impossible under the Go runtime (raises ENOSYS). multiprocessing
   is not built; subprocess works via syscall.ForkExec (libpython/fork_exec.go).
 - Modules needing external C libraries are not built: _ssl, _ctypes, _bz2,
