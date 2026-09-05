@@ -16,7 +16,6 @@ ac_cv_have_size_t_format=no
 # cpython-go policy: no dlopen, host pkg-config libraries, x87, or SIMD asm.
 ac_cv_func_dlopen=no
 ac_cv_lib_dl_dlopen=no
-ac_cv_header_zlib_h=no
 ac_cv_gcc_asm_for_x87=no
 ac_cv_gcc_asm_for_mc68881=no
 ax_cv_check_cflags__Werror__mavx2=no
@@ -43,5 +42,4 @@ py_cv_module__uuid=n/a
 py_cv_module__wmi=n/a
 py_cv_module_nis=n/a
 py_cv_module_readline=n/a
-py_cv_module_zlib=n/a
 py_cv_module__zstd=n/a
