@@ -84,7 +84,10 @@ var (
 		"PKG_CONFIG_PATH=",
 		"ac_cv_func_dlopen=no",
 		"ac_cv_lib_dl_dlopen=no",
-		"ac_cv_header_zlib_h=no",
+		// Configure's zlib link probes use the platform's native libz. The
+		// transpiled module is resolved to modernc.org/libz at ccgo link time.
+		"ac_cv_lib_z_gzread=yes",
+		"ac_cv_lib_z_inflateCopy=yes",
 		// x87 control-word inline asm (Python/pymath.c) cannot be transpiled.
 		"ac_cv_gcc_asm_for_x87=no",
 		"ac_cv_gcc_asm_for_mc68881=no",
@@ -111,7 +114,6 @@ var (
 		"py_cv_module__uuid=n/a",
 		"py_cv_module_nis=n/a",
 		"py_cv_module_readline=n/a",
-		"py_cv_module_zlib=n/a",
 		"py_cv_module__zstd=n/a",
 	}
 	// configureEnvOS: functions modernc.org/libc lacks on a platform; CPython
@@ -229,6 +231,18 @@ func main() {
 	if dev {
 		ccArgs = append(ccArgs, "-absolute-paths", "-keep-object-files", "-positions")
 	}
+	libzDir := moduleDir("modernc.org/libz")
+	libzInclude := filepath.Join(libzDir, "include")
+	includeFlag := "-I" + libzInclude
+	// Always parse CPython's zlib consumers against libz's own headers. The
+	// native compiler also sees this flag while producing the build helpers;
+	// their platform libz is ABI-compatible and satisfies python.exe below.
+	configureEnv = append(configureEnv,
+		"CFLAGS="+strings.TrimSpace(os.Getenv("CFLAGS")+" "+includeFlag),
+		"CPPFLAGS="+strings.TrimSpace(os.Getenv("CPPFLAGS")+" "+includeFlag),
+		"ZLIB_CFLAGS="+includeFlag,
+		"ZLIB_LIBS=-lz",
+	)
 	switch target {
 	case "darwin/arm64", "darwin/amd64":
 		gsed = "gsed"
@@ -336,16 +350,37 @@ func main() {
 	}
 
 	hacl, _ := filepath.Glob(filepath.Join(build, "Modules", "_hacl", "*.a"))
-	ccMain(append(append(ccArgs,
+	linkArgs := append(ccArgs,
 		"--package-name", "libpython",
 		"-o", result,
 		filepath.Join(build, libName),
 		filepath.Join(build, "Modules", "expat", "libexpat.a"),
-	), hacl...))
+	)
+	linkArgs = append(linkArgs, hacl...)
+	// Keep libz after the archives: ccgo's package-backed library extraction,
+	// like a traditional static linker, is order-sensitive.
+	linkArgs = append(linkArgs, "-Lmodernc.org", "-lz")
+	ccMain(linkArgs)
 	postprocess(result, base)
 	if goos != "windows" {
 		sysconfigdata()
 	}
+}
+
+// moduleDir returns the local module-cache directory for a dependency. Using
+// go list keeps generation independent of GOPATH and of the cache mount used
+// by the platform builder containers.
+func moduleDir(module string) string {
+	cmd := exec.Command("go", "list", "-m", "-f", "{{.Dir}}", module)
+	out, err := cmd.Output()
+	if err != nil {
+		fail(1, "locate %s: %v", module, err)
+	}
+	dir := strings.TrimSpace(string(out))
+	if dir == "" {
+		fail(1, "locate %s: empty module directory", module)
+	}
+	return dir
 }
 
 // sysconfigdata builds the native python.exe (the .o files are native) to
@@ -381,6 +416,10 @@ func postprocess(result, base string) {
 	// libpython/ccgo_shims.go.
 	shell(gsed, "-i", `s/iqlibc\.X__builtin_\([a-zA-Z0-9_]\+\)(/_ccgo_builtin_\1(/g`, result)
 	shell(gsed, "-i", `s/libc\.Atomic\(Load\|Store\)PUint\(8\|16\)(/_ccgo_Atomic\1PUint\2(/g`, result)
+	// splitgo repeats imports and ccgo's blank-identifier import guards in
+	// every shard. libz is only called from the shard containing the zlib and
+	// binascii modules, so add a guard to keep the other shards valid Go.
+	ensureImportGuard(result, `"modernc.org/libz"`, "var _ = libz.Xcrc32")
 	// `_Py_FREELIST_FREE(name, op, Py_TYPE(op)->tp_free)` passes a function
 	// pointer field into a static inline function; ccgo emits a direct call
 	// on the uintptr field. Call through the pointer instead.
@@ -407,6 +446,25 @@ func postprocess(result, base string) {
 	}
 	shell("go", "run", "./internal/cmd/splitgo", "-o", outDir, "-base", base, "-shards", "12", result)
 	removeAll(result)
+}
+
+func ensureImportGuard(path, importText, guard string) {
+	b, err := os.ReadFile(path)
+	if err != nil {
+		fail(1, "%v", err)
+	}
+	s := string(b)
+	if !strings.Contains(s, importText) || strings.Contains(s, guard) {
+		return
+	}
+	const marker = "var _ unsafe.Pointer\n"
+	if !strings.Contains(s, marker) {
+		fail(1, "cannot place import guard %q in %s", guard, path)
+	}
+	s = strings.Replace(s, marker, marker+"\n"+guard+"\n", 1)
+	if err := os.WriteFile(path, []byte(s), 0o660); err != nil {
+		fail(1, "%v", err)
+	}
 }
 
 // threadLocals maps the generated name of each C _Thread_local variable to
