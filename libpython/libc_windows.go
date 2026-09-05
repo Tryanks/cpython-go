@@ -1486,7 +1486,13 @@ func _VirtualQuery(tls *libc.TLS, address, buffer uintptr, length uint64) uint64
 }
 
 func _GetCurrentThreadStackLimits(tls *libc.TLS, low, high uintptr) {
-	_, _ = callProc(dllKernel32, "GetCurrentThreadStackLimits", low, high)
+	// Generated C frames live on modernc's TLS stack, not on the native OS
+	// thread stack.  _ccgo_frame_address reports positions in this virtual
+	// range, so CPython's recursion limits must be initialized from the same
+	// range or every comparison is false and recursive C calls can exhaust the
+	// Go goroutine stack.
+	*(*uintptr)(unsafe.Pointer(low)) = virtualCStackTop - uintptr(virtualCStackSize)
+	*(*uintptr)(unsafe.Pointer(high)) = virtualCStackTop
 }
 
 func _SetThreadStackGuarantee(tls *libc.TLS, size uintptr) int32 {

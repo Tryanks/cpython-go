@@ -69,6 +69,9 @@ jobs:
           case = unittest.FunctionTestCase(lambda: unittest.TestCase().assertEqual(2 + 3, 5));
           result = unittest.TextTestRunner(verbosity=2).run(unittest.TestSuite([case]));
           assert result.wasSuccessful()"
+      - name: Exercise generated C recursion guard
+        timeout-minutes: 1
+        run: ./cpython-go.exe internal/builders/windows/recursion_smoke.py
       - name: Exercise Winsock and asyncio
         timeout-minutes: 2
         run: ./cpython-go.exe internal/builders/windows/network_smoke.py
@@ -121,6 +124,9 @@ jobs:
           case = unittest.FunctionTestCase(lambda: unittest.TestCase().assertEqual(2 + 3, 5));
           result = unittest.TextTestRunner(verbosity=2).run(unittest.TestSuite([case]));
           assert result.wasSuccessful()"
+      - name: Exercise generated C recursion guard
+        timeout-minutes: 1
+        run: ./cpython-go.exe internal/builders/windows/recursion_smoke.py
       - name: Exercise Winsock and asyncio
         timeout-minutes: 2
         run: ./cpython-go.exe internal/builders/windows/network_smoke.py

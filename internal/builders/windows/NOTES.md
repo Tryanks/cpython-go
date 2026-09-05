@@ -164,6 +164,13 @@ below.
 
 ## Windows runtime CI iterations
 
+- The broad CPython batch exposed Go stack exhaustion in deeply recursive C
+  paths (`test_json`, `test_copy`, and `test_ast`). Windows initialized
+  CPython's recursion guard with native OS-thread addresses while
+  `_ccgo_frame_address` reports positions in the virtual modernc TLS stack;
+  those disjoint ranges disabled the guard. `_GetCurrentThreadStackLimits`
+  now publishes the matching virtual 8 MiB range, with a deep-JSON CI smoke.
+
 - Run 33949767829 (`main`): the executable built, then `print(45)` failed in
   `_PyPreConfig_Read` because modernc's Windows `Xsetlocale` always returned
   null; fatal reporting then hit modernc's `XOutputDebugStringW` TODO panic.

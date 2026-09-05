@@ -149,7 +149,10 @@ than claims of complete Windows compatibility.
 - `_GenerateConsoleCtrlEvent` — real: direct call with LastError propagation.
 - `_GetActiveProcessorCount` — real: direct processor-group query.
 - `_GetConsoleOutputCP` — real: direct query.
-- `_GetCurrentThreadStackLimits` — real: direct void call writing both caller outputs.
+- `_GetCurrentThreadStackLimits` — real for generated code: writes the same
+  virtual 8 MiB range used by `_ccgo_frame_address`. Generated C frames use
+  modernc's TLS stack rather than the native OS-thread stack, so this keeps
+  CPython's C-recursion guard effective and prevents Go stack exhaustion.
 - `_GetDiskFreeSpaceExW` — real: uses `windows.GetDiskFreeSpaceEx` and writes all optional `uint64` outputs.
 - `_GetDriveTypeW` — real: direct call preserving the zero failure result and LastError.
 - `_GetErrorMode` — real: direct query.

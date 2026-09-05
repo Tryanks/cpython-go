@@ -30,6 +30,11 @@ processes. Each module has a 90-second limit; the workflow writes a Markdown
 table to the job summary and uploads the table plus complete logs as an
 artifact for each architecture.
 
+Generated C frames allocate from modernc's TLS stack, so Windows publishes a
+matching virtual 8 MiB stack range to CPython's recursion guard. A deep JSON
+encoding smoke verifies that recursive extension-module calls raise
+`RecursionError` instead of exhausting the Go goroutine stack.
+
 ## Winsock and overlapped I/O
 
 Generated calls to modernc's TODO socket functions are routed to Windows
