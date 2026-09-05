@@ -6,9 +6,9 @@ package cpython_test
 
 import (
 	"os"
-	"runtime"
 	"os/exec"
 	"path/filepath"
+	"runtime"
 	"strings"
 	"testing"
 )
