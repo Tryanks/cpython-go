@@ -76795,12 +76795,6 @@ func Xdetect_cpu_features(tls *libc.TLS, flags uintptr) {
 		edx7 = 0
 		**(**[4]int32)(__ccgo_up(bp)) = [4]int32{}
 		**(**[4]int32)(__ccgo_up(bp + 16)) = [4]int32{}
-		v1 = bp
-
-		libc.X__assert_fail(tls, __ccgo_ts+211557, __ccgo_ts+211592, 445, __ccgo_ts+211600)
-		v1 = bp + 16
-
-		libc.X__assert_fail(tls, __ccgo_ts+211557, __ccgo_ts+211592, 445, __ccgo_ts+211600)
 		eax1 = (**(**[4]int32)(__ccgo_up(bp)))[0]
 		ebx1 = (**(**[4]int32)(__ccgo_up(bp)))[int32(1)]
 		ecx1 = (**(**[4]int32)(__ccgo_up(bp)))[int32(2)]
@@ -82178,17 +82172,11 @@ func _hmacmodule_init_cpu_features(tls *libc.TLS, state uintptr) {
 	ecx7 = 0
 	edx7 = 0
 	**(**[4]int32)(__ccgo_up(bp)) = [4]int32{}
-	v1 = bp
-
-	libc.X__assert_fail(tls, __ccgo_ts+211557, __ccgo_ts+211592, 445, __ccgo_ts+212917)
 	eax1 = (**(**[4]int32)(__ccgo_up(bp)))[0]
 	ebx1 = (**(**[4]int32)(__ccgo_up(bp)))[int32(1)]
 	ecx1 = (**(**[4]int32)(__ccgo_up(bp)))[int32(2)]
 	edx1 = (**(**[4]int32)(__ccgo_up(bp)))[int32(3)]
 	**(**[4]int32)(__ccgo_up(bp + 16)) = [4]int32{}
-	v1 = bp + 16
-
-	libc.X__assert_fail(tls, __ccgo_ts+211557, __ccgo_ts+211592, 445, __ccgo_ts+212917)
 	eax7 = (**(**[4]int32)(__ccgo_up(bp + 16)))[0]
 	ebx7 = (**(**[4]int32)(__ccgo_up(bp + 16)))[int32(1)]
 	ecx7 = (**(**[4]int32)(__ccgo_up(bp + 16)))[int32(2)]

@@ -199,3 +199,9 @@ until the Windows libc supplement is added.
   printed `45`, and the import command printed `win32 (3, 14) [1]`. This is
   the first confirmed working interpreter run on `windows-latest`; the CI job
   was expanded next to cover the requested modules and a small unittest.
+- Run 33951207119: the original commands stayed green, then the expanded import
+  list aborted in `_blake2` CPU detection. The existing CCGO patch disabled
+  GCC `cpuid.h` assembly, but llvm-mingw also defines `_M_X64`, selecting the
+  `__cpuidex` branch; ccgo lowers that intrinsic to an "assembler statements
+  not supported" assertion. Both CPUID branches are now disabled specifically
+  for `MS_WINDOWS && CCGO`, selecting the supported scalar hash paths.
