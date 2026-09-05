@@ -156,3 +156,88 @@ func _ccgo_write(tls *libc.TLS, fd int32, buf uintptr, count uint64) int64 {
 		}
 	}
 }
+
+// socketIO makes socket operations on blocking descriptors observable to the
+// Go signal bridge. Go's runtime cannot interrupt a goroutine in the raw
+// send/recv syscalls used by modernc.org/libc, so perform short polls and make
+// the actual syscall non-blocking. CPython retries EINTR and timeout races.
+func socketIO(tls *libc.TLS, fd int32, events int16, call func(int32) (uintptr, syscall.Errno)) int64 {
+	flags, err := unix.FcntlInt(uintptr(fd), unix.F_GETFL, 0)
+	if err != nil {
+		return int64(errnoResult(tls, err))
+	}
+	if flags&unix.O_NONBLOCK != 0 {
+		n, e := call(0)
+		if e != 0 {
+			return int64(errnoResult(tls, e))
+		}
+		return int64(n)
+	}
+	if consumeSignalDelivery() {
+		setErrno(tls, int32(errno.EINTR))
+		return -1
+	}
+	pollfd := []unix.PollFd{{Fd: fd, Events: events}}
+	for {
+		ready, err := unix.Poll(pollfd, 10)
+		if err != nil {
+			return int64(errnoResult(tls, err))
+		}
+		if ready != 0 {
+			n, e := call(int32(unix.MSG_DONTWAIT))
+			if e == syscall.EAGAIN || e == syscall.EWOULDBLOCK {
+				continue
+			}
+			if e != 0 {
+				return int64(errnoResult(tls, e))
+			}
+			return int64(n)
+		}
+		if consumeSignalDelivery() {
+			setErrno(tls, int32(errno.EINTR))
+			return -1
+		}
+	}
+}
+
+func _ccgo_send(tls *libc.TLS, fd int32, buf uintptr, n uint64, flags int32) int64 {
+	return socketIO(tls, fd, unix.POLLOUT, func(extra int32) (uintptr, syscall.Errno) {
+		r, _, e := unix.Syscall6(unix.SYS_SENDTO, uintptr(fd), buf, uintptr(n), uintptr(flags|extra), 0, 0)
+		return r, e
+	})
+}
+
+func _ccgo_recv(tls *libc.TLS, fd int32, buf uintptr, n uint64, flags int32) int64 {
+	return socketIO(tls, fd, unix.POLLIN, func(extra int32) (uintptr, syscall.Errno) {
+		r, _, e := unix.Syscall6(unix.SYS_RECVFROM, uintptr(fd), buf, uintptr(n), uintptr(flags|extra), 0, 0)
+		return r, e
+	})
+}
+
+func _ccgo_sendto(tls *libc.TLS, fd int32, buf uintptr, n uint64, flags int32, address uintptr, addressLen uint32) int64 {
+	return socketIO(tls, fd, unix.POLLOUT, func(extra int32) (uintptr, syscall.Errno) {
+		r, _, e := unix.Syscall6(unix.SYS_SENDTO, uintptr(fd), buf, uintptr(n), uintptr(flags|extra), address, uintptr(addressLen))
+		return r, e
+	})
+}
+
+func _ccgo_recvfrom(tls *libc.TLS, fd int32, buf uintptr, n uint64, flags int32, address, addressLen uintptr) int64 {
+	return socketIO(tls, fd, unix.POLLIN, func(extra int32) (uintptr, syscall.Errno) {
+		r, _, e := unix.Syscall6(unix.SYS_RECVFROM, uintptr(fd), buf, uintptr(n), uintptr(flags|extra), address, addressLen)
+		return r, e
+	})
+}
+
+func _ccgo_sendmsg(tls *libc.TLS, fd int32, message uintptr, flags int32) int64 {
+	return socketIO(tls, fd, unix.POLLOUT, func(extra int32) (uintptr, syscall.Errno) {
+		r, _, e := unix.Syscall(unix.SYS_SENDMSG, uintptr(fd), message, uintptr(flags|extra))
+		return r, e
+	})
+}
+
+func _ccgo_recvmsg(tls *libc.TLS, fd int32, message uintptr, flags int32) int64 {
+	return socketIO(tls, fd, unix.POLLIN, func(extra int32) (uintptr, syscall.Errno) {
+		r, _, e := unix.Syscall(unix.SYS_RECVMSG, uintptr(fd), message, uintptr(flags|extra))
+		return r, e
+	})
+}

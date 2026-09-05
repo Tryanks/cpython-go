@@ -1377,38 +1377,6 @@ func _socketpair(tls *libc.TLS, domain, typ, protocol int32, out uintptr) int32 
 	return 0
 }
 
-func _ccgo_sendto(tls *libc.TLS, fd int32, buf uintptr, n uint64, flags int32, address uintptr, addressLen uint32) int64 {
-	r, _, e := unix.Syscall6(unix.SYS_SENDTO, uintptr(fd), buf, uintptr(n), uintptr(flags), address, uintptr(addressLen))
-	if e != 0 {
-		return int64(errnoResult(tls, e))
-	}
-	return int64(r)
-}
-
-func _ccgo_recvfrom(tls *libc.TLS, fd int32, buf uintptr, n uint64, flags int32, address, addressLen uintptr) int64 {
-	r, _, e := unix.Syscall6(unix.SYS_RECVFROM, uintptr(fd), buf, uintptr(n), uintptr(flags), address, addressLen)
-	if e != 0 {
-		return int64(errnoResult(tls, e))
-	}
-	return int64(r)
-}
-
-func _ccgo_sendmsg(tls *libc.TLS, fd int32, message uintptr, flags int32) int64 {
-	r, _, e := unix.Syscall(unix.SYS_SENDMSG, uintptr(fd), message, uintptr(flags))
-	if e != 0 {
-		return int64(errnoResult(tls, e))
-	}
-	return int64(r)
-}
-
-func _ccgo_recvmsg(tls *libc.TLS, fd int32, message uintptr, flags int32) int64 {
-	r, _, e := unix.Syscall(unix.SYS_RECVMSG, uintptr(fd), message, uintptr(flags))
-	if e != 0 {
-		return int64(errnoResult(tls, e))
-	}
-	return int64(r)
-}
-
 func _ccgo_getsockopt(tls *libc.TLS, fd, level, name int32, value, valueLen uintptr) int32 {
 	_, _, e := unix.Syscall6(unix.SYS_GETSOCKOPT, uintptr(fd), uintptr(level), uintptr(name), value, valueLen, 0)
 	if e != 0 {
@@ -1493,16 +1461,32 @@ func _inet_addr(tls *libc.TLS, src uintptr) uint32 {
 }
 
 func _ccgo_inet_pton(tls *libc.TLS, family int32, src, dst uintptr) int32 {
-	if family != unix.AF_INET {
+	if family != unix.AF_INET && family != unix.AF_INET6 {
 		setErrno(tls, int32(errno.EAFNOSUPPORT))
 		return -1
 	}
-	ip := net.ParseIP(libc.GoString(src)).To4()
+	ip := net.ParseIP(libc.GoString(src))
+	if family == unix.AF_INET {
+		ip = ip.To4()
+	} else {
+		// An IPv4 literal is not an IPv6 presentation-format address.
+		if ip != nil && ip.To4() != nil {
+			ip = nil
+		} else {
+			ip = ip.To16()
+		}
+	}
 	if ip == nil {
 		return 0
 	}
-	copy(cBytes(dst, 4), ip)
+	copy(cBytes(dst, uint64(len(ip))), ip)
 	return 1
+}
+
+func _ccgo_inet_ntoa(tls *libc.TLS, address Tin_addr) uintptr {
+	var raw [4]byte
+	binary.LittleEndian.PutUint32(raw[:], uint32(address.Fs_addr))
+	return stableCString(net.IP(raw[:]).String())
 }
 
 func _ccgo_getaddrinfo(tls *libc.TLS, node, service, hints, result uintptr) int32 {
@@ -1511,7 +1495,7 @@ func _ccgo_getaddrinfo(tls *libc.TLS, node, service, hints, result uintptr) int3
 		h := (*Taddrinfo)(unsafe.Pointer(hints))
 		family, socktype, protocol, flags = h.Fai_family, h.Fai_socktype, h.Fai_protocol, h.Fai_flags
 	}
-	if family != unix.AF_UNSPEC && family != unix.AF_INET {
+	if family != unix.AF_UNSPEC && family != unix.AF_INET && family != unix.AF_INET6 {
 		return 5 // EAI_FAMILY
 	}
 	port := 0
@@ -1535,29 +1519,50 @@ func _ccgo_getaddrinfo(tls *libc.TLS, node, service, hints, result uintptr) int3
 	}
 	var ips []net.IP
 	if node == 0 {
-		if flags&1 != 0 { // AI_PASSIVE
-			ips = []net.IP{net.IPv4zero}
-		} else {
-			ips = []net.IP{net.IPv4(127, 0, 0, 1)}
+		if family != unix.AF_INET {
+			if flags&1 != 0 { // AI_PASSIVE
+				ips = append(ips, net.IPv6zero)
+			} else {
+				ips = append(ips, net.IPv6loopback)
+			}
+		}
+		if family != unix.AF_INET6 {
+			if flags&1 != 0 {
+				ips = append(ips, net.IPv4zero)
+			} else {
+				ips = append(ips, net.IPv4(127, 0, 0, 1))
+			}
 		}
 	} else {
 		name := libc.GoString(node)
-		if ip := net.ParseIP(name).To4(); ip != nil {
+		if ip := net.ParseIP(name); ip != nil {
 			ips = []net.IP{ip}
 		} else if strings.EqualFold(name, "localhost") {
-			ips = []net.IP{net.IPv4(127, 0, 0, 1)}
+			if family != unix.AF_INET {
+				ips = append(ips, net.IPv6loopback)
+			}
+			if family != unix.AF_INET6 {
+				ips = append(ips, net.IPv4(127, 0, 0, 1))
+			}
 		} else {
 			resolved, err := net.LookupIP(name)
 			if err != nil {
 				return 8 // EAI_NONAME
 			}
-			for _, ip := range resolved {
-				if ip = ip.To4(); ip != nil {
-					ips = append(ips, ip)
-				}
-			}
+			ips = resolved
 		}
 	}
+	filtered := ips[:0]
+	for _, ip := range ips {
+		if v4 := ip.To4(); v4 != nil {
+			if family != unix.AF_INET6 {
+				filtered = append(filtered, v4)
+			}
+		} else if v6 := ip.To16(); v6 != nil && family != unix.AF_INET {
+			filtered = append(filtered, v6)
+		}
+	}
+	ips = filtered
 	if len(ips) == 0 {
 		return 7 // EAI_NODATA
 	}
@@ -1569,7 +1574,13 @@ func _ccgo_getaddrinfo(tls *libc.TLS, node, service, hints, result uintptr) int3
 	for _, ip := range ips {
 		for _, pair := range types {
 			ai := libc.Xmalloc(tls, uint64(unsafe.Sizeof(Taddrinfo{})))
-			sa := libc.Xmalloc(tls, uint64(unsafe.Sizeof(Tsockaddr_in{})))
+			addressFamily := int32(unix.AF_INET6)
+			addressSize := unsafe.Sizeof(Tsockaddr_in6{})
+			if ip.To4() != nil {
+				addressFamily = unix.AF_INET
+				addressSize = unsafe.Sizeof(Tsockaddr_in{})
+			}
+			sa := libc.Xmalloc(tls, uint64(addressSize))
 			if ai == 0 || sa == 0 {
 				if ai != 0 {
 					libc.Xfree(tls, ai)
@@ -1581,15 +1592,22 @@ func _ccgo_getaddrinfo(tls *libc.TLS, node, service, hints, result uintptr) int3
 				return 6 // EAI_MEMORY
 			}
 			libc.Xmemset(tls, ai, 0, uint64(unsafe.Sizeof(Taddrinfo{})))
-			libc.Xmemset(tls, sa, 0, uint64(unsafe.Sizeof(Tsockaddr_in{})))
-			sin := (*Tsockaddr_in)(unsafe.Pointer(sa))
-			sin.Fsin_len = uint8(unsafe.Sizeof(Tsockaddr_in{}))
-			sin.Fsin_family = unix.AF_INET
+			libc.Xmemset(tls, sa, 0, uint64(addressSize))
 			binary.BigEndian.PutUint16(cBytes(sa+2, 2), uint16(port))
-			copy(cBytes(sa+4, 4), ip.To4())
+			if addressFamily == unix.AF_INET {
+				sin := (*Tsockaddr_in)(unsafe.Pointer(sa))
+				sin.Fsin_len = uint8(addressSize)
+				sin.Fsin_family = unix.AF_INET
+				copy(cBytes(sa+4, 4), ip.To4())
+			} else {
+				sin6 := (*Tsockaddr_in6)(unsafe.Pointer(sa))
+				sin6.Fsin6_len = uint8(addressSize)
+				sin6.Fsin6_family = unix.AF_INET6
+				copy(cBytes(uintptr(unsafe.Pointer(&sin6.Fsin6_addr)), 16), ip.To16())
+			}
 			a := (*Taddrinfo)(unsafe.Pointer(ai))
-			a.Fai_flags, a.Fai_family, a.Fai_socktype, a.Fai_protocol = flags, unix.AF_INET, pair[0], pair[1]
-			a.Fai_addrlen, a.Fai_addr = uint32(unsafe.Sizeof(Tsockaddr_in{})), sa
+			a.Fai_flags, a.Fai_family, a.Fai_socktype, a.Fai_protocol = flags, addressFamily, pair[0], pair[1]
+			a.Fai_addrlen, a.Fai_addr = uint32(addressSize), sa
 			if first == 0 {
 				first = ai
 			} else {
@@ -1617,11 +1635,17 @@ func _ccgo_freeaddrinfo(tls *libc.TLS, current uintptr) {
 }
 
 func _ccgo_inet_ntop(tls *libc.TLS, family int32, src, dst uintptr, n uint32) uintptr {
-	if family != unix.AF_INET {
+	var size uint64
+	switch family {
+	case unix.AF_INET:
+		size = 4
+	case unix.AF_INET6:
+		size = 16
+	default:
 		setErrno(tls, int32(errno.EAFNOSUPPORT))
 		return 0
 	}
-	value := net.IP(cBytes(src, 4)).String()
+	value := net.IP(cBytes(src, size)).String()
 	if uint32(len(value)+1) > n {
 		setErrno(tls, int32(errno.ENOSPC))
 		return 0
@@ -1632,10 +1656,25 @@ func _ccgo_inet_ntop(tls *libc.TLS, family int32, src, dst uintptr, n uint32) ui
 }
 
 func _ccgo_getnameinfo(tls *libc.TLS, address uintptr, addressLen uint32, host uintptr, hostLen uint32, service uintptr, serviceLen uint32, flags int32) int32 {
-	if address == 0 || addressLen < 8 || *(*byte)(unsafe.Pointer(address + 1)) != unix.AF_INET {
+	if address == 0 || addressLen < 8 {
 		return 5 // EAI_FAMILY
 	}
-	hostValue := net.IP(cBytes(address+4, 4)).String()
+	var hostValue string
+	switch *(*byte)(unsafe.Pointer(address + 1)) {
+	case unix.AF_INET:
+		hostValue = net.IP(cBytes(address+4, 4)).String()
+	case unix.AF_INET6:
+		if addressLen < uint32(unsafe.Sizeof(Tsockaddr_in6{})) {
+			return 5 // EAI_FAMILY
+		}
+		sin6 := (*Tsockaddr_in6)(unsafe.Pointer(address))
+		hostValue = net.IP(cBytes(uintptr(unsafe.Pointer(&sin6.Fsin6_addr)), 16)).String()
+		if sin6.Fsin6_scope_id != 0 {
+			hostValue += "%" + strconv.FormatUint(uint64(sin6.Fsin6_scope_id), 10)
+		}
+	default:
+		return 5 // EAI_FAMILY
+	}
 	port := binary.BigEndian.Uint16(cBytes(address+2, 2))
 	serviceValue := strconv.Itoa(int(port))
 	if host != 0 {
@@ -1675,8 +1714,18 @@ func _getprotobyname(tls *libc.TLS, name uintptr) uintptr {
 	return 0
 }
 func _hstrerror(tls *libc.TLS, e int32) uintptr {
-	setErrno(tls, int32(errno.ENOSYS))
-	return 0
+	// Values from <netdb.h>.  CPython always decodes the returned pointer, so
+	// unlike a missing optional API this function must never return NULL.
+	message := map[int32]string{
+		1: "Unknown host",
+		2: "Host name lookup failure",
+		3: "Unknown server error",
+		4: "No address associated with name",
+	}[e]
+	if message == "" {
+		message = "Resolver error " + strconv.FormatInt(int64(e), 10)
+	}
+	return stableCString(message)
 }
 
 func _pthread_threadid_np(tls *libc.TLS, thread, out uintptr) int32 {

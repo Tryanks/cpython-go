@@ -68983,7 +68983,7 @@ func _sock_recv_impl(tls *libc.TLS, s uintptr, data uintptr) (r int32) {
 	var ctx uintptr
 	_ = ctx
 	ctx = data
-	(*Tsock_recv)(unsafe.Pointer(ctx)).Fresult = libc.Xrecv(tls, _get_sock_fd(tls, s), (*Tsock_recv)(unsafe.Pointer(ctx)).Fcbuf, libc.Uint64FromInt64((*Tsock_recv)(unsafe.Pointer(ctx)).Flen1), (*Tsock_recv)(unsafe.Pointer(ctx)).Fflags)
+	(*Tsock_recv)(unsafe.Pointer(ctx)).Fresult = _ccgo_recv(tls, _get_sock_fd(tls, s), (*Tsock_recv)(unsafe.Pointer(ctx)).Fcbuf, libc.Uint64FromInt64((*Tsock_recv)(unsafe.Pointer(ctx)).Flen1), (*Tsock_recv)(unsafe.Pointer(ctx)).Fflags)
 	return libc.BoolInt32((*Tsock_recv)(unsafe.Pointer(ctx)).Fresult >= 0)
 }
 
@@ -69129,7 +69129,7 @@ func _sock_recvfrom_impl(tls *libc.TLS, s uintptr, data uintptr) (r int32) {
 	_ = ctx
 	ctx = data
 	libc.Xmemset(tls, (*Tsock_recvfrom)(unsafe.Pointer(ctx)).Faddrbuf, 0, uint64(**(**Tsocklen_t)(__ccgo_up((*Tsock_recvfrom)(unsafe.Pointer(ctx)).Faddrlen))))
-	(*Tsock_recvfrom)(unsafe.Pointer(ctx)).Fresult = libc.Xrecvfrom(tls, _get_sock_fd(tls, s), (*Tsock_recvfrom)(unsafe.Pointer(ctx)).Fcbuf, libc.Uint64FromInt64((*Tsock_recvfrom)(unsafe.Pointer(ctx)).Flen1), (*Tsock_recvfrom)(unsafe.Pointer(ctx)).Fflags, (*Tsock_recvfrom)(unsafe.Pointer(ctx)).Faddrbuf, (*Tsock_recvfrom)(unsafe.Pointer(ctx)).Faddrlen)
+	(*Tsock_recvfrom)(unsafe.Pointer(ctx)).Fresult = _ccgo_recvfrom(tls, _get_sock_fd(tls, s), (*Tsock_recvfrom)(unsafe.Pointer(ctx)).Fcbuf, libc.Uint64FromInt64((*Tsock_recvfrom)(unsafe.Pointer(ctx)).Flen1), (*Tsock_recvfrom)(unsafe.Pointer(ctx)).Fflags, (*Tsock_recvfrom)(unsafe.Pointer(ctx)).Faddrbuf, (*Tsock_recvfrom)(unsafe.Pointer(ctx)).Faddrlen)
 	return libc.BoolInt32((*Tsock_recvfrom)(unsafe.Pointer(ctx)).Fresult >= 0)
 }
 
@@ -69343,7 +69343,7 @@ func _sock_recvmsg_impl(tls *libc.TLS, s uintptr, data uintptr) (r int32) {
 	var ctx uintptr
 	_ = ctx
 	ctx = data
-	(*Tsock_recvmsg)(unsafe.Pointer(ctx)).Fresult = libc.Xrecvmsg(tls, _get_sock_fd(tls, s), (*Tsock_recvmsg)(unsafe.Pointer(ctx)).Fmsg, (*Tsock_recvmsg)(unsafe.Pointer(ctx)).Fflags)
+	(*Tsock_recvmsg)(unsafe.Pointer(ctx)).Fresult = _ccgo_recvmsg(tls, _get_sock_fd(tls, s), (*Tsock_recvmsg)(unsafe.Pointer(ctx)).Fmsg, (*Tsock_recvmsg)(unsafe.Pointer(ctx)).Fflags)
 	return libc.BoolInt32((*Tsock_recvmsg)(unsafe.Pointer(ctx)).Fresult >= 0)
 }
 
@@ -69784,7 +69784,7 @@ func _sock_send_impl(tls *libc.TLS, s uintptr, data uintptr) (r int32) {
 	var ctx uintptr
 	_ = ctx
 	ctx = data
-	(*Tsock_send)(unsafe.Pointer(ctx)).Fresult = libc.Xsend(tls, _get_sock_fd(tls, s), (*Tsock_send)(unsafe.Pointer(ctx)).Fbuf, libc.Uint64FromInt64((*Tsock_send)(unsafe.Pointer(ctx)).Flen1), (*Tsock_send)(unsafe.Pointer(ctx)).Fflags)
+	(*Tsock_send)(unsafe.Pointer(ctx)).Fresult = _ccgo_send(tls, _get_sock_fd(tls, s), (*Tsock_send)(unsafe.Pointer(ctx)).Fbuf, libc.Uint64FromInt64((*Tsock_send)(unsafe.Pointer(ctx)).Flen1), (*Tsock_send)(unsafe.Pointer(ctx)).Fflags)
 	return libc.BoolInt32((*Tsock_send)(unsafe.Pointer(ctx)).Fresult >= 0)
 }
 
@@ -69906,7 +69906,7 @@ func _sock_sendto_impl(tls *libc.TLS, s uintptr, data uintptr) (r int32) {
 	var ctx uintptr
 	_ = ctx
 	ctx = data
-	(*Tsock_sendto)(unsafe.Pointer(ctx)).Fresult = libc.Xsendto(tls, _get_sock_fd(tls, s), (*Tsock_sendto)(unsafe.Pointer(ctx)).Fbuf, libc.Uint64FromInt64((*Tsock_sendto)(unsafe.Pointer(ctx)).Flen1), (*Tsock_sendto)(unsafe.Pointer(ctx)).Fflags, (*Tsock_sendto)(unsafe.Pointer(ctx)).Faddrbuf, libc.Uint32FromInt32((*Tsock_sendto)(unsafe.Pointer(ctx)).Faddrlen))
+	(*Tsock_sendto)(unsafe.Pointer(ctx)).Fresult = _ccgo_sendto(tls, _get_sock_fd(tls, s), (*Tsock_sendto)(unsafe.Pointer(ctx)).Fbuf, libc.Uint64FromInt64((*Tsock_sendto)(unsafe.Pointer(ctx)).Flen1), (*Tsock_sendto)(unsafe.Pointer(ctx)).Fflags, (*Tsock_sendto)(unsafe.Pointer(ctx)).Faddrbuf, libc.Uint32FromInt32((*Tsock_sendto)(unsafe.Pointer(ctx)).Faddrlen))
 	return libc.BoolInt32((*Tsock_sendto)(unsafe.Pointer(ctx)).Fresult >= 0)
 }
 
@@ -70073,7 +70073,7 @@ func _sock_sendmsg_impl(tls *libc.TLS, s uintptr, data uintptr) (r int32) {
 	var ctx uintptr
 	_ = ctx
 	ctx = data
-	(*Tsock_sendmsg)(unsafe.Pointer(ctx)).Fresult = libc.Xsendmsg(tls, _get_sock_fd(tls, s), (*Tsock_sendmsg)(unsafe.Pointer(ctx)).Fmsg, (*Tsock_sendmsg)(unsafe.Pointer(ctx)).Fflags)
+	(*Tsock_sendmsg)(unsafe.Pointer(ctx)).Fresult = _ccgo_sendmsg(tls, _get_sock_fd(tls, s), (*Tsock_sendmsg)(unsafe.Pointer(ctx)).Fmsg, (*Tsock_sendmsg)(unsafe.Pointer(ctx)).Fflags)
 	return libc.BoolInt32((*Tsock_sendmsg)(unsafe.Pointer(ctx)).Fresult >= 0)
 }
 
