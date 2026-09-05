@@ -2,7 +2,7 @@
 # Use of this source code is governed by the MIT license that can be found in
 # the LICENSE file.
 
-.PHONY: all build test generate regenerate postprocess pgo stdlib clean
+.PHONY: all build test generate regenerate postprocess undup pgo stdlib clean
 
 CPYTHON_SRC ?= /tmp/cpython-3.14
 PPROF ?= go run github.com/google/pprof@v0.0.0-20260709232956-b9395ee17fa0
@@ -28,6 +28,11 @@ regenerate:
 # Only the rewrites + sharding of an already linked single file.
 postprocess:
 	GO_GENERATE_POSTPROCESS=1 go run generator.go
+
+# Fold declarations shared by two or more of the six generated targets.
+# Run this after generate/regenerate/postprocess for every changed target.
+undup:
+	GO_GENERATE_UNDUP=1 go run generator.go
 
 # Refresh the Go PGO profile with three runs of the interpreter benchmark.
 # The training binary explicitly disables the existing profile.

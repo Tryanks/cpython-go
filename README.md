@@ -129,6 +129,7 @@ gnu-sed`) and ~30 minutes:
 ```
 git clone --depth 1 --branch 3.14 https://github.com/python/cpython /tmp/cpython-3.14
 CPYTHON_SRC=/tmp/cpython-3.14 go run generator.go
+make undup
 go run ./internal/cmd/mkstdlib -o stdlib/python314.zip tmp/cpython/Lib
 ```
 
@@ -140,6 +141,15 @@ to `modernc.org/libz`, and SQLite calls to `modernc.org/libsqlite3`.
 Hand-written libc supplements live in
 `libpython/libc_*.go`; `generator.go`'s `shimmedLibc` lists route libc calls
 that `modernc.org/libc` does not implement well to them.
+
+The checked-in generated sources are deduplicated across all six targets.
+Every generator invocation first expands them back to the ordinary 12 shards
+for each target, then replaces the selected target's shards. After regenerating
+one or more targets, run `make undup` once, only after all changed targets have
+been regenerated. It moves byte-identical declarations shared by two or more
+targets into build-tagged `libpython/ccgo_g_<mask>_<shard>.go` files; target-only
+declarations remain in `ccgo_<goos>_<goarch>_<shard>.go`. The six target-local
+`_data.go` and `_data.bin` pairs are left untouched.
 
 ## Layout
 

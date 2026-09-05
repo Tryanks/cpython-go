@@ -19,9 +19,6 @@ is parked here.
   and cstack.go.
 - freebsd/amd64, freebsd/arm64 — parked; needs a qemu VM and a libc
   supplement like libc_darwin.go.
-- Cross-platform dedupe of identical generated declarations with
-  modernc.org/undup (the repo grows ~37MB per target).
-
 - Windows (both arches, 55/71 modules fully pass): remaining groups are
   locale/CRT fidelity (setlocale restore, tm_gmtoff), missing optional
   modules (_ctypes, _multiprocessing, _testcapi, _testconsole), Win32 file /

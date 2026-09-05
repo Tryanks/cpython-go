@@ -67,6 +67,11 @@ go run ./cmd/cpython-go -c 'import json, re, os; print(json.dumps({"a": [1, 2]})
 - Embedding API (package cpython) done: Interpreter/Object/host functions,
   crash isolation (panics → CrashError, exit → ExitError).
 - Generated code is sharded by internal/cmd/splitgo (12 files + data blob).
+- Generated declarations are deduplicated across the six supported targets by
+  `internal/cmd/undup`. The generator expands the checked-in shared layout
+  before any per-target regeneration; after all desired targets are regenerated,
+  `make undup` restores build-tagged shared shards. Embedded data stays
+  target-local.
 - C `_Thread_local` variables are lowered to per-libc.TLS slots by the
   generator (libpython/tls.go), so Python threads work. fork() is not
   possible under the Go runtime: subprocess uses syscall.ForkExec

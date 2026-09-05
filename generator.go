@@ -18,6 +18,8 @@
 //     build-time helpers _freeze_module/_bootstrap_python) and ccgo emits a
 //     .o.go beside each .o.
 //  3. Link the .ago archives into libpython/ccgo_<goos>_<goarch>.go.
+//  4. Split the target into shards. After all target regenerations, run
+//     GO_GENERATE_UNDUP=1 go run generator.go to fold common declarations.
 package main
 
 import (
@@ -238,6 +240,14 @@ func main() {
 		}
 		return
 	}
+	if os.Getenv("GO_GENERATE_UNDUP") != "" {
+		shell("go", "run", "./internal/cmd/undup", "-dir", outDir)
+		return
+	}
+	// A checked-out generated tree is normally deduplicated. Reconstruct all
+	// complete target shards before replacing any one target, so the final
+	// undup pass always compares six complete declaration sets.
+	shell("go", "run", "./internal/cmd/undup", "-expand", "-dir", outDir)
 
 	src, err := filepath.Abs(srcCopy)
 	if err != nil {
@@ -344,7 +354,8 @@ func main() {
 	// GO_GENERATE_INCREMENTAL=1 reuses tmp/cpython and tmp/build (make only
 	// rebuilds what changed); GO_GENERATE_SKIP_BUILD=1 only relinks;
 	// GO_GENERATE_POSTPROCESS=1 only re-runs the rewrites and the split on
-	// the existing single file.
+	// the existing single file. GO_GENERATE_UNDUP=1, handled above, folds the
+	// complete shards for all six targets into their checked-in shared layout.
 	mkdirAll(outDir)
 	base := fmt.Sprintf("ccgo_%s_%s", goos, goarch)
 	result := filepath.Join(outDir, base+".go")
@@ -458,6 +469,7 @@ func postprocess(result, base string) {
 	// splitgo repeats imports and ccgo's blank-identifier import guards in
 	// every shard. Package-backed libraries are only called from the shards
 	// containing their extension modules, so add guards for all other shards.
+	ensureImportGuard(result, `"modernc.org/libc"`, "var _ *libc.TLS")
 	ensureImportGuard(result, `"modernc.org/libz"`, "var _ = libz.Xcrc32")
 	ensureImportGuard(result, `"modernc.org/libsqlite3"`, "var _ = libsqlite3.Xsqlite3_libversion_number")
 	// `_Py_FREELIST_FREE(name, op, Py_TYPE(op)->tp_free)` passes a function
