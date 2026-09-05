@@ -232,3 +232,9 @@ below.
   and `.ago` archives, and regenerated all 12 amd64 shards. The regenerated
   Blake2 detector contains scalar zero-valued feature inputs and no CPUID
   assertion calls. Both Windows architectures then cross-built locally.
+- Run 33953203638: the cleanly regenerated amd64 shards retained every passing
+  runtime smoke. Routed `CloseHandle` and modernc's TODO
+  `SetHandleInformation`, then added an `os.pipe()` write/close/read/close
+  round-trip; it passed together with pipe EOF, subprocess, and unittest. The
+  Windows job was promoted from `continue-on-error` to a required CI job after
+  this result.
