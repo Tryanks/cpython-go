@@ -52,6 +52,8 @@ func (o *Object) Release() {
 		return
 	}
 	runtime.SetFinalizer(o, nil)
+	runtime.LockOSThread()
+	defer runtime.UnlockOSThread()
 	if err := o.in.enter(); err != nil {
 		return // closed or crashed: nothing safe left to do
 	}

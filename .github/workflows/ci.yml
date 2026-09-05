@@ -30,14 +30,6 @@ jobs:
       - run: go build -o cpython-go.exe ./cmd/cpython-go
       - run: ./cpython-go.exe -c "print(45)"
       - run: ./cpython-go.exe -c "import sys, json; print(sys.platform, sys.version_info[:2], json.dumps([1]))"
-      - name: Diagnostic isolated CLI
-        run: ./cpython-go.exe -I -c "import sys, encodings; print(sys.path)"
-      - name: Diagnostic isolated embedding
-        run: go test -count=1 -run TestDiagnosticNew -v .
-      - name: Diagnostic Python-config embedding
-        run: go test -count=1 -run TestDiagnosticNew -v .
-        env:
-          CPGO_DIAG_PYTHON_CONFIG: "1"
       - run: go test -count=1 .
       - run: ./cpython-go.exe -X faulthandler -c "print('xoption-ok')"
       - name: Import Windows runtime modules
@@ -95,6 +87,7 @@ jobs:
       - run: go build -o cpython-go.exe ./cmd/cpython-go
       - run: ./cpython-go.exe -c "print(45)"
       - run: ./cpython-go.exe -c "import sys, json; print(sys.platform, sys.version_info[:2], json.dumps([1]))"
+      - run: go test -count=1 .
       - run: ./cpython-go.exe -X faulthandler -c "print('xoption-ok')"
       - name: Import Windows runtime modules
         run: ./cpython-go.exe -c "import os, subprocess, threading, hashlib, pickle, re, datetime; print('imports-ok')"

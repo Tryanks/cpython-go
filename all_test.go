@@ -21,6 +21,9 @@ func TestMain(m *testing.M) {
 		panic(err)
 	}
 	bin = filepath.Join(dir, "cpython-go")
+	if runtime.GOOS == "windows" {
+		bin += ".exe"
+	}
 	out, err := exec.Command("go", "build", "-o", bin, "./cmd/cpython-go").CombinedOutput()
 	if err != nil {
 		panic(string(out))
