@@ -84,7 +84,7 @@ func _os_close_impl(tls *libc.TLS, module uintptr, fd int32) (r uintptr) {
 	_, _ = _save, res
 
 	_save = XPyEval_SaveThread(tls)
-	res = libc.Xclose(tls, fd)
+	res = _ccgo_close(tls, fd)
 	XPyEval_RestoreThread(tls, _save)
 	if res < 0 {
 		return _posix_error(tls)
@@ -124,7 +124,7 @@ func _os_dup2_impl(tls *libc.TLS, module uintptr, fd int32, fd2 int32, inheritab
 	res = fd2
 
 	if !(inheritable != 0) && X_Py_set_inheritable(tls, fd2, 0, libc.UintptrFromInt32(0)) < 0 {
-		libc.Xclose(tls, fd2)
+		_ccgo_close(tls, fd2)
 		return -int32(1)
 	}
 	return res
@@ -146,7 +146,7 @@ func _os_lseek_impl(tls *libc.TLS, module uintptr, fd int32, position TPy_off_t,
 		break
 	}
 	_save = XPyEval_SaveThread(tls)
-	result = libc.X_lseeki64(tls, fd, position, how)
+	result = _ccgo__lseeki64(tls, fd, position, how)
 	XPyEval_RestoreThread(tls, _save)
 	if result < 0 {
 		_posix_error(tls)
@@ -352,7 +352,7 @@ func _os_truncate_impl(tls *libc.TLS, module uintptr, path uintptr, length TPy_o
 		result = -int32(1)
 	} else {
 		result = __chsize_s(tls, fd, length)
-		libc.Xclose(tls, fd)
+		_ccgo_close(tls, fd)
 		if result < 0 {
 			**(**int32)(__ccgo_up(libc.X_errno(tls))) = result
 		}
@@ -38564,7 +38564,7 @@ func _internal_close(tls *libc.TLS, self uintptr) (r int32) {
 		(*Tfileio)(unsafe.Pointer(self)).Ffd = -int32(1)
 
 		_save = XPyEval_SaveThread(tls)
-		err = libc.Xclose(tls, fd)
+		err = _ccgo_close(tls, fd)
 		if err < 0 {
 			save_errno = **(**int32)(__ccgo_up(libc.X_errno(tls)))
 		}
@@ -38966,7 +38966,7 @@ _5:
 		}
 	}
 
-	libc.X_setmode(tls, (*Tfileio)(unsafe.Pointer(self)).Ffd, int32(M_O_BINARY))
+	_ccgo__setmode(tls, (*Tfileio)(unsafe.Pointer(self)).Ffd, int32(M_O_BINARY))
 	if XPyObject_SetAttr(tls, self, uintptr(unsafe.Pointer(&X_PyRuntime))+13248+20712+1232+29528, nameobj) < 0 {
 		goto error
 	}
@@ -39311,7 +39311,7 @@ func __io_FileIO_readall_impl(tls *libc.TLS, self1 uintptr) (r uintptr) {
 
 		if bufsize > uint64(MLARGE_BUFFER_CUTOFF_SIZE) {
 			_save = XPyEval_SaveThread(tls)
-			pos = libc.X_lseeki64(tls, (*Tfileio)(unsafe.Pointer(self1)).Ffd, 0, int32(MSEEK_CUR))
+			pos = _ccgo__lseeki64(tls, (*Tfileio)(unsafe.Pointer(self1)).Ffd, 0, int32(MSEEK_CUR))
 			XPyEval_RestoreThread(tls, _save)
 			if end >= pos && pos >= 0 && end-pos < int64(libc.Int32FromInt32(M__INT_MAX__)-libc.Int32FromInt32(1)) {
 				bufsize = uint64(end-pos) + uint64(1)
@@ -39572,7 +39572,7 @@ _1:
 		}
 	}
 	_save = XPyEval_SaveThread(tls)
-	res = libc.X_lseeki64(tls, fd, pos, whence)
+	res = _ccgo__lseeki64(tls, fd, pos, whence)
 	XPyEval_RestoreThread(tls, _save)
 	if int32(*(*uint8)(unsafe.Pointer(self + 20))&0x30>>4)<<30>>30 < 0 {
 		libc.SetBitFieldPtr8Int32(self+20, libc.BoolInt32(res >= libc.Int64FromInt32(0)), 4, 0x30)
@@ -59602,7 +59602,7 @@ func X_PyWindowsConsoleIO_closed(tls *libc.TLS, self uintptr) (r int32) {
 func _internal_close1(tls *libc.TLS, self uintptr) (r int32) {
 	if (*Twinconsoleio)(unsafe.Pointer(self)).Ffd != -int32(1) {
 		if int32(uint32(*(*uint8)(unsafe.Pointer(self + 20))&0x8>>3)) != 0 {
-			libc.Xclose(tls, (*Twinconsoleio)(unsafe.Pointer(self)).Ffd)
+			_ccgo_close(tls, (*Twinconsoleio)(unsafe.Pointer(self)).Ffd)
 		}
 		(*Twinconsoleio)(unsafe.Pointer(self)).Ffd = -int32(1)
 	}

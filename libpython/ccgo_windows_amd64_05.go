@@ -847,7 +847,7 @@ func X_PyErr_ProgramDecodedTextObject(tls *libc.TLS, filename uintptr, lineno in
 			encoding = __ccgo_ts + 10583
 		}
 
-		if libc.Xlseek(tls, fd, 0, MSEEK_SET) == int64(-libc.Int32FromInt32(1)) {
+		if _ccgo_lseek(tls, fd, 0, MSEEK_SET) == int64(-libc.Int32FromInt32(1)) {
 			libc.Xfclose(tls, fp)
 			XPyMem_Free(tls, found_encoding)
 			return libc.UintptrFromInt32(0)
@@ -30863,9 +30863,9 @@ func _config_read(tls *libc.TLS, config uintptr, compute_path_config int32) (r T
 
 func _config_init_stdio(tls *libc.TLS, config uintptr) {
 
-	libc.X_setmode(tls, libc.Xfileno(tls, libc.X__acrt_iob_func(tls, uint32(0))), int32(M_O_BINARY))
-	libc.X_setmode(tls, libc.Xfileno(tls, libc.X__acrt_iob_func(tls, uint32(1))), int32(M_O_BINARY))
-	libc.X_setmode(tls, libc.Xfileno(tls, libc.X__acrt_iob_func(tls, uint32(2))), int32(M_O_BINARY))
+	_ccgo__setmode(tls, libc.Xfileno(tls, libc.X__acrt_iob_func(tls, uint32(0))), int32(M_O_BINARY))
+	_ccgo__setmode(tls, libc.Xfileno(tls, libc.X__acrt_iob_func(tls, uint32(1))), int32(M_O_BINARY))
+	_ccgo__setmode(tls, libc.Xfileno(tls, libc.X__acrt_iob_func(tls, uint32(2))), int32(M_O_BINARY))
 	if !((*TPyConfig)(unsafe.Pointer(config)).Fbuffered_stdio != 0) {
 		libc.Xsetvbuf(tls, libc.X__acrt_iob_func(tls, uint32(0)), libc.UintptrFromInt32(0), int32(M_IONBF), uint64(MBUFSIZ))
 		libc.Xsetvbuf(tls, libc.X__acrt_iob_func(tls, uint32(1)), libc.UintptrFromInt32(0), int32(M_IONBF), uint64(MBUFSIZ))

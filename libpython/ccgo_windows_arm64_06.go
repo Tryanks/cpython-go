@@ -32352,7 +32352,7 @@ _4:
 	}
 	encoding = v1
 
-	if libc.Xlseek(tls, fd, 0, MSEEK_SET) == int64(-libc.Int32FromInt32(1)) {
+	if _ccgo_lseek(tls, fd, 0, MSEEK_SET) == int64(-libc.Int32FromInt32(1)) {
 		v1 = io
 		v85 = libc.BoolInt32(int32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
 		goto _105
@@ -47625,7 +47625,7 @@ func X_Py_wstat(tls *libc.TLS, path uintptr, buf uintptr) (r int32) {
 	var err int32
 	var _ T_stat64i32
 	_ = err
-	err = libc.X_wstat64i32(tls, path, bp)
+	err = _ccgo__wstat64i32(tls, path, bp)
 	if !(err != 0) {
 		(*Tstat)(unsafe.Pointer(buf)).Fst_mode = (**(**T_stat64i32)(__ccgo_up(bp))).Fst_mode
 	}
@@ -47795,7 +47795,7 @@ func __Py_open_impl(tls *libc.TLS, pathname uintptr, flags int32, gil_held int32
 		}
 		for {
 			_save = XPyEval_SaveThread(tls)
-			fd = libc.Xopen(tls, pathname, flags, 0)
+			fd = _ccgo_open(tls, pathname, flags, 0)
 			XPyEval_RestoreThread(tls, _save)
 			goto _9
 		_9:
@@ -47860,7 +47860,7 @@ func __Py_open_impl(tls *libc.TLS, pathname uintptr, flags int32, gil_held int32
 		}
 	_25:
 	} else {
-		fd = libc.Xopen(tls, pathname, flags, 0)
+		fd = _ccgo_open(tls, pathname, flags, 0)
 		if fd < 0 {
 			return -int32(1)
 		}
@@ -48056,7 +48056,7 @@ func X_Py_read(tls *libc.TLS, fd int32, buf uintptr, count Tsize_t) (r TPy_ssize
 		_save = XPyEval_SaveThread(tls)
 		**(**int32)(__ccgo_up(libc.X_errno(tls))) = 0
 		**(**uint32)(__ccgo_up(___doserrno(tls))) = uint32(0)
-		n = int64(libc.Xread(tls, fd, buf, uint32(int32(count))))
+		n = int64(_ccgo_read(tls, fd, buf, uint32(int32(count))))
 
 		if n < 0 && **(**int32)(__ccgo_up(libc.X_errno(tls))) == int32(MEINVAL) {
 			if **(**uint32)(__ccgo_up(___doserrno(tls))) == uint32(232) {
@@ -48122,7 +48122,7 @@ func __Py_write_impl(tls *libc.TLS, fd int32, buf uintptr, count Tsize_t, gil_he
 			c = int32(count)
 			for cond := true; cond; cond = c > 0 {
 				**(**uint32)(__ccgo_up(___doserrno(tls))) = uint32(0)
-				n = int64(libc.Xwrite(tls, fd, buf, uint32(c)))
+				n = int64(_ccgo_write(tls, fd, buf, uint32(c)))
 				if n >= 0 || **(**int32)(__ccgo_up(libc.X_errno(tls))) != int32(MENOSPC) || **(**uint32)(__ccgo_up(___doserrno(tls))) != uint32(0) {
 					break
 				}
@@ -48150,7 +48150,7 @@ func __Py_write_impl(tls *libc.TLS, fd int32, buf uintptr, count Tsize_t, gil_he
 			c1 = int32(count)
 			for cond := true; cond; cond = c1 > 0 {
 				**(**uint32)(__ccgo_up(___doserrno(tls))) = uint32(0)
-				n = int64(libc.Xwrite(tls, fd, buf, uint32(c1)))
+				n = int64(_ccgo_write(tls, fd, buf, uint32(c1)))
 				if n >= 0 || **(**int32)(__ccgo_up(libc.X_errno(tls))) != int32(MENOSPC) || **(**uint32)(__ccgo_up(___doserrno(tls))) != uint32(0) {
 					break
 				}
@@ -48677,7 +48677,7 @@ func X_Py_dup(tls *libc.TLS, fd int32) (r int32) {
 		return -int32(1)
 	}
 	if X_Py_set_inheritable(tls, fd, 0, libc.UintptrFromInt32(0)) < 0 {
-		libc.Xclose(tls, fd)
+		_ccgo_close(tls, fd)
 		return -int32(1)
 	}
 	return fd
@@ -48808,7 +48808,7 @@ func X_Py_closerange(tls *libc.TLS, first int32, last int32) {
 			break
 		}
 
-		libc.Xclose(tls, i)
+		_ccgo_close(tls, i)
 		goto _2
 	_2:
 		;

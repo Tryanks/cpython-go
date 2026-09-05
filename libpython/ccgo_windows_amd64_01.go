@@ -368,7 +368,7 @@ func _fp_setreadl(tls *libc.TLS, tok uintptr, enc uintptr) (r int32) {
 			v1 = pos
 		}
 	}
-	if v2 || libc.Xlseek(tls, fd, int64(v1), MSEEK_SET) == int64(-libc.Int32FromInt32(1)) {
+	if v2 || _ccgo_lseek(tls, fd, int64(v1), MSEEK_SET) == int64(-libc.Int32FromInt32(1)) {
 		XPyErr_SetFromErrnoWithFilename(tls, XPyExc_OSError, libc.UintptrFromInt32(0))
 		return 0
 	}

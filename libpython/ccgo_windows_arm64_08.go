@@ -37985,7 +37985,7 @@ func _new_mmap_object(tls *libc.TLS, type1 uintptr, args uintptr, kwdict uintptr
 			return libc.UintptrFromInt32(0)
 		}
 
-		libc.Xlseek(tls, **(**int32)(__ccgo_up(bp + 24)), 0, MSEEK_SET)
+		_ccgo_lseek(tls, **(**int32)(__ccgo_up(bp + 24)), 0, MSEEK_SET)
 	}
 	m_obj = (*(*func(*libc.TLS, uintptr, TPy_ssize_t) uintptr)(unsafe.Pointer(&struct{ uintptr }{(*TPyTypeObject)(unsafe.Pointer(type1)).Ftp_alloc})))(tls, type1, 0)
 	if m_obj == libc.UintptrFromInt32(0) {
@@ -107857,7 +107857,7 @@ func _os_lchmod_impl(tls *libc.TLS, module uintptr, path uintptr, mode int32) (r
 
 func _os_fsync_impl(tls *libc.TLS, module uintptr, fd int32) (r uintptr) {
 
-	return _posix_fildes_fd(tls, fd, __ccgo_fp(libc.X_commit))
+	return _posix_fildes_fd(tls, fd, __ccgo_fp(_ccgo__commit))
 }
 
 func _posix_getcwd(tls *libc.TLS, use_bytes int32) (r uintptr) {

@@ -17395,7 +17395,7 @@ func _msvcrt_locking_impl(tls *libc.TLS, module uintptr, fd int32, mode int32, n
 
 func _msvcrt_setmode_impl(tls *libc.TLS, module uintptr, fd int32, flags int32) (r int32) {
 
-	flags = libc.X_setmode(tls, fd, flags)
+	flags = _ccgo__setmode(tls, fd, flags)
 	if flags == -int32(1) {
 		XPyErr_SetFromErrno(tls, XPyExc_OSError)
 	}
