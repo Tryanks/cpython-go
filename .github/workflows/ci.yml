@@ -20,3 +20,15 @@ jobs:
       - run: ./cpython-go -c 'import sys, json, threading, subprocess; print(sys.platform, sys.version_info[:2], json.dumps([1]))'
       - run: go test -count=1 .
       - run: go test -count=1 -vet=off ./libpython
+  windows:
+    # Experimental: the Windows port builds but is not expected to run yet.
+    runs-on: windows-latest
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: go.mod
+      - run: go build -o cpython-go.exe ./cmd/cpython-go
+      - run: ./cpython-go.exe -c "print(45)"
+      - run: ./cpython-go.exe -c "import sys, json; print(sys.platform, sys.version_info[:2], json.dumps([1]))"
