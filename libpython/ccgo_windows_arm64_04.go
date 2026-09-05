@@ -10,6 +10,7 @@ import (
 	"unsafe"
 
 	"modernc.org/libc"
+	"modernc.org/libsqlite3"
 	"modernc.org/libz"
 )
 
@@ -19,178 +20,9 @@ var _ reflect.Type
 
 var _ unsafe.Pointer
 
+var _ = libsqlite3.Xsqlite3_libversion_number
+
 var _ = libz.Xcrc32
-
-func _obj2ast_expr_context(tls *libc.TLS, state uintptr, obj uintptr, out uintptr, arena uintptr) (r int32) {
-	bp := tls.Alloc(16)
-	defer tls.Free(16)
-	var isinstance int32
-	_ = isinstance
-	isinstance = XPyObject_IsInstance(tls, obj, (*Tast_state)(unsafe.Pointer(state)).FLoad_type)
-	if isinstance == -int32(1) {
-		return -int32(1)
-	}
-	if isinstance != 0 {
-		**(**Texpr_context_ty)(__ccgo_up(out)) = int32(ELoad)
-		return 0
-	}
-	isinstance = XPyObject_IsInstance(tls, obj, (*Tast_state)(unsafe.Pointer(state)).FStore_type)
-	if isinstance == -int32(1) {
-		return -int32(1)
-	}
-	if isinstance != 0 {
-		**(**Texpr_context_ty)(__ccgo_up(out)) = int32(EStore)
-		return 0
-	}
-	isinstance = XPyObject_IsInstance(tls, obj, (*Tast_state)(unsafe.Pointer(state)).FDel_type)
-	if isinstance == -int32(1) {
-		return -int32(1)
-	}
-	if isinstance != 0 {
-		**(**Texpr_context_ty)(__ccgo_up(out)) = int32(EDel)
-		return 0
-	}
-	XPyErr_Format(tls, XPyExc_TypeError, __ccgo_ts+110222, libc.VaList(bp+8, obj))
-	return -int32(1)
-}
-
-func _obj2ast_boolop(tls *libc.TLS, state uintptr, obj uintptr, out uintptr, arena uintptr) (r int32) {
-	bp := tls.Alloc(16)
-	defer tls.Free(16)
-	var isinstance int32
-	_ = isinstance
-	isinstance = XPyObject_IsInstance(tls, obj, (*Tast_state)(unsafe.Pointer(state)).FAnd_type)
-	if isinstance == -int32(1) {
-		return -int32(1)
-	}
-	if isinstance != 0 {
-		**(**Tboolop_ty)(__ccgo_up(out)) = int32(EAnd)
-		return 0
-	}
-	isinstance = XPyObject_IsInstance(tls, obj, (*Tast_state)(unsafe.Pointer(state)).FOr_type)
-	if isinstance == -int32(1) {
-		return -int32(1)
-	}
-	if isinstance != 0 {
-		**(**Tboolop_ty)(__ccgo_up(out)) = int32(EOr)
-		return 0
-	}
-	XPyErr_Format(tls, XPyExc_TypeError, __ccgo_ts+110269, libc.VaList(bp+8, obj))
-	return -int32(1)
-}
-
-func _obj2ast_operator(tls *libc.TLS, state uintptr, obj uintptr, out uintptr, arena uintptr) (r int32) {
-	bp := tls.Alloc(16)
-	defer tls.Free(16)
-	var isinstance int32
-	_ = isinstance
-	isinstance = XPyObject_IsInstance(tls, obj, (*Tast_state)(unsafe.Pointer(state)).FAdd_type)
-	if isinstance == -int32(1) {
-		return -int32(1)
-	}
-	if isinstance != 0 {
-		**(**Toperator_ty)(__ccgo_up(out)) = int32(EAdd)
-		return 0
-	}
-	isinstance = XPyObject_IsInstance(tls, obj, (*Tast_state)(unsafe.Pointer(state)).FSub_type)
-	if isinstance == -int32(1) {
-		return -int32(1)
-	}
-	if isinstance != 0 {
-		**(**Toperator_ty)(__ccgo_up(out)) = int32(ESub)
-		return 0
-	}
-	isinstance = XPyObject_IsInstance(tls, obj, (*Tast_state)(unsafe.Pointer(state)).FMult_type)
-	if isinstance == -int32(1) {
-		return -int32(1)
-	}
-	if isinstance != 0 {
-		**(**Toperator_ty)(__ccgo_up(out)) = int32(EMult)
-		return 0
-	}
-	isinstance = XPyObject_IsInstance(tls, obj, (*Tast_state)(unsafe.Pointer(state)).FMatMult_type)
-	if isinstance == -int32(1) {
-		return -int32(1)
-	}
-	if isinstance != 0 {
-		**(**Toperator_ty)(__ccgo_up(out)) = int32(EMatMult)
-		return 0
-	}
-	isinstance = XPyObject_IsInstance(tls, obj, (*Tast_state)(unsafe.Pointer(state)).FDiv_type)
-	if isinstance == -int32(1) {
-		return -int32(1)
-	}
-	if isinstance != 0 {
-		**(**Toperator_ty)(__ccgo_up(out)) = int32(EDiv)
-		return 0
-	}
-	isinstance = XPyObject_IsInstance(tls, obj, (*Tast_state)(unsafe.Pointer(state)).FMod_type)
-	if isinstance == -int32(1) {
-		return -int32(1)
-	}
-	if isinstance != 0 {
-		**(**Toperator_ty)(__ccgo_up(out)) = int32(EMod)
-		return 0
-	}
-	isinstance = XPyObject_IsInstance(tls, obj, (*Tast_state)(unsafe.Pointer(state)).FPow_type)
-	if isinstance == -int32(1) {
-		return -int32(1)
-	}
-	if isinstance != 0 {
-		**(**Toperator_ty)(__ccgo_up(out)) = int32(EPow)
-		return 0
-	}
-	isinstance = XPyObject_IsInstance(tls, obj, (*Tast_state)(unsafe.Pointer(state)).FLShift_type)
-	if isinstance == -int32(1) {
-		return -int32(1)
-	}
-	if isinstance != 0 {
-		**(**Toperator_ty)(__ccgo_up(out)) = int32(ELShift)
-		return 0
-	}
-	isinstance = XPyObject_IsInstance(tls, obj, (*Tast_state)(unsafe.Pointer(state)).FRShift_type)
-	if isinstance == -int32(1) {
-		return -int32(1)
-	}
-	if isinstance != 0 {
-		**(**Toperator_ty)(__ccgo_up(out)) = int32(ERShift)
-		return 0
-	}
-	isinstance = XPyObject_IsInstance(tls, obj, (*Tast_state)(unsafe.Pointer(state)).FBitOr_type)
-	if isinstance == -int32(1) {
-		return -int32(1)
-	}
-	if isinstance != 0 {
-		**(**Toperator_ty)(__ccgo_up(out)) = int32(EBitOr)
-		return 0
-	}
-	isinstance = XPyObject_IsInstance(tls, obj, (*Tast_state)(unsafe.Pointer(state)).FBitXor_type)
-	if isinstance == -int32(1) {
-		return -int32(1)
-	}
-	if isinstance != 0 {
-		**(**Toperator_ty)(__ccgo_up(out)) = int32(EBitXor)
-		return 0
-	}
-	isinstance = XPyObject_IsInstance(tls, obj, (*Tast_state)(unsafe.Pointer(state)).FBitAnd_type)
-	if isinstance == -int32(1) {
-		return -int32(1)
-	}
-	if isinstance != 0 {
-		**(**Toperator_ty)(__ccgo_up(out)) = int32(EBitAnd)
-		return 0
-	}
-	isinstance = XPyObject_IsInstance(tls, obj, (*Tast_state)(unsafe.Pointer(state)).FFloorDiv_type)
-	if isinstance == -int32(1) {
-		return -int32(1)
-	}
-	if isinstance != 0 {
-		**(**Toperator_ty)(__ccgo_up(out)) = int32(EFloorDiv)
-		return 0
-	}
-	XPyErr_Format(tls, XPyExc_TypeError, __ccgo_ts+110310, libc.VaList(bp+8, obj))
-	return -int32(1)
-}
 
 func _obj2ast_unaryop(tls *libc.TLS, state uintptr, obj uintptr, out uintptr, arena uintptr) (r int32) {
 	bp := tls.Alloc(16)
@@ -25006,7 +24838,7 @@ func X_PyBuiltin_Init(tls *libc.TLS, interp uintptr) (r uintptr) {
 	if XPyDict_SetItemString(tls, dict, __ccgo_ts+17470, uintptr(unsafe.Pointer(&XPyBytes_Type))) < 0 {
 		return libc.UintptrFromInt32(0)
 	}
-	if XPyDict_SetItemString(tls, dict, __ccgo_ts+40273, uintptr(unsafe.Pointer(&XPyClassMethod_Type))) < 0 {
+	if XPyDict_SetItemString(tls, dict, __ccgo_ts+40286, uintptr(unsafe.Pointer(&XPyClassMethod_Type))) < 0 {
 		return libc.UintptrFromInt32(0)
 	}
 	if XPyDict_SetItemString(tls, dict, __ccgo_ts+23342, uintptr(unsafe.Pointer(&XPyComplex_Type))) < 0 {
@@ -25024,10 +24856,10 @@ func X_PyBuiltin_Init(tls *libc.TLS, interp uintptr) (r uintptr) {
 	if XPyDict_SetItemString(tls, dict, __ccgo_ts+37047, uintptr(unsafe.Pointer(&XPyFloat_Type))) < 0 {
 		return libc.UintptrFromInt32(0)
 	}
-	if XPyDict_SetItemString(tls, dict, __ccgo_ts+57275, uintptr(unsafe.Pointer(&XPyFrozenSet_Type))) < 0 {
+	if XPyDict_SetItemString(tls, dict, __ccgo_ts+57262, uintptr(unsafe.Pointer(&XPyFrozenSet_Type))) < 0 {
 		return libc.UintptrFromInt32(0)
 	}
-	if XPyDict_SetItemString(tls, dict, __ccgo_ts+24077, uintptr(unsafe.Pointer(&XPyProperty_Type))) < 0 {
+	if XPyDict_SetItemString(tls, dict, __ccgo_ts+24062, uintptr(unsafe.Pointer(&XPyProperty_Type))) < 0 {
 		return libc.UintptrFromInt32(0)
 	}
 	if XPyDict_SetItemString(tls, dict, __ccgo_ts+43340, uintptr(unsafe.Pointer(&XPyLong_Type))) < 0 {
@@ -25048,13 +24880,13 @@ func X_PyBuiltin_Init(tls *libc.TLS, interp uintptr) (r uintptr) {
 	if XPyDict_SetItemString(tls, dict, __ccgo_ts+26477, uintptr(unsafe.Pointer(&XPyReversed_Type))) < 0 {
 		return libc.UintptrFromInt32(0)
 	}
-	if XPyDict_SetItemString(tls, dict, __ccgo_ts+57271, uintptr(unsafe.Pointer(&XPySet_Type))) < 0 {
+	if XPyDict_SetItemString(tls, dict, __ccgo_ts+57258, uintptr(unsafe.Pointer(&XPySet_Type))) < 0 {
 		return libc.UintptrFromInt32(0)
 	}
 	if XPyDict_SetItemString(tls, dict, __ccgo_ts+57751, uintptr(unsafe.Pointer(&XPySlice_Type))) < 0 {
 		return libc.UintptrFromInt32(0)
 	}
-	if XPyDict_SetItemString(tls, dict, __ccgo_ts+40285, uintptr(unsafe.Pointer(&XPyStaticMethod_Type))) < 0 {
+	if XPyDict_SetItemString(tls, dict, __ccgo_ts+40264, uintptr(unsafe.Pointer(&XPyStaticMethod_Type))) < 0 {
 		return libc.UintptrFromInt32(0)
 	}
 	if XPyDict_SetItemString(tls, dict, __ccgo_ts+15107, uintptr(unsafe.Pointer(&XPyUnicode_Type))) < 0 {
@@ -80857,7 +80689,7 @@ var _PyContextVar_methods = [5]TPyMethodDef{
 		Fml_doc:   uintptr(unsafe.Pointer(&__contextvars_ContextVar_get__doc__)),
 	},
 	1: {
-		Fml_name:  __ccgo_ts + 57271,
+		Fml_name:  __ccgo_ts + 57258,
 		Fml_flags: int32(MMETH_O),
 		Fml_doc:   uintptr(unsafe.Pointer(&__contextvars_ContextVar_set__doc__)),
 	},
@@ -83619,4 +83451,6830 @@ _3:
 _4:
 	;
 	return bytes
+}
+
+type T_unpickle_context = struct {
+	Ftstate uintptr
+	Fmain1  Tsync_module
+}
+
+func __unpickle_context_clear(tls *libc.TLS, ctx uintptr) {
+	_sync_module_clear(tls, ctx+8)
+}
+
+func _check_missing___main___attr(tls *libc.TLS, exc uintptr) (r int32) {
+	var args, err, msgobj, v1, v2, v7 uintptr
+	var cmp, v3 int32
+	var flags uint32
+	var v6 Tuint32_t
+	_, _, _, _, _, _, _, _, _, _ = args, cmp, err, flags, msgobj, v1, v2, v3, v6, v7
+	if !(XPyErr_GivenExceptionMatches(tls, exc, XPyExc_AttributeError) != 0) {
+		return 0
+	}
+
+	args = XPyException_GetArgs(tls, exc)
+	if args == libc.UintptrFromInt32(0) || args == uintptr(unsafe.Pointer(&X_Py_NoneStruct)) || XPyObject_Size(tls, args) < int64(1) {
+		v1 = args
+		if v1 != libc.UintptrFromInt32(0) {
+			v2 = v1
+			v3 = libc.BoolInt32(int32(*(*Tuint32_t)(unsafe.Pointer(v2))) < 0)
+			goto _4
+		_4:
+			if v3 != 0 {
+				goto _5
+			}
+			v7 = v2
+			*(*Tuint32_t)(unsafe.Pointer(v7)) = *(*Tuint32_t)(unsafe.Pointer(v7)) - 1
+			v6 = *(*Tuint32_t)(unsafe.Pointer(v7))
+			if v6 == libc.Uint32FromInt32(0) {
+				X_Py_Dealloc(tls, v2)
+			}
+		_5:
+		}
+		return 0
+	}
+	msgobj = args
+	v1 = (*TPyObject)(unsafe.Pointer(msgobj)).Fob_type
+	goto _9
+_9:
+	flags = (*TPyTypeObject)(unsafe.Pointer(v1)).Ftp_flags
+	v3 = libc.BoolInt32(flags&(libc.Uint32FromUint32(1)<<libc.Int32FromInt32(28)) != uint32(0))
+	goto _11
+_11:
+	if !(v3 != 0) {
+		msgobj = XPySequence_GetItem(tls, args, 0)
+		v1 = args
+		v3 = libc.BoolInt32(int32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
+		goto _14
+	_14:
+		if v3 != 0 {
+			goto _15
+		}
+		v2 = v1
+		*(*Tuint32_t)(unsafe.Pointer(v2)) = *(*Tuint32_t)(unsafe.Pointer(v2)) - 1
+		v6 = *(*Tuint32_t)(unsafe.Pointer(v2))
+		if v6 == libc.Uint32FromInt32(0) {
+			X_Py_Dealloc(tls, v1)
+		}
+	_15:
+		;
+		if msgobj == libc.UintptrFromInt32(0) {
+			XPyErr_Clear(tls)
+			return 0
+		}
+	}
+	err = XPyUnicode_AsUTF8(tls, msgobj)
+
+	cmp = libc.Xstrncmp(tls, err, __ccgo_ts+135331, uint64(36))
+	v1 = msgobj
+	v3 = libc.BoolInt32(int32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
+	goto _20
+_20:
+	if v3 != 0 {
+		goto _21
+	}
+	v2 = v1
+	*(*Tuint32_t)(unsafe.Pointer(v2)) = *(*Tuint32_t)(unsafe.Pointer(v2)) - 1
+	v6 = *(*Tuint32_t)(unsafe.Pointer(v2))
+	if v6 == libc.Uint32FromInt32(0) {
+		X_Py_Dealloc(tls, v1)
+	}
+_21:
+	;
+	return libc.BoolInt32(cmp == 0)
+}
+
+func __PyPickle_Loads(tls *libc.TLS, ctx uintptr, pickled uintptr) (r uintptr) {
+	bp := tls.Alloc(16)
+	defer tls.Free(16)
+	var _tmp_old_op, _tmp_op_ptr, loads, obj, tstate1, v1, v6, v7 uintptr
+	var v2 int32
+	var v5 Tuint32_t
+	var _ uintptr
+	_, _, _, _, _, _, _, _, _, _ = _tmp_old_op, _tmp_op_ptr, loads, obj, tstate1, v1, v2, v5, v6, v7
+	tstate1 = (*T_unpickle_context)(unsafe.Pointer(ctx)).Ftstate
+	**(**uintptr)(__ccgo_up(bp)) = libc.UintptrFromInt32(0)
+	loads = XPyImport_ImportModuleAttrString(tls, __ccgo_ts+135318, __ccgo_ts+135368)
+	if loads == libc.UintptrFromInt32(0) {
+		return libc.UintptrFromInt32(0)
+	}
+
+	obj = XPyObject_CallOneArg(tls, loads, pickled)
+	if obj != libc.UintptrFromInt32(0) {
+		goto finally
+	}
+	if ctx == libc.UintptrFromInt32(0) {
+		goto finally
+	}
+	**(**uintptr)(__ccgo_up(bp)) = X_PyErr_GetRaisedException(tls, tstate1)
+	if !(_check_missing___main___attr(tls, **(**uintptr)(__ccgo_up(bp))) != 0) {
+		goto finally
+	}
+
+	if _ensure_isolated_main(tls, tstate1, ctx+8) < 0 {
+		goto finally
+	}
+	if _apply_isolated_main(tls, tstate1, ctx+8) < 0 {
+		goto finally
+	}
+
+	obj = XPyObject_CallOneArg(tls, loads, pickled)
+	_restore_main(tls, tstate1, ctx+8)
+	if obj == libc.UintptrFromInt32(0) {
+		goto finally
+	}
+	_tmp_op_ptr = bp
+	_tmp_old_op = **(**uintptr)(__ccgo_up(_tmp_op_ptr))
+	if _tmp_old_op != libc.UintptrFromInt32(0) {
+		**(**uintptr)(__ccgo_up(_tmp_op_ptr)) = libc.UintptrFromInt32(0)
+		v1 = _tmp_old_op
+		v2 = libc.BoolInt32(int32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
+		goto _3
+	_3:
+		if v2 != 0 {
+			goto _4
+		}
+		v6 = v1
+		*(*Tuint32_t)(unsafe.Pointer(v6)) = *(*Tuint32_t)(unsafe.Pointer(v6)) - 1
+		v5 = *(*Tuint32_t)(unsafe.Pointer(v6))
+		if v5 == libc.Uint32FromInt32(0) {
+			X_Py_Dealloc(tls, v1)
+		}
+	_4:
+	}
+	goto finally
+finally:
+	;
+	if **(**uintptr)(__ccgo_up(bp)) != libc.UintptrFromInt32(0) {
+		v1 = tstate1
+		if (*TPyThreadState)(unsafe.Pointer(v1)).Fcurrent_exception == libc.UintptrFromInt32(0) {
+			v6 = libc.UintptrFromInt32(0)
+			goto _9
+		}
+		v7 = (*TPyObject)(unsafe.Pointer((*TPyThreadState)(unsafe.Pointer(v1)).Fcurrent_exception)).Fob_type
+		goto _11
+	_11:
+		v6 = v7
+		goto _9
+	_9:
+		if v6 != 0 {
+			_sync_module_capture_exc(tls, tstate1, ctx+8)
+		}
+
+		X_PyErr_SetRaisedException(tls, tstate1, **(**uintptr)(__ccgo_up(bp)))
+	}
+	v1 = loads
+	v2 = libc.BoolInt32(int32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
+	goto _14
+_14:
+	if v2 != 0 {
+		goto _15
+	}
+	v6 = v1
+	*(*Tuint32_t)(unsafe.Pointer(v6)) = *(*Tuint32_t)(unsafe.Pointer(v6)) - 1
+	v5 = *(*Tuint32_t)(unsafe.Pointer(v6))
+	if v5 == libc.Uint32FromInt32(0) {
+		X_Py_Dealloc(tls, v1)
+	}
+_15:
+	;
+	return obj
+}
+
+type T_pickle_xid_context = struct {
+	Fmainfile struct {
+		Futf8  uintptr
+		Flen1  Tsize_t
+		F_utf8 [1025]int8
+	}
+}
+
+func __set_pickle_xid_context(tls *libc.TLS, tstate uintptr, ctx uintptr) (r int32) {
+	var len1 TPy_ssize_t
+	_ = len1
+
+	len1 = __Py_GetMainfile(tls, ctx+16, uint64(MMAXPATHLEN))
+	if len1 < 0 {
+
+		XPyErr_Clear(tls)
+	} else {
+		if len1 > 0 {
+			(*T_pickle_xid_context)(unsafe.Pointer(ctx)).Fmainfile.Futf8 = ctx + 16
+			(*T_pickle_xid_context)(unsafe.Pointer(ctx)).Fmainfile.Flen1 = uint64(len1)
+		}
+	}
+	return 0
+}
+
+type T_shared_pickle_data = struct {
+	Fpickled T_PyBytes_data_t
+	Fctx     T_pickle_xid_context
+}
+
+func X_PyPickle_LoadFromXIData(tls *libc.TLS, xidata uintptr) (r uintptr) {
+	bp := tls.Alloc(1072)
+	defer tls.Free(1072)
+	var cause, obj, pickled, shared, tstate, v1, v3 uintptr
+	var v4 int32
+	var v7 Tuint32_t
+	var _ T_unpickle_context
+	_, _, _, _, _, _, _, _, _ = cause, obj, pickled, shared, tstate, v1, v3, v4, v7
+	v1 = (*_ccgo_tls_tstate(tls))
+	goto _2
+_2:
+	tstate = v1
+	shared = (*T_PyXIData_t)(unsafe.Pointer(xidata)).Fdata
+
+	pickled = XPyMemoryView_FromMemory(tls, (*T_shared_pickle_data)(unsafe.Pointer(shared)).Fpickled.Fbytes, (*T_shared_pickle_data)(unsafe.Pointer(shared)).Fpickled.Flen1, int32(MPyBUF_READ))
+	if pickled == libc.UintptrFromInt32(0) {
+		return libc.UintptrFromInt32(0)
+	}
+
+	**(**T_unpickle_context)(__ccgo_up(bp)) = T_unpickle_context{
+		Ftstate: tstate,
+		Fmain1: Tsync_module{
+			Ffilename: (*T_shared_pickle_data)(unsafe.Pointer(shared)).Fctx.Fmainfile.Futf8,
+		},
+	}
+	obj = __PyPickle_Loads(tls, bp, pickled)
+	v1 = pickled
+	v4 = libc.BoolInt32(int32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
+	goto _5
+_5:
+	if v4 != 0 {
+		goto _6
+	}
+	v3 = v1
+	*(*Tuint32_t)(unsafe.Pointer(v3)) = *(*Tuint32_t)(unsafe.Pointer(v3)) - 1
+	v7 = *(*Tuint32_t)(unsafe.Pointer(v3))
+	if v7 == libc.Uint32FromInt32(0) {
+		X_Py_Dealloc(tls, v1)
+	}
+_6:
+	;
+	__unpickle_context_clear(tls, bp)
+	if obj == libc.UintptrFromInt32(0) {
+		cause = X_PyErr_GetRaisedException(tls, tstate)
+		__set_xid_lookup_failure(tls, tstate, libc.UintptrFromInt32(0), __ccgo_ts+135374, cause)
+		v1 = cause
+		v4 = libc.BoolInt32(int32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
+		goto _11
+	_11:
+		if v4 != 0 {
+			goto _12
+		}
+		v3 = v1
+		*(*Tuint32_t)(unsafe.Pointer(v3)) = *(*Tuint32_t)(unsafe.Pointer(v3)) - 1
+		v7 = *(*Tuint32_t)(unsafe.Pointer(v3))
+		if v7 == libc.Uint32FromInt32(0) {
+			X_Py_Dealloc(tls, v1)
+		}
+	_12:
+	}
+	return obj
+}
+
+func X_PyPickle_GetXIData(tls *libc.TLS, tstate uintptr, obj uintptr, xidata uintptr) (r int32) {
+	bp := tls.Alloc(16)
+	defer tls.Free(16)
+	var bytes, cause, shared, v1, v6 uintptr
+	var size Tsize_t
+	var v5 Tuint32_t
+	var v2 int32
+	var _ T_pickle_context
+	_, _, _, _, _, _, _, _ = bytes, cause, shared, size, v1, v2, v5, v6
+
+	**(**T_pickle_context)(__ccgo_up(bp)) = T_pickle_context{
+		Ftstate: tstate,
+	}
+	bytes = __PyPickle_Dumps(tls, bp, obj)
+	if bytes == libc.UintptrFromInt32(0) {
+		cause = X_PyErr_GetRaisedException(tls, tstate)
+		__set_xid_lookup_failure(tls, tstate, libc.UintptrFromInt32(0), __ccgo_ts+135404, cause)
+		v1 = cause
+		v2 = libc.BoolInt32(int32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
+		goto _3
+	_3:
+		if v2 != 0 {
+			goto _4
+		}
+		v6 = v1
+		*(*Tuint32_t)(unsafe.Pointer(v6)) = *(*Tuint32_t)(unsafe.Pointer(v6)) - 1
+		v5 = *(*Tuint32_t)(unsafe.Pointer(v6))
+		if v5 == libc.Uint32FromInt32(0) {
+			X_Py_Dealloc(tls, v1)
+		}
+	_4:
+		;
+		return -int32(1)
+	}
+
+	size = uint64(1064)
+	shared = X_PyBytes_GetXIDataWrapped(tls, tstate, bytes, size, __ccgo_fp(X_PyPickle_LoadFromXIData), xidata)
+	v1 = bytes
+	v2 = libc.BoolInt32(int32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
+	goto _9
+_9:
+	if v2 != 0 {
+		goto _10
+	}
+	v6 = v1
+	*(*Tuint32_t)(unsafe.Pointer(v6)) = *(*Tuint32_t)(unsafe.Pointer(v6)) - 1
+	v5 = *(*Tuint32_t)(unsafe.Pointer(v6))
+	if v5 == libc.Uint32FromInt32(0) {
+		X_Py_Dealloc(tls, v1)
+	}
+_10:
+	;
+	if shared == libc.UintptrFromInt32(0) {
+		return -int32(1)
+	}
+
+	if __set_pickle_xid_context(tls, tstate, shared+16) < 0 {
+		__xidata_clear(tls, xidata)
+		return -int32(1)
+	}
+	return 0
+}
+
+func X_PyMarshal_ReadObjectFromXIData(tls *libc.TLS, xidata uintptr) (r uintptr) {
+	var cause, obj, shared, tstate, v1, v3 uintptr
+	var v4 int32
+	var v7 Tuint32_t
+	_, _, _, _, _, _, _, _ = cause, obj, shared, tstate, v1, v3, v4, v7
+	v1 = (*_ccgo_tls_tstate(tls))
+	goto _2
+_2:
+	tstate = v1
+	shared = (*T_PyXIData_t)(unsafe.Pointer(xidata)).Fdata
+	obj = XPyMarshal_ReadObjectFromString(tls, (*T_PyBytes_data_t)(unsafe.Pointer(shared)).Fbytes, (*T_PyBytes_data_t)(unsafe.Pointer(shared)).Flen1)
+	if obj == libc.UintptrFromInt32(0) {
+		cause = X_PyErr_GetRaisedException(tls, tstate)
+		__set_xid_lookup_failure(tls, tstate, libc.UintptrFromInt32(0), __ccgo_ts+135432, cause)
+		v1 = cause
+		v4 = libc.BoolInt32(int32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
+		goto _5
+	_5:
+		if v4 != 0 {
+			goto _6
+		}
+		v3 = v1
+		*(*Tuint32_t)(unsafe.Pointer(v3)) = *(*Tuint32_t)(unsafe.Pointer(v3)) - 1
+		v7 = *(*Tuint32_t)(unsafe.Pointer(v3))
+		if v7 == libc.Uint32FromInt32(0) {
+			X_Py_Dealloc(tls, v1)
+		}
+	_6:
+		;
+		return libc.UintptrFromInt32(0)
+	}
+	return obj
+}
+
+func X_PyMarshal_GetXIData(tls *libc.TLS, tstate uintptr, obj uintptr, xidata uintptr) (r int32) {
+	var bytes, cause, shared, v1, v6 uintptr
+	var size Tsize_t
+	var v5 Tuint32_t
+	var v2 int32
+	_, _, _, _, _, _, _, _ = bytes, cause, shared, size, v1, v2, v5, v6
+	bytes = XPyMarshal_WriteObjectToString(tls, obj, int32(MPy_MARSHAL_VERSION))
+	if bytes == libc.UintptrFromInt32(0) {
+		cause = X_PyErr_GetRaisedException(tls, tstate)
+		__set_xid_lookup_failure(tls, tstate, libc.UintptrFromInt32(0), __ccgo_ts+135465, cause)
+		v1 = cause
+		v2 = libc.BoolInt32(int32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
+		goto _3
+	_3:
+		if v2 != 0 {
+			goto _4
+		}
+		v6 = v1
+		*(*Tuint32_t)(unsafe.Pointer(v6)) = *(*Tuint32_t)(unsafe.Pointer(v6)) - 1
+		v5 = *(*Tuint32_t)(unsafe.Pointer(v6))
+		if v5 == libc.Uint32FromInt32(0) {
+			X_Py_Dealloc(tls, v1)
+		}
+	_4:
+		;
+		return -int32(1)
+	}
+	size = uint64(16)
+	shared = X_PyBytes_GetXIDataWrapped(tls, tstate, bytes, size, __ccgo_fp(X_PyMarshal_ReadObjectFromXIData), xidata)
+	v1 = bytes
+	v2 = libc.BoolInt32(int32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
+	goto _9
+_9:
+	if v2 != 0 {
+		goto _10
+	}
+	v6 = v1
+	*(*Tuint32_t)(unsafe.Pointer(v6)) = *(*Tuint32_t)(unsafe.Pointer(v6)) - 1
+	v5 = *(*Tuint32_t)(unsafe.Pointer(v6))
+	if v5 == libc.Uint32FromInt32(0) {
+		X_Py_Dealloc(tls, v1)
+	}
+_10:
+	;
+	if shared == libc.UintptrFromInt32(0) {
+		return -int32(1)
+	}
+	return 0
+}
+
+func _verify_script(tls *libc.TLS, tstate uintptr, co uintptr, checked int32, pure int32) (r int32) {
+	var builtins uintptr
+	_ = builtins
+
+	builtins = libc.UintptrFromInt32(0)
+	if pure != 0 {
+		builtins = X_PyEval_GetBuiltins(tls, tstate)
+	}
+	if checked != 0 {
+	} else {
+		if X_PyCode_VerifyStateless(tls, tstate, co, libc.UintptrFromInt32(0), libc.UintptrFromInt32(0), builtins) < 0 {
+			return -int32(1)
+		}
+	}
+
+	if (*TPyCodeObject)(unsafe.Pointer(co)).Fco_argcount > 0 || (*TPyCodeObject)(unsafe.Pointer(co)).Fco_posonlyargcount > 0 || (*TPyCodeObject)(unsafe.Pointer(co)).Fco_kwonlyargcount > 0 || (*TPyCodeObject)(unsafe.Pointer(co)).Fco_flags&(libc.Int32FromInt32(MCO_VARARGS)|libc.Int32FromInt32(MCO_VARKEYWORDS)) != 0 {
+		X_PyErr_SetString(tls, tstate, XPyExc_ValueError, __ccgo_ts+135496)
+		return -int32(1)
+	}
+
+	if !(X_PyCode_ReturnsOnlyNone(tls, co) != 0) {
+		X_PyErr_SetString(tls, tstate, XPyExc_ValueError, __ccgo_ts+135525)
+		return -int32(1)
+	}
+	return 0
+}
+
+func _get_script_xidata(tls *libc.TLS, tstate uintptr, obj uintptr, pure int32, xidata uintptr) (r int32) {
+	bp := tls.Alloc(32)
+	defer tls.Free(32)
+	var cause, code, filename, script, v3, v5, v9 uintptr
+	var checked, optimize, res, v1 int32
+	var cur_refcnt, v20 Tuint32_t
+	var _ TPyCompilerFlags
+	var _ uintptr
+	_, _, _, _, _, _, _, _, _, _, _, _, _ = cause, checked, code, cur_refcnt, filename, optimize, res, script, v1, v20, v3, v5, v9
+
+	code = libc.UintptrFromInt32(0)
+	checked = 0
+	v3 = (*TPyObject)(unsafe.Pointer(obj)).Fob_type
+	goto _4
+_4:
+	v1 = libc.BoolInt32(v3 == uintptr(unsafe.Pointer(&XPyCode_Type)))
+	goto _2
+_2:
+	if v1 != 0 {
+		code = obj
+		v3 = code
+		cur_refcnt = *(*Tuint32_t)(unsafe.Pointer(v3))
+		if uint64(cur_refcnt) >= libc.Uint64FromUint64(3)<<libc.Int32FromInt32(30) {
+			goto _6
+		}
+		*(*Tuint32_t)(unsafe.Pointer(v3)) = cur_refcnt + uint32(1)
+	_6:
+	} else {
+		v3 = (*TPyObject)(unsafe.Pointer(obj)).Fob_type
+		goto _10
+	_10:
+		v1 = libc.BoolInt32(v3 == uintptr(unsafe.Pointer(&XPyFunction_Type)))
+		goto _8
+	_8:
+		if v1 != 0 {
+			v5 = (*TPyFunctionObject)(unsafe.Pointer(obj)).Ffunc_code
+			goto _12
+		_12:
+			code = v5
+			v3 = code
+			cur_refcnt = *(*Tuint32_t)(unsafe.Pointer(v3))
+			if uint64(cur_refcnt) >= libc.Uint64FromUint64(3)<<libc.Int32FromInt32(30) {
+				goto _14
+			}
+			*(*Tuint32_t)(unsafe.Pointer(v3)) = cur_refcnt + uint32(1)
+		_14:
+			;
+			if pure != 0 {
+				if X_PyFunction_VerifyStateless(tls, tstate, obj) < 0 {
+					goto error
+				}
+				checked = int32(1)
+			}
+		} else {
+			filename = __ccgo_ts + 135567
+			optimize = 0
+			**(**TPyCompilerFlags)(__ccgo_up(bp)) = TPyCompilerFlags{
+				Fcf_feature_version: int32(MPY_MINOR_VERSION),
+			}
+			(**(**TPyCompilerFlags)(__ccgo_up(bp))).Fcf_flags = int32(MPyCF_SOURCE_IS_UTF8)
+			**(**uintptr)(__ccgo_up(bp + 8)) = libc.UintptrFromInt32(0)
+			script = X_Py_SourceAsString(tls, obj, __ccgo_ts+135576, __ccgo_ts+135576, bp, bp+8)
+			if script == libc.UintptrFromInt32(0) {
+				if !(X_PyObject_SupportedAsScript(tls, obj) != 0) {
+
+					X_PyErr_Format(tls, tstate, XPyExc_TypeError, __ccgo_ts+135580, libc.VaList(bp+24, obj))
+				}
+				goto error
+			}
+			code = XPy_CompileStringExFlags(tls, script, filename, int32(MPy_file_input), bp, optimize)
+			v3 = **(**uintptr)(__ccgo_up(bp + 8))
+			if v3 != libc.UintptrFromInt32(0) {
+				v5 = v3
+				v1 = libc.BoolInt32(int32(*(*Tuint32_t)(unsafe.Pointer(v5))) < 0)
+				goto _18
+			_18:
+				if v1 != 0 {
+					goto _19
+				}
+				v9 = v5
+				*(*Tuint32_t)(unsafe.Pointer(v9)) = *(*Tuint32_t)(unsafe.Pointer(v9)) - 1
+				v20 = *(*Tuint32_t)(unsafe.Pointer(v9))
+				if v20 == libc.Uint32FromInt32(0) {
+					X_Py_Dealloc(tls, v5)
+				}
+			_19:
+			}
+			if code == libc.UintptrFromInt32(0) {
+				goto error
+			}
+
+			if !(pure != 0) {
+
+				checked = int32(1)
+			}
+		}
+	}
+
+	if _verify_script(tls, tstate, code, checked, pure) < 0 {
+		goto error
+	}
+
+	res = X_PyCode_GetXIData(tls, tstate, code, xidata)
+	v3 = code
+	v1 = libc.BoolInt32(int32(*(*Tuint32_t)(unsafe.Pointer(v3))) < 0)
+	goto _24
+_24:
+	if v1 != 0 {
+		goto _25
+	}
+	v5 = v3
+	*(*Tuint32_t)(unsafe.Pointer(v5)) = *(*Tuint32_t)(unsafe.Pointer(v5)) - 1
+	v20 = *(*Tuint32_t)(unsafe.Pointer(v5))
+	if v20 == libc.Uint32FromInt32(0) {
+		X_Py_Dealloc(tls, v3)
+	}
+_25:
+	;
+	if res < 0 {
+		return -int32(1)
+	}
+	return 0
+	goto error
+error:
+	;
+	v3 = code
+	if v3 != libc.UintptrFromInt32(0) {
+		v5 = v3
+		v1 = libc.BoolInt32(int32(*(*Tuint32_t)(unsafe.Pointer(v5))) < 0)
+		goto _31
+	_31:
+		if v1 != 0 {
+			goto _32
+		}
+		v9 = v5
+		*(*Tuint32_t)(unsafe.Pointer(v9)) = *(*Tuint32_t)(unsafe.Pointer(v9)) - 1
+		v20 = *(*Tuint32_t)(unsafe.Pointer(v9))
+		if v20 == libc.Uint32FromInt32(0) {
+			X_Py_Dealloc(tls, v5)
+		}
+	_32:
+	}
+	cause = X_PyErr_GetRaisedException(tls, tstate)
+	__set_xid_lookup_failure(tls, tstate, libc.UintptrFromInt32(0), __ccgo_ts+135602, cause)
+	v3 = cause
+	v1 = libc.BoolInt32(int32(*(*Tuint32_t)(unsafe.Pointer(v3))) < 0)
+	goto _37
+_37:
+	if v1 != 0 {
+		goto _38
+	}
+	v5 = v3
+	*(*Tuint32_t)(unsafe.Pointer(v5)) = *(*Tuint32_t)(unsafe.Pointer(v5)) - 1
+	v20 = *(*Tuint32_t)(unsafe.Pointer(v5))
+	if v20 == libc.Uint32FromInt32(0) {
+		X_Py_Dealloc(tls, v3)
+	}
+_38:
+	;
+	return -int32(1)
+}
+
+func X_PyCode_GetScriptXIData(tls *libc.TLS, tstate uintptr, obj uintptr, xidata uintptr) (r int32) {
+	return _get_script_xidata(tls, tstate, obj, 0, xidata)
+}
+
+func X_PyCode_GetPureScriptXIData(tls *libc.TLS, tstate uintptr, obj uintptr, xidata uintptr) (r int32) {
+	return _get_script_xidata(tls, tstate, obj, int32(1), xidata)
+}
+
+func X_PyXIData_NewObject(tls *libc.TLS, xidata uintptr) (r uintptr) {
+	return (*(*func(*libc.TLS, uintptr) uintptr)(unsafe.Pointer(&struct{ uintptr }{(*T_PyXIData_t)(unsafe.Pointer(xidata)).Fnew_object})))(tls, xidata)
+}
+
+func __call_clear_xidata(tls *libc.TLS, data uintptr) (r int32) {
+	__xidata_clear(tls, data)
+	return 0
+}
+
+func __xidata_release(tls *libc.TLS, xidata uintptr, rawfree int32) (r int32) {
+	var interp uintptr
+	_ = interp
+	if ((*T_PyXIData_t)(unsafe.Pointer(xidata)).Fdata == libc.UintptrFromInt32(0) || (*T_PyXIData_t)(unsafe.Pointer(xidata)).Ffree == libc.UintptrFromInt32(0)) && (*T_PyXIData_t)(unsafe.Pointer(xidata)).Fobj == libc.UintptrFromInt32(0) {
+
+		if rawfree != 0 {
+			XPyMem_RawFree(tls, xidata)
+		} else {
+			(*T_PyXIData_t)(unsafe.Pointer(xidata)).Fdata = libc.UintptrFromInt32(0)
+		}
+		return 0
+	}
+
+	interp = X_PyInterpreterState_LookUpID(tls, (*T_PyXIData_t)(unsafe.Pointer(xidata)).Finterpid)
+	if interp == libc.UintptrFromInt32(0) {
+
+		if rawfree != 0 {
+			XPyMem_RawFree(tls, xidata)
+		}
+		return -int32(1)
+	}
+
+	if rawfree != 0 {
+		return X_Py_CallInInterpreterAndRawFree(tls, interp, __ccgo_fp(__call_clear_xidata), xidata)
+	} else {
+		return X_Py_CallInInterpreter(tls, interp, __ccgo_fp(__call_clear_xidata), xidata)
+	}
+	return r
+}
+
+func X_PyXIData_Release(tls *libc.TLS, xidata uintptr) (r int32) {
+	return __xidata_release(tls, xidata, 0)
+}
+
+func X_PyXIData_ReleaseAndRawFree(tls *libc.TLS, xidata uintptr) (r int32) {
+	return __xidata_release(tls, xidata, int32(1))
+}
+
+func __copy_string_obj_raw(tls *libc.TLS, strobj uintptr, p_size uintptr) (r uintptr) {
+	bp := tls.Alloc(16)
+	defer tls.Free(16)
+	var copied, str uintptr
+	var _ TPy_ssize_t
+	_, _ = copied, str
+	**(**TPy_ssize_t)(__ccgo_up(bp)) = int64(-int32(1))
+	str = XPyUnicode_AsUTF8AndSize(tls, strobj, bp)
+	if str == libc.UintptrFromInt32(0) {
+		return libc.UintptrFromInt32(0)
+	}
+	if **(**TPy_ssize_t)(__ccgo_up(bp)) != int64(libc.Xstrlen(tls, str)) {
+		XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+135628)
+		return libc.UintptrFromInt32(0)
+	}
+	copied = XPyMem_RawMalloc(tls, uint64(**(**TPy_ssize_t)(__ccgo_up(bp))+int64(1)))
+	if copied == libc.UintptrFromInt32(0) {
+		XPyErr_NoMemory(tls)
+		return libc.UintptrFromInt32(0)
+	}
+	libc.Xstrcpy(tls, copied, str)
+	if p_size != libc.UintptrFromInt32(0) {
+		**(**TPy_ssize_t)(__ccgo_up(p_size)) = **(**TPy_ssize_t)(__ccgo_up(bp))
+	}
+	return copied
+}
+
+func __convert_exc_to_TracebackException(tls *libc.TLS, exc uintptr, p_tbexc uintptr) (r int32) {
+	bp := tls.Alloc(16)
+	defer tls.Free(16)
+	var args, create, kwargs, tbexc, tbexc_type, v1, v6, v7 uintptr
+	var v5 Tuint32_t
+	var v2 int32
+	_, _, _, _, _, _, _, _, _, _ = args, create, kwargs, tbexc, tbexc_type, v1, v2, v5, v6, v7
+	args = libc.UintptrFromInt32(0)
+	kwargs = libc.UintptrFromInt32(0)
+	create = libc.UintptrFromInt32(0)
+
+	tbexc_type = XPyImport_ImportModuleAttrString(tls, __ccgo_ts+135658, __ccgo_ts+135668)
+	if tbexc_type == libc.UintptrFromInt32(0) {
+		return -int32(1)
+	}
+	create = XPyObject_GetAttrString(tls, tbexc_type, __ccgo_ts+135687)
+	v1 = tbexc_type
+	v2 = libc.BoolInt32(int32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
+	goto _3
+_3:
+	if v2 != 0 {
+		goto _4
+	}
+	v6 = v1
+	*(*Tuint32_t)(unsafe.Pointer(v6)) = *(*Tuint32_t)(unsafe.Pointer(v6)) - 1
+	v5 = *(*Tuint32_t)(unsafe.Pointer(v6))
+	if v5 == libc.Uint32FromInt32(0) {
+		X_Py_Dealloc(tls, v1)
+	}
+_4:
+	;
+	if create == libc.UintptrFromInt32(0) {
+		return -int32(1)
+	}
+	args = XPyTuple_Pack(tls, int64(1), libc.VaList(bp+8, exc))
+	if args == libc.UintptrFromInt32(0) {
+		goto error
+	}
+	kwargs = XPyDict_New(tls)
+	if kwargs == libc.UintptrFromInt32(0) {
+		goto error
+	}
+	if XPyDict_SetItemString(tls, kwargs, __ccgo_ts+135702, uintptr(unsafe.Pointer(&X_Py_FalseStruct))) < 0 {
+		goto error
+	}
+	if XPyDict_SetItemString(tls, kwargs, __ccgo_ts+135716, uintptr(unsafe.Pointer(&X_Py_FalseStruct))) < 0 {
+		goto error
+	}
+	tbexc = XPyObject_Call(tls, create, args, kwargs)
+	v1 = args
+	v2 = libc.BoolInt32(int32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
+	goto _9
+_9:
+	if v2 != 0 {
+		goto _10
+	}
+	v6 = v1
+	*(*Tuint32_t)(unsafe.Pointer(v6)) = *(*Tuint32_t)(unsafe.Pointer(v6)) - 1
+	v5 = *(*Tuint32_t)(unsafe.Pointer(v6))
+	if v5 == libc.Uint32FromInt32(0) {
+		X_Py_Dealloc(tls, v1)
+	}
+_10:
+	;
+	v1 = kwargs
+	v2 = libc.BoolInt32(int32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
+	goto _15
+_15:
+	if v2 != 0 {
+		goto _16
+	}
+	v6 = v1
+	*(*Tuint32_t)(unsafe.Pointer(v6)) = *(*Tuint32_t)(unsafe.Pointer(v6)) - 1
+	v5 = *(*Tuint32_t)(unsafe.Pointer(v6))
+	if v5 == libc.Uint32FromInt32(0) {
+		X_Py_Dealloc(tls, v1)
+	}
+_16:
+	;
+	v1 = create
+	v2 = libc.BoolInt32(int32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
+	goto _21
+_21:
+	if v2 != 0 {
+		goto _22
+	}
+	v6 = v1
+	*(*Tuint32_t)(unsafe.Pointer(v6)) = *(*Tuint32_t)(unsafe.Pointer(v6)) - 1
+	v5 = *(*Tuint32_t)(unsafe.Pointer(v6))
+	if v5 == libc.Uint32FromInt32(0) {
+		X_Py_Dealloc(tls, v1)
+	}
+_22:
+	;
+	if tbexc == libc.UintptrFromInt32(0) {
+		goto error
+	}
+	**(**uintptr)(__ccgo_up(p_tbexc)) = tbexc
+	return 0
+	goto error
+error:
+	;
+	v1 = args
+	if v1 != libc.UintptrFromInt32(0) {
+		v6 = v1
+		v2 = libc.BoolInt32(int32(*(*Tuint32_t)(unsafe.Pointer(v6))) < 0)
+		goto _28
+	_28:
+		if v2 != 0 {
+			goto _29
+		}
+		v7 = v6
+		*(*Tuint32_t)(unsafe.Pointer(v7)) = *(*Tuint32_t)(unsafe.Pointer(v7)) - 1
+		v5 = *(*Tuint32_t)(unsafe.Pointer(v7))
+		if v5 == libc.Uint32FromInt32(0) {
+			X_Py_Dealloc(tls, v6)
+		}
+	_29:
+	}
+	v1 = kwargs
+	if v1 != libc.UintptrFromInt32(0) {
+		v6 = v1
+		v2 = libc.BoolInt32(int32(*(*Tuint32_t)(unsafe.Pointer(v6))) < 0)
+		goto _35
+	_35:
+		if v2 != 0 {
+			goto _36
+		}
+		v7 = v6
+		*(*Tuint32_t)(unsafe.Pointer(v7)) = *(*Tuint32_t)(unsafe.Pointer(v7)) - 1
+		v5 = *(*Tuint32_t)(unsafe.Pointer(v7))
+		if v5 == libc.Uint32FromInt32(0) {
+			X_Py_Dealloc(tls, v6)
+		}
+	_36:
+	}
+	v1 = create
+	if v1 != libc.UintptrFromInt32(0) {
+		v6 = v1
+		v2 = libc.BoolInt32(int32(*(*Tuint32_t)(unsafe.Pointer(v6))) < 0)
+		goto _42
+	_42:
+		if v2 != 0 {
+			goto _43
+		}
+		v7 = v6
+		*(*Tuint32_t)(unsafe.Pointer(v7)) = *(*Tuint32_t)(unsafe.Pointer(v7)) - 1
+		v5 = *(*Tuint32_t)(unsafe.Pointer(v7))
+		if v5 == libc.Uint32FromInt32(0) {
+			X_Py_Dealloc(tls, v6)
+		}
+	_43:
+	}
+	return -int32(1)
+}
+
+func __format_TracebackException(tls *libc.TLS, tbexc uintptr) (r uintptr) {
+	bp := tls.Alloc(16)
+	defer tls.Free(16)
+	var formatted, formatted_obj, lines, v1, v6 uintptr
+	var v5 Tuint32_t
+	var v2 int32
+	var _ TPy_ssize_t
+	_, _, _, _, _, _, _ = formatted, formatted_obj, lines, v1, v2, v5, v6
+	lines = XPyObject_CallMethod(tls, tbexc, __ccgo_ts+48873, libc.UintptrFromInt32(0), 0)
+	if lines == libc.UintptrFromInt32(0) {
+		return libc.UintptrFromInt32(0)
+	}
+	formatted_obj = XPyUnicode_Join(tls, uintptr(unsafe.Pointer(&X_PyRuntime))+13248+20712+752, lines)
+	v1 = lines
+	v2 = libc.BoolInt32(int32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
+	goto _3
+_3:
+	if v2 != 0 {
+		goto _4
+	}
+	v6 = v1
+	*(*Tuint32_t)(unsafe.Pointer(v6)) = *(*Tuint32_t)(unsafe.Pointer(v6)) - 1
+	v5 = *(*Tuint32_t)(unsafe.Pointer(v6))
+	if v5 == libc.Uint32FromInt32(0) {
+		X_Py_Dealloc(tls, v1)
+	}
+_4:
+	;
+	if formatted_obj == libc.UintptrFromInt32(0) {
+		return libc.UintptrFromInt32(0)
+	}
+	**(**TPy_ssize_t)(__ccgo_up(bp)) = int64(-int32(1))
+	formatted = __copy_string_obj_raw(tls, formatted_obj, bp)
+	v1 = formatted_obj
+	v2 = libc.BoolInt32(int32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
+	goto _9
+_9:
+	if v2 != 0 {
+		goto _10
+	}
+	v6 = v1
+	*(*Tuint32_t)(unsafe.Pointer(v6)) = *(*Tuint32_t)(unsafe.Pointer(v6)) - 1
+	v5 = *(*Tuint32_t)(unsafe.Pointer(v6))
+	if v5 == libc.Uint32FromInt32(0) {
+		X_Py_Dealloc(tls, v1)
+	}
+_10:
+	;
+	if formatted == libc.UintptrFromInt32(0) || **(**TPy_ssize_t)(__ccgo_up(bp)) == 0 {
+		return formatted
+	}
+
+	if int32(**(**int8)(__ccgo_up(formatted + uintptr(**(**TPy_ssize_t)(__ccgo_up(bp))-int64(1))))) == int32('\n') {
+		**(**int8)(__ccgo_up(formatted + uintptr(**(**TPy_ssize_t)(__ccgo_up(bp))-int64(1)))) = int8('\000')
+	}
+	return formatted
+}
+
+func __release_xid_data(tls *libc.TLS, xidata uintptr, rawfree int32) (r int32) {
+	var exc uintptr
+	var res, v1 int32
+	_, _, _ = exc, res, v1
+	exc = XPyErr_GetRaisedException(tls)
+	if rawfree != 0 {
+		v1 = X_PyXIData_ReleaseAndRawFree(tls, xidata)
+	} else {
+		v1 = X_PyXIData_Release(tls, xidata)
+	}
+	res = v1
+	if res < 0 {
+
+		X_PyXIData_Clear(tls, libc.UintptrFromInt32(0), xidata)
+
+		XPyErr_Clear(tls)
+	}
+	XPyErr_SetRaisedException(tls, exc)
+	return res
+}
+
+func __excinfo_init_type_from_exception(tls *libc.TLS, info uintptr, exc uintptr) (r int32) {
+	var strobj, type1, v1, v3 uintptr
+	var v4 int32
+	var v7 Tuint32_t
+	_, _, _, _, _, _ = strobj, type1, v1, v3, v4, v7
+
+	strobj = libc.UintptrFromInt32(0)
+	v1 = (*TPyObject)(unsafe.Pointer(exc)).Fob_type
+	goto _2
+_2:
+	type1 = v1
+	if (*TPyTypeObject)(unsafe.Pointer(type1)).Ftp_flags&uint32(libc.Int32FromInt32(1)<<libc.Int32FromInt32(1)) != 0 {
+		(*T_excinfo_type)(unsafe.Pointer(info)).Fbuiltin = type1
+	} else {
+
+		(*T_excinfo_type)(unsafe.Pointer(info)).Fbuiltin = libc.UintptrFromInt32(0)
+	}
+
+	strobj = XPyType_GetName(tls, type1)
+	if strobj == libc.UintptrFromInt32(0) {
+		return -int32(1)
+	}
+	(*T_excinfo_type)(unsafe.Pointer(info)).Fname = __copy_string_obj_raw(tls, strobj, libc.UintptrFromInt32(0))
+	v1 = strobj
+	v4 = libc.BoolInt32(int32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
+	goto _5
+_5:
+	if v4 != 0 {
+		goto _6
+	}
+	v3 = v1
+	*(*Tuint32_t)(unsafe.Pointer(v3)) = *(*Tuint32_t)(unsafe.Pointer(v3)) - 1
+	v7 = *(*Tuint32_t)(unsafe.Pointer(v3))
+	if v7 == libc.Uint32FromInt32(0) {
+		X_Py_Dealloc(tls, v1)
+	}
+_6:
+	;
+	if (*T_excinfo_type)(unsafe.Pointer(info)).Fname == libc.UintptrFromInt32(0) {
+		return -int32(1)
+	}
+
+	strobj = XPyType_GetQualName(tls, type1)
+	if strobj == libc.UintptrFromInt32(0) {
+		return -int32(1)
+	}
+	(*T_excinfo_type)(unsafe.Pointer(info)).Fqualname = __copy_string_obj_raw(tls, strobj, libc.UintptrFromInt32(0))
+	v1 = strobj
+	v4 = libc.BoolInt32(int32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
+	goto _11
+_11:
+	if v4 != 0 {
+		goto _12
+	}
+	v3 = v1
+	*(*Tuint32_t)(unsafe.Pointer(v3)) = *(*Tuint32_t)(unsafe.Pointer(v3)) - 1
+	v7 = *(*Tuint32_t)(unsafe.Pointer(v3))
+	if v7 == libc.Uint32FromInt32(0) {
+		X_Py_Dealloc(tls, v1)
+	}
+_12:
+	;
+	if (*T_excinfo_type)(unsafe.Pointer(info)).Fqualname == libc.UintptrFromInt32(0) {
+		return -int32(1)
+	}
+
+	strobj = XPyType_GetModuleName(tls, type1)
+	if strobj == libc.UintptrFromInt32(0) {
+		return -int32(1)
+	}
+	(*T_excinfo_type)(unsafe.Pointer(info)).Fmodule = __copy_string_obj_raw(tls, strobj, libc.UintptrFromInt32(0))
+	v1 = strobj
+	v4 = libc.BoolInt32(int32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
+	goto _17
+_17:
+	if v4 != 0 {
+		goto _18
+	}
+	v3 = v1
+	*(*Tuint32_t)(unsafe.Pointer(v3)) = *(*Tuint32_t)(unsafe.Pointer(v3)) - 1
+	v7 = *(*Tuint32_t)(unsafe.Pointer(v3))
+	if v7 == libc.Uint32FromInt32(0) {
+		X_Py_Dealloc(tls, v1)
+	}
+_18:
+	;
+	if (*T_excinfo_type)(unsafe.Pointer(info)).Fmodule == libc.UintptrFromInt32(0) {
+		return -int32(1)
+	}
+	return 0
+}
+
+func __excinfo_init_type_from_object(tls *libc.TLS, info uintptr, exctype uintptr) (r int32) {
+	var strobj, v1, v6 uintptr
+	var v5 Tuint32_t
+	var v2 int32
+	_, _, _, _, _ = strobj, v1, v2, v5, v6
+	strobj = libc.UintptrFromInt32(0)
+
+	strobj = XPyObject_GetAttrString(tls, exctype, __ccgo_ts+25200)
+	if strobj == libc.UintptrFromInt32(0) {
+		return -int32(1)
+	}
+	(*T_excinfo_type)(unsafe.Pointer(info)).Fname = __copy_string_obj_raw(tls, strobj, libc.UintptrFromInt32(0))
+	v1 = strobj
+	v2 = libc.BoolInt32(int32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
+	goto _3
+_3:
+	if v2 != 0 {
+		goto _4
+	}
+	v6 = v1
+	*(*Tuint32_t)(unsafe.Pointer(v6)) = *(*Tuint32_t)(unsafe.Pointer(v6)) - 1
+	v5 = *(*Tuint32_t)(unsafe.Pointer(v6))
+	if v5 == libc.Uint32FromInt32(0) {
+		X_Py_Dealloc(tls, v1)
+	}
+_4:
+	;
+	if (*T_excinfo_type)(unsafe.Pointer(info)).Fname == libc.UintptrFromInt32(0) {
+		return -int32(1)
+	}
+
+	strobj = XPyObject_GetAttrString(tls, exctype, __ccgo_ts+25209)
+	if strobj == libc.UintptrFromInt32(0) {
+		return -int32(1)
+	}
+	(*T_excinfo_type)(unsafe.Pointer(info)).Fqualname = __copy_string_obj_raw(tls, strobj, libc.UintptrFromInt32(0))
+	v1 = strobj
+	v2 = libc.BoolInt32(int32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
+	goto _9
+_9:
+	if v2 != 0 {
+		goto _10
+	}
+	v6 = v1
+	*(*Tuint32_t)(unsafe.Pointer(v6)) = *(*Tuint32_t)(unsafe.Pointer(v6)) - 1
+	v5 = *(*Tuint32_t)(unsafe.Pointer(v6))
+	if v5 == libc.Uint32FromInt32(0) {
+		X_Py_Dealloc(tls, v1)
+	}
+_10:
+	;
+	if (*T_excinfo_type)(unsafe.Pointer(info)).Fqualname == libc.UintptrFromInt32(0) {
+		return -int32(1)
+	}
+
+	strobj = XPyObject_GetAttrString(tls, exctype, __ccgo_ts+41476)
+	if strobj == libc.UintptrFromInt32(0) {
+		return -int32(1)
+	}
+	(*T_excinfo_type)(unsafe.Pointer(info)).Fmodule = __copy_string_obj_raw(tls, strobj, libc.UintptrFromInt32(0))
+	v1 = strobj
+	v2 = libc.BoolInt32(int32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
+	goto _15
+_15:
+	if v2 != 0 {
+		goto _16
+	}
+	v6 = v1
+	*(*Tuint32_t)(unsafe.Pointer(v6)) = *(*Tuint32_t)(unsafe.Pointer(v6)) - 1
+	v5 = *(*Tuint32_t)(unsafe.Pointer(v6))
+	if v5 == libc.Uint32FromInt32(0) {
+		X_Py_Dealloc(tls, v1)
+	}
+_16:
+	;
+	if (*T_excinfo_type)(unsafe.Pointer(info)).Fmodule == libc.UintptrFromInt32(0) {
+		return -int32(1)
+	}
+	return 0
+}
+
+func __excinfo_clear_type(tls *libc.TLS, info uintptr) {
+	if (*T_excinfo_type)(unsafe.Pointer(info)).Fbuiltin != libc.UintptrFromInt32(0) {
+	}
+	if (*T_excinfo_type)(unsafe.Pointer(info)).Fname != libc.UintptrFromInt32(0) {
+		XPyMem_RawFree(tls, (*T_excinfo_type)(unsafe.Pointer(info)).Fname)
+	}
+	if (*T_excinfo_type)(unsafe.Pointer(info)).Fqualname != libc.UintptrFromInt32(0) {
+		XPyMem_RawFree(tls, (*T_excinfo_type)(unsafe.Pointer(info)).Fqualname)
+	}
+	if (*T_excinfo_type)(unsafe.Pointer(info)).Fmodule != libc.UintptrFromInt32(0) {
+		XPyMem_RawFree(tls, (*T_excinfo_type)(unsafe.Pointer(info)).Fmodule)
+	}
+	**(**T_excinfo_type)(__ccgo_up(info)) = T_excinfo_type{}
+}
+
+func __excinfo_normalize_type(tls *libc.TLS, info uintptr, p_module uintptr, p_qualname uintptr) {
+	var module, qualname uintptr
+	_, _ = module, qualname
+	if (*T_excinfo_type)(unsafe.Pointer(info)).Fname == libc.UintptrFromInt32(0) {
+
+		**(**uintptr)(__ccgo_up(p_module)) = libc.UintptrFromInt32(0)
+		**(**uintptr)(__ccgo_up(p_qualname)) = libc.UintptrFromInt32(0)
+		return
+	}
+	module = (*T_excinfo_type)(unsafe.Pointer(info)).Fmodule
+	qualname = (*T_excinfo_type)(unsafe.Pointer(info)).Fqualname
+	if qualname == libc.UintptrFromInt32(0) {
+		qualname = (*T_excinfo_type)(unsafe.Pointer(info)).Fname
+	}
+	if libc.Xstrcmp(tls, module, __ccgo_ts+73666) == 0 {
+		module = libc.UintptrFromInt32(0)
+	} else {
+		if libc.Xstrcmp(tls, module, __ccgo_ts+84699) == 0 {
+			module = libc.UintptrFromInt32(0)
+		}
+	}
+	**(**uintptr)(__ccgo_up(p_qualname)) = qualname
+	**(**uintptr)(__ccgo_up(p_module)) = module
+}
+
+func _excinfo_is_set(tls *libc.TLS, info uintptr) (r int32) {
+	return libc.BoolInt32((*T_PyXI_excinfo)(unsafe.Pointer(info)).Ftype1.Fname != libc.UintptrFromInt32(0) || (*T_PyXI_excinfo)(unsafe.Pointer(info)).Fmsg != libc.UintptrFromInt32(0))
+}
+
+func __PyXI_excinfo_clear(tls *libc.TLS, info uintptr) {
+	__excinfo_clear_type(tls, info)
+	if (*T_PyXI_excinfo)(unsafe.Pointer(info)).Fmsg != libc.UintptrFromInt32(0) {
+		XPyMem_RawFree(tls, (*T_PyXI_excinfo)(unsafe.Pointer(info)).Fmsg)
+	}
+	if (*T_PyXI_excinfo)(unsafe.Pointer(info)).Ferrdisplay != libc.UintptrFromInt32(0) {
+		XPyMem_RawFree(tls, (*T_PyXI_excinfo)(unsafe.Pointer(info)).Ferrdisplay)
+	}
+	**(**T_PyXI_excinfo)(__ccgo_up(info)) = T_PyXI_excinfo{}
+}
+
+func X_PyXI_excinfo_format(tls *libc.TLS, info uintptr) (r uintptr) {
+	bp := tls.Alloc(48)
+	defer tls.Free(48)
+	var _ uintptr
+	var _ uintptr
+	__excinfo_normalize_type(tls, info, bp, bp+8)
+	if **(**uintptr)(__ccgo_up(bp + 8)) != libc.UintptrFromInt32(0) {
+		if **(**uintptr)(__ccgo_up(bp)) != libc.UintptrFromInt32(0) {
+			if (*T_PyXI_excinfo)(unsafe.Pointer(info)).Fmsg != libc.UintptrFromInt32(0) {
+				return XPyUnicode_FromFormat(tls, __ccgo_ts+135729, libc.VaList(bp+24, **(**uintptr)(__ccgo_up(bp)), **(**uintptr)(__ccgo_up(bp + 8)), (*T_PyXI_excinfo)(unsafe.Pointer(info)).Fmsg))
+			} else {
+				return XPyUnicode_FromFormat(tls, __ccgo_ts+135739, libc.VaList(bp+24, **(**uintptr)(__ccgo_up(bp)), **(**uintptr)(__ccgo_up(bp + 8))))
+			}
+		} else {
+			if (*T_PyXI_excinfo)(unsafe.Pointer(info)).Fmsg != libc.UintptrFromInt32(0) {
+				return XPyUnicode_FromFormat(tls, __ccgo_ts+135745, libc.VaList(bp+24, **(**uintptr)(__ccgo_up(bp + 8)), (*T_PyXI_excinfo)(unsafe.Pointer(info)).Fmsg))
+			} else {
+				return XPyUnicode_FromString(tls, **(**uintptr)(__ccgo_up(bp + 8)))
+			}
+		}
+	} else {
+		if (*T_PyXI_excinfo)(unsafe.Pointer(info)).Fmsg != libc.UintptrFromInt32(0) {
+			return XPyUnicode_FromString(tls, (*T_PyXI_excinfo)(unsafe.Pointer(info)).Fmsg)
+		} else {
+			return uintptr(unsafe.Pointer(&X_Py_NoneStruct))
+		}
+	}
+	return r
+}
+
+func __PyXI_excinfo_InitFromException(tls *libc.TLS, info uintptr, exc uintptr) (r uintptr) {
+	bp := tls.Alloc(16)
+	defer tls.Free(16)
+	var failure, msgobj, v1, v6 uintptr
+	var v5 Tuint32_t
+	var v2 int32
+	var _ uintptr
+	_, _, _, _, _, _ = failure, msgobj, v1, v2, v5, v6
+	if XPyErr_GivenExceptionMatches(tls, exc, XPyExc_MemoryError) != 0 {
+		__PyXI_excinfo_clear(tls, info)
+		return libc.UintptrFromInt32(0)
+	}
+	failure = libc.UintptrFromInt32(0)
+	if __excinfo_init_type_from_exception(tls, info, exc) < 0 {
+		failure = __ccgo_ts + 135752
+		goto error
+	}
+
+	msgobj = XPyObject_Str(tls, exc)
+	if msgobj == libc.UintptrFromInt32(0) {
+		failure = __ccgo_ts + 135801
+		goto error
+	}
+	(*T_PyXI_excinfo)(unsafe.Pointer(info)).Fmsg = __copy_string_obj_raw(tls, msgobj, libc.UintptrFromInt32(0))
+	v1 = msgobj
+	v2 = libc.BoolInt32(int32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
+	goto _3
+_3:
+	if v2 != 0 {
+		goto _4
+	}
+	v6 = v1
+	*(*Tuint32_t)(unsafe.Pointer(v6)) = *(*Tuint32_t)(unsafe.Pointer(v6)) - 1
+	v5 = *(*Tuint32_t)(unsafe.Pointer(v6))
+	if v5 == libc.Uint32FromInt32(0) {
+		X_Py_Dealloc(tls, v1)
+	}
+_4:
+	;
+	if (*T_PyXI_excinfo)(unsafe.Pointer(info)).Fmsg == libc.UintptrFromInt32(0) {
+		failure = __ccgo_ts + 135834
+		goto error
+	}
+
+	**(**uintptr)(__ccgo_up(bp)) = libc.UintptrFromInt32(0)
+	if __convert_exc_to_TracebackException(tls, exc, bp) < 0 {
+		XPyErr_Clear(tls)
+	} else {
+		(*T_PyXI_excinfo)(unsafe.Pointer(info)).Ferrdisplay = __format_TracebackException(tls, **(**uintptr)(__ccgo_up(bp)))
+		v1 = **(**uintptr)(__ccgo_up(bp))
+		v2 = libc.BoolInt32(int32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
+		goto _9
+	_9:
+		if v2 != 0 {
+			goto _10
+		}
+		v6 = v1
+		*(*Tuint32_t)(unsafe.Pointer(v6)) = *(*Tuint32_t)(unsafe.Pointer(v6)) - 1
+		v5 = *(*Tuint32_t)(unsafe.Pointer(v6))
+		if v5 == libc.Uint32FromInt32(0) {
+			X_Py_Dealloc(tls, v1)
+		}
+	_10:
+		;
+		if (*T_PyXI_excinfo)(unsafe.Pointer(info)).Ferrdisplay == libc.UintptrFromInt32(0) {
+			XPyErr_Clear(tls)
+		}
+	}
+	return libc.UintptrFromInt32(0)
+	goto error
+error:
+	;
+	__PyXI_excinfo_clear(tls, info)
+	return failure
+}
+
+func __PyXI_excinfo_InitFromObject(tls *libc.TLS, info uintptr, obj uintptr) (r uintptr) {
+	var errdisplay, exctype, failure, msgobj, v1, v6 uintptr
+	var res, v2 int32
+	var v5 Tuint32_t
+	_, _, _, _, _, _, _, _, _ = errdisplay, exctype, failure, msgobj, res, v1, v2, v5, v6
+	failure = libc.UintptrFromInt32(0)
+	exctype = XPyObject_GetAttrString(tls, obj, __ccgo_ts+2992)
+	if exctype == libc.UintptrFromInt32(0) {
+		failure = __ccgo_ts + 135872
+		goto error
+	}
+	res = __excinfo_init_type_from_object(tls, info, exctype)
+	v1 = exctype
+	v2 = libc.BoolInt32(int32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
+	goto _3
+_3:
+	if v2 != 0 {
+		goto _4
+	}
+	v6 = v1
+	*(*Tuint32_t)(unsafe.Pointer(v6)) = *(*Tuint32_t)(unsafe.Pointer(v6)) - 1
+	v5 = *(*Tuint32_t)(unsafe.Pointer(v6))
+	if v5 == libc.Uint32FromInt32(0) {
+		X_Py_Dealloc(tls, v1)
+	}
+_4:
+	;
+	if res < 0 {
+		failure = __ccgo_ts + 135752
+		goto error
+	}
+
+	msgobj = XPyObject_GetAttrString(tls, obj, __ccgo_ts+28695)
+	if msgobj == libc.UintptrFromInt32(0) {
+		failure = __ccgo_ts + 135916
+		goto error
+	}
+	(*T_PyXI_excinfo)(unsafe.Pointer(info)).Fmsg = __copy_string_obj_raw(tls, msgobj, libc.UintptrFromInt32(0))
+	v1 = msgobj
+	v2 = libc.BoolInt32(int32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
+	goto _9
+_9:
+	if v2 != 0 {
+		goto _10
+	}
+	v6 = v1
+	*(*Tuint32_t)(unsafe.Pointer(v6)) = *(*Tuint32_t)(unsafe.Pointer(v6)) - 1
+	v5 = *(*Tuint32_t)(unsafe.Pointer(v6))
+	if v5 == libc.Uint32FromInt32(0) {
+		X_Py_Dealloc(tls, v1)
+	}
+_10:
+	;
+	if (*T_PyXI_excinfo)(unsafe.Pointer(info)).Fmsg == libc.UintptrFromInt32(0) {
+		failure = __ccgo_ts + 135834
+		goto error
+	}
+
+	errdisplay = XPyObject_GetAttrString(tls, obj, __ccgo_ts+135959)
+	if errdisplay == libc.UintptrFromInt32(0) {
+		failure = __ccgo_ts + 135970
+		goto error
+	}
+	(*T_PyXI_excinfo)(unsafe.Pointer(info)).Ferrdisplay = __copy_string_obj_raw(tls, errdisplay, libc.UintptrFromInt32(0))
+	v1 = errdisplay
+	v2 = libc.BoolInt32(int32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
+	goto _15
+_15:
+	if v2 != 0 {
+		goto _16
+	}
+	v6 = v1
+	*(*Tuint32_t)(unsafe.Pointer(v6)) = *(*Tuint32_t)(unsafe.Pointer(v6)) - 1
+	v5 = *(*Tuint32_t)(unsafe.Pointer(v6))
+	if v5 == libc.Uint32FromInt32(0) {
+		X_Py_Dealloc(tls, v1)
+	}
+_16:
+	;
+	if (*T_PyXI_excinfo)(unsafe.Pointer(info)).Ferrdisplay == libc.UintptrFromInt32(0) {
+		failure = __ccgo_ts + 136020
+		goto error
+	}
+	return libc.UintptrFromInt32(0)
+	goto error
+error:
+	;
+	__PyXI_excinfo_clear(tls, info)
+	return failure
+}
+
+func __PyXI_excinfo_Apply(tls *libc.TLS, info uintptr, exctype uintptr) {
+	var exc, formatted, tbexc, v1, v6 uintptr
+	var v5 Tuint32_t
+	var v2 int32
+	_, _, _, _, _, _, _ = exc, formatted, tbexc, v1, v2, v5, v6
+	tbexc = libc.UintptrFromInt32(0)
+	if (*T_PyXI_excinfo)(unsafe.Pointer(info)).Ferrdisplay != libc.UintptrFromInt32(0) {
+		tbexc = XPyUnicode_FromString(tls, (*T_PyXI_excinfo)(unsafe.Pointer(info)).Ferrdisplay)
+		if tbexc == libc.UintptrFromInt32(0) {
+			XPyErr_Clear(tls)
+		} else {
+			XPyErr_SetObject(tls, exctype, tbexc)
+			v1 = tbexc
+			v2 = libc.BoolInt32(int32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
+			goto _3
+		_3:
+			if v2 != 0 {
+				goto _4
+			}
+			v6 = v1
+			*(*Tuint32_t)(unsafe.Pointer(v6)) = *(*Tuint32_t)(unsafe.Pointer(v6)) - 1
+			v5 = *(*Tuint32_t)(unsafe.Pointer(v6))
+			if v5 == libc.Uint32FromInt32(0) {
+				X_Py_Dealloc(tls, v1)
+			}
+		_4:
+			;
+			return
+		}
+	}
+	formatted = X_PyXI_excinfo_format(tls, info)
+	XPyErr_SetObject(tls, exctype, formatted)
+	v1 = formatted
+	v2 = libc.BoolInt32(int32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
+	goto _9
+_9:
+	if v2 != 0 {
+		goto _10
+	}
+	v6 = v1
+	*(*Tuint32_t)(unsafe.Pointer(v6)) = *(*Tuint32_t)(unsafe.Pointer(v6)) - 1
+	v5 = *(*Tuint32_t)(unsafe.Pointer(v6))
+	if v5 == libc.Uint32FromInt32(0) {
+		X_Py_Dealloc(tls, v1)
+	}
+_10:
+	;
+	if tbexc != libc.UintptrFromInt32(0) {
+		exc = XPyErr_GetRaisedException(tls)
+		if XPyObject_SetAttrString(tls, exc, __ccgo_ts+136064, tbexc) < 0 {
+			XPyErr_Clear(tls)
+		}
+		v1 = tbexc
+		v2 = libc.BoolInt32(int32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
+		goto _15
+	_15:
+		if v2 != 0 {
+			goto _16
+		}
+		v6 = v1
+		*(*Tuint32_t)(unsafe.Pointer(v6)) = *(*Tuint32_t)(unsafe.Pointer(v6)) - 1
+		v5 = *(*Tuint32_t)(unsafe.Pointer(v6))
+		if v5 == libc.Uint32FromInt32(0) {
+			X_Py_Dealloc(tls, v1)
+		}
+	_16:
+		;
+		XPyErr_SetRaisedException(tls, exc)
+	}
+}
+
+func __PyXI_excinfo_TypeAsObject(tls *libc.TLS, info uintptr) (r uintptr) {
+	bp := tls.Alloc(16)
+	defer tls.Free(16)
+	var _tmp_old_op, _tmp_op_ptr, module, name, qualname, v1, v6 uintptr
+	var empty, res, res1, res2, v2 int32
+	var v5 Tuint32_t
+	var _ uintptr
+	_, _, _, _, _, _, _, _, _, _, _, _, _ = _tmp_old_op, _tmp_op_ptr, empty, module, name, qualname, res, res1, res2, v1, v2, v5, v6
+	**(**uintptr)(__ccgo_up(bp)) = X_PyNamespace_New(tls, libc.UintptrFromInt32(0))
+	if **(**uintptr)(__ccgo_up(bp)) == libc.UintptrFromInt32(0) {
+		return libc.UintptrFromInt32(0)
+	}
+	empty = int32(1)
+	if (*T_PyXI_excinfo)(unsafe.Pointer(info)).Ftype1.Fname != libc.UintptrFromInt32(0) {
+		name = XPyUnicode_FromString(tls, (*T_PyXI_excinfo)(unsafe.Pointer(info)).Ftype1.Fname)
+		if name == libc.UintptrFromInt32(0) {
+			goto error
+		}
+		res = XPyObject_SetAttrString(tls, **(**uintptr)(__ccgo_up(bp)), __ccgo_ts+25200, name)
+		v1 = name
+		v2 = libc.BoolInt32(int32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
+		goto _3
+	_3:
+		if v2 != 0 {
+			goto _4
+		}
+		v6 = v1
+		*(*Tuint32_t)(unsafe.Pointer(v6)) = *(*Tuint32_t)(unsafe.Pointer(v6)) - 1
+		v5 = *(*Tuint32_t)(unsafe.Pointer(v6))
+		if v5 == libc.Uint32FromInt32(0) {
+			X_Py_Dealloc(tls, v1)
+		}
+	_4:
+		;
+		if res < 0 {
+			goto error
+		}
+		empty = 0
+	}
+	if (*T_PyXI_excinfo)(unsafe.Pointer(info)).Ftype1.Fqualname != libc.UintptrFromInt32(0) {
+		qualname = XPyUnicode_FromString(tls, (*T_PyXI_excinfo)(unsafe.Pointer(info)).Ftype1.Fqualname)
+		if qualname == libc.UintptrFromInt32(0) {
+			goto error
+		}
+		res1 = XPyObject_SetAttrString(tls, **(**uintptr)(__ccgo_up(bp)), __ccgo_ts+25209, qualname)
+		v1 = qualname
+		v2 = libc.BoolInt32(int32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
+		goto _9
+	_9:
+		if v2 != 0 {
+			goto _10
+		}
+		v6 = v1
+		*(*Tuint32_t)(unsafe.Pointer(v6)) = *(*Tuint32_t)(unsafe.Pointer(v6)) - 1
+		v5 = *(*Tuint32_t)(unsafe.Pointer(v6))
+		if v5 == libc.Uint32FromInt32(0) {
+			X_Py_Dealloc(tls, v1)
+		}
+	_10:
+		;
+		if res1 < 0 {
+			goto error
+		}
+		empty = 0
+	}
+	if (*T_PyXI_excinfo)(unsafe.Pointer(info)).Ftype1.Fmodule != libc.UintptrFromInt32(0) {
+		module = XPyUnicode_FromString(tls, (*T_PyXI_excinfo)(unsafe.Pointer(info)).Ftype1.Fmodule)
+		if module == libc.UintptrFromInt32(0) {
+			goto error
+		}
+		res2 = XPyObject_SetAttrString(tls, **(**uintptr)(__ccgo_up(bp)), __ccgo_ts+41476, module)
+		v1 = module
+		v2 = libc.BoolInt32(int32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
+		goto _15
+	_15:
+		if v2 != 0 {
+			goto _16
+		}
+		v6 = v1
+		*(*Tuint32_t)(unsafe.Pointer(v6)) = *(*Tuint32_t)(unsafe.Pointer(v6)) - 1
+		v5 = *(*Tuint32_t)(unsafe.Pointer(v6))
+		if v5 == libc.Uint32FromInt32(0) {
+			X_Py_Dealloc(tls, v1)
+		}
+	_16:
+		;
+		if res2 < 0 {
+			goto error
+		}
+		empty = 0
+	}
+	if empty != 0 {
+		_tmp_op_ptr = bp
+		_tmp_old_op = **(**uintptr)(__ccgo_up(_tmp_op_ptr))
+		if _tmp_old_op != libc.UintptrFromInt32(0) {
+			**(**uintptr)(__ccgo_up(_tmp_op_ptr)) = libc.UintptrFromInt32(0)
+			v1 = _tmp_old_op
+			v2 = libc.BoolInt32(int32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
+			goto _21
+		_21:
+			if v2 != 0 {
+				goto _22
+			}
+			v6 = v1
+			*(*Tuint32_t)(unsafe.Pointer(v6)) = *(*Tuint32_t)(unsafe.Pointer(v6)) - 1
+			v5 = *(*Tuint32_t)(unsafe.Pointer(v6))
+			if v5 == libc.Uint32FromInt32(0) {
+				X_Py_Dealloc(tls, v1)
+			}
+		_22:
+		}
+	}
+	return **(**uintptr)(__ccgo_up(bp))
+	goto error
+error:
+	;
+	v1 = **(**uintptr)(__ccgo_up(bp))
+	v2 = libc.BoolInt32(int32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
+	goto _27
+_27:
+	if v2 != 0 {
+		goto _28
+	}
+	v6 = v1
+	*(*Tuint32_t)(unsafe.Pointer(v6)) = *(*Tuint32_t)(unsafe.Pointer(v6)) - 1
+	v5 = *(*Tuint32_t)(unsafe.Pointer(v6))
+	if v5 == libc.Uint32FromInt32(0) {
+		X_Py_Dealloc(tls, v1)
+	}
+_28:
+	;
+	return libc.UintptrFromInt32(0)
+}
+
+func __PyXI_excinfo_AsObject(tls *libc.TLS, info uintptr) (r uintptr) {
+	var cur_refcnt, v10 Tuint32_t
+	var formatted, msg, ns, tbexc, type1, v1, v2, v4, v6 uintptr
+	var res, v7 int32
+	_, _, _, _, _, _, _, _, _, _, _, _, _ = cur_refcnt, formatted, msg, ns, res, tbexc, type1, v1, v10, v2, v4, v6, v7
+	ns = X_PyNamespace_New(tls, libc.UintptrFromInt32(0))
+	if ns == libc.UintptrFromInt32(0) {
+		return libc.UintptrFromInt32(0)
+	}
+	type1 = __PyXI_excinfo_TypeAsObject(tls, info)
+	if type1 == libc.UintptrFromInt32(0) {
+		if XPyErr_Occurred(tls) != 0 {
+			goto error
+		}
+		v1 = uintptr(unsafe.Pointer(&X_Py_NoneStruct))
+		v2 = v1
+		cur_refcnt = *(*Tuint32_t)(unsafe.Pointer(v2))
+		if uint64(cur_refcnt) >= libc.Uint64FromUint64(3)<<libc.Int32FromInt32(30) {
+			goto _3
+		}
+		*(*Tuint32_t)(unsafe.Pointer(v2)) = cur_refcnt + uint32(1)
+	_3:
+		;
+		v4 = v1
+		goto _5
+	_5:
+		type1 = v4
+	}
+	res = XPyObject_SetAttrString(tls, ns, __ccgo_ts+2992, type1)
+	v1 = type1
+	v7 = libc.BoolInt32(int32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
+	goto _8
+_8:
+	if v7 != 0 {
+		goto _9
+	}
+	v2 = v1
+	*(*Tuint32_t)(unsafe.Pointer(v2)) = *(*Tuint32_t)(unsafe.Pointer(v2)) - 1
+	v10 = *(*Tuint32_t)(unsafe.Pointer(v2))
+	if v10 == libc.Uint32FromInt32(0) {
+		X_Py_Dealloc(tls, v1)
+	}
+_9:
+	;
+	if res < 0 {
+		goto error
+	}
+	if (*T_PyXI_excinfo)(unsafe.Pointer(info)).Fmsg != libc.UintptrFromInt32(0) {
+		v1 = XPyUnicode_FromString(tls, (*T_PyXI_excinfo)(unsafe.Pointer(info)).Fmsg)
+	} else {
+		v2 = uintptr(unsafe.Pointer(&X_Py_NoneStruct))
+		v4 = v2
+		cur_refcnt = *(*Tuint32_t)(unsafe.Pointer(v4))
+		if uint64(cur_refcnt) >= libc.Uint64FromUint64(3)<<libc.Int32FromInt32(30) {
+			goto _15
+		}
+		*(*Tuint32_t)(unsafe.Pointer(v4)) = cur_refcnt + uint32(1)
+	_15:
+		;
+		v6 = v2
+		goto _17
+	_17:
+		v1 = v6
+	}
+	msg = v1
+	if msg == libc.UintptrFromInt32(0) {
+		goto error
+	}
+	res = XPyObject_SetAttrString(tls, ns, __ccgo_ts+28695, msg)
+	v1 = msg
+	v7 = libc.BoolInt32(int32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
+	goto _20
+_20:
+	if v7 != 0 {
+		goto _21
+	}
+	v2 = v1
+	*(*Tuint32_t)(unsafe.Pointer(v2)) = *(*Tuint32_t)(unsafe.Pointer(v2)) - 1
+	v10 = *(*Tuint32_t)(unsafe.Pointer(v2))
+	if v10 == libc.Uint32FromInt32(0) {
+		X_Py_Dealloc(tls, v1)
+	}
+_21:
+	;
+	if res < 0 {
+		goto error
+	}
+	formatted = X_PyXI_excinfo_format(tls, info)
+	if formatted == libc.UintptrFromInt32(0) {
+		goto error
+	}
+	res = XPyObject_SetAttrString(tls, ns, __ccgo_ts+136076, formatted)
+	v1 = formatted
+	v7 = libc.BoolInt32(int32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
+	goto _26
+_26:
+	if v7 != 0 {
+		goto _27
+	}
+	v2 = v1
+	*(*Tuint32_t)(unsafe.Pointer(v2)) = *(*Tuint32_t)(unsafe.Pointer(v2)) - 1
+	v10 = *(*Tuint32_t)(unsafe.Pointer(v2))
+	if v10 == libc.Uint32FromInt32(0) {
+		X_Py_Dealloc(tls, v1)
+	}
+_27:
+	;
+	if res < 0 {
+		goto error
+	}
+	if (*T_PyXI_excinfo)(unsafe.Pointer(info)).Ferrdisplay != libc.UintptrFromInt32(0) {
+		tbexc = XPyUnicode_FromString(tls, (*T_PyXI_excinfo)(unsafe.Pointer(info)).Ferrdisplay)
+		if tbexc == libc.UintptrFromInt32(0) {
+			XPyErr_Clear(tls)
+		} else {
+			res = XPyObject_SetAttrString(tls, ns, __ccgo_ts+135959, tbexc)
+			v1 = tbexc
+			v7 = libc.BoolInt32(int32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
+			goto _32
+		_32:
+			if v7 != 0 {
+				goto _33
+			}
+			v2 = v1
+			*(*Tuint32_t)(unsafe.Pointer(v2)) = *(*Tuint32_t)(unsafe.Pointer(v2)) - 1
+			v10 = *(*Tuint32_t)(unsafe.Pointer(v2))
+			if v10 == libc.Uint32FromInt32(0) {
+				X_Py_Dealloc(tls, v1)
+			}
+		_33:
+			;
+			if res < 0 {
+				goto error
+			}
+		}
+	}
+	return ns
+	goto error
+error:
+	;
+	v1 = ns
+	v7 = libc.BoolInt32(int32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
+	goto _38
+_38:
+	if v7 != 0 {
+		goto _39
+	}
+	v2 = v1
+	*(*Tuint32_t)(unsafe.Pointer(v2)) = *(*Tuint32_t)(unsafe.Pointer(v2)) - 1
+	v10 = *(*Tuint32_t)(unsafe.Pointer(v2))
+	if v10 == libc.Uint32FromInt32(0) {
+		X_Py_Dealloc(tls, v1)
+	}
+_39:
+	;
+	return libc.UintptrFromInt32(0)
+}
+
+func X_PyXI_NewExcInfo(tls *libc.TLS, exc uintptr) (r uintptr) {
+	var failure, info, v1, v7 uintptr
+	var flags uint32
+	var v11, v3, v5, v9 int32
+	var v13, v14 bool
+	_, _, _, _, _, _, _, _, _, _, _ = failure, flags, info, v1, v11, v13, v14, v3, v5, v7, v9
+	if exc == libc.UintptrFromInt32(0) || exc == uintptr(unsafe.Pointer(&X_Py_NoneStruct)) {
+		XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+136086)
+		return libc.UintptrFromInt32(0)
+	}
+	info = XPyMem_RawCalloc(tls, uint64(1), uint64(48))
+	if info == libc.UintptrFromInt32(0) {
+		XPyErr_NoMemory(tls)
+		return libc.UintptrFromInt32(0)
+	}
+	v1 = (*TPyObject)(unsafe.Pointer(exc)).Fob_type
+	goto _2
+_2:
+	flags = (*TPyTypeObject)(unsafe.Pointer(v1)).Ftp_flags
+	v3 = libc.BoolInt32(flags&(libc.Uint32FromUint32(1)<<libc.Int32FromInt32(30)) != uint32(0))
+	goto _4
+_4:
+	;
+	if v14 = v3 != 0; !v14 {
+		v7 = (*TPyObject)(unsafe.Pointer(exc)).Fob_type
+		goto _8
+	_8:
+		flags = (*TPyTypeObject)(unsafe.Pointer(v7)).Ftp_flags
+		v9 = libc.BoolInt32(flags&(libc.Uint32FromUint32(1)<<libc.Int32FromInt32(31)) != uint32(0))
+		goto _10
+	_10:
+		v5 = v9
+		goto _6
+	_6:
+		;
+		if v13 = v5 != 0; v13 {
+			flags = (*TPyTypeObject)(unsafe.Pointer(exc)).Ftp_flags
+			v11 = libc.BoolInt32(flags&(libc.Uint32FromUint32(1)<<libc.Int32FromInt32(30)) != uint32(0))
+			goto _12
+		_12:
+		}
+	}
+	if v14 || v13 && v11 != 0 {
+		failure = __PyXI_excinfo_InitFromException(tls, info, exc)
+	} else {
+		failure = __PyXI_excinfo_InitFromObject(tls, info, exc)
+	}
+	if failure != libc.UintptrFromInt32(0) {
+		XPyMem_RawFree(tls, info)
+		_set_exc_with_cause(tls, XPyExc_Exception, failure)
+		return libc.UintptrFromInt32(0)
+	}
+	return info
+}
+
+func X_PyXI_FreeExcInfo(tls *libc.TLS, info uintptr) {
+	__PyXI_excinfo_clear(tls, info)
+	XPyMem_RawFree(tls, info)
+}
+
+func X_PyXI_FormatExcInfo(tls *libc.TLS, info uintptr) (r uintptr) {
+	return X_PyXI_excinfo_format(tls, info)
+}
+
+func X_PyXI_ExcInfoAsObject(tls *libc.TLS, info uintptr) (r uintptr) {
+	return __PyXI_excinfo_AsObject(tls, info)
+}
+
+func __PyXI_ApplyErrorCode(tls *libc.TLS, code T_PyXI_errcode, interp uintptr) (r int32) {
+	bp := tls.Alloc(16)
+	defer tls.Free(16)
+	var tstate, v1 uintptr
+	_, _ = tstate, v1
+	v1 = (*_ccgo_tls_tstate(tls))
+	goto _2
+_2:
+	tstate = v1
+	switch code {
+	case int32(E_PyXI_ERR_OTHER):
+
+		XPyErr_SetNone(tls, XPyExc_InterpreterError)
+	case int32(E_PyXI_ERR_NO_MEMORY):
+		XPyErr_NoMemory(tls)
+	case int32(E_PyXI_ERR_ALREADY_RUNNING):
+		X_PyErr_SetInterpreterAlreadyRunning(tls)
+	case int32(E_PyXI_ERR_MAIN_NS_FAILURE):
+		XPyErr_SetString(tls, XPyExc_InterpreterError, __ccgo_ts+136098)
+	case int32(E_PyXI_ERR_APPLY_NS_FAILURE):
+		XPyErr_SetString(tls, XPyExc_InterpreterError, __ccgo_ts+136131)
+	case int32(E_PyXI_ERR_PRESERVE_FAILURE):
+		XPyErr_SetString(tls, XPyExc_InterpreterError, __ccgo_ts+136169)
+	case int32(E_PyXI_ERR_EXC_PROPAGATION_FAILURE):
+		XPyErr_SetString(tls, XPyExc_InterpreterError, __ccgo_ts+136211)
+	case int32(E_PyXI_ERR_NOT_SHAREABLE):
+		__set_xid_lookup_failure(tls, tstate, libc.UintptrFromInt32(0), libc.UintptrFromInt32(0), libc.UintptrFromInt32(0))
+	default:
+		XPyErr_Format(tls, XPyExc_RuntimeError, __ccgo_ts+136261, libc.VaList(bp+8, code))
+	}
+	return -int32(1)
+}
+
+func _clear_xi_failure(tls *libc.TLS, failure uintptr) {
+	if (*T_PyXI_failure)(unsafe.Pointer(failure)).Fmsg != libc.UintptrFromInt32(0) && (*T_PyXI_failure)(unsafe.Pointer(failure)).Fmsg_owned != 0 {
+		XPyMem_RawFree(tls, (*T_PyXI_failure)(unsafe.Pointer(failure)).Fmsg)
+	}
+	**(**T_PyXI_failure)(__ccgo_up(failure)) = T_PyXI_failure{}
+}
+
+func _copy_xi_failure(tls *libc.TLS, dest uintptr, src uintptr) {
+	**(**T_PyXI_failure)(__ccgo_up(dest)) = **(**T_PyXI_failure)(__ccgo_up(src))
+	(*T_PyXI_failure)(unsafe.Pointer(dest)).Fmsg_owned = 0
+}
+
+func X_PyXI_NewFailure(tls *libc.TLS) (r uintptr) {
+	var failure uintptr
+	_ = failure
+	failure = XPyMem_RawMalloc(tls, uint64(24))
+	if failure == libc.UintptrFromInt32(0) {
+		XPyErr_NoMemory(tls)
+		return libc.UintptrFromInt32(0)
+	}
+	**(**T_PyXI_failure)(__ccgo_up(failure)) = T_PyXI_failure{}
+	return failure
+}
+
+func X_PyXI_FreeFailure(tls *libc.TLS, failure uintptr) {
+	_clear_xi_failure(tls, failure)
+	XPyMem_RawFree(tls, failure)
+}
+
+func X_PyXI_GetFailureCode(tls *libc.TLS, failure uintptr) (r T_PyXI_errcode) {
+	if failure == libc.UintptrFromInt32(0) {
+		return int32(E_PyXI_ERR_NO_ERROR)
+	}
+	return (*T_PyXI_failure)(unsafe.Pointer(failure)).Fcode
+}
+
+func X_PyXI_InitFailureUTF8(tls *libc.TLS, failure uintptr, code T_PyXI_errcode, msg uintptr) {
+	**(**T_PyXI_failure)(__ccgo_up(failure)) = T_PyXI_failure{
+		Fcode: code,
+		Fmsg:  msg,
+	}
+}
+
+func X_PyXI_InitFailure(tls *libc.TLS, failure uintptr, code T_PyXI_errcode, obj uintptr) (r int32) {
+	var msg, msgobj, v1, v6 uintptr
+	var v2 int32
+	var v5 Tuint32_t
+	_, _, _, _, _, _ = msg, msgobj, v1, v2, v5, v6
+	**(**T_PyXI_failure)(__ccgo_up(failure)) = T_PyXI_failure{
+		Fcode: code,
+	}
+	if obj == libc.UintptrFromInt32(0) {
+		return 0
+	}
+	msgobj = XPyObject_Str(tls, obj)
+	if msgobj == libc.UintptrFromInt32(0) {
+		return -int32(1)
+	}
+
+	msg = __copy_string_obj_raw(tls, msgobj, libc.UintptrFromInt32(0))
+	v1 = msgobj
+	v2 = libc.BoolInt32(int32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
+	goto _3
+_3:
+	if v2 != 0 {
+		goto _4
+	}
+	v6 = v1
+	*(*Tuint32_t)(unsafe.Pointer(v6)) = *(*Tuint32_t)(unsafe.Pointer(v6)) - 1
+	v5 = *(*Tuint32_t)(unsafe.Pointer(v6))
+	if v5 == libc.Uint32FromInt32(0) {
+		X_Py_Dealloc(tls, v1)
+	}
+_4:
+	;
+	if msg == libc.UintptrFromInt32(0) {
+		return -int32(1)
+	}
+	**(**T_PyXI_failure)(__ccgo_up(failure)) = T_PyXI_failure{
+		Fcode:      code,
+		Fmsg:       msg,
+		Fmsg_owned: int32(1),
+	}
+	return 0
+}
+
+type T_PyXI_error = struct {
+	Finterp    uintptr
+	Foverride  uintptr
+	F_override T_PyXI_failure
+	Funcaught  T_PyXI_excinfo
+}
+
+func _xi_error_clear(tls *libc.TLS, err uintptr) {
+	(*T_PyXI_error)(unsafe.Pointer(err)).Finterp = libc.UintptrFromInt32(0)
+	if (*T_PyXI_error)(unsafe.Pointer(err)).Foverride != libc.UintptrFromInt32(0) {
+		_clear_xi_failure(tls, (*T_PyXI_error)(unsafe.Pointer(err)).Foverride)
+	}
+	__PyXI_excinfo_clear(tls, err+40)
+}
+
+func _xi_error_is_set(tls *libc.TLS, error1 uintptr) (r int32) {
+	if (*T_PyXI_error)(unsafe.Pointer(error1)).Foverride != libc.UintptrFromInt32(0) {
+		return int32(1)
+	}
+	return _excinfo_is_set(tls, error1+40)
+}
+
+func _xi_error_has_override(tls *libc.TLS, err uintptr) (r int32) {
+	if (*T_PyXI_error)(unsafe.Pointer(err)).Foverride == libc.UintptrFromInt32(0) {
+		return 0
+	}
+	return libc.BoolInt32((*T_PyXI_failure)(unsafe.Pointer((*T_PyXI_error)(unsafe.Pointer(err)).Foverride)).Fcode != int32(E_PyXI_ERR_NO_ERROR) && (*T_PyXI_failure)(unsafe.Pointer((*T_PyXI_error)(unsafe.Pointer(err)).Foverride)).Fcode != int32(E_PyXI_ERR_UNCAUGHT_EXCEPTION))
+}
+
+func _xi_error_resolve_current_exc(tls *libc.TLS, tstate uintptr, override uintptr) (r uintptr) {
+	bp := tls.Alloc(16)
+	defer tls.Free(16)
+	var _tmp_old_op, _tmp_op_ptr, v1, v6 uintptr
+	var v2 int32
+	var v5 Tuint32_t
+	var _ uintptr
+	_, _, _, _, _, _ = _tmp_old_op, _tmp_op_ptr, v1, v2, v5, v6
+	**(**uintptr)(__ccgo_up(bp)) = X_PyErr_GetRaisedException(tls, tstate)
+	if **(**uintptr)(__ccgo_up(bp)) == libc.UintptrFromInt32(0) {
+	} else {
+		if override == libc.UintptrFromInt32(0) {
+
+		} else {
+			if (*T_PyXI_failure)(unsafe.Pointer(override)).Fcode == int32(E_PyXI_ERR_UNCAUGHT_EXCEPTION) {
+
+			} else {
+				if **(**uintptr)(__ccgo_up(bp)) != libc.UintptrFromInt32(0) {
+
+					if (*T_PyXI_failure)(unsafe.Pointer(override)).Fcode == int32(E_PyXI_ERR_ALREADY_RUNNING) {
+
+						_tmp_op_ptr = bp
+						_tmp_old_op = **(**uintptr)(__ccgo_up(_tmp_op_ptr))
+						if _tmp_old_op != libc.UintptrFromInt32(0) {
+							**(**uintptr)(__ccgo_up(_tmp_op_ptr)) = libc.UintptrFromInt32(0)
+							v1 = _tmp_old_op
+							v2 = libc.BoolInt32(int32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
+							goto _3
+						_3:
+							if v2 != 0 {
+								goto _4
+							}
+							v6 = v1
+							*(*Tuint32_t)(unsafe.Pointer(v6)) = *(*Tuint32_t)(unsafe.Pointer(v6)) - 1
+							v5 = *(*Tuint32_t)(unsafe.Pointer(v6))
+							if v5 == libc.Uint32FromInt32(0) {
+								X_Py_Dealloc(tls, v1)
+							}
+						_4:
+						}
+					}
+
+				}
+			}
+		}
+	}
+	return **(**uintptr)(__ccgo_up(bp))
+}
+
+func _xi_error_set_override(tls *libc.TLS, tstate uintptr, err uintptr, override uintptr) {
+
+	(*T_PyXI_error)(unsafe.Pointer(err)).Foverride = err + 16
+
+	_copy_xi_failure(tls, err+16, override)
+	(*T_PyXI_error)(unsafe.Pointer(err)).Finterp = (*TPyThreadState)(unsafe.Pointer(tstate)).Finterp
+}
+
+func _xi_error_set_override_code(tls *libc.TLS, tstate uintptr, err uintptr, code T_PyXI_errcode) {
+	bp := tls.Alloc(32)
+	defer tls.Free(32)
+	var _ T_PyXI_failure
+	**(**T_PyXI_failure)(__ccgo_up(bp)) = T_PyXI_failure{}
+	(**(**T_PyXI_failure)(__ccgo_up(bp))).Fcode = code
+	_xi_error_set_override(tls, tstate, err, bp)
+}
+
+func _xi_error_set_exc(tls *libc.TLS, tstate uintptr, err uintptr, exc uintptr) (r uintptr) {
+	var failure uintptr
+	_ = failure
+	failure = __PyXI_excinfo_InitFromException(tls, err+40, exc)
+	if failure != libc.UintptrFromInt32(0) {
+
+		if X_PyErr_ExceptionMatches(tls, tstate, XPyExc_MemoryError) != 0 {
+			_xi_error_set_override_code(tls, tstate, err, int32(E_PyXI_ERR_NO_MEMORY))
+		} else {
+			_xi_error_set_override_code(tls, tstate, err, int32(E_PyXI_ERR_OTHER))
+		}
+		XPyErr_Clear(tls)
+	}
+	return failure
+}
+
+func __PyXI_ApplyError(tls *libc.TLS, error1 uintptr, failure uintptr) (r uintptr) {
+	var cause, exc, exc2, msg, tstate, v1, v2, v3 uintptr
+	var code T_PyXI_errcode
+	var v4 int32
+	var v7 Tuint32_t
+	_, _, _, _, _, _, _, _, _, _, _ = cause, code, exc, exc2, msg, tstate, v1, v2, v3, v4, v7
+	tstate = XPyThreadState_Get(tls)
+	if failure != libc.UintptrFromInt32(0) {
+		_xi_error_clear(tls, error1)
+		return libc.UintptrFromInt32(0)
+	}
+	code = int32(E_PyXI_ERR_UNCAUGHT_EXCEPTION)
+	if (*T_PyXI_error)(unsafe.Pointer(error1)).Foverride != libc.UintptrFromInt32(0) {
+		code = (*T_PyXI_failure)(unsafe.Pointer((*T_PyXI_error)(unsafe.Pointer(error1)).Foverride)).Fcode
+	}
+	if code == int32(E_PyXI_ERR_UNCAUGHT_EXCEPTION) {
+
+		return __PyXI_excinfo_AsObject(tls, error1+40)
+	} else {
+		if code == int32(E_PyXI_ERR_NOT_SHAREABLE) {
+
+			cause = libc.UintptrFromInt32(0)
+			if _excinfo_is_set(tls, error1+40) != 0 {
+
+				__PyXI_excinfo_Apply(tls, error1+40, XPyExc_Exception)
+				cause = X_PyErr_GetRaisedException(tls, tstate)
+			}
+			if (*T_PyXI_error)(unsafe.Pointer(error1)).Foverride != libc.UintptrFromInt32(0) {
+				v1 = (*T_PyXI_failure)(unsafe.Pointer((*T_PyXI_error)(unsafe.Pointer(error1)).Foverride)).Fmsg
+			} else {
+				v1 = (*T_PyXI_error)(unsafe.Pointer(error1)).Funcaught.Fmsg
+			}
+			msg = v1
+			__set_xid_lookup_failure(tls, tstate, libc.UintptrFromInt32(0), msg, cause)
+			v1 = cause
+			if v1 != libc.UintptrFromInt32(0) {
+				v2 = v1
+				v4 = libc.BoolInt32(int32(*(*Tuint32_t)(unsafe.Pointer(v2))) < 0)
+				goto _5
+			_5:
+				if v4 != 0 {
+					goto _6
+				}
+				v3 = v2
+				*(*Tuint32_t)(unsafe.Pointer(v3)) = *(*Tuint32_t)(unsafe.Pointer(v3)) - 1
+				v7 = *(*Tuint32_t)(unsafe.Pointer(v3))
+				if v7 == libc.Uint32FromInt32(0) {
+					X_Py_Dealloc(tls, v2)
+				}
+			_6:
+			}
+		} else {
+
+			__PyXI_ApplyErrorCode(tls, code, (*T_PyXI_error)(unsafe.Pointer(error1)).Finterp)
+			if _excinfo_is_set(tls, error1+40) != 0 {
+
+				exc = X_PyErr_GetRaisedException(tls, tstate)
+				__PyXI_excinfo_Apply(tls, error1+40, XPyExc_InterpreterError)
+				exc2 = X_PyErr_GetRaisedException(tls, tstate)
+				XPyException_SetContext(tls, exc, exc2)
+				X_PyErr_SetRaisedException(tls, tstate, exc)
+			}
+		}
+	}
+	return libc.UintptrFromInt32(0)
+}
+
+type T_PyXI_namespace_item = struct {
+	Fname   uintptr
+	Fxidata uintptr
+}
+
+type T_sharednsitem = T_PyXI_namespace_item
+
+func __sharednsitem_init(tls *libc.TLS, item uintptr, key uintptr) (r int32) {
+	(*T_PyXI_namespace_item)(unsafe.Pointer(item)).Fname = __copy_string_obj_raw(tls, key, libc.UintptrFromInt32(0))
+	if (*T_PyXI_namespace_item)(unsafe.Pointer(item)).Fname == libc.UintptrFromInt32(0) {
+		return -int32(1)
+	}
+	(*T_PyXI_namespace_item)(unsafe.Pointer(item)).Fxidata = libc.UintptrFromInt32(0)
+	return 0
+}
+
+func __sharednsitem_has_value(tls *libc.TLS, item uintptr, p_interpid uintptr) (r int32) {
+	if (*T_PyXI_namespace_item)(unsafe.Pointer(item)).Fxidata == libc.UintptrFromInt32(0) {
+		return 0
+	}
+	if p_interpid != libc.UintptrFromInt32(0) {
+		**(**Tint64_t)(__ccgo_up(p_interpid)) = (*T_PyXIData_t)(unsafe.Pointer((*T_PyXI_namespace_item)(unsafe.Pointer(item)).Fxidata)).Finterpid
+	}
+	return int32(1)
+}
+
+func __sharednsitem_set_value(tls *libc.TLS, item uintptr, value uintptr, fallback Txidata_fallback_t) (r int32) {
+	var tstate uintptr
+	_ = tstate
+	(*T_PyXI_namespace_item)(unsafe.Pointer(item)).Fxidata = X_PyXIData_New(tls)
+	if (*T_PyXI_namespace_item)(unsafe.Pointer(item)).Fxidata == libc.UintptrFromInt32(0) {
+		return -int32(1)
+	}
+	tstate = XPyThreadState_Get(tls)
+	if X_PyObject_GetXIData(tls, tstate, value, fallback, (*T_PyXI_namespace_item)(unsafe.Pointer(item)).Fxidata) < 0 {
+		XPyMem_RawFree(tls, (*T_PyXI_namespace_item)(unsafe.Pointer(item)).Fxidata)
+		(*T_PyXI_namespace_item)(unsafe.Pointer(item)).Fxidata = libc.UintptrFromInt32(0)
+
+		return -int32(1)
+	}
+	return 0
+}
+
+func __sharednsitem_clear_value(tls *libc.TLS, item uintptr) {
+	var rawfree int32
+	var xidata uintptr
+	_, _ = rawfree, xidata
+	xidata = (*T_PyXI_namespace_item)(unsafe.Pointer(item)).Fxidata
+	if xidata != libc.UintptrFromInt32(0) {
+		(*T_PyXI_namespace_item)(unsafe.Pointer(item)).Fxidata = libc.UintptrFromInt32(0)
+		rawfree = int32(1)
+		__release_xid_data(tls, xidata, rawfree)
+	}
+}
+
+func __sharednsitem_clear(tls *libc.TLS, item uintptr) {
+	if (*T_PyXI_namespace_item)(unsafe.Pointer(item)).Fname != libc.UintptrFromInt32(0) {
+		XPyMem_RawFree(tls, (*T_PyXI_namespace_item)(unsafe.Pointer(item)).Fname)
+		(*T_PyXI_namespace_item)(unsafe.Pointer(item)).Fname = libc.UintptrFromInt32(0)
+	}
+	__sharednsitem_clear_value(tls, item)
+}
+
+func __sharednsitem_copy_from_ns(tls *libc.TLS, item uintptr, ns uintptr, fallback Txidata_fallback_t) (r int32) {
+	var value uintptr
+	_ = value
+	value = XPyDict_GetItemString(tls, ns, (*T_sharednsitem)(unsafe.Pointer(item)).Fname)
+	if value == libc.UintptrFromInt32(0) {
+		if XPyErr_Occurred(tls) != 0 {
+			return -int32(1)
+		}
+
+		return 0
+	}
+	if __sharednsitem_set_value(tls, item, value, fallback) < 0 {
+		return -int32(1)
+	}
+	return 0
+}
+
+func __sharednsitem_apply(tls *libc.TLS, item uintptr, ns uintptr, dflt uintptr) (r int32) {
+	var cur_refcnt, v5 Tuint32_t
+	var name, value, v1, v6, v7 uintptr
+	var res, v2 int32
+	_, _, _, _, _, _, _, _, _ = cur_refcnt, name, res, value, v1, v2, v5, v6, v7
+	name = XPyUnicode_FromString(tls, (*T_PyXI_namespace_item)(unsafe.Pointer(item)).Fname)
+	if name == libc.UintptrFromInt32(0) {
+		return -int32(1)
+	}
+	if (*T_PyXI_namespace_item)(unsafe.Pointer(item)).Fxidata != libc.UintptrFromInt32(0) {
+		value = X_PyXIData_NewObject(tls, (*T_PyXI_namespace_item)(unsafe.Pointer(item)).Fxidata)
+		if value == libc.UintptrFromInt32(0) {
+			v1 = name
+			v2 = libc.BoolInt32(int32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
+			goto _3
+		_3:
+			if v2 != 0 {
+				goto _4
+			}
+			v6 = v1
+			*(*Tuint32_t)(unsafe.Pointer(v6)) = *(*Tuint32_t)(unsafe.Pointer(v6)) - 1
+			v5 = *(*Tuint32_t)(unsafe.Pointer(v6))
+			if v5 == libc.Uint32FromInt32(0) {
+				X_Py_Dealloc(tls, v1)
+			}
+		_4:
+			;
+			return -int32(1)
+		}
+	} else {
+		v1 = dflt
+		v6 = v1
+		cur_refcnt = *(*Tuint32_t)(unsafe.Pointer(v6))
+		if uint64(cur_refcnt) >= libc.Uint64FromUint64(3)<<libc.Int32FromInt32(30) {
+			goto _9
+		}
+		*(*Tuint32_t)(unsafe.Pointer(v6)) = cur_refcnt + uint32(1)
+	_9:
+		;
+		v7 = v1
+		goto _11
+	_11:
+		value = v7
+	}
+	res = XPyDict_SetItem(tls, ns, name, value)
+	v1 = name
+	v2 = libc.BoolInt32(int32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
+	goto _14
+_14:
+	if v2 != 0 {
+		goto _15
+	}
+	v6 = v1
+	*(*Tuint32_t)(unsafe.Pointer(v6)) = *(*Tuint32_t)(unsafe.Pointer(v6)) - 1
+	v5 = *(*Tuint32_t)(unsafe.Pointer(v6))
+	if v5 == libc.Uint32FromInt32(0) {
+		X_Py_Dealloc(tls, v1)
+	}
+_15:
+	;
+	v1 = value
+	v2 = libc.BoolInt32(int32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
+	goto _20
+_20:
+	if v2 != 0 {
+		goto _21
+	}
+	v6 = v1
+	*(*Tuint32_t)(unsafe.Pointer(v6)) = *(*Tuint32_t)(unsafe.Pointer(v6)) - 1
+	v5 = *(*Tuint32_t)(unsafe.Pointer(v6))
+	if v5 == libc.Uint32FromInt32(0) {
+		X_Py_Dealloc(tls, v1)
+	}
+_21:
+	;
+	return res
+}
+
+type T_PyXI_namespace = struct {
+	Fmaxitems  TPy_ssize_t
+	Fnumnames  TPy_ssize_t
+	Fnumvalues TPy_ssize_t
+	Fitems     [1]T_PyXI_namespace_item
+}
+
+func __sharedns_alloc(tls *libc.TLS, maxitems TPy_ssize_t) (r uintptr) {
+	var fixedsize, size Tsize_t
+	var ns uintptr
+	_, _, _ = fixedsize, ns, size
+	if maxitems < 0 {
+		if !(XPyErr_Occurred(tls) != 0) {
+			X_PyErr_BadInternalCall(tls, __ccgo_ts+136287, int32(2258))
+		}
+		return libc.UintptrFromInt32(0)
+	} else {
+		if maxitems == 0 {
+			XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+136339)
+			return libc.UintptrFromInt32(0)
+		}
+	}
+
+	fixedsize = libc.Uint64FromInt64(40) - libc.Uint64FromInt64(16)
+	if uint64(maxitems) > (libc.Uint64FromInt64(9223372036854775807)-fixedsize)/uint64(16) {
+		XPyErr_NoMemory(tls)
+		return libc.UintptrFromInt32(0)
+	}
+
+	size = fixedsize + uint64(16)*uint64(maxitems)
+	ns = XPyMem_RawCalloc(tls, size, uint64(1))
+	if ns == libc.UintptrFromInt32(0) {
+		XPyErr_NoMemory(tls)
+		return libc.UintptrFromInt32(0)
+	}
+	(*T_PyXI_namespace)(unsafe.Pointer(ns)).Fmaxitems = maxitems
+	return ns
+}
+
+func __sharedns_free(tls *libc.TLS, ns uintptr) {
+	var i TPy_ssize_t
+	var item uintptr
+	_, _ = i, item
+
+	i = 0
+	if (*T_PyXI_namespace)(unsafe.Pointer(ns)).Fnumvalues > 0 {
+
+		for {
+			if !(i < (*T_PyXI_namespace)(unsafe.Pointer(ns)).Fnumvalues) {
+				break
+			}
+			item = ns + 24 + uintptr(i)*16
+
+			__sharednsitem_clear(tls, item)
+			goto _1
+		_1:
+			;
+			i = i + 1
+		}
+	}
+	for {
+		if !(i < (*T_PyXI_namespace)(unsafe.Pointer(ns)).Fnumnames) {
+			break
+		}
+		item = ns + 24 + uintptr(i)*16
+		__sharednsitem_clear(tls, item)
+		goto _2
+	_2:
+		;
+		i = i + 1
+	}
+	XPyMem_RawFree(tls, ns)
+}
+
+func __create_sharedns(tls *libc.TLS, names uintptr) (r uintptr) {
+	bp := tls.Alloc(16)
+	defer tls.Free(16)
+	var i, i1, numnames TPy_ssize_t
+	var items, name1, ns, v4, v8 uintptr
+	var res, v2 int32
+	var v1 int64
+	var v15 Tuint32_t
+	var _ uintptr
+	var _ TPy_ssize_t
+	_, _, _, _, _, _, _, _, _, _, _, _ = i, i1, items, name1, ns, numnames, res, v1, v15, v2, v4, v8
+	v4 = (*TPyObject)(unsafe.Pointer(names)).Fob_type
+	goto _5
+_5:
+	v2 = libc.BoolInt32(v4 == uintptr(unsafe.Pointer(&XPyDict_Type)))
+	goto _3
+_3:
+	if v2 != 0 {
+		v1 = XPyDict_Size(tls, names)
+	} else {
+		v1 = XPySequence_Size(tls, names)
+	}
+	numnames = v1
+	ns = __sharedns_alloc(tls, numnames)
+	if ns == libc.UintptrFromInt32(0) {
+		return libc.UintptrFromInt32(0)
+	}
+	items = ns + 24
+
+	v4 = (*TPyObject)(unsafe.Pointer(names)).Fob_type
+	goto _9
+_9:
+	v2 = libc.BoolInt32(v4 == uintptr(unsafe.Pointer(&XPyDict_Type)))
+	goto _7
+_7:
+	if v2 != 0 {
+		i = 0
+		**(**TPy_ssize_t)(__ccgo_up(bp)) = 0
+		for XPyDict_Next(tls, names, bp, bp+8, libc.UintptrFromInt32(0)) != 0 {
+			if __sharednsitem_init(tls, items+uintptr(i)*16, **(**uintptr)(__ccgo_up(bp + 8))) < 0 {
+				goto error
+			}
+			**(**TPy_ssize_t)(__ccgo_up(ns + 8)) += int64(1)
+			i = i + int64(1)
+		}
+	} else {
+		if XPySequence_Check(tls, names) != 0 {
+			i1 = 0
+			for {
+				if !(i1 < numnames) {
+					break
+				}
+				name1 = XPySequence_GetItem(tls, names, i1)
+				if name1 == libc.UintptrFromInt32(0) {
+					goto error
+				}
+				res = __sharednsitem_init(tls, items+uintptr(i1)*16, name1)
+				v4 = name1
+				v2 = libc.BoolInt32(int32(*(*Tuint32_t)(unsafe.Pointer(v4))) < 0)
+				goto _13
+			_13:
+				if v2 != 0 {
+					goto _14
+				}
+				v8 = v4
+				*(*Tuint32_t)(unsafe.Pointer(v8)) = *(*Tuint32_t)(unsafe.Pointer(v8)) - 1
+				v15 = *(*Tuint32_t)(unsafe.Pointer(v8))
+				if v15 == libc.Uint32FromInt32(0) {
+					X_Py_Dealloc(tls, v4)
+				}
+			_14:
+				;
+				if res < 0 {
+					goto error
+				}
+				**(**TPy_ssize_t)(__ccgo_up(ns + 8)) += int64(1)
+				goto _10
+			_10:
+				;
+				i1 = i1 + 1
+			}
+		} else {
+			XPyErr_SetString(tls, XPyExc_NotImplementedError, __ccgo_ts+136368)
+			goto error
+		}
+	}
+	return ns
+	goto error
+error:
+	;
+	__sharedns_free(tls, ns)
+	return libc.UintptrFromInt32(0)
+}
+
+func __fill_sharedns(tls *libc.TLS, ns uintptr, nsobj uintptr, fallback Txidata_fallback_t, p_err uintptr) (r int32) {
+	var i, j TPy_ssize_t
+	var tstate uintptr
+	_, _, _ = i, j, tstate
+
+	tstate = XPyThreadState_Get(tls)
+	i = 0
+	for {
+		if !(i < (*T_PyXI_namespace)(unsafe.Pointer(ns)).Fmaxitems) {
+			break
+		}
+		if __sharednsitem_copy_from_ns(tls, ns+24+uintptr(i)*16, nsobj, fallback) < 0 {
+			if p_err != libc.UintptrFromInt32(0) {
+				__propagate_not_shareable_error(tls, tstate, p_err)
+			}
+
+			j = 0
+			for {
+				if !(j < i) {
+					break
+				}
+				__sharednsitem_clear_value(tls, ns+24+uintptr(j)*16)
+				**(**TPy_ssize_t)(__ccgo_up(ns + 16)) -= int64(1)
+				goto _2
+			_2:
+				;
+				j = j + 1
+			}
+			return -int32(1)
+		}
+		**(**TPy_ssize_t)(__ccgo_up(ns + 16)) += int64(1)
+		goto _1
+	_1:
+		;
+		i = i + 1
+	}
+	return 0
+}
+
+func __sharedns_free_pending(tls *libc.TLS, data uintptr) (r int32) {
+	__sharedns_free(tls, data)
+	return 0
+}
+
+func __destroy_sharedns(tls *libc.TLS, ns uintptr) {
+	bp := tls.Alloc(16)
+	defer tls.Free(16)
+	var interp uintptr
+	var _ Tint64_t
+	_ = interp
+	if (*T_PyXI_namespace)(unsafe.Pointer(ns)).Fnumvalues == 0 {
+		__sharedns_free(tls, ns)
+		return
+	}
+	if !(__sharednsitem_has_value(tls, ns+24, bp) != 0) {
+
+		__sharedns_free(tls, ns)
+		return
+	}
+	interp = X_PyInterpreterState_LookUpID(tls, **(**Tint64_t)(__ccgo_up(bp)))
+	if interp == XPyInterpreterState_Get(tls) {
+		__sharedns_free(tls, ns)
+		return
+	}
+
+	X_Py_CallInInterpreter(tls, interp, __ccgo_fp(__sharedns_free_pending), ns)
+}
+
+func __apply_sharedns(tls *libc.TLS, ns uintptr, nsobj uintptr, dflt uintptr) (r int32) {
+	var i TPy_ssize_t
+	_ = i
+	i = 0
+	for {
+		if !(i < (*T_PyXI_namespace)(unsafe.Pointer(ns)).Fmaxitems) {
+			break
+		}
+		if __sharednsitem_apply(tls, ns+24+uintptr(i)*16, nsobj, dflt) != 0 {
+			return -int32(1)
+		}
+		goto _1
+	_1:
+		;
+		i = i + 1
+	}
+	return 0
+}
+
+func X_PyXI_NewSession(tls *libc.TLS) (r uintptr) {
+	var session uintptr
+	_ = session
+	session = XPyMem_RawCalloc(tls, uint64(1), uint64(48))
+	if session == libc.UintptrFromInt32(0) {
+		XPyErr_NoMemory(tls)
+		return libc.UintptrFromInt32(0)
+	}
+	return session
+}
+
+func X_PyXI_FreeSession(tls *libc.TLS, session uintptr) {
+	XPyMem_RawFree(tls, session)
+}
+
+func __session_is_active(tls *libc.TLS, session uintptr) (r int32) {
+	return libc.BoolInt32((*T_PyXI_session)(unsafe.Pointer(session)).Fstatus == int32(MSESSION_ACTIVE))
+}
+
+func __enter_session(tls *libc.TLS, session uintptr, interp uintptr) {
+	var prev, swapped, tstate uintptr
+	var same_interp int32
+	_, _, _, _ = prev, same_interp, swapped, tstate
+
+	tstate = XPyThreadState_Get(tls)
+	prev = tstate
+	same_interp = libc.BoolInt32(interp == (*TPyThreadState)(unsafe.Pointer(tstate)).Finterp)
+	if !(same_interp != 0) {
+		tstate = X_PyThreadState_NewBound(tls, interp, int32(M_PyThreadState_WHENCE_EXEC))
+
+		swapped = XPyThreadState_Swap(tls, tstate)
+		_ = swapped
+	}
+	**(**T_PyXI_session)(__ccgo_up(session)) = T_PyXI_session{
+		Fstatus:          int32(MSESSION_ACTIVE),
+		Fswitched:        libc.BoolInt32(!(same_interp != 0)),
+		Fprev_tstate:     prev,
+		Finit_tstate:     tstate,
+		Fown_init_tstate: libc.BoolInt32(!(same_interp != 0)),
+	}
+}
+
+func __exit_session(tls *libc.TLS, session uintptr) {
+	var _tmp_old_op, _tmp_old_op1, _tmp_op_ptr, _tmp_op_ptr1, tstate, v1, v6 uintptr
+	var v5 Tuint32_t
+	var v2 int32
+	_, _, _, _, _, _, _, _, _ = _tmp_old_op, _tmp_old_op1, _tmp_op_ptr, _tmp_op_ptr1, tstate, v1, v2, v5, v6
+	tstate = (*T_PyXI_session)(unsafe.Pointer(session)).Finit_tstate
+
+	_tmp_op_ptr = session + 32
+	_tmp_old_op = **(**uintptr)(__ccgo_up(_tmp_op_ptr))
+	if _tmp_old_op != libc.UintptrFromInt32(0) {
+		**(**uintptr)(__ccgo_up(_tmp_op_ptr)) = libc.UintptrFromInt32(0)
+		v1 = _tmp_old_op
+		v2 = libc.BoolInt32(int32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
+		goto _3
+	_3:
+		if v2 != 0 {
+			goto _4
+		}
+		v6 = v1
+		*(*Tuint32_t)(unsafe.Pointer(v6)) = *(*Tuint32_t)(unsafe.Pointer(v6)) - 1
+		v5 = *(*Tuint32_t)(unsafe.Pointer(v6))
+		if v5 == libc.Uint32FromInt32(0) {
+			X_Py_Dealloc(tls, v1)
+		}
+	_4:
+	}
+	_tmp_op_ptr1 = session + 40
+	_tmp_old_op1 = **(**uintptr)(__ccgo_up(_tmp_op_ptr1))
+	if _tmp_old_op1 != libc.UintptrFromInt32(0) {
+		**(**uintptr)(__ccgo_up(_tmp_op_ptr1)) = libc.UintptrFromInt32(0)
+		v1 = _tmp_old_op1
+		v2 = libc.BoolInt32(int32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
+		goto _9
+	_9:
+		if v2 != 0 {
+			goto _10
+		}
+		v6 = v1
+		*(*Tuint32_t)(unsafe.Pointer(v6)) = *(*Tuint32_t)(unsafe.Pointer(v6)) - 1
+		v5 = *(*Tuint32_t)(unsafe.Pointer(v6))
+		if v5 == libc.Uint32FromInt32(0) {
+			X_Py_Dealloc(tls, v1)
+		}
+	_10:
+	}
+
+	if (*T_PyXI_session)(unsafe.Pointer(session)).Frunning != 0 {
+		X_PyInterpreterState_SetNotRunningMain(tls, (*TPyThreadState)(unsafe.Pointer(tstate)).Finterp)
+		(*T_PyXI_session)(unsafe.Pointer(session)).Frunning = 0
+	}
+
+	if (*T_PyXI_session)(unsafe.Pointer(session)).Fprev_tstate != (*T_PyXI_session)(unsafe.Pointer(session)).Finit_tstate {
+		(*T_PyXI_session)(unsafe.Pointer(session)).Fown_init_tstate = 0
+		XPyThreadState_Clear(tls, tstate)
+		XPyThreadState_Swap(tls, (*T_PyXI_session)(unsafe.Pointer(session)).Fprev_tstate)
+		XPyThreadState_Delete(tls, tstate)
+	} else {
+	}
+	**(**T_PyXI_session)(__ccgo_up(session)) = T_PyXI_session{}
+}
+
+func __propagate_not_shareable_error(tls *libc.TLS, tstate uintptr, override uintptr) {
+	var exctype uintptr
+	_ = exctype
+	exctype = _get_notshareableerror_type(tls, tstate)
+	if exctype == libc.UintptrFromInt32(0) {
+		XPyErr_FormatUnraisable(tls, __ccgo_ts+136405, 0)
+		return
+	}
+	if XPyErr_ExceptionMatches(tls, exctype) != 0 {
+
+		**(**T_PyXI_failure)(__ccgo_up(override)) = T_PyXI_failure{
+			Fcode: int32(E_PyXI_ERR_NOT_SHAREABLE),
+		}
+	}
+}
+
+func X_PyXI_Enter(tls *libc.TLS, session uintptr, interp uintptr, nsupdates uintptr, result uintptr) (r int32) {
+	bp := tls.Alloc(144)
+	defer tls.Free(144)
+	var excinfo, failure, sharedns, v1, v6 uintptr
+	var fallback Txidata_fallback_t
+	var len1 TPy_ssize_t
+	var v2 int32
+	var v5 Tuint32_t
+	var _ T_PyXI_failure
+	var _ T_PyXI_error
+	var _ T_PyXI_failure
+	_, _, _, _, _, _, _, _, _ = excinfo, failure, fallback, len1, sharedns, v1, v2, v5, v6
+
+	sharedns = libc.UintptrFromInt32(0)
+	if nsupdates != libc.UintptrFromInt32(0) {
+		len1 = XPyDict_Size(tls, nsupdates)
+		if len1 < 0 {
+			if result != libc.UintptrFromInt32(0) {
+				(*T_PyXI_session_result)(unsafe.Pointer(result)).Ferrcode = int32(E_PyXI_ERR_APPLY_NS_FAILURE)
+			}
+			return -int32(1)
+		}
+		if len1 > 0 {
+			sharedns = __create_sharedns(tls, nsupdates)
+			if sharedns == libc.UintptrFromInt32(0) {
+				if result != libc.UintptrFromInt32(0) {
+					(*T_PyXI_session_result)(unsafe.Pointer(result)).Ferrcode = int32(E_PyXI_ERR_APPLY_NS_FAILURE)
+				}
+				return -int32(1)
+			}
+
+			fallback = libc.Int32FromInt32(M_PyXIDATA_XIDATA_ONLY)
+			**(**T_PyXI_failure)(__ccgo_up(bp)) = T_PyXI_failure{}
+			if __fill_sharedns(tls, sharedns, nsupdates, fallback, bp) < 0 {
+				if (**(**T_PyXI_failure)(__ccgo_up(bp))).Fcode == int32(E_PyXI_ERR_NO_ERROR) {
+					(**(**T_PyXI_failure)(__ccgo_up(bp))).Fcode = int32(E_PyXI_ERR_UNCAUGHT_EXCEPTION)
+				}
+				__destroy_sharedns(tls, sharedns)
+				if result != libc.UintptrFromInt32(0) {
+					(*T_PyXI_session_result)(unsafe.Pointer(result)).Ferrcode = (**(**T_PyXI_failure)(__ccgo_up(bp))).Fcode
+				}
+				return -int32(1)
+			}
+		}
+	}
+
+	__enter_session(tls, session, interp)
+	**(**T_PyXI_failure)(__ccgo_up(bp + 24)) = T_PyXI_failure{}
+	(**(**T_PyXI_failure)(__ccgo_up(bp + 24))).Fcode = int32(E_PyXI_ERR_UNCAUGHT_EXCEPTION)
+
+	if X_PyInterpreterState_SetRunningMain(tls, interp) < 0 {
+
+		(**(**T_PyXI_failure)(__ccgo_up(bp + 24))).Fcode = int32(E_PyXI_ERR_ALREADY_RUNNING)
+		goto error
+	}
+	(*T_PyXI_session)(unsafe.Pointer(session)).Frunning = int32(1)
+
+	if sharedns != libc.UintptrFromInt32(0) {
+		if __ensure_main_ns(tls, session, bp+24) < 0 {
+			goto error
+		}
+		if __apply_sharedns(tls, sharedns, (*T_PyXI_session)(unsafe.Pointer(session)).Fmain_ns, libc.UintptrFromInt32(0)) < 0 {
+			(**(**T_PyXI_failure)(__ccgo_up(bp + 24))).Fcode = int32(E_PyXI_ERR_APPLY_NS_FAILURE)
+			goto error
+		}
+		__destroy_sharedns(tls, sharedns)
+	}
+	(**(**T_PyXI_failure)(__ccgo_up(bp + 24))).Fcode = int32(E_PyXI_ERR_NO_ERROR)
+	return 0
+	goto error
+error:
+	;
+
+	**(**T_PyXI_error)(__ccgo_up(bp + 48)) = T_PyXI_error{}
+	failure = _capture_session_error(tls, session, bp+48, bp+24)
+
+	__exit_session(tls, session)
+	if sharedns != libc.UintptrFromInt32(0) {
+		__destroy_sharedns(tls, sharedns)
+	}
+
+	excinfo = __PyXI_ApplyError(tls, bp+48, failure)
+	_xi_error_clear(tls, bp+48)
+	if excinfo != libc.UintptrFromInt32(0) {
+		if result != libc.UintptrFromInt32(0) {
+			(*T_PyXI_session_result)(unsafe.Pointer(result)).Fexcinfo = excinfo
+		} else {
+			v1 = excinfo
+			v2 = libc.BoolInt32(int32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
+			goto _3
+		_3:
+			if v2 != 0 {
+				goto _4
+			}
+			v6 = v1
+			*(*Tuint32_t)(unsafe.Pointer(v6)) = *(*Tuint32_t)(unsafe.Pointer(v6)) - 1
+			v5 = *(*Tuint32_t)(unsafe.Pointer(v6))
+			if v5 == libc.Uint32FromInt32(0) {
+				X_Py_Dealloc(tls, v1)
+			}
+		_4:
+		}
+	}
+	return -int32(1)
+}
+
+func X_PyXI_Exit(tls *libc.TLS, session uintptr, override uintptr, result uintptr) (r int32) {
+	bp := tls.Alloc(128)
+	defer tls.Free(128)
+	var excinfo, failure, tstate1, v1, v3, v4 uintptr
+	var res, v10 int32
+	var v15 Tuint32_t
+	var _ T_PyXI_failure
+	var _ T_PyXI_error
+	var _ uintptr
+	var _ uintptr
+	_, _, _, _, _, _, _, _, _ = excinfo, failure, res, tstate1, v1, v10, v15, v3, v4
+	v1 = (*_ccgo_tls_tstate(tls))
+	goto _2
+_2:
+	tstate1 = v1
+	res = 0
+
+	**(**T_PyXI_error)(__ccgo_up(bp)) = T_PyXI_error{}
+	failure = libc.UintptrFromInt32(0)
+	if override != libc.UintptrFromInt32(0) && (*T_PyXI_failure)(unsafe.Pointer(override)).Fcode == int32(E_PyXI_ERR_NO_ERROR) {
+		override = libc.UintptrFromInt32(0)
+	}
+	v1 = tstate1
+	if (*TPyThreadState)(unsafe.Pointer(v1)).Fcurrent_exception == libc.UintptrFromInt32(0) {
+		v3 = libc.UintptrFromInt32(0)
+		goto _5
+	}
+	v4 = (*TPyObject)(unsafe.Pointer((*TPyThreadState)(unsafe.Pointer(v1)).Fcurrent_exception)).Fob_type
+	goto _7
+_7:
+	v3 = v4
+	goto _5
+_5:
+	if v3 != 0 {
+		failure = _capture_session_error(tls, session, bp, override)
+	} else {
+	}
+
+	**(**uintptr)(__ccgo_up(bp + 88)) = libc.UintptrFromInt32(0)
+	**(**uintptr)(__ccgo_up(bp + 96)) = libc.UintptrFromInt32(0)
+	if result != libc.UintptrFromInt32(0) {
+		**(**T_PyXI_failure)(__ccgo_up(bp + 104)) = T_PyXI_failure{}
+		if __pop_preserved(tls, session, bp+88, bp+96, bp+104) < 0 {
+			if _xi_error_is_set(tls, bp) != 0 {
+
+				XPyErr_FormatUnraisable(tls, __ccgo_ts+136461, 0)
+				_clear_xi_failure(tls, bp+104)
+			} else {
+				if (**(**T_PyXI_failure)(__ccgo_up(bp + 104))).Fcode == int32(E_PyXI_ERR_NO_ERROR) {
+					(**(**T_PyXI_failure)(__ccgo_up(bp + 104))).Fcode = int32(E_PyXI_ERR_UNCAUGHT_EXCEPTION)
+				}
+				failure = _capture_session_error(tls, session, bp, bp+104)
+			}
+		}
+	}
+
+	__exit_session(tls, session)
+	v1 = (*_ccgo_tls_tstate(tls))
+	goto _9
+_9:
+	tstate1 = v1
+
+	if __finish_preserved(tls, **(**uintptr)(__ccgo_up(bp + 88)), bp+96) < 0 {
+		if _xi_error_is_set(tls, bp) != 0 {
+
+			XPyErr_FormatUnraisable(tls, __ccgo_ts+136461, 0)
+		} else {
+			_xi_error_set_override_code(tls, tstate1, bp, int32(E_PyXI_ERR_PRESERVE_FAILURE))
+			__propagate_not_shareable_error(tls, tstate1, (**(**T_PyXI_error)(__ccgo_up(bp))).Foverride)
+		}
+	}
+	if result != libc.UintptrFromInt32(0) {
+		(*T_PyXI_session_result)(unsafe.Pointer(result)).Fpreserved = **(**uintptr)(__ccgo_up(bp + 96))
+		if (**(**T_PyXI_error)(__ccgo_up(bp))).Foverride != libc.UintptrFromInt32(0) {
+			v10 = (*T_PyXI_failure)(unsafe.Pointer((**(**T_PyXI_error)(__ccgo_up(bp))).Foverride)).Fcode
+		} else {
+			v10 = int32(E_PyXI_ERR_NO_ERROR)
+		}
+		(*T_PyXI_session_result)(unsafe.Pointer(result)).Ferrcode = v10
+	}
+
+	if _xi_error_is_set(tls, bp) != 0 {
+		res = -int32(1)
+		excinfo = __PyXI_ApplyError(tls, bp, failure)
+		if excinfo == libc.UintptrFromInt32(0) {
+			if result != libc.UintptrFromInt32(0) && !(_xi_error_has_override(tls, bp) != 0) {
+				X_PyXI_ClearResult(tls, result)
+				**(**T_PyXI_session_result)(__ccgo_up(result)) = T_PyXI_session_result{
+					Ferrcode: int32(E_PyXI_ERR_EXC_PROPAGATION_FAILURE),
+				}
+			}
+		} else {
+			if result != libc.UintptrFromInt32(0) {
+				(*T_PyXI_session_result)(unsafe.Pointer(result)).Fexcinfo = excinfo
+			} else {
+				v1 = excinfo
+				v10 = libc.BoolInt32(int32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
+				goto _13
+			_13:
+				if v10 != 0 {
+					goto _14
+				}
+				v3 = v1
+				*(*Tuint32_t)(unsafe.Pointer(v3)) = *(*Tuint32_t)(unsafe.Pointer(v3)) - 1
+				v15 = *(*Tuint32_t)(unsafe.Pointer(v3))
+				if v15 == libc.Uint32FromInt32(0) {
+					X_Py_Dealloc(tls, v1)
+				}
+			_14:
+			}
+		}
+		_xi_error_clear(tls, bp)
+	}
+	return res
+}
+
+func _capture_session_error(tls *libc.TLS, session uintptr, err uintptr, override uintptr) (r uintptr) {
+	var exc, failure, tstate1, v1, v6, v7 uintptr
+	var v2 int32
+	var v5 Tuint32_t
+	_, _, _, _, _, _, _, _ = exc, failure, tstate1, v1, v2, v5, v6, v7
+	tstate1 = (*T_PyXI_session)(unsafe.Pointer(session)).Finit_tstate
+
+	if override != libc.UintptrFromInt32(0) {
+		if (*T_PyXI_failure)(unsafe.Pointer(override)).Fcode == int32(E_PyXI_ERR_UNCAUGHT_EXCEPTION) {
+			override = libc.UintptrFromInt32(0)
+		} else {
+		}
+	}
+
+	failure = libc.UintptrFromInt32(0)
+	exc = _xi_error_resolve_current_exc(tls, tstate1, override)
+	if exc != libc.UintptrFromInt32(0) {
+
+		failure = _xi_error_set_exc(tls, tstate1, err, exc)
+		v1 = exc
+		v2 = libc.BoolInt32(int32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
+		goto _3
+	_3:
+		if v2 != 0 {
+			goto _4
+		}
+		v6 = v1
+		*(*Tuint32_t)(unsafe.Pointer(v6)) = *(*Tuint32_t)(unsafe.Pointer(v6)) - 1
+		v5 = *(*Tuint32_t)(unsafe.Pointer(v6))
+		if v5 == libc.Uint32FromInt32(0) {
+			X_Py_Dealloc(tls, v1)
+		}
+	_4:
+		;
+		v1 = tstate1
+		if (*TPyThreadState)(unsafe.Pointer(v1)).Fcurrent_exception == libc.UintptrFromInt32(0) {
+			v6 = libc.UintptrFromInt32(0)
+			goto _9
+		}
+		v7 = (*TPyObject)(unsafe.Pointer((*TPyThreadState)(unsafe.Pointer(v1)).Fcurrent_exception)).Fob_type
+		goto _11
+	_11:
+		v6 = v7
+		goto _9
+	_9:
+		if v6 != 0 {
+			XPyErr_FormatUnraisable(tls, failure, 0)
+		}
+	}
+
+	if override != libc.UintptrFromInt32(0) && failure == libc.UintptrFromInt32(0) {
+		_xi_error_set_override(tls, tstate1, err, override)
+	}
+
+	return failure
+}
+
+func __ensure_main_ns(tls *libc.TLS, session uintptr, failure uintptr) (r int32) {
+	var cur_refcnt, v6 Tuint32_t
+	var main_mod, ns, tstate, v1, v2, v7 uintptr
+	var v3 int32
+	_, _, _, _, _, _, _, _, _ = cur_refcnt, main_mod, ns, tstate, v1, v2, v3, v6, v7
+	tstate = (*T_PyXI_session)(unsafe.Pointer(session)).Finit_tstate
+	if (*T_PyXI_session)(unsafe.Pointer(session)).Fmain_ns != libc.UintptrFromInt32(0) {
+		return 0
+	}
+
+	main_mod = X_Py_GetMainModule(tls, tstate)
+	if X_Py_CheckMainModule(tls, main_mod) < 0 {
+		v1 = main_mod
+		if v1 != libc.UintptrFromInt32(0) {
+			v2 = v1
+			v3 = libc.BoolInt32(int32(*(*Tuint32_t)(unsafe.Pointer(v2))) < 0)
+			goto _4
+		_4:
+			if v3 != 0 {
+				goto _5
+			}
+			v7 = v2
+			*(*Tuint32_t)(unsafe.Pointer(v7)) = *(*Tuint32_t)(unsafe.Pointer(v7)) - 1
+			v6 = *(*Tuint32_t)(unsafe.Pointer(v7))
+			if v6 == libc.Uint32FromInt32(0) {
+				X_Py_Dealloc(tls, v2)
+			}
+		_5:
+		}
+		if failure != libc.UintptrFromInt32(0) {
+			**(**T_PyXI_failure)(__ccgo_up(failure)) = T_PyXI_failure{
+				Fcode: int32(E_PyXI_ERR_MAIN_NS_FAILURE),
+			}
+		}
+		return -int32(1)
+	}
+	ns = XPyModule_GetDict(tls, main_mod)
+	v1 = main_mod
+	v3 = libc.BoolInt32(int32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
+	goto _10
+_10:
+	if v3 != 0 {
+		goto _11
+	}
+	v2 = v1
+	*(*Tuint32_t)(unsafe.Pointer(v2)) = *(*Tuint32_t)(unsafe.Pointer(v2)) - 1
+	v6 = *(*Tuint32_t)(unsafe.Pointer(v2))
+	if v6 == libc.Uint32FromInt32(0) {
+		X_Py_Dealloc(tls, v1)
+	}
+_11:
+	;
+	if ns == libc.UintptrFromInt32(0) {
+		if failure != libc.UintptrFromInt32(0) {
+			**(**T_PyXI_failure)(__ccgo_up(failure)) = T_PyXI_failure{
+				Fcode: int32(E_PyXI_ERR_MAIN_NS_FAILURE),
+			}
+		}
+		return -int32(1)
+	}
+	v1 = ns
+	v2 = v1
+	cur_refcnt = *(*Tuint32_t)(unsafe.Pointer(v2))
+	if uint64(cur_refcnt) >= libc.Uint64FromUint64(3)<<libc.Int32FromInt32(30) {
+		goto _16
+	}
+	*(*Tuint32_t)(unsafe.Pointer(v2)) = cur_refcnt + uint32(1)
+_16:
+	;
+	v7 = v1
+	goto _18
+_18:
+	(*T_PyXI_session)(unsafe.Pointer(session)).Fmain_ns = v7
+	return 0
+}
+
+func X_PyXI_GetMainNamespace(tls *libc.TLS, session uintptr, failure uintptr) (r uintptr) {
+	if !(__session_is_active(tls, session) != 0) {
+		XPyErr_SetString(tls, XPyExc_RuntimeError, __ccgo_ts+136513)
+		return libc.UintptrFromInt32(0)
+	}
+	if __ensure_main_ns(tls, session, failure) < 0 {
+		return libc.UintptrFromInt32(0)
+	}
+	return (*T_PyXI_session)(unsafe.Pointer(session)).Fmain_ns
+}
+
+func __pop_preserved(tls *libc.TLS, session uintptr, p_xidata uintptr, p_obj uintptr, p_failure uintptr) (r int32) {
+	bp := tls.Alloc(32)
+	defer tls.Free(32)
+	var _tmp_old_op, _tmp_op_ptr, xidata, v1, v6 uintptr
+	var len1 TPy_ssize_t
+	var v2 int32
+	var v5 Tuint32_t
+	var _ T_PyXI_failure
+	_, _, _, _, _, _, _, _ = _tmp_old_op, _tmp_op_ptr, len1, xidata, v1, v2, v5, v6
+	**(**T_PyXI_failure)(__ccgo_up(bp)) = T_PyXI_failure{}
+	xidata = libc.UintptrFromInt32(0)
+
+	if (*T_PyXI_session)(unsafe.Pointer(session)).F_preserved == libc.UintptrFromInt32(0) {
+		**(**uintptr)(__ccgo_up(p_xidata)) = libc.UintptrFromInt32(0)
+		**(**uintptr)(__ccgo_up(p_obj)) = libc.UintptrFromInt32(0)
+		return 0
+	}
+	if (*T_PyXI_session)(unsafe.Pointer(session)).Finit_tstate == (*T_PyXI_session)(unsafe.Pointer(session)).Fprev_tstate {
+
+		**(**uintptr)(__ccgo_up(p_xidata)) = libc.UintptrFromInt32(0)
+		**(**uintptr)(__ccgo_up(p_obj)) = (*T_PyXI_session)(unsafe.Pointer(session)).F_preserved
+		(*T_PyXI_session)(unsafe.Pointer(session)).F_preserved = libc.UintptrFromInt32(0)
+		return 0
+	}
+	**(**uintptr)(__ccgo_up(p_obj)) = libc.UintptrFromInt32(0)
+
+	len1 = XPyDict_Size(tls, (*T_PyXI_session)(unsafe.Pointer(session)).F_preserved)
+	if len1 < 0 {
+		(**(**T_PyXI_failure)(__ccgo_up(bp))).Fcode = int32(E_PyXI_ERR_PRESERVE_FAILURE)
+		goto error
+	} else {
+		if len1 == 0 {
+			**(**uintptr)(__ccgo_up(p_xidata)) = libc.UintptrFromInt32(0)
+		} else {
+			xidata = __create_sharedns(tls, (*T_PyXI_session)(unsafe.Pointer(session)).F_preserved)
+			if xidata == libc.UintptrFromInt32(0) {
+				(**(**T_PyXI_failure)(__ccgo_up(bp))).Fcode = int32(E_PyXI_ERR_PRESERVE_FAILURE)
+				goto error
+			}
+			if __fill_sharedns(tls, xidata, (*T_PyXI_session)(unsafe.Pointer(session)).F_preserved, libc.Int32FromInt32(M_PyXIDATA_FULL_FALLBACK), bp) < 0 {
+				if (**(**T_PyXI_failure)(__ccgo_up(bp))).Fcode != int32(E_PyXI_ERR_NOT_SHAREABLE) {
+					(**(**T_PyXI_failure)(__ccgo_up(bp))).Fcode = int32(E_PyXI_ERR_PRESERVE_FAILURE)
+				}
+				goto error
+			}
+			**(**uintptr)(__ccgo_up(p_xidata)) = xidata
+		}
+	}
+	_tmp_op_ptr = session + 40
+	_tmp_old_op = **(**uintptr)(__ccgo_up(_tmp_op_ptr))
+	if _tmp_old_op != libc.UintptrFromInt32(0) {
+		**(**uintptr)(__ccgo_up(_tmp_op_ptr)) = libc.UintptrFromInt32(0)
+		v1 = _tmp_old_op
+		v2 = libc.BoolInt32(int32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
+		goto _3
+	_3:
+		if v2 != 0 {
+			goto _4
+		}
+		v6 = v1
+		*(*Tuint32_t)(unsafe.Pointer(v6)) = *(*Tuint32_t)(unsafe.Pointer(v6)) - 1
+		v5 = *(*Tuint32_t)(unsafe.Pointer(v6))
+		if v5 == libc.Uint32FromInt32(0) {
+			X_Py_Dealloc(tls, v1)
+		}
+	_4:
+	}
+	return 0
+	goto error
+error:
+	;
+	if p_failure != libc.UintptrFromInt32(0) {
+		**(**T_PyXI_failure)(__ccgo_up(p_failure)) = **(**T_PyXI_failure)(__ccgo_up(bp))
+	}
+	if xidata != libc.UintptrFromInt32(0) {
+		__destroy_sharedns(tls, xidata)
+	}
+	return -int32(1)
+}
+
+func __finish_preserved(tls *libc.TLS, xidata uintptr, p_preserved uintptr) (r int32) {
+	bp := tls.Alloc(16)
+	defer tls.Free(16)
+	var _tmp_old_op, _tmp_op_ptr, v1, v6 uintptr
+	var res, v2 int32
+	var v5 Tuint32_t
+	var _ uintptr
+	_, _, _, _, _, _, _ = _tmp_old_op, _tmp_op_ptr, res, v1, v2, v5, v6
+	if xidata == libc.UintptrFromInt32(0) {
+		return 0
+	}
+	res = -int32(1)
+	if p_preserved != libc.UintptrFromInt32(0) {
+		**(**uintptr)(__ccgo_up(bp)) = XPyDict_New(tls)
+		if **(**uintptr)(__ccgo_up(bp)) == libc.UintptrFromInt32(0) {
+			goto finally
+		}
+		if __apply_sharedns(tls, xidata, **(**uintptr)(__ccgo_up(bp)), libc.UintptrFromInt32(0)) < 0 {
+			_tmp_op_ptr = bp
+			_tmp_old_op = **(**uintptr)(__ccgo_up(_tmp_op_ptr))
+			if _tmp_old_op != libc.UintptrFromInt32(0) {
+				**(**uintptr)(__ccgo_up(_tmp_op_ptr)) = libc.UintptrFromInt32(0)
+				v1 = _tmp_old_op
+				v2 = libc.BoolInt32(int32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
+				goto _3
+			_3:
+				if v2 != 0 {
+					goto _4
+				}
+				v6 = v1
+				*(*Tuint32_t)(unsafe.Pointer(v6)) = *(*Tuint32_t)(unsafe.Pointer(v6)) - 1
+				v5 = *(*Tuint32_t)(unsafe.Pointer(v6))
+				if v5 == libc.Uint32FromInt32(0) {
+					X_Py_Dealloc(tls, v1)
+				}
+			_4:
+			}
+			goto finally
+		}
+		**(**uintptr)(__ccgo_up(p_preserved)) = **(**uintptr)(__ccgo_up(bp))
+	}
+	res = 0
+	goto finally
+finally:
+	;
+	__destroy_sharedns(tls, xidata)
+	return res
+}
+
+func X_PyXI_Preserve(tls *libc.TLS, session uintptr, name uintptr, value uintptr, p_failure uintptr) (r int32) {
+	var failure T_PyXI_failure
+	_ = failure
+	failure = T_PyXI_failure{}
+	if !(__session_is_active(tls, session) != 0) {
+		XPyErr_SetString(tls, XPyExc_RuntimeError, __ccgo_ts+136513)
+		return -int32(1)
+	}
+	if (*T_PyXI_session)(unsafe.Pointer(session)).F_preserved == libc.UintptrFromInt32(0) {
+		(*T_PyXI_session)(unsafe.Pointer(session)).F_preserved = XPyDict_New(tls)
+		if (*T_PyXI_session)(unsafe.Pointer(session)).F_preserved == libc.UintptrFromInt32(0) {
+			_set_exc_with_cause(tls, XPyExc_RuntimeError, __ccgo_ts+136532)
+			failure.Fcode = int32(E_PyXI_ERR_PRESERVE_FAILURE)
+			goto error
+		}
+	}
+	if XPyDict_SetItemString(tls, (*T_PyXI_session)(unsafe.Pointer(session)).F_preserved, name, value) < 0 {
+		_set_exc_with_cause(tls, XPyExc_RuntimeError, __ccgo_ts+136571)
+		failure.Fcode = int32(E_PyXI_ERR_PRESERVE_FAILURE)
+		goto error
+	}
+	return 0
+	goto error
+error:
+	;
+	if p_failure != libc.UintptrFromInt32(0) {
+		**(**T_PyXI_failure)(__ccgo_up(p_failure)) = failure
+	}
+	return -int32(1)
+}
+
+func X_PyXI_GetPreserved(tls *libc.TLS, result uintptr, name uintptr) (r uintptr) {
+	bp := tls.Alloc(16)
+	defer tls.Free(16)
+	var _ uintptr
+	**(**uintptr)(__ccgo_up(bp)) = libc.UintptrFromInt32(0)
+	if (*T_PyXI_session_result)(unsafe.Pointer(result)).Fpreserved != libc.UintptrFromInt32(0) {
+		XPyDict_GetItemStringRef(tls, (*T_PyXI_session_result)(unsafe.Pointer(result)).Fpreserved, name, bp)
+	}
+	return **(**uintptr)(__ccgo_up(bp))
+}
+
+func X_PyXI_ClearResult(tls *libc.TLS, result uintptr) {
+	var _tmp_old_op, _tmp_old_op1, _tmp_op_ptr, _tmp_op_ptr1, v1, v6 uintptr
+	var v5 Tuint32_t
+	var v2 int32
+	_, _, _, _, _, _, _, _ = _tmp_old_op, _tmp_old_op1, _tmp_op_ptr, _tmp_op_ptr1, v1, v2, v5, v6
+	_tmp_op_ptr = result
+	_tmp_old_op = **(**uintptr)(__ccgo_up(_tmp_op_ptr))
+	if _tmp_old_op != libc.UintptrFromInt32(0) {
+		**(**uintptr)(__ccgo_up(_tmp_op_ptr)) = libc.UintptrFromInt32(0)
+		v1 = _tmp_old_op
+		v2 = libc.BoolInt32(int32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
+		goto _3
+	_3:
+		if v2 != 0 {
+			goto _4
+		}
+		v6 = v1
+		*(*Tuint32_t)(unsafe.Pointer(v6)) = *(*Tuint32_t)(unsafe.Pointer(v6)) - 1
+		v5 = *(*Tuint32_t)(unsafe.Pointer(v6))
+		if v5 == libc.Uint32FromInt32(0) {
+			X_Py_Dealloc(tls, v1)
+		}
+	_4:
+	}
+	_tmp_op_ptr1 = result + 8
+	_tmp_old_op1 = **(**uintptr)(__ccgo_up(_tmp_op_ptr1))
+	if _tmp_old_op1 != libc.UintptrFromInt32(0) {
+		**(**uintptr)(__ccgo_up(_tmp_op_ptr1)) = libc.UintptrFromInt32(0)
+		v1 = _tmp_old_op1
+		v2 = libc.BoolInt32(int32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
+		goto _9
+	_9:
+		if v2 != 0 {
+			goto _10
+		}
+		v6 = v1
+		*(*Tuint32_t)(unsafe.Pointer(v6)) = *(*Tuint32_t)(unsafe.Pointer(v6)) - 1
+		v5 = *(*Tuint32_t)(unsafe.Pointer(v6))
+		if v5 == libc.Uint32FromInt32(0) {
+			X_Py_Dealloc(tls, v1)
+		}
+	_10:
+	}
+}
+
+func X_Py_xi_global_state_init(tls *libc.TLS, state uintptr) (r int32) {
+	_xid_lookup_init(tls, state)
+	return 0
+}
+
+func X_Py_xi_global_state_fini(tls *libc.TLS, state uintptr) {
+	_xid_lookup_fini(tls, state)
+}
+
+func X_Py_xi_state_init(tls *libc.TLS, state uintptr, interp uintptr) (r int32) {
+	_xid_lookup_init(tls, state)
+
+	if interp != libc.UintptrFromInt32(0) {
+		if _init_static_exctypes(tls, state+24, interp) < 0 {
+			_fini_heap_exctypes(tls, state+24)
+			return -int32(1)
+		}
+	}
+	if _init_heap_exctypes(tls, state+24) < 0 {
+		return -int32(1)
+	}
+	return 0
+}
+
+func X_Py_xi_state_fini(tls *libc.TLS, state uintptr, interp uintptr) {
+	_fini_heap_exctypes(tls, state+24)
+	if interp != libc.UintptrFromInt32(0) {
+		_fini_static_exctypes(tls, state+24, interp)
+	}
+	_xid_lookup_fini(tls, state)
+}
+
+func X_PyXI_Init(tls *libc.TLS, interp1 uintptr) (r TPyStatus) {
+	var global_state, state uintptr
+	var v1 int32
+	_, _, _ = global_state, state, v1
+	v1 = libc.BoolInt32(interp1 == X_PyInterpreterState_Main(tls))
+	goto _2
+_2:
+	if v1 != 0 {
+		global_state = (*TPyInterpreterState)(unsafe.Pointer(interp1)).Fruntime + 848
+		if global_state == libc.UintptrFromInt32(0) {
+			XPyErr_PrintEx(tls, 0)
+			return TPyStatus{
+				F_type:   int32(E_PyStatus_TYPE_ERROR),
+				Ffunc1:   uintptr(unsafe.Pointer(&___func__114)),
+				Ferr_msg: __ccgo_ts + 136597,
+			}
+		}
+		if X_Py_xi_global_state_init(tls, global_state) < 0 {
+			XPyErr_PrintEx(tls, 0)
+			return TPyStatus{
+				F_type:   int32(E_PyStatus_TYPE_ERROR),
+				Ffunc1:   uintptr(unsafe.Pointer(&___func__114)),
+				Ferr_msg: __ccgo_ts + 136642,
+			}
+		}
+	}
+	state = interp1 + 10488
+	if state == libc.UintptrFromInt32(0) {
+		XPyErr_PrintEx(tls, 0)
+		return TPyStatus{
+			F_type:   int32(E_PyStatus_TYPE_ERROR),
+			Ffunc1:   uintptr(unsafe.Pointer(&___func__114)),
+			Ferr_msg: __ccgo_ts + 136695,
+		}
+	}
+
+	if X_Py_xi_state_init(tls, state, libc.UintptrFromInt32(0)) < 0 {
+		XPyErr_PrintEx(tls, 0)
+		return TPyStatus{
+			F_type:   int32(E_PyStatus_TYPE_ERROR),
+			Ffunc1:   uintptr(unsafe.Pointer(&___func__114)),
+			Ferr_msg: __ccgo_ts + 136747,
+		}
+	}
+	return TPyStatus{}
+}
+
+var ___func__114 = [11]int8{'_', 'P', 'y', 'X', 'I', '_', 'I', 'n', 'i', 't'}
+
+func X_PyXI_Fini(tls *libc.TLS, interp1 uintptr) {
+	var global_state, state uintptr
+	var v1 int32
+	_, _, _ = global_state, state, v1
+	state = interp1 + 10488
+
+	X_Py_xi_state_fini(tls, state, libc.UintptrFromInt32(0))
+	v1 = libc.BoolInt32(interp1 == X_PyInterpreterState_Main(tls))
+	goto _2
+_2:
+	if v1 != 0 {
+		global_state = (*TPyInterpreterState)(unsafe.Pointer(interp1)).Fruntime + 848
+		X_Py_xi_global_state_fini(tls, global_state)
+	}
+}
+
+func X_PyXI_InitTypes(tls *libc.TLS, interp uintptr) (r TPyStatus) {
+	if _init_static_exctypes(tls, interp+10488+24, interp) < 0 {
+		XPyErr_PrintEx(tls, 0)
+		return TPyStatus{
+			F_type:   int32(E_PyStatus_TYPE_ERROR),
+			Ffunc1:   uintptr(unsafe.Pointer(&___func__25)),
+			Ferr_msg: __ccgo_ts + 136806,
+		}
+	}
+
+	return TPyStatus{}
+}
+
+var ___func__25 = [16]int8{'_', 'P', 'y', 'X', 'I', '_', 'I', 'n', 'i', 't', 'T', 'y', 'p', 'e', 's'}
+
+func X_PyXI_FiniTypes(tls *libc.TLS, interp uintptr) {
+
+	_fini_static_exctypes(tls, interp+10488+24, interp)
+}
+
+func X_PyXI_NewInterpreter(tls *libc.TLS, config uintptr, maybe_whence uintptr, p_tstate uintptr, p_save_tstate uintptr) (r uintptr) {
+	bp := tls.Alloc(16)
+	defer tls.Free(16)
+	var exc, interp, save_tstate uintptr
+	var status TPyStatus
+	var whence int32
+	var _ uintptr
+	_, _, _, _, _ = exc, interp, save_tstate, status, whence
+	save_tstate = XPyThreadState_Swap(tls, libc.UintptrFromInt32(0))
+	status = XPy_NewInterpreterFromConfig(tls, bp, config)
+	if XPyStatus_Exception(tls, status) != 0 {
+
+		XPyThreadState_Swap(tls, save_tstate)
+		X_PyErr_SetFromPyStatus(tls, status)
+		exc = XPyErr_GetRaisedException(tls)
+		XPyErr_SetString(tls, XPyExc_InterpreterError, __ccgo_ts+136865)
+		X_PyErr_ChainExceptions1(tls, exc)
+		return libc.UintptrFromInt32(0)
+	}
+	interp = XPyThreadState_GetInterpreter(tls, **(**uintptr)(__ccgo_up(bp)))
+	whence = int32(M_PyInterpreterState_WHENCE_XI)
+	if maybe_whence != libc.UintptrFromInt32(0) {
+		whence = **(**int32)(__ccgo_up(maybe_whence))
+	}
+	X_PyInterpreterState_SetWhence(tls, interp, whence)
+	if p_tstate != libc.UintptrFromInt32(0) {
+
+		**(**uintptr)(__ccgo_up(p_tstate)) = **(**uintptr)(__ccgo_up(bp))
+	} else {
+
+		XPyThreadState_Clear(tls, **(**uintptr)(__ccgo_up(bp)))
+		XPyThreadState_Swap(tls, save_tstate)
+		XPyThreadState_Delete(tls, **(**uintptr)(__ccgo_up(bp)))
+		save_tstate = libc.UintptrFromInt32(0)
+	}
+	if p_save_tstate != libc.UintptrFromInt32(0) {
+		**(**uintptr)(__ccgo_up(p_save_tstate)) = save_tstate
+	}
+	return interp
+}
+
+func X_PyXI_EndInterpreter(tls *libc.TLS, interp uintptr, tstate uintptr, p_save_tstate uintptr) {
+	var cur_tstate, save_tstate uintptr
+	_, _ = cur_tstate, save_tstate
+	if !(X_PyInterpreterState_IsReady(tls, interp) != 0) {
+
+		XPyInterpreterState_Delete(tls, interp)
+		return
+	}
+	save_tstate = libc.UintptrFromInt32(0)
+	cur_tstate = XPyThreadState_Get(tls)
+	if tstate == libc.UintptrFromInt32(0) {
+		if XPyThreadState_GetInterpreter(tls, cur_tstate) == interp {
+			tstate = cur_tstate
+		} else {
+			tstate = X_PyThreadState_NewBound(tls, interp, int32(M_PyThreadState_WHENCE_FINI))
+			save_tstate = XPyThreadState_Swap(tls, tstate)
+		}
+	} else {
+		if tstate != cur_tstate {
+			save_tstate = XPyThreadState_Swap(tls, tstate)
+		}
+	}
+	XPy_EndInterpreter(tls, tstate)
+	if p_save_tstate != libc.UintptrFromInt32(0) {
+		save_tstate = **(**uintptr)(__ccgo_up(p_save_tstate))
+	}
+	XPyThreadState_Swap(tls, save_tstate)
+}
+
+const MPy_NORMALIZE_RECURSION_LIMIT = 32
+
+func X_PyErr_SetRaisedException(tls *libc.TLS, tstate uintptr, exc uintptr) {
+	var old_exc, v1, v2, v7 uintptr
+	var v3 int32
+	var v6 Tuint32_t
+	_, _, _, _, _, _ = old_exc, v1, v2, v3, v6, v7
+	old_exc = (*TPyThreadState)(unsafe.Pointer(tstate)).Fcurrent_exception
+	(*TPyThreadState)(unsafe.Pointer(tstate)).Fcurrent_exception = exc
+	v1 = old_exc
+	if v1 != libc.UintptrFromInt32(0) {
+		v2 = v1
+		v3 = libc.BoolInt32(int32(*(*Tuint32_t)(unsafe.Pointer(v2))) < 0)
+		goto _4
+	_4:
+		if v3 != 0 {
+			goto _5
+		}
+		v7 = v2
+		*(*Tuint32_t)(unsafe.Pointer(v7)) = *(*Tuint32_t)(unsafe.Pointer(v7)) - 1
+		v6 = *(*Tuint32_t)(unsafe.Pointer(v7))
+		if v6 == libc.Uint32FromInt32(0) {
+			X_Py_Dealloc(tls, v2)
+		}
+	_5:
+	}
+}
+
+func __PyErr_CreateException(tls *libc.TLS, exception_type uintptr, value uintptr) (r uintptr) {
+	bp := tls.Alloc(48)
+	defer tls.Free(48)
+	var _tmp_old_op, _tmp_op_ptr, res, tp, tstate1, v1, v10, v11, v19, v3, v5, v6, v7, v9 uintptr
+	var flags uint32
+	var func1, v15 Tvectorcallfunc
+	var nargs, offset, v17 TPy_ssize_t
+	var v13 int32
+	var v29 bool
+	var v36 Tuint32_t
+	var v8 Tsize_t
+	var _ uintptr
+	var _ Tvectorcallfunc
+	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = _tmp_old_op, _tmp_op_ptr, flags, func1, nargs, offset, res, tp, tstate1, v1, v10, v11, v13, v15, v17, v19, v29, v3, v36, v5, v6, v7, v8, v9
+	if value == libc.UintptrFromInt32(0) || value == uintptr(unsafe.Pointer(&X_Py_NoneStruct)) {
+		v1 = (*_ccgo_tls_tstate(tls))
+		goto _2
+	_2:
+		tstate1 = v1
+		v5 = tstate1
+		v6 = exception_type
+		v7 = libc.UintptrFromInt32(0)
+		v8 = uint64(0)
+		v9 = libc.UintptrFromInt32(0)
+		v10 = v6
+		v11 = (*TPyObject)(unsafe.Pointer(v10)).Fob_type
+		goto _12
+	_12:
+		tp = v11
+		flags = (*TPyTypeObject)(unsafe.Pointer(tp)).Ftp_flags
+		v13 = libc.BoolInt32(flags&(libc.Uint32FromUint32(1)<<libc.Int32FromInt32(11)) != uint32(0))
+		goto _14
+	_14:
+		if !(v13 != 0) {
+			v15 = libc.UintptrFromInt32(0)
+			goto _16
+		}
+		offset = (*TPyTypeObject)(unsafe.Pointer(tp)).Ftp_vectorcall_offset
+		libc.Xmemcpy(tls, bp, v10+uintptr(offset), uint64(8))
+		v15 = **(**Tvectorcallfunc)(__ccgo_up(bp))
+		goto _16
+	_16:
+		func1 = v15
+		if func1 == libc.UintptrFromInt32(0) {
+			v17 = int64(v8 & ^(uint64(libc.Int32FromInt32(1)) << (libc.Uint64FromInt32(8)*libc.Uint64FromInt64(8) - libc.Uint64FromInt32(1))))
+			goto _18
+		_18:
+			nargs = v17
+			v19 = X_PyObject_MakeTpCall(tls, v5, v6, v7, nargs, v9)
+			goto _20
+		}
+		res = (*(*func(*libc.TLS, uintptr, uintptr, Tsize_t, uintptr) uintptr)(unsafe.Pointer(&struct{ uintptr }{func1})))(tls, v6, v7, v8, v9)
+		v19 = X_Py_CheckFunctionResult(tls, v5, v6, res, libc.UintptrFromInt32(0))
+		goto _20
+	_20:
+		v3 = v19
+		goto _4
+	_4:
+		**(**uintptr)(__ccgo_up(bp + 8)) = v3
+	} else {
+		v1 = (*TPyObject)(unsafe.Pointer(value)).Fob_type
+		goto _22
+	_22:
+		flags = (*TPyTypeObject)(unsafe.Pointer(v1)).Ftp_flags
+		v13 = libc.BoolInt32(flags&(libc.Uint32FromUint32(1)<<libc.Int32FromInt32(26)) != uint32(0))
+		goto _24
+	_24:
+		if v13 != 0 {
+			**(**uintptr)(__ccgo_up(bp + 8)) = XPyObject_Call(tls, exception_type, value, libc.UintptrFromInt32(0))
+		} else {
+			**(**uintptr)(__ccgo_up(bp + 8)) = XPyObject_CallOneArg(tls, exception_type, value)
+		}
+	}
+	if v29 = **(**uintptr)(__ccgo_up(bp + 8)) != libc.UintptrFromInt32(0); v29 {
+		v1 = (*TPyObject)(unsafe.Pointer(**(**uintptr)(__ccgo_up(bp + 8)))).Fob_type
+		goto _26
+	_26:
+		flags = (*TPyTypeObject)(unsafe.Pointer(v1)).Ftp_flags
+		v13 = libc.BoolInt32(flags&(libc.Uint32FromUint32(1)<<libc.Int32FromInt32(30)) != uint32(0))
+		goto _28
+	_28:
+	}
+	if v29 && !(v13 != 0) {
+		v3 = (*TPyObject)(unsafe.Pointer(**(**uintptr)(__ccgo_up(bp + 8)))).Fob_type
+		goto _31
+	_31:
+		XPyErr_Format(tls, XPyExc_TypeError, __ccgo_ts+136897, libc.VaList(bp+24, exception_type, (*TPyTypeObject)(unsafe.Pointer(v3)).Ftp_name))
+		_tmp_op_ptr = bp + 8
+		_tmp_old_op = **(**uintptr)(__ccgo_up(_tmp_op_ptr))
+		if _tmp_old_op != libc.UintptrFromInt32(0) {
+			**(**uintptr)(__ccgo_up(_tmp_op_ptr)) = libc.UintptrFromInt32(0)
+			v1 = _tmp_old_op
+			v13 = libc.BoolInt32(int32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
+			goto _34
+		_34:
+			if v13 != 0 {
+				goto _35
+			}
+			v3 = v1
+			*(*Tuint32_t)(unsafe.Pointer(v3)) = *(*Tuint32_t)(unsafe.Pointer(v3)) - 1
+			v36 = *(*Tuint32_t)(unsafe.Pointer(v3))
+			if v36 == libc.Uint32FromInt32(0) {
+				X_Py_Dealloc(tls, v1)
+			}
+		_35:
+		}
+	}
+	return **(**uintptr)(__ccgo_up(bp + 8))
+}
+
+func X_PyErr_Restore(tls *libc.TLS, tstate uintptr, type1 uintptr, value uintptr, traceback uintptr) {
+	var exc, v1, v10, v4, v5 uintptr
+	var v6 int32
+	var v9 Tuint32_t
+	var v3 bool
+	_, _, _, _, _, _, _, _ = exc, v1, v10, v3, v4, v5, v6, v9
+	if type1 == libc.UintptrFromInt32(0) {
+		X_PyErr_SetRaisedException(tls, tstate, libc.UintptrFromInt32(0))
+		return
+	}
+	if v3 = value != libc.UintptrFromInt32(0); v3 {
+		v1 = (*TPyObject)(unsafe.Pointer(value)).Fob_type
+		goto _2
+	_2:
+	}
+	if v3 && type1 == v1 {
+
+	} else {
+		exc = __PyErr_CreateException(tls, type1, value)
+		v4 = value
+		if v4 != libc.UintptrFromInt32(0) {
+			v5 = v4
+			v6 = libc.BoolInt32(int32(*(*Tuint32_t)(unsafe.Pointer(v5))) < 0)
+			goto _7
+		_7:
+			if v6 != 0 {
+				goto _8
+			}
+			v10 = v5
+			*(*Tuint32_t)(unsafe.Pointer(v10)) = *(*Tuint32_t)(unsafe.Pointer(v10)) - 1
+			v9 = *(*Tuint32_t)(unsafe.Pointer(v10))
+			if v9 == libc.Uint32FromInt32(0) {
+				X_Py_Dealloc(tls, v5)
+			}
+		_8:
+		}
+		if exc == libc.UintptrFromInt32(0) {
+			v1 = type1
+			v6 = libc.BoolInt32(int32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
+			goto _13
+		_13:
+			if v6 != 0 {
+				goto _14
+			}
+			v4 = v1
+			*(*Tuint32_t)(unsafe.Pointer(v4)) = *(*Tuint32_t)(unsafe.Pointer(v4)) - 1
+			v9 = *(*Tuint32_t)(unsafe.Pointer(v4))
+			if v9 == libc.Uint32FromInt32(0) {
+				X_Py_Dealloc(tls, v1)
+			}
+		_14:
+			;
+			v1 = traceback
+			if v1 != libc.UintptrFromInt32(0) {
+				v4 = v1
+				v6 = libc.BoolInt32(int32(*(*Tuint32_t)(unsafe.Pointer(v4))) < 0)
+				goto _20
+			_20:
+				if v6 != 0 {
+					goto _21
+				}
+				v5 = v4
+				*(*Tuint32_t)(unsafe.Pointer(v5)) = *(*Tuint32_t)(unsafe.Pointer(v5)) - 1
+				v9 = *(*Tuint32_t)(unsafe.Pointer(v5))
+				if v9 == libc.Uint32FromInt32(0) {
+					X_Py_Dealloc(tls, v4)
+				}
+			_21:
+			}
+			return
+		}
+		value = exc
+	}
+	if traceback != libc.UintptrFromInt32(0) {
+		if XPyException_SetTraceback(tls, value, traceback) < 0 {
+			v1 = traceback
+			v6 = libc.BoolInt32(int32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
+			goto _26
+		_26:
+			if v6 != 0 {
+				goto _27
+			}
+			v4 = v1
+			*(*Tuint32_t)(unsafe.Pointer(v4)) = *(*Tuint32_t)(unsafe.Pointer(v4)) - 1
+			v9 = *(*Tuint32_t)(unsafe.Pointer(v4))
+			if v9 == libc.Uint32FromInt32(0) {
+				X_Py_Dealloc(tls, v1)
+			}
+		_27:
+			;
+			v1 = value
+			v6 = libc.BoolInt32(int32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
+			goto _32
+		_32:
+			if v6 != 0 {
+				goto _33
+			}
+			v4 = v1
+			*(*Tuint32_t)(unsafe.Pointer(v4)) = *(*Tuint32_t)(unsafe.Pointer(v4)) - 1
+			v9 = *(*Tuint32_t)(unsafe.Pointer(v4))
+			if v9 == libc.Uint32FromInt32(0) {
+				X_Py_Dealloc(tls, v1)
+			}
+		_33:
+			;
+			v1 = type1
+			v6 = libc.BoolInt32(int32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
+			goto _38
+		_38:
+			if v6 != 0 {
+				goto _39
+			}
+			v4 = v1
+			*(*Tuint32_t)(unsafe.Pointer(v4)) = *(*Tuint32_t)(unsafe.Pointer(v4)) - 1
+			v9 = *(*Tuint32_t)(unsafe.Pointer(v4))
+			if v9 == libc.Uint32FromInt32(0) {
+				X_Py_Dealloc(tls, v1)
+			}
+		_39:
+			;
+			return
+		}
+		v1 = traceback
+		v6 = libc.BoolInt32(int32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
+		goto _44
+	_44:
+		if v6 != 0 {
+			goto _45
+		}
+		v4 = v1
+		*(*Tuint32_t)(unsafe.Pointer(v4)) = *(*Tuint32_t)(unsafe.Pointer(v4)) - 1
+		v9 = *(*Tuint32_t)(unsafe.Pointer(v4))
+		if v9 == libc.Uint32FromInt32(0) {
+			X_Py_Dealloc(tls, v1)
+		}
+	_45:
+	}
+	X_PyErr_SetRaisedException(tls, tstate, value)
+	v1 = type1
+	v6 = libc.BoolInt32(int32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
+	goto _50
+_50:
+	if v6 != 0 {
+		goto _51
+	}
+	v4 = v1
+	*(*Tuint32_t)(unsafe.Pointer(v4)) = *(*Tuint32_t)(unsafe.Pointer(v4)) - 1
+	v9 = *(*Tuint32_t)(unsafe.Pointer(v4))
+	if v9 == libc.Uint32FromInt32(0) {
+		X_Py_Dealloc(tls, v1)
+	}
+_51:
+}
+
+func XPyErr_Restore(tls *libc.TLS, type1 uintptr, value uintptr, traceback uintptr) {
+	var tstate, v1 uintptr
+	_, _ = tstate, v1
+	v1 = (*_ccgo_tls_tstate(tls))
+	goto _2
+_2:
+	tstate = v1
+	X_PyErr_Restore(tls, tstate, type1, value, traceback)
+}
+
+func XPyErr_SetRaisedException(tls *libc.TLS, exc uintptr) {
+	var tstate, v1 uintptr
+	_, _ = tstate, v1
+	v1 = (*_ccgo_tls_tstate(tls))
+	goto _2
+_2:
+	tstate = v1
+	X_PyErr_SetRaisedException(tls, tstate, exc)
+}
+
+func X_PyErr_GetTopmostException(tls *libc.TLS, tstate uintptr) (r uintptr) {
+	var exc_info uintptr
+	_ = exc_info
+	exc_info = (*TPyThreadState)(unsafe.Pointer(tstate)).Fexc_info
+	for (*T_PyErr_StackItem)(unsafe.Pointer(exc_info)).Fexc_value == libc.UintptrFromInt32(0) && (*T_PyErr_StackItem)(unsafe.Pointer(exc_info)).Fprevious_item != libc.UintptrFromInt32(0) {
+		exc_info = (*T_PyErr_StackItem)(unsafe.Pointer(exc_info)).Fprevious_item
+	}
+	return exc_info
+}
+
+func _get_normalization_failure_note(tls *libc.TLS, tstate uintptr, exception uintptr, value uintptr) (r uintptr) {
+	bp := tls.Alloc(32)
+	defer tls.Free(32)
+	var args, note, tpname, v1, v6 uintptr
+	var v2 int32
+	var v5 Tuint32_t
+	_, _, _, _, _, _, _ = args, note, tpname, v1, v2, v5, v6
+	args = XPyObject_Repr(tls, value)
+	if args == libc.UintptrFromInt32(0) {
+		X_PyErr_Clear(tls, tstate)
+		args = XPyUnicode_FromFormat(tls, __ccgo_ts+85062, 0)
+	}
+	tpname = (*TPyTypeObject)(unsafe.Pointer(exception)).Ftp_name
+	if args == libc.UintptrFromInt32(0) {
+		X_PyErr_Clear(tls, tstate)
+		note = XPyUnicode_FromFormat(tls, __ccgo_ts+136966, libc.VaList(bp+8, tpname))
+	} else {
+		note = XPyUnicode_FromFormat(tls, __ccgo_ts+136996, libc.VaList(bp+8, tpname, args))
+		v1 = args
+		v2 = libc.BoolInt32(int32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
+		goto _3
+	_3:
+		if v2 != 0 {
+			goto _4
+		}
+		v6 = v1
+		*(*Tuint32_t)(unsafe.Pointer(v6)) = *(*Tuint32_t)(unsafe.Pointer(v6)) - 1
+		v5 = *(*Tuint32_t)(unsafe.Pointer(v6))
+		if v5 == libc.Uint32FromInt32(0) {
+			X_Py_Dealloc(tls, v1)
+		}
+	_4:
+	}
+	return note
+}
+
+func X_PyErr_SetObject(tls *libc.TLS, tstate uintptr, exception uintptr, _value uintptr) {
+	bp := tls.Alloc(32)
+	defer tls.Free(32)
+	*(*uintptr)(unsafe.Pointer(bp)) = _value
+	var _tmp_dst_ptr, _tmp_old_dst, context, exc, exc_value, fixed_value, note, o, slow_o, tb, v11, v16, v18, v3 uintptr
+	var cur_refcnt, v26 Tuint32_t
+	var flags uint32
+	var is_subclass, slow_update_toggle, v1, v5, v7 int32
+	var v10, v9 bool
+	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = _tmp_dst_ptr, _tmp_old_dst, context, cur_refcnt, exc, exc_value, fixed_value, flags, is_subclass, note, o, slow_o, slow_update_toggle, tb, v1, v10, v11, v16, v18, v26, v3, v5, v7, v9
+	tb = libc.UintptrFromInt32(0)
+	if v10 = exception != libc.UintptrFromInt32(0); v10 {
+		v3 = (*TPyObject)(unsafe.Pointer(exception)).Fob_type
+		goto _4
+	_4:
+		flags = (*TPyTypeObject)(unsafe.Pointer(v3)).Ftp_flags
+		v5 = libc.BoolInt32(flags&(libc.Uint32FromUint32(1)<<libc.Int32FromInt32(31)) != uint32(0))
+		goto _6
+	_6:
+		v1 = v5
+		goto _2
+	_2:
+		;
+		if v9 = v1 != 0; v9 {
+			flags = (*TPyTypeObject)(unsafe.Pointer(exception)).Ftp_flags
+			v7 = libc.BoolInt32(flags&(libc.Uint32FromUint32(1)<<libc.Int32FromInt32(30)) != uint32(0))
+			goto _8
+		_8:
+		}
+	}
+	if v10 && !(v9 && v7 != 0) {
+		X_PyErr_Format(tls, tstate, XPyExc_SystemError, __ccgo_ts+137034, libc.VaList(bp+16, exception))
+		return
+	}
+
+	is_subclass = 0
+	if v9 = **(**uintptr)(__ccgo_up(bp)) != libc.UintptrFromInt32(0); v9 {
+		v3 = (*TPyObject)(unsafe.Pointer(**(**uintptr)(__ccgo_up(bp)))).Fob_type
+		goto _12
+	_12:
+		flags = (*TPyTypeObject)(unsafe.Pointer(v3)).Ftp_flags
+		v1 = libc.BoolInt32(flags&(libc.Uint32FromUint32(1)<<libc.Int32FromInt32(30)) != uint32(0))
+		goto _14
+	_14:
+	}
+	if v9 && v1 != 0 {
+		v11 = (*TPyObject)(unsafe.Pointer(**(**uintptr)(__ccgo_up(bp)))).Fob_type
+		goto _17
+	_17:
+		is_subclass = XPyObject_IsSubclass(tls, v11, exception)
+		if is_subclass < 0 {
+			return
+		}
+	}
+	v3 = **(**uintptr)(__ccgo_up(bp))
+	if v3 != libc.UintptrFromInt32(0) {
+		v11 = v3
+		cur_refcnt = *(*Tuint32_t)(unsafe.Pointer(v11))
+		if uint64(cur_refcnt) >= libc.Uint64FromUint64(3)<<libc.Int32FromInt32(30) {
+			goto _20
+		}
+		*(*Tuint32_t)(unsafe.Pointer(v11)) = cur_refcnt + uint32(1)
+	_20:
+	}
+	if !(is_subclass != 0) {
+
+		X_PyErr_Clear(tls, tstate)
+		fixed_value = __PyErr_CreateException(tls, exception, **(**uintptr)(__ccgo_up(bp)))
+		if fixed_value == libc.UintptrFromInt32(0) {
+			exc = X_PyErr_GetRaisedException(tls, tstate)
+			note = _get_normalization_failure_note(tls, tstate, exception, **(**uintptr)(__ccgo_up(bp)))
+			v3 = **(**uintptr)(__ccgo_up(bp))
+			if v3 != libc.UintptrFromInt32(0) {
+				v11 = v3
+				v1 = libc.BoolInt32(int32(*(*Tuint32_t)(unsafe.Pointer(v11))) < 0)
+				goto _24
+			_24:
+				if v1 != 0 {
+					goto _25
+				}
+				v16 = v11
+				*(*Tuint32_t)(unsafe.Pointer(v16)) = *(*Tuint32_t)(unsafe.Pointer(v16)) - 1
+				v26 = *(*Tuint32_t)(unsafe.Pointer(v16))
+				if v26 == libc.Uint32FromInt32(0) {
+					X_Py_Dealloc(tls, v11)
+				}
+			_25:
+			}
+			if note != libc.UintptrFromInt32(0) {
+
+				X_PyException_AddNote(tls, exc, note)
+				v3 = note
+				v1 = libc.BoolInt32(int32(*(*Tuint32_t)(unsafe.Pointer(v3))) < 0)
+				goto _30
+			_30:
+				if v1 != 0 {
+					goto _31
+				}
+				v11 = v3
+				*(*Tuint32_t)(unsafe.Pointer(v11)) = *(*Tuint32_t)(unsafe.Pointer(v11)) - 1
+				v26 = *(*Tuint32_t)(unsafe.Pointer(v11))
+				if v26 == libc.Uint32FromInt32(0) {
+					X_Py_Dealloc(tls, v3)
+				}
+			_31:
+			}
+			X_PyErr_SetRaisedException(tls, tstate, exc)
+			return
+		}
+		_tmp_dst_ptr = bp
+		_tmp_old_dst = **(**uintptr)(__ccgo_up(_tmp_dst_ptr))
+		**(**uintptr)(__ccgo_up(_tmp_dst_ptr)) = fixed_value
+		v3 = _tmp_old_dst
+		if v3 != libc.UintptrFromInt32(0) {
+			v11 = v3
+			v1 = libc.BoolInt32(int32(*(*Tuint32_t)(unsafe.Pointer(v11))) < 0)
+			goto _37
+		_37:
+			if v1 != 0 {
+				goto _38
+			}
+			v16 = v11
+			*(*Tuint32_t)(unsafe.Pointer(v16)) = *(*Tuint32_t)(unsafe.Pointer(v16)) - 1
+			v26 = *(*Tuint32_t)(unsafe.Pointer(v16))
+			if v26 == libc.Uint32FromInt32(0) {
+				X_Py_Dealloc(tls, v11)
+			}
+		_38:
+		}
+	}
+	exc_value = (*T_PyErr_StackItem)(unsafe.Pointer(X_PyErr_GetTopmostException(tls, tstate))).Fexc_value
+	if exc_value != libc.UintptrFromInt32(0) && exc_value != uintptr(unsafe.Pointer(&X_Py_NoneStruct)) {
+
+		v3 = exc_value
+		cur_refcnt = *(*Tuint32_t)(unsafe.Pointer(v3))
+		if uint64(cur_refcnt) >= libc.Uint64FromUint64(3)<<libc.Int32FromInt32(30) {
+			goto _42
+		}
+		*(*Tuint32_t)(unsafe.Pointer(v3)) = cur_refcnt + uint32(1)
+	_42:
+		;
+
+		if exc_value != **(**uintptr)(__ccgo_up(bp)) {
+			o = exc_value
+			slow_o = o
+			slow_update_toggle = 0
+			for {
+				v3 = XPyException_GetContext(tls, o)
+				context = v3
+				if !(v3 != 0) {
+					break
+				}
+				v11 = context
+				v1 = libc.BoolInt32(int32(*(*Tuint32_t)(unsafe.Pointer(v11))) < 0)
+				goto _46
+			_46:
+				if v1 != 0 {
+					goto _47
+				}
+				v16 = v11
+				*(*Tuint32_t)(unsafe.Pointer(v16)) = *(*Tuint32_t)(unsafe.Pointer(v16)) - 1
+				v26 = *(*Tuint32_t)(unsafe.Pointer(v16))
+				if v26 == libc.Uint32FromInt32(0) {
+					X_Py_Dealloc(tls, v11)
+				}
+			_47:
+				;
+				if context == **(**uintptr)(__ccgo_up(bp)) {
+					XPyException_SetContext(tls, o, libc.UintptrFromInt32(0))
+					break
+				}
+				o = context
+				if o == slow_o {
+
+					break
+				}
+				if slow_update_toggle != 0 {
+					slow_o = XPyException_GetContext(tls, slow_o)
+					v3 = slow_o
+					v1 = libc.BoolInt32(int32(*(*Tuint32_t)(unsafe.Pointer(v3))) < 0)
+					goto _52
+				_52:
+					if v1 != 0 {
+						goto _53
+					}
+					v11 = v3
+					*(*Tuint32_t)(unsafe.Pointer(v11)) = *(*Tuint32_t)(unsafe.Pointer(v11)) - 1
+					v26 = *(*Tuint32_t)(unsafe.Pointer(v11))
+					if v26 == libc.Uint32FromInt32(0) {
+						X_Py_Dealloc(tls, v3)
+					}
+				_53:
+				}
+				slow_update_toggle = libc.BoolInt32(!(slow_update_toggle != 0))
+			}
+			XPyException_SetContext(tls, **(**uintptr)(__ccgo_up(bp)), exc_value)
+		} else {
+			v3 = exc_value
+			v1 = libc.BoolInt32(int32(*(*Tuint32_t)(unsafe.Pointer(v3))) < 0)
+			goto _58
+		_58:
+			if v1 != 0 {
+				goto _59
+			}
+			v11 = v3
+			*(*Tuint32_t)(unsafe.Pointer(v11)) = *(*Tuint32_t)(unsafe.Pointer(v11)) - 1
+			v26 = *(*Tuint32_t)(unsafe.Pointer(v11))
+			if v26 == libc.Uint32FromInt32(0) {
+				X_Py_Dealloc(tls, v3)
+			}
+		_59:
+		}
+	}
+	v3 = (*TPyObject)(unsafe.Pointer(**(**uintptr)(__ccgo_up(bp)))).Fob_type
+	goto _63
+_63:
+	flags = (*TPyTypeObject)(unsafe.Pointer(v3)).Ftp_flags
+	v1 = libc.BoolInt32(flags&(libc.Uint32FromUint32(1)<<libc.Int32FromInt32(30)) != uint32(0))
+	goto _65
+_65:
+	if v1 != 0 {
+		tb = XPyException_GetTraceback(tls, **(**uintptr)(__ccgo_up(bp)))
+	}
+	v3 = (*TPyObject)(unsafe.Pointer(**(**uintptr)(__ccgo_up(bp)))).Fob_type
+	goto _67
+_67:
+	v11 = v3
+	v16 = v11
+	cur_refcnt = *(*Tuint32_t)(unsafe.Pointer(v16))
+	if uint64(cur_refcnt) >= libc.Uint64FromUint64(3)<<libc.Int32FromInt32(30) {
+		goto _70
+	}
+	*(*Tuint32_t)(unsafe.Pointer(v16)) = cur_refcnt + uint32(1)
+_70:
+	;
+	v18 = v11
+	goto _72
+_72:
+	X_PyErr_Restore(tls, tstate, v18, **(**uintptr)(__ccgo_up(bp)), tb)
+}
+
+func XPyErr_SetObject(tls *libc.TLS, exception uintptr, value uintptr) {
+	var tstate, v1 uintptr
+	_, _ = tstate, v1
+	v1 = (*_ccgo_tls_tstate(tls))
+	goto _2
+_2:
+	tstate = v1
+	X_PyErr_SetObject(tls, tstate, exception, value)
+}
+
+// C documentation
+//
+//	/* Set a key error with the specified argument. This function should be used to
+//	 * raise a KeyError with an argument instead of PyErr_SetObject(PyExc_KeyError,
+//	 * arg) which has a special behavior. PyErr_SetObject() unpacks arg if it's a
+//	 * tuple, and it uses arg instead of creating a new exception if arg is an
+//	 * exception.
+//	 *
+//	 * If an exception is already set, override the exception. */
+func X_PyErr_SetKeyError(tls *libc.TLS, arg uintptr) {
+	var exc, tstate, v1, v3 uintptr
+	var v6 int32
+	var v9 Tuint32_t
+	_, _, _, _, _, _ = exc, tstate, v1, v3, v6, v9
+	v1 = (*_ccgo_tls_tstate(tls))
+	goto _2
+_2:
+	tstate = v1
+
+	X_PyErr_Clear(tls, tstate)
+	exc = XPyObject_CallOneArg(tls, XPyExc_KeyError, arg)
+	if !(exc != 0) {
+
+		return
+	}
+	v1 = (*TPyObject)(unsafe.Pointer(exc)).Fob_type
+	goto _4
+_4:
+	X_PyErr_SetObject(tls, tstate, v1, exc)
+	v1 = exc
+	v6 = libc.BoolInt32(int32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
+	goto _7
+_7:
+	if v6 != 0 {
+		goto _8
+	}
+	v3 = v1
+	*(*Tuint32_t)(unsafe.Pointer(v3)) = *(*Tuint32_t)(unsafe.Pointer(v3)) - 1
+	v9 = *(*Tuint32_t)(unsafe.Pointer(v3))
+	if v9 == libc.Uint32FromInt32(0) {
+		X_Py_Dealloc(tls, v1)
+	}
+_8:
+}
+
+func X_PyErr_SetNone(tls *libc.TLS, tstate uintptr, exception uintptr) {
+	X_PyErr_SetObject(tls, tstate, exception, libc.UintptrFromInt32(0))
+}
+
+func XPyErr_SetNone(tls *libc.TLS, exception uintptr) {
+	var tstate, v1 uintptr
+	_, _ = tstate, v1
+	v1 = (*_ccgo_tls_tstate(tls))
+	goto _2
+_2:
+	tstate = v1
+	X_PyErr_SetNone(tls, tstate, exception)
+}
+
+func X_PyErr_SetString(tls *libc.TLS, tstate uintptr, exception uintptr, string1 uintptr) {
+	var value, v1, v6 uintptr
+	var v2 int32
+	var v5 Tuint32_t
+	_, _, _, _, _ = value, v1, v2, v5, v6
+	value = XPyUnicode_FromString(tls, string1)
+	if value != libc.UintptrFromInt32(0) {
+		X_PyErr_SetObject(tls, tstate, exception, value)
+		v1 = value
+		v2 = libc.BoolInt32(int32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
+		goto _3
+	_3:
+		if v2 != 0 {
+			goto _4
+		}
+		v6 = v1
+		*(*Tuint32_t)(unsafe.Pointer(v6)) = *(*Tuint32_t)(unsafe.Pointer(v6)) - 1
+		v5 = *(*Tuint32_t)(unsafe.Pointer(v6))
+		if v5 == libc.Uint32FromInt32(0) {
+			X_Py_Dealloc(tls, v1)
+		}
+	_4:
+	}
+}
+
+func XPyErr_SetString(tls *libc.TLS, exception uintptr, string1 uintptr) {
+	var tstate, v1 uintptr
+	_, _ = tstate, v1
+	v1 = (*_ccgo_tls_tstate(tls))
+	goto _2
+_2:
+	tstate = v1
+	X_PyErr_SetString(tls, tstate, exception, string1)
+}
+
+func X_PyErr_SetLocaleString(tls *libc.TLS, exception uintptr, string1 uintptr) {
+	var value, v1, v6 uintptr
+	var v2 int32
+	var v5 Tuint32_t
+	_, _, _, _, _ = value, v1, v2, v5, v6
+	value = XPyUnicode_DecodeLocale(tls, string1, __ccgo_ts+75071)
+	if value != libc.UintptrFromInt32(0) {
+		XPyErr_SetObject(tls, exception, value)
+		v1 = value
+		v2 = libc.BoolInt32(int32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
+		goto _3
+	_3:
+		if v2 != 0 {
+			goto _4
+		}
+		v6 = v1
+		*(*Tuint32_t)(unsafe.Pointer(v6)) = *(*Tuint32_t)(unsafe.Pointer(v6)) - 1
+		v5 = *(*Tuint32_t)(unsafe.Pointer(v6))
+		if v5 == libc.Uint32FromInt32(0) {
+			X_Py_Dealloc(tls, v1)
+		}
+	_4:
+	}
+}
+
+func XPyErr_Occurred(tls *libc.TLS) (r uintptr) {
+	var tstate1, v1, v3, v4, v6 uintptr
+	_, _, _, _, _ = tstate1, v1, v3, v4, v6
+
+	v1 = (*_ccgo_tls_tstate(tls))
+	goto _2
+_2:
+	tstate1 = v1
+	v3 = tstate1
+	if (*TPyThreadState)(unsafe.Pointer(v3)).Fcurrent_exception == libc.UintptrFromInt32(0) {
+		v4 = libc.UintptrFromInt32(0)
+		goto _5
+	}
+	v6 = (*TPyObject)(unsafe.Pointer((*TPyThreadState)(unsafe.Pointer(v3)).Fcurrent_exception)).Fob_type
+	goto _7
+_7:
+	v4 = v6
+	goto _5
+_5:
+	return v4
+}
+
+func XPyErr_GivenExceptionMatches(tls *libc.TLS, err uintptr, exc uintptr) (r int32) {
+	var flags uint32
+	var i, n TPy_ssize_t
+	var v1, v6 uintptr
+	var v12, v16, v18, v21, v3, v8 int32
+	var v20, v29, v30 bool
+	_, _, _, _, _, _, _, _, _, _, _, _, _, _ = flags, i, n, v1, v12, v16, v18, v20, v21, v29, v3, v30, v6, v8
+	if err == libc.UintptrFromInt32(0) || exc == libc.UintptrFromInt32(0) {
+
+		return 0
+	}
+	v1 = (*TPyObject)(unsafe.Pointer(exc)).Fob_type
+	goto _2
+_2:
+	flags = (*TPyTypeObject)(unsafe.Pointer(v1)).Ftp_flags
+	v3 = libc.BoolInt32(flags&(libc.Uint32FromUint32(1)<<libc.Int32FromInt32(26)) != uint32(0))
+	goto _4
+_4:
+	if v3 != 0 {
+		n = XPyTuple_Size(tls, exc)
+		i = 0
+		for {
+			if !(i < n) {
+				break
+			}
+
+			if XPyErr_GivenExceptionMatches(tls, err, **(**uintptr)(__ccgo_up(exc + 32 + uintptr(i)*8))) != 0 {
+				return int32(1)
+			}
+			goto _5
+		_5:
+			;
+			i = i + 1
+		}
+		return 0
+	}
+
+	v1 = (*TPyObject)(unsafe.Pointer(err)).Fob_type
+	goto _7
+_7:
+	flags = (*TPyTypeObject)(unsafe.Pointer(v1)).Ftp_flags
+	v3 = libc.BoolInt32(flags&(libc.Uint32FromUint32(1)<<libc.Int32FromInt32(30)) != uint32(0))
+	goto _9
+_9:
+	if v3 != 0 {
+		v6 = (*TPyObject)(unsafe.Pointer(err)).Fob_type
+		goto _11
+	_11:
+		err = v6
+	}
+	v1 = (*TPyObject)(unsafe.Pointer(err)).Fob_type
+	goto _15
+_15:
+	flags = (*TPyTypeObject)(unsafe.Pointer(v1)).Ftp_flags
+	v8 = libc.BoolInt32(flags&(libc.Uint32FromUint32(1)<<libc.Int32FromInt32(31)) != uint32(0))
+	goto _17
+_17:
+	v3 = v8
+	goto _13
+_13:
+	;
+	if v20 = v3 != 0; v20 {
+		flags = (*TPyTypeObject)(unsafe.Pointer(err)).Ftp_flags
+		v12 = libc.BoolInt32(flags&(libc.Uint32FromUint32(1)<<libc.Int32FromInt32(30)) != uint32(0))
+		goto _19
+	_19:
+	}
+	if v30 = v20 && v12 != 0; v30 {
+		v6 = (*TPyObject)(unsafe.Pointer(exc)).Fob_type
+		goto _24
+	_24:
+		flags = (*TPyTypeObject)(unsafe.Pointer(v6)).Ftp_flags
+		v18 = libc.BoolInt32(flags&(libc.Uint32FromUint32(1)<<libc.Int32FromInt32(31)) != uint32(0))
+		goto _26
+	_26:
+		v16 = v18
+		goto _22
+	_22:
+		;
+		if v29 = v16 != 0; v29 {
+			flags = (*TPyTypeObject)(unsafe.Pointer(exc)).Ftp_flags
+			v21 = libc.BoolInt32(flags&(libc.Uint32FromUint32(1)<<libc.Int32FromInt32(30)) != uint32(0))
+			goto _28
+		_28:
+		}
+	}
+	if v30 && (v29 && v21 != 0) {
+		return XPyType_IsSubtype(tls, err, exc)
+	}
+	return libc.BoolInt32(err == exc)
+}
+
+func X_PyErr_ExceptionMatches(tls *libc.TLS, tstate1 uintptr, exc uintptr) (r int32) {
+	var v1, v2, v4 uintptr
+	_, _, _ = v1, v2, v4
+	v1 = tstate1
+	if (*TPyThreadState)(unsafe.Pointer(v1)).Fcurrent_exception == libc.UintptrFromInt32(0) {
+		v2 = libc.UintptrFromInt32(0)
+		goto _3
+	}
+	v4 = (*TPyObject)(unsafe.Pointer((*TPyThreadState)(unsafe.Pointer(v1)).Fcurrent_exception)).Fob_type
+	goto _5
+_5:
+	v2 = v4
+	goto _3
+_3:
+	return XPyErr_GivenExceptionMatches(tls, v2, exc)
+}
+
+func XPyErr_ExceptionMatches(tls *libc.TLS, exc uintptr) (r int32) {
+	var tstate, v1 uintptr
+	_, _ = tstate, v1
+	v1 = (*_ccgo_tls_tstate(tls))
+	goto _2
+_2:
+	tstate = v1
+	return X_PyErr_ExceptionMatches(tls, tstate, exc)
+}
+
+// C documentation
+//
+//	/* Used in many places to normalize a raised exception, including in
+//	   eval_code2(), do_raise(), and PyErr_Print()
+//
+//	   XXX: should PyErr_NormalizeException() also call
+//	            PyException_SetTraceback() with the resulting value and tb?
+//	*/
+func X_PyErr_NormalizeException(tls *libc.TLS, tstate uintptr, exc uintptr, val uintptr, tb uintptr) {
+	bp := tls.Alloc(16)
+	defer tls.Free(16)
+	var _tmp_dst_ptr, _tmp_dst_ptr1, _tmp_old_dst, _tmp_old_dst1, fixed_value, inclass, initial_tb, v1, v2, v4 uintptr
+	var cur_refcnt, v25 Tuint32_t
+	var flags uint32
+	var is_subclass, recursion_depth, v10, v12, v17, v6 int32
+	var v14 bool
+	var _ uintptr
+	var _ uintptr
+	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = _tmp_dst_ptr, _tmp_dst_ptr1, _tmp_old_dst, _tmp_old_dst1, cur_refcnt, fixed_value, flags, inclass, initial_tb, is_subclass, recursion_depth, v1, v10, v12, v14, v17, v2, v25, v4, v6
+	recursion_depth = 0
+	(*TPyThreadState)(unsafe.Pointer(tstate)).Frecursion_headroom = (*TPyThreadState)(unsafe.Pointer(tstate)).Frecursion_headroom + 1
+	goto restart
+restart:
+	;
+	**(**uintptr)(__ccgo_up(bp)) = **(**uintptr)(__ccgo_up(exc))
+	if **(**uintptr)(__ccgo_up(bp)) == libc.UintptrFromInt32(0) {
+
+		(*TPyThreadState)(unsafe.Pointer(tstate)).Frecursion_headroom = (*TPyThreadState)(unsafe.Pointer(tstate)).Frecursion_headroom - 1
+		return
+	}
+	**(**uintptr)(__ccgo_up(bp + 8)) = **(**uintptr)(__ccgo_up(val))
+
+	if !(**(**uintptr)(__ccgo_up(bp + 8)) != 0) {
+		v1 = uintptr(unsafe.Pointer(&X_Py_NoneStruct))
+		v2 = v1
+		cur_refcnt = *(*Tuint32_t)(unsafe.Pointer(v2))
+		if uint64(cur_refcnt) >= libc.Uint64FromUint64(3)<<libc.Int32FromInt32(30) {
+			goto _3
+		}
+		*(*Tuint32_t)(unsafe.Pointer(v2)) = cur_refcnt + uint32(1)
+	_3:
+		;
+		v4 = v1
+		goto _5
+	_5:
+		**(**uintptr)(__ccgo_up(bp + 8)) = v4
+	}
+
+	v1 = (*TPyObject)(unsafe.Pointer(**(**uintptr)(__ccgo_up(bp)))).Fob_type
+	goto _9
+_9:
+	flags = (*TPyTypeObject)(unsafe.Pointer(v1)).Ftp_flags
+	v10 = libc.BoolInt32(flags&(libc.Uint32FromUint32(1)<<libc.Int32FromInt32(31)) != uint32(0))
+	goto _11
+_11:
+	v6 = v10
+	goto _7
+_7:
+	;
+	if v14 = v6 != 0; v14 {
+		flags = (*TPyTypeObject)(unsafe.Pointer(**(**uintptr)(__ccgo_up(bp)))).Ftp_flags
+		v12 = libc.BoolInt32(flags&(libc.Uint32FromUint32(1)<<libc.Int32FromInt32(30)) != uint32(0))
+		goto _13
+	_13:
+	}
+	if v14 && v12 != 0 {
+		inclass = libc.UintptrFromInt32(0)
+		is_subclass = 0
+		v2 = (*TPyObject)(unsafe.Pointer(**(**uintptr)(__ccgo_up(bp + 8)))).Fob_type
+		goto _16
+	_16:
+		flags = (*TPyTypeObject)(unsafe.Pointer(v2)).Ftp_flags
+		v17 = libc.BoolInt32(flags&(libc.Uint32FromUint32(1)<<libc.Int32FromInt32(30)) != uint32(0))
+		goto _18
+	_18:
+		if v17 != 0 {
+			v4 = (*TPyObject)(unsafe.Pointer(**(**uintptr)(__ccgo_up(bp + 8)))).Fob_type
+			goto _20
+		_20:
+			inclass = v4
+			is_subclass = XPyObject_IsSubclass(tls, inclass, **(**uintptr)(__ccgo_up(bp)))
+			if is_subclass < 0 {
+				goto error
+			}
+		}
+
+		if !(is_subclass != 0) {
+			fixed_value = __PyErr_CreateException(tls, **(**uintptr)(__ccgo_up(bp)), **(**uintptr)(__ccgo_up(bp + 8)))
+			if fixed_value == libc.UintptrFromInt32(0) {
+				goto error
+			}
+			_tmp_dst_ptr = bp + 8
+			_tmp_old_dst = **(**uintptr)(__ccgo_up(_tmp_dst_ptr))
+			**(**uintptr)(__ccgo_up(_tmp_dst_ptr)) = fixed_value
+			v1 = _tmp_old_dst
+			v6 = libc.BoolInt32(int32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
+			goto _23
+		_23:
+			if v6 != 0 {
+				goto _24
+			}
+			v2 = v1
+			*(*Tuint32_t)(unsafe.Pointer(v2)) = *(*Tuint32_t)(unsafe.Pointer(v2)) - 1
+			v25 = *(*Tuint32_t)(unsafe.Pointer(v2))
+			if v25 == libc.Uint32FromInt32(0) {
+				X_Py_Dealloc(tls, v1)
+			}
+		_24:
+		} else {
+			if inclass != **(**uintptr)(__ccgo_up(bp)) {
+				_tmp_dst_ptr1 = bp
+				_tmp_old_dst1 = **(**uintptr)(__ccgo_up(_tmp_dst_ptr1))
+				v1 = inclass
+				v2 = v1
+				cur_refcnt = *(*Tuint32_t)(unsafe.Pointer(v2))
+				if uint64(cur_refcnt) >= libc.Uint64FromUint64(3)<<libc.Int32FromInt32(30) {
+					goto _29
+				}
+				*(*Tuint32_t)(unsafe.Pointer(v2)) = cur_refcnt + uint32(1)
+			_29:
+				;
+				v4 = v1
+				goto _31
+			_31:
+				**(**uintptr)(__ccgo_up(_tmp_dst_ptr1)) = v4
+				v1 = _tmp_old_dst1
+				v6 = libc.BoolInt32(int32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
+				goto _34
+			_34:
+				if v6 != 0 {
+					goto _35
+				}
+				v2 = v1
+				*(*Tuint32_t)(unsafe.Pointer(v2)) = *(*Tuint32_t)(unsafe.Pointer(v2)) - 1
+				v25 = *(*Tuint32_t)(unsafe.Pointer(v2))
+				if v25 == libc.Uint32FromInt32(0) {
+					X_Py_Dealloc(tls, v1)
+				}
+			_35:
+			}
+		}
+	}
+	**(**uintptr)(__ccgo_up(exc)) = **(**uintptr)(__ccgo_up(bp))
+	**(**uintptr)(__ccgo_up(val)) = **(**uintptr)(__ccgo_up(bp + 8))
+	(*TPyThreadState)(unsafe.Pointer(tstate)).Frecursion_headroom = (*TPyThreadState)(unsafe.Pointer(tstate)).Frecursion_headroom - 1
+	return
+	goto error
+error:
+	;
+	v1 = **(**uintptr)(__ccgo_up(bp))
+	v6 = libc.BoolInt32(int32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
+	goto _40
+_40:
+	if v6 != 0 {
+		goto _41
+	}
+	v2 = v1
+	*(*Tuint32_t)(unsafe.Pointer(v2)) = *(*Tuint32_t)(unsafe.Pointer(v2)) - 1
+	v25 = *(*Tuint32_t)(unsafe.Pointer(v2))
+	if v25 == libc.Uint32FromInt32(0) {
+		X_Py_Dealloc(tls, v1)
+	}
+_41:
+	;
+	v1 = **(**uintptr)(__ccgo_up(bp + 8))
+	v6 = libc.BoolInt32(int32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
+	goto _46
+_46:
+	if v6 != 0 {
+		goto _47
+	}
+	v2 = v1
+	*(*Tuint32_t)(unsafe.Pointer(v2)) = *(*Tuint32_t)(unsafe.Pointer(v2)) - 1
+	v25 = *(*Tuint32_t)(unsafe.Pointer(v2))
+	if v25 == libc.Uint32FromInt32(0) {
+		X_Py_Dealloc(tls, v1)
+	}
+_47:
+	;
+	recursion_depth = recursion_depth + 1
+	if recursion_depth == int32(MPy_NORMALIZE_RECURSION_LIMIT) {
+		X_PyErr_SetString(tls, tstate, XPyExc_RecursionError, __ccgo_ts+137097)
+	}
+
+	initial_tb = **(**uintptr)(__ccgo_up(tb))
+	X_PyErr_Fetch(tls, tstate, exc, val, tb)
+	if initial_tb != libc.UintptrFromInt32(0) {
+		if **(**uintptr)(__ccgo_up(tb)) == libc.UintptrFromInt32(0) {
+			**(**uintptr)(__ccgo_up(tb)) = initial_tb
+		} else {
+			v1 = initial_tb
+			v6 = libc.BoolInt32(int32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
+			goto _52
+		_52:
+			if v6 != 0 {
+				goto _53
+			}
+			v2 = v1
+			*(*Tuint32_t)(unsafe.Pointer(v2)) = *(*Tuint32_t)(unsafe.Pointer(v2)) - 1
+			v25 = *(*Tuint32_t)(unsafe.Pointer(v2))
+			if v25 == libc.Uint32FromInt32(0) {
+				X_Py_Dealloc(tls, v1)
+			}
+		_53:
+		}
+	}
+
+	if recursion_depth >= libc.Int32FromInt32(MPy_NORMALIZE_RECURSION_LIMIT)+libc.Int32FromInt32(2) {
+		if XPyErr_GivenExceptionMatches(tls, **(**uintptr)(__ccgo_up(exc)), XPyExc_MemoryError) != 0 {
+			X_Py_FatalErrorFunc(tls, uintptr(unsafe.Pointer(&___func__71)), __ccgo_ts+137161)
+		} else {
+			X_Py_FatalErrorFunc(tls, uintptr(unsafe.Pointer(&___func__71)), __ccgo_ts+137224)
+		}
+	}
+	goto restart
+}
+
+var ___func__71 = [26]int8{'_', 'P', 'y', 'E', 'r', 'r', '_', 'N', 'o', 'r', 'm', 'a', 'l', 'i', 'z', 'e', 'E', 'x', 'c', 'e', 'p', 't', 'i', 'o', 'n'}
+
+func XPyErr_NormalizeException(tls *libc.TLS, exc uintptr, val uintptr, tb uintptr) {
+	var tstate, v1 uintptr
+	_, _ = tstate, v1
+	v1 = (*_ccgo_tls_tstate(tls))
+	goto _2
+_2:
+	tstate = v1
+	X_PyErr_NormalizeException(tls, tstate, exc, val, tb)
+}
+
+func X_PyErr_GetRaisedException(tls *libc.TLS, tstate uintptr) (r uintptr) {
+	var exc uintptr
+	_ = exc
+	exc = (*TPyThreadState)(unsafe.Pointer(tstate)).Fcurrent_exception
+	(*TPyThreadState)(unsafe.Pointer(tstate)).Fcurrent_exception = libc.UintptrFromInt32(0)
+	return exc
+}
+
+func XPyErr_GetRaisedException(tls *libc.TLS) (r uintptr) {
+	var tstate, v1 uintptr
+	_, _ = tstate, v1
+	v1 = (*_ccgo_tls_tstate(tls))
+	goto _2
+_2:
+	tstate = v1
+	return X_PyErr_GetRaisedException(tls, tstate)
+}
+
+func X_PyErr_Fetch(tls *libc.TLS, tstate uintptr, p_type uintptr, p_value uintptr, p_traceback uintptr) {
+	var cur_refcnt Tuint32_t
+	var exc, v1, v3, v4, v6 uintptr
+	_, _, _, _, _, _ = cur_refcnt, exc, v1, v3, v4, v6
+	exc = X_PyErr_GetRaisedException(tls, tstate)
+	**(**uintptr)(__ccgo_up(p_value)) = exc
+	if exc == libc.UintptrFromInt32(0) {
+		**(**uintptr)(__ccgo_up(p_type)) = libc.UintptrFromInt32(0)
+		**(**uintptr)(__ccgo_up(p_traceback)) = libc.UintptrFromInt32(0)
+	} else {
+		v1 = (*TPyObject)(unsafe.Pointer(exc)).Fob_type
+		goto _2
+	_2:
+		v3 = v1
+		v4 = v3
+		cur_refcnt = *(*Tuint32_t)(unsafe.Pointer(v4))
+		if uint64(cur_refcnt) >= libc.Uint64FromUint64(3)<<libc.Int32FromInt32(30) {
+			goto _5
+		}
+		*(*Tuint32_t)(unsafe.Pointer(v4)) = cur_refcnt + uint32(1)
+	_5:
+		;
+		v6 = v3
+		goto _7
+	_7:
+		**(**uintptr)(__ccgo_up(p_type)) = v6
+		**(**uintptr)(__ccgo_up(p_traceback)) = XPyException_GetTraceback(tls, exc)
+	}
+}
+
+func XPyErr_Fetch(tls *libc.TLS, p_type uintptr, p_value uintptr, p_traceback uintptr) {
+	var tstate, v1 uintptr
+	_, _ = tstate, v1
+	v1 = (*_ccgo_tls_tstate(tls))
+	goto _2
+_2:
+	tstate = v1
+	X_PyErr_Fetch(tls, tstate, p_type, p_value, p_traceback)
+}
+
+func X_PyErr_Clear(tls *libc.TLS, tstate uintptr) {
+	X_PyErr_Restore(tls, tstate, libc.UintptrFromInt32(0), libc.UintptrFromInt32(0), libc.UintptrFromInt32(0))
+}
+
+func XPyErr_Clear(tls *libc.TLS) {
+	var tstate, v1 uintptr
+	_, _ = tstate, v1
+	v1 = (*_ccgo_tls_tstate(tls))
+	goto _2
+_2:
+	tstate = v1
+	X_PyErr_Clear(tls, tstate)
+}
+
+func _get_exc_type(tls *libc.TLS, exc_value uintptr) (r uintptr) {
+	/* returns a strong ref */
+	var cur_refcnt Tuint32_t
+	var type1, v1, v3, v4 uintptr
+	_, _, _, _, _ = cur_refcnt, type1, v1, v3, v4
+	if exc_value == libc.UintptrFromInt32(0) || exc_value == uintptr(unsafe.Pointer(&X_Py_NoneStruct)) {
+		return uintptr(unsafe.Pointer(&X_Py_NoneStruct))
+	} else {
+		v1 = (*TPyObject)(unsafe.Pointer(exc_value)).Fob_type
+		goto _2
+	_2:
+		type1 = v1
+		v1 = type1
+		v3 = v1
+		cur_refcnt = *(*Tuint32_t)(unsafe.Pointer(v3))
+		if uint64(cur_refcnt) >= libc.Uint64FromUint64(3)<<libc.Int32FromInt32(30) {
+			goto _5
+		}
+		*(*Tuint32_t)(unsafe.Pointer(v3)) = cur_refcnt + uint32(1)
+	_5:
+		;
+		v4 = v1
+		goto _7
+	_7:
+		return v4
+	}
+	return r
+}
+
+func _get_exc_traceback(tls *libc.TLS, exc_value uintptr) (r uintptr) {
+	/* returns a strong ref */
+	var tb, v1 uintptr
+	_, _ = tb, v1
+	if exc_value == libc.UintptrFromInt32(0) || exc_value == uintptr(unsafe.Pointer(&X_Py_NoneStruct)) {
+		return uintptr(unsafe.Pointer(&X_Py_NoneStruct))
+	} else {
+		tb = XPyException_GetTraceback(tls, exc_value)
+		if tb != 0 {
+			v1 = tb
+		} else {
+			v1 = uintptr(unsafe.Pointer(&X_Py_NoneStruct))
+		}
+		return v1
+	}
+	return r
+}
+
+func X_PyErr_GetExcInfo(tls *libc.TLS, tstate uintptr, p_type uintptr, p_value uintptr, p_traceback uintptr) {
+	var cur_refcnt Tuint32_t
+	var exc_info, v1, v2, v3, v5 uintptr
+	_, _, _, _, _, _ = cur_refcnt, exc_info, v1, v2, v3, v5
+	exc_info = X_PyErr_GetTopmostException(tls, tstate)
+	**(**uintptr)(__ccgo_up(p_type)) = _get_exc_type(tls, (*T_PyErr_StackItem)(unsafe.Pointer(exc_info)).Fexc_value)
+	v1 = (*T_PyErr_StackItem)(unsafe.Pointer(exc_info)).Fexc_value
+	v2 = v1
+	if v2 != libc.UintptrFromInt32(0) {
+		v3 = v2
+		cur_refcnt = *(*Tuint32_t)(unsafe.Pointer(v3))
+		if uint64(cur_refcnt) >= libc.Uint64FromUint64(3)<<libc.Int32FromInt32(30) {
+			goto _4
+		}
+		*(*Tuint32_t)(unsafe.Pointer(v3)) = cur_refcnt + uint32(1)
+	_4:
+	}
+	v5 = v1
+	goto _6
+_6:
+	**(**uintptr)(__ccgo_up(p_value)) = v5
+	**(**uintptr)(__ccgo_up(p_traceback)) = _get_exc_traceback(tls, (*T_PyErr_StackItem)(unsafe.Pointer(exc_info)).Fexc_value)
+}
+
+func X_PyErr_GetHandledException(tls *libc.TLS, tstate uintptr) (r uintptr) {
+	var cur_refcnt Tuint32_t
+	var exc, exc_info, v1, v2, v4 uintptr
+	_, _, _, _, _, _ = cur_refcnt, exc, exc_info, v1, v2, v4
+	exc_info = X_PyErr_GetTopmostException(tls, tstate)
+	exc = (*T_PyErr_StackItem)(unsafe.Pointer(exc_info)).Fexc_value
+	if exc == libc.UintptrFromInt32(0) || exc == uintptr(unsafe.Pointer(&X_Py_NoneStruct)) {
+		return libc.UintptrFromInt32(0)
+	}
+	v1 = exc
+	v2 = v1
+	cur_refcnt = *(*Tuint32_t)(unsafe.Pointer(v2))
+	if uint64(cur_refcnt) >= libc.Uint64FromUint64(3)<<libc.Int32FromInt32(30) {
+		goto _3
+	}
+	*(*Tuint32_t)(unsafe.Pointer(v2)) = cur_refcnt + uint32(1)
+_3:
+	;
+	v4 = v1
+	goto _5
+_5:
+	return v4
+}
+
+func XPyErr_GetHandledException(tls *libc.TLS) (r uintptr) {
+	var tstate, v1 uintptr
+	_, _ = tstate, v1
+	v1 = (*_ccgo_tls_tstate(tls))
+	goto _2
+_2:
+	tstate = v1
+	return X_PyErr_GetHandledException(tls, tstate)
+}
+
+func X_PyErr_SetHandledException(tls *libc.TLS, tstate uintptr, exc uintptr) {
+	var _tmp_dst_ptr, _tmp_old_dst, v1, v2, v3, v4, v6 uintptr
+	var cur_refcnt, v13 Tuint32_t
+	var v10 int32
+	_, _, _, _, _, _, _, _, _, _ = _tmp_dst_ptr, _tmp_old_dst, cur_refcnt, v1, v10, v13, v2, v3, v4, v6
+	_tmp_dst_ptr = (*TPyThreadState)(unsafe.Pointer(tstate)).Fexc_info
+	_tmp_old_dst = **(**uintptr)(__ccgo_up(_tmp_dst_ptr))
+	if exc == uintptr(unsafe.Pointer(&X_Py_NoneStruct)) {
+		v1 = libc.UintptrFromInt32(0)
+	} else {
+		v1 = exc
+	}
+	v2 = v1
+	v3 = v2
+	if v3 != libc.UintptrFromInt32(0) {
+		v4 = v3
+		cur_refcnt = *(*Tuint32_t)(unsafe.Pointer(v4))
+		if uint64(cur_refcnt) >= libc.Uint64FromUint64(3)<<libc.Int32FromInt32(30) {
+			goto _5
+		}
+		*(*Tuint32_t)(unsafe.Pointer(v4)) = cur_refcnt + uint32(1)
+	_5:
+	}
+	v6 = v2
+	goto _7
+_7:
+	**(**uintptr)(__ccgo_up(_tmp_dst_ptr)) = v6
+	v1 = _tmp_old_dst
+	if v1 != libc.UintptrFromInt32(0) {
+		v2 = v1
+		v10 = libc.BoolInt32(int32(*(*Tuint32_t)(unsafe.Pointer(v2))) < 0)
+		goto _11
+	_11:
+		if v10 != 0 {
+			goto _12
+		}
+		v3 = v2
+		*(*Tuint32_t)(unsafe.Pointer(v3)) = *(*Tuint32_t)(unsafe.Pointer(v3)) - 1
+		v13 = *(*Tuint32_t)(unsafe.Pointer(v3))
+		if v13 == libc.Uint32FromInt32(0) {
+			X_Py_Dealloc(tls, v2)
+		}
+	_12:
+	}
+}
+
+func XPyErr_SetHandledException(tls *libc.TLS, exc uintptr) {
+	var tstate, v1 uintptr
+	_, _ = tstate, v1
+	v1 = (*_ccgo_tls_tstate(tls))
+	goto _2
+_2:
+	tstate = v1
+	X_PyErr_SetHandledException(tls, tstate, exc)
+}
+
+func XPyErr_GetExcInfo(tls *libc.TLS, p_type uintptr, p_value uintptr, p_traceback uintptr) {
+	var tstate, v1 uintptr
+	_, _ = tstate, v1
+	v1 = (*_ccgo_tls_tstate(tls))
+	goto _2
+_2:
+	tstate = v1
+	X_PyErr_GetExcInfo(tls, tstate, p_type, p_value, p_traceback)
+}
+
+func XPyErr_SetExcInfo(tls *libc.TLS, type1 uintptr, value uintptr, traceback uintptr) {
+	var v1, v2, v7 uintptr
+	var v3 int32
+	var v6 Tuint32_t
+	_, _, _, _, _ = v1, v2, v3, v6, v7
+	XPyErr_SetHandledException(tls, value)
+	v1 = value
+	if v1 != libc.UintptrFromInt32(0) {
+		v2 = v1
+		v3 = libc.BoolInt32(int32(*(*Tuint32_t)(unsafe.Pointer(v2))) < 0)
+		goto _4
+	_4:
+		if v3 != 0 {
+			goto _5
+		}
+		v7 = v2
+		*(*Tuint32_t)(unsafe.Pointer(v7)) = *(*Tuint32_t)(unsafe.Pointer(v7)) - 1
+		v6 = *(*Tuint32_t)(unsafe.Pointer(v7))
+		if v6 == libc.Uint32FromInt32(0) {
+			X_Py_Dealloc(tls, v2)
+		}
+	_5:
+	}
+
+	v1 = type1
+	if v1 != libc.UintptrFromInt32(0) {
+		v2 = v1
+		v3 = libc.BoolInt32(int32(*(*Tuint32_t)(unsafe.Pointer(v2))) < 0)
+		goto _11
+	_11:
+		if v3 != 0 {
+			goto _12
+		}
+		v7 = v2
+		*(*Tuint32_t)(unsafe.Pointer(v7)) = *(*Tuint32_t)(unsafe.Pointer(v7)) - 1
+		v6 = *(*Tuint32_t)(unsafe.Pointer(v7))
+		if v6 == libc.Uint32FromInt32(0) {
+			X_Py_Dealloc(tls, v2)
+		}
+	_12:
+	}
+	v1 = traceback
+	if v1 != libc.UintptrFromInt32(0) {
+		v2 = v1
+		v3 = libc.BoolInt32(int32(*(*Tuint32_t)(unsafe.Pointer(v2))) < 0)
+		goto _18
+	_18:
+		if v3 != 0 {
+			goto _19
+		}
+		v7 = v2
+		*(*Tuint32_t)(unsafe.Pointer(v7)) = *(*Tuint32_t)(unsafe.Pointer(v7)) - 1
+		v6 = *(*Tuint32_t)(unsafe.Pointer(v7))
+		if v6 == libc.Uint32FromInt32(0) {
+			X_Py_Dealloc(tls, v2)
+		}
+	_19:
+	}
+}
+
+func X_PyErr_StackItemToExcInfoTuple(tls *libc.TLS, err_info uintptr) (r uintptr) {
+	var cur_refcnt Tuint32_t
+	var exc_traceback, exc_type, exc_value, ret, tuple, v1, v2, v3, v4 uintptr
+	_, _, _, _, _, _, _, _, _, _ = cur_refcnt, exc_traceback, exc_type, exc_value, ret, tuple, v1, v2, v3, v4
+	exc_value = (*T_PyErr_StackItem)(unsafe.Pointer(err_info)).Fexc_value
+	ret = XPyTuple_New(tls, int64(3))
+	if ret == libc.UintptrFromInt32(0) {
+		return libc.UintptrFromInt32(0)
+	}
+	exc_type = _get_exc_type(tls, exc_value)
+	exc_traceback = _get_exc_traceback(tls, exc_value)
+	if exc_type != 0 {
+		v1 = exc_type
+	} else {
+		v1 = uintptr(unsafe.Pointer(&X_Py_NoneStruct))
+	}
+	tuple = ret
+	**(**uintptr)(__ccgo_up(tuple + 32 + uintptr(int64(libc.Int32FromInt32(0)))*8)) = v1
+	if exc_value != 0 {
+		v2 = exc_value
+		v3 = v2
+		cur_refcnt = *(*Tuint32_t)(unsafe.Pointer(v3))
+		if uint64(cur_refcnt) >= libc.Uint64FromUint64(3)<<libc.Int32FromInt32(30) {
+			goto _5
+		}
+		*(*Tuint32_t)(unsafe.Pointer(v3)) = cur_refcnt + uint32(1)
+	_5:
+		;
+		v4 = v2
+		goto _7
+	_7:
+		v1 = v4
+	} else {
+		v1 = uintptr(unsafe.Pointer(&X_Py_NoneStruct))
+	}
+	tuple = ret
+	**(**uintptr)(__ccgo_up(tuple + 32 + uintptr(int64(libc.Int32FromInt32(1)))*8)) = v1
+	if exc_traceback != 0 {
+		v1 = exc_traceback
+	} else {
+		v1 = uintptr(unsafe.Pointer(&X_Py_NoneStruct))
+	}
+	tuple = ret
+	**(**uintptr)(__ccgo_up(tuple + 32 + uintptr(int64(libc.Int32FromInt32(2)))*8)) = v1
+	return ret
+}
+
+// C documentation
+//
+//	/* Like PyErr_Restore(), but if an exception is already set,
+//	   set the context associated with it.
+//
+//	   The caller is responsible for ensuring that this call won't create
+//	   any cycles in the exception context chain. */
+func X_PyErr_ChainExceptions(tls *libc.TLS, _typ uintptr, _val uintptr, _tb uintptr) {
+	bp := tls.Alloc(48)
+	defer tls.Free(48)
+	*(*uintptr)(unsafe.Pointer(bp)) = _typ
+	*(*uintptr)(unsafe.Pointer(bp + 8)) = _val
+	*(*uintptr)(unsafe.Pointer(bp + 16)) = _tb
+	var exc2, tstate1, v1, v12, v5 uintptr
+	var flags uint32
+	var v11 bool
+	var v3, v7, v9 int32
+	var v21 Tuint32_t
+	_, _, _, _, _, _, _, _, _, _, _ = exc2, flags, tstate1, v1, v11, v12, v21, v3, v5, v7, v9
+	if **(**uintptr)(__ccgo_up(bp)) == libc.UintptrFromInt32(0) {
+		return
+	}
+	v1 = (*_ccgo_tls_tstate(tls))
+	goto _2
+_2:
+	tstate1 = v1
+	v5 = (*TPyObject)(unsafe.Pointer(**(**uintptr)(__ccgo_up(bp)))).Fob_type
+	goto _6
+_6:
+	flags = (*TPyTypeObject)(unsafe.Pointer(v5)).Ftp_flags
+	v7 = libc.BoolInt32(flags&(libc.Uint32FromUint32(1)<<libc.Int32FromInt32(31)) != uint32(0))
+	goto _8
+_8:
+	v3 = v7
+	goto _4
+_4:
+	;
+	if v11 = v3 != 0; v11 {
+		flags = (*TPyTypeObject)(unsafe.Pointer(**(**uintptr)(__ccgo_up(bp)))).Ftp_flags
+		v9 = libc.BoolInt32(flags&(libc.Uint32FromUint32(1)<<libc.Int32FromInt32(30)) != uint32(0))
+		goto _10
+	_10:
+	}
+	if !(v11 && v9 != 0) {
+		X_PyErr_Format(tls, tstate1, XPyExc_SystemError, __ccgo_ts+137289, libc.VaList(bp+32, **(**uintptr)(__ccgo_up(bp))))
+		return
+	}
+	v1 = tstate1
+	if (*TPyThreadState)(unsafe.Pointer(v1)).Fcurrent_exception == libc.UintptrFromInt32(0) {
+		v5 = libc.UintptrFromInt32(0)
+		goto _14
+	}
+	v12 = (*TPyObject)(unsafe.Pointer((*TPyThreadState)(unsafe.Pointer(v1)).Fcurrent_exception)).Fob_type
+	goto _16
+_16:
+	v5 = v12
+	goto _14
+_14:
+	if v5 != 0 {
+		X_PyErr_NormalizeException(tls, tstate1, bp, bp+8, bp+16)
+		if **(**uintptr)(__ccgo_up(bp + 16)) != libc.UintptrFromInt32(0) {
+			XPyException_SetTraceback(tls, **(**uintptr)(__ccgo_up(bp + 8)), **(**uintptr)(__ccgo_up(bp + 16)))
+			v1 = **(**uintptr)(__ccgo_up(bp + 16))
+			v3 = libc.BoolInt32(int32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
+			goto _19
+		_19:
+			if v3 != 0 {
+				goto _20
+			}
+			v5 = v1
+			*(*Tuint32_t)(unsafe.Pointer(v5)) = *(*Tuint32_t)(unsafe.Pointer(v5)) - 1
+			v21 = *(*Tuint32_t)(unsafe.Pointer(v5))
+			if v21 == libc.Uint32FromInt32(0) {
+				X_Py_Dealloc(tls, v1)
+			}
+		_20:
+		}
+		v1 = **(**uintptr)(__ccgo_up(bp))
+		v3 = libc.BoolInt32(int32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
+		goto _25
+	_25:
+		if v3 != 0 {
+			goto _26
+		}
+		v5 = v1
+		*(*Tuint32_t)(unsafe.Pointer(v5)) = *(*Tuint32_t)(unsafe.Pointer(v5)) - 1
+		v21 = *(*Tuint32_t)(unsafe.Pointer(v5))
+		if v21 == libc.Uint32FromInt32(0) {
+			X_Py_Dealloc(tls, v1)
+		}
+	_26:
+		;
+		exc2 = X_PyErr_GetRaisedException(tls, tstate1)
+		XPyException_SetContext(tls, exc2, **(**uintptr)(__ccgo_up(bp + 8)))
+		X_PyErr_SetRaisedException(tls, tstate1, exc2)
+	} else {
+		X_PyErr_Restore(tls, tstate1, **(**uintptr)(__ccgo_up(bp)), **(**uintptr)(__ccgo_up(bp + 8)), **(**uintptr)(__ccgo_up(bp + 16)))
+	}
+}
+
+// C documentation
+//
+//	/* Like PyErr_SetRaisedException(), but if an exception is already set,
+//	   set the context associated with it.
+//
+//	   The caller is responsible for ensuring that this call won't create
+//	   any cycles in the exception context chain. */
+func X_PyErr_ChainExceptions1Tstate(tls *libc.TLS, tstate1 uintptr, exc uintptr) {
+	var exc2, v1, v2, v4 uintptr
+	_, _, _, _ = exc2, v1, v2, v4
+	if exc == libc.UintptrFromInt32(0) {
+		return
+	}
+	v1 = tstate1
+	if (*TPyThreadState)(unsafe.Pointer(v1)).Fcurrent_exception == libc.UintptrFromInt32(0) {
+		v2 = libc.UintptrFromInt32(0)
+		goto _3
+	}
+	v4 = (*TPyObject)(unsafe.Pointer((*TPyThreadState)(unsafe.Pointer(v1)).Fcurrent_exception)).Fob_type
+	goto _5
+_5:
+	v2 = v4
+	goto _3
+_3:
+	if v2 != 0 {
+		exc2 = X_PyErr_GetRaisedException(tls, tstate1)
+		XPyException_SetContext(tls, exc2, exc)
+		X_PyErr_SetRaisedException(tls, tstate1, exc2)
+	} else {
+		X_PyErr_SetRaisedException(tls, tstate1, exc)
+	}
+}
+
+func X_PyErr_ChainExceptions1(tls *libc.TLS, exc uintptr) {
+	var tstate, v1 uintptr
+	_, _ = tstate, v1
+	v1 = (*_ccgo_tls_tstate(tls))
+	goto _2
+_2:
+	tstate = v1
+	X_PyErr_ChainExceptions1Tstate(tls, tstate, exc)
+}
+
+// C documentation
+//
+//	/* If the current thread is handling an exception (exc_info is ), set this
+//	   exception as the context of the current raised exception.
+//
+//	   This function can only be called when _PyErr_Occurred() is true.
+//	   Also, this function won't create any cycles in the exception context
+//	   chain to the extent that _PyErr_SetObject ensures this. */
+func X_PyErr_ChainStackItem(tls *libc.TLS) {
+	var exc, exc_info, tstate, v1, v3 uintptr
+	var v6 int32
+	var v9 Tuint32_t
+	_, _, _, _, _, _, _ = exc, exc_info, tstate, v1, v3, v6, v9
+	v1 = (*_ccgo_tls_tstate(tls))
+	goto _2
+_2:
+	tstate = v1
+	exc_info = (*TPyThreadState)(unsafe.Pointer(tstate)).Fexc_info
+	if (*T_PyErr_StackItem)(unsafe.Pointer(exc_info)).Fexc_value == libc.UintptrFromInt32(0) || (*T_PyErr_StackItem)(unsafe.Pointer(exc_info)).Fexc_value == uintptr(unsafe.Pointer(&X_Py_NoneStruct)) {
+		return
+	}
+	exc = X_PyErr_GetRaisedException(tls, tstate)
+
+	v1 = (*TPyObject)(unsafe.Pointer(exc)).Fob_type
+	goto _4
+_4:
+	X_PyErr_SetObject(tls, tstate, v1, exc)
+	v1 = exc
+	v6 = libc.BoolInt32(int32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
+	goto _7
+_7:
+	if v6 != 0 {
+		goto _8
+	}
+	v3 = v1
+	*(*Tuint32_t)(unsafe.Pointer(v3)) = *(*Tuint32_t)(unsafe.Pointer(v3)) - 1
+	v9 = *(*Tuint32_t)(unsafe.Pointer(v3))
+	if v9 == libc.Uint32FromInt32(0) {
+		X_Py_Dealloc(tls, v1)
+	}
+_8:
+}
+
+func __PyErr_FormatVFromCause(tls *libc.TLS, tstate uintptr, exception uintptr, format uintptr, vargs Tva_list) (r uintptr) {
+	var cur_refcnt, v15 Tuint32_t
+	var exc, exc2, v1, v2, v4 uintptr
+	var v12 int32
+	_, _, _, _, _, _, _, _ = cur_refcnt, exc, exc2, v1, v12, v15, v2, v4
+	exc = X_PyErr_GetRaisedException(tls, tstate)
+	X_PyErr_FormatV(tls, tstate, exception, format, vargs)
+	exc2 = X_PyErr_GetRaisedException(tls, tstate)
+	v1 = exc
+	v2 = v1
+	cur_refcnt = *(*Tuint32_t)(unsafe.Pointer(v2))
+	if uint64(cur_refcnt) >= libc.Uint64FromUint64(3)<<libc.Int32FromInt32(30) {
+		goto _3
+	}
+	*(*Tuint32_t)(unsafe.Pointer(v2)) = cur_refcnt + uint32(1)
+_3:
+	;
+	v4 = v1
+	goto _5
+_5:
+	XPyException_SetCause(tls, exc2, v4)
+	v1 = exc
+	v2 = v1
+	cur_refcnt = *(*Tuint32_t)(unsafe.Pointer(v2))
+	if uint64(cur_refcnt) >= libc.Uint64FromUint64(3)<<libc.Int32FromInt32(30) {
+		goto _8
+	}
+	*(*Tuint32_t)(unsafe.Pointer(v2)) = cur_refcnt + uint32(1)
+_8:
+	;
+	v4 = v1
+	goto _10
+_10:
+	XPyException_SetContext(tls, exc2, v4)
+	v1 = exc
+	v12 = libc.BoolInt32(int32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
+	goto _13
+_13:
+	if v12 != 0 {
+		goto _14
+	}
+	v2 = v1
+	*(*Tuint32_t)(unsafe.Pointer(v2)) = *(*Tuint32_t)(unsafe.Pointer(v2)) - 1
+	v15 = *(*Tuint32_t)(unsafe.Pointer(v2))
+	if v15 == libc.Uint32FromInt32(0) {
+		X_Py_Dealloc(tls, v1)
+	}
+_14:
+	;
+	X_PyErr_SetRaisedException(tls, tstate, exc2)
+	return libc.UintptrFromInt32(0)
+}
+
+func X_PyErr_FormatFromCauseTstate(tls *libc.TLS, tstate uintptr, exception uintptr, format uintptr, va uintptr) (r uintptr) {
+	var vargs Tva_list
+	_ = vargs
+	vargs = va
+	__PyErr_FormatVFromCause(tls, tstate, exception, format, vargs)
+	_ = vargs
+	return libc.UintptrFromInt32(0)
+}
+
+func X_PyErr_FormatFromCause(tls *libc.TLS, exception uintptr, format uintptr, va uintptr) (r uintptr) {
+	var tstate, v1 uintptr
+	var vargs Tva_list
+	_, _, _ = tstate, vargs, v1
+	v1 = (*_ccgo_tls_tstate(tls))
+	goto _2
+_2:
+	tstate = v1
+	vargs = va
+	__PyErr_FormatVFromCause(tls, tstate, exception, format, vargs)
+	_ = vargs
+	return libc.UintptrFromInt32(0)
+}
+
+func XPyErr_BadArgument(tls *libc.TLS) (r int32) {
+	var tstate, v1 uintptr
+	_, _ = tstate, v1
+	v1 = (*_ccgo_tls_tstate(tls))
+	goto _2
+_2:
+	tstate = v1
+	X_PyErr_SetString(tls, tstate, XPyExc_TypeError, __ccgo_ts+137358)
+	return 0
+}
+
+func XPyErr_NoMemory(tls *libc.TLS) (r uintptr) {
+	var tstate, v1 uintptr
+	_, _ = tstate, v1
+	v1 = (*_ccgo_tls_tstate(tls))
+	goto _2
+_2:
+	tstate = v1
+	return X_PyErr_NoMemory(tls, tstate)
+}
+
+func XPyErr_SetFromErrnoWithFilenameObject(tls *libc.TLS, exc uintptr, filenameObject uintptr) (r uintptr) {
+	return XPyErr_SetFromErrnoWithFilenameObjects(tls, exc, filenameObject, libc.UintptrFromInt32(0))
+}
+
+func XPyErr_SetFromErrnoWithFilenameObjects(tls *libc.TLS, exc uintptr, filenameObject uintptr, filenameObject2 uintptr) (r uintptr) {
+	bp := tls.Alloc(64)
+	defer tls.Free(64)
+	var args, message, tstate, v, v1, v4 uintptr
+	var i, len1, v3 int32
+	var v8 Tuint32_t
+	var _ uintptr
+	_, _, _, _, _, _, _, _, _, _ = args, i, len1, message, tstate, v, v1, v3, v4, v8
+	v1 = (*_ccgo_tls_tstate(tls))
+	goto _2
+_2:
+	tstate = v1
+	i = **(**int32)(__ccgo_up(libc.X_errno(tls)))
+	**(**uintptr)(__ccgo_up(bp)) = libc.UintptrFromInt32(0)
+	if i == int32(MEINTR) && XPyErr_CheckSignals(tls) != 0 {
+		return libc.UintptrFromInt32(0)
+	}
+	if i == 0 {
+		message = XPyUnicode_FromString(tls, __ccgo_ts+137399)
+	} else {
+
+		if i > 0 && i < **(**int32)(__ccgo_up(___sys_nerr(tls))) {
+			message = XPyUnicode_FromString(tls, **(**uintptr)(__ccgo_up(___sys_errlist(tls) + uintptr(i)*8)))
+		} else {
+			len1 = int32(libc.XFormatMessageW(tls, uint32(libc.Int32FromInt32(MFORMAT_MESSAGE_ALLOCATE_BUFFER)|libc.Int32FromInt32(MFORMAT_MESSAGE_FROM_SYSTEM)|libc.Int32FromInt32(MFORMAT_MESSAGE_IGNORE_INSERTS)), libc.UintptrFromInt32(0), uint32(i), uint32(int32(uint16(libc.Int32FromInt32(MSUBLANG_DEFAULT)))<<libc.Int32FromInt32(10)|int32(uint16(libc.Int32FromInt32(MLANG_NEUTRAL)))), bp, uint32(0), libc.UintptrFromInt32(0)))
+			if len1 == 0 {
+
+				**(**uintptr)(__ccgo_up(bp)) = libc.UintptrFromInt32(0)
+				message = XPyUnicode_FromFormat(tls, __ccgo_ts+137405, libc.VaList(bp+16, i))
+			} else {
+
+				for len1 > 0 && (int32(**(**TWCHAR)(__ccgo_up(**(**uintptr)(__ccgo_up(bp)) + uintptr(len1-int32(1))*2))) <= int32(' ') || int32(**(**TWCHAR)(__ccgo_up(**(**uintptr)(__ccgo_up(bp)) + uintptr(len1-int32(1))*2))) == int32('.')) {
+					len1 = len1 - 1
+					v3 = len1
+					**(**TWCHAR)(__ccgo_up(**(**uintptr)(__ccgo_up(bp)) + uintptr(v3)*2)) = uint16('\000')
+				}
+				message = XPyUnicode_FromWideChar(tls, **(**uintptr)(__ccgo_up(bp)), int64(len1))
+			}
+		}
+	}
+	if message == libc.UintptrFromInt32(0) {
+		libc.XLocalFree(tls, **(**uintptr)(__ccgo_up(bp)))
+		return libc.UintptrFromInt32(0)
+	}
+	if filenameObject != libc.UintptrFromInt32(0) {
+		if filenameObject2 != libc.UintptrFromInt32(0) {
+			args = XPy_BuildValue(tls, __ccgo_ts+137424, libc.VaList(bp+16, i, message, filenameObject, 0, filenameObject2))
+		} else {
+			args = XPy_BuildValue(tls, __ccgo_ts+137432, libc.VaList(bp+16, i, message, filenameObject))
+		}
+	} else {
+		args = XPy_BuildValue(tls, __ccgo_ts+137438, libc.VaList(bp+16, i, message))
+	}
+	v1 = message
+	v3 = libc.BoolInt32(int32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
+	goto _6
+_6:
+	if v3 != 0 {
+		goto _7
+	}
+	v4 = v1
+	*(*Tuint32_t)(unsafe.Pointer(v4)) = *(*Tuint32_t)(unsafe.Pointer(v4)) - 1
+	v8 = *(*Tuint32_t)(unsafe.Pointer(v4))
+	if v8 == libc.Uint32FromInt32(0) {
+		X_Py_Dealloc(tls, v1)
+	}
+_7:
+	;
+	if args != libc.UintptrFromInt32(0) {
+		v = XPyObject_Call(tls, exc, args, libc.UintptrFromInt32(0))
+		v1 = args
+		v3 = libc.BoolInt32(int32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
+		goto _12
+	_12:
+		if v3 != 0 {
+			goto _13
+		}
+		v4 = v1
+		*(*Tuint32_t)(unsafe.Pointer(v4)) = *(*Tuint32_t)(unsafe.Pointer(v4)) - 1
+		v8 = *(*Tuint32_t)(unsafe.Pointer(v4))
+		if v8 == libc.Uint32FromInt32(0) {
+			X_Py_Dealloc(tls, v1)
+		}
+	_13:
+		;
+		if v != libc.UintptrFromInt32(0) {
+			v1 = (*TPyObject)(unsafe.Pointer(v)).Fob_type
+			goto _17
+		_17:
+			X_PyErr_SetObject(tls, tstate, v1, v)
+			v1 = v
+			v3 = libc.BoolInt32(int32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
+			goto _20
+		_20:
+			if v3 != 0 {
+				goto _21
+			}
+			v4 = v1
+			*(*Tuint32_t)(unsafe.Pointer(v4)) = *(*Tuint32_t)(unsafe.Pointer(v4)) - 1
+			v8 = *(*Tuint32_t)(unsafe.Pointer(v4))
+			if v8 == libc.Uint32FromInt32(0) {
+				X_Py_Dealloc(tls, v1)
+			}
+		_21:
+		}
+	}
+	libc.XLocalFree(tls, **(**uintptr)(__ccgo_up(bp)))
+	return libc.UintptrFromInt32(0)
+}
+
+func XPyErr_SetFromErrnoWithFilename(tls *libc.TLS, exc uintptr, filename uintptr) (r uintptr) {
+	var i, v3 int32
+	var name, result, v1, v2, v7 uintptr
+	var v6 Tuint32_t
+	_, _, _, _, _, _, _, _ = i, name, result, v1, v2, v3, v6, v7
+	name = libc.UintptrFromInt32(0)
+	if filename != 0 {
+		i = **(**int32)(__ccgo_up(libc.X_errno(tls)))
+		name = XPyUnicode_DecodeFSDefault(tls, filename)
+		if name == libc.UintptrFromInt32(0) {
+			return libc.UintptrFromInt32(0)
+		}
+		**(**int32)(__ccgo_up(libc.X_errno(tls))) = i
+	}
+	result = XPyErr_SetFromErrnoWithFilenameObjects(tls, exc, name, libc.UintptrFromInt32(0))
+	v1 = name
+	if v1 != libc.UintptrFromInt32(0) {
+		v2 = v1
+		v3 = libc.BoolInt32(int32(*(*Tuint32_t)(unsafe.Pointer(v2))) < 0)
+		goto _4
+	_4:
+		if v3 != 0 {
+			goto _5
+		}
+		v7 = v2
+		*(*Tuint32_t)(unsafe.Pointer(v7)) = *(*Tuint32_t)(unsafe.Pointer(v7)) - 1
+		v6 = *(*Tuint32_t)(unsafe.Pointer(v7))
+		if v6 == libc.Uint32FromInt32(0) {
+			X_Py_Dealloc(tls, v2)
+		}
+	_5:
+	}
+	return result
+}
+
+func XPyErr_SetFromErrno(tls *libc.TLS, exc uintptr) (r uintptr) {
+	return XPyErr_SetFromErrnoWithFilenameObjects(tls, exc, libc.UintptrFromInt32(0), libc.UintptrFromInt32(0))
+}
+
+// C documentation
+//
+//	/* Windows specific error code handling */
+func XPyErr_SetExcFromWindowsErrWithFilenameObject(tls *libc.TLS, exc uintptr, ierr int32, filenameObject uintptr) (r uintptr) {
+	return XPyErr_SetExcFromWindowsErrWithFilenameObjects(tls, exc, ierr, filenameObject, libc.UintptrFromInt32(0))
+}
+
+func XPyErr_SetExcFromWindowsErrWithFilenameObjects(tls *libc.TLS, exc uintptr, ierr int32, filenameObject uintptr, filenameObject2 uintptr) (r uintptr) {
+	bp := tls.Alloc(64)
+	defer tls.Free(64)
+	var args, message, tstate, v, v1, v4 uintptr
+	var err TDWORD
+	var len1, v3 int32
+	var v9 Tuint32_t
+	var _ uintptr
+	_, _, _, _, _, _, _, _, _, _ = args, err, len1, message, tstate, v, v1, v3, v4, v9
+	v1 = (*_ccgo_tls_tstate(tls))
+	goto _2
+_2:
+	tstate = v1
+	**(**uintptr)(__ccgo_up(bp)) = libc.UintptrFromInt32(0)
+	err = uint32(ierr)
+	if err == uint32(0) {
+		err = libc.XGetLastError(tls)
+	}
+	len1 = int32(libc.XFormatMessageW(tls, uint32(libc.Int32FromInt32(MFORMAT_MESSAGE_ALLOCATE_BUFFER)|libc.Int32FromInt32(MFORMAT_MESSAGE_FROM_SYSTEM)|libc.Int32FromInt32(MFORMAT_MESSAGE_IGNORE_INSERTS)), libc.UintptrFromInt32(0), err, uint32(int32(uint16(libc.Int32FromInt32(MSUBLANG_DEFAULT)))<<libc.Int32FromInt32(10)|int32(uint16(libc.Int32FromInt32(MLANG_NEUTRAL)))), bp, uint32(0), libc.UintptrFromInt32(0)))
+	if len1 == 0 {
+
+		message = XPyUnicode_FromFormat(tls, __ccgo_ts+137405, libc.VaList(bp+16, err))
+		**(**uintptr)(__ccgo_up(bp)) = libc.UintptrFromInt32(0)
+	} else {
+
+		for len1 > 0 && (int32(**(**TWCHAR)(__ccgo_up(**(**uintptr)(__ccgo_up(bp)) + uintptr(len1-int32(1))*2))) <= int32(' ') || int32(**(**TWCHAR)(__ccgo_up(**(**uintptr)(__ccgo_up(bp)) + uintptr(len1-int32(1))*2))) == int32('.')) {
+			len1 = len1 - 1
+			v3 = len1
+			**(**TWCHAR)(__ccgo_up(**(**uintptr)(__ccgo_up(bp)) + uintptr(v3)*2)) = uint16('\000')
+		}
+		message = XPyUnicode_FromWideChar(tls, **(**uintptr)(__ccgo_up(bp)), int64(len1))
+	}
+	if message == libc.UintptrFromInt32(0) {
+		libc.XLocalFree(tls, **(**uintptr)(__ccgo_up(bp)))
+		return libc.UintptrFromInt32(0)
+	}
+	if filenameObject == libc.UintptrFromInt32(0) {
+		v1 = uintptr(unsafe.Pointer(&X_Py_NoneStruct))
+		filenameObject2 = v1
+		filenameObject = v1
+	} else {
+		if filenameObject2 == libc.UintptrFromInt32(0) {
+			filenameObject2 = uintptr(unsafe.Pointer(&X_Py_NoneStruct))
+		}
+	}
+
+	args = XPy_BuildValue(tls, __ccgo_ts+137424, libc.VaList(bp+16, 0, message, filenameObject, err, filenameObject2))
+	v1 = message
+	v3 = libc.BoolInt32(int32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
+	goto _7
+_7:
+	if v3 != 0 {
+		goto _8
+	}
+	v4 = v1
+	*(*Tuint32_t)(unsafe.Pointer(v4)) = *(*Tuint32_t)(unsafe.Pointer(v4)) - 1
+	v9 = *(*Tuint32_t)(unsafe.Pointer(v4))
+	if v9 == libc.Uint32FromInt32(0) {
+		X_Py_Dealloc(tls, v1)
+	}
+_8:
+	;
+	if args != libc.UintptrFromInt32(0) {
+		v = XPyObject_Call(tls, exc, args, libc.UintptrFromInt32(0))
+		v1 = args
+		v3 = libc.BoolInt32(int32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
+		goto _13
+	_13:
+		if v3 != 0 {
+			goto _14
+		}
+		v4 = v1
+		*(*Tuint32_t)(unsafe.Pointer(v4)) = *(*Tuint32_t)(unsafe.Pointer(v4)) - 1
+		v9 = *(*Tuint32_t)(unsafe.Pointer(v4))
+		if v9 == libc.Uint32FromInt32(0) {
+			X_Py_Dealloc(tls, v1)
+		}
+	_14:
+		;
+		if v != libc.UintptrFromInt32(0) {
+			v1 = (*TPyObject)(unsafe.Pointer(v)).Fob_type
+			goto _18
+		_18:
+			X_PyErr_SetObject(tls, tstate, v1, v)
+			v1 = v
+			v3 = libc.BoolInt32(int32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
+			goto _21
+		_21:
+			if v3 != 0 {
+				goto _22
+			}
+			v4 = v1
+			*(*Tuint32_t)(unsafe.Pointer(v4)) = *(*Tuint32_t)(unsafe.Pointer(v4)) - 1
+			v9 = *(*Tuint32_t)(unsafe.Pointer(v4))
+			if v9 == libc.Uint32FromInt32(0) {
+				X_Py_Dealloc(tls, v1)
+			}
+		_22:
+		}
+	}
+	libc.XLocalFree(tls, **(**uintptr)(__ccgo_up(bp)))
+	return libc.UintptrFromInt32(0)
+}
+
+func XPyErr_SetExcFromWindowsErrWithFilename(tls *libc.TLS, exc uintptr, ierr int32, filename uintptr) (r uintptr) {
+	var name, ret, v1, v2, v7 uintptr
+	var v3 int32
+	var v6 Tuint32_t
+	_, _, _, _, _, _, _ = name, ret, v1, v2, v3, v6, v7
+	name = libc.UintptrFromInt32(0)
+	if filename != 0 {
+		if uint32(ierr) == uint32(0) {
+			ierr = int32(libc.XGetLastError(tls))
+		}
+		name = XPyUnicode_DecodeFSDefault(tls, filename)
+		if name == libc.UintptrFromInt32(0) {
+			return libc.UintptrFromInt32(0)
+		}
+	}
+	ret = XPyErr_SetExcFromWindowsErrWithFilenameObjects(tls, exc, ierr, name, libc.UintptrFromInt32(0))
+	v1 = name
+	if v1 != libc.UintptrFromInt32(0) {
+		v2 = v1
+		v3 = libc.BoolInt32(int32(*(*Tuint32_t)(unsafe.Pointer(v2))) < 0)
+		goto _4
+	_4:
+		if v3 != 0 {
+			goto _5
+		}
+		v7 = v2
+		*(*Tuint32_t)(unsafe.Pointer(v7)) = *(*Tuint32_t)(unsafe.Pointer(v7)) - 1
+		v6 = *(*Tuint32_t)(unsafe.Pointer(v7))
+		if v6 == libc.Uint32FromInt32(0) {
+			X_Py_Dealloc(tls, v2)
+		}
+	_5:
+	}
+	return ret
+}
+
+func XPyErr_SetExcFromWindowsErr(tls *libc.TLS, exc uintptr, ierr int32) (r uintptr) {
+	return XPyErr_SetExcFromWindowsErrWithFilename(tls, exc, ierr, libc.UintptrFromInt32(0))
+}
+
+func XPyErr_SetFromWindowsErr(tls *libc.TLS, ierr int32) (r uintptr) {
+	return XPyErr_SetExcFromWindowsErrWithFilename(tls, XPyExc_OSError, ierr, libc.UintptrFromInt32(0))
+}
+
+func XPyErr_SetFromWindowsErrWithFilename(tls *libc.TLS, ierr int32, filename uintptr) (r uintptr) {
+	var name, result, v1, v2, v7 uintptr
+	var v3 int32
+	var v6 Tuint32_t
+	_, _, _, _, _, _, _ = name, result, v1, v2, v3, v6, v7
+	name = libc.UintptrFromInt32(0)
+	if filename != 0 {
+		if uint32(ierr) == uint32(0) {
+			ierr = int32(libc.XGetLastError(tls))
+		}
+		name = XPyUnicode_DecodeFSDefault(tls, filename)
+		if name == libc.UintptrFromInt32(0) {
+			return libc.UintptrFromInt32(0)
+		}
+	}
+	result = XPyErr_SetExcFromWindowsErrWithFilenameObjects(tls, XPyExc_OSError, ierr, name, libc.UintptrFromInt32(0))
+	v1 = name
+	if v1 != libc.UintptrFromInt32(0) {
+		v2 = v1
+		v3 = libc.BoolInt32(int32(*(*Tuint32_t)(unsafe.Pointer(v2))) < 0)
+		goto _4
+	_4:
+		if v3 != 0 {
+			goto _5
+		}
+		v7 = v2
+		*(*Tuint32_t)(unsafe.Pointer(v7)) = *(*Tuint32_t)(unsafe.Pointer(v7)) - 1
+		v6 = *(*Tuint32_t)(unsafe.Pointer(v7))
+		if v6 == libc.Uint32FromInt32(0) {
+			X_Py_Dealloc(tls, v2)
+		}
+	_5:
+	}
+	return result
+}
+
+func _new_importerror(tls *libc.TLS, tstate uintptr, exctype uintptr, _msg uintptr, name uintptr, path uintptr, from_name uintptr) (r uintptr) {
+	bp := tls.Alloc(16)
+	defer tls.Free(16)
+	*(*uintptr)(unsafe.Pointer(bp)) = _msg
+	var exc, kwargs, v1, v6 uintptr
+	var issubclass, v2 int32
+	var v5 Tuint32_t
+	_, _, _, _, _, _, _ = exc, issubclass, kwargs, v1, v2, v5, v6
+	exc = libc.UintptrFromInt32(0)
+	kwargs = libc.UintptrFromInt32(0)
+	issubclass = XPyObject_IsSubclass(tls, exctype, XPyExc_ImportError)
+	if issubclass < 0 {
+		return libc.UintptrFromInt32(0)
+	} else {
+		if !(issubclass != 0) {
+			X_PyErr_SetString(tls, tstate, XPyExc_TypeError, __ccgo_ts+137443)
+			return libc.UintptrFromInt32(0)
+		}
+	}
+	if **(**uintptr)(__ccgo_up(bp)) == libc.UintptrFromInt32(0) {
+		X_PyErr_SetString(tls, tstate, XPyExc_TypeError, __ccgo_ts+137478)
+		return libc.UintptrFromInt32(0)
+	}
+	if name == libc.UintptrFromInt32(0) {
+		name = uintptr(unsafe.Pointer(&X_Py_NoneStruct))
+	}
+	if path == libc.UintptrFromInt32(0) {
+		path = uintptr(unsafe.Pointer(&X_Py_NoneStruct))
+	}
+	if from_name == libc.UintptrFromInt32(0) {
+		from_name = uintptr(unsafe.Pointer(&X_Py_NoneStruct))
+	}
+	kwargs = XPyDict_New(tls)
+	if kwargs == libc.UintptrFromInt32(0) {
+		return libc.UintptrFromInt32(0)
+	}
+	if XPyDict_SetItemString(tls, kwargs, __ccgo_ts+2114, name) < 0 {
+		goto finally
+	}
+	if XPyDict_SetItemString(tls, kwargs, __ccgo_ts+28662, path) < 0 {
+		goto finally
+	}
+	if XPyDict_SetItemString(tls, kwargs, __ccgo_ts+28667, from_name) < 0 {
+		goto finally
+	}
+	exc = XPyObject_VectorcallDict(tls, exctype, bp, uint64(1), kwargs)
+	goto finally
+finally:
+	;
+	v1 = kwargs
+	v2 = libc.BoolInt32(int32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
+	goto _3
+_3:
+	if v2 != 0 {
+		goto _4
+	}
+	v6 = v1
+	*(*Tuint32_t)(unsafe.Pointer(v6)) = *(*Tuint32_t)(unsafe.Pointer(v6)) - 1
+	v5 = *(*Tuint32_t)(unsafe.Pointer(v6))
+	if v5 == libc.Uint32FromInt32(0) {
+		X_Py_Dealloc(tls, v1)
+	}
+_4:
+	;
+	return exc
+}
+
+func __PyErr_SetImportErrorSubclassWithNameFrom(tls *libc.TLS, exception uintptr, msg uintptr, name uintptr, path uintptr, from_name uintptr) (r uintptr) {
+	var error1, tstate, v1, v3 uintptr
+	var v6 int32
+	var v9 Tuint32_t
+	_, _, _, _, _, _ = error1, tstate, v1, v3, v6, v9
+	v1 = (*_ccgo_tls_tstate(tls))
+	goto _2
+_2:
+	tstate = v1
+	error1 = _new_importerror(tls, tstate, exception, msg, name, path, from_name)
+	if error1 != libc.UintptrFromInt32(0) {
+		v3 = (*TPyObject)(unsafe.Pointer(error1)).Fob_type
+		goto _4
+	_4:
+		X_PyErr_SetObject(tls, tstate, v3, error1)
+		v1 = error1
+		v6 = libc.BoolInt32(int32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
+		goto _7
+	_7:
+		if v6 != 0 {
+			goto _8
+		}
+		v3 = v1
+		*(*Tuint32_t)(unsafe.Pointer(v3)) = *(*Tuint32_t)(unsafe.Pointer(v3)) - 1
+		v9 = *(*Tuint32_t)(unsafe.Pointer(v3))
+		if v9 == libc.Uint32FromInt32(0) {
+			X_Py_Dealloc(tls, v1)
+		}
+	_8:
+	}
+	return libc.UintptrFromInt32(0)
+}
+
+func XPyErr_SetImportErrorSubclass(tls *libc.TLS, exception uintptr, msg uintptr, name uintptr, path uintptr) (r uintptr) {
+	return __PyErr_SetImportErrorSubclassWithNameFrom(tls, exception, msg, name, path, libc.UintptrFromInt32(0))
+}
+
+func X_PyErr_SetImportErrorWithNameFrom(tls *libc.TLS, msg uintptr, name uintptr, path uintptr, from_name uintptr) (r uintptr) {
+	return __PyErr_SetImportErrorSubclassWithNameFrom(tls, XPyExc_ImportError, msg, name, path, from_name)
+}
+
+func XPyErr_SetImportError(tls *libc.TLS, msg uintptr, name uintptr, path uintptr) (r uintptr) {
+	return XPyErr_SetImportErrorSubclass(tls, XPyExc_ImportError, msg, name, path)
+}
+
+func X_PyErr_SetModuleNotFoundError(tls *libc.TLS, name uintptr) (r int32) {
+	bp := tls.Alloc(16)
+	defer tls.Free(16)
+	var exc, exctype, msg, tstate, v1, v3 uintptr
+	var v4 int32
+	var v7 Tuint32_t
+	_, _, _, _, _, _, _, _ = exc, exctype, msg, tstate, v1, v3, v4, v7
+	v1 = (*_ccgo_tls_tstate(tls))
+	goto _2
+_2:
+	tstate = v1
+	if name == libc.UintptrFromInt32(0) {
+		X_PyErr_SetString(tls, tstate, XPyExc_TypeError, __ccgo_ts+137506)
+		return -int32(1)
+	}
+	msg = XPyUnicode_FromFormat(tls, __ccgo_ts+137531, libc.VaList(bp+8, name))
+	if msg == libc.UintptrFromInt32(0) {
+		return -int32(1)
+	}
+	exctype = XPyExc_ModuleNotFoundError
+	exc = _new_importerror(tls, tstate, exctype, msg, name, libc.UintptrFromInt32(0), libc.UintptrFromInt32(0))
+	v1 = msg
+	v4 = libc.BoolInt32(int32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
+	goto _5
+_5:
+	if v4 != 0 {
+		goto _6
+	}
+	v3 = v1
+	*(*Tuint32_t)(unsafe.Pointer(v3)) = *(*Tuint32_t)(unsafe.Pointer(v3)) - 1
+	v7 = *(*Tuint32_t)(unsafe.Pointer(v3))
+	if v7 == libc.Uint32FromInt32(0) {
+		X_Py_Dealloc(tls, v1)
+	}
+_6:
+	;
+	if exc == libc.UintptrFromInt32(0) {
+		return -int32(1)
+	}
+	X_PyErr_SetObject(tls, tstate, exctype, exc)
+	v1 = exc
+	v4 = libc.BoolInt32(int32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
+	goto _11
+_11:
+	if v4 != 0 {
+		goto _12
+	}
+	v3 = v1
+	*(*Tuint32_t)(unsafe.Pointer(v3)) = *(*Tuint32_t)(unsafe.Pointer(v3)) - 1
+	v7 = *(*Tuint32_t)(unsafe.Pointer(v3))
+	if v7 == libc.Uint32FromInt32(0) {
+		X_Py_Dealloc(tls, v1)
+	}
+_12:
+	;
+	return 0
+}
+
+func X_PyErr_BadInternalCall(tls *libc.TLS, filename uintptr, lineno int32) {
+	bp := tls.Alloc(32)
+	defer tls.Free(32)
+	var tstate, v1 uintptr
+	_, _ = tstate, v1
+	v1 = (*_ccgo_tls_tstate(tls))
+	goto _2
+_2:
+	tstate = v1
+	X_PyErr_Format(tls, tstate, XPyExc_SystemError, __ccgo_ts+137551, libc.VaList(bp+8, filename, lineno))
+}
+
+// C documentation
+//
+//	/* Remove the preprocessor macro for PyErr_BadInternalCall() so that we can
+//	   export the entry point for existing object code: */
+func XPyErr_BadInternalCall(tls *libc.TLS) {
+	var tstate, v1 uintptr
+	_, _ = tstate, v1
+	v1 = (*_ccgo_tls_tstate(tls))
+	goto _2
+_2:
+	tstate = v1
+	X_PyErr_SetString(tls, tstate, XPyExc_SystemError, __ccgo_ts+137592)
+}
+
+func X_PyErr_FormatV(tls *libc.TLS, tstate uintptr, exception uintptr, format uintptr, vargs Tva_list) (r uintptr) {
+	var string1, v1, v6 uintptr
+	var v2 int32
+	var v5 Tuint32_t
+	_, _, _, _, _ = string1, v1, v2, v5, v6
+
+	X_PyErr_Clear(tls, tstate)
+	string1 = XPyUnicode_FromFormatV(tls, format, vargs)
+	if string1 != libc.UintptrFromInt32(0) {
+		X_PyErr_SetObject(tls, tstate, exception, string1)
+		v1 = string1
+		v2 = libc.BoolInt32(int32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
+		goto _3
+	_3:
+		if v2 != 0 {
+			goto _4
+		}
+		v6 = v1
+		*(*Tuint32_t)(unsafe.Pointer(v6)) = *(*Tuint32_t)(unsafe.Pointer(v6)) - 1
+		v5 = *(*Tuint32_t)(unsafe.Pointer(v6))
+		if v5 == libc.Uint32FromInt32(0) {
+			X_Py_Dealloc(tls, v1)
+		}
+	_4:
+	}
+	return libc.UintptrFromInt32(0)
+}
+
+func XPyErr_FormatV(tls *libc.TLS, exception uintptr, format uintptr, vargs Tva_list) (r uintptr) {
+	var tstate, v1 uintptr
+	_, _ = tstate, v1
+	v1 = (*_ccgo_tls_tstate(tls))
+	goto _2
+_2:
+	tstate = v1
+	return X_PyErr_FormatV(tls, tstate, exception, format, vargs)
+}
+
+func X_PyErr_Format(tls *libc.TLS, tstate uintptr, exception uintptr, format uintptr, va uintptr) (r uintptr) {
+	var vargs Tva_list
+	_ = vargs
+	vargs = va
+	X_PyErr_FormatV(tls, tstate, exception, format, vargs)
+	_ = vargs
+	return libc.UintptrFromInt32(0)
+}
+
+func XPyErr_Format(tls *libc.TLS, exception uintptr, format uintptr, va uintptr) (r uintptr) {
+	var tstate, v1 uintptr
+	var vargs Tva_list
+	_, _, _ = tstate, vargs, v1
+	v1 = (*_ccgo_tls_tstate(tls))
+	goto _2
+_2:
+	tstate = v1
+	vargs = va
+	X_PyErr_FormatV(tls, tstate, exception, format, vargs)
+	_ = vargs
+	return libc.UintptrFromInt32(0)
+}
+
+// C documentation
+//
+//	/* Adds a note to the current exception (if any) */
+func X_PyErr_FormatNote(tls *libc.TLS, format uintptr, va uintptr) {
+	var exc, note, v1, v6 uintptr
+	var res, v2 int32
+	var vargs Tva_list
+	var v5 Tuint32_t
+	_, _, _, _, _, _, _, _ = exc, note, res, vargs, v1, v2, v5, v6
+	exc = XPyErr_GetRaisedException(tls)
+	if exc == libc.UintptrFromInt32(0) {
+		return
+	}
+	vargs = va
+	note = XPyUnicode_FromFormatV(tls, format, vargs)
+	_ = vargs
+	if note == libc.UintptrFromInt32(0) {
+		goto error
+	}
+	res = X_PyException_AddNote(tls, exc, note)
+	v1 = note
+	v2 = libc.BoolInt32(int32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
+	goto _3
+_3:
+	if v2 != 0 {
+		goto _4
+	}
+	v6 = v1
+	*(*Tuint32_t)(unsafe.Pointer(v6)) = *(*Tuint32_t)(unsafe.Pointer(v6)) - 1
+	v5 = *(*Tuint32_t)(unsafe.Pointer(v6))
+	if v5 == libc.Uint32FromInt32(0) {
+		X_Py_Dealloc(tls, v1)
+	}
+_4:
+	;
+	if res < 0 {
+		goto error
+	}
+	XPyErr_SetRaisedException(tls, exc)
+	return
+	goto error
+error:
+	;
+	X_PyErr_ChainExceptions1(tls, exc)
+}
+
+func XPyErr_NewException(tls *libc.TLS, name uintptr, base uintptr, dict uintptr) (r1 uintptr) {
+	bp := tls.Alloc(32)
+	defer tls.Free(32)
+	var bases, dot, modulename, mydict, result, tstate, v1, v3, v4, v8 uintptr
+	var cur_refcnt, v18 Tuint32_t
+	var flags uint32
+	var r, v6 int32
+	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = bases, cur_refcnt, dot, flags, modulename, mydict, r, result, tstate, v1, v18, v3, v4, v6, v8
+	v1 = (*_ccgo_tls_tstate(tls))
+	goto _2
+_2:
+	tstate = v1
+	modulename = libc.UintptrFromInt32(0)
+	mydict = libc.UintptrFromInt32(0)
+	bases = libc.UintptrFromInt32(0)
+	result = libc.UintptrFromInt32(0)
+	dot = libc.Xstrrchr(tls, name, int32('.'))
+	if dot == libc.UintptrFromInt32(0) {
+		X_PyErr_SetString(tls, tstate, XPyExc_SystemError, __ccgo_ts+137626)
+		return libc.UintptrFromInt32(0)
+	}
+	if base == libc.UintptrFromInt32(0) {
+		base = XPyExc_Exception
+	}
+	if dict == libc.UintptrFromInt32(0) {
+		v1 = XPyDict_New(tls)
+		mydict = v1
+		dict = v1
+		if dict == libc.UintptrFromInt32(0) {
+			goto failure
+		}
+	}
+	r = XPyDict_Contains(tls, dict, uintptr(unsafe.Pointer(&X_PyRuntime))+13248+20712+1232+6056)
+	if r < 0 {
+		goto failure
+	}
+	if r == 0 {
+		modulename = XPyUnicode_FromStringAndSize(tls, name, int64(dot)-int64(name))
+		if modulename == libc.UintptrFromInt32(0) {
+			goto failure
+		}
+		if XPyDict_SetItem(tls, dict, uintptr(unsafe.Pointer(&X_PyRuntime))+13248+20712+1232+6056, modulename) != 0 {
+			goto failure
+		}
+	}
+	v1 = (*TPyObject)(unsafe.Pointer(base)).Fob_type
+	goto _5
+_5:
+	flags = (*TPyTypeObject)(unsafe.Pointer(v1)).Ftp_flags
+	v6 = libc.BoolInt32(flags&(libc.Uint32FromUint32(1)<<libc.Int32FromInt32(26)) != uint32(0))
+	goto _7
+_7:
+	if v6 != 0 {
+		v3 = base
+		v4 = v3
+		cur_refcnt = *(*Tuint32_t)(unsafe.Pointer(v4))
+		if uint64(cur_refcnt) >= libc.Uint64FromUint64(3)<<libc.Int32FromInt32(30) {
+			goto _10
+		}
+		*(*Tuint32_t)(unsafe.Pointer(v4)) = cur_refcnt + uint32(1)
+	_10:
+		;
+		v8 = v3
+		goto _12
+	_12:
+		bases = v8
+	} else {
+		bases = XPyTuple_Pack(tls, int64(1), libc.VaList(bp+8, base))
+		if bases == libc.UintptrFromInt32(0) {
+			goto failure
+		}
+	}
+
+	result = XPyObject_CallFunction(tls, uintptr(unsafe.Pointer(&XPyType_Type)), __ccgo_ts+137672, libc.VaList(bp+8, dot+uintptr(1), bases, dict))
+	goto failure
+failure:
+	;
+	v1 = bases
+	if v1 != libc.UintptrFromInt32(0) {
+		v3 = v1
+		v6 = libc.BoolInt32(int32(*(*Tuint32_t)(unsafe.Pointer(v3))) < 0)
+		goto _16
+	_16:
+		if v6 != 0 {
+			goto _17
+		}
+		v4 = v3
+		*(*Tuint32_t)(unsafe.Pointer(v4)) = *(*Tuint32_t)(unsafe.Pointer(v4)) - 1
+		v18 = *(*Tuint32_t)(unsafe.Pointer(v4))
+		if v18 == libc.Uint32FromInt32(0) {
+			X_Py_Dealloc(tls, v3)
+		}
+	_17:
+	}
+	v1 = mydict
+	if v1 != libc.UintptrFromInt32(0) {
+		v3 = v1
+		v6 = libc.BoolInt32(int32(*(*Tuint32_t)(unsafe.Pointer(v3))) < 0)
+		goto _23
+	_23:
+		if v6 != 0 {
+			goto _24
+		}
+		v4 = v3
+		*(*Tuint32_t)(unsafe.Pointer(v4)) = *(*Tuint32_t)(unsafe.Pointer(v4)) - 1
+		v18 = *(*Tuint32_t)(unsafe.Pointer(v4))
+		if v18 == libc.Uint32FromInt32(0) {
+			X_Py_Dealloc(tls, v3)
+		}
+	_24:
+	}
+	v1 = modulename
+	if v1 != libc.UintptrFromInt32(0) {
+		v3 = v1
+		v6 = libc.BoolInt32(int32(*(*Tuint32_t)(unsafe.Pointer(v3))) < 0)
+		goto _30
+	_30:
+		if v6 != 0 {
+			goto _31
+		}
+		v4 = v3
+		*(*Tuint32_t)(unsafe.Pointer(v4)) = *(*Tuint32_t)(unsafe.Pointer(v4)) - 1
+		v18 = *(*Tuint32_t)(unsafe.Pointer(v4))
+		if v18 == libc.Uint32FromInt32(0) {
+			X_Py_Dealloc(tls, v3)
+		}
+	_31:
+	}
+	return result
+}
+
+// C documentation
+//
+//	/* Create an exception with docstring */
+func XPyErr_NewExceptionWithDoc(tls *libc.TLS, name uintptr, doc uintptr, base uintptr, dict uintptr) (r uintptr) {
+	var docobj, mydict, ret, v1, v2, v7 uintptr
+	var result, v3 int32
+	var v6 Tuint32_t
+	_, _, _, _, _, _, _, _, _ = docobj, mydict, result, ret, v1, v2, v3, v6, v7
+	ret = libc.UintptrFromInt32(0)
+	mydict = libc.UintptrFromInt32(0)
+	if dict == libc.UintptrFromInt32(0) {
+		v1 = XPyDict_New(tls)
+		mydict = v1
+		dict = v1
+		if dict == libc.UintptrFromInt32(0) {
+			return libc.UintptrFromInt32(0)
+		}
+	}
+	if doc != libc.UintptrFromInt32(0) {
+		docobj = XPyUnicode_FromString(tls, doc)
+		if docobj == libc.UintptrFromInt32(0) {
+			goto failure
+		}
+		result = XPyDict_SetItemString(tls, dict, __ccgo_ts+21107, docobj)
+		v1 = docobj
+		v3 = libc.BoolInt32(int32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
+		goto _4
+	_4:
+		if v3 != 0 {
+			goto _5
+		}
+		v2 = v1
+		*(*Tuint32_t)(unsafe.Pointer(v2)) = *(*Tuint32_t)(unsafe.Pointer(v2)) - 1
+		v6 = *(*Tuint32_t)(unsafe.Pointer(v2))
+		if v6 == libc.Uint32FromInt32(0) {
+			X_Py_Dealloc(tls, v1)
+		}
+	_5:
+		;
+		if result < 0 {
+			goto failure
+		}
+	}
+	ret = XPyErr_NewException(tls, name, base, dict)
+	goto failure
+failure:
+	;
+	v1 = mydict
+	if v1 != libc.UintptrFromInt32(0) {
+		v2 = v1
+		v3 = libc.BoolInt32(int32(*(*Tuint32_t)(unsafe.Pointer(v2))) < 0)
+		goto _11
+	_11:
+		if v3 != 0 {
+			goto _12
+		}
+		v7 = v2
+		*(*Tuint32_t)(unsafe.Pointer(v7)) = *(*Tuint32_t)(unsafe.Pointer(v7)) - 1
+		v6 = *(*Tuint32_t)(unsafe.Pointer(v7))
+		if v6 == libc.Uint32FromInt32(0) {
+			X_Py_Dealloc(tls, v2)
+		}
+	_12:
+	}
+	return ret
+}
+
+var _UnraisableHookArgsType TPyTypeObject
+
+var _UnraisableHookArgs_fields = [6]TPyStructSequence_Field{
+	0: {
+		Fname: __ccgo_ts + 137676,
+		Fdoc:  __ccgo_ts + 137685,
+	},
+	1: {
+		Fname: __ccgo_ts + 137700,
+		Fdoc:  __ccgo_ts + 137710,
+	},
+	2: {
+		Fname: __ccgo_ts + 137726,
+		Fdoc:  __ccgo_ts + 137740,
+	},
+	3: {
+		Fname: __ccgo_ts + 137760,
+		Fdoc:  __ccgo_ts + 137768,
+	},
+	4: {
+		Fname: __ccgo_ts + 30197,
+		Fdoc:  __ccgo_ts + 137782,
+	},
+	5: {},
+}
+
+var _UnraisableHookArgs_desc = TPyStructSequence_Desc{
+	Fname:          __ccgo_ts + 137811,
+	Fdoc:           uintptr(unsafe.Pointer(&_UnraisableHookArgs__doc__)),
+	Ffields:        uintptr(unsafe.Pointer(&_UnraisableHookArgs_fields)),
+	Fn_in_sequence: int32(5),
+}
+
+func X_PyErr_InitTypes(tls *libc.TLS, interp1 uintptr) (r TPyStatus) {
+	var v1 int32
+	_ = v1
+	v1 = X_PyStructSequence_InitBuiltinWithFlags(tls, interp1, uintptr(unsafe.Pointer(&_UnraisableHookArgsType)), uintptr(unsafe.Pointer(&_UnraisableHookArgs_desc)), uint32(0))
+	goto _2
+_2:
+	if v1 < 0 {
+		return TPyStatus{
+			F_type:   int32(E_PyStatus_TYPE_ERROR),
+			Ffunc1:   uintptr(unsafe.Pointer(&___func__115)),
+			Ferr_msg: __ccgo_ts + 137830,
+		}
+	}
+	return TPyStatus{}
+}
+
+var ___func__115 = [17]int8{'_', 'P', 'y', 'E', 'r', 'r', '_', 'I', 'n', 'i', 't', 'T', 'y', 'p', 'e', 's'}
+
+func X_PyErr_FiniTypes(tls *libc.TLS, interp uintptr) {
+	X_PyStructSequence_FiniBuiltin(tls, interp, uintptr(unsafe.Pointer(&_UnraisableHookArgsType)))
+}
+
+func _make_unraisable_hook_args(tls *libc.TLS, tstate1 uintptr, exc_type uintptr, exc_value uintptr, exc_tb uintptr, err_msg uintptr, obj1 uintptr) (r uintptr) {
+	var args, v2, v3, v5, v8, v9 uintptr
+	var cur_refcnt, v40 Tuint32_t
+	var pos, v1 TPy_ssize_t
+	var v37 int32
+	_, _, _, _, _, _, _, _, _, _, _ = args, cur_refcnt, pos, v1, v2, v3, v37, v40, v5, v8, v9
+	args = XPyStructSequence_New(tls, uintptr(unsafe.Pointer(&_UnraisableHookArgsType)))
+	if args == libc.UintptrFromInt32(0) {
+		return libc.UintptrFromInt32(0)
+	}
+	pos = 0
+	if exc_type == libc.UintptrFromInt32(0) {
+		exc_type = uintptr(unsafe.Pointer(&X_Py_NoneStruct))
+	}
+	v1 = pos
+	pos = pos + 1
+	v2 = exc_type
+	v3 = v2
+	cur_refcnt = *(*Tuint32_t)(unsafe.Pointer(v3))
+	if uint64(cur_refcnt) >= libc.Uint64FromUint64(3)<<libc.Int32FromInt32(30) {
+		goto _4
+	}
+	*(*Tuint32_t)(unsafe.Pointer(v3)) = cur_refcnt + uint32(1)
+_4:
+	;
+	v5 = v2
+	goto _6
+_6:
+	XPyStructSequence_SetItem(tls, args, v1, v5)
+	if exc_value == libc.UintptrFromInt32(0) {
+		exc_value = uintptr(unsafe.Pointer(&X_Py_NoneStruct))
+	}
+	v1 = pos
+	pos = pos + 1
+	v2 = exc_value
+	v3 = v2
+	cur_refcnt = *(*Tuint32_t)(unsafe.Pointer(v3))
+	if uint64(cur_refcnt) >= libc.Uint64FromUint64(3)<<libc.Int32FromInt32(30) {
+		goto _10
+	}
+	*(*Tuint32_t)(unsafe.Pointer(v3)) = cur_refcnt + uint32(1)
+_10:
+	;
+	v5 = v2
+	goto _12
+_12:
+	XPyStructSequence_SetItem(tls, args, v1, v5)
+	if exc_tb == libc.UintptrFromInt32(0) {
+		exc_tb = uintptr(unsafe.Pointer(&X_Py_NoneStruct))
+	}
+	v1 = pos
+	pos = pos + 1
+	v2 = exc_tb
+	v3 = v2
+	cur_refcnt = *(*Tuint32_t)(unsafe.Pointer(v3))
+	if uint64(cur_refcnt) >= libc.Uint64FromUint64(3)<<libc.Int32FromInt32(30) {
+		goto _16
+	}
+	*(*Tuint32_t)(unsafe.Pointer(v3)) = cur_refcnt + uint32(1)
+_16:
+	;
+	v5 = v2
+	goto _18
+_18:
+	XPyStructSequence_SetItem(tls, args, v1, v5)
+	if err_msg == libc.UintptrFromInt32(0) {
+		err_msg = uintptr(unsafe.Pointer(&X_Py_NoneStruct))
+	}
+	v1 = pos
+	pos = pos + 1
+	v2 = err_msg
+	v3 = v2
+	cur_refcnt = *(*Tuint32_t)(unsafe.Pointer(v3))
+	if uint64(cur_refcnt) >= libc.Uint64FromUint64(3)<<libc.Int32FromInt32(30) {
+		goto _22
+	}
+	*(*Tuint32_t)(unsafe.Pointer(v3)) = cur_refcnt + uint32(1)
+_22:
+	;
+	v5 = v2
+	goto _24
+_24:
+	XPyStructSequence_SetItem(tls, args, v1, v5)
+	if obj1 == libc.UintptrFromInt32(0) {
+		obj1 = uintptr(unsafe.Pointer(&X_Py_NoneStruct))
+	}
+	v1 = pos
+	pos = pos + 1
+	v2 = obj1
+	v3 = v2
+	cur_refcnt = *(*Tuint32_t)(unsafe.Pointer(v3))
+	if uint64(cur_refcnt) >= libc.Uint64FromUint64(3)<<libc.Int32FromInt32(30) {
+		goto _28
+	}
+	*(*Tuint32_t)(unsafe.Pointer(v3)) = cur_refcnt + uint32(1)
+_28:
+	;
+	v5 = v2
+	goto _30
+_30:
+	XPyStructSequence_SetItem(tls, args, v1, v5)
+	v2 = tstate1
+	if (*TPyThreadState)(unsafe.Pointer(v2)).Fcurrent_exception == libc.UintptrFromInt32(0) {
+		v3 = libc.UintptrFromInt32(0)
+		goto _33
+	}
+	v5 = (*TPyObject)(unsafe.Pointer((*TPyThreadState)(unsafe.Pointer(v2)).Fcurrent_exception)).Fob_type
+	goto _35
+_35:
+	v3 = v5
+	goto _33
+_33:
+	if v3 != 0 {
+		v8 = args
+		v37 = libc.BoolInt32(int32(*(*Tuint32_t)(unsafe.Pointer(v8))) < 0)
+		goto _38
+	_38:
+		if v37 != 0 {
+			goto _39
+		}
+		v9 = v8
+		*(*Tuint32_t)(unsafe.Pointer(v9)) = *(*Tuint32_t)(unsafe.Pointer(v9)) - 1
+		v40 = *(*Tuint32_t)(unsafe.Pointer(v9))
+		if v40 == libc.Uint32FromInt32(0) {
+			X_Py_Dealloc(tls, v8)
+		}
+	_39:
+		;
+		return libc.UintptrFromInt32(0)
+	}
+	return args
+}
+
+// C documentation
+//
+//	/* Default implementation of sys.unraisablehook.
+//
+//	   It can be called to log the exception of a custom sys.unraisablehook.
+//
+//	   Do nothing if sys.stderr attribute doesn't exist or is set to None. */
+func _write_unraisable_exc_file(tls *libc.TLS, tstate uintptr, exc_type uintptr, exc_value uintptr, exc_tb uintptr, err_msg uintptr, obj uintptr, file uintptr) (r int32) {
+	var flags uint32
+	var modulename, qualname, v1, v12, v6, v7 uintptr
+	var v11 Tuint32_t
+	var v3, v8 int32
+	var v5 bool
+	_, _, _, _, _, _, _, _, _, _, _ = flags, modulename, qualname, v1, v11, v12, v3, v5, v6, v7, v8
+	if obj != libc.UintptrFromInt32(0) && obj != uintptr(unsafe.Pointer(&X_Py_NoneStruct)) {
+		if err_msg != libc.UintptrFromInt32(0) && err_msg != uintptr(unsafe.Pointer(&X_Py_NoneStruct)) {
+			if XPyFile_WriteObject(tls, err_msg, file, int32(MPy_PRINT_RAW)) < 0 {
+				return -int32(1)
+			}
+			if XPyFile_WriteString(tls, __ccgo_ts+85095, file) < 0 {
+				return -int32(1)
+			}
+		} else {
+			if XPyFile_WriteString(tls, __ccgo_ts+137875, file) < 0 {
+				return -int32(1)
+			}
+		}
+		if XPyFile_WriteObject(tls, obj, file, 0) < 0 {
+			X_PyErr_Clear(tls, tstate)
+			if XPyFile_WriteString(tls, __ccgo_ts+137898, file) < 0 {
+				return -int32(1)
+			}
+		}
+		if XPyFile_WriteString(tls, __ccgo_ts+10493, file) < 0 {
+			return -int32(1)
+		}
+	} else {
+		if err_msg != libc.UintptrFromInt32(0) && err_msg != uintptr(unsafe.Pointer(&X_Py_NoneStruct)) {
+			if XPyFile_WriteObject(tls, err_msg, file, int32(MPy_PRINT_RAW)) < 0 {
+				return -int32(1)
+			}
+			if XPyFile_WriteString(tls, __ccgo_ts+137921, file) < 0 {
+				return -int32(1)
+			}
+		}
+	}
+	if exc_tb != libc.UintptrFromInt32(0) && exc_tb != uintptr(unsafe.Pointer(&X_Py_NoneStruct)) {
+		if XPyTraceBack_Print(tls, exc_tb, file) < 0 {
+
+			X_PyErr_Clear(tls, tstate)
+		}
+	}
+	if exc_type == libc.UintptrFromInt32(0) || exc_type == uintptr(unsafe.Pointer(&X_Py_NoneStruct)) {
+		return -int32(1)
+	}
+	modulename = XPyObject_GetAttr(tls, exc_type, uintptr(unsafe.Pointer(&X_PyRuntime))+13248+20712+1232+6056)
+	if v5 = modulename == libc.UintptrFromInt32(0); !v5 {
+		v1 = (*TPyObject)(unsafe.Pointer(modulename)).Fob_type
+		goto _2
+	_2:
+		flags = (*TPyTypeObject)(unsafe.Pointer(v1)).Ftp_flags
+		v3 = libc.BoolInt32(flags&(libc.Uint32FromUint32(1)<<libc.Int32FromInt32(28)) != uint32(0))
+		goto _4
+	_4:
+	}
+	if v5 || !(v3 != 0) {
+		v6 = modulename
+		if v6 != libc.UintptrFromInt32(0) {
+			v7 = v6
+			v8 = libc.BoolInt32(int32(*(*Tuint32_t)(unsafe.Pointer(v7))) < 0)
+			goto _9
+		_9:
+			if v8 != 0 {
+				goto _10
+			}
+			v12 = v7
+			*(*Tuint32_t)(unsafe.Pointer(v12)) = *(*Tuint32_t)(unsafe.Pointer(v12)) - 1
+			v11 = *(*Tuint32_t)(unsafe.Pointer(v12))
+			if v11 == libc.Uint32FromInt32(0) {
+				X_Py_Dealloc(tls, v7)
+			}
+		_10:
+		}
+		X_PyErr_Clear(tls, tstate)
+		if XPyFile_WriteString(tls, __ccgo_ts+85062, file) < 0 {
+			return -int32(1)
+		}
+	} else {
+		if !(X_PyUnicode_Equal(tls, modulename, uintptr(unsafe.Pointer(&X_PyRuntime))+13248+20712+1232+14552) != 0) && !(X_PyUnicode_Equal(tls, modulename, uintptr(unsafe.Pointer(&X_PyRuntime))+13248+20712+1232+5784) != 0) {
+			if XPyFile_WriteObject(tls, modulename, file, int32(MPy_PRINT_RAW)) < 0 {
+				v1 = modulename
+				v3 = libc.BoolInt32(int32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
+				goto _15
+			_15:
+				if v3 != 0 {
+					goto _16
+				}
+				v6 = v1
+				*(*Tuint32_t)(unsafe.Pointer(v6)) = *(*Tuint32_t)(unsafe.Pointer(v6)) - 1
+				v11 = *(*Tuint32_t)(unsafe.Pointer(v6))
+				if v11 == libc.Uint32FromInt32(0) {
+					X_Py_Dealloc(tls, v1)
+				}
+			_16:
+				;
+				return -int32(1)
+			}
+			v1 = modulename
+			v3 = libc.BoolInt32(int32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
+			goto _21
+		_21:
+			if v3 != 0 {
+				goto _22
+			}
+			v6 = v1
+			*(*Tuint32_t)(unsafe.Pointer(v6)) = *(*Tuint32_t)(unsafe.Pointer(v6)) - 1
+			v11 = *(*Tuint32_t)(unsafe.Pointer(v6))
+			if v11 == libc.Uint32FromInt32(0) {
+				X_Py_Dealloc(tls, v1)
+			}
+		_22:
+			;
+			if XPyFile_WriteString(tls, __ccgo_ts+116987, file) < 0 {
+				return -int32(1)
+			}
+		} else {
+			v1 = modulename
+			v3 = libc.BoolInt32(int32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
+			goto _27
+		_27:
+			if v3 != 0 {
+				goto _28
+			}
+			v6 = v1
+			*(*Tuint32_t)(unsafe.Pointer(v6)) = *(*Tuint32_t)(unsafe.Pointer(v6)) - 1
+			v11 = *(*Tuint32_t)(unsafe.Pointer(v6))
+			if v11 == libc.Uint32FromInt32(0) {
+				X_Py_Dealloc(tls, v1)
+			}
+		_28:
+		}
+	}
+	qualname = XPyType_GetQualName(tls, exc_type)
+	if v5 = qualname == libc.UintptrFromInt32(0); !v5 {
+		v1 = (*TPyObject)(unsafe.Pointer(qualname)).Fob_type
+		goto _32
+	_32:
+		flags = (*TPyTypeObject)(unsafe.Pointer(v1)).Ftp_flags
+		v3 = libc.BoolInt32(flags&(libc.Uint32FromUint32(1)<<libc.Int32FromInt32(28)) != uint32(0))
+		goto _34
+	_34:
+	}
+	if v5 || !(v3 != 0) {
+		v6 = qualname
+		if v6 != libc.UintptrFromInt32(0) {
+			v7 = v6
+			v8 = libc.BoolInt32(int32(*(*Tuint32_t)(unsafe.Pointer(v7))) < 0)
+			goto _39
+		_39:
+			if v8 != 0 {
+				goto _40
+			}
+			v12 = v7
+			*(*Tuint32_t)(unsafe.Pointer(v12)) = *(*Tuint32_t)(unsafe.Pointer(v12)) - 1
+			v11 = *(*Tuint32_t)(unsafe.Pointer(v12))
+			if v11 == libc.Uint32FromInt32(0) {
+				X_Py_Dealloc(tls, v7)
+			}
+		_40:
+		}
+		X_PyErr_Clear(tls, tstate)
+		if XPyFile_WriteString(tls, __ccgo_ts+85062, file) < 0 {
+			return -int32(1)
+		}
+	} else {
+		if XPyFile_WriteObject(tls, qualname, file, int32(MPy_PRINT_RAW)) < 0 {
+			v1 = qualname
+			v3 = libc.BoolInt32(int32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
+			goto _45
+		_45:
+			if v3 != 0 {
+				goto _46
+			}
+			v6 = v1
+			*(*Tuint32_t)(unsafe.Pointer(v6)) = *(*Tuint32_t)(unsafe.Pointer(v6)) - 1
+			v11 = *(*Tuint32_t)(unsafe.Pointer(v6))
+			if v11 == libc.Uint32FromInt32(0) {
+				X_Py_Dealloc(tls, v1)
+			}
+		_46:
+			;
+			return -int32(1)
+		}
+		v1 = qualname
+		v3 = libc.BoolInt32(int32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
+		goto _51
+	_51:
+		if v3 != 0 {
+			goto _52
+		}
+		v6 = v1
+		*(*Tuint32_t)(unsafe.Pointer(v6)) = *(*Tuint32_t)(unsafe.Pointer(v6)) - 1
+		v11 = *(*Tuint32_t)(unsafe.Pointer(v6))
+		if v11 == libc.Uint32FromInt32(0) {
+			X_Py_Dealloc(tls, v1)
+		}
+	_52:
+	}
+	if exc_value != 0 && exc_value != uintptr(unsafe.Pointer(&X_Py_NoneStruct)) {
+		if XPyFile_WriteString(tls, __ccgo_ts+85095, file) < 0 {
+			return -int32(1)
+		}
+		if XPyFile_WriteObject(tls, exc_value, file, int32(MPy_PRINT_RAW)) < 0 {
+			X_PyErr_Clear(tls, tstate)
+			if XPyFile_WriteString(tls, __ccgo_ts+137924, file) < 0 {
+				return -int32(1)
+			}
+		}
+	}
+	if XPyFile_WriteString(tls, __ccgo_ts+10493, file) < 0 {
+		return -int32(1)
+	}
+
+	if X_PyFile_Flush(tls, file) < 0 {
+		return -int32(1)
+	}
+	return 0
+}
+
+func _write_unraisable_exc(tls *libc.TLS, tstate uintptr, exc_type uintptr, exc_value uintptr, exc_tb uintptr, err_msg uintptr, obj uintptr) (r int32) {
+	bp := tls.Alloc(16)
+	defer tls.Free(16)
+	var res, v3 int32
+	var v1, v2, v7 uintptr
+	var v6 Tuint32_t
+	var _ uintptr
+	_, _, _, _, _, _ = res, v1, v2, v3, v6, v7
+	if X_PySys_GetOptionalAttr(tls, uintptr(unsafe.Pointer(&X_PyRuntime))+13248+20712+1232+36504, bp) < 0 {
+		return -int32(1)
+	}
+	if **(**uintptr)(__ccgo_up(bp)) == libc.UintptrFromInt32(0) || **(**uintptr)(__ccgo_up(bp)) == uintptr(unsafe.Pointer(&X_Py_NoneStruct)) {
+		v1 = **(**uintptr)(__ccgo_up(bp))
+		if v1 != libc.UintptrFromInt32(0) {
+			v2 = v1
+			v3 = libc.BoolInt32(int32(*(*Tuint32_t)(unsafe.Pointer(v2))) < 0)
+			goto _4
+		_4:
+			if v3 != 0 {
+				goto _5
+			}
+			v7 = v2
+			*(*Tuint32_t)(unsafe.Pointer(v7)) = *(*Tuint32_t)(unsafe.Pointer(v7)) - 1
+			v6 = *(*Tuint32_t)(unsafe.Pointer(v7))
+			if v6 == libc.Uint32FromInt32(0) {
+				X_Py_Dealloc(tls, v2)
+			}
+		_5:
+		}
+		return 0
+	}
+	res = _write_unraisable_exc_file(tls, tstate, exc_type, exc_value, exc_tb, err_msg, obj, **(**uintptr)(__ccgo_up(bp)))
+	v1 = **(**uintptr)(__ccgo_up(bp))
+	v3 = libc.BoolInt32(int32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
+	goto _10
+_10:
+	if v3 != 0 {
+		goto _11
+	}
+	v2 = v1
+	*(*Tuint32_t)(unsafe.Pointer(v2)) = *(*Tuint32_t)(unsafe.Pointer(v2)) - 1
+	v6 = *(*Tuint32_t)(unsafe.Pointer(v2))
+	if v6 == libc.Uint32FromInt32(0) {
+		X_Py_Dealloc(tls, v1)
+	}
+_11:
+	;
+	return res
+}
+
+func X_PyErr_WriteUnraisableDefaultHook(tls *libc.TLS, args uintptr) (r uintptr) {
+	var err_msg, exc_tb, exc_type, exc_value, obj, tstate, v1, v5 uintptr
+	var v3 int32
+	_, _, _, _, _, _, _, _, _ = err_msg, exc_tb, exc_type, exc_value, obj, tstate, v1, v3, v5
+	v1 = (*_ccgo_tls_tstate(tls))
+	goto _2
+_2:
+	tstate = v1
+	v5 = (*TPyObject)(unsafe.Pointer(args)).Fob_type
+	goto _6
+_6:
+	v3 = libc.BoolInt32(v5 == uintptr(unsafe.Pointer(&_UnraisableHookArgsType)))
+	goto _4
+_4:
+	if !(v3 != 0) {
+		X_PyErr_SetString(tls, tstate, XPyExc_TypeError, __ccgo_ts+137949)
+		return libc.UintptrFromInt32(0)
+	}
+
+	exc_type = XPyStructSequence_GetItem(tls, args, 0)
+	exc_value = XPyStructSequence_GetItem(tls, args, int64(1))
+	exc_tb = XPyStructSequence_GetItem(tls, args, int64(2))
+	err_msg = XPyStructSequence_GetItem(tls, args, int64(3))
+	obj = XPyStructSequence_GetItem(tls, args, int64(4))
+	if _write_unraisable_exc(tls, tstate, exc_type, exc_value, exc_tb, err_msg, obj) < 0 {
+		return libc.UintptrFromInt32(0)
+	}
+	return uintptr(unsafe.Pointer(&X_Py_NoneStruct))
+}
+
+func _format_unraisable_v(tls *libc.TLS, format uintptr, va Tva_list, obj uintptr) {
+	bp := tls.Alloc(64)
+	defer tls.Free(64)
+	var _tmp_dst_ptr, _tmp_old_dst, err_msg_str, frame, hook_args, res, tstate1, v1, v3, v8 uintptr
+	var v4 int32
+	var v7 Tuint32_t
+	var v13 bool
+	var _ uintptr
+	var _ uintptr
+	var _ uintptr
+	var _ uintptr
+	var _ uintptr
+	_, _, _, _, _, _, _, _, _, _, _, _, _ = _tmp_dst_ptr, _tmp_old_dst, err_msg_str, frame, hook_args, res, tstate1, v1, v13, v3, v4, v7, v8
+	v1 = (*_ccgo_tls_tstate(tls))
+	goto _2
+_2:
+	tstate1 = v1
+	if tstate1 == libc.UintptrFromInt32(0) {
+		X_Py_FatalErrorFunc(tls, uintptr(unsafe.Pointer(&___func__72)), __ccgo_ts+121252)
+	}
+	**(**uintptr)(__ccgo_up(bp)) = libc.UintptrFromInt32(0)
+	**(**uintptr)(__ccgo_up(bp + 8)) = libc.UintptrFromInt32(0)
+	X_PyErr_Fetch(tls, tstate1, bp+16, bp+24, bp+32)
+	if **(**uintptr)(__ccgo_up(bp + 16)) == libc.UintptrFromInt32(0) {
+
+		goto default_hook
+	}
+	if **(**uintptr)(__ccgo_up(bp + 32)) == libc.UintptrFromInt32(0) {
+		frame = XPyThreadState_GetFrame(tls, tstate1)
+		if frame != libc.UintptrFromInt32(0) {
+			**(**uintptr)(__ccgo_up(bp + 32)) = X_PyTraceBack_FromFrame(tls, libc.UintptrFromInt32(0), frame)
+			if **(**uintptr)(__ccgo_up(bp + 32)) == libc.UintptrFromInt32(0) {
+				X_PyErr_Clear(tls, tstate1)
+			}
+			v1 = frame
+			v4 = libc.BoolInt32(int32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
+			goto _5
+		_5:
+			if v4 != 0 {
+				goto _6
+			}
+			v3 = v1
+			*(*Tuint32_t)(unsafe.Pointer(v3)) = *(*Tuint32_t)(unsafe.Pointer(v3)) - 1
+			v7 = *(*Tuint32_t)(unsafe.Pointer(v3))
+			if v7 == libc.Uint32FromInt32(0) {
+				X_Py_Dealloc(tls, v1)
+			}
+		_6:
+		}
+	}
+	X_PyErr_NormalizeException(tls, tstate1, bp+16, bp+24, bp+32)
+	if v13 = **(**uintptr)(__ccgo_up(bp + 32)) != libc.UintptrFromInt32(0) && **(**uintptr)(__ccgo_up(bp + 32)) != uintptr(unsafe.Pointer(&X_Py_NoneStruct)); v13 {
+		v1 = (*TPyObject)(unsafe.Pointer(**(**uintptr)(__ccgo_up(bp + 32)))).Fob_type
+		goto _12
+	_12:
+		v4 = libc.BoolInt32(v1 == uintptr(unsafe.Pointer(&XPyTraceBack_Type)))
+		goto _10
+	_10:
+	}
+	if v13 && v4 != 0 {
+		if XPyException_SetTraceback(tls, **(**uintptr)(__ccgo_up(bp + 24)), **(**uintptr)(__ccgo_up(bp + 32))) < 0 {
+			X_PyErr_Clear(tls, tstate1)
+		}
+	}
+	if format != libc.UintptrFromInt32(0) {
+		**(**uintptr)(__ccgo_up(bp)) = XPyUnicode_FromFormatV(tls, format, va)
+		if **(**uintptr)(__ccgo_up(bp)) == libc.UintptrFromInt32(0) {
+			XPyErr_Clear(tls)
+		}
+	}
+	hook_args = _make_unraisable_hook_args(tls, tstate1, **(**uintptr)(__ccgo_up(bp + 16)), **(**uintptr)(__ccgo_up(bp + 24)), **(**uintptr)(__ccgo_up(bp + 32)), **(**uintptr)(__ccgo_up(bp)), obj)
+	if hook_args == libc.UintptrFromInt32(0) {
+		err_msg_str = __ccgo_ts + 138009
+		goto error
+	}
+	if X_PySys_GetOptionalAttr(tls, uintptr(unsafe.Pointer(&X_PyRuntime))+13248+20712+1232+39088, bp+8) < 0 {
+		v1 = hook_args
+		v4 = libc.BoolInt32(int32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
+		goto _16
+	_16:
+		if v4 != 0 {
+			goto _17
+		}
+		v3 = v1
+		*(*Tuint32_t)(unsafe.Pointer(v3)) = *(*Tuint32_t)(unsafe.Pointer(v3)) - 1
+		v7 = *(*Tuint32_t)(unsafe.Pointer(v3))
+		if v7 == libc.Uint32FromInt32(0) {
+			X_Py_Dealloc(tls, v1)
+		}
+	_17:
+		;
+		err_msg_str = libc.UintptrFromInt32(0)
+		obj = libc.UintptrFromInt32(0)
+		goto error
+	}
+	if **(**uintptr)(__ccgo_up(bp + 8)) == libc.UintptrFromInt32(0) {
+		v1 = hook_args
+		v4 = libc.BoolInt32(int32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
+		goto _22
+	_22:
+		if v4 != 0 {
+			goto _23
+		}
+		v3 = v1
+		*(*Tuint32_t)(unsafe.Pointer(v3)) = *(*Tuint32_t)(unsafe.Pointer(v3)) - 1
+		v7 = *(*Tuint32_t)(unsafe.Pointer(v3))
+		if v7 == libc.Uint32FromInt32(0) {
+			X_Py_Dealloc(tls, v1)
+		}
+	_23:
+		;
+		goto default_hook
+	}
+	if X_PySys_Audit(tls, tstate1, __ccgo_ts+138071, __ccgo_ts+8926, libc.VaList(bp+48, **(**uintptr)(__ccgo_up(bp + 8)), hook_args)) < 0 {
+		v1 = hook_args
+		v4 = libc.BoolInt32(int32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
+		goto _28
+	_28:
+		if v4 != 0 {
+			goto _29
+		}
+		v3 = v1
+		*(*Tuint32_t)(unsafe.Pointer(v3)) = *(*Tuint32_t)(unsafe.Pointer(v3)) - 1
+		v7 = *(*Tuint32_t)(unsafe.Pointer(v3))
+		if v7 == libc.Uint32FromInt32(0) {
+			X_Py_Dealloc(tls, v1)
+		}
+	_29:
+		;
+		err_msg_str = __ccgo_ts + 138090
+		obj = libc.UintptrFromInt32(0)
+		goto error
+	}
+	if **(**uintptr)(__ccgo_up(bp + 8)) == uintptr(unsafe.Pointer(&X_Py_NoneStruct)) {
+		v1 = hook_args
+		v4 = libc.BoolInt32(int32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
+		goto _34
+	_34:
+		if v4 != 0 {
+			goto _35
+		}
+		v3 = v1
+		*(*Tuint32_t)(unsafe.Pointer(v3)) = *(*Tuint32_t)(unsafe.Pointer(v3)) - 1
+		v7 = *(*Tuint32_t)(unsafe.Pointer(v3))
+		if v7 == libc.Uint32FromInt32(0) {
+			X_Py_Dealloc(tls, v1)
+		}
+	_35:
+		;
+		goto default_hook
+	}
+	res = XPyObject_CallOneArg(tls, **(**uintptr)(__ccgo_up(bp + 8)), hook_args)
+	v1 = hook_args
+	v4 = libc.BoolInt32(int32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
+	goto _40
+_40:
+	if v4 != 0 {
+		goto _41
+	}
+	v3 = v1
+	*(*Tuint32_t)(unsafe.Pointer(v3)) = *(*Tuint32_t)(unsafe.Pointer(v3)) - 1
+	v7 = *(*Tuint32_t)(unsafe.Pointer(v3))
+	if v7 == libc.Uint32FromInt32(0) {
+		X_Py_Dealloc(tls, v1)
+	}
+_41:
+	;
+	if res != libc.UintptrFromInt32(0) {
+		v1 = res
+		v4 = libc.BoolInt32(int32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
+		goto _46
+	_46:
+		if v4 != 0 {
+			goto _47
+		}
+		v3 = v1
+		*(*Tuint32_t)(unsafe.Pointer(v3)) = *(*Tuint32_t)(unsafe.Pointer(v3)) - 1
+		v7 = *(*Tuint32_t)(unsafe.Pointer(v3))
+		if v7 == libc.Uint32FromInt32(0) {
+			X_Py_Dealloc(tls, v1)
+		}
+	_47:
+		;
+		goto done
+	}
+
+	obj = **(**uintptr)(__ccgo_up(bp + 8))
+	err_msg_str = libc.UintptrFromInt32(0)
+	goto error
+error:
+	;
+
+	_tmp_dst_ptr = bp
+	_tmp_old_dst = **(**uintptr)(__ccgo_up(_tmp_dst_ptr))
+	if err_msg_str != 0 {
+		v1 = err_msg_str
+	} else {
+		v1 = __ccgo_ts + 138122
+	}
+	**(**uintptr)(__ccgo_up(_tmp_dst_ptr)) = XPyUnicode_FromString(tls, v1)
+	v1 = _tmp_old_dst
+	if v1 != libc.UintptrFromInt32(0) {
+		v3 = v1
+		v4 = libc.BoolInt32(int32(*(*Tuint32_t)(unsafe.Pointer(v3))) < 0)
+		goto _54
+	_54:
+		if v4 != 0 {
+			goto _55
+		}
+		v8 = v3
+		*(*Tuint32_t)(unsafe.Pointer(v8)) = *(*Tuint32_t)(unsafe.Pointer(v8)) - 1
+		v7 = *(*Tuint32_t)(unsafe.Pointer(v8))
+		if v7 == libc.Uint32FromInt32(0) {
+			X_Py_Dealloc(tls, v3)
+		}
+	_55:
+	}
+	v1 = **(**uintptr)(__ccgo_up(bp + 16))
+	if v1 != libc.UintptrFromInt32(0) {
+		v3 = v1
+		v4 = libc.BoolInt32(int32(*(*Tuint32_t)(unsafe.Pointer(v3))) < 0)
+		goto _61
+	_61:
+		if v4 != 0 {
+			goto _62
+		}
+		v8 = v3
+		*(*Tuint32_t)(unsafe.Pointer(v8)) = *(*Tuint32_t)(unsafe.Pointer(v8)) - 1
+		v7 = *(*Tuint32_t)(unsafe.Pointer(v8))
+		if v7 == libc.Uint32FromInt32(0) {
+			X_Py_Dealloc(tls, v3)
+		}
+	_62:
+	}
+	v1 = **(**uintptr)(__ccgo_up(bp + 24))
+	if v1 != libc.UintptrFromInt32(0) {
+		v3 = v1
+		v4 = libc.BoolInt32(int32(*(*Tuint32_t)(unsafe.Pointer(v3))) < 0)
+		goto _68
+	_68:
+		if v4 != 0 {
+			goto _69
+		}
+		v8 = v3
+		*(*Tuint32_t)(unsafe.Pointer(v8)) = *(*Tuint32_t)(unsafe.Pointer(v8)) - 1
+		v7 = *(*Tuint32_t)(unsafe.Pointer(v8))
+		if v7 == libc.Uint32FromInt32(0) {
+			X_Py_Dealloc(tls, v3)
+		}
+	_69:
+	}
+	v1 = **(**uintptr)(__ccgo_up(bp + 32))
+	if v1 != libc.UintptrFromInt32(0) {
+		v3 = v1
+		v4 = libc.BoolInt32(int32(*(*Tuint32_t)(unsafe.Pointer(v3))) < 0)
+		goto _75
+	_75:
+		if v4 != 0 {
+			goto _76
+		}
+		v8 = v3
+		*(*Tuint32_t)(unsafe.Pointer(v8)) = *(*Tuint32_t)(unsafe.Pointer(v8)) - 1
+		v7 = *(*Tuint32_t)(unsafe.Pointer(v8))
+		if v7 == libc.Uint32FromInt32(0) {
+			X_Py_Dealloc(tls, v3)
+		}
+	_76:
+	}
+	X_PyErr_Fetch(tls, tstate1, bp+16, bp+24, bp+32)
+	goto default_hook
+default_hook:
+	;
+
+	_write_unraisable_exc(tls, tstate1, **(**uintptr)(__ccgo_up(bp + 16)), **(**uintptr)(__ccgo_up(bp + 24)), **(**uintptr)(__ccgo_up(bp + 32)), **(**uintptr)(__ccgo_up(bp)), obj)
+	goto done
+done:
+	;
+	v1 = **(**uintptr)(__ccgo_up(bp + 16))
+	if v1 != libc.UintptrFromInt32(0) {
+		v3 = v1
+		v4 = libc.BoolInt32(int32(*(*Tuint32_t)(unsafe.Pointer(v3))) < 0)
+		goto _82
+	_82:
+		if v4 != 0 {
+			goto _83
+		}
+		v8 = v3
+		*(*Tuint32_t)(unsafe.Pointer(v8)) = *(*Tuint32_t)(unsafe.Pointer(v8)) - 1
+		v7 = *(*Tuint32_t)(unsafe.Pointer(v8))
+		if v7 == libc.Uint32FromInt32(0) {
+			X_Py_Dealloc(tls, v3)
+		}
+	_83:
+	}
+	v1 = **(**uintptr)(__ccgo_up(bp + 24))
+	if v1 != libc.UintptrFromInt32(0) {
+		v3 = v1
+		v4 = libc.BoolInt32(int32(*(*Tuint32_t)(unsafe.Pointer(v3))) < 0)
+		goto _89
+	_89:
+		if v4 != 0 {
+			goto _90
+		}
+		v8 = v3
+		*(*Tuint32_t)(unsafe.Pointer(v8)) = *(*Tuint32_t)(unsafe.Pointer(v8)) - 1
+		v7 = *(*Tuint32_t)(unsafe.Pointer(v8))
+		if v7 == libc.Uint32FromInt32(0) {
+			X_Py_Dealloc(tls, v3)
+		}
+	_90:
+	}
+	v1 = **(**uintptr)(__ccgo_up(bp + 32))
+	if v1 != libc.UintptrFromInt32(0) {
+		v3 = v1
+		v4 = libc.BoolInt32(int32(*(*Tuint32_t)(unsafe.Pointer(v3))) < 0)
+		goto _96
+	_96:
+		if v4 != 0 {
+			goto _97
+		}
+		v8 = v3
+		*(*Tuint32_t)(unsafe.Pointer(v8)) = *(*Tuint32_t)(unsafe.Pointer(v8)) - 1
+		v7 = *(*Tuint32_t)(unsafe.Pointer(v8))
+		if v7 == libc.Uint32FromInt32(0) {
+			X_Py_Dealloc(tls, v3)
+		}
+	_97:
+	}
+	v1 = **(**uintptr)(__ccgo_up(bp))
+	if v1 != libc.UintptrFromInt32(0) {
+		v3 = v1
+		v4 = libc.BoolInt32(int32(*(*Tuint32_t)(unsafe.Pointer(v3))) < 0)
+		goto _103
+	_103:
+		if v4 != 0 {
+			goto _104
+		}
+		v8 = v3
+		*(*Tuint32_t)(unsafe.Pointer(v8)) = *(*Tuint32_t)(unsafe.Pointer(v8)) - 1
+		v7 = *(*Tuint32_t)(unsafe.Pointer(v8))
+		if v7 == libc.Uint32FromInt32(0) {
+			X_Py_Dealloc(tls, v3)
+		}
+	_104:
+	}
+	v1 = **(**uintptr)(__ccgo_up(bp + 8))
+	if v1 != libc.UintptrFromInt32(0) {
+		v3 = v1
+		v4 = libc.BoolInt32(int32(*(*Tuint32_t)(unsafe.Pointer(v3))) < 0)
+		goto _110
+	_110:
+		if v4 != 0 {
+			goto _111
+		}
+		v8 = v3
+		*(*Tuint32_t)(unsafe.Pointer(v8)) = *(*Tuint32_t)(unsafe.Pointer(v8)) - 1
+		v7 = *(*Tuint32_t)(unsafe.Pointer(v8))
+		if v7 == libc.Uint32FromInt32(0) {
+			X_Py_Dealloc(tls, v3)
+		}
+	_111:
+	}
+	X_PyErr_Clear(tls, tstate1)
 }

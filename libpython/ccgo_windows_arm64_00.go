@@ -10,6 +10,7 @@ import (
 	"unsafe"
 
 	"modernc.org/libc"
+	"modernc.org/libsqlite3"
 	"modernc.org/libz"
 )
 
@@ -18,6 +19,8 @@ var _ = math.Pi
 var _ reflect.Type
 
 var _ unsafe.Pointer
+
+var _ = libsqlite3.Xsqlite3_libversion_number
 
 var _ = libz.Xcrc32
 
@@ -438,6 +441,8 @@ const MHAVE_INTTYPES_H = 1
 const MHAVE_IO_H = 1
 
 const MHAVE_LARGEFILE_SUPPORT = 1
+
+const MHAVE_LIBSQLITE3 = 1
 
 const MHAVE_LISTEN = 1
 
@@ -956,6 +961,8 @@ const MPY_RELEASE_LEVEL_GAMMA = 12
 const MPY_RELEASE_SERIAL = 0
 
 const MPY_SIZE_MAX = 18446744073709551615
+
+const MPY_SQLITE_HAVE_SERIALIZE = 1
 
 const MPY_SSIZE_T_MAX = 9223372036854775807
 
@@ -1805,7 +1812,7 @@ const MS_IXOTH = 1
 
 const MS_IXUSR = 64
 
-const MTIME = "11:52:33"
+const MTIME = "13:58:15"
 
 const MTMP_MAX = 2147483647
 
@@ -108599,4 +108606,818 @@ letter_quote:
 	p_start = (*Ttok_state)(unsafe.Pointer(tok)).Fstart
 	p_end = (*Ttok_state)(unsafe.Pointer(tok)).Fcur
 	return X_PyLexer_token_setup(tls, tok, token, X_PyToken_OneChar(tls, c), p_start, p_end)
+}
+
+func _tok_get_fstring_mode(tls *libc.TLS, tok uintptr, current_tok uintptr, token uintptr) (r int32) {
+	bp := tls.Alloc(32)
+	defer tls.Free(32)
+	var c, cursor, end_quote_size, i, i1, in_format_spec, peek, peek1, peek11, peek2, quote, start, start_char, unicode_escape, v1, v3 int32
+	var p_end, p_start, the_current_tok uintptr
+	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = c, cursor, end_quote_size, i, i1, in_format_spec, p_end, p_start, peek, peek1, peek11, peek2, quote, start, start_char, the_current_tok, unicode_escape, v1, v3
+	p_start = libc.UintptrFromInt32(0)
+	p_end = libc.UintptrFromInt32(0)
+	end_quote_size = 0
+	unicode_escape = 0
+	(*Ttok_state)(unsafe.Pointer(tok)).Fstart = (*Ttok_state)(unsafe.Pointer(tok)).Fcur
+	(*Ttok_state)(unsafe.Pointer(tok)).Ffirst_lineno = (*Ttok_state)(unsafe.Pointer(tok)).Flineno
+	(*Ttok_state)(unsafe.Pointer(tok)).Fstarting_col_offset = (*Ttok_state)(unsafe.Pointer(tok)).Fcol_offset
+
+	start_char = _tok_nextc(tls, tok)
+	if start_char == int32('{') {
+		peek11 = _tok_nextc(tls, tok)
+		_tok_backup(tls, tok, peek11)
+		_tok_backup(tls, tok, start_char)
+		if peek11 != int32('{') {
+			(*Ttokenizer_mode)(unsafe.Pointer(current_tok)).Fcurly_bracket_expr_start_depth = (*Ttokenizer_mode)(unsafe.Pointer(current_tok)).Fcurly_bracket_expr_start_depth + 1
+			if (*Ttokenizer_mode)(unsafe.Pointer(current_tok)).Fcurly_bracket_expr_start_depth >= int32(MMAX_EXPR_NESTING) {
+				if (*Ttokenizer_mode)(unsafe.Pointer(tok+2856+uintptr((*Ttok_state)(unsafe.Pointer(tok)).Ftok_mode_stack_index)*104)).Fstring_kind == int32(ETSTRING) {
+					v1 = int32('t')
+				} else {
+					v1 = int32('f')
+				}
+				return X_PyLexer_token_setup(tls, tok, token, X_PyTokenizer_syntaxerror(tls, tok, __ccgo_ts+10230, libc.VaList(bp+8, v1)), p_start, p_end)
+			}
+			(*Ttokenizer_mode)(unsafe.Pointer(tok + 2856 + uintptr((*Ttok_state)(unsafe.Pointer(tok)).Ftok_mode_stack_index)*104)).Fkind = int32(ETOK_REGULAR_MODE)
+			return _tok_get_normal_mode(tls, tok, current_tok, token)
+		}
+	} else {
+		_tok_backup(tls, tok, start_char)
+	}
+
+	i = 0
+	for {
+		if !(i < (*Ttokenizer_mode)(unsafe.Pointer(current_tok)).Fquote_size) {
+			break
+		}
+		quote = _tok_nextc(tls, tok)
+		if quote != int32((*Ttokenizer_mode)(unsafe.Pointer(current_tok)).Fquote) {
+			_tok_backup(tls, tok, quote)
+			goto f_string_middle
+		}
+		goto _2
+	_2:
+		;
+		i = i + 1
+	}
+	if (*Ttokenizer_mode)(unsafe.Pointer(current_tok)).Flast_expr_buffer != libc.UintptrFromInt32(0) {
+		XPyMem_Free(tls, (*Ttokenizer_mode)(unsafe.Pointer(current_tok)).Flast_expr_buffer)
+		(*Ttokenizer_mode)(unsafe.Pointer(current_tok)).Flast_expr_buffer = libc.UintptrFromInt32(0)
+		(*Ttokenizer_mode)(unsafe.Pointer(current_tok)).Flast_expr_size = 0
+		(*Ttokenizer_mode)(unsafe.Pointer(current_tok)).Flast_expr_end = int64(-int32(1))
+	}
+	p_start = (*Ttok_state)(unsafe.Pointer(tok)).Fstart
+	p_end = (*Ttok_state)(unsafe.Pointer(tok)).Fcur
+	(*Ttok_state)(unsafe.Pointer(tok)).Ftok_mode_stack_index = (*Ttok_state)(unsafe.Pointer(tok)).Ftok_mode_stack_index - 1
+	if (*Ttokenizer_mode)(unsafe.Pointer(current_tok)).Fstring_kind == int32(ETSTRING) {
+		v1 = int32(MTSTRING_END)
+	} else {
+		v1 = int32(MFSTRING_END)
+	}
+	return X_PyLexer_token_setup(tls, tok, token, v1, p_start, p_end)
+	goto f_string_middle
+f_string_middle:
+	;
+
+	(*Ttok_state)(unsafe.Pointer(tok)).Fmulti_line_start = (*Ttok_state)(unsafe.Pointer(tok)).Fline_start
+	for end_quote_size != (*Ttokenizer_mode)(unsafe.Pointer(current_tok)).Fquote_size {
+		c = _tok_nextc(tls, tok)
+		if (*Ttok_state)(unsafe.Pointer(tok)).Fdone == int32(ME_ERROR) || (*Ttok_state)(unsafe.Pointer(tok)).Fdone == int32(ME_DECODE) {
+			return X_PyLexer_token_setup(tls, tok, token, int32(MERRORTOKEN), p_start, p_end)
+		}
+		in_format_spec = libc.BoolInt32((*Ttokenizer_mode)(unsafe.Pointer(current_tok)).Fin_format_spec != 0 && (*Ttokenizer_mode)(unsafe.Pointer(current_tok)).Fcurly_bracket_expr_start_depth >= 0)
+		if c == -int32(1) || (*Ttokenizer_mode)(unsafe.Pointer(current_tok)).Fquote_size == int32(1) && c == int32('\n') {
+			if (*Ttok_state)(unsafe.Pointer(tok)).Fdecoding_erred != 0 {
+				return X_PyLexer_token_setup(tls, tok, token, int32(MERRORTOKEN), p_start, p_end)
+			}
+
+			if in_format_spec != 0 && c == int32('\n') {
+				if (*Ttokenizer_mode)(unsafe.Pointer(current_tok)).Fquote_size == int32(1) {
+					if (*Ttokenizer_mode)(unsafe.Pointer(tok+2856+uintptr((*Ttok_state)(unsafe.Pointer(tok)).Ftok_mode_stack_index)*104)).Fstring_kind == int32(ETSTRING) {
+						v1 = int32('t')
+					} else {
+						v1 = int32('f')
+					}
+					if (*Ttokenizer_mode)(unsafe.Pointer(tok+2856+uintptr((*Ttok_state)(unsafe.Pointer(tok)).Ftok_mode_stack_index)*104)).Fstring_kind == int32(ETSTRING) {
+						v3 = int32('t')
+					} else {
+						v3 = int32('f')
+					}
+					return X_PyLexer_token_setup(tls, tok, token, X_PyTokenizer_syntaxerror(tls, tok, __ccgo_ts+10271, libc.VaList(bp+8, v1, v3)), p_start, p_end)
+				}
+				_tok_backup(tls, tok, c)
+				(*Ttokenizer_mode)(unsafe.Pointer(tok + 2856 + uintptr((*Ttok_state)(unsafe.Pointer(tok)).Ftok_mode_stack_index)*104)).Fkind = int32(ETOK_REGULAR_MODE)
+				(*Ttokenizer_mode)(unsafe.Pointer(current_tok)).Fin_format_spec = 0
+				p_start = (*Ttok_state)(unsafe.Pointer(tok)).Fstart
+				p_end = (*Ttok_state)(unsafe.Pointer(tok)).Fcur
+				if (*Ttokenizer_mode)(unsafe.Pointer(current_tok)).Fstring_kind == int32(ETSTRING) {
+					v1 = int32(MTSTRING_MIDDLE)
+				} else {
+					v1 = int32(MFSTRING_MIDDLE)
+				}
+				return X_PyLexer_token_setup(tls, tok, token, v1, p_start, p_end)
+			}
+
+			(*Ttok_state)(unsafe.Pointer(tok)).Fcur = (*Ttokenizer_mode)(unsafe.Pointer(current_tok)).Fstart
+			(*Ttok_state)(unsafe.Pointer(tok)).Fcur = (*Ttok_state)(unsafe.Pointer(tok)).Fcur + 1
+			(*Ttok_state)(unsafe.Pointer(tok)).Fline_start = (*Ttokenizer_mode)(unsafe.Pointer(current_tok)).Fmulti_line_start
+			start = (*Ttok_state)(unsafe.Pointer(tok)).Flineno
+			the_current_tok = tok + 2856 + uintptr((*Ttok_state)(unsafe.Pointer(tok)).Ftok_mode_stack_index)*104
+			(*Ttok_state)(unsafe.Pointer(tok)).Flineno = (*Ttokenizer_mode)(unsafe.Pointer(the_current_tok)).Ffirst_line
+			if (*Ttokenizer_mode)(unsafe.Pointer(current_tok)).Fquote_size == int32(3) {
+				if (*Ttokenizer_mode)(unsafe.Pointer(tok+2856+uintptr((*Ttok_state)(unsafe.Pointer(tok)).Ftok_mode_stack_index)*104)).Fstring_kind == int32(ETSTRING) {
+					v1 = int32('t')
+				} else {
+					v1 = int32('f')
+				}
+				X_PyTokenizer_syntaxerror(tls, tok, __ccgo_ts+10357, libc.VaList(bp+8, v1, start))
+				if c != int32('\n') {
+					(*Ttok_state)(unsafe.Pointer(tok)).Fdone = int32(ME_EOFS)
+				}
+				return X_PyLexer_token_setup(tls, tok, token, int32(MERRORTOKEN), p_start, p_end)
+			} else {
+				if (*Ttokenizer_mode)(unsafe.Pointer(tok+2856+uintptr((*Ttok_state)(unsafe.Pointer(tok)).Ftok_mode_stack_index)*104)).Fstring_kind == int32(ETSTRING) {
+					v1 = int32('t')
+				} else {
+					v1 = int32('f')
+				}
+				return X_PyLexer_token_setup(tls, tok, token, X_PyTokenizer_syntaxerror(tls, tok, __ccgo_ts+10424, libc.VaList(bp+8, v1, start)), p_start, p_end)
+			}
+		}
+		if c == int32((*Ttokenizer_mode)(unsafe.Pointer(current_tok)).Fquote) {
+			end_quote_size = end_quote_size + int32(1)
+			continue
+		} else {
+			end_quote_size = 0
+		}
+		if c == int32('{') {
+			if !(X_PyLexer_update_ftstring_expr(tls, tok, int8(c)) != 0) {
+				return X_PyLexer_token_setup(tls, tok, token, MENDMARKER, p_start, p_end)
+			}
+			peek = _tok_nextc(tls, tok)
+			if peek != int32('{') || in_format_spec != 0 {
+				_tok_backup(tls, tok, peek)
+				_tok_backup(tls, tok, c)
+				(*Ttokenizer_mode)(unsafe.Pointer(current_tok)).Fcurly_bracket_expr_start_depth = (*Ttokenizer_mode)(unsafe.Pointer(current_tok)).Fcurly_bracket_expr_start_depth + 1
+				if (*Ttokenizer_mode)(unsafe.Pointer(current_tok)).Fcurly_bracket_expr_start_depth >= int32(MMAX_EXPR_NESTING) {
+					if (*Ttokenizer_mode)(unsafe.Pointer(tok+2856+uintptr((*Ttok_state)(unsafe.Pointer(tok)).Ftok_mode_stack_index)*104)).Fstring_kind == int32(ETSTRING) {
+						v1 = int32('t')
+					} else {
+						v1 = int32('f')
+					}
+					return X_PyLexer_token_setup(tls, tok, token, X_PyTokenizer_syntaxerror(tls, tok, __ccgo_ts+10230, libc.VaList(bp+8, v1)), p_start, p_end)
+				}
+				(*Ttokenizer_mode)(unsafe.Pointer(tok + 2856 + uintptr((*Ttok_state)(unsafe.Pointer(tok)).Ftok_mode_stack_index)*104)).Fkind = int32(ETOK_REGULAR_MODE)
+				(*Ttokenizer_mode)(unsafe.Pointer(current_tok)).Fin_format_spec = 0
+				p_start = (*Ttok_state)(unsafe.Pointer(tok)).Fstart
+				p_end = (*Ttok_state)(unsafe.Pointer(tok)).Fcur
+			} else {
+				p_start = (*Ttok_state)(unsafe.Pointer(tok)).Fstart
+				p_end = (*Ttok_state)(unsafe.Pointer(tok)).Fcur - uintptr(1)
+			}
+			if (*Ttokenizer_mode)(unsafe.Pointer(current_tok)).Fstring_kind == int32(ETSTRING) {
+				v1 = int32(MTSTRING_MIDDLE)
+			} else {
+				v1 = int32(MFSTRING_MIDDLE)
+			}
+			return X_PyLexer_token_setup(tls, tok, token, v1, p_start, p_end)
+		} else {
+			if c == int32('}') {
+				if unicode_escape != 0 {
+					p_start = (*Ttok_state)(unsafe.Pointer(tok)).Fstart
+					p_end = (*Ttok_state)(unsafe.Pointer(tok)).Fcur
+					if (*Ttokenizer_mode)(unsafe.Pointer(current_tok)).Fstring_kind == int32(ETSTRING) {
+						v1 = int32(MTSTRING_MIDDLE)
+					} else {
+						v1 = int32(MFSTRING_MIDDLE)
+					}
+					return X_PyLexer_token_setup(tls, tok, token, v1, p_start, p_end)
+				}
+				peek1 = _tok_nextc(tls, tok)
+
+				cursor = (*Ttokenizer_mode)(unsafe.Pointer(current_tok)).Fcurly_bracket_depth
+				if peek1 == int32('}') && !(in_format_spec != 0) && cursor == 0 {
+					p_start = (*Ttok_state)(unsafe.Pointer(tok)).Fstart
+					p_end = (*Ttok_state)(unsafe.Pointer(tok)).Fcur - uintptr(1)
+				} else {
+					_tok_backup(tls, tok, peek1)
+					_tok_backup(tls, tok, c)
+					(*Ttokenizer_mode)(unsafe.Pointer(tok + 2856 + uintptr((*Ttok_state)(unsafe.Pointer(tok)).Ftok_mode_stack_index)*104)).Fkind = int32(ETOK_REGULAR_MODE)
+					(*Ttokenizer_mode)(unsafe.Pointer(current_tok)).Fin_format_spec = 0
+					p_start = (*Ttok_state)(unsafe.Pointer(tok)).Fstart
+					p_end = (*Ttok_state)(unsafe.Pointer(tok)).Fcur
+				}
+				if (*Ttokenizer_mode)(unsafe.Pointer(current_tok)).Fstring_kind == int32(ETSTRING) {
+					v1 = int32(MTSTRING_MIDDLE)
+				} else {
+					v1 = int32(MFSTRING_MIDDLE)
+				}
+				return X_PyLexer_token_setup(tls, tok, token, v1, p_start, p_end)
+			} else {
+				if c == int32('\\') {
+					peek2 = _tok_nextc(tls, tok)
+					if peek2 == int32('\r') {
+						peek2 = _tok_nextc(tls, tok)
+					}
+
+					if peek2 == int32('{') || peek2 == int32('}') {
+						if !((*Ttokenizer_mode)(unsafe.Pointer(current_tok)).Fraw != 0) {
+							if X_PyTokenizer_warn_invalid_escape_sequence(tls, tok, peek2) != 0 {
+								return X_PyLexer_token_setup(tls, tok, token, int32(MERRORTOKEN), p_start, p_end)
+							}
+						}
+						_tok_backup(tls, tok, peek2)
+						continue
+					}
+					if !((*Ttokenizer_mode)(unsafe.Pointer(current_tok)).Fraw != 0) {
+						if peek2 == int32('N') {
+
+							peek2 = _tok_nextc(tls, tok)
+							if peek2 == int32('{') {
+								unicode_escape = int32(1)
+							} else {
+								_tok_backup(tls, tok, peek2)
+							}
+						}
+					}
+
+				}
+			}
+		}
+	}
+
+	i1 = 0
+	for {
+		if !(i1 < (*Ttokenizer_mode)(unsafe.Pointer(current_tok)).Fquote_size) {
+			break
+		}
+		_tok_backup(tls, tok, int32((*Ttokenizer_mode)(unsafe.Pointer(current_tok)).Fquote))
+		goto _13
+	_13:
+		;
+		i1 = i1 + 1
+	}
+	p_start = (*Ttok_state)(unsafe.Pointer(tok)).Fstart
+	p_end = (*Ttok_state)(unsafe.Pointer(tok)).Fcur
+	if (*Ttokenizer_mode)(unsafe.Pointer(current_tok)).Fstring_kind == int32(ETSTRING) {
+		v1 = int32(MTSTRING_MIDDLE)
+	} else {
+		v1 = int32(MFSTRING_MIDDLE)
+	}
+	return X_PyLexer_token_setup(tls, tok, token, v1, p_start, p_end)
+}
+
+func _tok_get(tls *libc.TLS, tok uintptr, token uintptr) (r int32) {
+	var current_tok uintptr
+	_ = current_tok
+	current_tok = tok + 2856 + uintptr((*Ttok_state)(unsafe.Pointer(tok)).Ftok_mode_stack_index)*104
+	if (*Ttokenizer_mode)(unsafe.Pointer(current_tok)).Fkind == int32(ETOK_REGULAR_MODE) {
+		return _tok_get_normal_mode(tls, tok, current_tok, token)
+	} else {
+		return _tok_get_fstring_mode(tls, tok, current_tok, token)
+	}
+	return r
+}
+
+func X_PyTokenizer_Get(tls *libc.TLS, tok uintptr, token uintptr) (r int32) {
+	var result int32
+	_ = result
+	result = _tok_get(tls, tok, token)
+	if (*Ttok_state)(unsafe.Pointer(tok)).Fdecoding_erred != 0 {
+		result = int32(MERRORTOKEN)
+		(*Ttok_state)(unsafe.Pointer(tok)).Fdone = int32(ME_DECODE)
+	}
+	return result
+}
+
+const MTABSIZE = 8
+
+// C documentation
+//
+//	/* Create and initialize a new tok_state structure */
+func X_PyTokenizer_tok_new(tls *libc.TLS) (r uintptr) {
+	var tok, v1, v2 uintptr
+	_, _, _ = tok, v1, v2
+	tok = XPyMem_Calloc(tls, uint64(1), uint64(18472))
+	if tok == libc.UintptrFromInt32(0) {
+		XPyErr_NoMemory(tls)
+		return libc.UintptrFromInt32(0)
+	}
+	v2 = libc.UintptrFromInt32(0)
+	(*Ttok_state)(unsafe.Pointer(tok)).Finp = v2
+	v1 = v2
+	(*Ttok_state)(unsafe.Pointer(tok)).Fcur = v1
+	(*Ttok_state)(unsafe.Pointer(tok)).Fbuf = v1
+	(*Ttok_state)(unsafe.Pointer(tok)).Ffp_interactive = 0
+	(*Ttok_state)(unsafe.Pointer(tok)).Finteractive_src_start = libc.UintptrFromInt32(0)
+	(*Ttok_state)(unsafe.Pointer(tok)).Finteractive_src_end = libc.UintptrFromInt32(0)
+	(*Ttok_state)(unsafe.Pointer(tok)).Fstart = libc.UintptrFromInt32(0)
+	(*Ttok_state)(unsafe.Pointer(tok)).Fend = libc.UintptrFromInt32(0)
+	(*Ttok_state)(unsafe.Pointer(tok)).Fdone = int32(ME_OK)
+	(*Ttok_state)(unsafe.Pointer(tok)).Ffp = libc.UintptrFromInt32(0)
+	(*Ttok_state)(unsafe.Pointer(tok)).Finput = libc.UintptrFromInt32(0)
+	(*Ttok_state)(unsafe.Pointer(tok)).Ftabsize = int32(MTABSIZE)
+	(*Ttok_state)(unsafe.Pointer(tok)).Findent = 0
+	**(**int32)(__ccgo_up(tok + 88)) = 0
+	(*Ttok_state)(unsafe.Pointer(tok)).Fatbol = int32(1)
+	(*Ttok_state)(unsafe.Pointer(tok)).Fpendin = 0
+	v1 = libc.UintptrFromInt32(0)
+	(*Ttok_state)(unsafe.Pointer(tok)).Fnextprompt = v1
+	(*Ttok_state)(unsafe.Pointer(tok)).Fprompt = v1
+	(*Ttok_state)(unsafe.Pointer(tok)).Flineno = 0
+	(*Ttok_state)(unsafe.Pointer(tok)).Fstarting_col_offset = -int32(1)
+	(*Ttok_state)(unsafe.Pointer(tok)).Fcol_offset = -int32(1)
+	(*Ttok_state)(unsafe.Pointer(tok)).Flevel = 0
+	**(**int32)(__ccgo_up(tok + 2344)) = 0
+	(*Ttok_state)(unsafe.Pointer(tok)).Fdecoding_state = int32(ESTATE_INIT)
+	(*Ttok_state)(unsafe.Pointer(tok)).Fdecoding_erred = 0
+	(*Ttok_state)(unsafe.Pointer(tok)).Fenc = libc.UintptrFromInt32(0)
+	(*Ttok_state)(unsafe.Pointer(tok)).Fencoding = libc.UintptrFromInt32(0)
+	(*Ttok_state)(unsafe.Pointer(tok)).Fcont_line = 0
+	(*Ttok_state)(unsafe.Pointer(tok)).Ffilename = libc.UintptrFromInt32(0)
+	(*Ttok_state)(unsafe.Pointer(tok)).Fdecoding_readline = libc.UintptrFromInt32(0)
+	(*Ttok_state)(unsafe.Pointer(tok)).Fdecoding_buffer = libc.UintptrFromInt32(0)
+	(*Ttok_state)(unsafe.Pointer(tok)).Freadline = libc.UintptrFromInt32(0)
+	(*Ttok_state)(unsafe.Pointer(tok)).Ftype_comments = 0
+	(*Ttok_state)(unsafe.Pointer(tok)).Finteractive_underflow = int32(EIUNDERFLOW_NORMAL)
+	(*Ttok_state)(unsafe.Pointer(tok)).Funderflow = libc.UintptrFromInt32(0)
+	(*Ttok_state)(unsafe.Pointer(tok)).Fstr = libc.UintptrFromInt32(0)
+	(*Ttok_state)(unsafe.Pointer(tok)).Freport_warnings = int32(1)
+	(*Ttok_state)(unsafe.Pointer(tok)).Ftok_extra_tokens = 0
+	(*Ttok_state)(unsafe.Pointer(tok)).Fcomment_newline = 0
+	(*Ttok_state)(unsafe.Pointer(tok)).Fimplicit_newline = 0
+	**(**Ttokenizer_mode)(__ccgo_up(tok + 2856)) = Ttokenizer_mode{}
+	(*Ttok_state)(unsafe.Pointer(tok)).Ftok_mode_stack_index = 0
+	return tok
+}
+
+func _free_fstring_expressions(tls *libc.TLS, tok uintptr) {
+	var index int32
+	var mode uintptr
+	_, _ = index, mode
+	index = (*Ttok_state)(unsafe.Pointer(tok)).Ftok_mode_stack_index
+	for {
+		if !(index >= 0) {
+			break
+		}
+		mode = tok + 2856 + uintptr(index)*104
+		if (*Ttokenizer_mode)(unsafe.Pointer(mode)).Flast_expr_buffer != libc.UintptrFromInt32(0) {
+			XPyMem_Free(tls, (*Ttokenizer_mode)(unsafe.Pointer(mode)).Flast_expr_buffer)
+			(*Ttokenizer_mode)(unsafe.Pointer(mode)).Flast_expr_buffer = libc.UintptrFromInt32(0)
+			(*Ttokenizer_mode)(unsafe.Pointer(mode)).Flast_expr_size = 0
+			(*Ttokenizer_mode)(unsafe.Pointer(mode)).Flast_expr_end = int64(-int32(1))
+			(*Ttokenizer_mode)(unsafe.Pointer(mode)).Fin_format_spec = 0
+		}
+		goto _1
+	_1:
+		;
+		index = index - 1
+	}
+}
+
+// C documentation
+//
+//	/* Free a tok_state structure */
+func X_PyTokenizer_Free(tls *libc.TLS, tok uintptr) {
+	var v1, v2, v7 uintptr
+	var v3 int32
+	var v6 Tuint32_t
+	_, _, _, _, _ = v1, v2, v3, v6, v7
+	if (*Ttok_state)(unsafe.Pointer(tok)).Fencoding != libc.UintptrFromInt32(0) {
+		XPyMem_Free(tls, (*Ttok_state)(unsafe.Pointer(tok)).Fencoding)
+	}
+	v1 = (*Ttok_state)(unsafe.Pointer(tok)).Fdecoding_readline
+	if v1 != libc.UintptrFromInt32(0) {
+		v2 = v1
+		v3 = libc.BoolInt32(int32(*(*Tuint32_t)(unsafe.Pointer(v2))) < 0)
+		goto _4
+	_4:
+		if v3 != 0 {
+			goto _5
+		}
+		v7 = v2
+		*(*Tuint32_t)(unsafe.Pointer(v7)) = *(*Tuint32_t)(unsafe.Pointer(v7)) - 1
+		v6 = *(*Tuint32_t)(unsafe.Pointer(v7))
+		if v6 == libc.Uint32FromInt32(0) {
+			X_Py_Dealloc(tls, v2)
+		}
+	_5:
+	}
+	v1 = (*Ttok_state)(unsafe.Pointer(tok)).Fdecoding_buffer
+	if v1 != libc.UintptrFromInt32(0) {
+		v2 = v1
+		v3 = libc.BoolInt32(int32(*(*Tuint32_t)(unsafe.Pointer(v2))) < 0)
+		goto _11
+	_11:
+		if v3 != 0 {
+			goto _12
+		}
+		v7 = v2
+		*(*Tuint32_t)(unsafe.Pointer(v7)) = *(*Tuint32_t)(unsafe.Pointer(v7)) - 1
+		v6 = *(*Tuint32_t)(unsafe.Pointer(v7))
+		if v6 == libc.Uint32FromInt32(0) {
+			X_Py_Dealloc(tls, v2)
+		}
+	_12:
+	}
+	v1 = (*Ttok_state)(unsafe.Pointer(tok)).Freadline
+	if v1 != libc.UintptrFromInt32(0) {
+		v2 = v1
+		v3 = libc.BoolInt32(int32(*(*Tuint32_t)(unsafe.Pointer(v2))) < 0)
+		goto _18
+	_18:
+		if v3 != 0 {
+			goto _19
+		}
+		v7 = v2
+		*(*Tuint32_t)(unsafe.Pointer(v7)) = *(*Tuint32_t)(unsafe.Pointer(v7)) - 1
+		v6 = *(*Tuint32_t)(unsafe.Pointer(v7))
+		if v6 == libc.Uint32FromInt32(0) {
+			X_Py_Dealloc(tls, v2)
+		}
+	_19:
+	}
+	v1 = (*Ttok_state)(unsafe.Pointer(tok)).Ffilename
+	if v1 != libc.UintptrFromInt32(0) {
+		v2 = v1
+		v3 = libc.BoolInt32(int32(*(*Tuint32_t)(unsafe.Pointer(v2))) < 0)
+		goto _25
+	_25:
+		if v3 != 0 {
+			goto _26
+		}
+		v7 = v2
+		*(*Tuint32_t)(unsafe.Pointer(v7)) = *(*Tuint32_t)(unsafe.Pointer(v7)) - 1
+		v6 = *(*Tuint32_t)(unsafe.Pointer(v7))
+		if v6 == libc.Uint32FromInt32(0) {
+			X_Py_Dealloc(tls, v2)
+		}
+	_26:
+	}
+	if ((*Ttok_state)(unsafe.Pointer(tok)).Freadline != libc.UintptrFromInt32(0) || (*Ttok_state)(unsafe.Pointer(tok)).Ffp != libc.UintptrFromInt32(0)) && (*Ttok_state)(unsafe.Pointer(tok)).Fbuf != libc.UintptrFromInt32(0) {
+		XPyMem_Free(tls, (*Ttok_state)(unsafe.Pointer(tok)).Fbuf)
+	}
+	if (*Ttok_state)(unsafe.Pointer(tok)).Finput != 0 {
+		XPyMem_Free(tls, (*Ttok_state)(unsafe.Pointer(tok)).Finput)
+	}
+	if (*Ttok_state)(unsafe.Pointer(tok)).Finteractive_src_start != libc.UintptrFromInt32(0) {
+		XPyMem_Free(tls, (*Ttok_state)(unsafe.Pointer(tok)).Finteractive_src_start)
+	}
+	_free_fstring_expressions(tls, tok)
+	XPyMem_Free(tls, tok)
+}
+
+func X_PyToken_Free(tls *libc.TLS, token uintptr) {
+	var v1, v2, v7 uintptr
+	var v3 int32
+	var v6 Tuint32_t
+	_, _, _, _, _ = v1, v2, v3, v6, v7
+	v1 = (*Ttoken)(unsafe.Pointer(token)).Fmetadata
+	if v1 != libc.UintptrFromInt32(0) {
+		v2 = v1
+		v3 = libc.BoolInt32(int32(*(*Tuint32_t)(unsafe.Pointer(v2))) < 0)
+		goto _4
+	_4:
+		if v3 != 0 {
+			goto _5
+		}
+		v7 = v2
+		*(*Tuint32_t)(unsafe.Pointer(v7)) = *(*Tuint32_t)(unsafe.Pointer(v7)) - 1
+		v6 = *(*Tuint32_t)(unsafe.Pointer(v7))
+		if v6 == libc.Uint32FromInt32(0) {
+			X_Py_Dealloc(tls, v2)
+		}
+	_5:
+	}
+}
+
+func X_PyToken_Init(tls *libc.TLS, token uintptr) {
+	(*Ttoken)(unsafe.Pointer(token)).Fmetadata = libc.UintptrFromInt32(0)
+}
+
+func X_PyLexer_type_comment_token_setup(tls *libc.TLS, tok uintptr, token uintptr, type1 int32, col_offset int32, end_col_offset int32, start uintptr, end uintptr) (r int32) {
+	var v1 int32
+	_ = v1
+	(*Ttoken)(unsafe.Pointer(token)).Flevel = (*Ttok_state)(unsafe.Pointer(tok)).Flevel
+	v1 = (*Ttok_state)(unsafe.Pointer(tok)).Flineno
+	(*Ttoken)(unsafe.Pointer(token)).Fend_lineno = v1
+	(*Ttoken)(unsafe.Pointer(token)).Flineno = v1
+	(*Ttoken)(unsafe.Pointer(token)).Fcol_offset = col_offset
+	(*Ttoken)(unsafe.Pointer(token)).Fend_col_offset = end_col_offset
+	(*Ttoken)(unsafe.Pointer(token)).Fstart = start
+	(*Ttoken)(unsafe.Pointer(token)).Fend = end
+	return type1
+}
+
+func X_PyLexer_token_setup(tls *libc.TLS, tok uintptr, token uintptr, type1 int32, start uintptr, end uintptr) (r int32) {
+	var v1 int32
+	_ = v1
+	(*Ttoken)(unsafe.Pointer(token)).Flevel = (*Ttok_state)(unsafe.Pointer(tok)).Flevel
+	if type1 == int32(MSTRING) || type1 == int32(MFSTRING_MIDDLE) || type1 == int32(MTSTRING_MIDDLE) {
+		(*Ttoken)(unsafe.Pointer(token)).Flineno = (*Ttok_state)(unsafe.Pointer(tok)).Ffirst_lineno
+	} else {
+		(*Ttoken)(unsafe.Pointer(token)).Flineno = (*Ttok_state)(unsafe.Pointer(tok)).Flineno
+	}
+	(*Ttoken)(unsafe.Pointer(token)).Fend_lineno = (*Ttok_state)(unsafe.Pointer(tok)).Flineno
+	v1 = -libc.Int32FromInt32(1)
+	(*Ttoken)(unsafe.Pointer(token)).Fend_col_offset = v1
+	(*Ttoken)(unsafe.Pointer(token)).Fcol_offset = v1
+	(*Ttoken)(unsafe.Pointer(token)).Fstart = start
+	(*Ttoken)(unsafe.Pointer(token)).Fend = end
+	if start != libc.UintptrFromInt32(0) && end != libc.UintptrFromInt32(0) {
+		(*Ttoken)(unsafe.Pointer(token)).Fcol_offset = (*Ttok_state)(unsafe.Pointer(tok)).Fstarting_col_offset
+		(*Ttoken)(unsafe.Pointer(token)).Fend_col_offset = (*Ttok_state)(unsafe.Pointer(tok)).Fcol_offset
+	}
+	return type1
+}
+
+const MADAPTIVE_COOLDOWN_BACKOFF = 0
+
+const MADAPTIVE_COOLDOWN_VALUE = 52
+
+const MADAPTIVE_WARMUP_BACKOFF = 1
+
+const MADAPTIVE_WARMUP_VALUE = 1
+
+const MBACKOFF_BITS = 4
+
+const MCOMPARISON_EQUALS = 8
+
+const MCOMPARISON_GREATER_THAN = 4
+
+const MCOMPARISON_LESS_THAN = 2
+
+const MCOMPARISON_NOT_EQUALS = 7
+
+const MCOMPARISON_UNORDERED = 1
+
+const MCO_FAST_ARG = 14
+
+const MCO_FAST_ARG_KW = 4
+
+const MCO_FAST_ARG_POS = 2
+
+const MCO_FAST_ARG_VAR = 8
+
+const MCO_FAST_CELL = 64
+
+const MCO_FAST_FREE = 128
+
+const MCO_FAST_HIDDEN = 16
+
+const MCO_FAST_LOCAL = 32
+
+const MENABLE_SPECIALIZATION = 1
+
+const MENABLE_SPECIALIZATION_FT = 1
+
+const MINLINE_CACHE_ENTRIES_BINARY_OP = 5
+
+const MINLINE_CACHE_ENTRIES_CALL = 3
+
+const MINLINE_CACHE_ENTRIES_CALL_KW = 3
+
+const MINLINE_CACHE_ENTRIES_COMPARE_OP = 1
+
+const MINLINE_CACHE_ENTRIES_CONTAINS_OP = 1
+
+const MINLINE_CACHE_ENTRIES_FOR_ITER = 1
+
+const MINLINE_CACHE_ENTRIES_LOAD_ATTR = 9
+
+const MINLINE_CACHE_ENTRIES_LOAD_GLOBAL = 4
+
+const MINLINE_CACHE_ENTRIES_LOAD_SUPER_ATTR = 1
+
+const MINLINE_CACHE_ENTRIES_SEND = 1
+
+const MINLINE_CACHE_ENTRIES_STORE_ATTR = 4
+
+const MINLINE_CACHE_ENTRIES_STORE_SUBSCR = 1
+
+const MINLINE_CACHE_ENTRIES_TO_BOOL = 3
+
+const MINLINE_CACHE_ENTRIES_UNPACK_SEQUENCE = 1
+
+const MJUMP_BACKWARD_INITIAL_BACKOFF = 12
+
+const MJUMP_BACKWARD_INITIAL_VALUE = 4095
+
+const MMAX_BACKOFF = 12
+
+const MSIDE_EXIT_INITIAL_BACKOFF = 12
+
+const MSIDE_EXIT_INITIAL_VALUE = 4095
+
+const MUNREACHABLE_BACKOFF = 15
+
+const M_PY_FASTCALL_SMALL_STACK = 5
+
+type T_PyLoadGlobalCache = struct {
+	Fcounter              T_Py_BackoffCounter
+	Fmodule_keys_version  Tuint16_t
+	Fbuiltin_keys_version Tuint16_t
+	Findex                Tuint16_t
+}
+
+type T_PyBinaryOpCache = struct {
+	Fcounter        T_Py_BackoffCounter
+	Fexternal_cache [4]Tuint16_t
+}
+
+type T_PyUnpackSequenceCache = struct {
+	Fcounter T_Py_BackoffCounter
+}
+
+type T_PyCompareOpCache = struct {
+	Fcounter T_Py_BackoffCounter
+}
+
+type T_PySuperAttrCache = struct {
+	Fcounter T_Py_BackoffCounter
+}
+
+type T_PyAttrCache = struct {
+	Fcounter T_Py_BackoffCounter
+	Fversion [2]Tuint16_t
+	Findex   Tuint16_t
+}
+
+type T_PyLoadMethodCache = struct {
+	Fcounter      T_Py_BackoffCounter
+	Ftype_version [2]Tuint16_t
+	F__ccgo2_6    struct {
+		Fdict_offset  [0]Tuint16_t
+		Fkeys_version [2]Tuint16_t
+	}
+	Fdescr [4]Tuint16_t
+}
+
+type T_PyCallCache = struct {
+	Fcounter      T_Py_BackoffCounter
+	Ffunc_version [2]Tuint16_t
+}
+
+type T_PyStoreSubscrCache = struct {
+	Fcounter T_Py_BackoffCounter
+}
+
+type T_PyForIterCache = struct {
+	Fcounter T_Py_BackoffCounter
+}
+
+type T_PySendCache = struct {
+	Fcounter T_Py_BackoffCounter
+}
+
+type T_PyToBoolCache = struct {
+	Fcounter T_Py_BackoffCounter
+	Fversion [2]Tuint16_t
+}
+
+type T_PyContainsOpCache = struct {
+	Fcounter T_Py_BackoffCounter
+}
+
+type T_PyLocals_Kind = uint8
+
+type T_PyCodeConstructor = struct {
+	Ffilename        uintptr
+	Fname            uintptr
+	Fqualname        uintptr
+	Fflags           int32
+	Fcode            uintptr
+	Ffirstlineno     int32
+	Flinetable       uintptr
+	Fconsts          uintptr
+	Fnames           uintptr
+	Flocalsplusnames uintptr
+	Flocalspluskinds uintptr
+	Fargcount        int32
+	Fposonlyargcount int32
+	Fkwonlyargcount  int32
+	Fstacksize       int32
+	Fexceptiontable  uintptr
+}
+
+type Tbinaryopguardfunc = uintptr
+
+type Tbinaryopactionfunc = uintptr
+
+type T_PyBinaryOpSpecializationDescr = struct {
+	Foparg  int32
+	Fguard  Tbinaryopguardfunc
+	Faction Tbinaryopactionfunc
+}
+
+type T_PyCode8 = struct {
+	Fob_base                     TPyVarObject
+	Fco_consts                   uintptr
+	Fco_names                    uintptr
+	Fco_exceptiontable           uintptr
+	Fco_flags                    int32
+	Fco_argcount                 int32
+	Fco_posonlyargcount          int32
+	Fco_kwonlyargcount           int32
+	Fco_stacksize                int32
+	Fco_firstlineno              int32
+	Fco_nlocalsplus              int32
+	Fco_framesize                int32
+	Fco_nlocals                  int32
+	Fco_ncellvars                int32
+	Fco_nfreevars                int32
+	Fco_version                  Tuint32_t
+	Fco_localsplusnames          uintptr
+	Fco_localspluskinds          uintptr
+	Fco_filename                 uintptr
+	Fco_name                     uintptr
+	Fco_qualname                 uintptr
+	Fco_linetable                uintptr
+	Fco_weakreflist              uintptr
+	Fco_executors                uintptr
+	F_co_cached                  uintptr
+	F_co_instrumentation_version Tuintptr_t
+	F_co_monitoring              uintptr
+	F_co_unique_id               TPy_ssize_t
+	F_co_firsttraceable          int32
+	Fco_extra                    uintptr
+	Fco_code_adaptive            [8]int8
+}
+
+type T_PyCode_var_counts_t = struct {
+	Ftotal   int32
+	Flocals  Tco_locals_counts
+	Fnumfree int32
+	Funbound Tco_unbound_counts
+}
+
+func _tok_concatenate_interactive_new_line(tls *libc.TLS, tok uintptr, line uintptr) (r int32) {
+	var current_size, line_size TPy_ssize_t
+	var last_char int8
+	var new_str uintptr
+	var v1 int64
+	_, _, _, _, _ = current_size, last_char, line_size, new_str, v1
+	if !(line != 0) {
+		return 0
+	}
+	current_size = int64((*Ttok_state)(unsafe.Pointer(tok)).Finteractive_src_end) - int64((*Ttok_state)(unsafe.Pointer(tok)).Finteractive_src_start)
+	line_size = int64(libc.Xstrlen(tls, line))
+	if line_size > 0 {
+		v1 = line_size - int64(1)
+	} else {
+		v1 = line_size
+	}
+	last_char = **(**int8)(__ccgo_up(line + uintptr(v1)))
+	if int32(last_char) != int32('\n') {
+		line_size = line_size + int64(1)
+	}
+	new_str = (*Ttok_state)(unsafe.Pointer(tok)).Finteractive_src_start
+	new_str = XPyMem_Realloc(tls, new_str, uint64(current_size+line_size+int64(1)))
+	if !(new_str != 0) {
+		if (*Ttok_state)(unsafe.Pointer(tok)).Finteractive_src_start != 0 {
+			XPyMem_Free(tls, (*Ttok_state)(unsafe.Pointer(tok)).Finteractive_src_start)
+		}
+		(*Ttok_state)(unsafe.Pointer(tok)).Finteractive_src_start = libc.UintptrFromInt32(0)
+		(*Ttok_state)(unsafe.Pointer(tok)).Finteractive_src_end = libc.UintptrFromInt32(0)
+		(*Ttok_state)(unsafe.Pointer(tok)).Fdone = int32(ME_NOMEM)
+		return -int32(1)
+	}
+	libc.Xstrcpy(tls, new_str+uintptr(current_size), line)
+	(*Ttok_state)(unsafe.Pointer(tok)).Fimplicit_newline = 0
+	if int32(last_char) != int32('\n') {
+
+		**(**int8)(__ccgo_up(new_str + uintptr(current_size+line_size-int64(1)))) = int8('\n')
+		**(**int8)(__ccgo_up(new_str + uintptr(current_size+line_size))) = int8('\000')
+		(*Ttok_state)(unsafe.Pointer(tok)).Fimplicit_newline = int32(1)
+	}
+	(*Ttok_state)(unsafe.Pointer(tok)).Finteractive_src_start = new_str
+	(*Ttok_state)(unsafe.Pointer(tok)).Finteractive_src_end = new_str + uintptr(current_size) + uintptr(line_size)
+	return 0
+}
+
+func _tok_readline_raw(tls *libc.TLS, tok uintptr) (r int32) {
+	bp := tls.Alloc(16)
+	defer tls.Free(16)
+	var line uintptr
+	var n_chars int32
+	var _ Tsize_t
+	_, _ = line, n_chars
+	for cond := true; cond; cond = int32(**(**int8)(__ccgo_up((*Ttok_state)(unsafe.Pointer(tok)).Finp + uintptr(-libc.Int32FromInt32(1))))) != int32('\n') {
+		if !(X_PyLexer_tok_reserve_buf(tls, tok, int64(MBUFSIZ)) != 0) {
+			return 0
+		}
+		n_chars = int32(int64((*Ttok_state)(unsafe.Pointer(tok)).Fend) - int64((*Ttok_state)(unsafe.Pointer(tok)).Finp))
+		**(**Tsize_t)(__ccgo_up(bp)) = uint64(0)
+		line = X_Py_UniversalNewlineFgetsWithSize(tls, (*Ttok_state)(unsafe.Pointer(tok)).Finp, n_chars, (*Ttok_state)(unsafe.Pointer(tok)).Ffp, libc.UintptrFromInt32(0), bp)
+		if line == libc.UintptrFromInt32(0) {
+			return int32(1)
+		}
+		if (*Ttok_state)(unsafe.Pointer(tok)).Ffp_interactive != 0 && _tok_concatenate_interactive_new_line(tls, tok, line) == -int32(1) {
+			return 0
+		}
+		**(**uintptr)(__ccgo_up(tok + 16)) += uintptr(**(**Tsize_t)(__ccgo_up(bp)))
+		if (*Ttok_state)(unsafe.Pointer(tok)).Finp == (*Ttok_state)(unsafe.Pointer(tok)).Fbuf {
+			return 0
+		}
+	}
+	return int32(1)
 }
