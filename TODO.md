@@ -20,6 +20,10 @@ is parked here.
 - Cross-platform dedupe of identical generated declarations with
   modernc.org/undup (the repo grows ~37MB per target).
 
+- Branch `windows-net` (pushed) holds the start of the Winsock work: CI
+  network probes; the socket shims themselves are still to be written
+  (modernc TODOs: socket/bind/connect/listen/accept/recv/send/select/...).
+
 ## Interpreter gaps
 
 - os.fork: impossible under the Go runtime (raises ENOSYS). multiprocessing
