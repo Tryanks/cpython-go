@@ -69451,9 +69451,9 @@ _3:
 		r = float64(-_pi/_m_sinpi(tls, absx)/absx*libc.Xexp(tls, y)) / _lanczos_sum(tls, absx)
 		r = r - float64(z*r)
 		if absx < float64(140) {
-			r = r / libc.Xpow(tls, y, absx-float64(0.5))
+			r = r / _ccgo_pow(tls, y, absx-float64(0.5))
 		} else {
-			sqrtpow = libc.Xpow(tls, y, absx/float64(2)-float64(0.25))
+			sqrtpow = _ccgo_pow(tls, y, absx/float64(2)-float64(0.25))
 			r = r / sqrtpow
 			r = r / sqrtpow
 		}
@@ -69461,9 +69461,9 @@ _3:
 		r = _lanczos_sum(tls, absx) / libc.Xexp(tls, y)
 		r = r + float64(z*r)
 		if absx < float64(140) {
-			r = r * libc.Xpow(tls, y, absx-float64(0.5))
+			r = r * _ccgo_pow(tls, y, absx-float64(0.5))
 		} else {
-			sqrtpow = libc.Xpow(tls, y, absx/float64(2)-float64(0.25))
+			sqrtpow = _ccgo_pow(tls, y, absx/float64(2)-float64(0.25))
 			r = r * sqrtpow
 			r = r * sqrtpow
 		}
@@ -72995,7 +72995,7 @@ _3:
 	} else {
 
 		**(**int32)(__ccgo_up(libc.X__error(tls))) = 0
-		r = libc.Xpow(tls, x, y)
+		r = _ccgo_pow(tls, x, y)
 
 		v1 = r
 		v2 = libc.BoolInt32(v1 == v1 && libc.X__builtin_fabs(tls, v1) != libc.X__builtin_inf(tls))
