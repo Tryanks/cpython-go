@@ -6419,7 +6419,7 @@ func _signal_pthread_sigmask_impl(tls *libc.TLS, module uintptr, how int32, _mas
 	var err int32
 	var _ Tsigset_t
 	_ = err
-	err = libc.Xpthread_sigmask(tls, how, bp, bp+4)
+	err = _ccgo_pthread_sigmask(tls, how, bp, bp+4)
 	if err != 0 {
 		**(**int32)(__ccgo_up(libc.X__error(tls))) = err
 		XPyErr_SetFromErrno(tls, XPyExc_OSError)

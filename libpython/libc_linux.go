@@ -169,7 +169,7 @@ func _ccgo_sigaction(tls *libc.TLS, signum int32, act, oldact uintptr) int32 {
 	var next *goSigaction
 	if act != 0 {
 		a := (*Tsigaction)(unsafe.Pointer(act))
-		next = &goSigaction{handler: a.F__sa_handler.Fsa_handler, mask: a.Fsa_mask, flags: a.Fsa_flags}
+		next = &goSigaction{handler: a.F__sa_handler.Fsa_handler, mask: a.Fsa_mask, flags: a.Fsa_flags, owner: tls}
 	}
 	previous := installSigaction(signum, next)
 	if oldact != 0 {

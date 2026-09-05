@@ -592,11 +592,15 @@ var (
 	alarmDeadline time.Time
 )
 
+type darwinIntervalTimer struct {
+	timer    *time.Timer
+	deadline time.Time
+	repeat   time.Duration
+}
+
 var (
-	intervalMu       sync.Mutex
-	intervalTimer    *time.Timer
-	intervalDeadline time.Time
-	intervalRepeat   time.Duration
+	intervalMu     sync.Mutex
+	intervalTimers [3]darwinIntervalTimer
 )
 
 func _ccgo_alarm(tls *libc.TLS, seconds uint32) uint32 {
@@ -654,33 +658,38 @@ func _ccgo_nanosleep(tls *libc.TLS, request, remainder uintptr) int32 {
 	return 0
 }
 
-func _getitimer(tls *libc.TLS, which int32, value uintptr) int32 {
-	if which != 0 || value == 0 {
-		setErrno(tls, int32(errno.EINVAL))
+func darwinIntervalValue(which int32, value uintptr) int32 {
+	if which < 0 || which >= int32(len(intervalTimers)) || value == 0 {
 		return -1
 	}
-	intervalMu.Lock()
-	defer intervalMu.Unlock()
+	state := &intervalTimers[which]
 	it := (*Titimerval)(unsafe.Pointer(value))
 	*it = Titimerval{}
-	remaining := time.Until(intervalDeadline)
-	if intervalTimer == nil || remaining < 0 {
+	remaining := time.Until(state.deadline)
+	if state.timer == nil || remaining < 0 {
 		remaining = 0
 	}
 	it.Fit_value.Ftv_sec = int64(remaining / time.Second)
 	it.Fit_value.Ftv_usec = int32(remaining % time.Second / time.Microsecond)
-	it.Fit_interval.Ftv_sec = int64(intervalRepeat / time.Second)
-	it.Fit_interval.Ftv_usec = int32(intervalRepeat % time.Second / time.Microsecond)
+	it.Fit_interval.Ftv_sec = int64(state.repeat / time.Second)
+	it.Fit_interval.Ftv_usec = int32(state.repeat % time.Second / time.Microsecond)
+	return 0
+}
+
+func _getitimer(tls *libc.TLS, which int32, value uintptr) int32 {
+	intervalMu.Lock()
+	defer intervalMu.Unlock()
+	if darwinIntervalValue(which, value) != 0 {
+		setErrno(tls, int32(errno.EINVAL))
+		return -1
+	}
 	return 0
 }
 
 func _setitimer(tls *libc.TLS, which int32, value, old uintptr) int32 {
-	if which != 0 || value == 0 {
+	if which < 0 || which >= int32(len(intervalTimers)) || value == 0 {
 		setErrno(tls, int32(errno.EINVAL))
 		return -1
-	}
-	if old != 0 {
-		_getitimer(tls, which, old)
 	}
 	it := (*Titimerval)(unsafe.Pointer(value))
 	if it.Fit_value.Ftv_sec < 0 || it.Fit_value.Ftv_usec < 0 || it.Fit_value.Ftv_usec >= 1_000_000 || it.Fit_interval.Ftv_sec < 0 || it.Fit_interval.Ftv_usec < 0 || it.Fit_interval.Ftv_usec >= 1_000_000 {
@@ -691,26 +700,34 @@ func _setitimer(tls *libc.TLS, which int32, value, old uintptr) int32 {
 	repeat := time.Duration(it.Fit_interval.Ftv_sec)*time.Second + time.Duration(it.Fit_interval.Ftv_usec)*time.Microsecond
 	intervalMu.Lock()
 	defer intervalMu.Unlock()
-	if intervalTimer != nil {
-		intervalTimer.Stop()
-		intervalTimer = nil
+	if old != 0 {
+		darwinIntervalValue(which, old)
 	}
-	intervalRepeat = repeat
+	state := &intervalTimers[which]
+	if state.timer != nil {
+		state.timer.Stop()
+		state.timer = nil
+	}
+	state.repeat = repeat
 	if initial != 0 {
+		signalNumber := [...]int32{int32(syscall.SIGALRM), int32(syscall.SIGVTALRM), int32(syscall.SIGPROF)}[which]
 		var fire func()
 		fire = func() {
-			_ = unix.Kill(unix.Getpid(), syscall.SIGALRM)
+			dtls := libc.NewTLS()
+			selfSignal(dtls, signalNumber)
+			dtls.Close()
 			intervalMu.Lock()
 			defer intervalMu.Unlock()
-			if intervalRepeat != 0 {
-				intervalDeadline = time.Now().Add(intervalRepeat)
-				intervalTimer = time.AfterFunc(intervalRepeat, fire)
+			current := &intervalTimers[which]
+			if current.repeat != 0 {
+				current.deadline = time.Now().Add(current.repeat)
+				current.timer = time.AfterFunc(current.repeat, fire)
 			} else {
-				intervalTimer = nil
+				current.timer = nil
 			}
 		}
-		intervalDeadline = time.Now().Add(initial)
-		intervalTimer = time.AfterFunc(initial, fire)
+		state.deadline = time.Now().Add(initial)
+		state.timer = time.AfterFunc(initial, fire)
 	}
 	return 0
 }
@@ -1161,7 +1178,18 @@ func _login_tty(tls *libc.TLS, fd int32) int32 {
 }
 
 func _strsignal(tls *libc.TLS, sig int32) uintptr {
-	s := syscall.Signal(sig).String()
+	s := map[int32]string{
+		int32(syscall.SIGHUP):  "Hangup",
+		int32(syscall.SIGINT):  "Interrupt",
+		int32(syscall.SIGQUIT): "Quit",
+		int32(syscall.SIGTERM): "Terminated",
+	}[sig]
+	if s == "" {
+		s = syscall.Signal(sig).String()
+		if len(s) != 0 {
+			s = strings.ToUpper(s[:1]) + s[1:]
+		}
+	}
 	p := libc.Xmalloc(tls, uint64(len(s)+1))
 	if p != 0 {
 		copy(cBytes(p, uint64(len(s)+1)), s)
@@ -1172,12 +1200,11 @@ func _strsignal(tls *libc.TLS, sig int32) uintptr {
 
 // ponytail: Darwin sigset operations need pthread/C ABI interop.
 func _sigpending(tls *libc.TLS, set uintptr) int32 {
-	setErrno(tls, int32(errno.ENOSYS))
-	return -1
+	return _ccgo_sigpending(tls, set)
 }
 
 // ponytail: Darwin sigset operations need pthread/C ABI interop.
-func _sigwait(tls *libc.TLS, set, sig uintptr) int32 { return int32(errno.ENOSYS) }
+func _sigwait(tls *libc.TLS, set, sig uintptr) int32 { return _ccgo_sigwait(tls, set, sig) }
 
 func _ccgo_sigaction(tls *libc.TLS, signum int32, act, oldact uintptr) int32 {
 	if signum <= 0 || signum == int32(syscall.SIGKILL) || signum == int32(syscall.SIGSTOP) {
@@ -1187,7 +1214,7 @@ func _ccgo_sigaction(tls *libc.TLS, signum int32, act, oldact uintptr) int32 {
 	var next *goSigaction
 	if act != 0 {
 		a := (*Tsigaction)(unsafe.Pointer(act))
-		next = &goSigaction{handler: a.F__sigaction_u.F__sa_handler, mask: a.Fsa_mask, flags: a.Fsa_flags}
+		next = &goSigaction{handler: a.F__sigaction_u.F__sa_handler, mask: a.Fsa_mask, flags: a.Fsa_flags, owner: tls}
 	}
 	previous := installSigaction(signum, next)
 	if oldact != 0 {

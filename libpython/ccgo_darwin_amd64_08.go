@@ -81229,7 +81229,7 @@ func _faulthandler_thread(tls *libc.TLS, unused uintptr) {
 
 	**(**Tsigset_t)(__ccgo_up(bp)) = ^libc.Uint32FromInt32(0)
 	_ = libc.Int32FromInt32(0)
-	libc.Xpthread_sigmask(tls, int32(MSIG_SETMASK), bp, libc.UintptrFromInt32(0))
+	_ccgo_pthread_sigmask(tls, int32(MSIG_SETMASK), bp, libc.UintptrFromInt32(0))
 	for cond := true; cond; cond = ok != 0 && X_PyRuntime.Ffaulthandler.Fthread.Frepeat != 0 {
 		st = XPyThread_acquire_lock_timed(tls, X_PyRuntime.Ffaulthandler.Fthread.Fcancel_event, X_PyRuntime.Ffaulthandler.Fthread.Ftimeout_us, 0)
 		if st == int32(EPY_LOCK_ACQUIRED) {
