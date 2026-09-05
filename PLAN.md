@@ -68,8 +68,9 @@ go run ./cmd/cpython-go -c 'import json, re, os; print(json.dumps({"a": [1, 2]})
   generator (libpython/tls.go), so Python threads work. fork() is not
   possible under the Go runtime: subprocess uses syscall.ForkExec
   (libpython/fork_exec.go); os.fork raises. The zlib extension and
-  zlib-backed binascii CRC32 link to modernc.org/libz; other modules needing
-  external C libraries are not built.
+  zlib-backed binascii CRC32 link to modernc.org/libz; `_sqlite3` links to
+  modernc.org/libsqlite3. Other modules needing external C libraries are not
+  built.
 - Platform scope: darwin, linux, windows × amd64, arm64 — all six generated.
   Linux via OrbStack containers (internal/builders/linux/run.sh); Windows via
   an llvm-mingw container (internal/builders/windows/run.sh --ccgo <arch>)

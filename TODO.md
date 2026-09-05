@@ -32,9 +32,9 @@ is parked here.
 
 - os.fork: impossible under the Go runtime (raises ENOSYS). multiprocessing
   is not built; subprocess works via syscall.ForkExec (libpython/fork_exec.go).
-- Modules needing external C libraries are not built: _ssl, _sqlite3
-  (candidate: modernc.org/sqlite's generated code), _ctypes, _bz2, _lzma,
-  _decimal (pure-Python _pydecimal is used), readline, _curses, _tkinter.
+- Modules needing external C libraries are not built: _ssl, _ctypes, _bz2,
+  _lzma, _decimal (pure-Python _pydecimal is used), readline, _curses,
+  _tkinter. `_sqlite3` is built against modernc.org/libsqlite3.
 - Test-only extension modules (_testcapi, _testinternalcapi, _testlimitedcapi,
   _testmultiphase...) are not built (--disable-test-modules), so tests that
   need them error out.

@@ -3,6 +3,6 @@
 # Alpine (musl) so that CPython's configure sees the same libc headers that
 # ccgo compiles against (modernc.org/libc on linux is transpiled musl).
 FROM golang:1.27-alpine
-RUN apk add --no-cache build-base make git patch zlib-dev
+RUN apk add --no-cache build-base make git patch sqlite-dev zlib-dev
 ENV GOFLAGS=-mod=mod
 WORKDIR /src

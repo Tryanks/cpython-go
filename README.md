@@ -10,11 +10,12 @@ Status: experimental. The interpreter boots, runs the pure-Python standard
 library (embedded in the binary), supports threads and `subprocess`, and passes
 most of CPython's own test suite for the core language and library modules.
 The `zlib` module and zlib-backed `binascii.crc32` use
-[`modernc.org/libz`](https://pkg.go.dev/modernc.org/libz). Not built: other
-modules that need external C libraries (`_ssl`, `_sqlite3`,
-`_ctypes`, `_bz2`, `_lzma`, `_decimal` (the pure-Python `_pydecimal` is used),
-`readline`, `_curses`, `_tkinter`); `os.fork` (impossible under the Go
-runtime; `subprocess` works via `syscall.ForkExec`).
+[`modernc.org/libz`](https://pkg.go.dev/modernc.org/libz), and `_sqlite3` uses
+[`modernc.org/libsqlite3`](https://pkg.go.dev/modernc.org/libsqlite3). Not
+built: other modules that need external C libraries (`_ssl`, `_ctypes`,
+`_bz2`, `_lzma`, `_decimal` (the pure-Python `_pydecimal` is used), `readline`,
+`_curses`, `_tkinter`); `os.fork` (impossible under the Go runtime;
+`subprocess` works via `syscall.ForkExec`).
 
 | GOOS/GOARCH   | Generated | Smoke tests (CI) | CPython test suite |
 |---------------|-----------|------------------|--------------------|
@@ -78,9 +79,10 @@ go run ./internal/cmd/mkstdlib -o stdlib/python314.zip tmp/cpython/Lib
 `generator.go` copies the sources to `tmp/cpython`, applies
 `internal/patch/*.diff`, runs `configure` natively, then `make libpython3.14.a`
 under `ccgo -exec` and links the archives into `libpython/ccgo_<os>_<arch>.go`.
-The generated interpreter links zlib calls to `modernc.org/libz`. Hand-written
-libc supplements live in `libpython/libc_*.go`; `generator.go`'s `shimmedLibc`
-lists route libc calls that `modernc.org/libc` does not implement well to them.
+The generated interpreter links zlib calls to `modernc.org/libz` and SQLite
+calls to `modernc.org/libsqlite3`. Hand-written libc supplements live in
+`libpython/libc_*.go`; `generator.go`'s `shimmedLibc` lists route libc calls
+that `modernc.org/libc` does not implement well to them.
 
 ## Layout
 
