@@ -248,7 +248,7 @@ func main() {
 			"-Dsched_yield=ccgo_sched_yield",
 			"-Dwcschr=ccgo_wcschr",
 		)
-	case "windows/amd64":
+	case "windows/amd64", "windows/arm64":
 		triple := env("MINGW_TRIPLE", "x86_64-w64-mingw32")
 		compiler, err := exec.LookPath(triple + "-gcc")
 		if err != nil {
@@ -393,6 +393,9 @@ func postprocess(result, base string) {
 	for _, nm := range shimmedLibc[goos] {
 		shell(gsed, "-i", fmt.Sprintf(`s/libc\.X%s(/_ccgo_%s(/g`, nm, nm), result)
 	}
+	for _, nm := range shimmedVars[goos] {
+		shell(gsed, "-i", fmt.Sprintf(`s/libc\.X%s\>/_ccgo_%s/g`, nm, nm), result)
+	}
 	// C _Thread_local variables become per-libc.TLS slots (libpython/tls.go).
 	for _, v := range threadLocals {
 		shell(gsed, "-i", fmt.Sprintf(`/^var %s /d`, v[0]), result)
@@ -413,9 +416,20 @@ var threadLocals = [][2]string{
 	{"Xpkgcontext", "pkgcontext"},
 }
 
+// shimmedVars lists, per GOOS, libc variables whose generated type does not
+// match the declaration used by CPython. Keep each list sorted.
+var shimmedVars = map[string][]string{
+	"windows": {"in6addr_any"},
+}
+
 // shimmedLibc lists, per GOOS, the libc.X<name> calls rewritten to
 // _ccgo_<name> (defined in libpython/libc_<goos>.go). Keep sorted.
-var shimmedLibc = map[string][]string{"windows": {}, "darwin": {
+var shimmedLibc = map[string][]string{"windows": {
+	"GetShortPathNameW",
+	"SetErrorMode",
+	"strncat",
+	"umask",
+}, "darwin": {
 	"__builtin___snprintf_chk",
 	"__builtin___sprintf_chk",
 	"__builtin___vsnprintf_chk",
