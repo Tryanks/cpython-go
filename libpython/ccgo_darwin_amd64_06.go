@@ -21175,7 +21175,7 @@ var __Py_stdlib_module_names = [297]uintptr{
 	118: __ccgo_ts + 167751,
 	119: __ccgo_ts + 167760,
 	120: __ccgo_ts + 167766,
-	121: __ccgo_ts + 21528,
+	121: __ccgo_ts + 21514,
 	122: __ccgo_ts + 167770,
 	123: __ccgo_ts + 167777,
 	124: __ccgo_ts + 167784,
