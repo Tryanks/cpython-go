@@ -69,10 +69,11 @@ than claims of complete Windows compatibility.
 - `fdopen` — real, routed: returns the existing modernc `FILE` token for a
   descriptor. CPython duplicates the descriptor before this call, so the
   subsequent `fclose` has normal ownership semantics.
-- `fprintf`, `printf`, `snprintf`, `sprintf`, `vfprintf`, `vsnprintf`, and
-  `vsprintf` — routed through the shared ccgo `va_list` formatter. This covers
-  Microsoft `I`, `I32`, and `I64` integer lengths and Windows' 32-bit `long`
-  ABI instead of entering modernc's unsupported conversions.
+- `fprintf`, `printf`, `snprintf`, `sprintf`, `vfprintf`, `vsnprintf`,
+  `vsprintf`, compiler `__builtin_snprintf`, and MinGW
+  `__mingw_vsnprintf` — routed through the shared ccgo `va_list` formatter.
+  This covers Microsoft `I`, `I32`, and `I64` integer lengths and Windows'
+  32-bit `long` ABI instead of entering modernc's unsupported conversions.
 - `_dup` — real: duplicates the underlying Windows handle and registers the duplicate in modernc's descriptor table.
 - `_erf` — real: implemented with `math.Erf`.
 - `_erfc` — real: implemented with `math.Erfc`.

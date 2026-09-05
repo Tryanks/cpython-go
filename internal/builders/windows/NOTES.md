@@ -270,6 +270,12 @@ below.
   private-descriptor-table implementation and has a required CI smoke covering
   replacement of an existing descriptor. `Xfileno` is the only textual audit
   match left and has a concrete Windows body.
+- Batch run 33957766857 showed that compiler `__builtin_snprintf` and MinGW
+  `__mingw_vsnprintf` aliases still reached modernc's formatter indirectly and
+  triggered its unsupported-conversion TODO. Both aliases now use the routed
+  Windows formatter too; the same artifacts confirmed the later registry and
+  `fdopen` routes were needed and identified stack-overflow and compatibility
+  failures separately from Go TODOs.
 - `.github/workflows/windows-tests.yml` checks out CPython v3.14.7, embeds its
   test library, builds with `cpython_test`, and runs the selected 71 modules
   one process at a time on both Windows runners. The wrapper records test

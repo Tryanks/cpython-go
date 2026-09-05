@@ -453,6 +453,8 @@ var shimmedLibc = map[string][]string{"windows": {
 	"WSAGetLastError",
 	"WSASetLastError",
 	"__builtin_clzl",
+	"__builtin_snprintf",
+	"__mingw_vsnprintf",
 	"__p__wenviron",
 	"_wgetenv",
 	"_wopen",

@@ -48,6 +48,14 @@ func _ccgo_snprintf(tls *libc.TLS, dst uintptr, size uint64, format, va uintptr)
 	return writeWindowsCFormatBuffer(dst, size, format, va)
 }
 
+func _ccgo___builtin_snprintf(tls *libc.TLS, dst uintptr, size uint64, format, va uintptr) int32 {
+	return writeWindowsCFormatBuffer(dst, size, format, va)
+}
+
+func _ccgo___mingw_vsnprintf(tls *libc.TLS, dst uintptr, size uint64, format, va uintptr) int32 {
+	return writeWindowsCFormatBuffer(dst, size, format, va)
+}
+
 func _ccgo_sprintf(tls *libc.TLS, dst, format, va uintptr) int32 {
 	b := cFormat(libc.GoString(format), va)
 	copy(cBytes(dst, uint64(len(b))), b)

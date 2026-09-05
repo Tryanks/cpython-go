@@ -41309,7 +41309,7 @@ func __getucname(tls *libc.TLS, self uintptr, code TPy_UCS4, buffer uintptr, buf
 
 	if prefixid == int32(1) {
 		prefix = _derived_name_prefixes[prefixid]
-		if libc.X__builtin_snprintf(tls, buffer, uint64(buflen), __ccgo_ts+223421, libc.VaList(bp+8, prefix, code)) >= buflen {
+		if _ccgo___builtin_snprintf(tls, buffer, uint64(buflen), __ccgo_ts+223421, libc.VaList(bp+8, prefix, code)) >= buflen {
 			return 0
 		}
 		return int32(1)
@@ -97719,7 +97719,7 @@ func _faulthandler_fatal_error(tls *libc.TLS, signum int32) {
 		X_Py_write_noraise(tls, fd, __ccgo_ts+233621, libc.Xstrlen(tls, __ccgo_ts+233621))
 	} else {
 		**(**[23]int8)(__ccgo_up(bp)) = [23]int8{}
-		libc.X__builtin_snprintf(tls, bp, uint64(23), __ccgo_ts+17653, libc.VaList(bp+32, signum))
+		_ccgo___builtin_snprintf(tls, bp, uint64(23), __ccgo_ts+17653, libc.VaList(bp+32, signum))
 		X_Py_write_noraise(tls, fd, __ccgo_ts+233624, libc.Xstrlen(tls, __ccgo_ts+233624))
 		X_Py_write_noraise(tls, fd, bp, libc.Xstrlen(tls, bp))
 		X_Py_write_noraise(tls, fd, __ccgo_ts+233621, libc.Xstrlen(tls, __ccgo_ts+233621))

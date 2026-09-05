@@ -55622,7 +55622,7 @@ func XPyOS_vsnprintf(tls *libc.TLS, str uintptr, size Tsize_t, format uintptr, v
 		len1 = -int32(666)
 		goto Done
 	}
-	v1 = libc.X__mingw_vsnprintf(tls, str, size, format, va)
+	v1 = _ccgo___mingw_vsnprintf(tls, str, size, format, va)
 	goto _2
 _2:
 	len1 = v1

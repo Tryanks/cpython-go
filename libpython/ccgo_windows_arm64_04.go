@@ -18346,10 +18346,10 @@ func _parse_format(tls *libc.TLS, fmt uintptr, ppos uintptr, arg Texpr_ty, arena
 			**(**int8)(__ccgo_up(v1)) = int8('>')
 		}
 		if **(**int32)(__ccgo_up(bp + 8)) >= 0 {
-			p = p + uintptr(libc.X__builtin_snprintf(tls, p, uint64(libc.Int32FromInt32(MMAXDIGITS)+libc.Int32FromInt32(1)), __ccgo_ts+17653, libc.VaList(bp+40, **(**int32)(__ccgo_up(bp + 8)))))
+			p = p + uintptr(_ccgo___builtin_snprintf(tls, p, uint64(libc.Int32FromInt32(MMAXDIGITS)+libc.Int32FromInt32(1)), __ccgo_ts+17653, libc.VaList(bp+40, **(**int32)(__ccgo_up(bp + 8)))))
 		}
 		if **(**int32)(__ccgo_up(bp + 12)) >= 0 {
-			p = p + uintptr(libc.X__builtin_snprintf(tls, p, uint64(libc.Int32FromInt32(MMAXDIGITS)+libc.Int32FromInt32(2)), __ccgo_ts+116621, libc.VaList(bp+40, **(**int32)(__ccgo_up(bp + 12)))))
+			p = p + uintptr(_ccgo___builtin_snprintf(tls, p, uint64(libc.Int32FromInt32(MMAXDIGITS)+libc.Int32FromInt32(2)), __ccgo_ts+116621, libc.VaList(bp+40, **(**int32)(__ccgo_up(bp + 12)))))
 		}
 		format_spec = libc.UintptrFromInt32(0)
 		if p != bp+16 {
@@ -30828,7 +30828,7 @@ _2:
 	if here_addr < (*T_PyThreadStateImpl)(unsafe.Pointer(_tstate)).Fc_stack_hard_limit {
 
 		kbytes_used = int32((*T_PyThreadStateImpl)(unsafe.Pointer(_tstate)).Fc_stack_top-here_addr) / int32(1024)
-		libc.X__builtin_snprintf(tls, bp, uint64(80), __ccgo_ts+120829, libc.VaList(bp+88, kbytes_used, where))
+		_ccgo___builtin_snprintf(tls, bp, uint64(80), __ccgo_ts+120829, libc.VaList(bp+88, kbytes_used, where))
 		X_Py_FatalErrorFunc(tls, uintptr(unsafe.Pointer(&___func__111)), bp)
 	}
 	if (*TPyThreadState)(unsafe.Pointer(tstate)).Frecursion_headroom != 0 {
