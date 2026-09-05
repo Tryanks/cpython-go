@@ -61539,7 +61539,7 @@ func XPy_NormalizeSepsA(tls *libc.TLS, name uintptr) {
 	sep = XPy_GetSepA(tls, name)
 	altsep = _Py_GetAltSepA(tls, name)
 	if int32(**(**int8)(__ccgo_up(name))) != int32('\000') && int32(**(**int8)(__ccgo_up(name + 1))) == int32(':') {
-		**(**int8)(__ccgo_up(name)) = int8(libc.Xtoupper(tls, int32(**(**int8)(__ccgo_up(name)))))
+		**(**int8)(__ccgo_up(name)) = int8(_ccgo_toupper(tls, int32(**(**int8)(__ccgo_up(name)))))
 	}
 	seps = libc.Xstrchr(tls, name, int32(altsep))
 	for seps != 0 {

@@ -194,6 +194,105 @@ func windowsStableCString(value string) uintptr {
 	return p
 }
 
+func windowsLocaleAllName(names [6]string) string {
+	first := names[1]
+	for i := 2; i < len(names); i++ {
+		if names[i] != first {
+			return "LC_COLLATE=" + names[1] +
+				";LC_CTYPE=" + names[2] +
+				";LC_MONETARY=" + names[3] +
+				";LC_NUMERIC=" + names[4] +
+				";LC_TIME=" + names[5]
+		}
+	}
+	return first
+}
+
+func canonicalWindowsLocale(requested string) (string, bool) {
+	upper := strings.ToUpper(requested)
+	switch {
+	case requested == "":
+		return ".UTF-8", true
+	case upper == "C" || upper == "POSIX":
+		return "C", true
+	case upper == "UTF-8" || upper == ".UTF-8" || strings.HasSuffix(upper, ".UTF-8"):
+		return ".UTF-8", true
+	case upper == "ENGLISH_UNITED STATES.1252":
+		return "English_United States.1252", true
+	}
+
+	// UCRT accepts a code-page component up to 15 characters. CPython has a
+	// regression test for that exact boundary and for its LC_ALL round trip.
+	const prefix = "ENGLISH."
+	if strings.HasPrefix(upper, prefix) {
+		codePage := requested[len(prefix):]
+		if len(codePage) == 15 && strings.TrimLeft(codePage, "0") == "1252" {
+			return "English_United States.1252", true
+		}
+	}
+	return "", false
+}
+
+func parseWindowsLocaleAll(requested string) ([6]string, bool) {
+	names := windowsLocaleNames
+	parts := strings.Split(requested, ";")
+	prefixes := [...]string{"LC_COLLATE=", "LC_CTYPE=", "LC_MONETARY=", "LC_NUMERIC=", "LC_TIME="}
+	if len(parts) != len(prefixes) {
+		return names, false
+	}
+	for i, prefix := range prefixes {
+		if !strings.HasPrefix(parts[i], prefix) {
+			return names, false
+		}
+		name, ok := canonicalWindowsLocale(parts[i][len(prefix):])
+		if !ok {
+			return names, false
+		}
+		names[i+1] = name
+	}
+	return names, true
+}
+
+func recordWindowsLocale(category int32, name string) bool {
+	if category != 0 {
+		windowsLocaleNames[category] = name
+		return true
+	}
+	if !strings.HasPrefix(name, "LC_") {
+		for i := 1; i < len(windowsLocaleNames); i++ {
+			windowsLocaleNames[i] = name
+		}
+		return true
+	}
+
+	parts := strings.Split(name, ";")
+	prefixes := [...]string{"LC_COLLATE=", "LC_CTYPE=", "LC_MONETARY=", "LC_NUMERIC=", "LC_TIME="}
+	if len(parts) != len(prefixes) {
+		return false
+	}
+	for i, prefix := range prefixes {
+		if !strings.HasPrefix(parts[i], prefix) || len(parts[i]) == len(prefix) {
+			return false
+		}
+		windowsLocaleNames[i+1] = parts[i][len(prefix):]
+	}
+	return true
+}
+
+func setUCRTLocale(tls *libc.TLS, category int32, requested string) (string, bool) {
+	value, err := libc.CString(requested)
+	if err != nil {
+		setErrno(tls, int32(errno.ENOMEM))
+		return "", false
+	}
+	defer libc.Xfree(tls, value)
+	result := callUCRTWithErrno(tls, "setlocale", uintptr(category), value)
+	if result == 0 {
+		return "", false
+	}
+	return libc.GoString(result), true
+}
+
 // modernc.org/libc's Windows setlocale always returns NULL. CPython needs a
 // stable result before its allocator and codec registry exist, but obtains the
 // actual filesystem and console encodings from GetACP/GetConsoleCP. Keep a
@@ -211,32 +310,37 @@ func _ccgo_setlocale(tls *libc.TLS, category int32, locale uintptr) uintptr {
 		if category != 0 {
 			return windowsStableCString(windowsLocaleNames[category])
 		}
-		first := windowsLocaleNames[1]
-		for i := 2; i < len(windowsLocaleNames); i++ {
-			if windowsLocaleNames[i] != first {
-				return windowsStableCString(
-					"LC_COLLATE=" + windowsLocaleNames[1] +
-						";LC_CTYPE=" + windowsLocaleNames[2] +
-						";LC_MONETARY=" + windowsLocaleNames[3] +
-						";LC_NUMERIC=" + windowsLocaleNames[4] +
-						";LC_TIME=" + windowsLocaleNames[5])
-			}
-		}
-		return windowsStableCString(first)
+		return windowsStableCString(windowsLocaleAllName(windowsLocaleNames))
 	}
 
 	requested := libc.GoString(locale)
-	var name string
-	switch {
-	case requested == "C" || requested == "POSIX":
-		name = "C"
-	case requested == "":
-		name = ".UTF-8"
-	case strings.EqualFold(requested, "UTF-8") ||
-		strings.EqualFold(requested, ".UTF-8") ||
-		strings.HasSuffix(strings.ToUpper(requested), ".UTF-8"):
-		name = ".UTF-8"
-	default:
+	// UCRT remains the source of truth for aliases, code-page limits, and byte
+	// character classification. Copy its mutable result into stable storage
+	// and mirror it in the small model used by early-startup queries.
+	if nativeName, ok := setUCRTLocale(tls, category, requested); ok {
+		if !recordWindowsLocale(category, nativeName) {
+			setErrno(tls, int32(errno.EINVAL))
+			return 0
+		}
+		return windowsStableCString(nativeName)
+	}
+
+	if category == 0 && strings.HasPrefix(requested, "LC_") {
+		names, ok := parseWindowsLocaleAll(requested)
+		if !ok {
+			setErrno(tls, int32(errno.EINVAL))
+			return 0
+		}
+		windowsLocaleNames = names
+		return windowsStableCString(windowsLocaleAllName(windowsLocaleNames))
+	}
+
+	name, ok := canonicalWindowsLocale(requested)
+	if !ok {
+		setErrno(tls, int32(errno.EINVAL))
+		return 0
+	}
+	if _, ok := setUCRTLocale(tls, category, name); !ok {
 		setErrno(tls, int32(errno.EINVAL))
 		return 0
 	}
@@ -681,40 +785,6 @@ func tmZone(tmv *Ttm) (string, int) {
 	date := time.Date(int(tmv.Ftm_year)+1900, time.Month(tmv.Ftm_mon)+1, int(tmv.Ftm_mday), int(tmv.Ftm_hour), int(tmv.Ftm_min), int(tmv.Ftm_sec), 0, time.Local)
 	name, offset := date.Zone()
 	return name, offset
-}
-
-func fillTM(dst uintptr, value time.Time) {
-	tm := (*Ttm)(unsafe.Pointer(dst))
-	tm.Ftm_sec = int32(value.Second())
-	tm.Ftm_min = int32(value.Minute())
-	tm.Ftm_hour = int32(value.Hour())
-	tm.Ftm_mday = int32(value.Day())
-	tm.Ftm_mon = int32(value.Month()) - 1
-	tm.Ftm_year = int32(value.Year()) - 1900
-	tm.Ftm_wday = int32(value.Weekday())
-	tm.Ftm_yday = int32(value.YearDay()) - 1
-	_, current := value.Zone()
-	standard, observesDaylight := localZoneOffsets(value.Year(), value.Location())
-	tm.Ftm_isdst = 0
-	if observesDaylight && current != standard {
-		tm.Ftm_isdst = 1
-	}
-}
-
-func localZoneOffsets(year int, location *time.Location) (standard int, observesDaylight bool) {
-	jan := time.Date(year, time.January, 1, 12, 0, 0, 0, location)
-	jul := time.Date(year, time.July, 1, 12, 0, 0, 0, location)
-	_, janOffset := jan.Zone()
-	_, julOffset := jul.Zone()
-	if janOffset == julOffset {
-		return janOffset, false
-	}
-	// Contemporary DST advances clocks, so the smaller seconds-east value is
-	// the standard offset in both hemispheres.
-	if janOffset < julOffset {
-		return janOffset, true
-	}
-	return julOffset, true
 }
 
 // modernc keeps its Windows descriptors in a private handle table. These two
@@ -1252,6 +1322,21 @@ func _iswctype(tls *libc.TLS, value, descriptor uint16) int32 {
 	return int32(r)
 }
 
+func _ccgo_isalnum(tls *libc.TLS, value int32) int32 {
+	r, _ := callProc(dllUCRT, "isalnum", uintptr(value))
+	return int32(r)
+}
+
+func _ccgo_tolower(tls *libc.TLS, value int32) int32 {
+	r, _ := callProc(dllUCRT, "tolower", uintptr(value))
+	return int32(r)
+}
+
+func _ccgo_toupper(tls *libc.TLS, value int32) int32 {
+	r, _ := callProc(dllUCRT, "toupper", uintptr(value))
+	return int32(r)
+}
+
 func _towupper(tls *libc.TLS, value uint16) uint16 {
 	r, _ := callProc(dllUCRT, "towupper", uintptr(value))
 	return uint16(r)
@@ -1273,16 +1358,17 @@ func _localtime_s(tls *libc.TLS, dst, source uintptr) int32 {
 	if dst == 0 || source == 0 {
 		return int32(errno.EINVAL)
 	}
-	fillTM(dst, time.Unix(*(*int64)(unsafe.Pointer(source)), 0).In(time.Local))
-	return 0
+	// Go's time.Local does not use the same Windows CRT timezone state exposed
+	// through __timezone/__daylight. Let UCRT fill its ABI-compatible struct tm
+	// so time.localtime(), time.timezone, DST, and tm_gmtoff agree.
+	return int32(callUCRTWithErrno(tls, "_localtime64_s", dst, source))
 }
 
 func _gmtime_s(tls *libc.TLS, dst, source uintptr) int32 {
 	if dst == 0 || source == 0 {
 		return int32(errno.EINVAL)
 	}
-	fillTM(dst, time.Unix(*(*int64)(unsafe.Pointer(source)), 0).UTC())
-	return 0
+	return int32(callUCRTWithErrno(tls, "_gmtime64_s", dst, source))
 }
 
 func _clock(tls *libc.TLS) int32 {
