@@ -9091,7 +9091,7 @@ func _pending_exception(tls *libc.TLS, pObj uintptr) (r int32) {
 
 var _profiler_entry_fields = [7]TPyStructSequence_Field{
 	0: {
-		Fname: __ccgo_ts + 21277,
+		Fname: __ccgo_ts + 21258,
 		Fdoc:  __ccgo_ts + 184940,
 	},
 	1: {
@@ -9119,7 +9119,7 @@ var _profiler_entry_fields = [7]TPyStructSequence_Field{
 
 var _profiler_subentry_fields = [6]TPyStructSequence_Field{
 	0: {
-		Fname: __ccgo_ts + 21277,
+		Fname: __ccgo_ts + 21258,
 		Fdoc:  __ccgo_ts + 185183,
 	},
 	1: {
@@ -21398,7 +21398,7 @@ func _load_string(tls *libc.TLS, st uintptr, self uintptr) (r int32) {
 		return -int32(1)
 	}
 
-	if libc.Xstrcmp(tls, (*TUnpicklerObject)(unsafe.Pointer(self)).Fencoding, __ccgo_ts+17509) == 0 {
+	if libc.Xstrcmp(tls, (*TUnpicklerObject)(unsafe.Pointer(self)).Fencoding, __ccgo_ts+17494) == 0 {
 		obj = bytes
 	} else {
 		obj = XPyUnicode_FromEncodedObject(tls, bytes, (*TUnpicklerObject)(unsafe.Pointer(self)).Fencoding, (*TUnpicklerObject)(unsafe.Pointer(self)).Ferrors)
@@ -21460,7 +21460,7 @@ func _load_counted_binstring(tls *libc.TLS, st uintptr, self uintptr, nbytes int
 		return -int32(1)
 	}
 
-	if libc.Xstrcmp(tls, (*TUnpicklerObject)(unsafe.Pointer(self)).Fencoding, __ccgo_ts+17509) == 0 {
+	if libc.Xstrcmp(tls, (*TUnpicklerObject)(unsafe.Pointer(self)).Fencoding, __ccgo_ts+17494) == 0 {
 		obj = XPyBytes_FromStringAndSize(tls, **(**uintptr)(__ccgo_up(bp)), size)
 	} else {
 		obj = XPyUnicode_Decode(tls, **(**uintptr)(__ccgo_up(bp)), size, (*TUnpicklerObject)(unsafe.Pointer(self)).Fencoding, (*TUnpicklerObject)(unsafe.Pointer(self)).Ferrors)
@@ -49417,7 +49417,7 @@ _2:
 
 var _kwlist15 = [5]uintptr{
 	0: __ccgo_ts + 85927,
-	1: __ccgo_ts + 21277,
+	1: __ccgo_ts + 21258,
 	2: __ccgo_ts + 152741,
 	3: __ccgo_ts + 204628,
 	4: libc.UintptrFromInt32(0),

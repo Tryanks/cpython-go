@@ -582,10 +582,10 @@ func __types_exec(tls *libc.TLS, m uintptr) (r int32) {
 	if XPyModule_AddObjectRef(tls, m, __ccgo_ts+279697, uintptr(unsafe.Pointer(&XPyModule_Type))) < 0 {
 		return -int32(1)
 	}
-	if XPyModule_AddObjectRef(tls, m, __ccgo_ts+54342, uintptr(unsafe.Pointer(&X_PyNone_Type))) < 0 {
+	if XPyModule_AddObjectRef(tls, m, __ccgo_ts+54361, uintptr(unsafe.Pointer(&X_PyNone_Type))) < 0 {
 		return -int32(1)
 	}
-	if XPyModule_AddObjectRef(tls, m, __ccgo_ts+54351, uintptr(unsafe.Pointer(&X_PyNotImplemented_Type))) < 0 {
+	if XPyModule_AddObjectRef(tls, m, __ccgo_ts+54342, uintptr(unsafe.Pointer(&X_PyNotImplemented_Type))) < 0 {
 		return -int32(1)
 	}
 	if XPyModule_AddObjectRef(tls, m, __ccgo_ts+279708, uintptr(unsafe.Pointer(&X_PyNamespace_Type))) < 0 {
@@ -10934,7 +10934,7 @@ var __kwtuple300 = struct {
 }
 
 var __keywords346 = [3]uintptr{
-	0: __ccgo_ts + 21277,
+	0: __ccgo_ts + 21258,
 	1: __ccgo_ts + 30332,
 	2: libc.UintptrFromInt32(0),
 }

@@ -21334,7 +21334,7 @@ func _convertsimple(tls *libc.TLS, arg uintptr, p_format uintptr, p_va uintptr, 
 		if v3 != 0 {
 			**(**uintptr)(__ccgo_up(p21)) = arg
 		} else {
-			return _converterr(tls, __ccgo_ts+17509, arg, msgbuf, bufsize)
+			return _converterr(tls, __ccgo_ts+17494, arg, msgbuf, bufsize)
 		}
 	case int32('Y'):
 		p22 = libc.VaUintptr(&**(**Tva_list)(__ccgo_up(p_va)))
@@ -35895,7 +35895,7 @@ func __imp_get_frozen_object_impl(tls *libc.TLS, module uintptr, name uintptr, d
 		(**(**Tfrozen_info)(__ccgo_up(bp))).Fsize = (**(**TPy_buffer)(__ccgo_up(bp + 40))).Flen1
 	} else {
 		if dataobj != uintptr(unsafe.Pointer(&X_Py_NoneStruct)) {
-			X_PyArg_BadArgument(tls, __ccgo_ts+142966, __ccgo_ts+16428, __ccgo_ts+17509, dataobj)
+			X_PyArg_BadArgument(tls, __ccgo_ts+142966, __ccgo_ts+16428, __ccgo_ts+17494, dataobj)
 			return libc.UintptrFromInt32(0)
 		} else {
 			status = _find_frozen(tls, name, bp)
@@ -48176,7 +48176,7 @@ var __PyBranchesIterator = TPyTypeObject{
 			Fob_type: uintptr(unsafe.Pointer(&XPyType_Type)),
 		},
 	},
-	Ftp_name:      __ccgo_ts + 21282,
+	Ftp_name:      __ccgo_ts + 21263,
 	Ftp_basicsize: int64(32),
 	Ftp_flags:     libc.Uint64FromInt32(libc.Int32FromInt32(MPy_TPFLAGS_HAVE_STACKLESS_EXTENSION)|libc.Int32FromInt32(0)) | libc.Uint64FromUint64(1)<<libc.Int32FromInt32(10),
 }
