@@ -917,7 +917,7 @@ func _fp_getc(tls *libc.TLS, tok uintptr) (r int32) {
 //
 //	/* Unfetch the last byte back into TOK.  */
 func _fp_ungetc(tls *libc.TLS, c int32, tok uintptr) {
-	libc.Xungetc(tls, c, (*Ttok_state)(unsafe.Pointer(tok)).Ffp)
+	_ccgo_ungetc(tls, c, (*Ttok_state)(unsafe.Pointer(tok)).Ffp)
 }
 
 // C documentation
@@ -75720,7 +75720,7 @@ func X_Py_UniversalNewlineFgetsWithSize(tls *libc.TLS, buf uintptr, n int32, str
 
 			c = libc.Xgetc(tls, stream)
 			if c != int32('\n') {
-				libc.Xungetc(tls, c, stream)
+				_ccgo_ungetc(tls, c, stream)
 				c = int32('\n')
 			}
 		}

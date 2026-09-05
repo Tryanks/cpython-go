@@ -4349,7 +4349,7 @@ func _trip_signal(tls *libc.TLS, sig_num int32) {
 		interp = X_PyInterpreterState_Main(tls)
 		**(**uint8)(__ccgo_up(bp)) = uint8(sig_num)
 		if libc.AtomicLoadPInt32(uintptr(unsafe.Pointer(&X_PyRuntime))+1224+368+8) != 0 {
-			rc = int64(libc.Xsend(tls, uint64(fd), bp, int32(1), 0))
+			rc = int64(_ccgo_send(tls, uint64(fd), bp, int32(1), 0))
 			if rc < 0 {
 				last_error = int32(libc.XGetLastError(tls))
 				if libc.AtomicLoadPInt32(uintptr(unsafe.Pointer(&X_PyRuntime))+1224+368+4) != 0 || last_error != libc.Int32FromInt32(MWSABASEERR)+libc.Int32FromInt32(35) {
@@ -4607,8 +4607,8 @@ _4:
 	_11:
 		;
 
-		if libc.Xgetsockopt(tls, sockfd, int32(0xffff), int32(0x1007), bp+128, bp+132) != 0 {
-			err = libc.XWSAGetLastError(tls)
+		if _ccgo_getsockopt(tls, sockfd, int32(0xffff), int32(0x1007), bp+128, bp+132) != 0 {
+			err = _ccgo_WSAGetLastError(tls)
 			if err != libc.Int32FromInt32(MWSABASEERR)+libc.Int32FromInt32(38) {
 				XPyErr_SetExcFromWindowsErr(tls, XPyExc_OSError, err)
 				return libc.UintptrFromInt32(0)

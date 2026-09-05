@@ -39,8 +39,8 @@ echo_thread = threading.Thread(target=echo_server)
 echo_thread.start()
 with socket.create_connection(("localhost", listener.getsockname()[1]), timeout=10) as client:
     client.sendall(b"ping")
-    readable, writable, exceptional = select.select([client], [client], [client], 10)
-    assert client in readable and client in writable and not exceptional
+    readable, writable, exceptional = select.select([client], [], [], 1.0)
+    assert readable == [client] and not writable and not exceptional
     assert client.recv(4) == b"pong"
 listener.close()
 join_thread(echo_thread, "echo")
@@ -65,6 +65,45 @@ import asyncio
 
 asyncio.run(asyncio.sleep(0))
 print("asyncio-ok", flush=True)
+
+
+async def asyncio_tcp_echo():
+    loop = asyncio.get_running_loop()
+    server_done = loop.create_future()
+
+    async def echo(reader, writer):
+        try:
+            assert await asyncio.wait_for(reader.readexactly(4), 10) == b"ping"
+            writer.write(b"pong")
+            await writer.drain()
+        except BaseException as exc:
+            if not server_done.done():
+                server_done.set_exception(exc)
+        finally:
+            writer.close()
+            await writer.wait_closed()
+            if not server_done.done():
+                server_done.set_result(None)
+
+    server = await asyncio.start_server(echo, "127.0.0.1", 0)
+    try:
+        port = server.sockets[0].getsockname()[1]
+        reader, writer = await asyncio.open_connection("127.0.0.1", port)
+        try:
+            writer.write(b"ping")
+            await writer.drain()
+            assert await asyncio.wait_for(reader.readexactly(4), 10) == b"pong"
+        finally:
+            writer.close()
+            await writer.wait_closed()
+        await asyncio.wait_for(server_done, 10)
+    finally:
+        server.close()
+        await server.wait_closed()
+
+
+asyncio.run(asyncio.wait_for(asyncio_tcp_echo(), 20))
+print("asyncio-tcp-echo-ok", flush=True)
 
 import http.client
 import http.server

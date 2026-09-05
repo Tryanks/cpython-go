@@ -29,6 +29,8 @@ const (
 	errorInvalidParam    = 87
 	errorCallNotImpl     = 120
 	errorProcNotFound    = 127
+	socketError          = int32(-1)
+	invalidSocket        = ^uint64(0)
 )
 
 var (
@@ -330,6 +332,20 @@ func _ccgo_wcschr(tls *libc.TLS, src uintptr, value uint16) uintptr {
 		}
 		src += 2
 	}
+}
+
+// CPython's tokenizer uses a single-byte pushback after probing source
+// encodings. modernc's Windows ungetc is an unconditional TODO; its FILE
+// implementation is unbuffered, so rewinding by one byte provides the exact
+// behavior needed by these readers.
+func _ccgo_ungetc(tls *libc.TLS, c int32, stream uintptr) int32 {
+	if c == -1 {
+		return -1
+	}
+	if libc.Xfseek(tls, stream, -1, 1) != 0 {
+		return -1
+	}
+	return int32(byte(c))
 }
 
 func _ccgo_OutputDebugStringW(tls *libc.TLS, text uintptr) {
@@ -2072,17 +2088,17 @@ func _ConvertInterfaceLuidToNameW(tls *libc.TLS, luid, name uintptr, length uint
 }
 
 func _if_nametoindex(tls *libc.TLS, name uintptr) uint32 {
-	r, _ := callProc(dllIPHlp, "if_nametoindex", name)
+	r, err := callProc(dllIPHlp, "if_nametoindex", name)
 	if r == 0 {
-		setWSAError(tls)
+		setWSAErrorFrom(tls, err)
 	}
 	return uint32(r)
 }
 
 func _if_indextoname(tls *libc.TLS, index uint32, name uintptr) uintptr {
-	r, _ := callProc(dllIPHlp, "if_indextoname", uintptr(index), name)
+	r, err := callProc(dllIPHlp, "if_indextoname", uintptr(index), name)
 	if r == 0 {
-		setWSAError(tls)
+		setWSAErrorFrom(tls, err)
 	}
 	return r
 }
@@ -2102,14 +2118,169 @@ func _RpcStringFreeW(tls *libc.TLS, text uintptr) int32 {
 	return int32(r)
 }
 
-func setWSAError(tls *libc.TLS) {
-	r, _ := callProc(dllWS2, "WSAGetLastError")
-	value := uint32(r)
+func recordWSAError(tls *libc.TLS, value uint32) {
 	if value == 0 {
 		value = errorInvalidFunction
 	}
 	tls.SetLastError(value)
 	setErrno(tls, int32(value))
+}
+
+func setWSAError(tls *libc.TLS) {
+	r, _ := callProc(dllWS2, "WSAGetLastError")
+	recordWSAError(tls, uint32(r))
+}
+
+// A syscall's returned errno is captured while the goroutine is still on the
+// calling OS thread. Prefer it to a later WSAGetLastError call, which could run
+// after the goroutine has migrated to another thread.
+func setWSAErrorFrom(tls *libc.TLS, err error) {
+	if value := winErrno(err, 0); value != 0 {
+		recordWSAError(tls, value)
+		return
+	}
+	setWSAError(tls)
+}
+
+func socketResult(tls *libc.TLS, result uintptr, err error) int32 {
+	value := int32(result)
+	if value == socketError {
+		setWSAErrorFrom(tls, err)
+	}
+	return value
+}
+
+func _ccgo_WSAGetLastError(tls *libc.TLS) int32 {
+	return int32(tls.GetLastError())
+}
+
+func _ccgo_WSASetLastError(tls *libc.TLS, value int32) {
+	_WSASetLastError(tls, value)
+}
+
+func _ccgo_socket(tls *libc.TLS, family, socketType, protocol int32) uint64 {
+	handle, err := windows.Socket(int(family), int(socketType), int(protocol))
+	if err != nil {
+		setWSAErrorFrom(tls, err)
+		return invalidSocket
+	}
+	return uint64(handle)
+}
+
+func _ccgo_bind(tls *libc.TLS, socket uint64, address uintptr, addressLength int32) int32 {
+	result, err := callProc(dllWS2, "bind", uintptr(socket), address, uintptr(uint32(addressLength)))
+	return socketResult(tls, result, err)
+}
+
+func _ccgo_connect(tls *libc.TLS, socket uint64, address uintptr, addressLength int32) int32 {
+	result, err := callProc(dllWS2, "connect", uintptr(socket), address, uintptr(uint32(addressLength)))
+	return socketResult(tls, result, err)
+}
+
+func _ccgo_listen(tls *libc.TLS, socket uint64, backlog int32) int32 {
+	if err := windows.Listen(windows.Handle(socket), int(backlog)); err != nil {
+		setWSAErrorFrom(tls, err)
+		return socketError
+	}
+	return 0
+}
+
+func _ccgo_accept(tls *libc.TLS, socket uint64, address, addressLength uintptr) uint64 {
+	result, err := callProc(dllWS2, "accept", uintptr(socket), address, addressLength)
+	accepted := uint64(result)
+	if accepted == invalidSocket {
+		setWSAErrorFrom(tls, err)
+	}
+	return accepted
+}
+
+func _ccgo_getpeername(tls *libc.TLS, socket uint64, address, addressLength uintptr) int32 {
+	result, err := callProc(dllWS2, "getpeername", uintptr(socket), address, addressLength)
+	return socketResult(tls, result, err)
+}
+
+func _ccgo_getsockname(tls *libc.TLS, socket uint64, address, addressLength uintptr) int32 {
+	result, err := callProc(dllWS2, "getsockname", uintptr(socket), address, addressLength)
+	return socketResult(tls, result, err)
+}
+
+func _ccgo_recv(tls *libc.TLS, socket uint64, buffer uintptr, length, flags int32) int32 {
+	result, err := callProc(dllWS2, "recv", uintptr(socket), buffer, uintptr(uint32(length)), uintptr(uint32(flags)))
+	return socketResult(tls, result, err)
+}
+
+func _ccgo_send(tls *libc.TLS, socket uint64, buffer uintptr, length, flags int32) int32 {
+	result, err := callProc(dllWS2, "send", uintptr(socket), buffer, uintptr(uint32(length)), uintptr(uint32(flags)))
+	return socketResult(tls, result, err)
+}
+
+func _ccgo_recvfrom(tls *libc.TLS, socket uint64, buffer uintptr, length, flags int32, from, fromLength uintptr) int32 {
+	result, err := callProc(dllWS2, "recvfrom", uintptr(socket), buffer, uintptr(uint32(length)), uintptr(uint32(flags)), from, fromLength)
+	return socketResult(tls, result, err)
+}
+
+func _ccgo_sendto(tls *libc.TLS, socket uint64, buffer uintptr, length, flags int32, to uintptr, toLength int32) int32 {
+	result, err := callProc(dllWS2, "sendto", uintptr(socket), buffer, uintptr(uint32(length)), uintptr(uint32(flags)), to, uintptr(uint32(toLength)))
+	return socketResult(tls, result, err)
+}
+
+func _ccgo_shutdown(tls *libc.TLS, socket uint64, how int32) int32 {
+	if err := windows.Shutdown(windows.Handle(socket), int(how)); err != nil {
+		setWSAErrorFrom(tls, err)
+		return socketError
+	}
+	return 0
+}
+
+func _ccgo_getsockopt(tls *libc.TLS, socket uint64, level, option int32, value, valueLength uintptr) int32 {
+	if err := windows.Getsockopt(
+		windows.Handle(socket),
+		level,
+		option,
+		byteptr(value),
+		(*int32)(unsafe.Pointer(valueLength)),
+	); err != nil {
+		setWSAErrorFrom(tls, err)
+		return socketError
+	}
+	return 0
+}
+
+func _ccgo_setsockopt(tls *libc.TLS, socket uint64, level, option int32, value uintptr, valueLength int32) int32 {
+	if err := windows.Setsockopt(windows.Handle(socket), level, option, byteptr(value), valueLength); err != nil {
+		setWSAErrorFrom(tls, err)
+		return socketError
+	}
+	return 0
+}
+
+// Winsock's fd_set is a uint32 count, four bytes of alignment padding, then
+// an array of 64-bit SOCKET values on both supported targets. The generated
+// Tfd_set/Tfd_set1 layouts match that ABI, so pass their storage through.
+func _ccgo_select(tls *libc.TLS, nfds int32, readfds, writefds, exceptfds, timeout uintptr) int32 {
+	result, err := callProc(
+		dllWS2,
+		"select",
+		uintptr(uint32(nfds)),
+		readfds,
+		writefds,
+		exceptfds,
+		timeout,
+	)
+	return socketResult(tls, result, err)
+}
+
+func _ccgo_ioctlsocket(tls *libc.TLS, socket uint64, command int32, argument uintptr) int32 {
+	result, err := callProc(dllWS2, "ioctlsocket", uintptr(socket), uintptr(uint32(command)), argument)
+	return socketResult(tls, result, err)
+}
+
+func _ccgo_closesocket(tls *libc.TLS, socket uint64) int32 {
+	if err := windows.Closesocket(windows.Handle(socket)); err != nil {
+		setWSAErrorFrom(tls, err)
+		return socketError
+	}
+	return 0
 }
 
 func _WSASetLastError(tls *libc.TLS, value int32) {
@@ -2120,16 +2291,16 @@ func _WSASetLastError(tls *libc.TLS, value int32) {
 
 func _WSACleanup(tls *libc.TLS) int32 {
 	if err := windows.WSACleanup(); err != nil {
-		setWSAError(tls)
+		setWSAErrorFrom(tls, err)
 		return -1
 	}
 	return 0
 }
 
 func _WSAConnect(tls *libc.TLS, socket uint64, address uintptr, addressLength int32, callerData, calleeData, sqos, gqos uintptr) int32 {
-	r, _ := callProc(dllWS2, "WSAConnect", uintptr(socket), address, uintptr(addressLength), callerData, calleeData, sqos, gqos)
+	r, err := callProc(dllWS2, "WSAConnect", uintptr(socket), address, uintptr(uint32(addressLength)), callerData, calleeData, sqos, gqos)
 	if int32(r) == -1 {
-		setWSAError(tls)
+		setWSAErrorFrom(tls, err)
 	}
 	return int32(r)
 }
@@ -2137,7 +2308,7 @@ func _WSAConnect(tls *libc.TLS, socket uint64, address uintptr, addressLength in
 func _WSADuplicateSocketW(tls *libc.TLS, socket uint64, processID uint32, info uintptr) int32 {
 	err := windows.WSADuplicateSocket(windows.Handle(socket), processID, (*windows.WSAProtocolInfo)(unsafe.Pointer(info)))
 	if err != nil {
-		setWSAError(tls)
+		setWSAErrorFrom(tls, err)
 		return -1
 	}
 	return 0
@@ -2156,7 +2327,7 @@ func _WSAIoctl(tls *libc.TLS, socket uint64, code uint32, inBuffer uintptr, inLe
 		completion,
 	)
 	if err != nil {
-		setWSAError(tls)
+		setWSAErrorFrom(tls, err)
 		return -1
 	}
 	return 0
@@ -2173,7 +2344,7 @@ func _WSARecv(tls *libc.TLS, socket uint64, buffers uintptr, count uint32, recei
 		(*byte)(unsafe.Pointer(completion)),
 	)
 	if err != nil {
-		setWSAError(tls)
+		setWSAErrorFrom(tls, err)
 		return -1
 	}
 	return 0
@@ -2192,7 +2363,7 @@ func _WSARecvFrom(tls *libc.TLS, socket uint64, buffers uintptr, count uint32, r
 		(*byte)(unsafe.Pointer(completion)),
 	)
 	if err != nil {
-		setWSAError(tls)
+		setWSAErrorFrom(tls, err)
 		return -1
 	}
 	return 0
@@ -2209,7 +2380,7 @@ func _WSASend(tls *libc.TLS, socket uint64, buffers uintptr, count uint32, sent 
 		(*byte)(unsafe.Pointer(completion)),
 	)
 	if err != nil {
-		setWSAError(tls)
+		setWSAErrorFrom(tls, err)
 		return -1
 	}
 	return 0
@@ -2228,7 +2399,7 @@ func _WSASendTo(tls *libc.TLS, socket uint64, buffers uintptr, count uint32, sen
 		(*byte)(unsafe.Pointer(completion)),
 	)
 	if err != nil {
-		setWSAError(tls)
+		setWSAErrorFrom(tls, err)
 		return -1
 	}
 	return 0
@@ -2237,16 +2408,16 @@ func _WSASendTo(tls *libc.TLS, socket uint64, buffers uintptr, count uint32, sen
 func _WSASocketW(tls *libc.TLS, family, socketType, protocol int32, info uintptr, group, flags uint32) uint64 {
 	handle, err := windows.WSASocket(family, socketType, protocol, (*windows.WSAProtocolInfo)(unsafe.Pointer(info)), group, flags)
 	if err != nil {
-		setWSAError(tls)
-		return ^uint64(0)
+		setWSAErrorFrom(tls, err)
+		return invalidSocket
 	}
 	return uint64(handle)
 }
 
 func _WSAStringToAddressW(tls *libc.TLS, text uintptr, family int32, info, address, length uintptr) int32 {
-	r, _ := callProc(dllWS2, "WSAStringToAddressW", text, uintptr(family), info, address, length)
+	r, err := callProc(dllWS2, "WSAStringToAddressW", text, uintptr(uint32(family)), info, address, length)
 	if int32(r) == -1 {
-		setWSAError(tls)
+		setWSAErrorFrom(tls, err)
 	}
 	return int32(r)
 }
@@ -2265,49 +2436,41 @@ func ___WSAFDIsSet(tls *libc.TLS, socket uint64, set uintptr) int32 {
 }
 
 func _recvfrom(tls *libc.TLS, socket uint64, buffer uintptr, length, flags int32, from, fromLength uintptr) int32 {
-	r, _ := callProc(dllWS2, "recvfrom", uintptr(socket), buffer, uintptr(length), uintptr(flags), from, fromLength)
-	if int32(r) == -1 {
-		setWSAError(tls)
-	}
-	return int32(r)
+	return _ccgo_recvfrom(tls, socket, buffer, length, flags, from, fromLength)
 }
 
 func _sendto(tls *libc.TLS, socket uint64, buffer uintptr, length, flags int32, to uintptr, toLength int32) int32 {
-	r, _ := callProc(dllWS2, "sendto", uintptr(socket), buffer, uintptr(length), uintptr(flags), to, uintptr(toLength))
-	if int32(r) == -1 {
-		setWSAError(tls)
-	}
-	return int32(r)
+	return _ccgo_sendto(tls, socket, buffer, length, flags, to, toLength)
 }
 
 func _gethostbyaddr(tls *libc.TLS, address uintptr, length, family int32) uintptr {
-	r, _ := callProc(dllWS2, "gethostbyaddr", address, uintptr(length), uintptr(family))
+	r, err := callProc(dllWS2, "gethostbyaddr", address, uintptr(uint32(length)), uintptr(uint32(family)))
 	if r == 0 {
-		setWSAError(tls)
+		setWSAErrorFrom(tls, err)
 	}
 	return r
 }
 
 func _gethostbyname(tls *libc.TLS, name uintptr) uintptr {
-	r, _ := callProc(dllWS2, "gethostbyname", name)
+	r, err := callProc(dllWS2, "gethostbyname", name)
 	if r == 0 {
-		setWSAError(tls)
+		setWSAErrorFrom(tls, err)
 	}
 	return r
 }
 
 func _getservbyport(tls *libc.TLS, port int32, protocol uintptr) uintptr {
-	r, _ := callProc(dllWS2, "getservbyport", uintptr(port), protocol)
+	r, err := callProc(dllWS2, "getservbyport", uintptr(uint32(port)), protocol)
 	if r == 0 {
-		setWSAError(tls)
+		setWSAErrorFrom(tls, err)
 	}
 	return r
 }
 
 func _getprotobyname(tls *libc.TLS, name uintptr) uintptr {
-	r, _ := callProc(dllWS2, "getprotobyname", name)
+	r, err := callProc(dllWS2, "getprotobyname", name)
 	if r == 0 {
-		setWSAError(tls)
+		setWSAErrorFrom(tls, err)
 	}
 	return r
 }
@@ -2318,17 +2481,17 @@ func _inet_addr(tls *libc.TLS, address uintptr) uint32 {
 }
 
 func _inet_pton(tls *libc.TLS, family int32, source, destination uintptr) int32 {
-	r, _ := callProc(dllWS2, "inet_pton", uintptr(family), source, destination)
+	r, err := callProc(dllWS2, "inet_pton", uintptr(uint32(family)), source, destination)
 	if int32(r) == -1 {
-		setWSAError(tls)
+		setWSAErrorFrom(tls, err)
 	}
 	return int32(r)
 }
 
 func _inet_ntop(tls *libc.TLS, family int32, source, destination uintptr, size uint64) uintptr {
-	r, _ := callProc(dllWS2, "inet_ntop", uintptr(family), source, destination, uintptr(size))
+	r, err := callProc(dllWS2, "inet_ntop", uintptr(uint32(family)), source, destination, uintptr(size))
 	if r == 0 {
-		setWSAError(tls)
+		setWSAErrorFrom(tls, err)
 	}
 	return r
 }

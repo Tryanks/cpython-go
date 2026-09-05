@@ -50128,7 +50128,7 @@ func _pymain_run_file_obj(tls *libc.TLS, program_name uintptr, filename uintptr,
 				break
 			}
 			if ch == int32('\n') {
-				libc.Xungetc(tls, ch, fp)
+				_ccgo_ungetc(tls, ch, fp)
 				break
 			}
 		}
