@@ -18,10 +18,13 @@ with `modernc.org/ccgo/v4`, in the style of `modernc.org/libquickjs` +
   modules marked `n/a`), then `ccgo -exec make libpython3.14.a`. The ccgo cc
   shim runs the real compiler first, so `_freeze_module`/`_bootstrap_python`
   work; each `.o` gets a sibling `.o.go`; `ar` produces `.ago`.
-- Final link: `libpython3.14.a` + `Modules/_hacl/*.a` + `Modules/expat/libexpat.a`
+- Final link: `libpython3.14.a` + bundled `Modules/_decimal/libmpdec/libmpdec.a`
+  + `Modules/_hacl/*.a` + `Modules/expat/libexpat.a`
   → one file, then rewrites + sharding (internal/cmd/splitgo) into
   `libpython/ccgo_<goos>_<goarch>_NN.go` + `_data.bin`.
-- `--without-computed-gotos`, `--without-pymalloc`, `-U__SIZEOF_INT128__`.
+- `--enable-ipv6`, `--with-system-libmpdec=no`, `--without-computed-gotos`,
+  `--without-pymalloc`, `-DANSI=1`, `-U__SIZEOF_INT128__`. Configure's asm
+  and `__uint128_t` probes are seeded off so libmpdec selects ANSI64.
 - Stdlib `.py` files: milestone 1 uses `PYTHONHOME` pointing at a native
   `make install` prefix (`/tmp/cpy-prefix`) or `PYTHONPATH` to `Lib/`.
   Embedding comes later.
@@ -69,8 +72,10 @@ go run ./cmd/cpython-go -c 'import json, re, os; print(json.dumps({"a": [1, 2]})
   possible under the Go runtime: subprocess uses syscall.ForkExec
   (libpython/fork_exec.go); os.fork raises. The zlib extension and
   zlib-backed binascii CRC32 link to modernc.org/libz; `_sqlite3` links to
-  modernc.org/libsqlite3. Other modules needing external C libraries are not
-  built.
+  modernc.org/libsqlite3; `_decimal` links CPython's bundled libmpdec. IPv6 is
+  enabled on every target, with dual-family lookup and loopback bind/connect
+  verified on Darwin and Linux arm64. Other modules needing external C
+  libraries are not built.
 - Platform scope: darwin, linux, windows × amd64, arm64 — all six generated.
   Linux via OrbStack containers (internal/builders/linux/run.sh); Windows via
   an llvm-mingw container (internal/builders/windows/run.sh --ccgo <arch>)

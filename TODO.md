@@ -7,7 +7,9 @@ is parked here.
 
 - windows: amd64 runs (CI-validated smoke: threads, subprocess, hashlib,
   pickle, unittest); arm64 is generated and cross-builds, pending hardware
-  validation. Missing: Winsock (modernc TODOs), native .pyd loading
+  validation. Winsock shims cover IPv4/IPv6 socket operations and
+  `sockaddr_in6`; IPv6 runtime coverage is still pending on Windows hardware.
+  Missing: native .pyd loading
   (GetProcAddress cannot produce ccgo function pointers), full locale
   emulation. See docs/windows.md and internal/builders/windows/RUNTIME.md.
 - linux/386, linux/arm, linux/ppc64le, linux/riscv64, linux/s390x — parked.
@@ -20,7 +22,7 @@ is parked here.
 - Cross-platform dedupe of identical generated declarations with
   modernc.org/undup (the repo grows ~37MB per target).
 
-- Windows (both arches, 38/71 modules fully pass): remaining groups are
+- Windows (both arches, 55/71 modules fully pass): remaining groups are
   locale/CRT fidelity (setlocale restore, tm_gmtoff), missing optional
   modules (_ctypes, _multiprocessing, _testcapi, _testconsole), Win32 file /
   errno / process semantics in test_os/pathlib/shutil/tempfile/zipfile,
@@ -30,16 +32,11 @@ is parked here.
 
 ## Interpreter gaps
 
-- IPv6: the build is configured with --disable-ipv6 (socketmodule cannot parse
-  sockaddr_in6); the darwin getaddrinfo shim therefore resolves AF_UNSPEC to
-  IPv4 only. Enable IPv6 in generator.go and regenerate all targets (the
-  shims already build sockaddr_in6).
-
 - os.fork: impossible under the Go runtime (raises ENOSYS). multiprocessing
   is not built; subprocess works via syscall.ForkExec (libpython/fork_exec.go).
 - Modules needing external C libraries are not built: _ssl, _ctypes, _bz2,
-  _lzma, _decimal (pure-Python _pydecimal is used), readline, _curses,
-  _tkinter. `_sqlite3` is built against modernc.org/libsqlite3.
+  _lzma, readline, _curses, _tkinter. `_sqlite3` is built against
+  modernc.org/libsqlite3; `_decimal` uses bundled libmpdec ANSI64.
 - Test-only extension modules (_testcapi, _testinternalcapi, _testlimitedcapi,
   _testmultiphase...) are not built (--disable-test-modules), so tests that
   need them error out.
@@ -49,8 +46,11 @@ is parked here.
 
 ## Known test failures (CPython test suite, darwin/arm64 83/107 and linux/arm64 44/72 modules fully pass)
 
-- darwin: test_socket has eight delayed-signal errors plus one ancillary-data
-  flags failure; interface-name and `/etc/services` lookups now work.
+- darwin: test_socket runs 749 tests with 1 ancillary-data flags failure and
+  8 errors (external IDNA lookup plus delayed-signal socket timeouts), with
+  268 skipped. IPv6 interface scopes and `/etc/services` lookups work.
+  linux/arm64 runs the same 749 tests with 7 failures and 11 errors (delayed
+  signals, nonblocking sendmsg timing, and Alpine service lookup), 98 skipped.
   test_logging hangs (~15 min, then SIGALRM watchdog is overridden);
   test_subprocess and test_fcntl end without a summary line (crash/exit to
   diagnose).
@@ -91,4 +91,6 @@ is parked here.
 
 - Interpreter re-entrancy from other goroutines while a host function runs is
   undetected (documented programming error).
-- getaddrinfo shim builds IPv4 results only.
+- Windows IPv6 behavior still needs runtime validation on Windows hardware;
+  both generated targets typecheck and cross-build with `sockaddr_in6` and
+  Winsock getaddrinfo/getnameinfo enabled.
