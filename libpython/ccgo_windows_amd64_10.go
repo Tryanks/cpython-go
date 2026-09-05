@@ -1773,7 +1773,7 @@ func __locale_setlocale_impl(tls *libc.TLS, module uintptr, category int32, loca
 	}
 	if locale != 0 {
 
-		result = libc.Xsetlocale(tls, category, locale)
+		result = _ccgo_setlocale(tls, category, locale)
 		if !(result != 0) {
 
 			XPyErr_SetString(tls, (*T_locale_state)(unsafe.Pointer(_get_locale_state(tls, module))).FError, __ccgo_ts+267986)
@@ -1785,7 +1785,7 @@ func __locale_setlocale_impl(tls *libc.TLS, module uintptr, category int32, loca
 		}
 	} else {
 
-		result = libc.Xsetlocale(tls, category, libc.UintptrFromInt32(0))
+		result = _ccgo_setlocale(tls, category, libc.UintptrFromInt32(0))
 		if !(result != 0) {
 			XPyErr_SetString(tls, (*T_locale_state)(unsafe.Pointer(_get_locale_state(tls, module))).FError, __ccgo_ts+268013)
 			return libc.UintptrFromInt32(0)

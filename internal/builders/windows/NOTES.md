@@ -168,3 +168,7 @@ until the Windows libc supplement is added.
   null; fatal reporting then hit modernc's `XOutputDebugStringW` TODO panic.
   Routed both calls and proactively routed the known-TODO `Xmbstowcs` plus
   matching `Xwcstombs` to deterministic UTF-8/UTF-16 shims.
+- The concurrently running arm64 ccgo generation completed before the first
+  runtime fix was committed. The same four routes were applied to its 12
+  shards; both `GOOS=windows GOARCH=amd64` and `GOARCH=arm64` cross-builds
+  passed locally.

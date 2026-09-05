@@ -71876,7 +71876,7 @@ func X_PyPreConfig_Read(tls *libc.TLS, config uintptr, args uintptr) (r TPyStatu
 	}
 	_preconfig_get_global_vars(tls, config)
 
-	loc = libc.Xsetlocale(tls, int32(MLC_CTYPE), libc.UintptrFromInt32(0))
+	loc = _ccgo_setlocale(tls, int32(MLC_CTYPE), libc.UintptrFromInt32(0))
 	if loc == libc.UintptrFromInt32(0) {
 		return TPyStatus{
 			F_type:   int32(E_PyStatus_TYPE_ERROR),
@@ -71966,7 +71966,7 @@ func X_PyPreConfig_Read(tls *libc.TLS, config uintptr, args uintptr) (r TPyStatu
 done:
 	;
 
-	libc.Xsetlocale(tls, int32(MLC_CTYPE), init_ctype_locale)
+	_ccgo_setlocale(tls, int32(MLC_CTYPE), init_ctype_locale)
 	XPyMem_RawFree(tls, init_ctype_locale)
 	_preconfig_copy(tls, uintptr(unsafe.Pointer(&X_PyRuntime))+9744, bp+44)
 	X_PyPreCmdline_Clear(tls, bp+88)
@@ -72700,7 +72700,7 @@ func X_Py_CoerceLegacyLocale(tls *libc.TLS, warn int32) (r int32) {
 func X_Py_SetLocaleFromEnv(tls *libc.TLS, category int32) (r uintptr) {
 	var res uintptr
 	_ = res
-	res = libc.Xsetlocale(tls, category, __ccgo_ts+2)
+	res = _ccgo_setlocale(tls, category, __ccgo_ts+2)
 	X_Py_ResetForceASCII(tls)
 	return res
 }
@@ -76010,7 +76010,7 @@ func _fatal_output_debug(tls *libc.TLS, msg uintptr) {
 	var _ [128]TWCHAR
 	_, _, _ = buflen, i, msglen
 	buflen = libc.Uint64FromInt64(256)/libc.Uint64FromInt64(2) - libc.Uint64FromInt32(1)
-	libc.XOutputDebugStringW(tls, __ccgo_ts+159164)
+	_ccgo_OutputDebugStringW(tls, __ccgo_ts+159164)
 	msglen = libc.Xstrlen(tls, msg)
 	for msglen != 0 {
 		if buflen > msglen {
@@ -76029,11 +76029,11 @@ func _fatal_output_debug(tls *libc.TLS, msg uintptr) {
 			i = i + 1
 		}
 		(**(**[128]TWCHAR)(__ccgo_up(bp)))[i] = uint16('\000')
-		libc.XOutputDebugStringW(tls, bp)
+		_ccgo_OutputDebugStringW(tls, bp)
 		msg = msg + uintptr(buflen)
 		msglen = msglen - buflen
 	}
-	libc.XOutputDebugStringW(tls, __ccgo_ts+159206)
+	_ccgo_OutputDebugStringW(tls, __ccgo_ts+159206)
 }
 
 func _fatal_error_dump_runtime(tls *libc.TLS, fd int32, runtime1 uintptr) {

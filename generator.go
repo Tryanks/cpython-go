@@ -426,9 +426,13 @@ var shimmedVars = map[string][]string{
 // _ccgo_<name> (defined in libpython/libc_<goos>.go). Keep sorted.
 var shimmedLibc = map[string][]string{"windows": {
 	"GetShortPathNameW",
+	"OutputDebugStringW",
 	"SetErrorMode",
+	"mbstowcs",
+	"setlocale",
 	"strncat",
 	"umask",
+	"wcstombs",
 }, "darwin": {
 	"__builtin___snprintf_chk",
 	"__builtin___sprintf_chk",

@@ -46932,7 +46932,7 @@ func __Py_mbstowcs(tls *libc.TLS, dest uintptr, src uintptr, n Tsize_t) (r Tsize
 	var ch Twchar_t
 	var count, i Tsize_t
 	_, _, _ = ch, count, i
-	count = libc.Xmbstowcs(tls, dest, src, n)
+	count = _ccgo_mbstowcs(tls, dest, src, n)
 	if dest != libc.UintptrFromInt32(0) && count != _DECODE_ERROR {
 		i = uint64(0)
 		for {
@@ -47174,9 +47174,9 @@ func _encode_current_locale(tls *libc.TLS, text uintptr, str uintptr, error_pos 
 			} else {
 				(**(**[2]Twchar_t)(__ccgo_up(bp)))[0] = c
 				if bytes != libc.UintptrFromInt32(0) {
-					converted = libc.Xwcstombs(tls, bytes, bp, size)
+					converted = _ccgo_wcstombs(tls, bytes, bp, size)
 				} else {
-					converted = libc.Xwcstombs(tls, libc.UintptrFromInt32(0), bp, uint64(0))
+					converted = _ccgo_wcstombs(tls, libc.UintptrFromInt32(0), bp, uint64(0))
 				}
 				if converted == _DECODE_ERROR {
 					goto encode_error

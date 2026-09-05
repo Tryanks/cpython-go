@@ -13,6 +13,7 @@ import (
 	"syscall"
 	"time"
 	"unicode/utf16"
+	"unicode/utf8"
 	"unsafe"
 
 	"golang.org/x/sys/windows"
@@ -168,6 +169,158 @@ func widePtrArray(p uintptr) []string {
 		p += unsafe.Sizeof(uintptr(0))
 	}
 	return result
+}
+
+var (
+	windowsLocaleMu      sync.Mutex
+	windowsLocaleNames   = [6]string{"C", "C", "C", "C", "C", "C"}
+	windowsLocaleStrings = map[string]uintptr{}
+)
+
+func windowsStableCString(value string) uintptr {
+	if p := windowsLocaleStrings[value]; p != 0 {
+		return p
+	}
+	p, err := libc.CString(value)
+	if err != nil {
+		return 0
+	}
+	windowsLocaleStrings[value] = p
+	return p
+}
+
+// modernc.org/libc's Windows setlocale always returns NULL. CPython needs a
+// stable result before its allocator and codec registry exist, but obtains the
+// actual filesystem and console encodings from GetACP/GetConsoleCP. Keep a
+// deterministic C/UTF-8 locale model for the six UCRT categories.
+func _ccgo_setlocale(tls *libc.TLS, category int32, locale uintptr) uintptr {
+	if category < 0 || category >= int32(len(windowsLocaleNames)) {
+		setErrno(tls, int32(errno.EINVAL))
+		return 0
+	}
+
+	windowsLocaleMu.Lock()
+	defer windowsLocaleMu.Unlock()
+
+	if locale == 0 {
+		if category != 0 {
+			return windowsStableCString(windowsLocaleNames[category])
+		}
+		first := windowsLocaleNames[1]
+		for i := 2; i < len(windowsLocaleNames); i++ {
+			if windowsLocaleNames[i] != first {
+				return windowsStableCString(
+					"LC_COLLATE=" + windowsLocaleNames[1] +
+						";LC_CTYPE=" + windowsLocaleNames[2] +
+						";LC_MONETARY=" + windowsLocaleNames[3] +
+						";LC_NUMERIC=" + windowsLocaleNames[4] +
+						";LC_TIME=" + windowsLocaleNames[5])
+			}
+		}
+		return windowsStableCString(first)
+	}
+
+	requested := libc.GoString(locale)
+	var name string
+	switch {
+	case requested == "C" || requested == "POSIX":
+		name = "C"
+	case requested == "":
+		name = ".UTF-8"
+	case strings.EqualFold(requested, "UTF-8") ||
+		strings.EqualFold(requested, ".UTF-8") ||
+		strings.HasSuffix(strings.ToUpper(requested), ".UTF-8"):
+		name = ".UTF-8"
+	default:
+		setErrno(tls, int32(errno.EINVAL))
+		return 0
+	}
+
+	if category == 0 {
+		for i := 1; i < len(windowsLocaleNames); i++ {
+			windowsLocaleNames[i] = name
+		}
+	} else {
+		windowsLocaleNames[category] = name
+	}
+	return windowsStableCString(name)
+}
+
+// The fixed UTF-8 locale above needs matching multibyte conversion. Windows
+// wchar_t is UTF-16, so counts and limits are expressed in UTF-16 code units.
+func _ccgo_mbstowcs(tls *libc.TLS, dst, src uintptr, limit uint64) uint64 {
+	if src == 0 {
+		setErrno(tls, int32(errno.EINVAL))
+		return ^uint64(0)
+	}
+	value := libc.GoString(src)
+	if !utf8.ValidString(value) {
+		setErrno(tls, int32(errno.EILSEQ))
+		return ^uint64(0)
+	}
+	encoded := utf16.Encode([]rune(value))
+	if dst == 0 {
+		return uint64(len(encoded))
+	}
+	count := uint64(len(encoded))
+	if count > limit {
+		count = limit
+	}
+	if count != 0 {
+		copy(unsafe.Slice((*uint16)(unsafe.Pointer(dst)), int(count)), encoded[:count])
+	}
+	if count < limit && count == uint64(len(encoded)) {
+		*(*uint16)(unsafe.Pointer(dst + uintptr(count)*2)) = 0
+	}
+	return count
+}
+
+func _ccgo_wcstombs(tls *libc.TLS, dst, src uintptr, limit uint64) uint64 {
+	if src == 0 {
+		setErrno(tls, int32(errno.EINVAL))
+		return ^uint64(0)
+	}
+	units := readWide(src)
+	runes := make([]rune, 0, len(units))
+	for i := 0; i < len(units); i++ {
+		unit := units[i]
+		switch {
+		case unit >= 0xd800 && unit <= 0xdbff:
+			if i+1 == len(units) || units[i+1] < 0xdc00 || units[i+1] > 0xdfff {
+				setErrno(tls, int32(errno.EILSEQ))
+				return ^uint64(0)
+			}
+			runes = append(runes, utf16.DecodeRune(rune(unit), rune(units[i+1])))
+			i++
+		case unit >= 0xdc00 && unit <= 0xdfff:
+			setErrno(tls, int32(errno.EILSEQ))
+			return ^uint64(0)
+		default:
+			runes = append(runes, rune(unit))
+		}
+	}
+	if dst == 0 {
+		return uint64(len(string(runes)))
+	}
+	var written uint64
+	for _, r := range runes {
+		var buffer [utf8.UTFMax]byte
+		n := uint64(utf8.EncodeRune(buffer[:], r))
+		if written+n > limit {
+			return written
+		}
+		copy(cBytes(dst+uintptr(written), n), buffer[:n])
+		written += n
+	}
+	if written < limit {
+		*(*byte)(unsafe.Pointer(dst + uintptr(written))) = 0
+	}
+	return written
+}
+
+func _ccgo_OutputDebugStringW(tls *libc.TLS, text uintptr) {
+	// Debugger output is advisory. Avoid modernc's TODO panic while keeping
+	// fatal-error reporting on the process' real stderr intact.
 }
 
 func tmZone(tmv *Ttm) (string, int) {
