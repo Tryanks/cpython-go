@@ -10,6 +10,7 @@ import (
 	"unsafe"
 
 	"modernc.org/libc"
+	"modernc.org/libsqlite3"
 	"modernc.org/libz"
 )
 
@@ -19,2721 +20,9 @@ var _ reflect.Type
 
 var _ unsafe.Pointer
 
+var _ = libsqlite3.Xsqlite3_libversion_number
+
 var _ = libz.Xcrc32
-
-// C documentation
-//
-//	// Create a set object from dictviews object.
-//	// Returns a new reference.
-//	// This utility function is used by set operations.
-func _dictviews_to_set(tls *libc.TLS, self uintptr) (r uintptr) {
-	var dict, left, v1, v14, v2, v7, v9 uintptr
-	var v11 bool
-	var v12, v3, v5 int32
-	_, _, _, _, _, _, _, _, _, _, _ = dict, left, v1, v11, v12, v14, v2, v3, v5, v7, v9
-	left = self
-	v1 = self
-	v2 = uintptr(unsafe.Pointer(&XPyDictKeys_Type))
-	v7 = (*TPyObject)(unsafe.Pointer(v1)).Fob_type
-	goto _8
-_8:
-	v5 = libc.BoolInt32(v7 == v2)
-	goto _6
-_6:
-	;
-	if v11 = v5 != 0; !v11 {
-		v9 = (*TPyObject)(unsafe.Pointer(v1)).Fob_type
-		goto _10
-	_10:
-	}
-	v3 = libc.BoolInt32(v11 || XPyType_IsSubtype(tls, v9, v2) != 0)
-	goto _4
-_4:
-	if v3 != 0 {
-
-		dict = (*T_PyDictViewObject)(unsafe.Pointer(self)).Fdv_dict
-		v14 = (*TPyObject)(unsafe.Pointer(dict)).Fob_type
-		goto _15
-	_15:
-		v12 = libc.BoolInt32(v14 == uintptr(unsafe.Pointer(&XPyDict_Type)))
-		goto _13
-	_13:
-		if v12 != 0 {
-			left = dict
-		}
-	}
-	return XPySet_New(tls, left)
-}
-
-func _dictviews_sub(tls *libc.TLS, self1 uintptr, other uintptr) (r uintptr) {
-	bp := tls.Alloc(16)
-	defer tls.Free(16)
-	var nargsf Tsize_t
-	var result, tmp, v1, v3, v8 uintptr
-	var v4 int32
-	var v7 Tuint32_t
-	var _ [2]uintptr
-	_, _, _, _, _, _, _, _ = nargsf, result, tmp, v1, v3, v4, v7, v8
-	result = _dictviews_to_set(tls, self1)
-	if result == libc.UintptrFromInt32(0) {
-		return libc.UintptrFromInt32(0)
-	}
-	**(**[2]uintptr)(__ccgo_up(bp)) = [2]uintptr{
-		0: result,
-		1: other,
-	}
-	nargsf = libc.Uint64FromInt32(2) | libc.Uint64FromInt32(libc.Int32FromInt32(1))<<(libc.Uint64FromInt32(8)*libc.Uint64FromInt64(8)-libc.Uint64FromInt32(1))
-	v1 = XPyObject_VectorcallMethod(tls, uintptr(unsafe.Pointer(&X_PyRuntime))+13968+20712+1232+18824, bp, nargsf, libc.UintptrFromInt32(0))
-	goto _2
-_2:
-	tmp = v1
-	if tmp == libc.UintptrFromInt32(0) {
-		v3 = result
-		v4 = libc.BoolInt32(libc.Int32FromUint32(*(*Tuint32_t)(unsafe.Pointer(v3))) < 0)
-		goto _5
-	_5:
-		if v4 != 0 {
-			goto _6
-		}
-		v8 = v3
-		*(*Tuint32_t)(unsafe.Pointer(v8)) = *(*Tuint32_t)(unsafe.Pointer(v8)) - 1
-		v7 = *(*Tuint32_t)(unsafe.Pointer(v8))
-		if v7 == libc.Uint32FromInt32(0) {
-			X_Py_Dealloc(tls, v3)
-		}
-	_6:
-		;
-		return libc.UintptrFromInt32(0)
-	}
-	v1 = tmp
-	v4 = libc.BoolInt32(libc.Int32FromUint32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
-	goto _11
-_11:
-	if v4 != 0 {
-		goto _12
-	}
-	v3 = v1
-	*(*Tuint32_t)(unsafe.Pointer(v3)) = *(*Tuint32_t)(unsafe.Pointer(v3)) - 1
-	v7 = *(*Tuint32_t)(unsafe.Pointer(v3))
-	if v7 == libc.Uint32FromInt32(0) {
-		X_Py_Dealloc(tls, v1)
-	}
-_12:
-	;
-	return result
-}
-
-func X_PyDictView_Intersect(tls *libc.TLS, self uintptr, other uintptr) (r uintptr) {
-	bp := tls.Alloc(32)
-	defer tls.Free(32)
-	var dict_contains Tobjobjproc
-	var it, key, result, tmp, tmp1, v1, v12, v13, v18, v2, v20, v7, v9 uintptr
-	var len_other, len_self TPy_ssize_t
-	var rv, v14, v16, v3, v5 int32
-	var v55 Tuint32_t
-	var v11, v22, v23 bool
-	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = dict_contains, it, key, len_other, len_self, result, rv, tmp, tmp1, v1, v11, v12, v13, v14, v16, v18, v2, v20, v22, v23, v3, v5, v55, v7, v9
-
-	v1 = self
-	v2 = uintptr(unsafe.Pointer(&XPyDictKeys_Type))
-	v7 = (*TPyObject)(unsafe.Pointer(v1)).Fob_type
-	goto _8
-_8:
-	v5 = libc.BoolInt32(v7 == v2)
-	goto _6
-_6:
-	;
-	if v11 = v5 != 0; !v11 {
-		v9 = (*TPyObject)(unsafe.Pointer(v1)).Fob_type
-		goto _10
-	_10:
-	}
-	v3 = libc.BoolInt32(v11 || XPyType_IsSubtype(tls, v9, v2) != 0)
-	goto _4
-_4:
-	;
-	if v23 = v3 != 0; !v23 {
-		v12 = self
-		v13 = uintptr(unsafe.Pointer(&XPyDictItems_Type))
-		v18 = (*TPyObject)(unsafe.Pointer(v12)).Fob_type
-		goto _19
-	_19:
-		v16 = libc.BoolInt32(v18 == v13)
-		goto _17
-	_17:
-		;
-		if v22 = v16 != 0; !v22 {
-			v20 = (*TPyObject)(unsafe.Pointer(v12)).Fob_type
-			goto _21
-		_21:
-		}
-		v14 = libc.BoolInt32(v22 || XPyType_IsSubtype(tls, v20, v13) != 0)
-		goto _15
-	_15:
-	}
-	if !(v23 || v14 != 0) {
-		tmp = other
-		other = self
-		self = tmp
-	}
-	len_self = _dictview_len(tls, self)
-
-	v1 = (*TPyObject)(unsafe.Pointer(other)).Fob_type
-	goto _27
-_27:
-	v3 = libc.BoolInt32(v1 == uintptr(unsafe.Pointer(&XPySet_Type)))
-	goto _25
-_25:
-	;
-	if v3 != 0 && len_self <= XPyObject_Size(tls, other) {
-		return XPyObject_CallMethodObjArgs(tls, other, uintptr(unsafe.Pointer(&X_PyRuntime))+13968+20712+1232+25136, libc.VaList(bp+8, self, libc.UintptrFromInt32(0)))
-	}
-
-	v1 = other
-	v2 = uintptr(unsafe.Pointer(&XPyDictKeys_Type))
-	v7 = (*TPyObject)(unsafe.Pointer(v1)).Fob_type
-	goto _35
-_35:
-	v5 = libc.BoolInt32(v7 == v2)
-	goto _33
-_33:
-	;
-	if v11 = v5 != 0; !v11 {
-		v9 = (*TPyObject)(unsafe.Pointer(v1)).Fob_type
-		goto _37
-	_37:
-	}
-	v3 = libc.BoolInt32(v11 || XPyType_IsSubtype(tls, v9, v2) != 0)
-	goto _31
-_31:
-	;
-	if v23 = v3 != 0; !v23 {
-		v12 = other
-		v13 = uintptr(unsafe.Pointer(&XPyDictItems_Type))
-		v18 = (*TPyObject)(unsafe.Pointer(v12)).Fob_type
-		goto _46
-	_46:
-		v16 = libc.BoolInt32(v18 == v13)
-		goto _44
-	_44:
-		;
-		if v22 = v16 != 0; !v22 {
-			v20 = (*TPyObject)(unsafe.Pointer(v12)).Fob_type
-			goto _48
-		_48:
-		}
-		v14 = libc.BoolInt32(v22 || XPyType_IsSubtype(tls, v20, v13) != 0)
-		goto _42
-	_42:
-	}
-	if v23 || v14 != 0 {
-		len_other = _dictview_len(tls, other)
-		if len_other > len_self {
-			tmp1 = other
-			other = self
-			self = tmp1
-		}
-	}
-
-	result = XPySet_New(tls, libc.UintptrFromInt32(0))
-	if result == libc.UintptrFromInt32(0) {
-		return libc.UintptrFromInt32(0)
-	}
-	it = XPyObject_GetIter(tls, other)
-	if it == libc.UintptrFromInt32(0) {
-		v1 = result
-		v3 = libc.BoolInt32(libc.Int32FromUint32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
-		goto _53
-	_53:
-		if v3 != 0 {
-			goto _54
-		}
-		v2 = v1
-		*(*Tuint32_t)(unsafe.Pointer(v2)) = *(*Tuint32_t)(unsafe.Pointer(v2)) - 1
-		v55 = *(*Tuint32_t)(unsafe.Pointer(v2))
-		if v55 == libc.Uint32FromInt32(0) {
-			X_Py_Dealloc(tls, v1)
-		}
-	_54:
-		;
-		return libc.UintptrFromInt32(0)
-	}
-	v1 = self
-	v2 = uintptr(unsafe.Pointer(&XPyDictKeys_Type))
-	v7 = (*TPyObject)(unsafe.Pointer(v1)).Fob_type
-	goto _64
-_64:
-	v5 = libc.BoolInt32(v7 == v2)
-	goto _62
-_62:
-	;
-	if v11 = v5 != 0; !v11 {
-		v9 = (*TPyObject)(unsafe.Pointer(v1)).Fob_type
-		goto _66
-	_66:
-	}
-	v3 = libc.BoolInt32(v11 || XPyType_IsSubtype(tls, v9, v2) != 0)
-	goto _60
-_60:
-	if v3 != 0 {
-		dict_contains = __ccgo_fp(_dictkeys_contains)
-	} else {
-		dict_contains = __ccgo_fp(_dictitems_contains)
-	}
-	for {
-		v1 = XPyIter_Next(tls, it)
-		key = v1
-		if !(v1 != libc.UintptrFromInt32(0)) {
-			break
-		}
-		rv = (*(*func(*libc.TLS, uintptr, uintptr) int32)(unsafe.Pointer(&struct{ uintptr }{dict_contains})))(tls, self, key)
-		if rv < 0 {
-			goto error
-		}
-		if rv != 0 {
-			if XPySet_Add(tls, result, key) != 0 {
-				goto error
-			}
-		}
-		v1 = key
-		v3 = libc.BoolInt32(libc.Int32FromUint32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
-		goto _71
-	_71:
-		if v3 != 0 {
-			goto _72
-		}
-		v2 = v1
-		*(*Tuint32_t)(unsafe.Pointer(v2)) = *(*Tuint32_t)(unsafe.Pointer(v2)) - 1
-		v55 = *(*Tuint32_t)(unsafe.Pointer(v2))
-		if v55 == libc.Uint32FromInt32(0) {
-			X_Py_Dealloc(tls, v1)
-		}
-	_72:
-	}
-	v1 = it
-	v3 = libc.BoolInt32(libc.Int32FromUint32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
-	goto _77
-_77:
-	if v3 != 0 {
-		goto _78
-	}
-	v2 = v1
-	*(*Tuint32_t)(unsafe.Pointer(v2)) = *(*Tuint32_t)(unsafe.Pointer(v2)) - 1
-	v55 = *(*Tuint32_t)(unsafe.Pointer(v2))
-	if v55 == libc.Uint32FromInt32(0) {
-		X_Py_Dealloc(tls, v1)
-	}
-_78:
-	;
-	if XPyErr_Occurred(tls) != 0 {
-		v1 = result
-		v3 = libc.BoolInt32(libc.Int32FromUint32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
-		goto _83
-	_83:
-		if v3 != 0 {
-			goto _84
-		}
-		v2 = v1
-		*(*Tuint32_t)(unsafe.Pointer(v2)) = *(*Tuint32_t)(unsafe.Pointer(v2)) - 1
-		v55 = *(*Tuint32_t)(unsafe.Pointer(v2))
-		if v55 == libc.Uint32FromInt32(0) {
-			X_Py_Dealloc(tls, v1)
-		}
-	_84:
-		;
-		return libc.UintptrFromInt32(0)
-	}
-	return result
-	goto error
-error:
-	;
-	v1 = it
-	v3 = libc.BoolInt32(libc.Int32FromUint32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
-	goto _89
-_89:
-	if v3 != 0 {
-		goto _90
-	}
-	v2 = v1
-	*(*Tuint32_t)(unsafe.Pointer(v2)) = *(*Tuint32_t)(unsafe.Pointer(v2)) - 1
-	v55 = *(*Tuint32_t)(unsafe.Pointer(v2))
-	if v55 == libc.Uint32FromInt32(0) {
-		X_Py_Dealloc(tls, v1)
-	}
-_90:
-	;
-	v1 = result
-	v3 = libc.BoolInt32(libc.Int32FromUint32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
-	goto _95
-_95:
-	if v3 != 0 {
-		goto _96
-	}
-	v2 = v1
-	*(*Tuint32_t)(unsafe.Pointer(v2)) = *(*Tuint32_t)(unsafe.Pointer(v2)) - 1
-	v55 = *(*Tuint32_t)(unsafe.Pointer(v2))
-	if v55 == libc.Uint32FromInt32(0) {
-		X_Py_Dealloc(tls, v1)
-	}
-_96:
-	;
-	v1 = key
-	v3 = libc.BoolInt32(libc.Int32FromUint32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
-	goto _101
-_101:
-	if v3 != 0 {
-		goto _102
-	}
-	v2 = v1
-	*(*Tuint32_t)(unsafe.Pointer(v2)) = *(*Tuint32_t)(unsafe.Pointer(v2)) - 1
-	v55 = *(*Tuint32_t)(unsafe.Pointer(v2))
-	if v55 == libc.Uint32FromInt32(0) {
-		X_Py_Dealloc(tls, v1)
-	}
-_102:
-	;
-	return libc.UintptrFromInt32(0)
-}
-
-func _dictviews_or(tls *libc.TLS, self uintptr, other uintptr) (r uintptr) {
-	var result, v1, v6 uintptr
-	var v2 int32
-	var v5 Tuint32_t
-	_, _, _, _, _ = result, v1, v2, v5, v6
-	result = _dictviews_to_set(tls, self)
-	if result == libc.UintptrFromInt32(0) {
-		return libc.UintptrFromInt32(0)
-	}
-	if X_PySet_Update(tls, result, other) < 0 {
-		v1 = result
-		v2 = libc.BoolInt32(libc.Int32FromUint32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
-		goto _3
-	_3:
-		if v2 != 0 {
-			goto _4
-		}
-		v6 = v1
-		*(*Tuint32_t)(unsafe.Pointer(v6)) = *(*Tuint32_t)(unsafe.Pointer(v6)) - 1
-		v5 = *(*Tuint32_t)(unsafe.Pointer(v6))
-		if v5 == libc.Uint32FromInt32(0) {
-			X_Py_Dealloc(tls, v1)
-		}
-	_4:
-		;
-		return libc.UintptrFromInt32(0)
-	}
-	return result
-}
-
-func _dictitems_xor_lock_held(tls *libc.TLS, d1 uintptr, d2 uintptr) (r uintptr) {
-	bp := tls.Alloc(80)
-	defer tls.Free(80)
-	var _tmp_old_op, _tmp_op_ptr, pair, remaining_pairs, result_set, val1, v1, v6, v7 uintptr
-	var cur_refcnt, v5 Tuint32_t
-	var nargsf Tsize_t
-	var to_delete, v2 int32
-	var _ TPy_hash_t
-	var _ uintptr
-	var _ TPy_ssize_t
-	var _ uintptr
-	var _ uintptr
-	_, _, _, _, _, _, _, _, _, _, _, _, _, _ = _tmp_old_op, _tmp_op_ptr, cur_refcnt, nargsf, pair, remaining_pairs, result_set, to_delete, val1, v1, v2, v5, v6, v7
-	**(**uintptr)(__ccgo_up(bp + 8)) = _copy_lock_held(tls, d1)
-	if **(**uintptr)(__ccgo_up(bp + 8)) == libc.UintptrFromInt32(0) {
-		return libc.UintptrFromInt32(0)
-	}
-	result_set = XPySet_New(tls, libc.UintptrFromInt32(0))
-	if result_set == libc.UintptrFromInt32(0) {
-		_tmp_op_ptr = bp + 8
-		_tmp_old_op = **(**uintptr)(__ccgo_up(_tmp_op_ptr))
-		if _tmp_old_op != libc.UintptrFromInt32(0) {
-			**(**uintptr)(__ccgo_up(_tmp_op_ptr)) = libc.UintptrFromInt32(0)
-			v1 = _tmp_old_op
-			v2 = libc.BoolInt32(libc.Int32FromUint32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
-			goto _3
-		_3:
-			if v2 != 0 {
-				goto _4
-			}
-			v6 = v1
-			*(*Tuint32_t)(unsafe.Pointer(v6)) = *(*Tuint32_t)(unsafe.Pointer(v6)) - 1
-			v5 = *(*Tuint32_t)(unsafe.Pointer(v6))
-			if v5 == libc.Uint32FromInt32(0) {
-				X_Py_Dealloc(tls, v1)
-			}
-		_4:
-		}
-		return libc.UintptrFromInt32(0)
-	}
-	**(**uintptr)(__ccgo_up(bp + 16)) = libc.UintptrFromInt32(0)
-	val1 = libc.UintptrFromInt32(0)
-	**(**uintptr)(__ccgo_up(bp + 24)) = libc.UintptrFromInt32(0)
-	**(**TPy_ssize_t)(__ccgo_up(bp + 32)) = 0
-	for X_PyDict_Next(tls, d2, bp+32, bp+16, bp+24, bp+40) != 0 {
-		v1 = **(**uintptr)(__ccgo_up(bp + 16))
-		cur_refcnt = *(*Tuint32_t)(unsafe.Pointer(v1))
-		if uint64(cur_refcnt) >= libc.Uint64FromUint64(3)<<libc.Int32FromInt32(30) {
-			goto _8
-		}
-		*(*Tuint32_t)(unsafe.Pointer(v1)) = cur_refcnt + uint32(1)
-	_8:
-		;
-		v1 = **(**uintptr)(__ccgo_up(bp + 24))
-		cur_refcnt = *(*Tuint32_t)(unsafe.Pointer(v1))
-		if uint64(cur_refcnt) >= libc.Uint64FromUint64(3)<<libc.Int32FromInt32(30) {
-			goto _10
-		}
-		*(*Tuint32_t)(unsafe.Pointer(v1)) = cur_refcnt + uint32(1)
-	_10:
-		;
-		val1 = X_PyDict_GetItem_KnownHash(tls, **(**uintptr)(__ccgo_up(bp + 8)), **(**uintptr)(__ccgo_up(bp + 16)), **(**TPy_hash_t)(__ccgo_up(bp + 40)))
-		if val1 == libc.UintptrFromInt32(0) {
-			if XPyErr_Occurred(tls) != 0 {
-				goto error
-			}
-			to_delete = 0
-		} else {
-			v1 = val1
-			cur_refcnt = *(*Tuint32_t)(unsafe.Pointer(v1))
-			if uint64(cur_refcnt) >= libc.Uint64FromUint64(3)<<libc.Int32FromInt32(30) {
-				goto _12
-			}
-			*(*Tuint32_t)(unsafe.Pointer(v1)) = cur_refcnt + uint32(1)
-		_12:
-			;
-			to_delete = XPyObject_RichCompareBool(tls, val1, **(**uintptr)(__ccgo_up(bp + 24)), int32(MPy_EQ))
-			if to_delete < 0 {
-				goto error
-			}
-		}
-		if to_delete != 0 {
-			if X_PyDict_DelItem_KnownHash(tls, **(**uintptr)(__ccgo_up(bp + 8)), **(**uintptr)(__ccgo_up(bp + 16)), **(**TPy_hash_t)(__ccgo_up(bp + 40))) < 0 {
-				goto error
-			}
-		} else {
-			pair = XPyTuple_Pack(tls, int64(2), libc.VaList(bp+56, **(**uintptr)(__ccgo_up(bp + 16)), **(**uintptr)(__ccgo_up(bp + 24))))
-			if pair == libc.UintptrFromInt32(0) {
-				goto error
-			}
-			if XPySet_Add(tls, result_set, pair) < 0 {
-				v1 = pair
-				v2 = libc.BoolInt32(libc.Int32FromUint32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
-				goto _15
-			_15:
-				if v2 != 0 {
-					goto _16
-				}
-				v6 = v1
-				*(*Tuint32_t)(unsafe.Pointer(v6)) = *(*Tuint32_t)(unsafe.Pointer(v6)) - 1
-				v5 = *(*Tuint32_t)(unsafe.Pointer(v6))
-				if v5 == libc.Uint32FromInt32(0) {
-					X_Py_Dealloc(tls, v1)
-				}
-			_16:
-				;
-				goto error
-			}
-			v1 = pair
-			v2 = libc.BoolInt32(libc.Int32FromUint32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
-			goto _21
-		_21:
-			if v2 != 0 {
-				goto _22
-			}
-			v6 = v1
-			*(*Tuint32_t)(unsafe.Pointer(v6)) = *(*Tuint32_t)(unsafe.Pointer(v6)) - 1
-			v5 = *(*Tuint32_t)(unsafe.Pointer(v6))
-			if v5 == libc.Uint32FromInt32(0) {
-				X_Py_Dealloc(tls, v1)
-			}
-		_22:
-		}
-		v1 = **(**uintptr)(__ccgo_up(bp + 16))
-		v2 = libc.BoolInt32(libc.Int32FromUint32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
-		goto _27
-	_27:
-		if v2 != 0 {
-			goto _28
-		}
-		v6 = v1
-		*(*Tuint32_t)(unsafe.Pointer(v6)) = *(*Tuint32_t)(unsafe.Pointer(v6)) - 1
-		v5 = *(*Tuint32_t)(unsafe.Pointer(v6))
-		if v5 == libc.Uint32FromInt32(0) {
-			X_Py_Dealloc(tls, v1)
-		}
-	_28:
-		;
-		v1 = val1
-		if v1 != libc.UintptrFromInt32(0) {
-			v6 = v1
-			v2 = libc.BoolInt32(libc.Int32FromUint32(*(*Tuint32_t)(unsafe.Pointer(v6))) < 0)
-			goto _34
-		_34:
-			if v2 != 0 {
-				goto _35
-			}
-			v7 = v6
-			*(*Tuint32_t)(unsafe.Pointer(v7)) = *(*Tuint32_t)(unsafe.Pointer(v7)) - 1
-			v5 = *(*Tuint32_t)(unsafe.Pointer(v7))
-			if v5 == libc.Uint32FromInt32(0) {
-				X_Py_Dealloc(tls, v6)
-			}
-		_35:
-		}
-		v1 = **(**uintptr)(__ccgo_up(bp + 24))
-		v2 = libc.BoolInt32(libc.Int32FromUint32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
-		goto _40
-	_40:
-		if v2 != 0 {
-			goto _41
-		}
-		v6 = v1
-		*(*Tuint32_t)(unsafe.Pointer(v6)) = *(*Tuint32_t)(unsafe.Pointer(v6)) - 1
-		v5 = *(*Tuint32_t)(unsafe.Pointer(v6))
-		if v5 == libc.Uint32FromInt32(0) {
-			X_Py_Dealloc(tls, v1)
-		}
-	_41:
-	}
-	v6 = libc.UintptrFromInt32(0)
-	**(**uintptr)(__ccgo_up(bp + 24)) = v6
-	v1 = v6
-	val1 = v1
-	**(**uintptr)(__ccgo_up(bp + 16)) = v1
-	v1 = **(**uintptr)(__ccgo_up(bp + 8))
-	*(*uintptr)(unsafe.Pointer(bp)) = v1
-	nargsf = libc.Uint64FromInt32(1) | libc.Uint64FromInt32(libc.Int32FromInt32(1))<<(libc.Uint64FromInt32(8)*libc.Uint64FromInt64(8)-libc.Uint64FromInt32(1))
-	v6 = XPyObject_VectorcallMethod(tls, uintptr(unsafe.Pointer(&X_PyRuntime))+13968+20712+1232+25824, bp, nargsf, libc.UintptrFromInt32(0))
-	goto _48
-_48:
-	remaining_pairs = v6
-	if remaining_pairs == libc.UintptrFromInt32(0) {
-		goto error
-	}
-	if X_PySet_Update(tls, result_set, remaining_pairs) < 0 {
-		v1 = remaining_pairs
-		v2 = libc.BoolInt32(libc.Int32FromUint32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
-		goto _51
-	_51:
-		if v2 != 0 {
-			goto _52
-		}
-		v6 = v1
-		*(*Tuint32_t)(unsafe.Pointer(v6)) = *(*Tuint32_t)(unsafe.Pointer(v6)) - 1
-		v5 = *(*Tuint32_t)(unsafe.Pointer(v6))
-		if v5 == libc.Uint32FromInt32(0) {
-			X_Py_Dealloc(tls, v1)
-		}
-	_52:
-		;
-		goto error
-	}
-	v1 = **(**uintptr)(__ccgo_up(bp + 8))
-	v2 = libc.BoolInt32(libc.Int32FromUint32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
-	goto _57
-_57:
-	if v2 != 0 {
-		goto _58
-	}
-	v6 = v1
-	*(*Tuint32_t)(unsafe.Pointer(v6)) = *(*Tuint32_t)(unsafe.Pointer(v6)) - 1
-	v5 = *(*Tuint32_t)(unsafe.Pointer(v6))
-	if v5 == libc.Uint32FromInt32(0) {
-		X_Py_Dealloc(tls, v1)
-	}
-_58:
-	;
-	v1 = remaining_pairs
-	v2 = libc.BoolInt32(libc.Int32FromUint32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
-	goto _63
-_63:
-	if v2 != 0 {
-		goto _64
-	}
-	v6 = v1
-	*(*Tuint32_t)(unsafe.Pointer(v6)) = *(*Tuint32_t)(unsafe.Pointer(v6)) - 1
-	v5 = *(*Tuint32_t)(unsafe.Pointer(v6))
-	if v5 == libc.Uint32FromInt32(0) {
-		X_Py_Dealloc(tls, v1)
-	}
-_64:
-	;
-	return result_set
-	goto error
-error:
-	;
-	v1 = **(**uintptr)(__ccgo_up(bp + 8))
-	if v1 != libc.UintptrFromInt32(0) {
-		v6 = v1
-		v2 = libc.BoolInt32(libc.Int32FromUint32(*(*Tuint32_t)(unsafe.Pointer(v6))) < 0)
-		goto _70
-	_70:
-		if v2 != 0 {
-			goto _71
-		}
-		v7 = v6
-		*(*Tuint32_t)(unsafe.Pointer(v7)) = *(*Tuint32_t)(unsafe.Pointer(v7)) - 1
-		v5 = *(*Tuint32_t)(unsafe.Pointer(v7))
-		if v5 == libc.Uint32FromInt32(0) {
-			X_Py_Dealloc(tls, v6)
-		}
-	_71:
-	}
-	v1 = result_set
-	if v1 != libc.UintptrFromInt32(0) {
-		v6 = v1
-		v2 = libc.BoolInt32(libc.Int32FromUint32(*(*Tuint32_t)(unsafe.Pointer(v6))) < 0)
-		goto _77
-	_77:
-		if v2 != 0 {
-			goto _78
-		}
-		v7 = v6
-		*(*Tuint32_t)(unsafe.Pointer(v7)) = *(*Tuint32_t)(unsafe.Pointer(v7)) - 1
-		v5 = *(*Tuint32_t)(unsafe.Pointer(v7))
-		if v5 == libc.Uint32FromInt32(0) {
-			X_Py_Dealloc(tls, v6)
-		}
-	_78:
-	}
-	v1 = **(**uintptr)(__ccgo_up(bp + 16))
-	if v1 != libc.UintptrFromInt32(0) {
-		v6 = v1
-		v2 = libc.BoolInt32(libc.Int32FromUint32(*(*Tuint32_t)(unsafe.Pointer(v6))) < 0)
-		goto _84
-	_84:
-		if v2 != 0 {
-			goto _85
-		}
-		v7 = v6
-		*(*Tuint32_t)(unsafe.Pointer(v7)) = *(*Tuint32_t)(unsafe.Pointer(v7)) - 1
-		v5 = *(*Tuint32_t)(unsafe.Pointer(v7))
-		if v5 == libc.Uint32FromInt32(0) {
-			X_Py_Dealloc(tls, v6)
-		}
-	_85:
-	}
-	v1 = val1
-	if v1 != libc.UintptrFromInt32(0) {
-		v6 = v1
-		v2 = libc.BoolInt32(libc.Int32FromUint32(*(*Tuint32_t)(unsafe.Pointer(v6))) < 0)
-		goto _91
-	_91:
-		if v2 != 0 {
-			goto _92
-		}
-		v7 = v6
-		*(*Tuint32_t)(unsafe.Pointer(v7)) = *(*Tuint32_t)(unsafe.Pointer(v7)) - 1
-		v5 = *(*Tuint32_t)(unsafe.Pointer(v7))
-		if v5 == libc.Uint32FromInt32(0) {
-			X_Py_Dealloc(tls, v6)
-		}
-	_92:
-	}
-	v1 = **(**uintptr)(__ccgo_up(bp + 24))
-	if v1 != libc.UintptrFromInt32(0) {
-		v6 = v1
-		v2 = libc.BoolInt32(libc.Int32FromUint32(*(*Tuint32_t)(unsafe.Pointer(v6))) < 0)
-		goto _98
-	_98:
-		if v2 != 0 {
-			goto _99
-		}
-		v7 = v6
-		*(*Tuint32_t)(unsafe.Pointer(v7)) = *(*Tuint32_t)(unsafe.Pointer(v7)) - 1
-		v5 = *(*Tuint32_t)(unsafe.Pointer(v7))
-		if v5 == libc.Uint32FromInt32(0) {
-			X_Py_Dealloc(tls, v6)
-		}
-	_99:
-	}
-	return libc.UintptrFromInt32(0)
-}
-
-func _dictitems_xor(tls *libc.TLS, self uintptr, other uintptr) (r uintptr) {
-	var d1, d2, res uintptr
-	_, _, _ = d1, d2, res
-	d1 = (*T_PyDictViewObject)(unsafe.Pointer(self)).Fdv_dict
-	d2 = (*T_PyDictViewObject)(unsafe.Pointer(other)).Fdv_dict
-	res = _dictitems_xor_lock_held(tls, d1, d2)
-	return res
-}
-
-func _dictviews_xor(tls *libc.TLS, self1 uintptr, other uintptr) (r uintptr) {
-	bp := tls.Alloc(16)
-	defer tls.Free(16)
-	var nargsf Tsize_t
-	var result, tmp, v1, v12, v13, v18, v2, v20, v7, v9 uintptr
-	var v11, v22, v23 bool
-	var v14, v16, v3, v5 int32
-	var v30 Tuint32_t
-	var _ [2]uintptr
-	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = nargsf, result, tmp, v1, v11, v12, v13, v14, v16, v18, v2, v20, v22, v23, v3, v30, v5, v7, v9
-	v1 = self1
-	v2 = uintptr(unsafe.Pointer(&XPyDictItems_Type))
-	v7 = (*TPyObject)(unsafe.Pointer(v1)).Fob_type
-	goto _8
-_8:
-	v5 = libc.BoolInt32(v7 == v2)
-	goto _6
-_6:
-	;
-	if v11 = v5 != 0; !v11 {
-		v9 = (*TPyObject)(unsafe.Pointer(v1)).Fob_type
-		goto _10
-	_10:
-	}
-	v3 = libc.BoolInt32(v11 || XPyType_IsSubtype(tls, v9, v2) != 0)
-	goto _4
-_4:
-	;
-	if v23 = v3 != 0; v23 {
-		v12 = other
-		v13 = uintptr(unsafe.Pointer(&XPyDictItems_Type))
-		v18 = (*TPyObject)(unsafe.Pointer(v12)).Fob_type
-		goto _19
-	_19:
-		v16 = libc.BoolInt32(v18 == v13)
-		goto _17
-	_17:
-		;
-		if v22 = v16 != 0; !v22 {
-			v20 = (*TPyObject)(unsafe.Pointer(v12)).Fob_type
-			goto _21
-		_21:
-		}
-		v14 = libc.BoolInt32(v22 || XPyType_IsSubtype(tls, v20, v13) != 0)
-		goto _15
-	_15:
-	}
-	if v23 && v14 != 0 {
-		return _dictitems_xor(tls, self1, other)
-	}
-	result = _dictviews_to_set(tls, self1)
-	if result == libc.UintptrFromInt32(0) {
-		return libc.UintptrFromInt32(0)
-	}
-	**(**[2]uintptr)(__ccgo_up(bp)) = [2]uintptr{
-		0: result,
-		1: other,
-	}
-	nargsf = libc.Uint64FromInt32(2) | libc.Uint64FromInt32(libc.Int32FromInt32(1))<<(libc.Uint64FromInt32(8)*libc.Uint64FromInt64(8)-libc.Uint64FromInt32(1))
-	v1 = XPyObject_VectorcallMethod(tls, uintptr(unsafe.Pointer(&X_PyRuntime))+13968+20712+1232+37168, bp, nargsf, libc.UintptrFromInt32(0))
-	goto _25
-_25:
-	tmp = v1
-	if tmp == libc.UintptrFromInt32(0) {
-		v2 = result
-		v3 = libc.BoolInt32(libc.Int32FromUint32(*(*Tuint32_t)(unsafe.Pointer(v2))) < 0)
-		goto _28
-	_28:
-		if v3 != 0 {
-			goto _29
-		}
-		v7 = v2
-		*(*Tuint32_t)(unsafe.Pointer(v7)) = *(*Tuint32_t)(unsafe.Pointer(v7)) - 1
-		v30 = *(*Tuint32_t)(unsafe.Pointer(v7))
-		if v30 == libc.Uint32FromInt32(0) {
-			X_Py_Dealloc(tls, v2)
-		}
-	_29:
-		;
-		return libc.UintptrFromInt32(0)
-	}
-	v1 = tmp
-	v3 = libc.BoolInt32(libc.Int32FromUint32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
-	goto _34
-_34:
-	if v3 != 0 {
-		goto _35
-	}
-	v2 = v1
-	*(*Tuint32_t)(unsafe.Pointer(v2)) = *(*Tuint32_t)(unsafe.Pointer(v2)) - 1
-	v30 = *(*Tuint32_t)(unsafe.Pointer(v2))
-	if v30 == libc.Uint32FromInt32(0) {
-		X_Py_Dealloc(tls, v1)
-	}
-_35:
-	;
-	return result
-}
-
-var _dictviews_as_number = TPyNumberMethods{}
-
-func init() {
-	p := unsafe.Pointer(&_dictviews_as_number)
-	*(*uintptr)(unsafe.Add(p, 8)) = __ccgo_fp(_dictviews_sub)
-	*(*uintptr)(unsafe.Add(p, 104)) = __ccgo_fp(X_PyDictView_Intersect)
-	*(*uintptr)(unsafe.Add(p, 112)) = __ccgo_fp(_dictviews_xor)
-	*(*uintptr)(unsafe.Add(p, 120)) = __ccgo_fp(_dictviews_or)
-}
-
-func _dictviews_isdisjoint(tls *libc.TLS, self uintptr, other uintptr) (r uintptr) {
-	var contains, v1, v18, v20, v29, v31, v5 int32
-	var it, item, tmp, v10, v13, v16, v17, v22, v24, v27, v28, v3, v33, v35, v7 uintptr
-	var len_other, len_self TPy_ssize_t
-	var v12, v15, v26, v37, v38, v39, v9 bool
-	var v45 Tuint32_t
-	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = contains, it, item, len_other, len_self, tmp, v1, v10, v12, v13, v15, v16, v17, v18, v20, v22, v24, v26, v27, v28, v29, v3, v31, v33, v35, v37, v38, v39, v45, v5, v7, v9
-	item = libc.UintptrFromInt32(0)
-	if self == other {
-		if _dictview_len(tls, self) == 0 {
-			return uintptr(unsafe.Pointer(&X_Py_TrueStruct))
-		} else {
-			return uintptr(unsafe.Pointer(&X_Py_FalseStruct))
-		}
-	}
-
-	v3 = (*TPyObject)(unsafe.Pointer(other)).Fob_type
-	goto _4
-_4:
-	v1 = libc.BoolInt32(v3 == uintptr(unsafe.Pointer(&XPySet_Type)))
-	goto _2
-_2:
-	;
-	if v9 = v1 != 0; !v9 {
-		v7 = (*TPyObject)(unsafe.Pointer(other)).Fob_type
-		goto _8
-	_8:
-		v5 = libc.BoolInt32(v7 == uintptr(unsafe.Pointer(&XPyFrozenSet_Type)))
-		goto _6
-	_6:
-	}
-	if v12 = v9 || v5 != 0; !v12 {
-		v10 = (*TPyObject)(unsafe.Pointer(other)).Fob_type
-		goto _11
-	_11:
-	}
-	if v15 = v12 || XPyType_IsSubtype(tls, v10, uintptr(unsafe.Pointer(&XPySet_Type))) != 0; !v15 {
-		v13 = (*TPyObject)(unsafe.Pointer(other)).Fob_type
-		goto _14
-	_14:
-	}
-	if v39 = v15 || XPyType_IsSubtype(tls, v13, uintptr(unsafe.Pointer(&XPyFrozenSet_Type))) != 0; !v39 {
-		v16 = other
-		v17 = uintptr(unsafe.Pointer(&XPyDictKeys_Type))
-		v22 = (*TPyObject)(unsafe.Pointer(v16)).Fob_type
-		goto _23
-	_23:
-		v20 = libc.BoolInt32(v22 == v17)
-		goto _21
-	_21:
-		;
-		if v26 = v20 != 0; !v26 {
-			v24 = (*TPyObject)(unsafe.Pointer(v16)).Fob_type
-			goto _25
-		_25:
-		}
-		v18 = libc.BoolInt32(v26 || XPyType_IsSubtype(tls, v24, v17) != 0)
-		goto _19
-	_19:
-		;
-		if v38 = v18 != 0; !v38 {
-			v27 = other
-			v28 = uintptr(unsafe.Pointer(&XPyDictItems_Type))
-			v33 = (*TPyObject)(unsafe.Pointer(v27)).Fob_type
-			goto _34
-		_34:
-			v31 = libc.BoolInt32(v33 == v28)
-			goto _32
-		_32:
-			;
-			if v37 = v31 != 0; !v37 {
-				v35 = (*TPyObject)(unsafe.Pointer(v27)).Fob_type
-				goto _36
-			_36:
-			}
-			v29 = libc.BoolInt32(v37 || XPyType_IsSubtype(tls, v35, v28) != 0)
-			goto _30
-		_30:
-		}
-	}
-	if v39 || (v38 || v29 != 0) {
-		len_self = _dictview_len(tls, self)
-		len_other = XPyObject_Size(tls, other)
-		if len_other == int64(-int32(1)) {
-			return libc.UintptrFromInt32(0)
-		}
-		if len_other > len_self {
-			tmp = other
-			other = self
-			self = tmp
-		}
-	}
-	it = XPyObject_GetIter(tls, other)
-	if it == libc.UintptrFromInt32(0) {
-		return libc.UintptrFromInt32(0)
-	}
-	for {
-		v3 = XPyIter_Next(tls, it)
-		item = v3
-		if !(v3 != libc.UintptrFromInt32(0)) {
-			break
-		}
-		contains = XPySequence_Contains(tls, self, item)
-		v7 = item
-		v1 = libc.BoolInt32(libc.Int32FromUint32(*(*Tuint32_t)(unsafe.Pointer(v7))) < 0)
-		goto _43
-	_43:
-		if v1 != 0 {
-			goto _44
-		}
-		v10 = v7
-		*(*Tuint32_t)(unsafe.Pointer(v10)) = *(*Tuint32_t)(unsafe.Pointer(v10)) - 1
-		v45 = *(*Tuint32_t)(unsafe.Pointer(v10))
-		if v45 == libc.Uint32FromInt32(0) {
-			X_Py_Dealloc(tls, v7)
-		}
-	_44:
-		;
-		if contains == -int32(1) {
-			v3 = it
-			v1 = libc.BoolInt32(libc.Int32FromUint32(*(*Tuint32_t)(unsafe.Pointer(v3))) < 0)
-			goto _49
-		_49:
-			if v1 != 0 {
-				goto _50
-			}
-			v7 = v3
-			*(*Tuint32_t)(unsafe.Pointer(v7)) = *(*Tuint32_t)(unsafe.Pointer(v7)) - 1
-			v45 = *(*Tuint32_t)(unsafe.Pointer(v7))
-			if v45 == libc.Uint32FromInt32(0) {
-				X_Py_Dealloc(tls, v3)
-			}
-		_50:
-			;
-			return libc.UintptrFromInt32(0)
-		}
-		if contains != 0 {
-			v3 = it
-			v1 = libc.BoolInt32(libc.Int32FromUint32(*(*Tuint32_t)(unsafe.Pointer(v3))) < 0)
-			goto _55
-		_55:
-			if v1 != 0 {
-				goto _56
-			}
-			v7 = v3
-			*(*Tuint32_t)(unsafe.Pointer(v7)) = *(*Tuint32_t)(unsafe.Pointer(v7)) - 1
-			v45 = *(*Tuint32_t)(unsafe.Pointer(v7))
-			if v45 == libc.Uint32FromInt32(0) {
-				X_Py_Dealloc(tls, v3)
-			}
-		_56:
-			;
-			return uintptr(unsafe.Pointer(&X_Py_FalseStruct))
-		}
-	}
-	v3 = it
-	v1 = libc.BoolInt32(libc.Int32FromUint32(*(*Tuint32_t)(unsafe.Pointer(v3))) < 0)
-	goto _61
-_61:
-	if v1 != 0 {
-		goto _62
-	}
-	v7 = v3
-	*(*Tuint32_t)(unsafe.Pointer(v7)) = *(*Tuint32_t)(unsafe.Pointer(v7)) - 1
-	v45 = *(*Tuint32_t)(unsafe.Pointer(v7))
-	if v45 == libc.Uint32FromInt32(0) {
-		X_Py_Dealloc(tls, v3)
-	}
-_62:
-	;
-	if XPyErr_Occurred(tls) != 0 {
-		return libc.UintptrFromInt32(0)
-	}
-	return uintptr(unsafe.Pointer(&X_Py_TrueStruct))
-}
-
-var _reversed_keys_doc = [46]uint8{'R', 'e', 't', 'u', 'r', 'n', ' ', 'a', ' ', 'r', 'e', 'v', 'e', 'r', 's', 'e', ' ', 'i', 't', 'e', 'r', 'a', 't', 'o', 'r', ' ', 'o', 'v', 'e', 'r', ' ', 't', 'h', 'e', ' ', 'd', 'i', 'c', 't', ' ', 'k', 'e', 'y', 's', '.'}
-
-var _dictkeys_methods = [3]TPyMethodDef{
-	0: {
-		Fml_name:  __ccgo_ts + 47983,
-		Fml_flags: int32(MMETH_O),
-		Fml_doc:   uintptr(unsafe.Pointer(&_isdisjoint_doc)),
-	},
-	1: {
-		Fml_name:  __ccgo_ts + 25851,
-		Fml_flags: int32(MMETH_NOARGS),
-		Fml_doc:   uintptr(unsafe.Pointer(&_reversed_keys_doc)),
-	},
-	2: {},
-}
-
-func init() {
-	p := unsafe.Pointer(&_dictkeys_methods)
-	*(*uintptr)(unsafe.Add(p, 8)) = __ccgo_fp(_dictviews_isdisjoint)
-	*(*uintptr)(unsafe.Add(p, 40)) = __ccgo_fp(_dictkeys_reversed)
-}
-
-func init() {
-	p := unsafe.Pointer(&XPyDictKeys_Type)
-	*(*uintptr)(unsafe.Add(p, 48)) = __ccgo_fp(_dictview_dealloc)
-	*(*uintptr)(unsafe.Add(p, 88)) = __ccgo_fp(_dictview_repr)
-	*(*uintptr)(unsafe.Add(p, 144)) = __ccgo_fp(XPyObject_GenericGetAttr)
-	*(*uintptr)(unsafe.Add(p, 184)) = __ccgo_fp(_dictview_traverse)
-	*(*uintptr)(unsafe.Add(p, 200)) = __ccgo_fp(_dictview_richcompare)
-	*(*uintptr)(unsafe.Add(p, 216)) = __ccgo_fp(_dictkeys_iter)
-}
-
-func _dict_keys_impl(tls *libc.TLS, self uintptr) (r uintptr) {
-
-	return X_PyDictView_New(tls, self, uintptr(unsafe.Pointer(&XPyDictKeys_Type)))
-}
-
-func _dictkeys_reversed(tls *libc.TLS, self uintptr, _unused_ignored uintptr) (r uintptr) {
-	var dv uintptr
-	_ = dv
-	dv = self
-	if (*T_PyDictViewObject)(unsafe.Pointer(dv)).Fdv_dict == libc.UintptrFromInt32(0) {
-		return uintptr(unsafe.Pointer(&X_Py_NoneStruct))
-	}
-	return _dictiter_new(tls, (*T_PyDictViewObject)(unsafe.Pointer(dv)).Fdv_dict, uintptr(unsafe.Pointer(&XPyDictRevIterKey_Type)))
-}
-
-func _dictitems_iter(tls *libc.TLS, self uintptr) (r uintptr) {
-	var dv uintptr
-	_ = dv
-	dv = self
-	if (*T_PyDictViewObject)(unsafe.Pointer(dv)).Fdv_dict == libc.UintptrFromInt32(0) {
-		return uintptr(unsafe.Pointer(&X_Py_NoneStruct))
-	}
-	return _dictiter_new(tls, (*T_PyDictViewObject)(unsafe.Pointer(dv)).Fdv_dict, uintptr(unsafe.Pointer(&XPyDictIterItem_Type)))
-}
-
-func _dictitems_contains(tls *libc.TLS, self uintptr, obj uintptr) (r int32) {
-	bp := tls.Alloc(16)
-	defer tls.Free(16)
-	var dv, key, tuple, value, v1, v10 uintptr
-	var flags uint64
-	var result, v3 int32
-	var v14 Tuint32_t
-	var v5, v7 TPy_ssize_t
-	var v9 bool
-	var _ uintptr
-	_, _, _, _, _, _, _, _, _, _, _, _, _ = dv, flags, key, result, tuple, value, v1, v10, v14, v3, v5, v7, v9
-	dv = self
-	if (*T_PyDictViewObject)(unsafe.Pointer(dv)).Fdv_dict == libc.UintptrFromInt32(0) {
-		return 0
-	}
-	v1 = (*TPyObject)(unsafe.Pointer(obj)).Fob_type
-	goto _2
-_2:
-	flags = (*TPyTypeObject)(unsafe.Pointer(v1)).Ftp_flags
-	v3 = libc.BoolInt32(flags&(libc.Uint64FromUint64(1)<<libc.Int32FromInt32(26)) != uint64(0))
-	goto _4
-_4:
-	;
-	if v9 = !(v3 != 0); !v9 {
-		tuple = obj
-		v7 = (*TPyVarObject)(unsafe.Pointer(tuple)).Fob_size
-		goto _8
-	_8:
-		v5 = v7
-		goto _6
-	_6:
-	}
-	if v9 || v5 != int64(2) {
-		return 0
-	}
-	key = **(**uintptr)(__ccgo_up(obj + 32))
-	value = **(**uintptr)(__ccgo_up(obj + 32 + 1*8))
-	result = XPyDict_GetItemRef(tls, (*T_PyDictViewObject)(unsafe.Pointer(dv)).Fdv_dict, key, bp)
-	if result == int32(1) {
-		result = XPyObject_RichCompareBool(tls, **(**uintptr)(__ccgo_up(bp)), value, int32(MPy_EQ))
-		v1 = **(**uintptr)(__ccgo_up(bp))
-		v3 = libc.BoolInt32(libc.Int32FromUint32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
-		goto _12
-	_12:
-		if v3 != 0 {
-			goto _13
-		}
-		v10 = v1
-		*(*Tuint32_t)(unsafe.Pointer(v10)) = *(*Tuint32_t)(unsafe.Pointer(v10)) - 1
-		v14 = *(*Tuint32_t)(unsafe.Pointer(v10))
-		if v14 == libc.Uint32FromInt32(0) {
-			X_Py_Dealloc(tls, v1)
-		}
-	_13:
-	}
-	return result
-}
-
-var _dictitems_as_sequence = TPySequenceMethods{}
-
-func init() {
-	p := unsafe.Pointer(&_dictitems_as_sequence)
-	*(*uintptr)(unsafe.Add(p, 0)) = __ccgo_fp(_dictview_len)
-	*(*uintptr)(unsafe.Add(p, 56)) = __ccgo_fp(_dictitems_contains)
-}
-
-var _reversed_items_doc = [47]uint8{'R', 'e', 't', 'u', 'r', 'n', ' ', 'a', ' ', 'r', 'e', 'v', 'e', 'r', 's', 'e', ' ', 'i', 't', 'e', 'r', 'a', 't', 'o', 'r', ' ', 'o', 'v', 'e', 'r', ' ', 't', 'h', 'e', ' ', 'd', 'i', 'c', 't', ' ', 'i', 't', 'e', 'm', 's', '.'}
-
-var _dictitems_methods = [3]TPyMethodDef{
-	0: {
-		Fml_name:  __ccgo_ts + 47983,
-		Fml_flags: int32(MMETH_O),
-		Fml_doc:   uintptr(unsafe.Pointer(&_isdisjoint_doc)),
-	},
-	1: {
-		Fml_name:  __ccgo_ts + 25851,
-		Fml_flags: int32(MMETH_NOARGS),
-		Fml_doc:   uintptr(unsafe.Pointer(&_reversed_items_doc)),
-	},
-	2: {},
-}
-
-func init() {
-	p := unsafe.Pointer(&_dictitems_methods)
-	*(*uintptr)(unsafe.Add(p, 8)) = __ccgo_fp(_dictviews_isdisjoint)
-	*(*uintptr)(unsafe.Add(p, 40)) = __ccgo_fp(_dictitems_reversed)
-}
-
-func init() {
-	p := unsafe.Pointer(&XPyDictItems_Type)
-	*(*uintptr)(unsafe.Add(p, 48)) = __ccgo_fp(_dictview_dealloc)
-	*(*uintptr)(unsafe.Add(p, 88)) = __ccgo_fp(_dictview_repr)
-	*(*uintptr)(unsafe.Add(p, 144)) = __ccgo_fp(XPyObject_GenericGetAttr)
-	*(*uintptr)(unsafe.Add(p, 184)) = __ccgo_fp(_dictview_traverse)
-	*(*uintptr)(unsafe.Add(p, 200)) = __ccgo_fp(_dictview_richcompare)
-	*(*uintptr)(unsafe.Add(p, 216)) = __ccgo_fp(_dictitems_iter)
-}
-
-func _dict_items_impl(tls *libc.TLS, self uintptr) (r uintptr) {
-
-	return X_PyDictView_New(tls, self, uintptr(unsafe.Pointer(&XPyDictItems_Type)))
-}
-
-func _dictitems_reversed(tls *libc.TLS, self uintptr, _unused_ignored uintptr) (r uintptr) {
-	var dv uintptr
-	_ = dv
-	dv = self
-	if (*T_PyDictViewObject)(unsafe.Pointer(dv)).Fdv_dict == libc.UintptrFromInt32(0) {
-		return uintptr(unsafe.Pointer(&X_Py_NoneStruct))
-	}
-	return _dictiter_new(tls, (*T_PyDictViewObject)(unsafe.Pointer(dv)).Fdv_dict, uintptr(unsafe.Pointer(&XPyDictRevIterItem_Type)))
-}
-
-func _dictvalues_iter(tls *libc.TLS, self uintptr) (r uintptr) {
-	var dv uintptr
-	_ = dv
-	dv = self
-	if (*T_PyDictViewObject)(unsafe.Pointer(dv)).Fdv_dict == libc.UintptrFromInt32(0) {
-		return uintptr(unsafe.Pointer(&X_Py_NoneStruct))
-	}
-	return _dictiter_new(tls, (*T_PyDictViewObject)(unsafe.Pointer(dv)).Fdv_dict, uintptr(unsafe.Pointer(&XPyDictIterValue_Type)))
-}
-
-var _dictvalues_as_sequence = TPySequenceMethods{}
-
-func init() {
-	p := unsafe.Pointer(&_dictvalues_as_sequence)
-	*(*uintptr)(unsafe.Add(p, 0)) = __ccgo_fp(_dictview_len)
-}
-
-var _reversed_values_doc = [48]uint8{'R', 'e', 't', 'u', 'r', 'n', ' ', 'a', ' ', 'r', 'e', 'v', 'e', 'r', 's', 'e', ' ', 'i', 't', 'e', 'r', 'a', 't', 'o', 'r', ' ', 'o', 'v', 'e', 'r', ' ', 't', 'h', 'e', ' ', 'd', 'i', 'c', 't', ' ', 'v', 'a', 'l', 'u', 'e', 's', '.'}
-
-var _dictvalues_methods = [2]TPyMethodDef{
-	0: {
-		Fml_name:  __ccgo_ts + 25851,
-		Fml_flags: int32(MMETH_NOARGS),
-		Fml_doc:   uintptr(unsafe.Pointer(&_reversed_values_doc)),
-	},
-	1: {},
-}
-
-func init() {
-	p := unsafe.Pointer(&_dictvalues_methods)
-	*(*uintptr)(unsafe.Add(p, 8)) = __ccgo_fp(_dictvalues_reversed)
-}
-
-func init() {
-	p := unsafe.Pointer(&XPyDictValues_Type)
-	*(*uintptr)(unsafe.Add(p, 48)) = __ccgo_fp(_dictview_dealloc)
-	*(*uintptr)(unsafe.Add(p, 88)) = __ccgo_fp(_dictview_repr)
-	*(*uintptr)(unsafe.Add(p, 144)) = __ccgo_fp(XPyObject_GenericGetAttr)
-	*(*uintptr)(unsafe.Add(p, 184)) = __ccgo_fp(_dictview_traverse)
-	*(*uintptr)(unsafe.Add(p, 216)) = __ccgo_fp(_dictvalues_iter)
-}
-
-func _dict_values_impl(tls *libc.TLS, self uintptr) (r uintptr) {
-
-	return X_PyDictView_New(tls, self, uintptr(unsafe.Pointer(&XPyDictValues_Type)))
-}
-
-func _dictvalues_reversed(tls *libc.TLS, self uintptr, _unused_ignored uintptr) (r uintptr) {
-	var dv uintptr
-	_ = dv
-	dv = self
-	if (*T_PyDictViewObject)(unsafe.Pointer(dv)).Fdv_dict == libc.UintptrFromInt32(0) {
-		return uintptr(unsafe.Pointer(&X_Py_NoneStruct))
-	}
-	return _dictiter_new(tls, (*T_PyDictViewObject)(unsafe.Pointer(dv)).Fdv_dict, uintptr(unsafe.Pointer(&XPyDictRevIterValue_Type)))
-}
-
-// C documentation
-//
-//	/* Returns NULL if cannot allocate a new PyDictKeysObject,
-//	   but does not set an error */
-func X_PyDict_NewKeysForClass(tls *libc.TLS, cls uintptr) (r uintptr) {
-	var attrs, interp, key, keys, tstate, tuple, v1, v3 uintptr
-	var flags uint64
-	var hash, v19 TPy_hash_t
-	var i, v11, v13 TPy_ssize_t
-	var v15, v7 int32
-	var v20, v9 bool
-	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = attrs, flags, hash, i, interp, key, keys, tstate, tuple, v1, v11, v13, v15, v19, v20, v3, v7, v9
-	v1 = (*_ccgo_tls_tstate(tls))
-	goto _2
-_2:
-	tstate = v1
-	v3 = (*TPyThreadState)(unsafe.Pointer(tstate)).Finterp
-	goto _4
-_4:
-	interp = v3
-	keys = _new_keys_object(tls, interp, uint8(MNEXT_LOG2_SHARED_KEYS_MAX_SIZE), libc.BoolUint8(1 != 0))
-	if keys == libc.UintptrFromInt32(0) {
-		XPyErr_Clear(tls)
-	} else {
-
-		(*TPyDictKeysObject)(unsafe.Pointer(keys)).Fdk_usable = int64(MSHARED_KEYS_MAX_SIZE)
-		(*TPyDictKeysObject)(unsafe.Pointer(keys)).Fdk_kind = uint8(EDICT_KEYS_SPLIT)
-	}
-	if (*TPyHeapTypeObject)(unsafe.Pointer(cls)).Fht_type.Ftp_dict != 0 {
-		attrs = XPyDict_GetItem(tls, (*TPyHeapTypeObject)(unsafe.Pointer(cls)).Fht_type.Ftp_dict, uintptr(unsafe.Pointer(&X_PyRuntime))+13968+20712+1232+8848)
-		if v9 = attrs != libc.UintptrFromInt32(0); v9 {
-			v1 = (*TPyObject)(unsafe.Pointer(attrs)).Fob_type
-			goto _6
-		_6:
-			flags = (*TPyTypeObject)(unsafe.Pointer(v1)).Ftp_flags
-			v7 = libc.BoolInt32(flags&(libc.Uint64FromUint64(1)<<libc.Int32FromInt32(26)) != uint64(0))
-			goto _8
-		_8:
-		}
-		if v9 && v7 != 0 {
-			i = 0
-			for {
-				tuple = attrs
-				v13 = (*TPyVarObject)(unsafe.Pointer(tuple)).Fob_size
-				goto _14
-			_14:
-				v11 = v13
-				goto _12
-			_12:
-				if !(i < v11) {
-					break
-				}
-				key = **(**uintptr)(__ccgo_up(attrs + 32 + uintptr(i)*8))
-				v3 = (*TPyObject)(unsafe.Pointer(key)).Fob_type
-				goto _18
-			_18:
-				v15 = libc.BoolInt32(v3 == uintptr(unsafe.Pointer(&XPyUnicode_Type)))
-				goto _16
-			_16:
-				;
-				if v20 = v15 != 0; v20 {
-					v19 = _unicode_get_hash(tls, key)
-					hash = v19
-				}
-				if v20 && v19 != int64(-int32(1)) {
-					if _insert_split_key(tls, keys, key, hash) == int64(-libc.Int32FromInt32(1)) {
-						break
-					}
-				}
-				goto _10
-			_10:
-				;
-				i = i + 1
-			}
-		}
-	}
-	return keys
-}
-
-func X_PyObject_InitInlineValues(tls *libc.TLS, obj2 uintptr, tp1 uintptr) {
-	var dk_nentries, dk_usable TPy_ssize_t
-	var i, size, v2 Tsize_t
-	var keys1, tp, values, v1, v4, v5, v7 uintptr
-	_, _, _, _, _, _, _, _, _, _, _, _ = dk_nentries, dk_usable, i, keys1, size, tp, values, v1, v2, v4, v5, v7
-	keys1 = (*TPyHeapTypeObject)(unsafe.Pointer(tp1)).Fht_cached_keys
-	if (*TPyDictKeysObject)(unsafe.Pointer(keys1)).Fdk_usable > int64(1) {
-		(*TPyDictKeysObject)(unsafe.Pointer(keys1)).Fdk_usable = (*TPyDictKeysObject)(unsafe.Pointer(keys1)).Fdk_usable - 1
-	}
-	v1 = keys1
-	dk_usable = (*TPyDictKeysObject)(unsafe.Pointer(v1)).Fdk_usable
-	dk_nentries = (*TPyDictKeysObject)(unsafe.Pointer(v1)).Fdk_nentries
-	v2 = libc.Uint64FromInt64(dk_nentries + dk_usable)
-	goto _3
-_3:
-	size = v2
-	v4 = obj2
-	v5 = (*TPyObject)(unsafe.Pointer(v4)).Fob_type
-	goto _6
-_6:
-	tp = v5
-	v7 = v4 + uintptr((*TPyTypeObject)(unsafe.Pointer(tp)).Ftp_basicsize)
-	goto _8
-_8:
-	values = v7
-	(*TPyDictValues)(unsafe.Pointer(values)).Fcapacity = uint8(size)
-	(*TPyDictValues)(unsafe.Pointer(values)).Fsize = uint8(0)
-	(*TPyDictValues)(unsafe.Pointer(values)).Fembedded = uint8(1)
-	(*TPyDictValues)(unsafe.Pointer(values)).Fvalid = uint8(1)
-	i = uint64(0)
-	for {
-		if !(i < size) {
-			break
-		}
-		**(**uintptr)(__ccgo_up(values + 8 + uintptr(i)*8)) = libc.UintptrFromInt32(0)
-		goto _9
-	_9:
-		;
-		i = i + 1
-	}
-	v1 = obj2 + uintptr(libc.Int64FromInt64(8)*int64(-libc.Int32FromInt32(3)))
-	goto _11
-_11:
-	(*TPyManagedDictPointer)(unsafe.Pointer(v1)).Fdict = libc.UintptrFromInt32(0)
-}
-
-func _make_dict_from_instance_attributes(tls *libc.TLS, interp uintptr, keys1 uintptr, values uintptr) (r uintptr) {
-	var dk_nentries, dk_usable, used TPy_ssize_t
-	var i, size, v2 Tsize_t
-	var res, val, v1 uintptr
-	_, _, _, _, _, _, _, _, _ = dk_nentries, dk_usable, i, res, size, used, val, v1, v2
-	_dictkeys_incref(tls, keys1)
-	used = 0
-	v1 = keys1
-	dk_usable = (*TPyDictKeysObject)(unsafe.Pointer(v1)).Fdk_usable
-	dk_nentries = (*TPyDictKeysObject)(unsafe.Pointer(v1)).Fdk_nentries
-	v2 = libc.Uint64FromInt64(dk_nentries + dk_usable)
-	goto _3
-_3:
-	size = v2
-	i = uint64(0)
-	for {
-		if !(i < size) {
-			break
-		}
-		val = **(**uintptr)(__ccgo_up(values + 8 + uintptr(i)*8))
-		if val != libc.UintptrFromInt32(0) {
-			used = used + int64(1)
-		}
-		goto _4
-	_4:
-		;
-		i = i + 1
-	}
-	res = _new_dict(tls, interp, keys1, values, used, 0)
-	return res
-}
-
-func X_PyObject_MaterializeManagedDict_LockHeld(tls *libc.TLS, obj2 uintptr) (r uintptr) {
-	var dict, interp, keys, tp, tstate, values, v1, v10, v2, v4, v6, v8 uintptr
-	_, _, _, _, _, _, _, _, _, _, _, _ = dict, interp, keys, tp, tstate, values, v1, v10, v2, v4, v6, v8
-	v1 = obj2
-	v2 = (*TPyObject)(unsafe.Pointer(v1)).Fob_type
-	goto _3
-_3:
-	tp = v2
-	v4 = v1 + uintptr((*TPyTypeObject)(unsafe.Pointer(tp)).Ftp_basicsize)
-	goto _5
-_5:
-	values = v4
-	if (*TPyDictValues)(unsafe.Pointer(values)).Fvalid != 0 {
-		v6 = (*_ccgo_tls_tstate(tls))
-		goto _7
-	_7:
-		tstate = v6
-		v8 = (*TPyThreadState)(unsafe.Pointer(tstate)).Finterp
-		goto _9
-	_9:
-		interp = v8
-		v10 = (*TPyObject)(unsafe.Pointer(obj2)).Fob_type
-		goto _11
-	_11:
-		keys = (*TPyHeapTypeObject)(unsafe.Pointer(v10)).Fht_cached_keys
-		dict = _make_dict_from_instance_attributes(tls, interp, keys, values)
-	} else {
-		dict = XPyDict_New(tls)
-	}
-	v1 = obj2 + uintptr(libc.Int64FromInt64(8)*int64(-libc.Int32FromInt32(3)))
-	goto _13
-_13:
-	(*TPyManagedDictPointer)(unsafe.Pointer(v1)).Fdict = dict
-	return dict
-}
-
-func X_PyObject_MaterializeManagedDict(tls *libc.TLS, obj2 uintptr) (r uintptr) {
-	var dict, dorv, v1, v3 uintptr
-	_, _, _, _ = dict, dorv, v1, v3
-	v1 = obj2 + uintptr(libc.Int64FromInt64(8)*int64(-libc.Int32FromInt32(3)))
-	goto _2
-_2:
-	dorv = v1
-	v3 = (*TPyManagedDictPointer)(unsafe.Pointer(dorv)).Fdict
-	goto _4
-_4:
-	dict = v3
-	if dict != libc.UintptrFromInt32(0) {
-		return dict
-	}
-	dict = X_PyObject_MaterializeManagedDict_LockHeld(tls, obj2)
-	return dict
-}
-
-func X_PyDict_SetItem_LockHeld(tls *libc.TLS, dict uintptr, name uintptr, value uintptr) (r int32) {
-	var hash, hash1, v6 TPy_hash_t
-	var v1, v4 uintptr
-	var v2 int32
-	_, _, _, _, _, _ = hash, hash1, v1, v2, v4, v6
-	if value == libc.UintptrFromInt32(0) {
-		v1 = name
-		v4 = (*TPyObject)(unsafe.Pointer(v1)).Fob_type
-		goto _5
-	_5:
-		v2 = libc.BoolInt32(v4 == uintptr(unsafe.Pointer(&XPyUnicode_Type)))
-		goto _3
-	_3:
-		if v2 != 0 {
-			hash = (*TPyASCIIObject)(unsafe.Pointer(v1)).Fhash
-			if hash != int64(-libc.Int32FromInt32(1)) {
-				v6 = hash
-				goto _7
-			}
-		}
-		v6 = XPyObject_Hash(tls, v1)
-		goto _7
-	_7:
-		hash1 = v6
-		if hash1 == int64(-int32(1)) {
-			_dict_unhashable_type(tls, name)
-			return -int32(1)
-		}
-		return X_PyDict_DelItem_KnownHash_LockHeld(tls, dict, name, hash1)
-	} else {
-		return _setitem_lock_held(tls, dict, name, value)
-	}
-	return r
-}
-
-// C documentation
-//
-//	// Called with either the object's lock or the dict's lock held
-//	// depending on whether or not a dict has been materialized for
-//	// the object.
-func _store_instance_attr_lock_held(tls *libc.TLS, obj3 uintptr, values2 uintptr, name uintptr, value1 uintptr) (r int32) {
-	bp := tls.Alloc(32)
-	defer tls.Free(32)
-	var array, dict, dorv, interp1, keys, old_value, tstate, v1, v3, v5, v9 uintptr
-	var cur_refcnt, v16 Tuint32_t
-	var event1 TPyDict_WatchEvent
-	var hash TPy_hash_t
-	var ix1 TPy_ssize_t
-	var res, size, watcher_bits, v13, v7 int32
-	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = array, cur_refcnt, dict, dorv, event1, hash, interp1, ix1, keys, old_value, res, size, tstate, watcher_bits, v1, v13, v16, v3, v5, v7, v9
-	v1 = (*TPyObject)(unsafe.Pointer(obj3)).Fob_type
-	goto _2
-_2:
-	keys = (*TPyHeapTypeObject)(unsafe.Pointer(v1)).Fht_cached_keys
-	ix1 = int64(-libc.Int32FromInt32(1))
-	v1 = obj3 + uintptr(libc.Int64FromInt64(8)*int64(-libc.Int32FromInt32(3)))
-	goto _4
-_4:
-	dorv = v1
-	v3 = (*TPyManagedDictPointer)(unsafe.Pointer(dorv)).Fdict
-	goto _6
-_6:
-	dict = v3
-	v1 = (*TPyObject)(unsafe.Pointer(name)).Fob_type
-	goto _10
-_10:
-	v7 = libc.BoolInt32(v1 == uintptr(unsafe.Pointer(&XPyUnicode_Type)))
-	goto _8
-_8:
-	if v7 != 0 {
-		hash = _unicode_get_hash(tls, name)
-		if hash == int64(-int32(1)) {
-			hash = (*(*func(*libc.TLS, uintptr) TPy_hash_t)(unsafe.Pointer(&struct{ uintptr }{XPyUnicode_Type.Ftp_hash})))(tls, name)
-		}
-		ix1 = _insert_split_key(tls, keys, name, hash)
-	}
-	if ix1 == int64(-libc.Int32FromInt32(1)) {
-		if dict == libc.UintptrFromInt32(0) {
-
-			dict = _make_dict_from_instance_attributes(tls, XPyInterpreterState_Get(tls), keys, values2)
-			if dict == libc.UintptrFromInt32(0) || X_PyDict_SetItem_LockHeld(tls, dict, name, value1) < 0 {
-				v1 = dict
-				if v1 != libc.UintptrFromInt32(0) {
-					v3 = v1
-					v7 = libc.BoolInt32(libc.Int32FromUint32(*(*Tuint32_t)(unsafe.Pointer(v3))) < 0)
-					goto _14
-				_14:
-					if v7 != 0 {
-						goto _15
-					}
-					v5 = v3
-					*(*Tuint32_t)(unsafe.Pointer(v5)) = *(*Tuint32_t)(unsafe.Pointer(v5)) - 1
-					v16 = *(*Tuint32_t)(unsafe.Pointer(v5))
-					if v16 == libc.Uint32FromInt32(0) {
-						X_Py_Dealloc(tls, v3)
-					}
-				_15:
-				}
-				return -int32(1)
-			}
-			v1 = obj3 + uintptr(libc.Int64FromInt64(8)*int64(-libc.Int32FromInt32(3)))
-			goto _19
-		_19:
-			(*TPyManagedDictPointer)(unsafe.Pointer(v1)).Fdict = dict
-			return 0
-		}
-		res = X_PyDict_SetItem_LockHeld(tls, dict, name, value1)
-		return res
-	}
-	old_value = **(**uintptr)(__ccgo_up(values2 + 8 + uintptr(ix1)*8))
-	if old_value == libc.UintptrFromInt32(0) && value1 == libc.UintptrFromInt32(0) {
-		v1 = (*TPyObject)(unsafe.Pointer(obj3)).Fob_type
-		goto _21
-	_21:
-		XPyErr_Format(tls, XPyExc_AttributeError, __ccgo_ts+47994, libc.VaList(bp+8, (*TPyTypeObject)(unsafe.Pointer(v1)).Ftp_name, name))
-		return -int32(1)
-	}
-	if dict != 0 {
-		v1 = (*_ccgo_tls_tstate(tls))
-		goto _23
-	_23:
-		tstate = v1
-		v3 = (*TPyThreadState)(unsafe.Pointer(tstate)).Finterp
-		goto _25
-	_25:
-		interp1 = v3
-		if old_value == libc.UintptrFromInt32(0) {
-			v7 = int32(EPyDict_EVENT_ADDED)
-		} else {
-			if value1 == libc.UintptrFromInt32(0) {
-				v13 = int32(EPyDict_EVENT_DELETED)
-			} else {
-				v13 = int32(EPyDict_EVENT_MODIFIED)
-			}
-			v7 = v13
-		}
-		event1 = v7
-		_ = interp1
-		v5 = dict
-		watcher_bits = libc.Int32FromUint64((*TPyDictObject)(unsafe.Pointer(v5)).F_ma_watcher_tag & libc.Uint64FromInt32(libc.Int32FromInt32(1)<<libc.Int32FromInt32(MDICT_MAX_WATCHERS)-libc.Int32FromInt32(1)))
-		if watcher_bits != 0 {
-			X_PyDict_SendEvent(tls, watcher_bits, event1, v5, name, value1)
-		}
-	}
-	v1 = value1
-	v3 = v1
-	if v3 != libc.UintptrFromInt32(0) {
-		v5 = v3
-		cur_refcnt = *(*Tuint32_t)(unsafe.Pointer(v5))
-		if uint64(cur_refcnt) >= libc.Uint64FromUint64(3)<<libc.Int32FromInt32(30) {
-			goto _32
-		}
-		*(*Tuint32_t)(unsafe.Pointer(v5)) = cur_refcnt + uint32(1)
-	_32:
-	}
-	v9 = v1
-	goto _34
-_34:
-	**(**uintptr)(__ccgo_up(values2 + 8 + uintptr(ix1)*8)) = v9
-	if old_value == libc.UintptrFromInt32(0) {
-		v1 = values2
-		size = libc.Int32FromUint8((*TPyDictValues)(unsafe.Pointer(v1)).Fsize)
-		v3 = v1
-		v5 = v3 + 8 + uintptr((*TPyDictValues)(unsafe.Pointer(v3)).Fcapacity)*8
-		goto _38
-	_38:
-		array = v5
-		**(**Tuint8_t)(__ccgo_up(array + uintptr(size))) = libc.Uint8FromInt64(ix1)
-		(*TPyDictValues)(unsafe.Pointer(v1)).Fsize = libc.Uint8FromInt32(size + int32(1))
-		if dict != 0 {
-			(*TPyDictObject)(unsafe.Pointer(dict)).Fma_used = (*TPyDictObject)(unsafe.Pointer(dict)).Fma_used + int64(1)
-		}
-	} else {
-		if value1 == libc.UintptrFromInt32(0) {
-			_delete_index_from_values(tls, values2, ix1)
-			if dict != 0 {
-				(*TPyDictObject)(unsafe.Pointer(dict)).Fma_used = (*TPyDictObject)(unsafe.Pointer(dict)).Fma_used - int64(1)
-			}
-		}
-		v1 = old_value
-		v7 = libc.BoolInt32(libc.Int32FromUint32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
-		goto _41
-	_41:
-		if v7 != 0 {
-			goto _42
-		}
-		v3 = v1
-		*(*Tuint32_t)(unsafe.Pointer(v3)) = *(*Tuint32_t)(unsafe.Pointer(v3)) - 1
-		v16 = *(*Tuint32_t)(unsafe.Pointer(v3))
-		if v16 == libc.Uint32FromInt32(0) {
-			X_Py_Dealloc(tls, v1)
-		}
-	_42:
-	}
-	return 0
-}
-
-func _store_instance_attr_dict(tls *libc.TLS, obj1 uintptr, dict uintptr, name uintptr, value uintptr) (r int32) {
-	var res int32
-	var tp, values, v1, v2, v4 uintptr
-	_, _, _, _, _, _ = res, tp, values, v1, v2, v4
-	v1 = obj1
-	v2 = (*TPyObject)(unsafe.Pointer(v1)).Fob_type
-	goto _3
-_3:
-	tp = v2
-	v4 = v1 + uintptr((*TPyTypeObject)(unsafe.Pointer(tp)).Ftp_basicsize)
-	goto _5
-_5:
-	values = v4
-	if (*TPyDictObject)(unsafe.Pointer(dict)).Fma_values == values {
-		res = _store_instance_attr_lock_held(tls, obj1, values, name, value)
-	} else {
-		res = X_PyDict_SetItem_LockHeld(tls, dict, name, value)
-	}
-	return res
-}
-
-func X_PyObject_StoreInstanceAttribute(tls *libc.TLS, obj3 uintptr, name uintptr, value uintptr) (r int32) {
-	var dict, dorv, tp, values, v1, v2, v4, v6, v8 uintptr
-	var res, v11 int32
-	var v14 Tuint32_t
-	_, _, _, _, _, _, _, _, _, _, _, _ = dict, dorv, res, tp, values, v1, v11, v14, v2, v4, v6, v8
-	v1 = obj3
-	v2 = (*TPyObject)(unsafe.Pointer(v1)).Fob_type
-	goto _3
-_3:
-	tp = v2
-	v4 = v1 + uintptr((*TPyTypeObject)(unsafe.Pointer(tp)).Ftp_basicsize)
-	goto _5
-_5:
-	values = v4
-	if !((*TPyDictValues)(unsafe.Pointer(values)).Fvalid != 0) {
-		v6 = obj3 + uintptr(libc.Int64FromInt64(8)*int64(-libc.Int32FromInt32(3)))
-		goto _7
-	_7:
-		dorv = v6
-		v8 = (*TPyManagedDictPointer)(unsafe.Pointer(dorv)).Fdict
-		goto _9
-	_9:
-		dict = v8
-		if dict == libc.UintptrFromInt32(0) {
-			dict = XPyObject_GenericGetDict(tls, obj3, libc.UintptrFromInt32(0))
-			if dict == libc.UintptrFromInt32(0) {
-				return -int32(1)
-			}
-			res = _store_instance_attr_dict(tls, obj3, dict, name, value)
-			v1 = dict
-			v11 = libc.BoolInt32(libc.Int32FromUint32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
-			goto _12
-		_12:
-			if v11 != 0 {
-				goto _13
-			}
-			v2 = v1
-			*(*Tuint32_t)(unsafe.Pointer(v2)) = *(*Tuint32_t)(unsafe.Pointer(v2)) - 1
-			v14 = *(*Tuint32_t)(unsafe.Pointer(v2))
-			if v14 == libc.Uint32FromInt32(0) {
-				X_Py_Dealloc(tls, v1)
-			}
-		_13:
-			;
-			return res
-		}
-		return _store_instance_attr_dict(tls, obj3, dict, name, value)
-	}
-	return _store_instance_attr_lock_held(tls, obj3, values, name, value)
-}
-
-// C documentation
-//
-//	// Attempts to get an instance attribute from the inline values. Returns true
-//	// if successful, or false if the caller needs to lookup in the dictionary.
-func X_PyObject_TryGetInstanceAttribute(tls *libc.TLS, obj2 uintptr, name uintptr, attr uintptr) (r uint8) {
-	var cur_refcnt Tuint32_t
-	var ix TPy_ssize_t
-	var keys, tp, value, values, v1, v2, v4, v6 uintptr
-	_, _, _, _, _, _, _, _, _, _ = cur_refcnt, ix, keys, tp, value, values, v1, v2, v4, v6
-	v1 = obj2
-	v2 = (*TPyObject)(unsafe.Pointer(v1)).Fob_type
-	goto _3
-_3:
-	tp = v2
-	v4 = v1 + uintptr((*TPyTypeObject)(unsafe.Pointer(tp)).Ftp_basicsize)
-	goto _5
-_5:
-	values = v4
-	if !((*TPyDictValues)(unsafe.Pointer(values)).Fvalid != 0) {
-		return libc.BoolUint8(Mfalse != 0)
-	}
-	v1 = (*TPyObject)(unsafe.Pointer(obj2)).Fob_type
-	goto _7
-_7:
-	keys = (*TPyHeapTypeObject)(unsafe.Pointer(v1)).Fht_cached_keys
-	ix = X_PyDictKeys_StringLookupSplit(tls, keys, name)
-	if ix == int64(-libc.Int32FromInt32(1)) {
-		**(**uintptr)(__ccgo_up(attr)) = libc.UintptrFromInt32(0)
-		return libc.BoolUint8(Mtrue != 0)
-	}
-	value = **(**uintptr)(__ccgo_up(values + 8 + uintptr(ix)*8))
-	v1 = value
-	v2 = v1
-	if v2 != libc.UintptrFromInt32(0) {
-		v4 = v2
-		cur_refcnt = *(*Tuint32_t)(unsafe.Pointer(v4))
-		if uint64(cur_refcnt) >= libc.Uint64FromUint64(3)<<libc.Int32FromInt32(30) {
-			goto _11
-		}
-		*(*Tuint32_t)(unsafe.Pointer(v4)) = cur_refcnt + uint32(1)
-	_11:
-	}
-	v6 = v1
-	goto _13
-_13:
-	**(**uintptr)(__ccgo_up(attr)) = v6
-	return libc.BoolUint8(Mtrue != 0)
-}
-
-func X_PyObject_IsInstanceDictEmpty(tls *libc.TLS, obj3 uintptr) (r int32) {
-	var dict, dictptr, dorv, keys, tp, tp1, values, v1, v3, v4 uintptr
-	var i TPy_ssize_t
-	_, _, _, _, _, _, _, _, _, _, _ = dict, dictptr, dorv, i, keys, tp, tp1, values, v1, v3, v4
-	v1 = (*TPyObject)(unsafe.Pointer(obj3)).Fob_type
-	goto _2
-_2:
-	tp1 = v1
-	if (*TPyTypeObject)(unsafe.Pointer(tp1)).Ftp_dictoffset == 0 {
-		return int32(1)
-	}
-	if (*TPyTypeObject)(unsafe.Pointer(tp1)).Ftp_flags&libc.Uint64FromInt32(libc.Int32FromInt32(1)<<libc.Int32FromInt32(2)) != 0 {
-		v1 = obj3
-		v3 = (*TPyObject)(unsafe.Pointer(v1)).Fob_type
-		goto _5
-	_5:
-		tp = v3
-		v4 = v1 + uintptr((*TPyTypeObject)(unsafe.Pointer(tp)).Ftp_basicsize)
-		goto _7
-	_7:
-		values = v4
-		if (*TPyDictValues)(unsafe.Pointer(values)).Fvalid != 0 {
-			keys = (*TPyHeapTypeObject)(unsafe.Pointer(tp1)).Fht_cached_keys
-			i = 0
-			for {
-				if !(i < (*TPyDictKeysObject)(unsafe.Pointer(keys)).Fdk_nentries) {
-					break
-				}
-				if **(**uintptr)(__ccgo_up(values + 8 + uintptr(i)*8)) != libc.UintptrFromInt32(0) {
-					return 0
-				}
-				goto _8
-			_8:
-				;
-				i = i + 1
-			}
-			return int32(1)
-		}
-		v1 = obj3 + uintptr(libc.Int64FromInt64(8)*int64(-libc.Int32FromInt32(3)))
-		goto _10
-	_10:
-		dorv = v1
-		v3 = (*TPyManagedDictPointer)(unsafe.Pointer(dorv)).Fdict
-		goto _12
-	_12:
-		dict = v3
-	} else {
-		if (*TPyTypeObject)(unsafe.Pointer(tp1)).Ftp_flags&libc.Uint64FromInt32(libc.Int32FromInt32(1)<<libc.Int32FromInt32(4)) != 0 {
-			v1 = obj3 + uintptr(libc.Int64FromInt64(8)*int64(-libc.Int32FromInt32(3)))
-			goto _14
-		_14:
-			dorv = v1
-			v3 = (*TPyManagedDictPointer)(unsafe.Pointer(dorv)).Fdict
-			goto _16
-		_16:
-			dict = v3
-		} else {
-			dictptr = X_PyObject_ComputedDictPointer(tls, obj3)
-			dict = **(**uintptr)(__ccgo_up(dictptr))
-		}
-	}
-	if dict == libc.UintptrFromInt32(0) {
-		return int32(1)
-	}
-	return libc.BoolInt32((*TPyDictObject)(unsafe.Pointer(dict)).Fma_used == 0)
-}
-
-type t__ccgo_fp__XPyObject_VisitManagedDict_1 = func(*libc.TLS, uintptr, uintptr) int32
-
-func XPyObject_VisitManagedDict(tls *libc.TLS, obj2 uintptr, __ccgo_fp_visit Tvisitproc, arg uintptr) (r int32) {
-	var dict, tp, tp1, values, v1, v3, v5 uintptr
-	var i TPy_ssize_t
-	var vret, vret1 int32
-	_, _, _, _, _, _, _, _, _, _ = dict, i, tp, tp1, values, vret, vret1, v1, v3, v5
-	v1 = (*TPyObject)(unsafe.Pointer(obj2)).Fob_type
-	goto _2
-_2:
-	tp1 = v1
-	if (*TPyTypeObject)(unsafe.Pointer(tp1)).Ftp_flags&libc.Uint64FromInt32(libc.Int32FromInt32(1)<<libc.Int32FromInt32(4)) == uint64(0) {
-		return 0
-	}
-	v1 = obj2 + uintptr(libc.Int64FromInt64(8)*int64(-libc.Int32FromInt32(3)))
-	goto _4
-_4:
-	dict = (*TPyManagedDictPointer)(unsafe.Pointer(v1)).Fdict
-	if dict != libc.UintptrFromInt32(0) {
-
-		if dict != 0 {
-			vret = (*(*func(*libc.TLS, uintptr, uintptr) int32)(unsafe.Pointer(&struct{ uintptr }{__ccgo_fp_visit})))(tls, dict, arg)
-			if vret != 0 {
-				return vret
-			}
-		}
-	} else {
-		if (*TPyTypeObject)(unsafe.Pointer(tp1)).Ftp_flags&libc.Uint64FromInt32(libc.Int32FromInt32(1)<<libc.Int32FromInt32(2)) != 0 {
-			v1 = obj2
-			v3 = (*TPyObject)(unsafe.Pointer(v1)).Fob_type
-			goto _7
-		_7:
-			tp = v3
-			v5 = v1 + uintptr((*TPyTypeObject)(unsafe.Pointer(tp)).Ftp_basicsize)
-			goto _9
-		_9:
-			values = v5
-			if (*TPyDictValues)(unsafe.Pointer(values)).Fvalid != 0 {
-				i = 0
-				for {
-					if !(i < libc.Int64FromUint8((*TPyDictValues)(unsafe.Pointer(values)).Fcapacity)) {
-						break
-					}
-					if **(**uintptr)(__ccgo_up(values + 8 + uintptr(i)*8)) != 0 {
-						vret1 = (*(*func(*libc.TLS, uintptr, uintptr) int32)(unsafe.Pointer(&struct{ uintptr }{__ccgo_fp_visit})))(tls, **(**uintptr)(__ccgo_up(values + 8 + uintptr(i)*8)), arg)
-						if vret1 != 0 {
-							return vret1
-						}
-					}
-					goto _10
-				_10:
-					;
-					i = i + 1
-				}
-			}
-		}
-	}
-	return 0
-}
-
-func _clear_inline_values(tls *libc.TLS, values uintptr) {
-	var _tmp_old_op, _tmp_op_ptr, v2, v7 uintptr
-	var i TPy_ssize_t
-	var v3 int32
-	var v6 Tuint32_t
-	_, _, _, _, _, _, _ = _tmp_old_op, _tmp_op_ptr, i, v2, v3, v6, v7
-	if (*TPyDictValues)(unsafe.Pointer(values)).Fvalid != 0 {
-		(*TPyDictValues)(unsafe.Pointer(values)).Fvalid = uint8(0)
-		i = 0
-		for {
-			if !(i < libc.Int64FromUint8((*TPyDictValues)(unsafe.Pointer(values)).Fcapacity)) {
-				break
-			}
-			_tmp_op_ptr = values + 8 + uintptr(i)*8
-			_tmp_old_op = **(**uintptr)(__ccgo_up(_tmp_op_ptr))
-			if _tmp_old_op != libc.UintptrFromInt32(0) {
-				**(**uintptr)(__ccgo_up(_tmp_op_ptr)) = libc.UintptrFromInt32(0)
-				v2 = _tmp_old_op
-				v3 = libc.BoolInt32(libc.Int32FromUint32(*(*Tuint32_t)(unsafe.Pointer(v2))) < 0)
-				goto _4
-			_4:
-				if v3 != 0 {
-					goto _5
-				}
-				v7 = v2
-				*(*Tuint32_t)(unsafe.Pointer(v7)) = *(*Tuint32_t)(unsafe.Pointer(v7)) - 1
-				v6 = *(*Tuint32_t)(unsafe.Pointer(v7))
-				if v6 == libc.Uint32FromInt32(0) {
-					X_Py_Dealloc(tls, v2)
-				}
-			_5:
-			}
-			goto _1
-		_1:
-			;
-			i = i + 1
-		}
-	}
-}
-
-func _set_dict_inline_values(tls *libc.TLS, obj2 uintptr, new_dict uintptr) {
-	var cur_refcnt Tuint32_t
-	var tp, values, v1, v2, v4, v6, v7 uintptr
-	_, _, _, _, _, _, _, _ = cur_refcnt, tp, values, v1, v2, v4, v6, v7
-	v1 = obj2
-	v2 = (*TPyObject)(unsafe.Pointer(v1)).Fob_type
-	goto _3
-_3:
-	tp = v2
-	v4 = v1 + uintptr((*TPyTypeObject)(unsafe.Pointer(tp)).Ftp_basicsize)
-	goto _5
-_5:
-	values = v4
-	v6 = new_dict
-	if v6 != libc.UintptrFromInt32(0) {
-		v7 = v6
-		cur_refcnt = *(*Tuint32_t)(unsafe.Pointer(v7))
-		if uint64(cur_refcnt) >= libc.Uint64FromUint64(3)<<libc.Int32FromInt32(30) {
-			goto _8
-		}
-		*(*Tuint32_t)(unsafe.Pointer(v7)) = cur_refcnt + uint32(1)
-	_8:
-	}
-	v1 = obj2 + uintptr(libc.Int64FromInt64(8)*int64(-libc.Int32FromInt32(3)))
-	goto _10
-_10:
-	(*TPyManagedDictPointer)(unsafe.Pointer(v1)).Fdict = new_dict
-	_clear_inline_values(tls, values)
-}
-
-func _decref_maybe_delay(tls *libc.TLS, obj1 uintptr, delay uint8) {
-	var v1, v2, v7 uintptr
-	var v3 int32
-	var v6 Tuint32_t
-	_, _, _, _, _ = v1, v2, v3, v6, v7
-	if delay != 0 {
-		v1 = obj1
-		if v1 != libc.UintptrFromInt32(0) {
-			v2 = v1
-			v3 = libc.BoolInt32(libc.Int32FromUint32(*(*Tuint32_t)(unsafe.Pointer(v2))) < 0)
-			goto _4
-		_4:
-			if v3 != 0 {
-				goto _5
-			}
-			v7 = v2
-			*(*Tuint32_t)(unsafe.Pointer(v7)) = *(*Tuint32_t)(unsafe.Pointer(v7)) - 1
-			v6 = *(*Tuint32_t)(unsafe.Pointer(v7))
-			if v6 == libc.Uint32FromInt32(0) {
-				X_Py_Dealloc(tls, v2)
-			}
-		_5:
-		}
-	} else {
-		v1 = obj1
-		if v1 != libc.UintptrFromInt32(0) {
-			v2 = v1
-			v3 = libc.BoolInt32(libc.Int32FromUint32(*(*Tuint32_t)(unsafe.Pointer(v2))) < 0)
-			goto _11
-		_11:
-			if v3 != 0 {
-				goto _12
-			}
-			v7 = v2
-			*(*Tuint32_t)(unsafe.Pointer(v7)) = *(*Tuint32_t)(unsafe.Pointer(v7)) - 1
-			v6 = *(*Tuint32_t)(unsafe.Pointer(v7))
-			if v6 == libc.Uint32FromInt32(0) {
-				X_Py_Dealloc(tls, v2)
-			}
-		_12:
-		}
-	}
-}
-
-func X_PyObject_SetManagedDict(tls *libc.TLS, obj3 uintptr, new_dict uintptr) (r int32) {
-	var cur_refcnt, v19 Tuint32_t
-	var dict, dict1, dorv, tp, v1, v3, v5, v7, v9 uintptr
-	var err, v16 int32
-	_, _, _, _, _, _, _, _, _, _, _, _, _ = cur_refcnt, dict, dict1, dorv, err, tp, v1, v16, v19, v3, v5, v7, v9
-	err = 0
-	v1 = (*TPyObject)(unsafe.Pointer(obj3)).Fob_type
-	goto _2
-_2:
-	tp = v1
-	if (*TPyTypeObject)(unsafe.Pointer(tp)).Ftp_flags&libc.Uint64FromInt32(libc.Int32FromInt32(1)<<libc.Int32FromInt32(2)) != 0 {
-		v3 = obj3 + uintptr(libc.Int64FromInt64(8)*int64(-libc.Int32FromInt32(3)))
-		goto _4
-	_4:
-		dorv = v3
-		v5 = (*TPyManagedDictPointer)(unsafe.Pointer(dorv)).Fdict
-		goto _6
-	_6:
-		dict = v5
-		if dict == libc.UintptrFromInt32(0) {
-			_set_dict_inline_values(tls, obj3, new_dict)
-			return 0
-		}
-		if X_PyDict_DetachFromObject(tls, dict, obj3) == 0 {
-			v1 = obj3 + uintptr(libc.Int64FromInt64(8)*int64(-libc.Int32FromInt32(3)))
-			goto _8
-		_8:
-			v3 = new_dict
-			v5 = v3
-			if v5 != libc.UintptrFromInt32(0) {
-				v7 = v5
-				cur_refcnt = *(*Tuint32_t)(unsafe.Pointer(v7))
-				if uint64(cur_refcnt) >= libc.Uint64FromUint64(3)<<libc.Int32FromInt32(30) {
-					goto _12
-				}
-				*(*Tuint32_t)(unsafe.Pointer(v7)) = cur_refcnt + uint32(1)
-			_12:
-			}
-			v9 = v3
-			goto _14
-		_14:
-			(*TPyManagedDictPointer)(unsafe.Pointer(v1)).Fdict = v9
-			v1 = dict
-			v16 = libc.BoolInt32(libc.Int32FromUint32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
-			goto _17
-		_17:
-			if v16 != 0 {
-				goto _18
-			}
-			v3 = v1
-			*(*Tuint32_t)(unsafe.Pointer(v3)) = *(*Tuint32_t)(unsafe.Pointer(v3)) - 1
-			v19 = *(*Tuint32_t)(unsafe.Pointer(v3))
-			if v19 == libc.Uint32FromInt32(0) {
-				X_Py_Dealloc(tls, v1)
-			}
-		_18:
-			;
-			return 0
-		}
-		return -int32(1)
-	} else {
-		v1 = obj3 + uintptr(libc.Int64FromInt64(8)*int64(-libc.Int32FromInt32(3)))
-		goto _22
-	_22:
-		dict1 = (*TPyManagedDictPointer)(unsafe.Pointer(v1)).Fdict
-		v1 = obj3 + uintptr(libc.Int64FromInt64(8)*int64(-libc.Int32FromInt32(3)))
-		goto _24
-	_24:
-		v3 = new_dict
-		v5 = v3
-		if v5 != libc.UintptrFromInt32(0) {
-			v7 = v5
-			cur_refcnt = *(*Tuint32_t)(unsafe.Pointer(v7))
-			if uint64(cur_refcnt) >= libc.Uint64FromUint64(3)<<libc.Int32FromInt32(30) {
-				goto _28
-			}
-			*(*Tuint32_t)(unsafe.Pointer(v7)) = cur_refcnt + uint32(1)
-		_28:
-		}
-		v9 = v3
-		goto _30
-	_30:
-		(*TPyManagedDictPointer)(unsafe.Pointer(v1)).Fdict = v9
-		_decref_maybe_delay(tls, dict1, libc.BoolUint8(Mtrue != 0))
-	}
-	return err
-}
-
-func _detach_dict_from_object(tls *libc.TLS, mp uintptr, obj1 uintptr) (r int32) {
-	var tp, values, v1, v2, v4 uintptr
-	_, _, _, _, _ = tp, values, v1, v2, v4
-	v1 = obj1
-	v2 = (*TPyObject)(unsafe.Pointer(v1)).Fob_type
-	goto _3
-_3:
-	tp = v2
-	v4 = v1 + uintptr((*TPyTypeObject)(unsafe.Pointer(tp)).Ftp_basicsize)
-	goto _5
-_5:
-	if (*TPyDictObject)(unsafe.Pointer(mp)).Fma_values != v4 {
-		return 0
-	}
-
-	values = _copy_values(tls, (*TPyDictObject)(unsafe.Pointer(mp)).Fma_values)
-	if values == libc.UintptrFromInt32(0) {
-		XPyErr_NoMemory(tls)
-		return -int32(1)
-	}
-	(*TPyDictObject)(unsafe.Pointer(mp)).Fma_values = values
-	v1 = obj1
-	v2 = (*TPyObject)(unsafe.Pointer(v1)).Fob_type
-	goto _8
-_8:
-	tp = v2
-	v4 = v1 + uintptr((*TPyTypeObject)(unsafe.Pointer(tp)).Ftp_basicsize)
-	goto _10
-_10:
-	_invalidate_and_clear_inline_values(tls, v4)
-	return 0
-}
-
-func XPyObject_ClearManagedDict(tls *libc.TLS, obj3 uintptr) {
-	var _tmp_old_op, _tmp_op_ptr, dict, dorv, interp, oldkeys, tp, tstate, v1, v10, v3, v5, v7, v8 uintptr
-	var err, v29 int32
-	var v32 Tuint32_t
-	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = _tmp_old_op, _tmp_op_ptr, dict, dorv, err, interp, oldkeys, tp, tstate, v1, v10, v29, v3, v32, v5, v7, v8
-
-	v1 = (*TPyObject)(unsafe.Pointer(obj3)).Fob_type
-	goto _2
-_2:
-	if (*TPyTypeObject)(unsafe.Pointer(v1)).Ftp_flags&libc.Uint64FromInt32(libc.Int32FromInt32(1)<<libc.Int32FromInt32(2)) != 0 {
-		v3 = obj3 + uintptr(libc.Int64FromInt64(8)*int64(-libc.Int32FromInt32(3)))
-		goto _4
-	_4:
-		dorv = v3
-		v5 = (*TPyManagedDictPointer)(unsafe.Pointer(dorv)).Fdict
-		goto _6
-	_6:
-		dict = v5
-		if dict == libc.UintptrFromInt32(0) {
-
-			v7 = obj3
-			v8 = (*TPyObject)(unsafe.Pointer(v7)).Fob_type
-			goto _9
-		_9:
-			tp = v8
-			v10 = v7 + uintptr((*TPyTypeObject)(unsafe.Pointer(tp)).Ftp_basicsize)
-			goto _11
-		_11:
-			_clear_inline_values(tls, v10)
-			return
-		} else {
-			v1 = obj3
-			v3 = (*TPyObject)(unsafe.Pointer(v1)).Fob_type
-			goto _14
-		_14:
-			tp = v3
-			v5 = v1 + uintptr((*TPyTypeObject)(unsafe.Pointer(tp)).Ftp_basicsize)
-			goto _16
-		_16:
-			if (*TPyDictObject)(unsafe.Pointer(dict)).Fma_values == v5 {
-				err = _detach_dict_from_object(tls, dict, obj3)
-				if err != 0 {
-
-					XPyErr_FormatUnraisable(tls, __ccgo_ts+48032, 0)
-
-					v1 = (*_ccgo_tls_tstate(tls))
-					goto _18
-				_18:
-					tstate = v1
-					v3 = (*TPyThreadState)(unsafe.Pointer(tstate)).Finterp
-					goto _20
-				_20:
-					interp = v3
-					oldkeys = (*TPyDictObject)(unsafe.Pointer(dict)).Fma_keys
-					_set_keys(tls, dict, uintptr(unsafe.Pointer(&_empty_keys_struct)))
-					(*TPyDictObject)(unsafe.Pointer(dict)).Fma_values = libc.UintptrFromInt32(0)
-					_dictkeys_decref(tls, interp, oldkeys, libc.Uint8FromInt32(libc.BoolInt32(libc.Int32FromInt32(Mfalse) != 0)))
-					(*TPyDictObject)(unsafe.Pointer(dict)).Fma_used = 0
-					v1 = obj3
-					v3 = (*TPyObject)(unsafe.Pointer(v1)).Fob_type
-					goto _23
-				_23:
-					tp = v3
-					v5 = v1 + uintptr((*TPyTypeObject)(unsafe.Pointer(tp)).Ftp_basicsize)
-					goto _25
-				_25:
-					_clear_inline_values(tls, v5)
-				}
-			}
-		}
-	}
-	v1 = obj3 + uintptr(libc.Int64FromInt64(8)*int64(-libc.Int32FromInt32(3)))
-	goto _27
-_27:
-	_tmp_op_ptr = v1
-	_tmp_old_op = **(**uintptr)(__ccgo_up(_tmp_op_ptr))
-	if _tmp_old_op != libc.UintptrFromInt32(0) {
-		**(**uintptr)(__ccgo_up(_tmp_op_ptr)) = libc.UintptrFromInt32(0)
-		v1 = _tmp_old_op
-		v29 = libc.BoolInt32(libc.Int32FromUint32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
-		goto _30
-	_30:
-		if v29 != 0 {
-			goto _31
-		}
-		v3 = v1
-		*(*Tuint32_t)(unsafe.Pointer(v3)) = *(*Tuint32_t)(unsafe.Pointer(v3)) - 1
-		v32 = *(*Tuint32_t)(unsafe.Pointer(v3))
-		if v32 == libc.Uint32FromInt32(0) {
-			X_Py_Dealloc(tls, v1)
-		}
-	_31:
-	}
-}
-
-func X_PyDict_DetachFromObject(tls *libc.TLS, mp uintptr, obj uintptr) (r int32) {
-	return _detach_dict_from_object(tls, mp, obj)
-}
-
-func _ensure_managed_dict(tls *libc.TLS, obj3 uintptr) (r uintptr) {
-	var dict, dorv, tp, tp1, tstate, v1, v10, v3, v5, v7, v8 uintptr
-	var v12 bool
-	_, _, _, _, _, _, _, _, _, _, _, _ = dict, dorv, tp, tp1, tstate, v1, v10, v12, v3, v5, v7, v8
-	v1 = obj3 + uintptr(libc.Int64FromInt64(8)*int64(-libc.Int32FromInt32(3)))
-	goto _2
-_2:
-	dorv = v1
-	v3 = (*TPyManagedDictPointer)(unsafe.Pointer(dorv)).Fdict
-	goto _4
-_4:
-	dict = v3
-	if dict == libc.UintptrFromInt32(0) {
-		v5 = (*TPyObject)(unsafe.Pointer(obj3)).Fob_type
-		goto _6
-	_6:
-		tp1 = v5
-		if v12 = (*TPyTypeObject)(unsafe.Pointer(tp1)).Ftp_flags&libc.Uint64FromInt32(libc.Int32FromInt32(1)<<libc.Int32FromInt32(2)) != 0; v12 {
-			v7 = obj3
-			v8 = (*TPyObject)(unsafe.Pointer(v7)).Fob_type
-			goto _9
-		_9:
-			tp = v8
-			v10 = v7 + uintptr((*TPyTypeObject)(unsafe.Pointer(tp)).Ftp_basicsize)
-			goto _11
-		_11:
-		}
-		if v12 && (*TPyDictValues)(unsafe.Pointer(v10)).Fvalid != 0 {
-			dict = X_PyObject_MaterializeManagedDict(tls, obj3)
-		} else {
-			v1 = (*_ccgo_tls_tstate(tls))
-			goto _14
-		_14:
-			tstate = v1
-			v3 = (*TPyThreadState)(unsafe.Pointer(tstate)).Finterp
-			goto _16
-		_16:
-			dict = _new_dict_with_shared_keys(tls, v3, (*TPyHeapTypeObject)(unsafe.Pointer(tp1)).Fht_cached_keys)
-			v1 = obj3 + uintptr(libc.Int64FromInt64(8)*int64(-libc.Int32FromInt32(3)))
-			goto _18
-		_18:
-			(*TPyManagedDictPointer)(unsafe.Pointer(v1)).Fdict = dict
-		}
-	}
-	return dict
-}
-
-func _ensure_nonmanaged_dict(tls *libc.TLS, obj uintptr, dictptr uintptr) (r uintptr) {
-	var cached, dict, interp, tp, tstate, v1, v5, v7, v9 uintptr
-	var v3 int32
-	var v6 bool
-	_, _, _, _, _, _, _, _, _, _, _ = cached, dict, interp, tp, tstate, v1, v3, v5, v6, v7, v9
-	dict = **(**uintptr)(__ccgo_up(dictptr))
-	if dict == libc.UintptrFromInt32(0) {
-		v1 = (*TPyObject)(unsafe.Pointer(obj)).Fob_type
-		goto _2
-	_2:
-		tp = v1
-		v3 = libc.BoolInt32((*TPyTypeObject)(unsafe.Pointer(tp)).Ftp_flags&(libc.Uint64FromUint64(1)<<libc.Int32FromInt32(9)) != uint64(0))
-		goto _4
-	_4:
-		;
-		if v6 = v3 != 0; v6 {
-			v5 = (*TPyHeapTypeObject)(unsafe.Pointer(tp)).Fht_cached_keys
-			cached = v5
-		}
-		if v6 && v5 != 0 {
-			v7 = (*_ccgo_tls_tstate(tls))
-			goto _8
-		_8:
-			tstate = v7
-			v9 = (*TPyThreadState)(unsafe.Pointer(tstate)).Finterp
-			goto _10
-		_10:
-			interp = v9
-			dict = _new_dict_with_shared_keys(tls, interp, cached)
-		} else {
-			dict = XPyDict_New(tls)
-		}
-		**(**uintptr)(__ccgo_up(dictptr)) = dict
-	}
-	return dict
-}
-
-func XPyObject_GenericGetDict(tls *libc.TLS, obj1 uintptr, context uintptr) (r uintptr) {
-	var cur_refcnt Tuint32_t
-	var dictptr, tp, v1, v5, v6, v7, v9 uintptr
-	var v3 int32
-	_, _, _, _, _, _, _, _, _ = cur_refcnt, dictptr, tp, v1, v3, v5, v6, v7, v9
-	v1 = (*TPyObject)(unsafe.Pointer(obj1)).Fob_type
-	goto _2
-_2:
-	tp = v1
-	v3 = libc.BoolInt32((*TPyTypeObject)(unsafe.Pointer(tp)).Ftp_flags&libc.Uint64FromInt32(libc.Int32FromInt32(1)<<libc.Int32FromInt32(4)) != uint64(0))
-	goto _4
-_4:
-	if v3 != 0 {
-		v5 = _ensure_managed_dict(tls, obj1)
-		v6 = v5
-		if v6 != libc.UintptrFromInt32(0) {
-			v7 = v6
-			cur_refcnt = *(*Tuint32_t)(unsafe.Pointer(v7))
-			if uint64(cur_refcnt) >= libc.Uint64FromUint64(3)<<libc.Int32FromInt32(30) {
-				goto _8
-			}
-			*(*Tuint32_t)(unsafe.Pointer(v7)) = cur_refcnt + uint32(1)
-		_8:
-		}
-		v9 = v5
-		goto _10
-	_10:
-		return v9
-	} else {
-		dictptr = X_PyObject_ComputedDictPointer(tls, obj1)
-		if dictptr == libc.UintptrFromInt32(0) {
-			XPyErr_SetString(tls, XPyExc_AttributeError, __ccgo_ts+48088)
-			return libc.UintptrFromInt32(0)
-		}
-		v1 = _ensure_nonmanaged_dict(tls, obj1, dictptr)
-		v5 = v1
-		if v5 != libc.UintptrFromInt32(0) {
-			v6 = v5
-			cur_refcnt = *(*Tuint32_t)(unsafe.Pointer(v6))
-			if uint64(cur_refcnt) >= libc.Uint64FromUint64(3)<<libc.Int32FromInt32(30) {
-				goto _14
-			}
-			*(*Tuint32_t)(unsafe.Pointer(v6)) = cur_refcnt + uint32(1)
-		_14:
-		}
-		v7 = v1
-		goto _16
-	_16:
-		return v7
-	}
-	return r
-}
-
-func X_PyObjectDict_SetItem(tls *libc.TLS, tp uintptr, obj uintptr, dictptr uintptr, key uintptr, value uintptr) (r int32) {
-	var dict uintptr
-	var res int32
-	_, _ = dict, res
-	dict = _ensure_nonmanaged_dict(tls, obj, dictptr)
-	if dict == libc.UintptrFromInt32(0) {
-		return -int32(1)
-	}
-	res = X_PyDict_SetItem_LockHeld(tls, dict, key, value)
-	return res
-}
-
-func X_PyDictKeys_DecRef(tls *libc.TLS, keys uintptr) {
-	var interp, tstate, v1, v3 uintptr
-	_, _, _, _ = interp, tstate, v1, v3
-	v1 = (*_ccgo_tls_tstate(tls))
-	goto _2
-_2:
-	tstate = v1
-	v3 = (*TPyThreadState)(unsafe.Pointer(tstate)).Finterp
-	goto _4
-_4:
-	interp = v3
-	_dictkeys_decref(tls, interp, keys, libc.BoolUint8(Mfalse != 0))
-}
-
-func _get_next_dict_keys_version(tls *libc.TLS, interp uintptr) (r Tuint32_t) {
-	var v, v1 Tuint32_t
-	var v2 uintptr
-	_, _, _ = v, v1, v2
-	if (*TPyInterpreterState)(unsafe.Pointer(interp)).Fdict_state.Fnext_keys_version == uint32(0) {
-		return uint32(0)
-	}
-	v2 = interp + 79808
-	v1 = *(*Tuint32_t)(unsafe.Pointer(v2))
-	*(*Tuint32_t)(unsafe.Pointer(v2)) = *(*Tuint32_t)(unsafe.Pointer(v2)) + 1
-	v = v1
-	return v
-}
-
-// C documentation
-//
-//	// In free-threaded builds the caller must ensure that the keys object is not
-//	// being mutated concurrently by another thread.
-func X_PyDictKeys_GetVersionForCurrentState(tls *libc.TLS, interp uintptr, dictkeys uintptr) (r Tuint32_t) {
-	var dk_version Tuint32_t
-	_ = dk_version
-	dk_version = (*TPyDictKeysObject)(unsafe.Pointer(dictkeys)).Fdk_version
-	if dk_version != uint32(0) {
-		return dk_version
-	}
-	dk_version = _get_next_dict_keys_version(tls, interp)
-	(*TPyDictKeysObject)(unsafe.Pointer(dictkeys)).Fdk_version = dk_version
-	return dk_version
-}
-
-func X_PyDict_GetKeysVersionForCurrentState(tls *libc.TLS, interp uintptr, dict uintptr) (r Tuint32_t) {
-	var dk_version Tuint32_t
-	_ = dk_version
-	dk_version = X_PyDictKeys_GetVersionForCurrentState(tls, interp, (*TPyDictObject)(unsafe.Pointer(dict)).Fma_keys)
-	_ensure_shared_on_keys_version_assignment(tls, dict)
-	return dk_version
-}
-
-func _validate_watcher_id1(tls *libc.TLS, interp uintptr, watcher_id int32) (r int32) {
-	bp := tls.Alloc(16)
-	defer tls.Free(16)
-	var cb TPyDict_WatchCallback
-	_ = cb
-	if watcher_id < 0 || watcher_id >= int32(MDICT_MAX_WATCHERS) {
-		XPyErr_Format(tls, XPyExc_ValueError, __ccgo_ts+48116, libc.VaList(bp+8, watcher_id))
-		return -int32(1)
-	}
-	cb = **(**TPyDict_WatchCallback)(__ccgo_up(interp + 79808 + 8 + uintptr(watcher_id)*8))
-	if cb == libc.UintptrFromInt32(0) {
-		XPyErr_Format(tls, XPyExc_ValueError, __ccgo_ts+48143, libc.VaList(bp+8, watcher_id))
-		return -int32(1)
-	}
-	return 0
-}
-
-func XPyDict_Watch(tls *libc.TLS, watcher_id int32, dict uintptr) (r int32) {
-	var flags uint64
-	var interp, tstate, v1, v5 uintptr
-	var v3 int32
-	_, _, _, _, _, _ = flags, interp, tstate, v1, v3, v5
-	v1 = (*TPyObject)(unsafe.Pointer(dict)).Fob_type
-	goto _2
-_2:
-	flags = (*TPyTypeObject)(unsafe.Pointer(v1)).Ftp_flags
-	v3 = libc.BoolInt32(flags&(libc.Uint64FromUint64(1)<<libc.Int32FromInt32(29)) != uint64(0))
-	goto _4
-_4:
-	if !(v3 != 0) {
-		XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+48173)
-		return -int32(1)
-	}
-	v1 = (*_ccgo_tls_tstate(tls))
-	goto _6
-_6:
-	tstate = v1
-	v5 = (*TPyThreadState)(unsafe.Pointer(tstate)).Finterp
-	goto _8
-_8:
-	interp = v5
-	if _validate_watcher_id1(tls, interp, watcher_id) != 0 {
-		return -int32(1)
-	}
-	v1 = dict + 24
-	*(*Tuint64_t)(unsafe.Pointer(v1)) = Tuint64_t(*(*Tuint64_t)(unsafe.Pointer(v1)) | libc.Uint64FromUint64(1)<<watcher_id)
-	return 0
-}
-
-func XPyDict_Unwatch(tls *libc.TLS, watcher_id int32, dict uintptr) (r int32) {
-	var flags uint64
-	var interp, tstate, v1, v5 uintptr
-	var v3 int32
-	_, _, _, _, _, _ = flags, interp, tstate, v1, v3, v5
-	v1 = (*TPyObject)(unsafe.Pointer(dict)).Fob_type
-	goto _2
-_2:
-	flags = (*TPyTypeObject)(unsafe.Pointer(v1)).Ftp_flags
-	v3 = libc.BoolInt32(flags&(libc.Uint64FromUint64(1)<<libc.Int32FromInt32(29)) != uint64(0))
-	goto _4
-_4:
-	if !(v3 != 0) {
-		XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+48173)
-		return -int32(1)
-	}
-	v1 = (*_ccgo_tls_tstate(tls))
-	goto _6
-_6:
-	tstate = v1
-	v5 = (*TPyThreadState)(unsafe.Pointer(tstate)).Finterp
-	goto _8
-_8:
-	interp = v5
-	if _validate_watcher_id1(tls, interp, watcher_id) != 0 {
-		return -int32(1)
-	}
-	v1 = dict + 24
-	*(*Tuint64_t)(unsafe.Pointer(v1)) = Tuint64_t(*(*Tuint64_t)(unsafe.Pointer(v1)) & ^(libc.Uint64FromUint64(1) << watcher_id))
-	return 0
-}
-
-type t__ccgo_fp__XPyDict_AddWatcher_0 = func(*libc.TLS, int32, uintptr, uintptr, uintptr) int32
-
-func XPyDict_AddWatcher(tls *libc.TLS, __ccgo_fp_callback TPyDict_WatchCallback) (r int32) {
-	var i, watcher_id int32
-	var interp, tstate, v1, v3 uintptr
-	_, _, _, _, _, _ = i, interp, tstate, watcher_id, v1, v3
-	watcher_id = -int32(1)
-	v1 = (*_ccgo_tls_tstate(tls))
-	goto _2
-_2:
-	tstate = v1
-	v3 = (*TPyThreadState)(unsafe.Pointer(tstate)).Finterp
-	goto _4
-_4:
-	interp = v3
-
-	i = int32(2)
-	for {
-		if !(i < int32(MDICT_MAX_WATCHERS)) {
-			break
-		}
-		if !(**(**TPyDict_WatchCallback)(__ccgo_up(interp + 79808 + 8 + uintptr(i)*8)) != 0) {
-			**(**TPyDict_WatchCallback)(__ccgo_up(interp + 79808 + 8 + uintptr(i)*8)) = __ccgo_fp_callback
-			watcher_id = i
-			goto done
-		}
-		goto _5
-	_5:
-		;
-		i = i + 1
-	}
-	XPyErr_SetString(tls, XPyExc_RuntimeError, __ccgo_ts+48201)
-	goto done
-done:
-	;
-	return watcher_id
-}
-
-func XPyDict_ClearWatcher(tls *libc.TLS, watcher_id int32) (r int32) {
-	var interp, tstate, v1, v3 uintptr
-	var res int32
-	_, _, _, _, _ = interp, res, tstate, v1, v3
-	res = 0
-	v1 = (*_ccgo_tls_tstate(tls))
-	goto _2
-_2:
-	tstate = v1
-	v3 = (*TPyThreadState)(unsafe.Pointer(tstate)).Finterp
-	goto _4
-_4:
-	interp = v3
-	if _validate_watcher_id1(tls, interp, watcher_id) != 0 {
-		res = -int32(1)
-		goto done
-	}
-	**(**TPyDict_WatchCallback)(__ccgo_up(interp + 79808 + 8 + uintptr(watcher_id)*8)) = libc.UintptrFromInt32(0)
-	goto done
-done:
-	;
-	return res
-}
-
-func _dict_event_name(tls *libc.TLS, event TPyDict_WatchEvent) (r uintptr) {
-	switch event {
-	case int32(EPyDict_EVENT_ADDED):
-		return __ccgo_ts + 48236
-	case int32(EPyDict_EVENT_MODIFIED):
-		return __ccgo_ts + 48255
-	case int32(EPyDict_EVENT_DELETED):
-		return __ccgo_ts + 48277
-	case int32(EPyDict_EVENT_CLONED):
-		return __ccgo_ts + 48298
-	case int32(EPyDict_EVENT_CLEARED):
-		return __ccgo_ts + 48318
-	case int32(EPyDict_EVENT_DEALLOCATED):
-		return __ccgo_ts + 48339
-	}
-	libc.X__builtin_unreachable(tls)
-	return r
-}
-
-func X_PyDict_SendEvent(tls *libc.TLS, watcher_bits int32, event TPyDict_WatchEvent, mp uintptr, key uintptr, value uintptr) {
-	bp := tls.Alloc(32)
-	defer tls.Free(32)
-	var cb TPyDict_WatchCallback
-	var i int32
-	var interp, tstate, v1, v3 uintptr
-	_, _, _, _, _, _ = cb, i, interp, tstate, v1, v3
-	v1 = (*_ccgo_tls_tstate(tls))
-	goto _2
-_2:
-	tstate = v1
-	v3 = (*TPyThreadState)(unsafe.Pointer(tstate)).Finterp
-	goto _4
-_4:
-	interp = v3
-	i = 0
-	for {
-		if !(i < int32(MDICT_MAX_WATCHERS)) {
-			break
-		}
-		if watcher_bits&int32(1) != 0 {
-			cb = **(**TPyDict_WatchCallback)(__ccgo_up(interp + 79808 + 8 + uintptr(i)*8))
-			if cb != 0 && (*(*func(*libc.TLS, TPyDict_WatchEvent, uintptr, uintptr, uintptr) int32)(unsafe.Pointer(&struct{ uintptr }{cb})))(tls, event, mp, key, value) < 0 {
-
-				XPyErr_FormatUnraisable(tls, __ccgo_ts+48364, libc.VaList(bp+8, _dict_event_name(tls, event), mp))
-			}
-		}
-		watcher_bits = watcher_bits >> int32(1)
-		goto _5
-	_5:
-		;
-		i = i + 1
-	}
-}
-
-const MONE = 1
-
-const M_odict_ITER_ITEMS = 6
-
-const M_odict_ITER_KEYS = 2
-
-const M_odict_ITER_REVERSED = 1
-
-const M_odict_ITER_VALUES = 4
-
-const Modict_update = "mutablemapping_update"
-
-type TPyODictObject = struct {
-	Fod_dict            TPyDictObject
-	Fod_first           uintptr
-	Fod_last            uintptr
-	Fod_fast_nodes      uintptr
-	Fod_fast_nodes_size TPy_ssize_t
-	Fod_resize_sentinel uintptr
-	Fod_state           Tsize_t
-	Fod_inst_dict       uintptr
-	Fod_weakreflist     uintptr
-}
-
-type T_odictobject = TPyODictObject
-
-var _PyStackRef_NULL9 = T_PyStackRef{Fbits: uint64(MPy_TAG_REFCNT)}
-
-func _OrderedDict_fromkeys(tls *libc.TLS, type1 uintptr, args uintptr, nargs TPy_ssize_t, kwnames uintptr) (r uintptr) {
-	bp := tls.Alloc(16)
-	defer tls.Free(16)
-	var noptargs, v2, v4 TPy_ssize_t
-	var return_value, seq, tuple, value, v6 uintptr
-	var v1 int64
-	var _ [2]uintptr
-	_, _, _, _, _, _, _, _, _ = noptargs, return_value, seq, tuple, value, v1, v2, v4, v6
-	return_value = libc.UintptrFromInt32(0)
-	if kwnames != 0 {
-		tuple = kwnames
-		v4 = (*TPyVarObject)(unsafe.Pointer(tuple)).Fob_size
-		goto _5
-	_5:
-		v2 = v4
-		goto _3
-	_3:
-		v1 = v2
-	} else {
-		v1 = 0
-	}
-	noptargs = nargs + v1 - int64(1)
-	value = uintptr(unsafe.Pointer(&X_Py_NoneStruct))
-	if libc.Bool(libc.Bool(true) && libc.Bool(libc.UintptrFromInt32(0) == libc.UintptrFromInt32(0))) && kwnames == libc.UintptrFromInt32(0) && int64(libc.Int32FromInt32(1)) <= nargs && (libc.Bool(0 != 0) || nargs <= int64(libc.Int32FromInt32(2))) && args != libc.UintptrFromInt32(0) {
-		v6 = args
-	} else {
-		v6 = X_PyArg_UnpackKeywords(tls, args, nargs, libc.UintptrFromInt32(0), kwnames, uintptr(unsafe.Pointer(&__parser28)), int32(1), int32(2), 0, 0, bp)
-	}
-	args = v6
-	if !(args != 0) {
-		goto exit
-	}
-	seq = **(**uintptr)(__ccgo_up(args))
-	if !(noptargs != 0) {
-		goto skip_optional_pos
-	}
-	value = **(**uintptr)(__ccgo_up(args + 1*8))
-	goto skip_optional_pos
-skip_optional_pos:
-	;
-	return_value = _OrderedDict_fromkeys_impl(tls, type1, seq, value)
-	goto exit
-exit:
-	;
-	return return_value
-	return r
-}
 
 var __kwtuple28 = struct {
 	F_this_is_not_used TPyGC_Head
@@ -14962,7 +12251,7 @@ _11:
 	goto _13
 _13:
 	if !(v12 != 0) {
-		X_PyArg_BadArgument(tls, __ccgo_ts+52106, __ccgo_ts+53208, __ccgo_ts+15148, **(**uintptr)(__ccgo_up(fastargs)))
+		X_PyArg_BadArgument(tls, __ccgo_ts+52116, __ccgo_ts+53208, __ccgo_ts+15148, **(**uintptr)(__ccgo_up(fastargs)))
 		goto exit
 	}
 	name = **(**uintptr)(__ccgo_up(fastargs))
@@ -15016,7 +12305,7 @@ var __keywords38 = [3]uintptr{
 
 var __parser38 = T_PyArg_Parser{
 	Fkeywords: uintptr(unsafe.Pointer(&__keywords38)),
-	Ffname:    __ccgo_ts + 52106,
+	Ffname:    __ccgo_ts + 52116,
 	Fkwtuple:  uintptr(unsafe.Pointer(&__kwtuple38)) + 16,
 }
 
@@ -88615,4 +85904,3572 @@ onError:
 	_41:
 	}
 	return -int32(1)
+}
+
+var _argparse = __ccgo_ts + 78586
+
+func XPyUnicode_DecodeUTF7(tls *libc.TLS, s uintptr, size TPy_ssize_t, errors uintptr) (r uintptr) {
+	return XPyUnicode_DecodeUTF7Stateful(tls, s, size, errors, libc.UintptrFromInt32(0))
+}
+
+func XPyUnicode_DecodeUTF7Stateful(tls *libc.TLS, _s uintptr, size TPy_ssize_t, errors uintptr, consumed uintptr) (r uintptr) {
+	bp := tls.Alloc(112)
+	defer tls.Free(112)
+	*(*uintptr)(unsafe.Pointer(bp)) = _s
+	var base64bits, v3, v4, v5 uint32
+	var base64buffer uint64
+	var ch2, ch21, outCh, surrogate, v10, v7 TPy_UCS4
+	var errmsg, result, v15, v16, v21 uintptr
+	var inShift, v6 int32
+	var shiftOutStart TPy_ssize_t
+	var v20 Tuint32_t
+	var _ uintptr
+	var _ TPy_ssize_t
+	var _ uintptr
+	var _ uintptr
+	var _ TPy_ssize_t
+	var _ uintptr
+	var _ T_PyUnicodeWriter
+	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = base64bits, base64buffer, ch2, ch21, errmsg, inShift, outCh, result, shiftOutStart, surrogate, v10, v15, v16, v20, v21, v3, v4, v5, v6, v7
+	**(**uintptr)(__ccgo_up(bp + 8)) = **(**uintptr)(__ccgo_up(bp))
+	errmsg = __ccgo_ts + 2
+	inShift = 0
+	base64bits = uint32(0)
+	base64buffer = uint64(0)
+	surrogate = uint32(0)
+	**(**uintptr)(__ccgo_up(bp + 96)) = libc.UintptrFromInt32(0)
+	**(**uintptr)(__ccgo_up(bp + 104)) = libc.UintptrFromInt32(0)
+	if size == 0 {
+		if consumed != 0 {
+			**(**TPy_ssize_t)(__ccgo_up(consumed)) = 0
+		}
+		return _unicode_get_empty(tls)
+	}
+
+	X_PyUnicodeWriter_Init(tls, bp+40)
+	(**(**T_PyUnicodeWriter)(__ccgo_up(bp + 40))).Fmin_length = size
+	shiftOutStart = 0
+	**(**uintptr)(__ccgo_up(bp + 32)) = **(**uintptr)(__ccgo_up(bp)) + uintptr(size)
+_2:
+	;
+	if !(**(**uintptr)(__ccgo_up(bp)) < **(**uintptr)(__ccgo_up(bp + 32))) {
+		goto _1
+	}
+	goto restart
+restart:
+	;
+	ch2 = uint32(uint8(**(**uint8)(__ccgo_up(**(**uintptr)(__ccgo_up(bp))))))
+	if inShift != 0 {
+		if ch2 >= uint32('A') && ch2 <= uint32('Z') || ch2 >= uint32('a') && ch2 <= uint32('z') || ch2 >= uint32('0') && ch2 <= uint32('9') || ch2 == uint32('+') || ch2 == uint32('/') {
+			if ch2 >= uint32('A') && ch2 <= uint32('Z') {
+				v3 = ch2 - uint32('A')
+			} else {
+				if ch2 >= uint32('a') && ch2 <= uint32('z') {
+					v4 = ch2 - uint32('a') + uint32(26)
+				} else {
+					if ch2 >= uint32('0') && ch2 <= uint32('9') {
+						v5 = ch2 - uint32('0') + uint32(52)
+					} else {
+						if ch2 == uint32('+') {
+							v6 = int32(62)
+						} else {
+							v6 = int32(63)
+						}
+						v5 = libc.Uint32FromInt32(v6)
+					}
+					v4 = v5
+				}
+				v3 = v4
+			}
+			base64buffer = base64buffer<<int32(6) | uint64(v3)
+			base64bits = base64bits + uint32(6)
+			**(**uintptr)(__ccgo_up(bp)) = **(**uintptr)(__ccgo_up(bp)) + 1
+			if base64bits >= uint32(16) {
+
+				outCh = uint32(base64buffer >> (base64bits - libc.Uint32FromInt32(16)))
+				base64bits = base64bits - uint32(16)
+				base64buffer = base64buffer & libc.Uint64FromInt32(int32(1)<<base64bits-int32(1))
+				if surrogate != 0 {
+
+					v7 = outCh
+					v6 = libc.BoolInt32(uint32(0xDC00) <= v7 && v7 <= uint32(0xDFFF))
+					goto _9
+				_9:
+					if v6 != 0 {
+						v10 = uint32(0x10000) + (surrogate&uint32(0x03FF)<<int32(10) | outCh&uint32(0x03FF))
+						goto _11
+					_11:
+						ch21 = v10
+						if __PyUnicodeWriter_WriteCharInline(tls, bp+40, ch21) < 0 {
+							goto onError
+						}
+						surrogate = uint32(0)
+						goto _2
+					} else {
+						if __PyUnicodeWriter_WriteCharInline(tls, bp+40, surrogate) < 0 {
+							goto onError
+						}
+						surrogate = uint32(0)
+					}
+				}
+				v7 = outCh
+				v6 = libc.BoolInt32(uint32(0xD800) <= v7 && v7 <= uint32(0xDBFF))
+				goto _14
+			_14:
+				if v6 != 0 {
+
+					surrogate = outCh
+				} else {
+					if __PyUnicodeWriter_WriteCharInline(tls, bp+40, outCh) < 0 {
+						goto onError
+					}
+				}
+			}
+		} else {
+			inShift = 0
+			if base64bits > uint32(0) {
+				if base64bits >= uint32(6) {
+
+					**(**uintptr)(__ccgo_up(bp)) = **(**uintptr)(__ccgo_up(bp)) + 1
+					errmsg = __ccgo_ts + 78687
+					goto utf7Error
+				} else {
+
+					if base64buffer != uint64(0) {
+						**(**uintptr)(__ccgo_up(bp)) = **(**uintptr)(__ccgo_up(bp)) + 1
+						errmsg = __ccgo_ts + 78723
+						goto utf7Error
+					}
+				}
+			}
+			if surrogate != 0 && (ch2 <= uint32(127) && ch2 != uint32('+')) {
+				if __PyUnicodeWriter_WriteCharInline(tls, bp+40, surrogate) < 0 {
+					goto onError
+				}
+			}
+			surrogate = uint32(0)
+			if ch2 == uint32('-') {
+
+				**(**uintptr)(__ccgo_up(bp)) = **(**uintptr)(__ccgo_up(bp)) + 1
+			}
+		}
+	} else {
+		if ch2 == uint32('+') {
+			**(**TPy_ssize_t)(__ccgo_up(bp + 16)) = int64(**(**uintptr)(__ccgo_up(bp))) - int64(**(**uintptr)(__ccgo_up(bp + 8)))
+			**(**uintptr)(__ccgo_up(bp)) = **(**uintptr)(__ccgo_up(bp)) + 1
+			if **(**uintptr)(__ccgo_up(bp)) < **(**uintptr)(__ccgo_up(bp + 32)) && libc.Int32FromUint8(**(**uint8)(__ccgo_up(**(**uintptr)(__ccgo_up(bp))))) == int32('-') {
+				**(**uintptr)(__ccgo_up(bp)) = **(**uintptr)(__ccgo_up(bp)) + 1
+				if __PyUnicodeWriter_WriteCharInline(tls, bp+40, uint32('+')) < 0 {
+					goto onError
+				}
+			} else {
+				if **(**uintptr)(__ccgo_up(bp)) < **(**uintptr)(__ccgo_up(bp + 32)) && !(libc.Int32FromUint8(**(**uint8)(__ccgo_up(**(**uintptr)(__ccgo_up(bp))))) >= int32('A') && libc.Int32FromUint8(**(**uint8)(__ccgo_up(**(**uintptr)(__ccgo_up(bp))))) <= int32('Z') || libc.Int32FromUint8(**(**uint8)(__ccgo_up(**(**uintptr)(__ccgo_up(bp))))) >= int32('a') && libc.Int32FromUint8(**(**uint8)(__ccgo_up(**(**uintptr)(__ccgo_up(bp))))) <= int32('z') || libc.Int32FromUint8(**(**uint8)(__ccgo_up(**(**uintptr)(__ccgo_up(bp))))) >= int32('0') && libc.Int32FromUint8(**(**uint8)(__ccgo_up(**(**uintptr)(__ccgo_up(bp))))) <= int32('9') || libc.Int32FromUint8(**(**uint8)(__ccgo_up(**(**uintptr)(__ccgo_up(bp))))) == int32('+') || libc.Int32FromUint8(**(**uint8)(__ccgo_up(**(**uintptr)(__ccgo_up(bp))))) == int32('/')) {
+					**(**uintptr)(__ccgo_up(bp)) = **(**uintptr)(__ccgo_up(bp)) + 1
+					errmsg = __ccgo_ts + 78763
+					goto utf7Error
+				} else {
+					inShift = int32(1)
+					surrogate = uint32(0)
+					shiftOutStart = (**(**T_PyUnicodeWriter)(__ccgo_up(bp + 40))).Fpos
+					base64bits = uint32(0)
+					base64buffer = uint64(0)
+				}
+			}
+		} else {
+			if ch2 <= uint32(127) && ch2 != uint32('+') {
+				**(**uintptr)(__ccgo_up(bp)) = **(**uintptr)(__ccgo_up(bp)) + 1
+				if __PyUnicodeWriter_WriteCharInline(tls, bp+40, ch2) < 0 {
+					goto onError
+				}
+			} else {
+				**(**TPy_ssize_t)(__ccgo_up(bp + 16)) = int64(**(**uintptr)(__ccgo_up(bp))) - int64(**(**uintptr)(__ccgo_up(bp + 8)))
+				**(**uintptr)(__ccgo_up(bp)) = **(**uintptr)(__ccgo_up(bp)) + 1
+				errmsg = __ccgo_ts + 78783
+				goto utf7Error
+			}
+		}
+	}
+	goto _2
+	goto utf7Error
+utf7Error:
+	;
+	**(**TPy_ssize_t)(__ccgo_up(bp + 24)) = int64(**(**uintptr)(__ccgo_up(bp))) - int64(**(**uintptr)(__ccgo_up(bp + 8)))
+	if _unicode_decode_call_errorhandler_writer(tls, errors, bp+96, __ccgo_ts+78812, errmsg, bp+8, bp+32, bp+16, bp+24, bp+104, bp, bp+40) != 0 {
+		goto onError
+	}
+	goto _2
+_1:
+	;
+
+	if inShift != 0 && !(consumed != 0) {
+
+		inShift = 0
+		if surrogate != 0 || base64bits >= uint32(6) || base64bits > uint32(0) && base64buffer != uint64(0) {
+			**(**TPy_ssize_t)(__ccgo_up(bp + 24)) = size
+			if _unicode_decode_call_errorhandler_writer(tls, errors, bp+96, __ccgo_ts+78812, __ccgo_ts+78817, bp+8, bp+32, bp+16, bp+24, bp+104, bp, bp+40) != 0 {
+				goto onError
+			}
+			if **(**uintptr)(__ccgo_up(bp)) < **(**uintptr)(__ccgo_up(bp + 32)) {
+				goto restart
+			}
+		}
+	}
+
+	if consumed != 0 {
+		if inShift != 0 {
+			**(**TPy_ssize_t)(__ccgo_up(consumed)) = **(**TPy_ssize_t)(__ccgo_up(bp + 16))
+			if (**(**T_PyUnicodeWriter)(__ccgo_up(bp + 40))).Fpos != shiftOutStart && (**(**T_PyUnicodeWriter)(__ccgo_up(bp + 40))).Fmaxchar > uint32(127) {
+				result = XPyUnicode_FromKindAndData(tls, (**(**T_PyUnicodeWriter)(__ccgo_up(bp + 40))).Fkind, (**(**T_PyUnicodeWriter)(__ccgo_up(bp + 40))).Fdata, shiftOutStart)
+				v15 = **(**uintptr)(__ccgo_up(bp + 96))
+				if v15 != libc.UintptrFromInt32(0) {
+					v16 = v15
+					v6 = libc.BoolInt32(libc.Int32FromUint32(*(*Tuint32_t)(unsafe.Pointer(v16))) < 0)
+					goto _18
+				_18:
+					if v6 != 0 {
+						goto _19
+					}
+					v21 = v16
+					*(*Tuint32_t)(unsafe.Pointer(v21)) = *(*Tuint32_t)(unsafe.Pointer(v21)) - 1
+					v20 = *(*Tuint32_t)(unsafe.Pointer(v21))
+					if v20 == libc.Uint32FromInt32(0) {
+						X_Py_Dealloc(tls, v16)
+					}
+				_19:
+				}
+				v15 = **(**uintptr)(__ccgo_up(bp + 104))
+				if v15 != libc.UintptrFromInt32(0) {
+					v16 = v15
+					v6 = libc.BoolInt32(libc.Int32FromUint32(*(*Tuint32_t)(unsafe.Pointer(v16))) < 0)
+					goto _25
+				_25:
+					if v6 != 0 {
+						goto _26
+					}
+					v21 = v16
+					*(*Tuint32_t)(unsafe.Pointer(v21)) = *(*Tuint32_t)(unsafe.Pointer(v21)) - 1
+					v20 = *(*Tuint32_t)(unsafe.Pointer(v21))
+					if v20 == libc.Uint32FromInt32(0) {
+						X_Py_Dealloc(tls, v16)
+					}
+				_26:
+				}
+				X_PyUnicodeWriter_Dealloc(tls, bp+40)
+				return result
+			}
+			(**(**T_PyUnicodeWriter)(__ccgo_up(bp + 40))).Fpos = shiftOutStart
+		} else {
+			**(**TPy_ssize_t)(__ccgo_up(consumed)) = int64(**(**uintptr)(__ccgo_up(bp))) - int64(**(**uintptr)(__ccgo_up(bp + 8)))
+		}
+	}
+	v15 = **(**uintptr)(__ccgo_up(bp + 96))
+	if v15 != libc.UintptrFromInt32(0) {
+		v16 = v15
+		v6 = libc.BoolInt32(libc.Int32FromUint32(*(*Tuint32_t)(unsafe.Pointer(v16))) < 0)
+		goto _32
+	_32:
+		if v6 != 0 {
+			goto _33
+		}
+		v21 = v16
+		*(*Tuint32_t)(unsafe.Pointer(v21)) = *(*Tuint32_t)(unsafe.Pointer(v21)) - 1
+		v20 = *(*Tuint32_t)(unsafe.Pointer(v21))
+		if v20 == libc.Uint32FromInt32(0) {
+			X_Py_Dealloc(tls, v16)
+		}
+	_33:
+	}
+	v15 = **(**uintptr)(__ccgo_up(bp + 104))
+	if v15 != libc.UintptrFromInt32(0) {
+		v16 = v15
+		v6 = libc.BoolInt32(libc.Int32FromUint32(*(*Tuint32_t)(unsafe.Pointer(v16))) < 0)
+		goto _39
+	_39:
+		if v6 != 0 {
+			goto _40
+		}
+		v21 = v16
+		*(*Tuint32_t)(unsafe.Pointer(v21)) = *(*Tuint32_t)(unsafe.Pointer(v21)) - 1
+		v20 = *(*Tuint32_t)(unsafe.Pointer(v21))
+		if v20 == libc.Uint32FromInt32(0) {
+			X_Py_Dealloc(tls, v16)
+		}
+	_40:
+	}
+	return X_PyUnicodeWriter_Finish(tls, bp+40)
+	goto onError
+onError:
+	;
+	v15 = **(**uintptr)(__ccgo_up(bp + 96))
+	if v15 != libc.UintptrFromInt32(0) {
+		v16 = v15
+		v6 = libc.BoolInt32(libc.Int32FromUint32(*(*Tuint32_t)(unsafe.Pointer(v16))) < 0)
+		goto _46
+	_46:
+		if v6 != 0 {
+			goto _47
+		}
+		v21 = v16
+		*(*Tuint32_t)(unsafe.Pointer(v21)) = *(*Tuint32_t)(unsafe.Pointer(v21)) - 1
+		v20 = *(*Tuint32_t)(unsafe.Pointer(v21))
+		if v20 == libc.Uint32FromInt32(0) {
+			X_Py_Dealloc(tls, v16)
+		}
+	_47:
+	}
+	v15 = **(**uintptr)(__ccgo_up(bp + 104))
+	if v15 != libc.UintptrFromInt32(0) {
+		v16 = v15
+		v6 = libc.BoolInt32(libc.Int32FromUint32(*(*Tuint32_t)(unsafe.Pointer(v16))) < 0)
+		goto _53
+	_53:
+		if v6 != 0 {
+			goto _54
+		}
+		v21 = v16
+		*(*Tuint32_t)(unsafe.Pointer(v21)) = *(*Tuint32_t)(unsafe.Pointer(v21)) - 1
+		v20 = *(*Tuint32_t)(unsafe.Pointer(v21))
+		if v20 == libc.Uint32FromInt32(0) {
+			X_Py_Dealloc(tls, v16)
+		}
+	_54:
+	}
+	X_PyUnicodeWriter_Dealloc(tls, bp+40)
+	return libc.UintptrFromInt32(0)
+}
+
+func X_PyUnicode_EncodeUTF7(tls *libc.TLS, str uintptr, base64SetO int32, base64WhiteSpace int32, errors uintptr) (r uintptr) {
+	bp := tls.Alloc(16)
+	defer tls.Free(16)
+	var base64bits, v2, v7 uint32
+	var base64buffer uint64
+	var ch2, v22 TPy_UCS4
+	var data, data2, out, start, v1, v11, v4, v6, v9 uintptr
+	var i, len1, v13 TPy_ssize_t
+	var inShift, kind1, v19 int32
+	var _ uintptr
+	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = base64bits, base64buffer, ch2, data, data2, i, inShift, kind1, len1, out, start, v1, v11, v13, v19, v2, v22, v4, v6, v7, v9
+	inShift = 0
+	base64bits = uint32(0)
+	base64buffer = uint64(0)
+	kind1 = int32(*(*uint32)(unsafe.Pointer(str + 32 + 0)) & 0x1c >> 2)
+	v1 = str
+	v2 = libc.Uint32FromInt32(int32(*(*uint32)(unsafe.Pointer(v1 + 32 + 0)) & 0x20 >> 5))
+	goto _3
+_3:
+	if v2 != 0 {
+		v6 = v1
+		v7 = libc.Uint32FromInt32(int32(*(*uint32)(unsafe.Pointer(v6 + 32 + 0)) & 0x40 >> 6))
+		goto _8
+	_8:
+		if v7 != 0 {
+			v9 = v6 + libc.UintptrFromInt32(1)*40
+			goto _10
+		}
+		v9 = v6 + libc.UintptrFromInt32(1)*56
+		goto _10
+	_10:
+		v4 = v9
+		goto _5
+	}
+	data = *(*uintptr)(unsafe.Pointer(v1 + 56))
+	v11 = data
+	goto _12
+_12:
+	v4 = v11
+	goto _5
+_5:
+	data2 = v4
+	v13 = (*TPyASCIIObject)(unsafe.Pointer(str)).Flength
+	goto _14
+_14:
+	len1 = v13
+	if len1 == 0 {
+		return XPyBytes_FromStringAndSize(tls, libc.UintptrFromInt32(0), 0)
+	}
+
+	if len1 > libc.Int64FromInt64(0x7fffffffffffffff)/libc.Int64FromInt32(8) {
+		return XPyErr_NoMemory(tls)
+	}
+	**(**uintptr)(__ccgo_up(bp)) = XPyBytes_FromStringAndSize(tls, libc.UintptrFromInt32(0), len1*int64(8))
+	if **(**uintptr)(__ccgo_up(bp)) == libc.UintptrFromInt32(0) {
+		return libc.UintptrFromInt32(0)
+	}
+	v4 = **(**uintptr)(__ccgo_up(bp)) + 32
+	goto _17
+_17:
+	v1 = v4
+	out = v1
+	start = v1
+	i = 0
+	for {
+		if !(i < len1) {
+			break
+		}
+		v19 = kind1
+		v1 = data2
+		v13 = i
+		if v19 == int32(EPyUnicode_1BYTE_KIND) {
+			v22 = uint32(**(**TPy_UCS1)(__ccgo_up(v1 + uintptr(v13))))
+			goto _23
+		}
+		if v19 == int32(EPyUnicode_2BYTE_KIND) {
+			v22 = uint32(**(**TPy_UCS2)(__ccgo_up(v1 + uintptr(v13)*2)))
+			goto _23
+		}
+		v22 = **(**TPy_UCS4)(__ccgo_up(v1 + uintptr(v13)*4))
+		goto _23
+	_23:
+		ch2 = v22
+		if inShift != 0 {
+			if ch2 < uint32(128) && ch2 > uint32(0) && (libc.Int32FromUint8(_utf7_category[ch2]) == 0 || !(base64WhiteSpace != 0) && libc.Int32FromUint8(_utf7_category[ch2]) == int32(2) || !(base64SetO != 0) && libc.Int32FromUint8(_utf7_category[ch2]) == int32(1)) {
+
+				if base64bits != 0 {
+					v4 = out
+					out = out + 1
+					**(**uint8)(__ccgo_up(v4)) = **(**uint8)(__ccgo_up(__ccgo_ts + 78845 + uintptr(base64buffer<<(uint32(6)-base64bits)&uint64(0x3f))))
+					base64buffer = uint64(0)
+					base64bits = uint32(0)
+				}
+				inShift = 0
+
+				if ch2 >= uint32('A') && ch2 <= uint32('Z') || ch2 >= uint32('a') && ch2 <= uint32('z') || ch2 >= uint32('0') && ch2 <= uint32('9') || ch2 == uint32('+') || ch2 == uint32('/') || ch2 == uint32('-') {
+					v1 = out
+					out = out + 1
+					**(**uint8)(__ccgo_up(v1)) = uint8('-')
+				}
+				v1 = out
+				out = out + 1
+				**(**uint8)(__ccgo_up(v1)) = uint8(ch2)
+			} else {
+				goto encode_char
+			}
+		} else {
+			if ch2 == uint32('+') {
+				v1 = out
+				out = out + 1
+				**(**uint8)(__ccgo_up(v1)) = uint8('+')
+				v1 = out
+				out = out + 1
+				**(**uint8)(__ccgo_up(v1)) = uint8('-')
+			} else {
+				if ch2 < uint32(128) && ch2 > uint32(0) && (libc.Int32FromUint8(_utf7_category[ch2]) == 0 || !(base64WhiteSpace != 0) && libc.Int32FromUint8(_utf7_category[ch2]) == int32(2) || !(base64SetO != 0) && libc.Int32FromUint8(_utf7_category[ch2]) == int32(1)) {
+					v1 = out
+					out = out + 1
+					**(**uint8)(__ccgo_up(v1)) = uint8(ch2)
+				} else {
+					v1 = out
+					out = out + 1
+					**(**uint8)(__ccgo_up(v1)) = uint8('+')
+					inShift = int32(1)
+					goto encode_char
+				}
+			}
+		}
+		goto _18
+		goto encode_char
+	encode_char:
+		;
+		if ch2 >= uint32(0x10000) {
+
+			base64bits = base64bits + uint32(16)
+			v22 = libc.Uint32FromInt32(libc.Int32FromInt32(0xD800)-libc.Int32FromInt32(0x10000)>>libc.Int32FromInt32(10)) + ch2>>libc.Int32FromInt32(10)
+			goto _32
+		_32:
+			base64buffer = base64buffer<<int32(16) | uint64(v22)
+			for base64bits >= uint32(6) {
+				v1 = out
+				out = out + 1
+				**(**uint8)(__ccgo_up(v1)) = **(**uint8)(__ccgo_up(__ccgo_ts + 78845 + uintptr(base64buffer>>(base64bits-uint32(6))&uint64(0x3f))))
+				base64bits = base64bits - uint32(6)
+			}
+
+			v22 = libc.Uint32FromInt32(0xDC00) + ch2&libc.Uint32FromInt32(0x3FF)
+			goto _35
+		_35:
+			ch2 = v22
+		}
+		base64bits = base64bits + uint32(16)
+		base64buffer = base64buffer<<int32(16) | uint64(ch2)
+		for base64bits >= uint32(6) {
+			v1 = out
+			out = out + 1
+			**(**uint8)(__ccgo_up(v1)) = **(**uint8)(__ccgo_up(__ccgo_ts + 78845 + uintptr(base64buffer>>(base64bits-uint32(6))&uint64(0x3f))))
+			base64bits = base64bits - uint32(6)
+		}
+		goto _18
+	_18:
+		;
+		i = i + 1
+	}
+	if base64bits != 0 {
+		v1 = out
+		out = out + 1
+		**(**uint8)(__ccgo_up(v1)) = **(**uint8)(__ccgo_up(__ccgo_ts + 78845 + uintptr(base64buffer<<(uint32(6)-base64bits)&uint64(0x3f))))
+	}
+	if inShift != 0 {
+		v1 = out
+		out = out + 1
+		**(**uint8)(__ccgo_up(v1)) = uint8('-')
+	}
+	if X_PyBytes_Resize(tls, bp, int64(out)-int64(start)) < 0 {
+		return libc.UintptrFromInt32(0)
+	}
+	return **(**uintptr)(__ccgo_up(bp))
+}
+
+func XPyUnicode_DecodeUTF8(tls *libc.TLS, s uintptr, size TPy_ssize_t, errors uintptr) (r uintptr) {
+	return XPyUnicode_DecodeUTF8Stateful(tls, s, size, errors, libc.UintptrFromInt32(0))
+}
+
+func _asciilib_utf8_decode(tls *libc.TLS, inptr uintptr, end uintptr, dest uintptr, outpos uintptr) (r TPy_UCS4) {
+	var _p, _s, p, s, v1 uintptr
+	var ch, ch2, ch21, ch22, ch3, ch31, ch4 TPy_UCS4
+	var value Tsize_t
+	var v3 int32
+	var v4 bool
+	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = _p, _s, ch, ch2, ch21, ch22, ch3, ch31, ch4, p, s, value, v1, v3, v4
+	s = **(**uintptr)(__ccgo_up(inptr))
+	p = dest + uintptr(**(**TPy_ssize_t)(__ccgo_up(outpos)))
+	for s < end {
+		ch = uint32(uint8(**(**uint8)(__ccgo_up(s))))
+		if ch < uint32(0x80) {
+			if !(uint64(s)&libc.Uint64FromInt32(libc.Int32FromInt32(MALIGNOF_SIZE_T)-libc.Int32FromInt32(1)) != 0) {
+				_s = s
+				_p = p
+				for _s+uintptr(MSIZEOF_SIZE_T) <= end {
+					value = **(**Tsize_t)(__ccgo_up(_s))
+					if value&uint64(0x8080808080808080) != 0 {
+						break
+					}
+					**(**TPy_UCS1)(__ccgo_up(_p)) = uint8(value & libc.Uint64FromUint32(0xFF))
+					**(**TPy_UCS1)(__ccgo_up(_p + 1)) = uint8(value >> libc.Int32FromInt32(8) & libc.Uint64FromUint32(0xFF))
+					**(**TPy_UCS1)(__ccgo_up(_p + 2)) = uint8(value >> libc.Int32FromInt32(16) & libc.Uint64FromUint32(0xFF))
+					**(**TPy_UCS1)(__ccgo_up(_p + 3)) = uint8(value >> libc.Int32FromInt32(24) & libc.Uint64FromUint32(0xFF))
+					**(**TPy_UCS1)(__ccgo_up(_p + 4)) = uint8(value >> libc.Int32FromInt32(32) & libc.Uint64FromUint32(0xFF))
+					**(**TPy_UCS1)(__ccgo_up(_p + 5)) = uint8(value >> libc.Int32FromInt32(40) & libc.Uint64FromUint32(0xFF))
+					**(**TPy_UCS1)(__ccgo_up(_p + 6)) = uint8(value >> libc.Int32FromInt32(48) & libc.Uint64FromUint32(0xFF))
+					**(**TPy_UCS1)(__ccgo_up(_p + 7)) = uint8(value >> libc.Int32FromInt32(56) & libc.Uint64FromUint32(0xFF))
+					_s = _s + uintptr(MSIZEOF_SIZE_T)
+					_p = _p + uintptr(MSIZEOF_SIZE_T)
+				}
+				s = _s
+				p = _p
+				if s == end {
+					break
+				}
+				ch = uint32(uint8(**(**uint8)(__ccgo_up(s))))
+			}
+			if ch < uint32(0x80) {
+				s = s + 1
+				v1 = p
+				p = p + 1
+				**(**TPy_UCS1)(__ccgo_up(v1)) = uint8(ch)
+				continue
+			}
+		}
+		if ch < uint32(0xE0) {
+			if ch < uint32(0xC2) {
+				goto InvalidStart
+			}
+			if int64(end)-int64(s) < int64(2) {
+				break
+			}
+			ch2 = uint32(uint8(**(**uint8)(__ccgo_up(s + 1))))
+			if !(ch2 >= uint32(0x80) && ch2 < uint32(0xC0)) {
+				goto InvalidContinuation1
+			}
+			ch = ch<<libc.Int32FromInt32(6) + ch2 - libc.Uint32FromInt32(libc.Int32FromInt32(0xC0)<<libc.Int32FromInt32(6)+libc.Int32FromInt32(0x80))
+			s = s + uintptr(2)
+			if libc.Bool(uint32(0x7F) <= uint32(0x007F)) || libc.Bool(uint32(0x7F) < uint32(0x07FF)) && ch > uint32(0x7F) {
+				goto Return
+			}
+			v1 = p
+			p = p + 1
+			**(**TPy_UCS1)(__ccgo_up(v1)) = uint8(ch)
+			continue
+		}
+		if ch < uint32(0xF0) {
+			if int64(end)-int64(s) < int64(3) {
+				if int64(end)-int64(s) < int64(2) {
+					break
+				}
+				ch21 = uint32(uint8(**(**uint8)(__ccgo_up(s + 1))))
+				if v4 = !(ch21 >= uint32(0x80) && ch21 < uint32(0xC0)); !v4 {
+					if ch21 < uint32(0xA0) {
+						v3 = libc.BoolInt32(ch == uint32(0xE0))
+					} else {
+						v3 = libc.BoolInt32(ch == uint32(0xED))
+					}
+				}
+				if v4 || v3 != 0 {
+					goto InvalidContinuation1
+				}
+				break
+			}
+			ch21 = uint32(uint8(**(**uint8)(__ccgo_up(s + 1))))
+			ch3 = uint32(uint8(**(**uint8)(__ccgo_up(s + 2))))
+			if !(ch21 >= uint32(0x80) && ch21 < uint32(0xC0)) {
+				goto InvalidContinuation1
+			}
+			if ch == uint32(0xE0) {
+				if ch21 < uint32(0xA0) {
+					goto InvalidContinuation1
+				}
+			} else {
+				if ch == uint32(0xED) && ch21 >= uint32(0xA0) {
+					goto InvalidContinuation1
+				}
+			}
+			if !(ch3 >= uint32(0x80) && ch3 < uint32(0xC0)) {
+				goto InvalidContinuation2
+			}
+			ch = ch<<libc.Int32FromInt32(12) + ch21<<libc.Int32FromInt32(6) + ch3 - libc.Uint32FromInt32(libc.Int32FromInt32(0xE0)<<libc.Int32FromInt32(12)+libc.Int32FromInt32(0x80)<<libc.Int32FromInt32(6)+libc.Int32FromInt32(0x80))
+			s = s + uintptr(3)
+			if libc.Bool(uint32(0x7F) <= uint32(0x07FF)) || libc.Bool(uint32(0x7F) < uint32(0xFFFF)) && ch > uint32(0x7F) {
+				goto Return
+			}
+			v1 = p
+			p = p + 1
+			**(**TPy_UCS1)(__ccgo_up(v1)) = uint8(ch)
+			continue
+		}
+		if ch < uint32(0xF5) {
+			if int64(end)-int64(s) < int64(4) {
+				if int64(end)-int64(s) < int64(2) {
+					break
+				}
+				ch22 = uint32(uint8(**(**uint8)(__ccgo_up(s + 1))))
+				if v4 = !(ch22 >= uint32(0x80) && ch22 < uint32(0xC0)); !v4 {
+					if ch22 < uint32(0x90) {
+						v3 = libc.BoolInt32(ch == uint32(0xF0))
+					} else {
+						v3 = libc.BoolInt32(ch == uint32(0xF4))
+					}
+				}
+				if v4 || v3 != 0 {
+					goto InvalidContinuation1
+				}
+				if int64(end)-int64(s) < int64(3) {
+					break
+				}
+				ch31 = uint32(uint8(**(**uint8)(__ccgo_up(s + 2))))
+				if !(ch31 >= uint32(0x80) && ch31 < uint32(0xC0)) {
+					goto InvalidContinuation2
+				}
+				break
+			}
+			ch22 = uint32(uint8(**(**uint8)(__ccgo_up(s + 1))))
+			ch31 = uint32(uint8(**(**uint8)(__ccgo_up(s + 2))))
+			ch4 = uint32(uint8(**(**uint8)(__ccgo_up(s + 3))))
+			if !(ch22 >= uint32(0x80) && ch22 < uint32(0xC0)) {
+				goto InvalidContinuation1
+			}
+			if ch == uint32(0xF0) {
+				if ch22 < uint32(0x90) {
+					goto InvalidContinuation1
+				}
+			} else {
+				if ch == uint32(0xF4) && ch22 >= uint32(0x90) {
+					goto InvalidContinuation1
+				}
+			}
+			if !(ch31 >= uint32(0x80) && ch31 < uint32(0xC0)) {
+				goto InvalidContinuation2
+			}
+			if !(ch4 >= uint32(0x80) && ch4 < uint32(0xC0)) {
+				goto InvalidContinuation3
+			}
+			ch = ch<<libc.Int32FromInt32(18) + ch22<<libc.Int32FromInt32(12) + ch31<<libc.Int32FromInt32(6) + ch4 - libc.Uint32FromInt32(libc.Int32FromInt32(0xF0)<<libc.Int32FromInt32(18)+libc.Int32FromInt32(0x80)<<libc.Int32FromInt32(12)+libc.Int32FromInt32(0x80)<<libc.Int32FromInt32(6)+libc.Int32FromInt32(0x80))
+			s = s + uintptr(4)
+			if libc.Bool(uint32(0x7F) <= uint32(0xFFFF)) || libc.Bool(uint32(0x7F) < uint32(0x10FFFF)) && ch > uint32(0x7F) {
+				goto Return
+			}
+			v1 = p
+			p = p + 1
+			**(**TPy_UCS1)(__ccgo_up(v1)) = uint8(ch)
+			continue
+		}
+		goto InvalidStart
+	}
+	ch = uint32(0)
+	goto Return
+Return:
+	;
+	**(**uintptr)(__ccgo_up(inptr)) = s
+	**(**TPy_ssize_t)(__ccgo_up(outpos)) = int64(p) - int64(dest)
+	return ch
+	goto InvalidStart
+InvalidStart:
+	;
+	ch = uint32(1)
+	goto Return
+	goto InvalidContinuation1
+InvalidContinuation1:
+	;
+	ch = uint32(2)
+	goto Return
+	goto InvalidContinuation2
+InvalidContinuation2:
+	;
+	ch = uint32(3)
+	goto Return
+	goto InvalidContinuation3
+InvalidContinuation3:
+	;
+	ch = uint32(4)
+	goto Return
+	return r
+}
+
+func _asciilib_utf8_encoder(tls *libc.TLS, writer uintptr, unicode uintptr, data uintptr, size TPy_ssize_t, error_handler T_Py_error_handler, errors uintptr) (r uintptr) {
+	var ch TPy_UCS4
+	var i, max_char_size, v2 TPy_ssize_t
+	var p, v3 uintptr
+	_, _, _, _, _, _ = ch, i, max_char_size, p, v2, v3
+	max_char_size = int64(2)
+	if size > int64(0x7fffffffffffffff)/max_char_size {
+		XPyErr_NoMemory(tls)
+		return libc.UintptrFromInt32(0)
+	}
+	X_PyBytesWriter_Init(tls, writer)
+	p = X_PyBytesWriter_Alloc(tls, writer, size*max_char_size)
+	if p == libc.UintptrFromInt32(0) {
+		return libc.UintptrFromInt32(0)
+	}
+	i = 0
+	for {
+		if !(i < size) {
+			break
+		}
+		v2 = i
+		i = i + 1
+		ch = uint32(**(**TPy_UCS1)(__ccgo_up(data + uintptr(v2))))
+		if ch < uint32(0x80) {
+			v3 = p
+			p = p + 1
+			**(**uint8)(__ccgo_up(v3)) = uint8(ch)
+		} else {
+			v3 = p
+			p = p + 1
+			**(**uint8)(__ccgo_up(v3)) = uint8(libc.Uint32FromInt32(0xc0) | ch>>libc.Int32FromInt32(6))
+			v3 = p
+			p = p + 1
+			**(**uint8)(__ccgo_up(v3)) = uint8(libc.Uint32FromInt32(0x80) | ch&libc.Uint32FromInt32(0x3f))
+		}
+		goto _1
+	_1:
+	}
+	return p
+}
+
+func _asciilib_utf16_decode(tls *libc.TLS, inptr uintptr, e uintptr, dest uintptr, outpos uintptr, native_ordering int32) (r TPy_UCS4) {
+	var _q, p, q, v4 uintptr
+	var block uint64
+	var ch21, ch3, v1 TPy_UCS4
+	var ihi, ilo, v2 int32
+	_, _, _, _, _, _, _, _, _, _, _ = _q, block, ch21, ch3, ihi, ilo, p, q, v1, v2, v4
+	q = **(**uintptr)(__ccgo_up(inptr))
+	p = dest + uintptr(**(**TPy_ssize_t)(__ccgo_up(outpos)))
+	ihi = libc.BoolInt32(!!(native_ordering != 0))
+	ilo = libc.BoolInt32(!(native_ordering != 0))
+	e = e - 1
+	for q < e {
+		if !(uint64(q)&libc.Uint64FromInt32(libc.Int32FromInt32(MALIGNOF_LONG)-libc.Int32FromInt32(1)) != 0) {
+			_q = q
+			for _q+uintptr(MSIZEOF_LONG) <= e {
+				block = **(**uint64)(__ccgo_up(_q))
+				if native_ordering != 0 {
+					if block&(libc.Uint64FromUint64(0x0001000100010001)*uint64(libc.Uint32FromUint32(0xFFFF) & ^libc.Uint32FromUint32(0x7F))) != 0 {
+						break
+					}
+				} else {
+					if block&(libc.Uint64FromUint64(0x0001000100010001)*uint64(libc.Uint32FromUint32(0xFFFF) & ^libc.Uint32FromUint32(0x7F))>>libc.Int32FromInt32(8)&(libc.Uint64FromUint64(0x0001000100010001)*libc.Uint64FromUint32(0x00FF))|libc.Uint64FromUint64(0x0001000100010001)*uint64(libc.Uint32FromUint32(0xFFFF) & ^libc.Uint32FromUint32(0x7F))&(libc.Uint64FromUint64(0x0001000100010001)*libc.Uint64FromUint32(0x00FF))<<libc.Int32FromInt32(8)) != 0 {
+						break
+					}
+					block = block >> uint64(8)
+				}
+				**(**TPy_UCS1)(__ccgo_up(p)) = uint8(block & libc.Uint64FromUint32(0xFFFF))
+				**(**TPy_UCS1)(__ccgo_up(p + 1)) = uint8(block >> libc.Int32FromInt32(16) & libc.Uint64FromUint32(0xFFFF))
+				**(**TPy_UCS1)(__ccgo_up(p + 2)) = uint8(block >> libc.Int32FromInt32(32) & libc.Uint64FromUint32(0xFFFF))
+				**(**TPy_UCS1)(__ccgo_up(p + 3)) = uint8(block >> libc.Int32FromInt32(48))
+				_q = _q + uintptr(MSIZEOF_LONG)
+				p = p + uintptr(libc.Int32FromInt32(MSIZEOF_LONG)/libc.Int32FromInt32(2))
+			}
+			q = _q
+			if q >= e {
+				break
+			}
+		}
+		ch3 = libc.Uint32FromInt32(libc.Int32FromUint8(**(**uint8)(__ccgo_up(q + uintptr(ihi))))<<int32(8) | libc.Int32FromUint8(**(**uint8)(__ccgo_up(q + uintptr(ilo)))))
+		q = q + uintptr(2)
+		v1 = ch3
+		v2 = libc.BoolInt32(uint32(0xD800) <= v1 && v1 <= uint32(0xDFFF))
+		goto _3
+	_3:
+		if !(v2 != 0) {
+			if ch3 > uint32(0x7F) {
+				goto Return
+			}
+			v4 = p
+			p = p + 1
+			**(**TPy_UCS1)(__ccgo_up(v4)) = uint8(ch3)
+			continue
+		}
+		v1 = ch3
+		v2 = libc.BoolInt32(uint32(0xD800) <= v1 && v1 <= uint32(0xDBFF))
+		goto _7
+	_7:
+		if !(v2 != 0) {
+			goto IllegalEncoding
+		}
+		if q >= e {
+			goto UnexpectedEnd
+		}
+		ch21 = libc.Uint32FromInt32(libc.Int32FromUint8(**(**uint8)(__ccgo_up(q + uintptr(ihi))))<<int32(8) | libc.Int32FromUint8(**(**uint8)(__ccgo_up(q + uintptr(ilo)))))
+		q = q + uintptr(2)
+		v1 = ch21
+		v2 = libc.BoolInt32(uint32(0xDC00) <= v1 && v1 <= uint32(0xDFFF))
+		goto _10
+	_10:
+		if !(v2 != 0) {
+			goto IllegalSurrogate
+		}
+		v1 = uint32(0x10000) + (ch3&uint32(0x03FF)<<int32(10) | ch21&uint32(0x03FF))
+		goto _12
+	_12:
+		ch3 = v1
+		goto Return
+	}
+	ch3 = uint32(0)
+	goto Return
+Return:
+	;
+	**(**uintptr)(__ccgo_up(inptr)) = q
+	**(**TPy_ssize_t)(__ccgo_up(outpos)) = int64(p) - int64(dest)
+	return ch3
+	goto UnexpectedEnd
+UnexpectedEnd:
+	;
+	ch3 = uint32(1)
+	goto Return
+	goto IllegalEncoding
+IllegalEncoding:
+	;
+	ch3 = uint32(2)
+	goto Return
+	goto IllegalSurrogate
+IllegalSurrogate:
+	;
+	ch3 = uint32(3)
+	goto Return
+	return r
+}
+
+func _ucs1lib_utf8_decode(tls *libc.TLS, inptr uintptr, end uintptr, dest uintptr, outpos uintptr) (r TPy_UCS4) {
+	var _p, _s, p, s, v1 uintptr
+	var ch, ch2, ch21, ch22, ch3, ch31, ch4 TPy_UCS4
+	var value Tsize_t
+	var v3 int32
+	var v4 bool
+	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = _p, _s, ch, ch2, ch21, ch22, ch3, ch31, ch4, p, s, value, v1, v3, v4
+	s = **(**uintptr)(__ccgo_up(inptr))
+	p = dest + uintptr(**(**TPy_ssize_t)(__ccgo_up(outpos)))
+	for s < end {
+		ch = uint32(uint8(**(**uint8)(__ccgo_up(s))))
+		if ch < uint32(0x80) {
+			if !(uint64(s)&libc.Uint64FromInt32(libc.Int32FromInt32(MALIGNOF_SIZE_T)-libc.Int32FromInt32(1)) != 0) {
+				_s = s
+				_p = p
+				for _s+uintptr(MSIZEOF_SIZE_T) <= end {
+					value = **(**Tsize_t)(__ccgo_up(_s))
+					if value&uint64(0x8080808080808080) != 0 {
+						break
+					}
+					**(**TPy_UCS1)(__ccgo_up(_p)) = uint8(value & libc.Uint64FromUint32(0xFF))
+					**(**TPy_UCS1)(__ccgo_up(_p + 1)) = uint8(value >> libc.Int32FromInt32(8) & libc.Uint64FromUint32(0xFF))
+					**(**TPy_UCS1)(__ccgo_up(_p + 2)) = uint8(value >> libc.Int32FromInt32(16) & libc.Uint64FromUint32(0xFF))
+					**(**TPy_UCS1)(__ccgo_up(_p + 3)) = uint8(value >> libc.Int32FromInt32(24) & libc.Uint64FromUint32(0xFF))
+					**(**TPy_UCS1)(__ccgo_up(_p + 4)) = uint8(value >> libc.Int32FromInt32(32) & libc.Uint64FromUint32(0xFF))
+					**(**TPy_UCS1)(__ccgo_up(_p + 5)) = uint8(value >> libc.Int32FromInt32(40) & libc.Uint64FromUint32(0xFF))
+					**(**TPy_UCS1)(__ccgo_up(_p + 6)) = uint8(value >> libc.Int32FromInt32(48) & libc.Uint64FromUint32(0xFF))
+					**(**TPy_UCS1)(__ccgo_up(_p + 7)) = uint8(value >> libc.Int32FromInt32(56) & libc.Uint64FromUint32(0xFF))
+					_s = _s + uintptr(MSIZEOF_SIZE_T)
+					_p = _p + uintptr(MSIZEOF_SIZE_T)
+				}
+				s = _s
+				p = _p
+				if s == end {
+					break
+				}
+				ch = uint32(uint8(**(**uint8)(__ccgo_up(s))))
+			}
+			if ch < uint32(0x80) {
+				s = s + 1
+				v1 = p
+				p = p + 1
+				**(**TPy_UCS1)(__ccgo_up(v1)) = uint8(ch)
+				continue
+			}
+		}
+		if ch < uint32(0xE0) {
+			if ch < uint32(0xC2) {
+				goto InvalidStart
+			}
+			if int64(end)-int64(s) < int64(2) {
+				break
+			}
+			ch2 = uint32(uint8(**(**uint8)(__ccgo_up(s + 1))))
+			if !(ch2 >= uint32(0x80) && ch2 < uint32(0xC0)) {
+				goto InvalidContinuation1
+			}
+			ch = ch<<libc.Int32FromInt32(6) + ch2 - libc.Uint32FromInt32(libc.Int32FromInt32(0xC0)<<libc.Int32FromInt32(6)+libc.Int32FromInt32(0x80))
+			s = s + uintptr(2)
+			if libc.Bool(uint32(0xFF) <= uint32(0x007F)) || libc.Bool(uint32(0xFF) < uint32(0x07FF)) && ch > uint32(0xFF) {
+				goto Return
+			}
+			v1 = p
+			p = p + 1
+			**(**TPy_UCS1)(__ccgo_up(v1)) = uint8(ch)
+			continue
+		}
+		if ch < uint32(0xF0) {
+			if int64(end)-int64(s) < int64(3) {
+				if int64(end)-int64(s) < int64(2) {
+					break
+				}
+				ch21 = uint32(uint8(**(**uint8)(__ccgo_up(s + 1))))
+				if v4 = !(ch21 >= uint32(0x80) && ch21 < uint32(0xC0)); !v4 {
+					if ch21 < uint32(0xA0) {
+						v3 = libc.BoolInt32(ch == uint32(0xE0))
+					} else {
+						v3 = libc.BoolInt32(ch == uint32(0xED))
+					}
+				}
+				if v4 || v3 != 0 {
+					goto InvalidContinuation1
+				}
+				break
+			}
+			ch21 = uint32(uint8(**(**uint8)(__ccgo_up(s + 1))))
+			ch3 = uint32(uint8(**(**uint8)(__ccgo_up(s + 2))))
+			if !(ch21 >= uint32(0x80) && ch21 < uint32(0xC0)) {
+				goto InvalidContinuation1
+			}
+			if ch == uint32(0xE0) {
+				if ch21 < uint32(0xA0) {
+					goto InvalidContinuation1
+				}
+			} else {
+				if ch == uint32(0xED) && ch21 >= uint32(0xA0) {
+					goto InvalidContinuation1
+				}
+			}
+			if !(ch3 >= uint32(0x80) && ch3 < uint32(0xC0)) {
+				goto InvalidContinuation2
+			}
+			ch = ch<<libc.Int32FromInt32(12) + ch21<<libc.Int32FromInt32(6) + ch3 - libc.Uint32FromInt32(libc.Int32FromInt32(0xE0)<<libc.Int32FromInt32(12)+libc.Int32FromInt32(0x80)<<libc.Int32FromInt32(6)+libc.Int32FromInt32(0x80))
+			s = s + uintptr(3)
+			if libc.Bool(uint32(0xFF) <= uint32(0x07FF)) || libc.Bool(uint32(0xFF) < uint32(0xFFFF)) && ch > uint32(0xFF) {
+				goto Return
+			}
+			v1 = p
+			p = p + 1
+			**(**TPy_UCS1)(__ccgo_up(v1)) = uint8(ch)
+			continue
+		}
+		if ch < uint32(0xF5) {
+			if int64(end)-int64(s) < int64(4) {
+				if int64(end)-int64(s) < int64(2) {
+					break
+				}
+				ch22 = uint32(uint8(**(**uint8)(__ccgo_up(s + 1))))
+				if v4 = !(ch22 >= uint32(0x80) && ch22 < uint32(0xC0)); !v4 {
+					if ch22 < uint32(0x90) {
+						v3 = libc.BoolInt32(ch == uint32(0xF0))
+					} else {
+						v3 = libc.BoolInt32(ch == uint32(0xF4))
+					}
+				}
+				if v4 || v3 != 0 {
+					goto InvalidContinuation1
+				}
+				if int64(end)-int64(s) < int64(3) {
+					break
+				}
+				ch31 = uint32(uint8(**(**uint8)(__ccgo_up(s + 2))))
+				if !(ch31 >= uint32(0x80) && ch31 < uint32(0xC0)) {
+					goto InvalidContinuation2
+				}
+				break
+			}
+			ch22 = uint32(uint8(**(**uint8)(__ccgo_up(s + 1))))
+			ch31 = uint32(uint8(**(**uint8)(__ccgo_up(s + 2))))
+			ch4 = uint32(uint8(**(**uint8)(__ccgo_up(s + 3))))
+			if !(ch22 >= uint32(0x80) && ch22 < uint32(0xC0)) {
+				goto InvalidContinuation1
+			}
+			if ch == uint32(0xF0) {
+				if ch22 < uint32(0x90) {
+					goto InvalidContinuation1
+				}
+			} else {
+				if ch == uint32(0xF4) && ch22 >= uint32(0x90) {
+					goto InvalidContinuation1
+				}
+			}
+			if !(ch31 >= uint32(0x80) && ch31 < uint32(0xC0)) {
+				goto InvalidContinuation2
+			}
+			if !(ch4 >= uint32(0x80) && ch4 < uint32(0xC0)) {
+				goto InvalidContinuation3
+			}
+			ch = ch<<libc.Int32FromInt32(18) + ch22<<libc.Int32FromInt32(12) + ch31<<libc.Int32FromInt32(6) + ch4 - libc.Uint32FromInt32(libc.Int32FromInt32(0xF0)<<libc.Int32FromInt32(18)+libc.Int32FromInt32(0x80)<<libc.Int32FromInt32(12)+libc.Int32FromInt32(0x80)<<libc.Int32FromInt32(6)+libc.Int32FromInt32(0x80))
+			s = s + uintptr(4)
+			if libc.Bool(uint32(0xFF) <= uint32(0xFFFF)) || libc.Bool(uint32(0xFF) < uint32(0x10FFFF)) && ch > uint32(0xFF) {
+				goto Return
+			}
+			v1 = p
+			p = p + 1
+			**(**TPy_UCS1)(__ccgo_up(v1)) = uint8(ch)
+			continue
+		}
+		goto InvalidStart
+	}
+	ch = uint32(0)
+	goto Return
+Return:
+	;
+	**(**uintptr)(__ccgo_up(inptr)) = s
+	**(**TPy_ssize_t)(__ccgo_up(outpos)) = int64(p) - int64(dest)
+	return ch
+	goto InvalidStart
+InvalidStart:
+	;
+	ch = uint32(1)
+	goto Return
+	goto InvalidContinuation1
+InvalidContinuation1:
+	;
+	ch = uint32(2)
+	goto Return
+	goto InvalidContinuation2
+InvalidContinuation2:
+	;
+	ch = uint32(3)
+	goto Return
+	goto InvalidContinuation3
+InvalidContinuation3:
+	;
+	ch = uint32(4)
+	goto Return
+	return r
+}
+
+func _ucs1lib_utf8_encoder(tls *libc.TLS, writer uintptr, unicode uintptr, data uintptr, size TPy_ssize_t, error_handler T_Py_error_handler, errors uintptr) (r uintptr) {
+	var ch TPy_UCS4
+	var i, max_char_size, v2 TPy_ssize_t
+	var p, v3 uintptr
+	_, _, _, _, _, _ = ch, i, max_char_size, p, v2, v3
+	max_char_size = int64(2)
+	if size > int64(0x7fffffffffffffff)/max_char_size {
+		XPyErr_NoMemory(tls)
+		return libc.UintptrFromInt32(0)
+	}
+	X_PyBytesWriter_Init(tls, writer)
+	p = X_PyBytesWriter_Alloc(tls, writer, size*max_char_size)
+	if p == libc.UintptrFromInt32(0) {
+		return libc.UintptrFromInt32(0)
+	}
+	i = 0
+	for {
+		if !(i < size) {
+			break
+		}
+		v2 = i
+		i = i + 1
+		ch = uint32(**(**TPy_UCS1)(__ccgo_up(data + uintptr(v2))))
+		if ch < uint32(0x80) {
+			v3 = p
+			p = p + 1
+			**(**uint8)(__ccgo_up(v3)) = uint8(ch)
+		} else {
+			v3 = p
+			p = p + 1
+			**(**uint8)(__ccgo_up(v3)) = uint8(libc.Uint32FromInt32(0xc0) | ch>>libc.Int32FromInt32(6))
+			v3 = p
+			p = p + 1
+			**(**uint8)(__ccgo_up(v3)) = uint8(libc.Uint32FromInt32(0x80) | ch&libc.Uint32FromInt32(0x3f))
+		}
+		goto _1
+	_1:
+	}
+	return p
+}
+
+func _ucs1lib_utf16_decode(tls *libc.TLS, inptr uintptr, e uintptr, dest uintptr, outpos uintptr, native_ordering int32) (r TPy_UCS4) {
+	var _q, p, q, v4 uintptr
+	var block uint64
+	var ch21, ch3, v1 TPy_UCS4
+	var ihi, ilo, v2 int32
+	_, _, _, _, _, _, _, _, _, _, _ = _q, block, ch21, ch3, ihi, ilo, p, q, v1, v2, v4
+	q = **(**uintptr)(__ccgo_up(inptr))
+	p = dest + uintptr(**(**TPy_ssize_t)(__ccgo_up(outpos)))
+	ihi = libc.BoolInt32(!!(native_ordering != 0))
+	ilo = libc.BoolInt32(!(native_ordering != 0))
+	e = e - 1
+	for q < e {
+		if !(uint64(q)&libc.Uint64FromInt32(libc.Int32FromInt32(MALIGNOF_LONG)-libc.Int32FromInt32(1)) != 0) {
+			_q = q
+			for _q+uintptr(MSIZEOF_LONG) <= e {
+				block = **(**uint64)(__ccgo_up(_q))
+				if native_ordering != 0 {
+					if block&(libc.Uint64FromUint64(0x0001000100010001)*uint64(libc.Uint32FromUint32(0xFFFF) & ^libc.Uint32FromUint32(0xFF))) != 0 {
+						break
+					}
+				} else {
+					if block&(libc.Uint64FromUint64(0x0001000100010001)*uint64(libc.Uint32FromUint32(0xFFFF) & ^libc.Uint32FromUint32(0xFF))>>libc.Int32FromInt32(8)&(libc.Uint64FromUint64(0x0001000100010001)*libc.Uint64FromUint32(0x00FF))|libc.Uint64FromUint64(0x0001000100010001)*uint64(libc.Uint32FromUint32(0xFFFF) & ^libc.Uint32FromUint32(0xFF))&(libc.Uint64FromUint64(0x0001000100010001)*libc.Uint64FromUint32(0x00FF))<<libc.Int32FromInt32(8)) != 0 {
+						break
+					}
+					block = block >> uint64(8)
+				}
+				**(**TPy_UCS1)(__ccgo_up(p)) = uint8(block & libc.Uint64FromUint32(0xFFFF))
+				**(**TPy_UCS1)(__ccgo_up(p + 1)) = uint8(block >> libc.Int32FromInt32(16) & libc.Uint64FromUint32(0xFFFF))
+				**(**TPy_UCS1)(__ccgo_up(p + 2)) = uint8(block >> libc.Int32FromInt32(32) & libc.Uint64FromUint32(0xFFFF))
+				**(**TPy_UCS1)(__ccgo_up(p + 3)) = uint8(block >> libc.Int32FromInt32(48))
+				_q = _q + uintptr(MSIZEOF_LONG)
+				p = p + uintptr(libc.Int32FromInt32(MSIZEOF_LONG)/libc.Int32FromInt32(2))
+			}
+			q = _q
+			if q >= e {
+				break
+			}
+		}
+		ch3 = libc.Uint32FromInt32(libc.Int32FromUint8(**(**uint8)(__ccgo_up(q + uintptr(ihi))))<<int32(8) | libc.Int32FromUint8(**(**uint8)(__ccgo_up(q + uintptr(ilo)))))
+		q = q + uintptr(2)
+		v1 = ch3
+		v2 = libc.BoolInt32(uint32(0xD800) <= v1 && v1 <= uint32(0xDFFF))
+		goto _3
+	_3:
+		if !(v2 != 0) {
+			if ch3 > uint32(0xFF) {
+				goto Return
+			}
+			v4 = p
+			p = p + 1
+			**(**TPy_UCS1)(__ccgo_up(v4)) = uint8(ch3)
+			continue
+		}
+		v1 = ch3
+		v2 = libc.BoolInt32(uint32(0xD800) <= v1 && v1 <= uint32(0xDBFF))
+		goto _7
+	_7:
+		if !(v2 != 0) {
+			goto IllegalEncoding
+		}
+		if q >= e {
+			goto UnexpectedEnd
+		}
+		ch21 = libc.Uint32FromInt32(libc.Int32FromUint8(**(**uint8)(__ccgo_up(q + uintptr(ihi))))<<int32(8) | libc.Int32FromUint8(**(**uint8)(__ccgo_up(q + uintptr(ilo)))))
+		q = q + uintptr(2)
+		v1 = ch21
+		v2 = libc.BoolInt32(uint32(0xDC00) <= v1 && v1 <= uint32(0xDFFF))
+		goto _10
+	_10:
+		if !(v2 != 0) {
+			goto IllegalSurrogate
+		}
+		v1 = uint32(0x10000) + (ch3&uint32(0x03FF)<<int32(10) | ch21&uint32(0x03FF))
+		goto _12
+	_12:
+		ch3 = v1
+		goto Return
+	}
+	ch3 = uint32(0)
+	goto Return
+Return:
+	;
+	**(**uintptr)(__ccgo_up(inptr)) = q
+	**(**TPy_ssize_t)(__ccgo_up(outpos)) = int64(p) - int64(dest)
+	return ch3
+	goto UnexpectedEnd
+UnexpectedEnd:
+	;
+	ch3 = uint32(1)
+	goto Return
+	goto IllegalEncoding
+IllegalEncoding:
+	;
+	ch3 = uint32(2)
+	goto Return
+	goto IllegalSurrogate
+IllegalSurrogate:
+	;
+	ch3 = uint32(3)
+	goto Return
+	return r
+}
+
+func _ucs1lib_utf16_encode(tls *libc.TLS, in uintptr, len1 TPy_ssize_t, outptr uintptr, native_ordering int32) (r TPy_ssize_t) {
+	var ch TPy_UCS4
+	var end, out, unrolled_end, unrolled_end1, v1, v2 uintptr
+	_, _, _, _, _, _, _ = ch, end, out, unrolled_end, unrolled_end1, v1, v2
+	out = **(**uintptr)(__ccgo_up(outptr))
+	end = in + uintptr(len1)
+	if native_ordering != 0 {
+		unrolled_end = in + uintptr(libc.Uint64FromInt64(len1) & ^libc.Uint64FromInt32(libc.Int32FromInt32(4)-libc.Int32FromInt32(1)))
+		for in < unrolled_end {
+			**(**uint16)(__ccgo_up(out)) = uint16(**(**TPy_UCS1)(__ccgo_up(in)))
+			**(**uint16)(__ccgo_up(out + 1*2)) = uint16(**(**TPy_UCS1)(__ccgo_up(in + 1)))
+			**(**uint16)(__ccgo_up(out + 2*2)) = uint16(**(**TPy_UCS1)(__ccgo_up(in + 2)))
+			**(**uint16)(__ccgo_up(out + 3*2)) = uint16(**(**TPy_UCS1)(__ccgo_up(in + 3)))
+			in = in + uintptr(4)
+			out = out + uintptr(4)*2
+		}
+		for in < end {
+			v1 = out
+			out += 2
+			v2 = in
+			in = in + 1
+			**(**uint16)(__ccgo_up(v1)) = uint16(**(**TPy_UCS1)(__ccgo_up(v2)))
+		}
+	} else {
+		unrolled_end1 = in + uintptr(libc.Uint64FromInt64(len1) & ^libc.Uint64FromInt32(libc.Int32FromInt32(4)-libc.Int32FromInt32(1)))
+		for in < unrolled_end1 {
+			**(**uint16)(__ccgo_up(out)) = libc.Uint16FromInt32(libc.Int32FromUint8(**(**TPy_UCS1)(__ccgo_up(in))) << libc.Int32FromInt32(8))
+			**(**uint16)(__ccgo_up(out + 1*2)) = libc.Uint16FromInt32(libc.Int32FromUint8(**(**TPy_UCS1)(__ccgo_up(in + 1))) << libc.Int32FromInt32(8))
+			**(**uint16)(__ccgo_up(out + 2*2)) = libc.Uint16FromInt32(libc.Int32FromUint8(**(**TPy_UCS1)(__ccgo_up(in + 2))) << libc.Int32FromInt32(8))
+			**(**uint16)(__ccgo_up(out + 3*2)) = libc.Uint16FromInt32(libc.Int32FromUint8(**(**TPy_UCS1)(__ccgo_up(in + 3))) << libc.Int32FromInt32(8))
+			in = in + uintptr(4)
+			out = out + uintptr(4)*2
+		}
+		for in < end {
+			v1 = in
+			in = in + 1
+			ch = uint32(**(**TPy_UCS1)(__ccgo_up(v1)))
+			v2 = out
+			out += 2
+			**(**uint16)(__ccgo_up(v2)) = libc.Uint16FromInt32(libc.Int32FromUint16(uint16(ch)) << libc.Int32FromInt32(8))
+		}
+	}
+	**(**uintptr)(__ccgo_up(outptr)) = out
+	return len1
+}
+
+func _ucs1lib_utf32_encode(tls *libc.TLS, in uintptr, len1 TPy_ssize_t, outptr uintptr, native_ordering int32) (r TPy_ssize_t) {
+	var ch1, ch2 TPy_UCS4
+	var end, out, unrolled_end, unrolled_end1, v1, v2 uintptr
+	var word, v3 Tuint32_t
+	_, _, _, _, _, _, _, _, _, _ = ch1, ch2, end, out, unrolled_end, unrolled_end1, word, v1, v2, v3
+	out = **(**uintptr)(__ccgo_up(outptr))
+	end = in + uintptr(len1)
+	if native_ordering != 0 {
+		unrolled_end = in + uintptr(libc.Uint64FromInt64(len1) & ^libc.Uint64FromInt32(libc.Int32FromInt32(4)-libc.Int32FromInt32(1)))
+		for in < unrolled_end {
+			**(**Tuint32_t)(__ccgo_up(out)) = uint32(**(**TPy_UCS1)(__ccgo_up(in)))
+			**(**Tuint32_t)(__ccgo_up(out + 1*4)) = uint32(**(**TPy_UCS1)(__ccgo_up(in + 1)))
+			**(**Tuint32_t)(__ccgo_up(out + 2*4)) = uint32(**(**TPy_UCS1)(__ccgo_up(in + 2)))
+			**(**Tuint32_t)(__ccgo_up(out + 3*4)) = uint32(**(**TPy_UCS1)(__ccgo_up(in + 3)))
+			in = in + uintptr(4)
+			out = out + uintptr(4)*4
+		}
+		for in < end {
+			v1 = in
+			in = in + 1
+			ch1 = uint32(**(**TPy_UCS1)(__ccgo_up(v1)))
+			v1 = out
+			out += 4
+			**(**Tuint32_t)(__ccgo_up(v1)) = ch1
+		}
+	} else {
+		unrolled_end1 = in + uintptr(libc.Uint64FromInt64(len1) & ^libc.Uint64FromInt32(libc.Int32FromInt32(4)-libc.Int32FromInt32(1)))
+		for in < unrolled_end1 {
+			word = uint32(**(**TPy_UCS1)(__ccgo_up(in)))
+			v3 = word << int32(24)
+			goto _4
+		_4:
+			**(**Tuint32_t)(__ccgo_up(out)) = v3
+			word = uint32(**(**TPy_UCS1)(__ccgo_up(in + 1)))
+			v3 = word << int32(24)
+			goto _6
+		_6:
+			**(**Tuint32_t)(__ccgo_up(out + 1*4)) = v3
+			word = uint32(**(**TPy_UCS1)(__ccgo_up(in + 2)))
+			v3 = word << int32(24)
+			goto _8
+		_8:
+			**(**Tuint32_t)(__ccgo_up(out + 2*4)) = v3
+			word = uint32(**(**TPy_UCS1)(__ccgo_up(in + 3)))
+			v3 = word << int32(24)
+			goto _10
+		_10:
+			**(**Tuint32_t)(__ccgo_up(out + 3*4)) = v3
+			in = in + uintptr(4)
+			out = out + uintptr(4)*4
+		}
+		for in < end {
+			v1 = in
+			in = in + 1
+			ch2 = uint32(**(**TPy_UCS1)(__ccgo_up(v1)))
+			v2 = out
+			out += 4
+			word = uint32(uint8(ch2))
+			v3 = word << int32(24)
+			goto _14
+		_14:
+			**(**Tuint32_t)(__ccgo_up(v2)) = v3
+		}
+	}
+	**(**uintptr)(__ccgo_up(outptr)) = out
+	return len1
+}
+
+func _ucs2lib_utf8_decode(tls *libc.TLS, inptr uintptr, end uintptr, dest uintptr, outpos uintptr) (r TPy_UCS4) {
+	var _p, _s, p, s, v1 uintptr
+	var ch, ch2, ch21, ch22, ch3, ch31, ch4 TPy_UCS4
+	var value Tsize_t
+	var v3 int32
+	var v4 bool
+	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = _p, _s, ch, ch2, ch21, ch22, ch3, ch31, ch4, p, s, value, v1, v3, v4
+	s = **(**uintptr)(__ccgo_up(inptr))
+	p = dest + uintptr(**(**TPy_ssize_t)(__ccgo_up(outpos)))*2
+	for s < end {
+		ch = uint32(uint8(**(**uint8)(__ccgo_up(s))))
+		if ch < uint32(0x80) {
+			if !(uint64(s)&libc.Uint64FromInt32(libc.Int32FromInt32(MALIGNOF_SIZE_T)-libc.Int32FromInt32(1)) != 0) {
+				_s = s
+				_p = p
+				for _s+uintptr(MSIZEOF_SIZE_T) <= end {
+					value = **(**Tsize_t)(__ccgo_up(_s))
+					if value&uint64(0x8080808080808080) != 0 {
+						break
+					}
+					**(**TPy_UCS2)(__ccgo_up(_p)) = uint16(value & libc.Uint64FromUint32(0xFF))
+					**(**TPy_UCS2)(__ccgo_up(_p + 1*2)) = uint16(value >> libc.Int32FromInt32(8) & libc.Uint64FromUint32(0xFF))
+					**(**TPy_UCS2)(__ccgo_up(_p + 2*2)) = uint16(value >> libc.Int32FromInt32(16) & libc.Uint64FromUint32(0xFF))
+					**(**TPy_UCS2)(__ccgo_up(_p + 3*2)) = uint16(value >> libc.Int32FromInt32(24) & libc.Uint64FromUint32(0xFF))
+					**(**TPy_UCS2)(__ccgo_up(_p + 4*2)) = uint16(value >> libc.Int32FromInt32(32) & libc.Uint64FromUint32(0xFF))
+					**(**TPy_UCS2)(__ccgo_up(_p + 5*2)) = uint16(value >> libc.Int32FromInt32(40) & libc.Uint64FromUint32(0xFF))
+					**(**TPy_UCS2)(__ccgo_up(_p + 6*2)) = uint16(value >> libc.Int32FromInt32(48) & libc.Uint64FromUint32(0xFF))
+					**(**TPy_UCS2)(__ccgo_up(_p + 7*2)) = uint16(value >> libc.Int32FromInt32(56) & libc.Uint64FromUint32(0xFF))
+					_s = _s + uintptr(MSIZEOF_SIZE_T)
+					_p = _p + uintptr(MSIZEOF_SIZE_T)*2
+				}
+				s = _s
+				p = _p
+				if s == end {
+					break
+				}
+				ch = uint32(uint8(**(**uint8)(__ccgo_up(s))))
+			}
+			if ch < uint32(0x80) {
+				s = s + 1
+				v1 = p
+				p += 2
+				**(**TPy_UCS2)(__ccgo_up(v1)) = uint16(ch)
+				continue
+			}
+		}
+		if ch < uint32(0xE0) {
+			if ch < uint32(0xC2) {
+				goto InvalidStart
+			}
+			if int64(end)-int64(s) < int64(2) {
+				break
+			}
+			ch2 = uint32(uint8(**(**uint8)(__ccgo_up(s + 1))))
+			if !(ch2 >= uint32(0x80) && ch2 < uint32(0xC0)) {
+				goto InvalidContinuation1
+			}
+			ch = ch<<libc.Int32FromInt32(6) + ch2 - libc.Uint32FromInt32(libc.Int32FromInt32(0xC0)<<libc.Int32FromInt32(6)+libc.Int32FromInt32(0x80))
+			s = s + uintptr(2)
+			if libc.Bool(uint32(0xFFFF) <= uint32(0x007F)) || libc.Bool(libc.Bool(uint32(0xFFFF) < uint32(0x07FF)) && ch > uint32(0xFFFF)) {
+				goto Return
+			}
+			v1 = p
+			p += 2
+			**(**TPy_UCS2)(__ccgo_up(v1)) = uint16(ch)
+			continue
+		}
+		if ch < uint32(0xF0) {
+			if int64(end)-int64(s) < int64(3) {
+				if int64(end)-int64(s) < int64(2) {
+					break
+				}
+				ch21 = uint32(uint8(**(**uint8)(__ccgo_up(s + 1))))
+				if v4 = !(ch21 >= uint32(0x80) && ch21 < uint32(0xC0)); !v4 {
+					if ch21 < uint32(0xA0) {
+						v3 = libc.BoolInt32(ch == uint32(0xE0))
+					} else {
+						v3 = libc.BoolInt32(ch == uint32(0xED))
+					}
+				}
+				if v4 || v3 != 0 {
+					goto InvalidContinuation1
+				}
+				break
+			}
+			ch21 = uint32(uint8(**(**uint8)(__ccgo_up(s + 1))))
+			ch3 = uint32(uint8(**(**uint8)(__ccgo_up(s + 2))))
+			if !(ch21 >= uint32(0x80) && ch21 < uint32(0xC0)) {
+				goto InvalidContinuation1
+			}
+			if ch == uint32(0xE0) {
+				if ch21 < uint32(0xA0) {
+					goto InvalidContinuation1
+				}
+			} else {
+				if ch == uint32(0xED) && ch21 >= uint32(0xA0) {
+					goto InvalidContinuation1
+				}
+			}
+			if !(ch3 >= uint32(0x80) && ch3 < uint32(0xC0)) {
+				goto InvalidContinuation2
+			}
+			ch = ch<<libc.Int32FromInt32(12) + ch21<<libc.Int32FromInt32(6) + ch3 - libc.Uint32FromInt32(libc.Int32FromInt32(0xE0)<<libc.Int32FromInt32(12)+libc.Int32FromInt32(0x80)<<libc.Int32FromInt32(6)+libc.Int32FromInt32(0x80))
+			s = s + uintptr(3)
+			if libc.Bool(uint32(0xFFFF) <= uint32(0x07FF)) || libc.Bool(libc.Bool(uint32(0xFFFF) < uint32(0xFFFF)) && ch > uint32(0xFFFF)) {
+				goto Return
+			}
+			v1 = p
+			p += 2
+			**(**TPy_UCS2)(__ccgo_up(v1)) = uint16(ch)
+			continue
+		}
+		if ch < uint32(0xF5) {
+			if int64(end)-int64(s) < int64(4) {
+				if int64(end)-int64(s) < int64(2) {
+					break
+				}
+				ch22 = uint32(uint8(**(**uint8)(__ccgo_up(s + 1))))
+				if v4 = !(ch22 >= uint32(0x80) && ch22 < uint32(0xC0)); !v4 {
+					if ch22 < uint32(0x90) {
+						v3 = libc.BoolInt32(ch == uint32(0xF0))
+					} else {
+						v3 = libc.BoolInt32(ch == uint32(0xF4))
+					}
+				}
+				if v4 || v3 != 0 {
+					goto InvalidContinuation1
+				}
+				if int64(end)-int64(s) < int64(3) {
+					break
+				}
+				ch31 = uint32(uint8(**(**uint8)(__ccgo_up(s + 2))))
+				if !(ch31 >= uint32(0x80) && ch31 < uint32(0xC0)) {
+					goto InvalidContinuation2
+				}
+				break
+			}
+			ch22 = uint32(uint8(**(**uint8)(__ccgo_up(s + 1))))
+			ch31 = uint32(uint8(**(**uint8)(__ccgo_up(s + 2))))
+			ch4 = uint32(uint8(**(**uint8)(__ccgo_up(s + 3))))
+			if !(ch22 >= uint32(0x80) && ch22 < uint32(0xC0)) {
+				goto InvalidContinuation1
+			}
+			if ch == uint32(0xF0) {
+				if ch22 < uint32(0x90) {
+					goto InvalidContinuation1
+				}
+			} else {
+				if ch == uint32(0xF4) && ch22 >= uint32(0x90) {
+					goto InvalidContinuation1
+				}
+			}
+			if !(ch31 >= uint32(0x80) && ch31 < uint32(0xC0)) {
+				goto InvalidContinuation2
+			}
+			if !(ch4 >= uint32(0x80) && ch4 < uint32(0xC0)) {
+				goto InvalidContinuation3
+			}
+			ch = ch<<libc.Int32FromInt32(18) + ch22<<libc.Int32FromInt32(12) + ch31<<libc.Int32FromInt32(6) + ch4 - libc.Uint32FromInt32(libc.Int32FromInt32(0xF0)<<libc.Int32FromInt32(18)+libc.Int32FromInt32(0x80)<<libc.Int32FromInt32(12)+libc.Int32FromInt32(0x80)<<libc.Int32FromInt32(6)+libc.Int32FromInt32(0x80))
+			s = s + uintptr(4)
+			if libc.Bool(uint32(0xFFFF) <= uint32(0xFFFF)) || libc.Bool(uint32(0xFFFF) < uint32(0x10FFFF)) && ch > uint32(0xFFFF) {
+				goto Return
+			}
+			v1 = p
+			p += 2
+			**(**TPy_UCS2)(__ccgo_up(v1)) = uint16(ch)
+			continue
+		}
+		goto InvalidStart
+	}
+	ch = uint32(0)
+	goto Return
+Return:
+	;
+	**(**uintptr)(__ccgo_up(inptr)) = s
+	**(**TPy_ssize_t)(__ccgo_up(outpos)) = (int64(p) - int64(dest)) / 2
+	return ch
+	goto InvalidStart
+InvalidStart:
+	;
+	ch = uint32(1)
+	goto Return
+	goto InvalidContinuation1
+InvalidContinuation1:
+	;
+	ch = uint32(2)
+	goto Return
+	goto InvalidContinuation2
+InvalidContinuation2:
+	;
+	ch = uint32(3)
+	goto Return
+	goto InvalidContinuation3
+InvalidContinuation3:
+	;
+	ch = uint32(4)
+	goto Return
+	return r
+}
+
+func _ucs2lib_utf8_encoder(tls *libc.TLS, writer uintptr, unicode uintptr, data1 uintptr, size TPy_ssize_t, error_handler T_Py_error_handler, errors uintptr) (r uintptr) {
+	bp := tls.Alloc(32)
+	defer tls.Free(32)
+	var _tmp_old_op, _tmp_op_ptr, data, p, self, v24, v25, v3, v4, v5 uintptr
+	var ch1, v6 TPy_UCS4
+	var endpos, i, k, max_char_size, startpos, v2, v35 TPy_ssize_t
+	var flags uint64
+	var v7 int32
+	var v12 bool
+	var v39, v42 uint32
+	var v59 Tuint32_t
+	var _ uintptr
+	var _ uintptr
+	var _ TPy_ssize_t
+	var _ uintptr
+	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = _tmp_old_op, _tmp_op_ptr, ch1, data, endpos, flags, i, k, max_char_size, p, self, startpos, v12, v2, v24, v25, v3, v35, v39, v4, v42, v5, v59, v6, v7
+	**(**uintptr)(__ccgo_up(bp)) = libc.UintptrFromInt32(0)
+	**(**uintptr)(__ccgo_up(bp + 8)) = libc.UintptrFromInt32(0)
+	**(**uintptr)(__ccgo_up(bp + 16)) = libc.UintptrFromInt32(0)
+	max_char_size = int64(3)
+	if size > int64(0x7fffffffffffffff)/max_char_size {
+		XPyErr_NoMemory(tls)
+		return libc.UintptrFromInt32(0)
+	}
+	X_PyBytesWriter_Init(tls, writer)
+	p = X_PyBytesWriter_Alloc(tls, writer, size*max_char_size)
+	if p == libc.UintptrFromInt32(0) {
+		return libc.UintptrFromInt32(0)
+	}
+	i = 0
+	for {
+		if !(i < size) {
+			break
+		}
+		v2 = i
+		i = i + 1
+		ch1 = uint32(**(**TPy_UCS2)(__ccgo_up(data1 + uintptr(v2)*2)))
+		if ch1 < uint32(0x80) {
+			v3 = p
+			p = p + 1
+			**(**uint8)(__ccgo_up(v3)) = uint8(ch1)
+		} else {
+			if ch1 < uint32(0x0800) {
+				v3 = p
+				p = p + 1
+				**(**uint8)(__ccgo_up(v3)) = uint8(libc.Uint32FromInt32(0xc0) | ch1>>libc.Int32FromInt32(6))
+				v3 = p
+				p = p + 1
+				**(**uint8)(__ccgo_up(v3)) = uint8(libc.Uint32FromInt32(0x80) | ch1&libc.Uint32FromInt32(0x3f))
+			} else {
+				v6 = ch1
+				v7 = libc.BoolInt32(uint32(0xD800) <= v6 && v6 <= uint32(0xDFFF))
+				goto _8
+			_8:
+				if v7 != 0 {
+					if error_handler == int32(E_Py_ERROR_UNKNOWN) {
+						error_handler = X_Py_GetErrorHandler(tls, errors)
+					}
+					startpos = i - int64(1)
+					endpos = startpos + int64(1)
+					for {
+						if v12 = endpos < size; v12 {
+							v6 = uint32(**(**TPy_UCS2)(__ccgo_up(data1 + uintptr(endpos)*2)))
+							v7 = libc.BoolInt32(uint32(0xD800) <= v6 && v6 <= uint32(0xDFFF))
+							goto _11
+						_11:
+						}
+						if !(v12 && v7 != 0) {
+							break
+						}
+						endpos = endpos + 1
+					}
+					(*T_PyBytesWriter)(unsafe.Pointer(writer)).Foverallocate = libc.BoolInt32(endpos < size)
+					switch error_handler {
+					case int32(E_Py_ERROR_REPLACE):
+						goto _13
+					case int32(E_Py_ERROR_IGNORE):
+						goto _14
+					case int32(E_Py_ERROR_SURROGATEPASS):
+						goto _15
+					case int32(E_Py_ERROR_BACKSLASHREPLACE):
+						goto _16
+					case int32(E_Py_ERROR_XMLCHARREFREPLACE):
+						goto _17
+					case int32(E_Py_ERROR_SURROGATEESCAPE):
+						goto _18
+					default:
+						goto _19
+					}
+					goto _20
+				_13:
+					;
+					libc.Xmemset(tls, p, int32('?'), libc.Uint64FromInt64(endpos-startpos))
+					p = p + uintptr(endpos-startpos)
+				_14:
+					;
+					i = i + (endpos - startpos - int64(1))
+					goto _20
+				_15:
+					;
+					k = startpos
+				_23:
+					;
+					if !(k < endpos) {
+						goto _21
+					}
+					ch1 = uint32(**(**TPy_UCS2)(__ccgo_up(data1 + uintptr(k)*2)))
+					v3 = p
+					p = p + 1
+					**(**uint8)(__ccgo_up(v3)) = uint8(libc.Uint32FromInt32(0xe0) | ch1>>libc.Int32FromInt32(12))
+					v3 = p
+					p = p + 1
+					**(**uint8)(__ccgo_up(v3)) = uint8(libc.Uint32FromInt32(0x80) | ch1>>libc.Int32FromInt32(6)&libc.Uint32FromInt32(0x3f))
+					v3 = p
+					p = p + 1
+					**(**uint8)(__ccgo_up(v3)) = uint8(libc.Uint32FromInt32(0x80) | ch1&libc.Uint32FromInt32(0x3f))
+					goto _22
+				_22:
+					;
+					k = k + 1
+					goto _23
+					goto _21
+				_21:
+					;
+					i = i + (endpos - startpos - int64(1))
+					goto _20
+				_16:
+					;
+					**(**TPy_ssize_t)(__ccgo_up(writer + 16)) -= max_char_size * (endpos - startpos)
+					p = _backslashreplace(tls, writer, p, unicode, startpos, endpos)
+					if p == libc.UintptrFromInt32(0) {
+						goto error
+					}
+					i = i + (endpos - startpos - int64(1))
+					goto _20
+				_17:
+					;
+					**(**TPy_ssize_t)(__ccgo_up(writer + 16)) -= max_char_size * (endpos - startpos)
+					p = _xmlcharrefreplace(tls, writer, p, unicode, startpos, endpos)
+					if p == libc.UintptrFromInt32(0) {
+						goto error
+					}
+					i = i + (endpos - startpos - int64(1))
+					goto _20
+				_18:
+					;
+					k = startpos
+					for {
+						if !(k < endpos) {
+							break
+						}
+						ch1 = uint32(**(**TPy_UCS2)(__ccgo_up(data1 + uintptr(k)*2)))
+						if !(uint32(0xDC80) <= ch1 && ch1 <= uint32(0xDCFF)) {
+							break
+						}
+						v3 = p
+						p = p + 1
+						**(**uint8)(__ccgo_up(v3)) = uint8(ch1 & libc.Uint32FromInt32(0xff))
+						goto _27
+					_27:
+						;
+						k = k + 1
+					}
+					if k >= endpos {
+						i = i + (endpos - startpos - int64(1))
+						goto _20
+					}
+					startpos = k
+				_19:
+					;
+					**(**uintptr)(__ccgo_up(bp + 16)) = _unicode_encode_call_errorhandler(tls, errors, bp, __ccgo_ts+10626, __ccgo_ts+78910, unicode, bp+8, startpos, endpos, bp+24)
+					if !(**(**uintptr)(__ccgo_up(bp + 16)) != 0) {
+						goto error
+					}
+					if **(**TPy_ssize_t)(__ccgo_up(bp + 24)) < startpos {
+						(*T_PyBytesWriter)(unsafe.Pointer(writer)).Foverallocate = int32(1)
+						p = X_PyBytesWriter_Prepare(tls, writer, p, max_char_size*(startpos-**(**TPy_ssize_t)(__ccgo_up(bp + 24))))
+						if p == libc.UintptrFromInt32(0) {
+							goto error
+						}
+					} else {
+						**(**TPy_ssize_t)(__ccgo_up(writer + 16)) -= max_char_size * (**(**TPy_ssize_t)(__ccgo_up(bp + 24)) - startpos)
+						(*T_PyBytesWriter)(unsafe.Pointer(writer)).Foverallocate = libc.BoolInt32(**(**TPy_ssize_t)(__ccgo_up(bp + 24)) < size)
+					}
+					v3 = (*TPyObject)(unsafe.Pointer(**(**uintptr)(__ccgo_up(bp + 16)))).Fob_type
+					goto _30
+				_30:
+					flags = (*TPyTypeObject)(unsafe.Pointer(v3)).Ftp_flags
+					v7 = libc.BoolInt32(flags&(libc.Uint64FromUint64(1)<<libc.Int32FromInt32(27)) != uint64(0))
+					goto _32
+				_32:
+					if v7 != 0 {
+						v4 = **(**uintptr)(__ccgo_up(bp + 16)) + 32
+						goto _34
+					_34:
+						;
+						self = **(**uintptr)(__ccgo_up(bp + 16))
+						v35 = (*TPyVarObject)(unsafe.Pointer(self)).Fob_size
+						goto _38
+					_38:
+						v2 = v35
+						goto _36
+					_36:
+						p = X_PyBytesWriter_WriteBytes(tls, writer, p, v4, v2)
+					} else {
+						v39 = libc.Uint32FromInt32(int32(*(*uint32)(unsafe.Pointer(**(**uintptr)(__ccgo_up(bp + 16)) + 32 + 0)) & 0x40 >> 6))
+						goto _40
+					_40:
+						if !(v39 != 0) {
+							_raise_encode_exception(tls, bp+8, __ccgo_ts+10626, unicode, startpos, endpos, __ccgo_ts+78910)
+							goto error
+						}
+						v3 = **(**uintptr)(__ccgo_up(bp + 16))
+						v39 = libc.Uint32FromInt32(int32(*(*uint32)(unsafe.Pointer(v3 + 32 + 0)) & 0x20 >> 5))
+						goto _43
+					_43:
+						if v39 != 0 {
+							v5 = v3
+							v42 = libc.Uint32FromInt32(int32(*(*uint32)(unsafe.Pointer(v5 + 32 + 0)) & 0x40 >> 6))
+							goto _48
+						_48:
+							if v42 != 0 {
+								v24 = v5 + libc.UintptrFromInt32(1)*40
+								goto _50
+							}
+							v24 = v5 + libc.UintptrFromInt32(1)*56
+							goto _50
+						_50:
+							v4 = v24
+							goto _45
+						}
+						data = *(*uintptr)(unsafe.Pointer(v3 + 56))
+						v25 = data
+						goto _52
+					_52:
+						v4 = v25
+						goto _45
+					_45:
+						;
+						v2 = (*TPyASCIIObject)(unsafe.Pointer(**(**uintptr)(__ccgo_up(bp + 16)))).Flength
+						goto _54
+					_54:
+						p = X_PyBytesWriter_WriteBytes(tls, writer, p, v4, v2)
+					}
+					if p == libc.UintptrFromInt32(0) {
+						goto error
+					}
+					_tmp_op_ptr = bp + 16
+					_tmp_old_op = **(**uintptr)(__ccgo_up(_tmp_op_ptr))
+					if _tmp_old_op != libc.UintptrFromInt32(0) {
+						**(**uintptr)(__ccgo_up(_tmp_op_ptr)) = libc.UintptrFromInt32(0)
+						v3 = _tmp_old_op
+						v7 = libc.BoolInt32(libc.Int32FromUint32(*(*Tuint32_t)(unsafe.Pointer(v3))) < 0)
+						goto _57
+					_57:
+						if v7 != 0 {
+							goto _58
+						}
+						v4 = v3
+						*(*Tuint32_t)(unsafe.Pointer(v4)) = *(*Tuint32_t)(unsafe.Pointer(v4)) - 1
+						v59 = *(*Tuint32_t)(unsafe.Pointer(v4))
+						if v59 == libc.Uint32FromInt32(0) {
+							X_Py_Dealloc(tls, v3)
+						}
+					_58:
+					}
+					i = **(**TPy_ssize_t)(__ccgo_up(bp + 24))
+				_20:
+				} else {
+					v3 = p
+					p = p + 1
+					**(**uint8)(__ccgo_up(v3)) = uint8(libc.Uint32FromInt32(0xe0) | ch1>>libc.Int32FromInt32(12))
+					v3 = p
+					p = p + 1
+					**(**uint8)(__ccgo_up(v3)) = uint8(libc.Uint32FromInt32(0x80) | ch1>>libc.Int32FromInt32(6)&libc.Uint32FromInt32(0x3f))
+					v3 = p
+					p = p + 1
+					**(**uint8)(__ccgo_up(v3)) = uint8(libc.Uint32FromInt32(0x80) | ch1&libc.Uint32FromInt32(0x3f))
+				}
+			}
+		}
+		goto _1
+	_1:
+	}
+	v3 = **(**uintptr)(__ccgo_up(bp))
+	if v3 != libc.UintptrFromInt32(0) {
+		v4 = v3
+		v7 = libc.BoolInt32(libc.Int32FromUint32(*(*Tuint32_t)(unsafe.Pointer(v4))) < 0)
+		goto _67
+	_67:
+		if v7 != 0 {
+			goto _68
+		}
+		v5 = v4
+		*(*Tuint32_t)(unsafe.Pointer(v5)) = *(*Tuint32_t)(unsafe.Pointer(v5)) - 1
+		v59 = *(*Tuint32_t)(unsafe.Pointer(v5))
+		if v59 == libc.Uint32FromInt32(0) {
+			X_Py_Dealloc(tls, v4)
+		}
+	_68:
+	}
+	v3 = **(**uintptr)(__ccgo_up(bp + 8))
+	if v3 != libc.UintptrFromInt32(0) {
+		v4 = v3
+		v7 = libc.BoolInt32(libc.Int32FromUint32(*(*Tuint32_t)(unsafe.Pointer(v4))) < 0)
+		goto _74
+	_74:
+		if v7 != 0 {
+			goto _75
+		}
+		v5 = v4
+		*(*Tuint32_t)(unsafe.Pointer(v5)) = *(*Tuint32_t)(unsafe.Pointer(v5)) - 1
+		v59 = *(*Tuint32_t)(unsafe.Pointer(v5))
+		if v59 == libc.Uint32FromInt32(0) {
+			X_Py_Dealloc(tls, v4)
+		}
+	_75:
+	}
+	return p
+	goto error
+error:
+	;
+	v3 = **(**uintptr)(__ccgo_up(bp + 16))
+	if v3 != libc.UintptrFromInt32(0) {
+		v4 = v3
+		v7 = libc.BoolInt32(libc.Int32FromUint32(*(*Tuint32_t)(unsafe.Pointer(v4))) < 0)
+		goto _81
+	_81:
+		if v7 != 0 {
+			goto _82
+		}
+		v5 = v4
+		*(*Tuint32_t)(unsafe.Pointer(v5)) = *(*Tuint32_t)(unsafe.Pointer(v5)) - 1
+		v59 = *(*Tuint32_t)(unsafe.Pointer(v5))
+		if v59 == libc.Uint32FromInt32(0) {
+			X_Py_Dealloc(tls, v4)
+		}
+	_82:
+	}
+	v3 = **(**uintptr)(__ccgo_up(bp))
+	if v3 != libc.UintptrFromInt32(0) {
+		v4 = v3
+		v7 = libc.BoolInt32(libc.Int32FromUint32(*(*Tuint32_t)(unsafe.Pointer(v4))) < 0)
+		goto _88
+	_88:
+		if v7 != 0 {
+			goto _89
+		}
+		v5 = v4
+		*(*Tuint32_t)(unsafe.Pointer(v5)) = *(*Tuint32_t)(unsafe.Pointer(v5)) - 1
+		v59 = *(*Tuint32_t)(unsafe.Pointer(v5))
+		if v59 == libc.Uint32FromInt32(0) {
+			X_Py_Dealloc(tls, v4)
+		}
+	_89:
+	}
+	v3 = **(**uintptr)(__ccgo_up(bp + 8))
+	if v3 != libc.UintptrFromInt32(0) {
+		v4 = v3
+		v7 = libc.BoolInt32(libc.Int32FromUint32(*(*Tuint32_t)(unsafe.Pointer(v4))) < 0)
+		goto _95
+	_95:
+		if v7 != 0 {
+			goto _96
+		}
+		v5 = v4
+		*(*Tuint32_t)(unsafe.Pointer(v5)) = *(*Tuint32_t)(unsafe.Pointer(v5)) - 1
+		v59 = *(*Tuint32_t)(unsafe.Pointer(v5))
+		if v59 == libc.Uint32FromInt32(0) {
+			X_Py_Dealloc(tls, v4)
+		}
+	_96:
+	}
+	return libc.UintptrFromInt32(0)
+}
+
+func _ucs2lib_utf16_decode(tls *libc.TLS, inptr uintptr, e uintptr, dest uintptr, outpos uintptr, native_ordering int32) (r TPy_UCS4) {
+	var _q, p, q, v4 uintptr
+	var block uint64
+	var ch21, ch3, v1 TPy_UCS4
+	var ihi, ilo, v2 int32
+	_, _, _, _, _, _, _, _, _, _, _ = _q, block, ch21, ch3, ihi, ilo, p, q, v1, v2, v4
+	q = **(**uintptr)(__ccgo_up(inptr))
+	p = dest + uintptr(**(**TPy_ssize_t)(__ccgo_up(outpos)))*2
+	ihi = libc.BoolInt32(!!(native_ordering != 0))
+	ilo = libc.BoolInt32(!(native_ordering != 0))
+	e = e - 1
+	for q < e {
+		if !(uint64(q)&libc.Uint64FromInt32(libc.Int32FromInt32(MALIGNOF_LONG)-libc.Int32FromInt32(1)) != 0) {
+			_q = q
+			for _q+uintptr(MSIZEOF_LONG) <= e {
+				block = **(**uint64)(__ccgo_up(_q))
+				if native_ordering != 0 {
+					if block&(libc.Uint64FromUint64(0x0001000100010001)*libc.Uint64FromUint32(0x8000)) != 0 {
+						break
+					}
+				} else {
+					if block&(libc.Uint64FromUint64(0x0001000100010001)*libc.Uint64FromUint32(0x8000)>>libc.Int32FromInt32(8)&(libc.Uint64FromUint64(0x0001000100010001)*libc.Uint64FromUint32(0x00FF))|libc.Uint64FromUint64(0x0001000100010001)*libc.Uint64FromUint32(0x8000)&(libc.Uint64FromUint64(0x0001000100010001)*libc.Uint64FromUint32(0x00FF))<<libc.Int32FromInt32(8)) != 0 {
+						break
+					}
+					block = block>>int32(8)&(libc.Uint64FromUint64(0x0001000100010001)*libc.Uint64FromUint32(0x00FF)) | block&(libc.Uint64FromUint64(0x0001000100010001)*libc.Uint64FromUint32(0x00FF))<<int32(8)
+				}
+				**(**TPy_UCS2)(__ccgo_up(p)) = uint16(block & libc.Uint64FromUint32(0xFFFF))
+				**(**TPy_UCS2)(__ccgo_up(p + 1*2)) = uint16(block >> libc.Int32FromInt32(16) & libc.Uint64FromUint32(0xFFFF))
+				**(**TPy_UCS2)(__ccgo_up(p + 2*2)) = uint16(block >> libc.Int32FromInt32(32) & libc.Uint64FromUint32(0xFFFF))
+				**(**TPy_UCS2)(__ccgo_up(p + 3*2)) = uint16(block >> libc.Int32FromInt32(48))
+				_q = _q + uintptr(MSIZEOF_LONG)
+				p = p + uintptr(libc.Int32FromInt32(MSIZEOF_LONG)/libc.Int32FromInt32(2))*2
+			}
+			q = _q
+			if q >= e {
+				break
+			}
+		}
+		ch3 = libc.Uint32FromInt32(libc.Int32FromUint8(**(**uint8)(__ccgo_up(q + uintptr(ihi))))<<int32(8) | libc.Int32FromUint8(**(**uint8)(__ccgo_up(q + uintptr(ilo)))))
+		q = q + uintptr(2)
+		v1 = ch3
+		v2 = libc.BoolInt32(uint32(0xD800) <= v1 && v1 <= uint32(0xDFFF))
+		goto _3
+	_3:
+		if !(v2 != 0) {
+			v4 = p
+			p += 2
+			**(**TPy_UCS2)(__ccgo_up(v4)) = uint16(ch3)
+			continue
+		}
+		v1 = ch3
+		v2 = libc.BoolInt32(uint32(0xD800) <= v1 && v1 <= uint32(0xDBFF))
+		goto _7
+	_7:
+		if !(v2 != 0) {
+			goto IllegalEncoding
+		}
+		if q >= e {
+			goto UnexpectedEnd
+		}
+		ch21 = libc.Uint32FromInt32(libc.Int32FromUint8(**(**uint8)(__ccgo_up(q + uintptr(ihi))))<<int32(8) | libc.Int32FromUint8(**(**uint8)(__ccgo_up(q + uintptr(ilo)))))
+		q = q + uintptr(2)
+		v1 = ch21
+		v2 = libc.BoolInt32(uint32(0xDC00) <= v1 && v1 <= uint32(0xDFFF))
+		goto _10
+	_10:
+		if !(v2 != 0) {
+			goto IllegalSurrogate
+		}
+		v1 = uint32(0x10000) + (ch3&uint32(0x03FF)<<int32(10) | ch21&uint32(0x03FF))
+		goto _12
+	_12:
+		ch3 = v1
+		goto Return
+	}
+	ch3 = uint32(0)
+	goto Return
+Return:
+	;
+	**(**uintptr)(__ccgo_up(inptr)) = q
+	**(**TPy_ssize_t)(__ccgo_up(outpos)) = (int64(p) - int64(dest)) / 2
+	return ch3
+	goto UnexpectedEnd
+UnexpectedEnd:
+	;
+	ch3 = uint32(1)
+	goto Return
+	goto IllegalEncoding
+IllegalEncoding:
+	;
+	ch3 = uint32(2)
+	goto Return
+	goto IllegalSurrogate
+IllegalSurrogate:
+	;
+	ch3 = uint32(3)
+	goto Return
+	return r
+}
+
+func _ucs2lib_utf16_encode(tls *libc.TLS, in uintptr, len1 TPy_ssize_t, outptr uintptr, native_ordering int32) (r TPy_ssize_t) {
+	var ch, ch1 TPy_UCS4
+	var end, out, unrolled_end, unrolled_end1, v1, v2 uintptr
+	_, _, _, _, _, _, _, _ = ch, ch1, end, out, unrolled_end, unrolled_end1, v1, v2
+	out = **(**uintptr)(__ccgo_up(outptr))
+	end = in + uintptr(len1)*2
+	if native_ordering != 0 {
+		unrolled_end = in + uintptr(libc.Uint64FromInt64(len1) & ^libc.Uint64FromInt32(libc.Int32FromInt32(4)-libc.Int32FromInt32(1)))*2
+		for in < unrolled_end {
+			if (libc.Int32FromUint16(**(**TPy_UCS2)(__ccgo_up(in)))^int32(0xd800))&(libc.Int32FromUint16(**(**TPy_UCS2)(__ccgo_up(in + 1*2)))^int32(0xd800))&(libc.Int32FromUint16(**(**TPy_UCS2)(__ccgo_up(in + 2*2)))^int32(0xd800))&(libc.Int32FromUint16(**(**TPy_UCS2)(__ccgo_up(in + 3*2)))^int32(0xd800))&int32(0xf800) == 0 {
+				break
+			}
+			**(**uint16)(__ccgo_up(out)) = **(**TPy_UCS2)(__ccgo_up(in))
+			**(**uint16)(__ccgo_up(out + 1*2)) = **(**TPy_UCS2)(__ccgo_up(in + 1*2))
+			**(**uint16)(__ccgo_up(out + 2*2)) = **(**TPy_UCS2)(__ccgo_up(in + 2*2))
+			**(**uint16)(__ccgo_up(out + 3*2)) = **(**TPy_UCS2)(__ccgo_up(in + 3*2))
+			in = in + uintptr(4)*2
+			out = out + uintptr(4)*2
+		}
+		for in < end {
+			v1 = in
+			in += 2
+			ch = uint32(**(**TPy_UCS2)(__ccgo_up(v1)))
+			if ch < uint32(0xd800) {
+				v1 = out
+				out += 2
+				**(**uint16)(__ccgo_up(v1)) = uint16(ch)
+			} else {
+				if ch < uint32(0xe000) {
+					goto fail
+				} else {
+					v1 = out
+					out += 2
+					**(**uint16)(__ccgo_up(v1)) = uint16(ch)
+				}
+			}
+		}
+	} else {
+		unrolled_end1 = in + uintptr(libc.Uint64FromInt64(len1) & ^libc.Uint64FromInt32(libc.Int32FromInt32(4)-libc.Int32FromInt32(1)))*2
+		for in < unrolled_end1 {
+			if (libc.Int32FromUint16(**(**TPy_UCS2)(__ccgo_up(in)))^int32(0xd800))&(libc.Int32FromUint16(**(**TPy_UCS2)(__ccgo_up(in + 1*2)))^int32(0xd800))&(libc.Int32FromUint16(**(**TPy_UCS2)(__ccgo_up(in + 2*2)))^int32(0xd800))&(libc.Int32FromUint16(**(**TPy_UCS2)(__ccgo_up(in + 3*2)))^int32(0xd800))&int32(0xf800) == 0 {
+				break
+			}
+			**(**uint16)(__ccgo_up(out)) = libc.Uint16FromInt32(libc.Int32FromUint16(**(**TPy_UCS2)(__ccgo_up(in)))<<libc.Int32FromInt32(8) | libc.Int32FromUint16(**(**TPy_UCS2)(__ccgo_up(in)))>>libc.Int32FromInt32(8))
+			**(**uint16)(__ccgo_up(out + 1*2)) = libc.Uint16FromInt32(libc.Int32FromUint16(**(**TPy_UCS2)(__ccgo_up(in + 1*2)))<<libc.Int32FromInt32(8) | libc.Int32FromUint16(**(**TPy_UCS2)(__ccgo_up(in + 1*2)))>>libc.Int32FromInt32(8))
+			**(**uint16)(__ccgo_up(out + 2*2)) = libc.Uint16FromInt32(libc.Int32FromUint16(**(**TPy_UCS2)(__ccgo_up(in + 2*2)))<<libc.Int32FromInt32(8) | libc.Int32FromUint16(**(**TPy_UCS2)(__ccgo_up(in + 2*2)))>>libc.Int32FromInt32(8))
+			**(**uint16)(__ccgo_up(out + 3*2)) = libc.Uint16FromInt32(libc.Int32FromUint16(**(**TPy_UCS2)(__ccgo_up(in + 3*2)))<<libc.Int32FromInt32(8) | libc.Int32FromUint16(**(**TPy_UCS2)(__ccgo_up(in + 3*2)))>>libc.Int32FromInt32(8))
+			in = in + uintptr(4)*2
+			out = out + uintptr(4)*2
+		}
+		for in < end {
+			v1 = in
+			in += 2
+			ch1 = uint32(**(**TPy_UCS2)(__ccgo_up(v1)))
+			if ch1 < uint32(0xd800) {
+				v2 = out
+				out += 2
+				**(**uint16)(__ccgo_up(v2)) = libc.Uint16FromInt32(libc.Int32FromUint16(uint16(ch1))<<libc.Int32FromInt32(8) | libc.Int32FromUint16(uint16(ch1))>>libc.Int32FromInt32(8))
+			} else {
+				if ch1 < uint32(0xe000) {
+					goto fail
+				} else {
+					v1 = out
+					out += 2
+					**(**uint16)(__ccgo_up(v1)) = libc.Uint16FromInt32(libc.Int32FromUint16(uint16(ch1))<<libc.Int32FromInt32(8) | libc.Int32FromUint16(uint16(ch1))>>libc.Int32FromInt32(8))
+				}
+			}
+		}
+	}
+	**(**uintptr)(__ccgo_up(outptr)) = out
+	return len1
+	goto fail
+fail:
+	;
+	**(**uintptr)(__ccgo_up(outptr)) = out
+	return len1 - ((int64(end)-int64(in))/2 + int64(1))
+}
+
+func _ucs2lib_utf32_encode(tls *libc.TLS, in uintptr, len1 TPy_ssize_t, outptr uintptr, native_ordering int32) (r TPy_ssize_t) {
+	var ch2, ch3, v2 TPy_UCS4
+	var end, out, unrolled_end, unrolled_end1, v1 uintptr
+	var word, v6 Tuint32_t
+	var v3 int32
+	_, _, _, _, _, _, _, _, _, _, _ = ch2, ch3, end, out, unrolled_end, unrolled_end1, word, v1, v2, v3, v6
+	out = **(**uintptr)(__ccgo_up(outptr))
+	end = in + uintptr(len1)*2
+	if native_ordering != 0 {
+		unrolled_end = in + uintptr(libc.Uint64FromInt64(len1) & ^libc.Uint64FromInt32(libc.Int32FromInt32(4)-libc.Int32FromInt32(1)))*2
+		for in < unrolled_end {
+			if (libc.Int32FromUint16(**(**TPy_UCS2)(__ccgo_up(in)))^int32(0xd800))&(libc.Int32FromUint16(**(**TPy_UCS2)(__ccgo_up(in + 1*2)))^int32(0xd800))&(libc.Int32FromUint16(**(**TPy_UCS2)(__ccgo_up(in + 2*2)))^int32(0xd800))&(libc.Int32FromUint16(**(**TPy_UCS2)(__ccgo_up(in + 3*2)))^int32(0xd800))&int32(0xf800) == 0 {
+				break
+			}
+			**(**Tuint32_t)(__ccgo_up(out)) = uint32(**(**TPy_UCS2)(__ccgo_up(in)))
+			**(**Tuint32_t)(__ccgo_up(out + 1*4)) = uint32(**(**TPy_UCS2)(__ccgo_up(in + 1*2)))
+			**(**Tuint32_t)(__ccgo_up(out + 2*4)) = uint32(**(**TPy_UCS2)(__ccgo_up(in + 2*2)))
+			**(**Tuint32_t)(__ccgo_up(out + 3*4)) = uint32(**(**TPy_UCS2)(__ccgo_up(in + 3*2)))
+			in = in + uintptr(4)*2
+			out = out + uintptr(4)*4
+		}
+		for in < end {
+			v1 = in
+			in += 2
+			ch2 = uint32(**(**TPy_UCS2)(__ccgo_up(v1)))
+			v2 = ch2
+			v3 = libc.BoolInt32(uint32(0xD800) <= v2 && v2 <= uint32(0xDFFF))
+			goto _4
+		_4:
+			if v3 != 0 {
+				goto fail
+			}
+			v1 = out
+			out += 4
+			**(**Tuint32_t)(__ccgo_up(v1)) = ch2
+		}
+	} else {
+		unrolled_end1 = in + uintptr(libc.Uint64FromInt64(len1) & ^libc.Uint64FromInt32(libc.Int32FromInt32(4)-libc.Int32FromInt32(1)))*2
+		for in < unrolled_end1 {
+			if (libc.Int32FromUint16(**(**TPy_UCS2)(__ccgo_up(in)))^int32(0xd800))&(libc.Int32FromUint16(**(**TPy_UCS2)(__ccgo_up(in + 1*2)))^int32(0xd800))&(libc.Int32FromUint16(**(**TPy_UCS2)(__ccgo_up(in + 2*2)))^int32(0xd800))&(libc.Int32FromUint16(**(**TPy_UCS2)(__ccgo_up(in + 3*2)))^int32(0xd800))&int32(0xf800) == 0 {
+				break
+			}
+			word = uint32(**(**TPy_UCS2)(__ccgo_up(in)))
+			v6 = word&uint32(0x00FF)<<int32(24) | word&uint32(0xFF00)<<int32(8)
+			goto _7
+		_7:
+			**(**Tuint32_t)(__ccgo_up(out)) = v6
+			word = uint32(**(**TPy_UCS2)(__ccgo_up(in + 1*2)))
+			v6 = word&uint32(0x00FF)<<int32(24) | word&uint32(0xFF00)<<int32(8)
+			goto _9
+		_9:
+			**(**Tuint32_t)(__ccgo_up(out + 1*4)) = v6
+			word = uint32(**(**TPy_UCS2)(__ccgo_up(in + 2*2)))
+			v6 = word&uint32(0x00FF)<<int32(24) | word&uint32(0xFF00)<<int32(8)
+			goto _11
+		_11:
+			**(**Tuint32_t)(__ccgo_up(out + 2*4)) = v6
+			word = uint32(**(**TPy_UCS2)(__ccgo_up(in + 3*2)))
+			v6 = word&uint32(0x00FF)<<int32(24) | word&uint32(0xFF00)<<int32(8)
+			goto _13
+		_13:
+			**(**Tuint32_t)(__ccgo_up(out + 3*4)) = v6
+			in = in + uintptr(4)*2
+			out = out + uintptr(4)*4
+		}
+		for in < end {
+			v1 = in
+			in += 2
+			ch3 = uint32(**(**TPy_UCS2)(__ccgo_up(v1)))
+			v2 = ch3
+			v3 = libc.BoolInt32(uint32(0xD800) <= v2 && v2 <= uint32(0xDFFF))
+			goto _17
+		_17:
+			if v3 != 0 {
+				goto fail
+			}
+			v1 = out
+			out += 4
+			word = uint32(uint16(ch3))
+			v6 = word&uint32(0x00FF)<<int32(24) | word&uint32(0xFF00)<<int32(8)
+			goto _20
+		_20:
+			**(**Tuint32_t)(__ccgo_up(v1)) = v6
+		}
+	}
+	**(**uintptr)(__ccgo_up(outptr)) = out
+	return len1
+	goto fail
+fail:
+	;
+	**(**uintptr)(__ccgo_up(outptr)) = out
+	return len1 - ((int64(end)-int64(in))/2 + int64(1))
+}
+
+func _ucs4lib_utf8_decode(tls *libc.TLS, inptr uintptr, end uintptr, dest uintptr, outpos uintptr) (r TPy_UCS4) {
+	var _p, _s, p, s, v1 uintptr
+	var ch, ch2, ch21, ch22, ch3, ch31, ch4 TPy_UCS4
+	var value Tsize_t
+	var v3 int32
+	var v4 bool
+	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = _p, _s, ch, ch2, ch21, ch22, ch3, ch31, ch4, p, s, value, v1, v3, v4
+	s = **(**uintptr)(__ccgo_up(inptr))
+	p = dest + uintptr(**(**TPy_ssize_t)(__ccgo_up(outpos)))*4
+	for s < end {
+		ch = uint32(uint8(**(**uint8)(__ccgo_up(s))))
+		if ch < uint32(0x80) {
+			if !(uint64(s)&libc.Uint64FromInt32(libc.Int32FromInt32(MALIGNOF_SIZE_T)-libc.Int32FromInt32(1)) != 0) {
+				_s = s
+				_p = p
+				for _s+uintptr(MSIZEOF_SIZE_T) <= end {
+					value = **(**Tsize_t)(__ccgo_up(_s))
+					if value&uint64(0x8080808080808080) != 0 {
+						break
+					}
+					**(**TPy_UCS4)(__ccgo_up(_p)) = uint32(value & libc.Uint64FromUint32(0xFF))
+					**(**TPy_UCS4)(__ccgo_up(_p + 1*4)) = uint32(value >> libc.Int32FromInt32(8) & libc.Uint64FromUint32(0xFF))
+					**(**TPy_UCS4)(__ccgo_up(_p + 2*4)) = uint32(value >> libc.Int32FromInt32(16) & libc.Uint64FromUint32(0xFF))
+					**(**TPy_UCS4)(__ccgo_up(_p + 3*4)) = uint32(value >> libc.Int32FromInt32(24) & libc.Uint64FromUint32(0xFF))
+					**(**TPy_UCS4)(__ccgo_up(_p + 4*4)) = uint32(value >> libc.Int32FromInt32(32) & libc.Uint64FromUint32(0xFF))
+					**(**TPy_UCS4)(__ccgo_up(_p + 5*4)) = uint32(value >> libc.Int32FromInt32(40) & libc.Uint64FromUint32(0xFF))
+					**(**TPy_UCS4)(__ccgo_up(_p + 6*4)) = uint32(value >> libc.Int32FromInt32(48) & libc.Uint64FromUint32(0xFF))
+					**(**TPy_UCS4)(__ccgo_up(_p + 7*4)) = uint32(value >> libc.Int32FromInt32(56) & libc.Uint64FromUint32(0xFF))
+					_s = _s + uintptr(MSIZEOF_SIZE_T)
+					_p = _p + uintptr(MSIZEOF_SIZE_T)*4
+				}
+				s = _s
+				p = _p
+				if s == end {
+					break
+				}
+				ch = uint32(uint8(**(**uint8)(__ccgo_up(s))))
+			}
+			if ch < uint32(0x80) {
+				s = s + 1
+				v1 = p
+				p += 4
+				**(**TPy_UCS4)(__ccgo_up(v1)) = ch
+				continue
+			}
+		}
+		if ch < uint32(0xE0) {
+			if ch < uint32(0xC2) {
+				goto InvalidStart
+			}
+			if int64(end)-int64(s) < int64(2) {
+				break
+			}
+			ch2 = uint32(uint8(**(**uint8)(__ccgo_up(s + 1))))
+			if !(ch2 >= uint32(0x80) && ch2 < uint32(0xC0)) {
+				goto InvalidContinuation1
+			}
+			ch = ch<<libc.Int32FromInt32(6) + ch2 - libc.Uint32FromInt32(libc.Int32FromInt32(0xC0)<<libc.Int32FromInt32(6)+libc.Int32FromInt32(0x80))
+			s = s + uintptr(2)
+			if libc.Bool(uint32(0x10FFFF) <= uint32(0x007F)) || libc.Bool(libc.Bool(uint32(0x10FFFF) < uint32(0x07FF)) && ch > uint32(0x10FFFF)) {
+				goto Return
+			}
+			v1 = p
+			p += 4
+			**(**TPy_UCS4)(__ccgo_up(v1)) = ch
+			continue
+		}
+		if ch < uint32(0xF0) {
+			if int64(end)-int64(s) < int64(3) {
+				if int64(end)-int64(s) < int64(2) {
+					break
+				}
+				ch21 = uint32(uint8(**(**uint8)(__ccgo_up(s + 1))))
+				if v4 = !(ch21 >= uint32(0x80) && ch21 < uint32(0xC0)); !v4 {
+					if ch21 < uint32(0xA0) {
+						v3 = libc.BoolInt32(ch == uint32(0xE0))
+					} else {
+						v3 = libc.BoolInt32(ch == uint32(0xED))
+					}
+				}
+				if v4 || v3 != 0 {
+					goto InvalidContinuation1
+				}
+				break
+			}
+			ch21 = uint32(uint8(**(**uint8)(__ccgo_up(s + 1))))
+			ch3 = uint32(uint8(**(**uint8)(__ccgo_up(s + 2))))
+			if !(ch21 >= uint32(0x80) && ch21 < uint32(0xC0)) {
+				goto InvalidContinuation1
+			}
+			if ch == uint32(0xE0) {
+				if ch21 < uint32(0xA0) {
+					goto InvalidContinuation1
+				}
+			} else {
+				if ch == uint32(0xED) && ch21 >= uint32(0xA0) {
+					goto InvalidContinuation1
+				}
+			}
+			if !(ch3 >= uint32(0x80) && ch3 < uint32(0xC0)) {
+				goto InvalidContinuation2
+			}
+			ch = ch<<libc.Int32FromInt32(12) + ch21<<libc.Int32FromInt32(6) + ch3 - libc.Uint32FromInt32(libc.Int32FromInt32(0xE0)<<libc.Int32FromInt32(12)+libc.Int32FromInt32(0x80)<<libc.Int32FromInt32(6)+libc.Int32FromInt32(0x80))
+			s = s + uintptr(3)
+			if libc.Bool(uint32(0x10FFFF) <= uint32(0x07FF)) || libc.Bool(libc.Bool(uint32(0x10FFFF) < uint32(0xFFFF)) && ch > uint32(0x10FFFF)) {
+				goto Return
+			}
+			v1 = p
+			p += 4
+			**(**TPy_UCS4)(__ccgo_up(v1)) = ch
+			continue
+		}
+		if ch < uint32(0xF5) {
+			if int64(end)-int64(s) < int64(4) {
+				if int64(end)-int64(s) < int64(2) {
+					break
+				}
+				ch22 = uint32(uint8(**(**uint8)(__ccgo_up(s + 1))))
+				if v4 = !(ch22 >= uint32(0x80) && ch22 < uint32(0xC0)); !v4 {
+					if ch22 < uint32(0x90) {
+						v3 = libc.BoolInt32(ch == uint32(0xF0))
+					} else {
+						v3 = libc.BoolInt32(ch == uint32(0xF4))
+					}
+				}
+				if v4 || v3 != 0 {
+					goto InvalidContinuation1
+				}
+				if int64(end)-int64(s) < int64(3) {
+					break
+				}
+				ch31 = uint32(uint8(**(**uint8)(__ccgo_up(s + 2))))
+				if !(ch31 >= uint32(0x80) && ch31 < uint32(0xC0)) {
+					goto InvalidContinuation2
+				}
+				break
+			}
+			ch22 = uint32(uint8(**(**uint8)(__ccgo_up(s + 1))))
+			ch31 = uint32(uint8(**(**uint8)(__ccgo_up(s + 2))))
+			ch4 = uint32(uint8(**(**uint8)(__ccgo_up(s + 3))))
+			if !(ch22 >= uint32(0x80) && ch22 < uint32(0xC0)) {
+				goto InvalidContinuation1
+			}
+			if ch == uint32(0xF0) {
+				if ch22 < uint32(0x90) {
+					goto InvalidContinuation1
+				}
+			} else {
+				if ch == uint32(0xF4) && ch22 >= uint32(0x90) {
+					goto InvalidContinuation1
+				}
+			}
+			if !(ch31 >= uint32(0x80) && ch31 < uint32(0xC0)) {
+				goto InvalidContinuation2
+			}
+			if !(ch4 >= uint32(0x80) && ch4 < uint32(0xC0)) {
+				goto InvalidContinuation3
+			}
+			ch = ch<<libc.Int32FromInt32(18) + ch22<<libc.Int32FromInt32(12) + ch31<<libc.Int32FromInt32(6) + ch4 - libc.Uint32FromInt32(libc.Int32FromInt32(0xF0)<<libc.Int32FromInt32(18)+libc.Int32FromInt32(0x80)<<libc.Int32FromInt32(12)+libc.Int32FromInt32(0x80)<<libc.Int32FromInt32(6)+libc.Int32FromInt32(0x80))
+			s = s + uintptr(4)
+			if libc.Bool(uint32(0x10FFFF) <= uint32(0xFFFF)) || libc.Bool(libc.Bool(uint32(0x10FFFF) < uint32(0x10FFFF)) && ch > uint32(0x10FFFF)) {
+				goto Return
+			}
+			v1 = p
+			p += 4
+			**(**TPy_UCS4)(__ccgo_up(v1)) = ch
+			continue
+		}
+		goto InvalidStart
+	}
+	ch = uint32(0)
+	goto Return
+Return:
+	;
+	**(**uintptr)(__ccgo_up(inptr)) = s
+	**(**TPy_ssize_t)(__ccgo_up(outpos)) = (int64(p) - int64(dest)) / 4
+	return ch
+	goto InvalidStart
+InvalidStart:
+	;
+	ch = uint32(1)
+	goto Return
+	goto InvalidContinuation1
+InvalidContinuation1:
+	;
+	ch = uint32(2)
+	goto Return
+	goto InvalidContinuation2
+InvalidContinuation2:
+	;
+	ch = uint32(3)
+	goto Return
+	goto InvalidContinuation3
+InvalidContinuation3:
+	;
+	ch = uint32(4)
+	goto Return
+	return r
+}
+
+func _ucs4lib_utf8_encoder(tls *libc.TLS, writer uintptr, unicode uintptr, data1 uintptr, size TPy_ssize_t, error_handler T_Py_error_handler, errors uintptr) (r uintptr) {
+	bp := tls.Alloc(32)
+	defer tls.Free(32)
+	var _tmp_old_op, _tmp_op_ptr, data, p, self, v24, v25, v3, v4, v5 uintptr
+	var ch1, v6 TPy_UCS4
+	var endpos, i, k, max_char_size, startpos, v2, v35 TPy_ssize_t
+	var flags uint64
+	var v7 int32
+	var v59 Tuint32_t
+	var v12 bool
+	var v39, v42 uint32
+	var _ uintptr
+	var _ uintptr
+	var _ TPy_ssize_t
+	var _ uintptr
+	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = _tmp_old_op, _tmp_op_ptr, ch1, data, endpos, flags, i, k, max_char_size, p, self, startpos, v12, v2, v24, v25, v3, v35, v39, v4, v42, v5, v59, v6, v7
+	**(**uintptr)(__ccgo_up(bp)) = libc.UintptrFromInt32(0)
+	**(**uintptr)(__ccgo_up(bp + 8)) = libc.UintptrFromInt32(0)
+	**(**uintptr)(__ccgo_up(bp + 16)) = libc.UintptrFromInt32(0)
+	max_char_size = int64(4)
+	if size > int64(0x7fffffffffffffff)/max_char_size {
+		XPyErr_NoMemory(tls)
+		return libc.UintptrFromInt32(0)
+	}
+	X_PyBytesWriter_Init(tls, writer)
+	p = X_PyBytesWriter_Alloc(tls, writer, size*max_char_size)
+	if p == libc.UintptrFromInt32(0) {
+		return libc.UintptrFromInt32(0)
+	}
+	i = 0
+	for {
+		if !(i < size) {
+			break
+		}
+		v2 = i
+		i = i + 1
+		ch1 = **(**TPy_UCS4)(__ccgo_up(data1 + uintptr(v2)*4))
+		if ch1 < uint32(0x80) {
+			v3 = p
+			p = p + 1
+			**(**uint8)(__ccgo_up(v3)) = uint8(ch1)
+		} else {
+			if ch1 < uint32(0x0800) {
+				v3 = p
+				p = p + 1
+				**(**uint8)(__ccgo_up(v3)) = uint8(libc.Uint32FromInt32(0xc0) | ch1>>libc.Int32FromInt32(6))
+				v3 = p
+				p = p + 1
+				**(**uint8)(__ccgo_up(v3)) = uint8(libc.Uint32FromInt32(0x80) | ch1&libc.Uint32FromInt32(0x3f))
+			} else {
+				v6 = ch1
+				v7 = libc.BoolInt32(uint32(0xD800) <= v6 && v6 <= uint32(0xDFFF))
+				goto _8
+			_8:
+				if v7 != 0 {
+					if error_handler == int32(E_Py_ERROR_UNKNOWN) {
+						error_handler = X_Py_GetErrorHandler(tls, errors)
+					}
+					startpos = i - int64(1)
+					endpos = startpos + int64(1)
+					for {
+						if v12 = endpos < size; v12 {
+							v6 = **(**TPy_UCS4)(__ccgo_up(data1 + uintptr(endpos)*4))
+							v7 = libc.BoolInt32(uint32(0xD800) <= v6 && v6 <= uint32(0xDFFF))
+							goto _11
+						_11:
+						}
+						if !(v12 && v7 != 0) {
+							break
+						}
+						endpos = endpos + 1
+					}
+					(*T_PyBytesWriter)(unsafe.Pointer(writer)).Foverallocate = libc.BoolInt32(endpos < size)
+					switch error_handler {
+					case int32(E_Py_ERROR_REPLACE):
+						goto _13
+					case int32(E_Py_ERROR_IGNORE):
+						goto _14
+					case int32(E_Py_ERROR_SURROGATEPASS):
+						goto _15
+					case int32(E_Py_ERROR_BACKSLASHREPLACE):
+						goto _16
+					case int32(E_Py_ERROR_XMLCHARREFREPLACE):
+						goto _17
+					case int32(E_Py_ERROR_SURROGATEESCAPE):
+						goto _18
+					default:
+						goto _19
+					}
+					goto _20
+				_13:
+					;
+					libc.Xmemset(tls, p, int32('?'), libc.Uint64FromInt64(endpos-startpos))
+					p = p + uintptr(endpos-startpos)
+				_14:
+					;
+					i = i + (endpos - startpos - int64(1))
+					goto _20
+				_15:
+					;
+					k = startpos
+				_23:
+					;
+					if !(k < endpos) {
+						goto _21
+					}
+					ch1 = **(**TPy_UCS4)(__ccgo_up(data1 + uintptr(k)*4))
+					v3 = p
+					p = p + 1
+					**(**uint8)(__ccgo_up(v3)) = uint8(libc.Uint32FromInt32(0xe0) | ch1>>libc.Int32FromInt32(12))
+					v3 = p
+					p = p + 1
+					**(**uint8)(__ccgo_up(v3)) = uint8(libc.Uint32FromInt32(0x80) | ch1>>libc.Int32FromInt32(6)&libc.Uint32FromInt32(0x3f))
+					v3 = p
+					p = p + 1
+					**(**uint8)(__ccgo_up(v3)) = uint8(libc.Uint32FromInt32(0x80) | ch1&libc.Uint32FromInt32(0x3f))
+					goto _22
+				_22:
+					;
+					k = k + 1
+					goto _23
+					goto _21
+				_21:
+					;
+					i = i + (endpos - startpos - int64(1))
+					goto _20
+				_16:
+					;
+					**(**TPy_ssize_t)(__ccgo_up(writer + 16)) -= max_char_size * (endpos - startpos)
+					p = _backslashreplace(tls, writer, p, unicode, startpos, endpos)
+					if p == libc.UintptrFromInt32(0) {
+						goto error
+					}
+					i = i + (endpos - startpos - int64(1))
+					goto _20
+				_17:
+					;
+					**(**TPy_ssize_t)(__ccgo_up(writer + 16)) -= max_char_size * (endpos - startpos)
+					p = _xmlcharrefreplace(tls, writer, p, unicode, startpos, endpos)
+					if p == libc.UintptrFromInt32(0) {
+						goto error
+					}
+					i = i + (endpos - startpos - int64(1))
+					goto _20
+				_18:
+					;
+					k = startpos
+					for {
+						if !(k < endpos) {
+							break
+						}
+						ch1 = **(**TPy_UCS4)(__ccgo_up(data1 + uintptr(k)*4))
+						if !(uint32(0xDC80) <= ch1 && ch1 <= uint32(0xDCFF)) {
+							break
+						}
+						v3 = p
+						p = p + 1
+						**(**uint8)(__ccgo_up(v3)) = uint8(ch1 & libc.Uint32FromInt32(0xff))
+						goto _27
+					_27:
+						;
+						k = k + 1
+					}
+					if k >= endpos {
+						i = i + (endpos - startpos - int64(1))
+						goto _20
+					}
+					startpos = k
+				_19:
+					;
+					**(**uintptr)(__ccgo_up(bp + 16)) = _unicode_encode_call_errorhandler(tls, errors, bp, __ccgo_ts+10626, __ccgo_ts+78910, unicode, bp+8, startpos, endpos, bp+24)
+					if !(**(**uintptr)(__ccgo_up(bp + 16)) != 0) {
+						goto error
+					}
+					if **(**TPy_ssize_t)(__ccgo_up(bp + 24)) < startpos {
+						(*T_PyBytesWriter)(unsafe.Pointer(writer)).Foverallocate = int32(1)
+						p = X_PyBytesWriter_Prepare(tls, writer, p, max_char_size*(startpos-**(**TPy_ssize_t)(__ccgo_up(bp + 24))))
+						if p == libc.UintptrFromInt32(0) {
+							goto error
+						}
+					} else {
+						**(**TPy_ssize_t)(__ccgo_up(writer + 16)) -= max_char_size * (**(**TPy_ssize_t)(__ccgo_up(bp + 24)) - startpos)
+						(*T_PyBytesWriter)(unsafe.Pointer(writer)).Foverallocate = libc.BoolInt32(**(**TPy_ssize_t)(__ccgo_up(bp + 24)) < size)
+					}
+					v3 = (*TPyObject)(unsafe.Pointer(**(**uintptr)(__ccgo_up(bp + 16)))).Fob_type
+					goto _30
+				_30:
+					flags = (*TPyTypeObject)(unsafe.Pointer(v3)).Ftp_flags
+					v7 = libc.BoolInt32(flags&(libc.Uint64FromUint64(1)<<libc.Int32FromInt32(27)) != uint64(0))
+					goto _32
+				_32:
+					if v7 != 0 {
+						v4 = **(**uintptr)(__ccgo_up(bp + 16)) + 32
+						goto _34
+					_34:
+						;
+						self = **(**uintptr)(__ccgo_up(bp + 16))
+						v35 = (*TPyVarObject)(unsafe.Pointer(self)).Fob_size
+						goto _38
+					_38:
+						v2 = v35
+						goto _36
+					_36:
+						p = X_PyBytesWriter_WriteBytes(tls, writer, p, v4, v2)
+					} else {
+						v39 = libc.Uint32FromInt32(int32(*(*uint32)(unsafe.Pointer(**(**uintptr)(__ccgo_up(bp + 16)) + 32 + 0)) & 0x40 >> 6))
+						goto _40
+					_40:
+						if !(v39 != 0) {
+							_raise_encode_exception(tls, bp+8, __ccgo_ts+10626, unicode, startpos, endpos, __ccgo_ts+78910)
+							goto error
+						}
+						v3 = **(**uintptr)(__ccgo_up(bp + 16))
+						v39 = libc.Uint32FromInt32(int32(*(*uint32)(unsafe.Pointer(v3 + 32 + 0)) & 0x20 >> 5))
+						goto _43
+					_43:
+						if v39 != 0 {
+							v5 = v3
+							v42 = libc.Uint32FromInt32(int32(*(*uint32)(unsafe.Pointer(v5 + 32 + 0)) & 0x40 >> 6))
+							goto _48
+						_48:
+							if v42 != 0 {
+								v24 = v5 + libc.UintptrFromInt32(1)*40
+								goto _50
+							}
+							v24 = v5 + libc.UintptrFromInt32(1)*56
+							goto _50
+						_50:
+							v4 = v24
+							goto _45
+						}
+						data = *(*uintptr)(unsafe.Pointer(v3 + 56))
+						v25 = data
+						goto _52
+					_52:
+						v4 = v25
+						goto _45
+					_45:
+						;
+						v2 = (*TPyASCIIObject)(unsafe.Pointer(**(**uintptr)(__ccgo_up(bp + 16)))).Flength
+						goto _54
+					_54:
+						p = X_PyBytesWriter_WriteBytes(tls, writer, p, v4, v2)
+					}
+					if p == libc.UintptrFromInt32(0) {
+						goto error
+					}
+					_tmp_op_ptr = bp + 16
+					_tmp_old_op = **(**uintptr)(__ccgo_up(_tmp_op_ptr))
+					if _tmp_old_op != libc.UintptrFromInt32(0) {
+						**(**uintptr)(__ccgo_up(_tmp_op_ptr)) = libc.UintptrFromInt32(0)
+						v3 = _tmp_old_op
+						v7 = libc.BoolInt32(libc.Int32FromUint32(*(*Tuint32_t)(unsafe.Pointer(v3))) < 0)
+						goto _57
+					_57:
+						if v7 != 0 {
+							goto _58
+						}
+						v4 = v3
+						*(*Tuint32_t)(unsafe.Pointer(v4)) = *(*Tuint32_t)(unsafe.Pointer(v4)) - 1
+						v59 = *(*Tuint32_t)(unsafe.Pointer(v4))
+						if v59 == libc.Uint32FromInt32(0) {
+							X_Py_Dealloc(tls, v3)
+						}
+					_58:
+					}
+					i = **(**TPy_ssize_t)(__ccgo_up(bp + 24))
+				_20:
+				} else {
+					if ch1 < uint32(0x10000) {
+						v3 = p
+						p = p + 1
+						**(**uint8)(__ccgo_up(v3)) = uint8(libc.Uint32FromInt32(0xe0) | ch1>>libc.Int32FromInt32(12))
+						v3 = p
+						p = p + 1
+						**(**uint8)(__ccgo_up(v3)) = uint8(libc.Uint32FromInt32(0x80) | ch1>>libc.Int32FromInt32(6)&libc.Uint32FromInt32(0x3f))
+						v3 = p
+						p = p + 1
+						**(**uint8)(__ccgo_up(v3)) = uint8(libc.Uint32FromInt32(0x80) | ch1&libc.Uint32FromInt32(0x3f))
+					} else {
+						v3 = p
+						p = p + 1
+						**(**uint8)(__ccgo_up(v3)) = uint8(libc.Uint32FromInt32(0xf0) | ch1>>libc.Int32FromInt32(18))
+						v3 = p
+						p = p + 1
+						**(**uint8)(__ccgo_up(v3)) = uint8(libc.Uint32FromInt32(0x80) | ch1>>libc.Int32FromInt32(12)&libc.Uint32FromInt32(0x3f))
+						v3 = p
+						p = p + 1
+						**(**uint8)(__ccgo_up(v3)) = uint8(libc.Uint32FromInt32(0x80) | ch1>>libc.Int32FromInt32(6)&libc.Uint32FromInt32(0x3f))
+						v3 = p
+						p = p + 1
+						**(**uint8)(__ccgo_up(v3)) = uint8(libc.Uint32FromInt32(0x80) | ch1&libc.Uint32FromInt32(0x3f))
+					}
+				}
+			}
+		}
+		goto _1
+	_1:
+	}
+	v3 = **(**uintptr)(__ccgo_up(bp))
+	if v3 != libc.UintptrFromInt32(0) {
+		v4 = v3
+		v7 = libc.BoolInt32(libc.Int32FromUint32(*(*Tuint32_t)(unsafe.Pointer(v4))) < 0)
+		goto _71
+	_71:
+		if v7 != 0 {
+			goto _72
+		}
+		v5 = v4
+		*(*Tuint32_t)(unsafe.Pointer(v5)) = *(*Tuint32_t)(unsafe.Pointer(v5)) - 1
+		v59 = *(*Tuint32_t)(unsafe.Pointer(v5))
+		if v59 == libc.Uint32FromInt32(0) {
+			X_Py_Dealloc(tls, v4)
+		}
+	_72:
+	}
+	v3 = **(**uintptr)(__ccgo_up(bp + 8))
+	if v3 != libc.UintptrFromInt32(0) {
+		v4 = v3
+		v7 = libc.BoolInt32(libc.Int32FromUint32(*(*Tuint32_t)(unsafe.Pointer(v4))) < 0)
+		goto _78
+	_78:
+		if v7 != 0 {
+			goto _79
+		}
+		v5 = v4
+		*(*Tuint32_t)(unsafe.Pointer(v5)) = *(*Tuint32_t)(unsafe.Pointer(v5)) - 1
+		v59 = *(*Tuint32_t)(unsafe.Pointer(v5))
+		if v59 == libc.Uint32FromInt32(0) {
+			X_Py_Dealloc(tls, v4)
+		}
+	_79:
+	}
+	return p
+	goto error
+error:
+	;
+	v3 = **(**uintptr)(__ccgo_up(bp + 16))
+	if v3 != libc.UintptrFromInt32(0) {
+		v4 = v3
+		v7 = libc.BoolInt32(libc.Int32FromUint32(*(*Tuint32_t)(unsafe.Pointer(v4))) < 0)
+		goto _85
+	_85:
+		if v7 != 0 {
+			goto _86
+		}
+		v5 = v4
+		*(*Tuint32_t)(unsafe.Pointer(v5)) = *(*Tuint32_t)(unsafe.Pointer(v5)) - 1
+		v59 = *(*Tuint32_t)(unsafe.Pointer(v5))
+		if v59 == libc.Uint32FromInt32(0) {
+			X_Py_Dealloc(tls, v4)
+		}
+	_86:
+	}
+	v3 = **(**uintptr)(__ccgo_up(bp))
+	if v3 != libc.UintptrFromInt32(0) {
+		v4 = v3
+		v7 = libc.BoolInt32(libc.Int32FromUint32(*(*Tuint32_t)(unsafe.Pointer(v4))) < 0)
+		goto _92
+	_92:
+		if v7 != 0 {
+			goto _93
+		}
+		v5 = v4
+		*(*Tuint32_t)(unsafe.Pointer(v5)) = *(*Tuint32_t)(unsafe.Pointer(v5)) - 1
+		v59 = *(*Tuint32_t)(unsafe.Pointer(v5))
+		if v59 == libc.Uint32FromInt32(0) {
+			X_Py_Dealloc(tls, v4)
+		}
+	_93:
+	}
+	v3 = **(**uintptr)(__ccgo_up(bp + 8))
+	if v3 != libc.UintptrFromInt32(0) {
+		v4 = v3
+		v7 = libc.BoolInt32(libc.Int32FromUint32(*(*Tuint32_t)(unsafe.Pointer(v4))) < 0)
+		goto _99
+	_99:
+		if v7 != 0 {
+			goto _100
+		}
+		v5 = v4
+		*(*Tuint32_t)(unsafe.Pointer(v5)) = *(*Tuint32_t)(unsafe.Pointer(v5)) - 1
+		v59 = *(*Tuint32_t)(unsafe.Pointer(v5))
+		if v59 == libc.Uint32FromInt32(0) {
+			X_Py_Dealloc(tls, v4)
+		}
+	_100:
+	}
+	return libc.UintptrFromInt32(0)
+}
+
+func _ucs4lib_utf16_decode(tls *libc.TLS, inptr uintptr, e uintptr, dest uintptr, outpos uintptr, native_ordering int32) (r TPy_UCS4) {
+	var _q, p, q, v4 uintptr
+	var block uint64
+	var ch21, ch3, v1 TPy_UCS4
+	var ihi, ilo, v2 int32
+	_, _, _, _, _, _, _, _, _, _, _ = _q, block, ch21, ch3, ihi, ilo, p, q, v1, v2, v4
+	q = **(**uintptr)(__ccgo_up(inptr))
+	p = dest + uintptr(**(**TPy_ssize_t)(__ccgo_up(outpos)))*4
+	ihi = libc.BoolInt32(!!(native_ordering != 0))
+	ilo = libc.BoolInt32(!(native_ordering != 0))
+	e = e - 1
+	for q < e {
+		if !(uint64(q)&libc.Uint64FromInt32(libc.Int32FromInt32(MALIGNOF_LONG)-libc.Int32FromInt32(1)) != 0) {
+			_q = q
+			for _q+uintptr(MSIZEOF_LONG) <= e {
+				block = **(**uint64)(__ccgo_up(_q))
+				if native_ordering != 0 {
+					if block&(libc.Uint64FromUint64(0x0001000100010001)*libc.Uint64FromUint32(0x8000)) != 0 {
+						break
+					}
+				} else {
+					if block&(libc.Uint64FromUint64(0x0001000100010001)*libc.Uint64FromUint32(0x8000)>>libc.Int32FromInt32(8)&(libc.Uint64FromUint64(0x0001000100010001)*libc.Uint64FromUint32(0x00FF))|libc.Uint64FromUint64(0x0001000100010001)*libc.Uint64FromUint32(0x8000)&(libc.Uint64FromUint64(0x0001000100010001)*libc.Uint64FromUint32(0x00FF))<<libc.Int32FromInt32(8)) != 0 {
+						break
+					}
+					block = block>>int32(8)&(libc.Uint64FromUint64(0x0001000100010001)*libc.Uint64FromUint32(0x00FF)) | block&(libc.Uint64FromUint64(0x0001000100010001)*libc.Uint64FromUint32(0x00FF))<<int32(8)
+				}
+				**(**TPy_UCS4)(__ccgo_up(p)) = uint32(block & libc.Uint64FromUint32(0xFFFF))
+				**(**TPy_UCS4)(__ccgo_up(p + 1*4)) = uint32(block >> libc.Int32FromInt32(16) & libc.Uint64FromUint32(0xFFFF))
+				**(**TPy_UCS4)(__ccgo_up(p + 2*4)) = uint32(block >> libc.Int32FromInt32(32) & libc.Uint64FromUint32(0xFFFF))
+				**(**TPy_UCS4)(__ccgo_up(p + 3*4)) = uint32(block >> libc.Int32FromInt32(48))
+				_q = _q + uintptr(MSIZEOF_LONG)
+				p = p + uintptr(libc.Int32FromInt32(MSIZEOF_LONG)/libc.Int32FromInt32(2))*4
+			}
+			q = _q
+			if q >= e {
+				break
+			}
+		}
+		ch3 = libc.Uint32FromInt32(libc.Int32FromUint8(**(**uint8)(__ccgo_up(q + uintptr(ihi))))<<int32(8) | libc.Int32FromUint8(**(**uint8)(__ccgo_up(q + uintptr(ilo)))))
+		q = q + uintptr(2)
+		v1 = ch3
+		v2 = libc.BoolInt32(uint32(0xD800) <= v1 && v1 <= uint32(0xDFFF))
+		goto _3
+	_3:
+		if !(v2 != 0) {
+			v4 = p
+			p += 4
+			**(**TPy_UCS4)(__ccgo_up(v4)) = ch3
+			continue
+		}
+		v1 = ch3
+		v2 = libc.BoolInt32(uint32(0xD800) <= v1 && v1 <= uint32(0xDBFF))
+		goto _7
+	_7:
+		if !(v2 != 0) {
+			goto IllegalEncoding
+		}
+		if q >= e {
+			goto UnexpectedEnd
+		}
+		ch21 = libc.Uint32FromInt32(libc.Int32FromUint8(**(**uint8)(__ccgo_up(q + uintptr(ihi))))<<int32(8) | libc.Int32FromUint8(**(**uint8)(__ccgo_up(q + uintptr(ilo)))))
+		q = q + uintptr(2)
+		v1 = ch21
+		v2 = libc.BoolInt32(uint32(0xDC00) <= v1 && v1 <= uint32(0xDFFF))
+		goto _10
+	_10:
+		if !(v2 != 0) {
+			goto IllegalSurrogate
+		}
+		v1 = uint32(0x10000) + (ch3&uint32(0x03FF)<<int32(10) | ch21&uint32(0x03FF))
+		goto _12
+	_12:
+		ch3 = v1
+		v4 = p
+		p += 4
+		**(**TPy_UCS4)(__ccgo_up(v4)) = ch3
+	}
+	ch3 = uint32(0)
+	goto Return
+Return:
+	;
+	**(**uintptr)(__ccgo_up(inptr)) = q
+	**(**TPy_ssize_t)(__ccgo_up(outpos)) = (int64(p) - int64(dest)) / 4
+	return ch3
+	goto UnexpectedEnd
+UnexpectedEnd:
+	;
+	ch3 = uint32(1)
+	goto Return
+	goto IllegalEncoding
+IllegalEncoding:
+	;
+	ch3 = uint32(2)
+	goto Return
+	goto IllegalSurrogate
+IllegalSurrogate:
+	;
+	ch3 = uint32(3)
+	goto Return
+	return r
+}
+
+func _ucs4lib_utf16_encode(tls *libc.TLS, in uintptr, len1 TPy_ssize_t, outptr uintptr, native_ordering int32) (r TPy_ssize_t) {
+	var ch11, ch21 TPy_UCS2
+	var ch2, ch3, v3, v5 TPy_UCS4
+	var end, out, v1, v2 uintptr
+	_, _, _, _, _, _, _, _, _, _ = ch11, ch2, ch21, ch3, end, out, v1, v2, v3, v5
+	out = **(**uintptr)(__ccgo_up(outptr))
+	end = in + uintptr(len1)*4
+	if native_ordering != 0 {
+		for in < end {
+			v1 = in
+			in += 4
+			ch2 = **(**TPy_UCS4)(__ccgo_up(v1))
+			if ch2 < uint32(0xd800) {
+				v1 = out
+				out += 2
+				**(**uint16)(__ccgo_up(v1)) = uint16(ch2)
+			} else {
+				if ch2 < uint32(0xe000) {
+					goto fail
+				} else {
+					if ch2 >= uint32(0x10000) {
+						v3 = libc.Uint32FromInt32(libc.Int32FromInt32(0xD800)-libc.Int32FromInt32(0x10000)>>libc.Int32FromInt32(10)) + ch2>>libc.Int32FromInt32(10)
+						goto _4
+					_4:
+						**(**uint16)(__ccgo_up(out)) = uint16(v3)
+						v3 = libc.Uint32FromInt32(0xDC00) + ch2&libc.Uint32FromInt32(0x3FF)
+						goto _6
+					_6:
+						**(**uint16)(__ccgo_up(out + 1*2)) = uint16(v3)
+						out = out + uintptr(2)*2
+					} else {
+						v1 = out
+						out += 2
+						**(**uint16)(__ccgo_up(v1)) = uint16(ch2)
+					}
+				}
+			}
+		}
+	} else {
+		for in < end {
+			v1 = in
+			in += 4
+			ch3 = **(**TPy_UCS4)(__ccgo_up(v1))
+			if ch3 < uint32(0xd800) {
+				v2 = out
+				out += 2
+				**(**uint16)(__ccgo_up(v2)) = libc.Uint16FromInt32(libc.Int32FromUint16(uint16(ch3))<<libc.Int32FromInt32(8) | libc.Int32FromUint16(uint16(ch3))>>libc.Int32FromInt32(8))
+			} else {
+				if ch3 < uint32(0xe000) {
+					goto fail
+				} else {
+					if ch3 >= uint32(0x10000) {
+						v3 = libc.Uint32FromInt32(libc.Int32FromInt32(0xD800)-libc.Int32FromInt32(0x10000)>>libc.Int32FromInt32(10)) + ch3>>libc.Int32FromInt32(10)
+						goto _11
+					_11:
+						ch11 = uint16(v3)
+						v5 = libc.Uint32FromInt32(0xDC00) + ch3&libc.Uint32FromInt32(0x3FF)
+						goto _13
+					_13:
+						ch21 = uint16(v5)
+						**(**uint16)(__ccgo_up(out)) = libc.Uint16FromInt32(libc.Int32FromUint16(ch11)<<libc.Int32FromInt32(8) | libc.Int32FromUint16(ch11)>>libc.Int32FromInt32(8))
+						**(**uint16)(__ccgo_up(out + 1*2)) = libc.Uint16FromInt32(libc.Int32FromUint16(ch21)<<libc.Int32FromInt32(8) | libc.Int32FromUint16(ch21)>>libc.Int32FromInt32(8))
+						out = out + uintptr(2)*2
+					} else {
+						v1 = out
+						out += 2
+						**(**uint16)(__ccgo_up(v1)) = libc.Uint16FromInt32(libc.Int32FromUint16(uint16(ch3))<<libc.Int32FromInt32(8) | libc.Int32FromUint16(uint16(ch3))>>libc.Int32FromInt32(8))
+					}
+				}
+			}
+		}
+	}
+	**(**uintptr)(__ccgo_up(outptr)) = out
+	return len1
+	goto fail
+fail:
+	;
+	**(**uintptr)(__ccgo_up(outptr)) = out
+	return len1 - ((int64(end)-int64(in))/4 + int64(1))
+}
+
+func _ucs4lib_utf32_encode(tls *libc.TLS, in uintptr, len1 TPy_ssize_t, outptr uintptr, native_ordering int32) (r TPy_ssize_t) {
+	var ch2, ch3, v2 TPy_UCS4
+	var end, out, unrolled_end, unrolled_end1, v1 uintptr
+	var word1, v6, v8 Tuint32_t
+	var v3 int32
+	_, _, _, _, _, _, _, _, _, _, _, _ = ch2, ch3, end, out, unrolled_end, unrolled_end1, word1, v1, v2, v3, v6, v8
+	out = **(**uintptr)(__ccgo_up(outptr))
+	end = in + uintptr(len1)*4
+	if native_ordering != 0 {
+		unrolled_end = in + uintptr(libc.Uint64FromInt64(len1) & ^libc.Uint64FromInt32(libc.Int32FromInt32(4)-libc.Int32FromInt32(1)))*4
+		for in < unrolled_end {
+			if (**(**TPy_UCS4)(__ccgo_up(in))^uint32(0xd800))&(**(**TPy_UCS4)(__ccgo_up(in + 1*4))^uint32(0xd800))&(**(**TPy_UCS4)(__ccgo_up(in + 2*4))^uint32(0xd800))&(**(**TPy_UCS4)(__ccgo_up(in + 3*4))^uint32(0xd800))&uint32(0xf800) == uint32(0) {
+				break
+			}
+			**(**Tuint32_t)(__ccgo_up(out)) = **(**TPy_UCS4)(__ccgo_up(in))
+			**(**Tuint32_t)(__ccgo_up(out + 1*4)) = **(**TPy_UCS4)(__ccgo_up(in + 1*4))
+			**(**Tuint32_t)(__ccgo_up(out + 2*4)) = **(**TPy_UCS4)(__ccgo_up(in + 2*4))
+			**(**Tuint32_t)(__ccgo_up(out + 3*4)) = **(**TPy_UCS4)(__ccgo_up(in + 3*4))
+			in = in + uintptr(4)*4
+			out = out + uintptr(4)*4
+		}
+		for in < end {
+			v1 = in
+			in += 4
+			ch2 = **(**TPy_UCS4)(__ccgo_up(v1))
+			v2 = ch2
+			v3 = libc.BoolInt32(uint32(0xD800) <= v2 && v2 <= uint32(0xDFFF))
+			goto _4
+		_4:
+			if v3 != 0 {
+				goto fail
+			}
+			v1 = out
+			out += 4
+			**(**Tuint32_t)(__ccgo_up(v1)) = ch2
+		}
+	} else {
+		unrolled_end1 = in + uintptr(libc.Uint64FromInt64(len1) & ^libc.Uint64FromInt32(libc.Int32FromInt32(4)-libc.Int32FromInt32(1)))*4
+		for in < unrolled_end1 {
+			if (**(**TPy_UCS4)(__ccgo_up(in))^uint32(0xd800))&(**(**TPy_UCS4)(__ccgo_up(in + 1*4))^uint32(0xd800))&(**(**TPy_UCS4)(__ccgo_up(in + 2*4))^uint32(0xd800))&(**(**TPy_UCS4)(__ccgo_up(in + 3*4))^uint32(0xd800))&uint32(0xf800) == uint32(0) {
+				break
+			}
+			word1 = **(**TPy_UCS4)(__ccgo_up(in))
+			v8 = libc.X__builtin_bswap32(tls, word1)
+			goto _9
+		_9:
+			v6 = v8
+			goto _7
+		_7:
+			**(**Tuint32_t)(__ccgo_up(out)) = v6
+			word1 = **(**TPy_UCS4)(__ccgo_up(in + 1*4))
+			v8 = libc.X__builtin_bswap32(tls, word1)
+			goto _13
+		_13:
+			v6 = v8
+			goto _11
+		_11:
+			**(**Tuint32_t)(__ccgo_up(out + 1*4)) = v6
+			word1 = **(**TPy_UCS4)(__ccgo_up(in + 2*4))
+			v8 = libc.X__builtin_bswap32(tls, word1)
+			goto _17
+		_17:
+			v6 = v8
+			goto _15
+		_15:
+			**(**Tuint32_t)(__ccgo_up(out + 2*4)) = v6
+			word1 = **(**TPy_UCS4)(__ccgo_up(in + 3*4))
+			v8 = libc.X__builtin_bswap32(tls, word1)
+			goto _21
+		_21:
+			v6 = v8
+			goto _19
+		_19:
+			**(**Tuint32_t)(__ccgo_up(out + 3*4)) = v6
+			in = in + uintptr(4)*4
+			out = out + uintptr(4)*4
+		}
+		for in < end {
+			v1 = in
+			in += 4
+			ch3 = **(**TPy_UCS4)(__ccgo_up(v1))
+			v2 = ch3
+			v3 = libc.BoolInt32(uint32(0xD800) <= v2 && v2 <= uint32(0xDFFF))
+			goto _25
+		_25:
+			if v3 != 0 {
+				goto fail
+			}
+			v1 = out
+			out += 4
+			word1 = ch3
+			v8 = libc.X__builtin_bswap32(tls, word1)
+			goto _30
+		_30:
+			v6 = v8
+			goto _28
+		_28:
+			**(**Tuint32_t)(__ccgo_up(v1)) = v6
+		}
+	}
+	**(**uintptr)(__ccgo_up(outptr)) = out
+	return len1
+	goto fail
+fail:
+	;
+	**(**uintptr)(__ccgo_up(outptr)) = out
+	return len1 - ((int64(end)-int64(in))/4 + int64(1))
+}
+
+func _ctz(tls *libc.TLS, v Tsize_t) (r uint32) {
+	return libc.Uint32FromInt32(libc.X__builtin_ctzll(tls, v))
+}
+
+// C documentation
+//
+//	// load p[0]..p[size-1] as a size_t without unaligned access nor read ahead.
+func _load_unaligned(tls *libc.TLS, p uintptr, size Tsize_t) (r Tsize_t) {
+	bp := tls.Alloc(16)
+	defer tls.Free(16)
+	var _ struct {
+		Fb [0][8]uint8
+		Fs Tsize_t
+	}
+	*(*Tsize_t)(unsafe.Pointer(bp)) = uint64(0)
+
+	switch size {
+	default:
+		fallthrough
+	case uint64(8):
+		**(**uint8)(__ccgo_up(bp + 7)) = **(**uint8)(__ccgo_up(p + 7))
+		fallthrough
+	case uint64(7):
+		**(**uint8)(__ccgo_up(bp + 6)) = **(**uint8)(__ccgo_up(p + 6))
+		fallthrough
+	case uint64(6):
+		**(**uint8)(__ccgo_up(bp + 5)) = **(**uint8)(__ccgo_up(p + 5))
+		fallthrough
+	case uint64(5):
+		**(**uint8)(__ccgo_up(bp + 4)) = **(**uint8)(__ccgo_up(p + 4))
+		fallthrough
+	case uint64(4):
+		**(**uint8)(__ccgo_up(bp + 3)) = **(**uint8)(__ccgo_up(p + 3))
+		fallthrough
+	case uint64(3):
+		**(**uint8)(__ccgo_up(bp + 2)) = **(**uint8)(__ccgo_up(p + 2))
+		fallthrough
+	case uint64(2):
+		**(**uint8)(__ccgo_up(bp + 1)) = **(**uint8)(__ccgo_up(p + 1))
+		fallthrough
+	case uint64(1):
+		**(**uint8)(__ccgo_up(bp)) = **(**uint8)(__ccgo_up(p))
+	case uint64(0):
+		break
+	}
+	return *(*Tsize_t)(unsafe.Pointer(bp))
+}
+
+// C documentation
+//
+//	/*
+//	 * Find the first non-ASCII character in a byte sequence.
+//	 *
+//	 * This function scans a range of bytes from `start` to `end` and returns the
+//	 * index of the first byte that is not an ASCII character (i.e., has the most
+//	 * significant bit set). If all characters in the range are ASCII, it returns
+//	 * `end - start`.
+//	 */
+func _find_first_nonascii(tls *libc.TLS, start uintptr, end uintptr) (r TPy_ssize_t) {
+	bp := tls.Alloc(16)
+	defer tls.Free(16)
+	var e, p uintptr
+	var u1, u2 Tsize_t
+	var _ Tsize_t
+	_, _, _, _ = e, p, u1, u2
+
+	p = start
+	if int64(end)-int64(start) >= int64(MSIZEOF_SIZE_T) {
+		libc.Xmemcpy(tls, bp, p, uint64(8))
+		**(**Tsize_t)(__ccgo_up(bp)) = uint64(uint64(**(**Tsize_t)(__ccgo_up(bp))) & libc.Uint64FromUint64(0x8080808080808080))
+		if **(**Tsize_t)(__ccgo_up(bp)) != 0 {
+			return libc.Int64FromUint32((_ctz(tls, **(**Tsize_t)(__ccgo_up(bp))) - uint32(7)) / uint32(8))
+		}
+		p = uintptr(uint64(p+libc.UintptrFromInt32(MSIZEOF_SIZE_T)) & ^libc.Uint64FromInt32(libc.Int32FromInt32(MSIZEOF_SIZE_T)-libc.Int32FromInt32(1)))
+		e = end - uintptr(MSIZEOF_SIZE_T)
+		for p <= e {
+			u1 = uint64(**(**Tsize_t)(__ccgo_up(p))) & uint64(0x8080808080808080)
+			if u1 != 0 {
+				return int64(p) - int64(start) + libc.Int64FromUint32((_ctz(tls, u1)-uint32(7))/uint32(8))
+			}
+			p = p + uintptr(MSIZEOF_SIZE_T)
+		}
+	}
+
+	u2 = _load_unaligned(tls, p, libc.Uint64FromInt64(int64(end)-int64(p))) & uint64(0x8080808080808080)
+	if u2 != 0 {
+		return int64(p) - int64(start) + libc.Int64FromUint32((_ctz(tls, u2)-uint32(7))/uint32(8))
+	}
+	return int64(end) - int64(start)
+}
+
+func _scalar_utf8_start_char(tls *libc.TLS, ch uint32) (r int32) {
+
+	return libc.Int32FromUint32((^ch>>int32(7) | ch>>int32(6)) & uint32(1))
+}
+
+func _vector_utf8_start_chars(tls *libc.TLS, v Tsize_t) (r Tsize_t) {
+	return uint64(^v>>libc.Int32FromInt32(7)|v>>libc.Int32FromInt32(6)) & uint64(0x0101010101010101)
+}
+
+// C documentation
+//
+//	// Count the number of UTF-8 code points in a given byte sequence.
+func _utf8_count_codepoints(tls *libc.TLS, s uintptr, end uintptr) (r TPy_ssize_t) {
+	var e, v1 uintptr
+	var len1, vstart TPy_ssize_t
+	var v, vs Tsize_t
+	_, _, _, _, _, _ = e, len1, v, vs, vstart, v1
+	len1 = 0
+	if int64(end)-int64(s) >= int64(MSIZEOF_SIZE_T) {
+		for !!(uint64(s)&libc.Uint64FromInt32(libc.Int32FromInt32(MALIGNOF_SIZE_T)-libc.Int32FromInt32(1)) != 0) {
+			v1 = s
+			s = s + 1
+			len1 = len1 + int64(_scalar_utf8_start_char(tls, uint32(**(**uint8)(__ccgo_up(v1)))))
+		}
+		for s+uintptr(MSIZEOF_SIZE_T) <= end {
+			e = end
+			if int64(e)-int64(s) > int64(libc.Int32FromInt32(MSIZEOF_SIZE_T)*libc.Int32FromInt32(255)) {
+				e = s + uintptr(libc.Int32FromInt32(MSIZEOF_SIZE_T)*libc.Int32FromInt32(255))
+			}
+			vstart = 0
+			for s+uintptr(MSIZEOF_SIZE_T) <= e {
+				v = **(**Tsize_t)(__ccgo_up(s))
+				vs = _vector_utf8_start_chars(tls, v)
+				vstart = libc.Int64FromUint64(uint64(vstart) + vs)
+				s = s + uintptr(MSIZEOF_SIZE_T)
+			}
+			vstart = libc.Int64FromUint64(libc.Uint64FromInt64(vstart)&uint64(0x00ff00ff00ff00ff) + libc.Uint64FromInt64(vstart>>libc.Int32FromInt32(8))&uint64(0x00ff00ff00ff00ff))
+			vstart = vstart + vstart>>int32(16)
+			vstart = vstart + vstart>>int32(32)
+			len1 = len1 + vstart&int64(0x7ff)
+		}
+	}
+	for s < end {
+		v1 = s
+		s = s + 1
+		len1 = len1 + int64(_scalar_utf8_start_char(tls, uint32(**(**uint8)(__ccgo_up(v1)))))
+	}
+	return len1
+}
+
+func _ascii_decode(tls *libc.TLS, start uintptr, end uintptr, dest uintptr) (r TPy_ssize_t) {
+	var p, q, v1, v2 uintptr
+	var pos TPy_ssize_t
+	var value Tsize_t
+	_, _, _, _, _, _ = p, pos, q, value, v1, v2
+	if !(uint64(start)&libc.Uint64FromInt32(libc.Int32FromInt32(MALIGNOF_SIZE_T)-libc.Int32FromInt32(1)) != 0) && !(uint64(dest)&libc.Uint64FromInt32(libc.Int32FromInt32(MALIGNOF_SIZE_T)-libc.Int32FromInt32(1)) != 0) {
+
+		p = start
+		q = dest
+		for p+uintptr(MSIZEOF_SIZE_T) <= end {
+			value = **(**Tsize_t)(__ccgo_up(p))
+			if value&uint64(0x8080808080808080) != 0 {
+				break
+			}
+			**(**Tsize_t)(__ccgo_up(q)) = value
+			p = p + uintptr(MSIZEOF_SIZE_T)
+			q = q + uintptr(MSIZEOF_SIZE_T)
+		}
+		for p < end {
+			if libc.Int32FromUint8(uint8(**(**uint8)(__ccgo_up(p))))&int32(0x80) != 0 {
+				break
+			}
+			v1 = q
+			q = q + 1
+			v2 = p
+			p = p + 1
+			**(**TPy_UCS1)(__ccgo_up(v1)) = uint8(**(**uint8)(__ccgo_up(v2)))
+		}
+		return int64(p) - int64(start)
+	}
+	pos = _find_first_nonascii(tls, start, end)
+	libc.Xmemcpy(tls, dest, start, libc.Uint64FromInt64(pos))
+	return pos
+}
+
+func _unicode_decode_utf8_impl(tls *libc.TLS, writer uintptr, _starts uintptr, _s uintptr, _end uintptr, error_handler T_Py_error_handler, errors uintptr, consumed uintptr) (r int32) {
+	bp := tls.Alloc(64)
+	defer tls.Free(64)
+	*(*uintptr)(unsafe.Pointer(bp)) = _starts
+	*(*uintptr)(unsafe.Pointer(bp + 8)) = _s
+	*(*uintptr)(unsafe.Pointer(bp + 16)) = _end
+	var ch, v8 TPy_UCS4
+	var errmsg, v11, v12, v6 uintptr
+	var i, v7 TPy_ssize_t
+	var kind1, v3, v5 int32
+	var v1 uint32
+	var v16 Tuint32_t
+	var _ TPy_ssize_t
+	var _ uintptr
+	var _ uintptr
+	var _ TPy_ssize_t
+	_, _, _, _, _, _, _, _, _, _, _, _, _ = ch, errmsg, i, kind1, v1, v11, v12, v16, v3, v5, v6, v7, v8
+	errmsg = __ccgo_ts + 2
+	**(**uintptr)(__ccgo_up(bp + 40)) = libc.UintptrFromInt32(0)
+	**(**uintptr)(__ccgo_up(bp + 48)) = libc.UintptrFromInt32(0)
+	for **(**uintptr)(__ccgo_up(bp + 8)) < **(**uintptr)(__ccgo_up(bp + 16)) {
+		kind1 = (*T_PyUnicodeWriter)(unsafe.Pointer(writer)).Fkind
+		if kind1 == int32(EPyUnicode_1BYTE_KIND) {
+			v1 = libc.Uint32FromInt32(int32(*(*uint32)(unsafe.Pointer((*T_PyUnicodeWriter)(unsafe.Pointer(writer)).Fbuffer + 32 + 0)) & 0x40 >> 6))
+			goto _2
+		_2:
+			if v1 != 0 {
+				ch = _asciilib_utf8_decode(tls, bp+8, **(**uintptr)(__ccgo_up(bp + 16)), (*T_PyUnicodeWriter)(unsafe.Pointer(writer)).Fdata, writer+32)
+			} else {
+				ch = _ucs1lib_utf8_decode(tls, bp+8, **(**uintptr)(__ccgo_up(bp + 16)), (*T_PyUnicodeWriter)(unsafe.Pointer(writer)).Fdata, writer+32)
+			}
+		} else {
+			if kind1 == int32(EPyUnicode_2BYTE_KIND) {
+				ch = _ucs2lib_utf8_decode(tls, bp+8, **(**uintptr)(__ccgo_up(bp + 16)), (*T_PyUnicodeWriter)(unsafe.Pointer(writer)).Fdata, writer+32)
+			} else {
+				ch = _ucs4lib_utf8_decode(tls, bp+8, **(**uintptr)(__ccgo_up(bp + 16)), (*T_PyUnicodeWriter)(unsafe.Pointer(writer)).Fdata, writer+32)
+			}
+		}
+		switch ch {
+		case uint32(0):
+			if **(**uintptr)(__ccgo_up(bp + 8)) == **(**uintptr)(__ccgo_up(bp + 16)) || consumed != 0 {
+				goto End
+			}
+			errmsg = __ccgo_ts + 78933
+			**(**TPy_ssize_t)(__ccgo_up(bp + 24)) = int64(**(**uintptr)(__ccgo_up(bp + 8))) - int64(**(**uintptr)(__ccgo_up(bp)))
+			**(**TPy_ssize_t)(__ccgo_up(bp + 32)) = int64(**(**uintptr)(__ccgo_up(bp + 16))) - int64(**(**uintptr)(__ccgo_up(bp)))
+		case uint32(1):
+			errmsg = __ccgo_ts + 78956
+			**(**TPy_ssize_t)(__ccgo_up(bp + 24)) = int64(**(**uintptr)(__ccgo_up(bp + 8))) - int64(**(**uintptr)(__ccgo_up(bp)))
+			**(**TPy_ssize_t)(__ccgo_up(bp + 32)) = **(**TPy_ssize_t)(__ccgo_up(bp + 24)) + int64(1)
+		case uint32(2):
+			if consumed != 0 && libc.Int32FromUint8(uint8(**(**uint8)(__ccgo_up(**(**uintptr)(__ccgo_up(bp + 8)))))) == int32(0xED) && int64(**(**uintptr)(__ccgo_up(bp + 16)))-int64(**(**uintptr)(__ccgo_up(bp + 8))) == int64(2) && libc.Int32FromUint8(uint8(**(**uint8)(__ccgo_up(**(**uintptr)(__ccgo_up(bp + 8)) + 1)))) >= int32(0xA0) && libc.Int32FromUint8(uint8(**(**uint8)(__ccgo_up(**(**uintptr)(__ccgo_up(bp + 8)) + 1)))) <= int32(0xBF) {
+
+				goto End
+			}
+			fallthrough
+		case uint32(3):
+			fallthrough
+		case uint32(4):
+			errmsg = __ccgo_ts + 78975
+			**(**TPy_ssize_t)(__ccgo_up(bp + 24)) = int64(**(**uintptr)(__ccgo_up(bp + 8))) - int64(**(**uintptr)(__ccgo_up(bp)))
+			**(**TPy_ssize_t)(__ccgo_up(bp + 32)) = **(**TPy_ssize_t)(__ccgo_up(bp + 24)) + libc.Int64FromUint32(ch) - int64(1)
+		default:
+
+			if __PyUnicodeWriter_WriteCharInline(tls, writer, ch) < 0 {
+				goto onError
+			}
+			continue
+		}
+		if error_handler == int32(E_Py_ERROR_UNKNOWN) {
+			error_handler = X_Py_GetErrorHandler(tls, errors)
+		}
+		switch error_handler {
+		case int32(E_Py_ERROR_IGNORE):
+			**(**uintptr)(__ccgo_up(bp + 8)) = **(**uintptr)(__ccgo_up(bp + 8)) + uintptr(**(**TPy_ssize_t)(__ccgo_up(bp + 32))-**(**TPy_ssize_t)(__ccgo_up(bp + 24)))
+		case int32(E_Py_ERROR_REPLACE):
+			if __PyUnicodeWriter_WriteCharInline(tls, writer, uint32(0xfffd)) < 0 {
+				goto onError
+			}
+			**(**uintptr)(__ccgo_up(bp + 8)) = **(**uintptr)(__ccgo_up(bp + 8)) + uintptr(**(**TPy_ssize_t)(__ccgo_up(bp + 32))-**(**TPy_ssize_t)(__ccgo_up(bp + 24)))
+		case int32(E_Py_ERROR_SURROGATEESCAPE):
+			if int32(EPyUnicode_2BYTE_KIND) <= (*T_PyUnicodeWriter)(unsafe.Pointer(writer)).Fkind {
+				v3 = 0
+			} else {
+				v3 = X_PyUnicodeWriter_PrepareKindInternal(tls, writer, int32(EPyUnicode_2BYTE_KIND))
+			}
+			if v3 < 0 {
+				goto onError
+			}
+			i = **(**TPy_ssize_t)(__ccgo_up(bp + 24))
+			for {
+				if !(i < **(**TPy_ssize_t)(__ccgo_up(bp + 32))) {
+					break
+				}
+				ch = uint32(uint8(**(**uint8)(__ccgo_up(**(**uintptr)(__ccgo_up(bp)) + uintptr(i)))))
+				v3 = (*T_PyUnicodeWriter)(unsafe.Pointer(writer)).Fkind
+				v6 = (*T_PyUnicodeWriter)(unsafe.Pointer(writer)).Fdata
+				v7 = (*T_PyUnicodeWriter)(unsafe.Pointer(writer)).Fpos
+				v8 = ch + libc.Uint32FromInt32(0xdc00)
+				if v3 == int32(EPyUnicode_1BYTE_KIND) {
+					**(**TPy_UCS1)(__ccgo_up(v6 + uintptr(v7))) = uint8(v8)
+				} else {
+					if v3 == int32(EPyUnicode_2BYTE_KIND) {
+						**(**TPy_UCS2)(__ccgo_up(v6 + uintptr(v7)*2)) = uint16(v8)
+					} else {
+						**(**TPy_UCS4)(__ccgo_up(v6 + uintptr(v7)*4)) = v8
+					}
+				}
+				(*T_PyUnicodeWriter)(unsafe.Pointer(writer)).Fpos = (*T_PyUnicodeWriter)(unsafe.Pointer(writer)).Fpos + 1
+				goto _4
+			_4:
+				;
+				i = i + 1
+			}
+			**(**uintptr)(__ccgo_up(bp + 8)) = **(**uintptr)(__ccgo_up(bp + 8)) + uintptr(**(**TPy_ssize_t)(__ccgo_up(bp + 32))-**(**TPy_ssize_t)(__ccgo_up(bp + 24)))
+		default:
+			if _unicode_decode_call_errorhandler_writer(tls, errors, bp+40, __ccgo_ts+10626, errmsg, bp, bp+16, bp+24, bp+32, bp+48, bp+8, writer) != 0 {
+				goto onError
+			}
+			if libc.Uint32FromInt32(libc.Int32FromInt32(127)) <= (*T_PyUnicodeWriter)(unsafe.Pointer(writer)).Fmaxchar && int64(**(**uintptr)(__ccgo_up(bp + 16)))-int64(**(**uintptr)(__ccgo_up(bp + 8))) <= (*T_PyUnicodeWriter)(unsafe.Pointer(writer)).Fsize-(*T_PyUnicodeWriter)(unsafe.Pointer(writer)).Fpos {
+				v3 = 0
+			} else {
+				if int64(**(**uintptr)(__ccgo_up(bp + 16)))-int64(**(**uintptr)(__ccgo_up(bp + 8))) == 0 {
+					v5 = 0
+				} else {
+					v5 = X_PyUnicodeWriter_PrepareInternal(tls, writer, int64(**(**uintptr)(__ccgo_up(bp + 16)))-int64(**(**uintptr)(__ccgo_up(bp + 8))), libc.Uint32FromInt32(libc.Int32FromInt32(127)))
+				}
+				v3 = v5
+			}
+			if v3 < 0 {
+				return -int32(1)
+			}
+		}
+	}
+	goto End
+End:
+	;
+	if consumed != 0 {
+		**(**TPy_ssize_t)(__ccgo_up(consumed)) = int64(**(**uintptr)(__ccgo_up(bp + 8))) - int64(**(**uintptr)(__ccgo_up(bp)))
+	}
+	v6 = **(**uintptr)(__ccgo_up(bp + 40))
+	if v6 != libc.UintptrFromInt32(0) {
+		v11 = v6
+		v3 = libc.BoolInt32(libc.Int32FromUint32(*(*Tuint32_t)(unsafe.Pointer(v11))) < 0)
+		goto _14
+	_14:
+		if v3 != 0 {
+			goto _15
+		}
+		v12 = v11
+		*(*Tuint32_t)(unsafe.Pointer(v12)) = *(*Tuint32_t)(unsafe.Pointer(v12)) - 1
+		v16 = *(*Tuint32_t)(unsafe.Pointer(v12))
+		if v16 == libc.Uint32FromInt32(0) {
+			X_Py_Dealloc(tls, v11)
+		}
+	_15:
+	}
+	v6 = **(**uintptr)(__ccgo_up(bp + 48))
+	if v6 != libc.UintptrFromInt32(0) {
+		v11 = v6
+		v3 = libc.BoolInt32(libc.Int32FromUint32(*(*Tuint32_t)(unsafe.Pointer(v11))) < 0)
+		goto _21
+	_21:
+		if v3 != 0 {
+			goto _22
+		}
+		v12 = v11
+		*(*Tuint32_t)(unsafe.Pointer(v12)) = *(*Tuint32_t)(unsafe.Pointer(v12)) - 1
+		v16 = *(*Tuint32_t)(unsafe.Pointer(v12))
+		if v16 == libc.Uint32FromInt32(0) {
+			X_Py_Dealloc(tls, v11)
+		}
+	_22:
+	}
+	return 0
+	goto onError
+onError:
+	;
+	v6 = **(**uintptr)(__ccgo_up(bp + 40))
+	if v6 != libc.UintptrFromInt32(0) {
+		v11 = v6
+		v3 = libc.BoolInt32(libc.Int32FromUint32(*(*Tuint32_t)(unsafe.Pointer(v11))) < 0)
+		goto _28
+	_28:
+		if v3 != 0 {
+			goto _29
+		}
+		v12 = v11
+		*(*Tuint32_t)(unsafe.Pointer(v12)) = *(*Tuint32_t)(unsafe.Pointer(v12)) - 1
+		v16 = *(*Tuint32_t)(unsafe.Pointer(v12))
+		if v16 == libc.Uint32FromInt32(0) {
+			X_Py_Dealloc(tls, v11)
+		}
+	_29:
+	}
+	v6 = **(**uintptr)(__ccgo_up(bp + 48))
+	if v6 != libc.UintptrFromInt32(0) {
+		v11 = v6
+		v3 = libc.BoolInt32(libc.Int32FromUint32(*(*Tuint32_t)(unsafe.Pointer(v11))) < 0)
+		goto _35
+	_35:
+		if v3 != 0 {
+			goto _36
+		}
+		v12 = v11
+		*(*Tuint32_t)(unsafe.Pointer(v12)) = *(*Tuint32_t)(unsafe.Pointer(v12)) - 1
+		v16 = *(*Tuint32_t)(unsafe.Pointer(v12))
+		if v16 == libc.Uint32FromInt32(0) {
+			X_Py_Dealloc(tls, v11)
+		}
+	_36:
+	}
+	return -int32(1)
+}
+
+func _unicode_decode_utf8(tls *libc.TLS, s uintptr, size TPy_ssize_t, error_handler T_Py_error_handler, errors uintptr, consumed uintptr) (r uintptr) {
+	bp := tls.Alloc(64)
+	defer tls.Free(64)
+	var ch uint8
+	var data, end, starts, u, u1, v1, v11, v4, v6, v9 uintptr
+	var maxchr int32
+	var maxsize, pos TPy_ssize_t
+	var v2, v7 uint32
+	var _ T_PyUnicodeWriter
+	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = ch, data, end, maxchr, maxsize, pos, starts, u, u1, v1, v11, v2, v4, v6, v7, v9
+	if size == 0 {
+		if consumed != 0 {
+			**(**TPy_ssize_t)(__ccgo_up(consumed)) = 0
+		}
+		return _unicode_get_empty(tls)
+	}
+
+	if size == int64(1) && libc.Int32FromUint8(uint8(**(**uint8)(__ccgo_up(s)))) < int32(128) {
+		if consumed != 0 {
+			**(**TPy_ssize_t)(__ccgo_up(consumed)) = int64(1)
+		}
+		return _get_latin1_char(tls, uint8(**(**uint8)(__ccgo_up(s))))
+	}
+
+	if libc.Uint64FromInt64(0x7fffffffffffffff)-libc.Uint64FromInt64(56) < libc.Uint64FromInt64(size) {
+		XPyErr_NoMemory(tls)
+		return libc.UintptrFromInt32(0)
+	}
+	starts = s
+	end = s + uintptr(size)
+	pos = _find_first_nonascii(tls, starts, end)
+	if pos == size {
+		u = XPyUnicode_New(tls, size, uint32(127))
+		if u == libc.UintptrFromInt32(0) {
+			return libc.UintptrFromInt32(0)
+		}
+		v1 = u
+		v2 = libc.Uint32FromInt32(int32(*(*uint32)(unsafe.Pointer(v1 + 32 + 0)) & 0x20 >> 5))
+		goto _3
+	_3:
+		if v2 != 0 {
+			v6 = v1
+			v7 = libc.Uint32FromInt32(int32(*(*uint32)(unsafe.Pointer(v6 + 32 + 0)) & 0x40 >> 6))
+			goto _8
+		_8:
+			if v7 != 0 {
+				v9 = v6 + libc.UintptrFromInt32(1)*40
+				goto _10
+			}
+			v9 = v6 + libc.UintptrFromInt32(1)*56
+			goto _10
+		_10:
+			v4 = v9
+			goto _5
+		}
+		data = *(*uintptr)(unsafe.Pointer(v1 + 56))
+		v11 = data
+		goto _12
+	_12:
+		v4 = v11
+		goto _5
+	_5:
+		libc.Xmemcpy(tls, v4, s, libc.Uint64FromInt64(size))
+		if consumed != 0 {
+			**(**TPy_ssize_t)(__ccgo_up(consumed)) = size
+		}
+		return u
+	}
+	maxchr = int32(127)
+	maxsize = size
+	ch = uint8(**(**uint8)(__ccgo_up(s + uintptr(pos))))
+
+	if error_handler == int32(E_Py_ERROR_STRICT) && !(consumed != 0) && libc.Int32FromUint8(ch) >= int32(0xc2) {
+
+		maxsize = _utf8_count_codepoints(tls, s, end)
+		if libc.Int32FromUint8(ch) < int32(0xc4) {
+			maxchr = int32(0xff)
+		} else {
+			if libc.Int32FromUint8(ch) < int32(0xf0) {
+				maxchr = int32(0xffff)
+			} else {
+				maxchr = int32(0x10ffff)
+			}
+		}
+	}
+	u1 = XPyUnicode_New(tls, maxsize, libc.Uint32FromInt32(maxchr))
+	if !(u1 != 0) {
+		return libc.UintptrFromInt32(0)
+	}
+	__PyUnicodeWriter_InitWithBuffer(tls, bp, u1)
+	if maxchr <= int32(255) {
+		v1 = u1
+		v2 = libc.Uint32FromInt32(int32(*(*uint32)(unsafe.Pointer(v1 + 32 + 0)) & 0x20 >> 5))
+		goto _15
+	_15:
+		if v2 != 0 {
+			v6 = v1
+			v7 = libc.Uint32FromInt32(int32(*(*uint32)(unsafe.Pointer(v6 + 32 + 0)) & 0x40 >> 6))
+			goto _20
+		_20:
+			if v7 != 0 {
+				v9 = v6 + libc.UintptrFromInt32(1)*40
+				goto _22
+			}
+			v9 = v6 + libc.UintptrFromInt32(1)*56
+			goto _22
+		_22:
+			v4 = v9
+			goto _17
+		}
+		data = *(*uintptr)(unsafe.Pointer(v1 + 56))
+		v11 = data
+		goto _24
+	_24:
+		v4 = v11
+		goto _17
+	_17:
+		libc.Xmemcpy(tls, v4, s, libc.Uint64FromInt64(pos))
+		s = s + uintptr(pos)
+		(**(**T_PyUnicodeWriter)(__ccgo_up(bp))).Fpos = pos
+	}
+	if _unicode_decode_utf8_impl(tls, bp, starts, s, end, error_handler, errors, consumed) < 0 {
+		X_PyUnicodeWriter_Dealloc(tls, bp)
+		return libc.UintptrFromInt32(0)
+	}
+	return X_PyUnicodeWriter_Finish(tls, bp)
 }
