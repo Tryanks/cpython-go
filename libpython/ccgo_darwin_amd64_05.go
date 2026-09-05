@@ -73659,7 +73659,7 @@ func __coerce_default_locale_settings(tls *libc.TLS, warn int32, target uintptr)
 
 	X_Py_SetLocaleFromEnv(tls, MLC_ALL)
 
-	if libc.Xsetenv(tls, __ccgo_ts+159172, newloc, int32(1)) != 0 {
+	if _ccgo_setenv(tls, __ccgo_ts+159172, newloc, int32(1)) != 0 {
 		_ccgo_fprintf(tls, libc.X__stderrp, __ccgo_ts+159181, 0)
 		return 0
 	}

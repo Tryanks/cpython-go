@@ -1355,9 +1355,67 @@ func _ccgo_getpwnam_r(tls *libc.TLS, name, passwd, buf uintptr, n uint64, result
 	return fillPasswd(fields, passwd, buf, n, result)
 }
 
-// ponytail: passwd/group enumeration needs libc database state unavailable in pure Go.
-func _setpwent(tls *libc.TLS)         {}
-func _getpwent(tls *libc.TLS) uintptr { setErrno(tls, int32(errno.ENOSYS)); return 0 }
+var (
+	passwdEnumerationMu      sync.Mutex
+	passwdEnumerationRecords [][]string
+	passwdEnumerationIndex   int
+	passwdEnumerationResult  Tpasswd
+)
+
+func loadPasswdEnumeration() {
+	passwdEnumerationRecords = nil
+	passwdEnumerationIndex = 0
+	data, err := os.ReadFile("/etc/passwd")
+	if err != nil {
+		return
+	}
+	for _, line := range strings.Split(string(data), "\n") {
+		fields := strings.Split(line, ":")
+		if len(fields) >= 7 {
+			passwdEnumerationRecords = append(passwdEnumerationRecords, fields)
+		}
+	}
+}
+
+func _ccgo_setpwent(tls *libc.TLS) {
+	passwdEnumerationMu.Lock()
+	defer passwdEnumerationMu.Unlock()
+	loadPasswdEnumeration()
+}
+
+func _ccgo_getpwent(tls *libc.TLS) uintptr {
+	passwdEnumerationMu.Lock()
+	defer passwdEnumerationMu.Unlock()
+	if passwdEnumerationRecords == nil {
+		loadPasswdEnumeration()
+	}
+	if passwdEnumerationIndex >= len(passwdEnumerationRecords) {
+		return 0
+	}
+	fields := passwdEnumerationRecords[passwdEnumerationIndex]
+	passwdEnumerationIndex++
+	uid, _ := strconv.ParseUint(fields[2], 10, 32)
+	gid, _ := strconv.ParseUint(fields[3], 10, 32)
+	passwdEnumerationResult = Tpasswd{
+		Fpw_name: stableCString(fields[0]), Fpw_passwd: stableCString(fields[1]),
+		Fpw_uid: uint32(uid), Fpw_gid: uint32(gid), Fpw_class: stableCString(""),
+		Fpw_gecos: stableCString(fields[4]), Fpw_dir: stableCString(fields[5]), Fpw_shell: stableCString(fields[6]),
+	}
+	return uintptr(unsafe.Pointer(&passwdEnumerationResult))
+}
+
+func _ccgo_endpwent(tls *libc.TLS) {
+	passwdEnumerationMu.Lock()
+	defer passwdEnumerationMu.Unlock()
+	passwdEnumerationRecords = nil
+	passwdEnumerationIndex = 0
+}
+
+// The pwd module's direct declarations are emitted without a libc qualifier.
+func _setpwent(tls *libc.TLS)         { _ccgo_setpwent(tls) }
+func _getpwent(tls *libc.TLS) uintptr { return _ccgo_getpwent(tls) }
+
+// ponytail: group enumeration needs libc database state unavailable in pure Go.
 func _setgrent(tls *libc.TLS)         {}
 func _getgrent(tls *libc.TLS) uintptr { setErrno(tls, int32(errno.ENOSYS)); return 0 }
 func _endgrent(tls *libc.TLS)         {}

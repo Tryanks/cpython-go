@@ -7,6 +7,8 @@
 package libpython
 
 import (
+	"os"
+	"strings"
 	"sync/atomic"
 	"syscall"
 	"unsafe"
@@ -37,6 +39,44 @@ func cBytes(p uintptr, n uint64) []byte {
 		return nil
 	}
 	return unsafe.Slice((*byte)(unsafe.Pointer(p)), int(n))
+}
+
+// modernc's libc environment and Go's process environment are separate
+// stores. Keep them synchronized because fork_exec constructs a child's
+// inherited environment with os.Environ.
+func _ccgo_setenv(tls *libc.TLS, name, value uintptr, overwrite int32) int32 {
+	key := libc.GoString(name)
+	if key == "" || strings.ContainsRune(key, '=') {
+		setErrno(tls, int32(errno.EINVAL))
+		return -1
+	}
+	if overwrite == 0 && libc.Xgetenv(tls, name) != 0 {
+		return 0
+	}
+	if result := libc.Xsetenv(tls, name, value, overwrite); result != 0 {
+		return result
+	}
+	if err := os.Setenv(key, libc.GoString(value)); err != nil {
+		setErrno(tls, int32(errno.EINVAL))
+		return -1
+	}
+	return 0
+}
+
+func _ccgo_unsetenv(tls *libc.TLS, name uintptr) int32 {
+	key := libc.GoString(name)
+	if key == "" || strings.ContainsRune(key, '=') {
+		setErrno(tls, int32(errno.EINVAL))
+		return -1
+	}
+	if result := libc.Xunsetenv(tls, name); result != 0 {
+		return result
+	}
+	if err := os.Unsetenv(key); err != nil {
+		setErrno(tls, int32(errno.EINVAL))
+		return -1
+	}
+	return 0
 }
 
 // Signals delivered through os/signal do not interrupt a Go goroutine blocked
@@ -104,6 +144,22 @@ func _ccgo_read(tls *libc.TLS, fd int32, buf uintptr, count uint64) int64 {
 		if consumeSignalDelivery() {
 			setErrno(tls, int32(errno.EINTR))
 			return -1
+		}
+		// Darwin can fail to report POLLHUP for a FIFO after its final writer
+		// closes. Probe without blocking so read-all loops can observe EOF.
+		if _, err := unix.FcntlInt(uintptr(fd), unix.F_SETFL, flags|unix.O_NONBLOCK); err != nil {
+			return int64(errnoResult(tls, err))
+		}
+		n, readErr := unix.Read(int(fd), cBytes(buf, count))
+		_, restoreErr := unix.FcntlInt(uintptr(fd), unix.F_SETFL, flags)
+		if restoreErr != nil {
+			return int64(errnoResult(tls, restoreErr))
+		}
+		if readErr == nil {
+			return int64(n)
+		}
+		if readErr != syscall.EAGAIN && readErr != syscall.EWOULDBLOCK {
+			return int64(errnoResult(tls, readErr))
 		}
 	}
 }

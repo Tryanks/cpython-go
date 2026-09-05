@@ -55,7 +55,11 @@ func formatTM(formatRunes []rune, tmv *Ttm) string {
 			}
 			value = strconv.FormatInt(v, 10)
 			if len(value) < w {
-				value = strings.Repeat(string(pad), w-len(value)) + value
+				if value[0] == '-' && pad == '0' {
+					value = "-" + strings.Repeat(string(pad), w-len(value)) + value[1:]
+				} else {
+					value = strings.Repeat(string(pad), w-len(value)) + value
+				}
 			}
 		}
 		switch verb {

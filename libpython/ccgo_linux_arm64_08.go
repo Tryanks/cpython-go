@@ -86009,7 +86009,7 @@ _4:
 	if XPySys_Audit(tls, __ccgo_ts+246809, __ccgo_ts+8969, libc.VaList(bp+8, name, value)) < 0 {
 		return libc.UintptrFromInt32(0)
 	}
-	if libc.Xsetenv(tls, name_string, value_string, int32(1)) != 0 {
+	if _ccgo_setenv(tls, name_string, value_string, int32(1)) != 0 {
 		return _posix_error(tls)
 	}
 	return uintptr(unsafe.Pointer(&X_Py_NoneStruct))
@@ -86028,7 +86028,7 @@ func _os_unsetenv_impl(tls *libc.TLS, module uintptr, name uintptr) (r uintptr) 
 	v1 = name + 32
 	goto _2
 _2:
-	err = libc.Xunsetenv(tls, v1)
+	err = _ccgo_unsetenv(tls, v1)
 	if err != 0 {
 		return _posix_error(tls)
 	}
