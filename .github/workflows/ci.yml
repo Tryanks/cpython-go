@@ -60,6 +60,54 @@ jobs:
           print('pipe-child', process.pid, flush=True);
           output = process.stdout.read(3); print('pipe-data', repr(output), flush=True);
           assert process.wait(timeout=15) == 0 and output == '47\n'; print('subprocess-ok')"
+      - name: Diagnose subprocess pipe handle lifetime
+        timeout-minutes: 1
+        shell: pwsh
+        run: |
+          $script = @'
+          import _winapi
+          import gc
+          import subprocess
+          import sys
+          import threading
+
+          created = []
+          create_pipe = _winapi.CreatePipe
+
+          def tracked_create_pipe(*args):
+              pair = create_pipe(*args)
+              created.append(pair)
+              return pair
+
+          def probe(label):
+              for read_handle, write_handle in created:
+                  for end, handle in (("read", read_handle), ("write", write_handle)):
+                      try:
+                          kind = _winapi.GetFileType(handle)
+                      except OSError as exc:
+                          print(label, end, "closed", exc.winerror, flush=True)
+                      else:
+                          print(label, end, "open", kind, flush=True)
+
+          _winapi.CreatePipe = tracked_create_pipe
+          process = subprocess.Popen(
+              [sys.executable, "-c", "print(48)"],
+              stdout=subprocess.PIPE,
+              text=True,
+          )
+          assert process.stdout.read(3) == "48\n"
+          assert process.wait(timeout=15) == 0
+          probe("before-gc")
+          gc.collect()
+          probe("after-gc")
+          tail = []
+          reader = threading.Thread(target=lambda: tail.append(process.stdout.read()), daemon=True)
+          reader.start()
+          reader.join(5)
+          print("eof-reader-alive", reader.is_alive(), "tail", tail, flush=True)
+          assert not reader.is_alive() and tail == [""]
+          '@
+          ./cpython-go.exe -c $script
       - name: Run unittest smoke test
         run: >-
           ./cpython-go.exe -c "import unittest;
