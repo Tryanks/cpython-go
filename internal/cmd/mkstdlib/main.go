@@ -1,13 +1,11 @@
-// Command mkstdlib packs a CPython Lib/ directory into a gzip-compressed,
-// *stored* (uncompressed entries: the interpreter has no zlib) zip file that
-// package stdlib embeds.
+// Command mkstdlib packs a CPython Lib/ directory into a deflated zip file
+// that package stdlib embeds.
 //
-// Usage: go run ./internal/cmd/mkstdlib -o stdlib/python314.zip.gz <Lib dir> [extra .py files...]
+// Usage: go run ./internal/cmd/mkstdlib -o stdlib/python314.zip <Lib dir> [extra .py files...]
 package main
 
 import (
 	"archive/zip"
-	"compress/gzip"
 	"flag"
 	"fmt"
 	"io"
@@ -25,14 +23,14 @@ var skip = map[string]bool{
 }
 
 func main() {
-	out := flag.String("o", "python314.zip.gz", "output file")
+	out := flag.String("o", "python314.zip", "output file")
 	tests := flag.Bool("tests", false, "include Lib/test (for running CPython's test suite)")
 	flag.Parse()
 	if *tests {
 		delete(skip, "test")
 	}
 	if flag.NArg() < 1 {
-		fmt.Fprintln(os.Stderr, "usage: mkstdlib -o out.zip.gz <Lib dir> [extra files...]")
+		fmt.Fprintln(os.Stderr, "usage: mkstdlib -o out.zip <Lib dir> [extra files...]")
 		os.Exit(2)
 	}
 
@@ -41,10 +39,9 @@ func main() {
 		fail(err)
 	}
 	defer f.Close()
-	gz := gzip.NewWriter(f)
-	zw := zip.NewWriter(gz)
+	zw := zip.NewWriter(f)
 	add := func(name string, r io.Reader) {
-		w, err := zw.CreateHeader(&zip.FileHeader{Name: name, Method: zip.Store})
+		w, err := zw.CreateHeader(&zip.FileHeader{Name: name, Method: zip.Deflate})
 		if err != nil {
 			fail(err)
 		}
@@ -94,9 +91,6 @@ func main() {
 		n++
 	}
 	if err := zw.Close(); err != nil {
-		fail(err)
-	}
-	if err := gz.Close(); err != nil {
 		fail(err)
 	}
 	fmt.Printf("%s: %d files\n", *out, n)

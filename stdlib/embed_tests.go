@@ -8,5 +8,5 @@ package stdlib
 
 import _ "embed"
 
-//go:embed python314_tests.zip.gz
-var zipGz []byte
+//go:embed python314_tests.zip
+var zipData []byte

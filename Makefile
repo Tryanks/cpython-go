@@ -29,11 +29,11 @@ postprocess:
 	GO_GENERATE_POSTPROCESS=1 go run generator.go
 
 stdlib:
-	go run ./internal/cmd/mkstdlib -o stdlib/python314.zip.gz tmp/darwin_arm64/cpython/Lib internal/stdlib-extra/*.py stdlib/sysconfigdata/*.py
+	go run ./internal/cmd/mkstdlib -o stdlib/python314.zip tmp/darwin_arm64/cpython/Lib internal/stdlib-extra/*.py stdlib/sysconfigdata/*.py
 
 # Same, plus Lib/test, for `go build -tags cpython_test` (see stdlib/embed_tests.go).
 stdlib-tests:
-	go run ./internal/cmd/mkstdlib -tests -o stdlib/python314_tests.zip.gz tmp/darwin_arm64/cpython/Lib internal/stdlib-extra/*.py stdlib/sysconfigdata/*.py
+	go run ./internal/cmd/mkstdlib -tests -o stdlib/python314_tests.zip tmp/darwin_arm64/cpython/Lib internal/stdlib-extra/*.py stdlib/sysconfigdata/*.py
 
 clean:
 	rm -rf tmp/*_*/build tmp/cpython-go

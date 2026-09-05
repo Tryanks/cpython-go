@@ -4,5 +4,5 @@ package stdlib
 
 import _ "embed"
 
-//go:embed python314.zip.gz
-var zipGz []byte
+//go:embed python314.zip
+var zipData []byte

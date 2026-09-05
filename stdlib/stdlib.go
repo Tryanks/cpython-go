@@ -8,11 +8,8 @@
 package stdlib
 
 import (
-	"bytes"
-	"compress/gzip"
 	"crypto/sha256"
 	"encoding/hex"
-	"io"
 	"os"
 	"path/filepath"
 )
@@ -25,7 +22,7 @@ func Home() (string, error) {
 	if err != nil {
 		base = os.TempDir()
 	}
-	sum := sha256.Sum256(zipGz)
+	sum := sha256.Sum256(zipData)
 	home := filepath.Join(base, "cpython-go", hex.EncodeToString(sum[:8]))
 	zipPath := filepath.Join(home, "lib", "python314.zip")
 	if _, err := os.Stat(zipPath); err == nil {
@@ -40,11 +37,7 @@ func Home() (string, error) {
 		return "", err
 	}
 	defer os.Remove(tmp.Name())
-	gz, err := gzip.NewReader(bytes.NewReader(zipGz))
-	if err != nil {
-		return "", err
-	}
-	if _, err := io.Copy(tmp, gz); err != nil {
+	if _, err := tmp.Write(zipData); err != nil {
 		tmp.Close()
 		return "", err
 	}
