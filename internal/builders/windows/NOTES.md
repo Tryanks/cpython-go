@@ -195,3 +195,7 @@ until the Windows libc supplement is added.
   generic `X__builtin_clzl` calls `bits.LeadingZeros64`; CPython therefore
   calculated `(127).bit_length()` as `-29`, and `2 ** -29` took the float
   power path. Routed `__builtin_clzl` to `bits.LeadingZeros32`.
+- Run 33951044241: both original Windows smoke commands passed: `print(45)`
+  printed `45`, and the import command printed `win32 (3, 14) [1]`. This is
+  the first confirmed working interpreter run on `windows-latest`; the CI job
+  was expanded next to cover the requested modules and a small unittest.
