@@ -71311,7 +71311,7 @@ func _sock_recv_impl(tls *libc.TLS, s uintptr, data uintptr) (r int32) {
 	var ctx uintptr
 	_ = ctx
 	ctx = data
-	(*Tsock_recv)(unsafe.Pointer(ctx)).Fresult = libc.Xrecv(tls, _get_sock_fd(tls, s), (*Tsock_recv)(unsafe.Pointer(ctx)).Fcbuf, libc.Uint64FromInt64((*Tsock_recv)(unsafe.Pointer(ctx)).Flen1), (*Tsock_recv)(unsafe.Pointer(ctx)).Fflags)
+	(*Tsock_recv)(unsafe.Pointer(ctx)).Fresult = _ccgo_recv(tls, _get_sock_fd(tls, s), (*Tsock_recv)(unsafe.Pointer(ctx)).Fcbuf, libc.Uint64FromInt64((*Tsock_recv)(unsafe.Pointer(ctx)).Flen1), (*Tsock_recv)(unsafe.Pointer(ctx)).Fflags)
 	return libc.BoolInt32((*Tsock_recv)(unsafe.Pointer(ctx)).Fresult >= 0)
 }
 
@@ -72132,7 +72132,7 @@ func _sock_send_impl(tls *libc.TLS, s uintptr, data uintptr) (r int32) {
 	var ctx uintptr
 	_ = ctx
 	ctx = data
-	(*Tsock_send)(unsafe.Pointer(ctx)).Fresult = libc.Xsend(tls, _get_sock_fd(tls, s), (*Tsock_send)(unsafe.Pointer(ctx)).Fbuf, libc.Uint64FromInt64((*Tsock_send)(unsafe.Pointer(ctx)).Flen1), (*Tsock_send)(unsafe.Pointer(ctx)).Fflags)
+	(*Tsock_send)(unsafe.Pointer(ctx)).Fresult = _ccgo_send(tls, _get_sock_fd(tls, s), (*Tsock_send)(unsafe.Pointer(ctx)).Fbuf, libc.Uint64FromInt64((*Tsock_send)(unsafe.Pointer(ctx)).Flen1), (*Tsock_send)(unsafe.Pointer(ctx)).Fflags)
 	return libc.BoolInt32((*Tsock_send)(unsafe.Pointer(ctx)).Fresult >= 0)
 }
 
@@ -73843,7 +73843,7 @@ func __socket_inet_ntoa_impl(tls *libc.TLS, module uintptr, packed_ip uintptr) (
 	}
 	libc.X__builtin___memcpy_chk(tls, bp, (*TPy_buffer)(unsafe.Pointer(packed_ip)).Fbuf, libc.Uint64FromInt64((*TPy_buffer)(unsafe.Pointer(packed_ip)).Flen1), ^t__predefined_size_t(0))
 	XPyBuffer_Release(tls, packed_ip)
-	return XPyUnicode_FromString(tls, libc.Xinet_ntoa(tls, **(**Tin_addr)(__ccgo_up(bp))))
+	return XPyUnicode_FromString(tls, _ccgo_inet_ntoa(tls, **(**Tin_addr)(__ccgo_up(bp))))
 }
 
 func _socket_inet_pton(tls *libc.TLS, self uintptr, args uintptr) (r uintptr) {
@@ -87306,7 +87306,7 @@ _4:
 	if XPySys_Audit(tls, __ccgo_ts+246771, __ccgo_ts+8999, libc.VaList(bp+8, name, value)) < 0 {
 		return libc.UintptrFromInt32(0)
 	}
-	if libc.Xsetenv(tls, name_string, value_string, int32(1)) != 0 {
+	if _ccgo_setenv(tls, name_string, value_string, int32(1)) != 0 {
 		return _posix_error(tls)
 	}
 	return uintptr(unsafe.Pointer(&X_Py_NoneStruct))
@@ -87325,7 +87325,7 @@ func _os_unsetenv_impl(tls *libc.TLS, module uintptr, name uintptr) (r uintptr) 
 	v1 = name + 32
 	goto _2
 _2:
-	err = libc.Xunsetenv(tls, v1)
+	err = _ccgo_unsetenv(tls, v1)
 	if err != 0 {
 		return _posix_error(tls)
 	}

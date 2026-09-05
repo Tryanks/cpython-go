@@ -18037,7 +18037,7 @@ func _env_to_dict(tls *libc.TLS, dict uintptr, key uintptr, and_clear int32) (r1
 		r = libc.BoolInt32(XPyDict_SetItemString(tls, dict, key, uintptr(unsafe.Pointer(&X_Py_NoneStruct))) == 0)
 	}
 	if r != 0 && and_clear != 0 {
-		libc.Xunsetenv(tls, key+4)
+		_ccgo_unsetenv(tls, key+4)
 	}
 	return r
 }
