@@ -52,6 +52,7 @@ func installSigaction(signum int32, next *goSigaction) goSigaction {
 	}
 	if previous.ch != nil {
 		signal.Stop(previous.ch)
+		close(previous.ch) // lets the dispatcher goroutine exit
 	}
 	switch next.handler {
 	case 0: // SIG_DFL
@@ -63,8 +64,14 @@ func installSigaction(signum int32, next *goSigaction) goSigaction {
 		signal.Notify(next.ch, sig)
 		owner, ch := next.owner, next.ch
 		go func() {
+			// The C handler must never run on the owner's libc.TLS: this
+			// goroutine executes concurrently with the owner thread and
+			// tls.Alloc/Free on a shared TLS corrupts the owner's C stack
+			// frames. owner is only consulted for its signal mask.
+			dtls := libc.NewTLS()
+			defer dtls.Close()
 			for received := range ch {
-				dispatchSignal(owner, int32(received.(syscall.Signal)))
+				dispatchSignalOn(owner, dtls, int32(received.(syscall.Signal)))
 			}
 		}()
 	}
@@ -79,6 +86,12 @@ func selfSignal(tls *libc.TLS, sig int32) bool {
 }
 
 func dispatchSignal(tls *libc.TLS, sig int32) bool {
+	return dispatchSignalOn(tls, tls, sig)
+}
+
+// dispatchSignalOn queues sig if it is blocked for tls (or another blocked
+// thread) and otherwise runs the C handler on exec.
+func dispatchSignalOn(tls, exec *libc.TLS, sig int32) bool {
 	bit := signalBit(sig)
 	signalStateMu.Lock()
 	target := tls
@@ -101,7 +114,7 @@ func dispatchSignal(tls *libc.TLS, sig int32) bool {
 		return true
 	}
 	signalStateMu.Unlock()
-	return deliverSignal(tls, sig)
+	return deliverSignal(exec, sig)
 }
 
 func deliverSignal(tls *libc.TLS, sig int32) bool {
