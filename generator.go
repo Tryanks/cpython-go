@@ -232,7 +232,7 @@ func main() {
 		ccArgs = append(ccArgs, "-absolute-paths", "-keep-object-files", "-positions")
 	}
 	libzDir := moduleDir("modernc.org/libz")
-	libzInclude := filepath.Join(libzDir, "include")
+	libzInclude := filepath.Join(libzDir, "include", goos, goarch)
 	includeFlag := "-I" + libzInclude
 	// Always parse CPython's zlib consumers against libz's own headers. The
 	// native compiler also sees this flag while producing the build helpers;
