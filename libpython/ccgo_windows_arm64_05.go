@@ -76161,7 +76161,7 @@ _2:
 
 func _fatal_error_exit(tls *libc.TLS, status int32) {
 	if status < 0 {
-		libc.Xabort(tls)
+		_ccgo_abort(tls)
 	} else {
 		libc.Xexit(tls, status)
 	}

@@ -9805,7 +9805,7 @@ func _PyHKEY_deallocFunc(tls *libc.TLS, ob1 uintptr) {
 
 	obkey = ob1
 	if (*TPyHKEYObject)(unsafe.Pointer(obkey)).Fhkey != 0 {
-		libc.XRegCloseKey(tls, (*TPyHKEYObject)(unsafe.Pointer(obkey)).Fhkey)
+		_ccgo_RegCloseKey(tls, (*TPyHKEYObject)(unsafe.Pointer(obkey)).Fhkey)
 	}
 	v1 = (*TPyObject)(unsafe.Pointer(ob1)).Fob_type
 	goto _2
@@ -11473,7 +11473,7 @@ _2:
 	}
 	_save = XPyEval_SaveThread(tls)
 	if **(**THKEY)(__ccgo_up(bp)) != 0 {
-		v1 = libc.XRegCloseKey(tls, **(**THKEY)(__ccgo_up(bp)))
+		v1 = _ccgo_RegCloseKey(tls, **(**THKEY)(__ccgo_up(bp)))
 	} else {
 		v1 = 0
 	}
@@ -11578,7 +11578,7 @@ _2:
 	_8:
 		if v1 != 0 {
 			_save = XPyEval_SaveThread(tls)
-			rc = libc.XRegCloseKey(tls, uintptr(XPyLong_AsLong(tls, obHandle)))
+			rc = _ccgo_RegCloseKey(tls, uintptr(XPyLong_AsLong(tls, obHandle)))
 			XPyEval_RestoreThread(tls, _save)
 			ok = libc.BoolInt32(rc == libc.Int32FromInt32(0))
 			if !(ok != 0) {
@@ -12041,7 +12041,7 @@ func _winreg_ConnectRegistry_impl(tls *libc.TLS, module uintptr, computer_name u
 		return libc.UintptrFromInt32(0)
 	}
 	_save = XPyEval_SaveThread(tls)
-	rc = libc.XRegConnectRegistryW(tls, computer_name, key, bp)
+	rc = _ccgo_RegConnectRegistryW(tls, computer_name, key, bp)
 	XPyEval_RestoreThread(tls, _save)
 	if rc != 0 {
 		XPyErr_SetFromWindowsErr(tls, rc)
@@ -12086,7 +12086,7 @@ func _winreg_CreateKeyEx_impl(tls *libc.TLS, module uintptr, key THKEY, sub_key 
 		return libc.UintptrFromInt32(0)
 	}
 	_save = XPyEval_SaveThread(tls)
-	rc = libc.XRegCreateKeyExW(tls, key, sub_key, uint32(reserved), libc.UintptrFromInt32(0), uint32(0), access, libc.UintptrFromInt32(0), bp, libc.UintptrFromInt32(0))
+	rc = _ccgo_RegCreateKeyExW(tls, key, sub_key, uint32(reserved), libc.UintptrFromInt32(0), uint32(0), access, libc.UintptrFromInt32(0), bp, libc.UintptrFromInt32(0))
 	XPyEval_RestoreThread(tls, _save)
 	if rc != 0 {
 		XPyErr_SetFromWindowsErr(tls, rc)
@@ -12109,7 +12109,7 @@ func _winreg_DeleteKey_impl(tls *libc.TLS, module uintptr, key THKEY, sub_key ui
 		return libc.UintptrFromInt32(0)
 	}
 	_save = XPyEval_SaveThread(tls)
-	rc = libc.XRegDeleteKeyW(tls, key, sub_key)
+	rc = _ccgo_RegDeleteKeyW(tls, key, sub_key)
 	XPyEval_RestoreThread(tls, _save)
 	if rc != 0 {
 		return XPyErr_SetFromWindowsErr(tls, rc)
@@ -12147,7 +12147,7 @@ func _winreg_DeleteValue_impl(tls *libc.TLS, module uintptr, key THKEY, value ui
 		return libc.UintptrFromInt32(0)
 	}
 	_save = XPyEval_SaveThread(tls)
-	rc = libc.XRegDeleteValueW(tls, key, value)
+	rc = _ccgo_RegDeleteValueW(tls, key, value)
 	XPyEval_RestoreThread(tls, _save)
 	if rc != 0 {
 		return XPyErr_SetFromWindowsErr(tls, rc)
@@ -12169,7 +12169,7 @@ func _winreg_EnumKey_impl(tls *libc.TLS, module uintptr, key THKEY, index int32)
 	}
 	**(**TDWORD)(__ccgo_up(bp + 516)) = uint32(libc.Uint64FromInt64(514) / libc.Uint64FromInt64(2))
 	_save = XPyEval_SaveThread(tls)
-	rc = libc.XRegEnumKeyExW(tls, key, uint32(index), bp, bp+516, libc.UintptrFromInt32(0), libc.UintptrFromInt32(0), libc.UintptrFromInt32(0), libc.UintptrFromInt32(0))
+	rc = _ccgo_RegEnumKeyExW(tls, key, uint32(index), bp, bp+516, libc.UintptrFromInt32(0), libc.UintptrFromInt32(0), libc.UintptrFromInt32(0), libc.UintptrFromInt32(0))
 	XPyEval_RestoreThread(tls, _save)
 	if rc != 0 {
 		return XPyErr_SetFromWindowsErr(tls, rc)
@@ -12219,7 +12219,7 @@ func _winreg_EnumValue_impl(tls *libc.TLS, module uintptr, key THKEY, index int3
 	}
 	for int32(1) != 0 {
 		_save1 = XPyEval_SaveThread(tls)
-		rc = libc.XRegEnumValueW(tls, key, uint32(index), retValueBuf, bp, libc.UintptrFromInt32(0), bp+8, retDataBuf, bp+4)
+		rc = _ccgo_RegEnumValueW(tls, key, uint32(index), retValueBuf, bp, libc.UintptrFromInt32(0), bp+8, retDataBuf, bp+4)
 		XPyEval_RestoreThread(tls, _save1)
 		if rc != int32(234) {
 			break
@@ -12442,7 +12442,7 @@ func _winreg_QueryValue_impl(tls *libc.TLS, module uintptr, key THKEY, sub_key u
 	}
 	for int32(1) != 0 {
 		_save1 = XPyEval_SaveThread(tls)
-		rc = libc.XRegQueryValueExW(tls, **(**THKEY)(__ccgo_up(bp)), libc.UintptrFromInt32(0), libc.UintptrFromInt32(0), bp+524, pbuf, bp+520)
+		rc = _ccgo_RegQueryValueExW(tls, **(**THKEY)(__ccgo_up(bp)), libc.UintptrFromInt32(0), libc.UintptrFromInt32(0), bp+524, pbuf, bp+520)
 		XPyEval_RestoreThread(tls, _save1)
 		if rc != int32(234) {
 			break
@@ -12483,7 +12483,7 @@ exit:
 	}
 	if **(**THKEY)(__ccgo_up(bp)) != key {
 		_save2 = XPyEval_SaveThread(tls)
-		libc.XRegCloseKey(tls, **(**THKEY)(__ccgo_up(bp)))
+		_ccgo_RegCloseKey(tls, **(**THKEY)(__ccgo_up(bp)))
 		XPyEval_RestoreThread(tls, _save2)
 	}
 	return result
@@ -12505,7 +12505,7 @@ func _winreg_QueryValueEx_impl(tls *libc.TLS, module uintptr, key THKEY, name ui
 		return libc.UintptrFromInt32(0)
 	}
 	_save = XPyEval_SaveThread(tls)
-	rc = libc.XRegQueryValueExW(tls, key, name, libc.UintptrFromInt32(0), libc.UintptrFromInt32(0), libc.UintptrFromInt32(0), bp)
+	rc = _ccgo_RegQueryValueExW(tls, key, name, libc.UintptrFromInt32(0), libc.UintptrFromInt32(0), libc.UintptrFromInt32(0), bp)
 	XPyEval_RestoreThread(tls, _save)
 	if rc == int32(234) {
 		**(**TDWORD)(__ccgo_up(bp)) = uint32(256)
@@ -12521,7 +12521,7 @@ func _winreg_QueryValueEx_impl(tls *libc.TLS, module uintptr, key THKEY, name ui
 	for int32(1) != 0 {
 		**(**TDWORD)(__ccgo_up(bp + 4)) = **(**TDWORD)(__ccgo_up(bp))
 		_save1 = XPyEval_SaveThread(tls)
-		rc = libc.XRegQueryValueExW(tls, key, name, libc.UintptrFromInt32(0), bp+8, retBuf, bp+4)
+		rc = _ccgo_RegQueryValueExW(tls, key, name, libc.UintptrFromInt32(0), bp+8, retBuf, bp+4)
 		XPyEval_RestoreThread(tls, _save1)
 		if rc != int32(234) {
 			break
@@ -12620,7 +12620,7 @@ func _winreg_SetValue_impl(tls *libc.TLS, module uintptr, key THKEY, sub_key uin
 	}
 	if sub_key != 0 && **(**Twchar_t)(__ccgo_up(sub_key)) != 0 {
 		_save = XPyEval_SaveThread(tls)
-		rc = libc.XRegCreateKeyExW(tls, key, sub_key, uint32(0), libc.UintptrFromInt32(0), uint32(0), uint32(libc.Int32FromInt32(MKEY_SET_VALUE)), libc.UintptrFromInt32(0), bp, libc.UintptrFromInt32(0))
+		rc = _ccgo_RegCreateKeyExW(tls, key, sub_key, uint32(0), libc.UintptrFromInt32(0), uint32(0), uint32(libc.Int32FromInt32(MKEY_SET_VALUE)), libc.UintptrFromInt32(0), bp, libc.UintptrFromInt32(0))
 		XPyEval_RestoreThread(tls, _save)
 		if rc != 0 {
 			XPyErr_SetFromWindowsErr(tls, rc)
@@ -12628,7 +12628,7 @@ func _winreg_SetValue_impl(tls *libc.TLS, module uintptr, key THKEY, sub_key uin
 		}
 	}
 	_save1 = XPyEval_SaveThread(tls)
-	rc = libc.XRegSetValueExW(tls, **(**THKEY)(__ccgo_up(bp)), libc.UintptrFromInt32(0), uint32(0), uint32(libc.Int32FromInt32(MREG_SZ)), value, uint32(size))
+	rc = _ccgo_RegSetValueExW(tls, **(**THKEY)(__ccgo_up(bp)), libc.UintptrFromInt32(0), uint32(0), uint32(libc.Int32FromInt32(MREG_SZ)), value, uint32(size))
 	XPyEval_RestoreThread(tls, _save1)
 	if rc == 0 {
 		v1 = uintptr(unsafe.Pointer(&X_Py_NoneStruct))
@@ -12652,7 +12652,7 @@ exit:
 	;
 	XPyMem_Free(tls, value)
 	if **(**THKEY)(__ccgo_up(bp)) != key {
-		libc.XRegCloseKey(tls, **(**THKEY)(__ccgo_up(bp)))
+		_ccgo_RegCloseKey(tls, **(**THKEY)(__ccgo_up(bp)))
 	}
 	return result
 }
@@ -12679,7 +12679,7 @@ func _winreg_SetValueEx_impl(tls *libc.TLS, module uintptr, key THKEY, value_nam
 		goto exit
 	}
 	_save = XPyEval_SaveThread(tls)
-	rc = libc.XRegSetValueExW(tls, key, value_name, uint32(0), type1, **(**uintptr)(__ccgo_up(bp)), **(**TDWORD)(__ccgo_up(bp + 8)))
+	rc = _ccgo_RegSetValueExW(tls, key, value_name, uint32(0), type1, **(**uintptr)(__ccgo_up(bp)), **(**TDWORD)(__ccgo_up(bp + 8)))
 	XPyEval_RestoreThread(tls, _save)
 	if rc == 0 {
 		v1 = uintptr(unsafe.Pointer(&X_Py_NoneStruct))
@@ -16782,7 +16782,7 @@ func __winapi_CreateMutexW_impl(tls *libc.TLS, module uintptr, security_attribut
 		return uintptr(int64(-libc.Int32FromInt32(1)))
 	}
 	_save = XPyEval_SaveThread(tls)
-	handle = libc.XCreateMutexW(tls, security_attributes, initial_owner, name)
+	handle = _ccgo_CreateMutexW(tls, security_attributes, initial_owner, name)
 	XPyEval_RestoreThread(tls, _save)
 	if handle == uintptr(int64(-libc.Int32FromInt32(1))) {
 		XPyErr_SetFromWindowsErr(tls, 0)
@@ -17881,7 +17881,7 @@ func __winapi_DuplicateHandle_impl(tls *libc.TLS, module uintptr, source_process
 
 func __winapi_ExitProcess_impl(tls *libc.TLS, module uintptr, ExitCode TUINT) (r uintptr) {
 
-	libc.XExitProcess(tls, ExitCode)
+	_ccgo_ExitProcess(tls, ExitCode)
 	return libc.UintptrFromInt32(0)
 }
 
@@ -19189,7 +19189,7 @@ func __winapi__mimetypes_read_windows_registry_impl(tls *libc.TLS, module uintpt
 		type1 = bp + uintptr(entry)*768 + 256
 		**(**TDWORD)(__ccgo_up(bp + 49160)) = uint32(128)
 		**(**TDWORD)(__ccgo_up(bp + 49164)) = uint32(510)
-		err = int64(libc.XRegEnumKeyExW(tls, **(**THKEY)(__ccgo_up(bp + 49152)), i, ext, bp+49160, libc.UintptrFromInt32(0), libc.UintptrFromInt32(0), libc.UintptrFromInt32(0), libc.UintptrFromInt32(0)))
+		err = int64(_ccgo_RegEnumKeyExW(tls, **(**THKEY)(__ccgo_up(bp + 49152)), i, ext, bp+49160, libc.UintptrFromInt32(0), libc.UintptrFromInt32(0), libc.UintptrFromInt32(0), libc.UintptrFromInt32(0)))
 		if err != 0 || **(**TDWORD)(__ccgo_up(bp + 49160)) != 0 && int32(**(**TWCHAR)(__ccgo_up(ext))) != int32('.') {
 			goto _1
 		}
@@ -19202,8 +19202,8 @@ func __winapi__mimetypes_read_windows_registry_impl(tls *libc.TLS, module uintpt
 				goto _1
 			}
 		}
-		err = int64(libc.XRegQueryValueExW(tls, **(**THKEY)(__ccgo_up(bp + 49168)), __ccgo_ts+276500, libc.UintptrFromInt32(0), bp+49176, type1, bp+49164))
-		libc.XRegCloseKey(tls, **(**THKEY)(__ccgo_up(bp + 49168)))
+		err = int64(_ccgo_RegQueryValueExW(tls, **(**THKEY)(__ccgo_up(bp + 49168)), __ccgo_ts+276500, libc.UintptrFromInt32(0), bp+49176, type1, bp+49164))
+		_ccgo_RegCloseKey(tls, **(**THKEY)(__ccgo_up(bp + 49168)))
 		if err == int64(2) {
 			err = 0
 			goto _1
@@ -19229,7 +19229,7 @@ func __winapi__mimetypes_read_windows_registry_impl(tls *libc.TLS, module uintpt
 				r = XPyObject_CallFunction(tls, on_type_read, __ccgo_ts+275737, libc.VaList(bp+49192, bp+uintptr(j)*768+256, bp+uintptr(j)*768))
 				if !(r != 0) {
 
-					libc.XRegCloseKey(tls, **(**THKEY)(__ccgo_up(bp + 49152)))
+					_ccgo_RegCloseKey(tls, **(**THKEY)(__ccgo_up(bp + 49152)))
 					return libc.UintptrFromInt32(0)
 				}
 				v3 = r
@@ -19261,7 +19261,7 @@ func __winapi__mimetypes_read_windows_registry_impl(tls *libc.TLS, module uintpt
 		i = i + 1
 	}
 	if **(**THKEY)(__ccgo_up(bp + 49152)) != 0 {
-		libc.XRegCloseKey(tls, **(**THKEY)(__ccgo_up(bp + 49152)))
+		_ccgo_RegCloseKey(tls, **(**THKEY)(__ccgo_up(bp + 49152)))
 	}
 	XPyEval_RestoreThread(tls, _save)
 	if err != 0 && err != int64(259) {

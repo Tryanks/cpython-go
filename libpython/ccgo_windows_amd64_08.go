@@ -78916,7 +78916,7 @@ func _socket_getservbyname(tls *libc.TLS, self uintptr, args uintptr) (r uintptr
 		return libc.UintptrFromInt32(0)
 	}
 	_save = XPyEval_SaveThread(tls)
-	sp = libc.Xgetservbyname(tls, **(**uintptr)(__ccgo_up(bp)), **(**uintptr)(__ccgo_up(bp + 8)))
+	sp = _ccgo_getservbyname(tls, **(**uintptr)(__ccgo_up(bp)), **(**uintptr)(__ccgo_up(bp + 8)))
 	XPyEval_RestoreThread(tls, _save)
 	if sp == libc.UintptrFromInt32(0) {
 		XPyErr_SetString(tls, XPyExc_OSError, __ccgo_ts+227509)
@@ -79077,7 +79077,7 @@ func __socket_inet_ntoa_impl(tls *libc.TLS, module uintptr, packed_ip uintptr) (
 	}
 	libc.Xmemcpy(tls, bp, (*TPy_buffer)(unsafe.Pointer(packed_ip)).Fbuf, uint64((*TPy_buffer)(unsafe.Pointer(packed_ip)).Flen1))
 	XPyBuffer_Release(tls, packed_ip)
-	return XPyUnicode_FromString(tls, libc.Xinet_ntoa(tls, **(**Tin_addr)(__ccgo_up(bp))))
+	return XPyUnicode_FromString(tls, _ccgo_inet_ntoa(tls, **(**Tin_addr)(__ccgo_up(bp))))
 }
 
 func _socket_inet_pton(tls *libc.TLS, self uintptr, args uintptr) (r uintptr) {
@@ -97733,7 +97733,7 @@ func _faulthandler_fatal_error(tls *libc.TLS, signum int32) {
 		return
 	}
 
-	libc.Xraise(tls, signum)
+	_ccgo_raise(tls, signum)
 }
 
 func _faulthandler_ignore_exception(tls *libc.TLS, code TDWORD) (r int32) {
@@ -98269,7 +98269,7 @@ func _faulthandler_raise_sigsegv(tls *libc.TLS) {
 	_faulthandler_suppress_crash_report(tls)
 
 	for int32(1) != 0 {
-		libc.Xraise(tls, int32(MSIGSEGV))
+		_ccgo_raise(tls, int32(MSIGSEGV))
 	}
 }
 
@@ -98331,14 +98331,14 @@ func _faulthandler_sigfpe(tls *libc.TLS, self uintptr, _unused_dummy uintptr) (r
 	y = 0
 	z = x / y
 
-	libc.Xraise(tls, int32(MSIGFPE))
+	_ccgo_raise(tls, int32(MSIGFPE))
 
 	return XPyLong_FromLong(tls, z)
 }
 
 func _faulthandler_sigabrt(tls *libc.TLS, self uintptr, args uintptr) (r uintptr) {
 	_faulthandler_suppress_crash_report(tls)
-	libc.Xabort(tls)
+	_ccgo_abort(tls)
 	return uintptr(unsafe.Pointer(&X_Py_NoneStruct))
 }
 
@@ -98352,7 +98352,7 @@ func _faulthandler_raise_exception(tls *libc.TLS, self uintptr, args uintptr) (r
 		return libc.UintptrFromInt32(0)
 	}
 	_faulthandler_suppress_crash_report(tls)
-	libc.XRaiseException(tls, uint32(**(**uint32)(__ccgo_up(bp))), uint32(**(**uint32)(__ccgo_up(bp + 4))), uint32(0), libc.UintptrFromInt32(0))
+	_ccgo_RaiseException(tls, uint32(**(**uint32)(__ccgo_up(bp))), uint32(**(**uint32)(__ccgo_up(bp + 4))), uint32(0), libc.UintptrFromInt32(0))
 	return uintptr(unsafe.Pointer(&X_Py_NoneStruct))
 }
 
@@ -107425,7 +107425,7 @@ func _os_getlogin_impl(tls *libc.TLS, module uintptr) (r uintptr) {
 	_ = result
 	result = libc.UintptrFromInt32(0)
 	**(**TDWORD)(__ccgo_up(bp + 516)) = uint32(libc.Uint64FromInt64(514) / libc.Uint64FromInt64(2))
-	if libc.XGetUserNameW(tls, bp, bp+516) != 0 {
+	if _ccgo_GetUserNameW(tls, bp, bp+516) != 0 {
 
 		result = XPyUnicode_FromWideChar(tls, bp, int64(**(**TDWORD)(__ccgo_up(bp + 516))-uint32(1)))
 	} else {
@@ -108541,7 +108541,7 @@ func _setup_confname_tables(tls *libc.TLS, module uintptr) (r int32) {
 
 func _os_abort_impl(tls *libc.TLS, module uintptr) (r uintptr) {
 
-	libc.Xabort(tls)
+	_ccgo_abort(tls)
 
 	return r
 }

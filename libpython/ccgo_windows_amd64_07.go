@@ -25948,7 +25948,7 @@ func _analyze_pe(tls *libc.TLS, mod_path uintptr, remote_base uintptr, secname u
 		}
 		return libc.UintptrFromInt32(0)
 	}
-	hMap = libc.XCreateFileMappingA(tls, hFile, libc.UintptrFromInt32(0), uint32(MPAGE_READONLY), uint32(0), uint32(0), uintptr(0))
+	hMap = _ccgo_CreateFileMappingA(tls, hFile, libc.UintptrFromInt32(0), uint32(MPAGE_READONLY), uint32(0), uint32(0), uintptr(0))
 	if !(hMap != 0) {
 		error11 = libc.XGetLastError(tls)
 		XPyErr_SetFromWindowsErr(tls, int32(error11))

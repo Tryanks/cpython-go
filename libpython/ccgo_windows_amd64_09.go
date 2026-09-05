@@ -4392,7 +4392,7 @@ func _signal_raise_signal_impl(tls *libc.TLS, module uintptr, signalnum int32) (
 	var err int32
 	_, _ = _save, err
 	_save = XPyEval_SaveThread(tls)
-	err = libc.Xraise(tls, signalnum)
+	err = _ccgo_raise(tls, signalnum)
 	XPyEval_RestoreThread(tls, _save)
 	if err != 0 {
 		return XPyErr_SetFromErrno(tls, XPyExc_OSError)

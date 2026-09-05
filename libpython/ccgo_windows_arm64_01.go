@@ -1374,7 +1374,7 @@ func _fdopen_borrow(tls *libc.TLS, fd int32) (r uintptr) {
 	if fd < 0 {
 		return libc.UintptrFromInt32(0)
 	}
-	return libc.Xfdopen(tls, fd, __ccgo_ts+9041)
+	return _ccgo_fdopen(tls, fd, __ccgo_ts+9041)
 }
 
 // C documentation

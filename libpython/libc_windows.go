@@ -547,6 +547,18 @@ func fdHandle(tls *libc.TLS, fd int32) (windows.Handle, bool) {
 	return f.handle, true
 }
 
+// A modernc Windows descriptor already owns a FILE-like object. fdopen only
+// needs to expose that object's token; the duplicated descriptor passed by
+// CPython gives fclose the expected ownership semantics.
+func _ccgo_fdopen(tls *libc.TLS, fd int32, mode uintptr) uintptr {
+	file, ok := moderncFdToFile(fd)
+	if !ok {
+		setErrno(tls, int32(errno.EBADF))
+		return 0
+	}
+	return file.token
+}
+
 func ___timezone(tls *libc.TLS) uintptr {
 	r, _ := callProc(dllUCRT, "__timezone")
 	return r
@@ -1281,6 +1293,51 @@ func _ccgo_GetOverlappedResult(tls *libc.TLS, handle, overlapped, transferred ui
 		return 0
 	}
 	return 1
+}
+
+func _ccgo_CreateFileMappingA(tls *libc.TLS, file, securityAttributes uintptr, protect, maximumSizeHigh, maximumSizeLow uint32, name uintptr) uintptr {
+	result, err := callProc(
+		dllKernel32,
+		"CreateFileMappingA",
+		file,
+		securityAttributes,
+		uintptr(protect),
+		uintptr(maximumSizeHigh),
+		uintptr(maximumSizeLow),
+		name,
+	)
+	if result == 0 {
+		setWinError(tls, err, errorInvalidParam)
+	}
+	return result
+}
+
+func _ccgo_CreateMutexW(tls *libc.TLS, securityAttributes uintptr, initialOwner int32, name uintptr) uintptr {
+	result, err := callProc(dllKernel32, "CreateMutexW", securityAttributes, uintptr(uint32(initialOwner)), name)
+	if result == 0 {
+		setWinError(tls, err, errorInvalidParam)
+	}
+	return result
+}
+
+func _ccgo_ExitProcess(tls *libc.TLS, exitCode uint32) int32 {
+	_, _ = callProc(dllKernel32, "ExitProcess", uintptr(exitCode))
+	return 0
+}
+
+func _ccgo_GetUserNameW(tls *libc.TLS, buffer, size uintptr) int32 {
+	return boolProc(tls, dllAdvapi32, "GetUserNameW", buffer, size)
+}
+
+func _ccgo_RaiseException(tls *libc.TLS, exceptionCode, exceptionFlags, argumentCount uint32, arguments uintptr) {
+	_, _ = callProc(
+		dllKernel32,
+		"RaiseException",
+		uintptr(exceptionCode),
+		uintptr(exceptionFlags),
+		uintptr(argumentCount),
+		arguments,
+	)
 }
 
 func _ccgo_GetShortPathNameW(tls *libc.TLS, path, buffer uintptr, capacity uint32) uint32 {
@@ -2196,8 +2253,108 @@ func _ccgo_RegOpenKeyExW(tls *libc.TLS, key, subkey uintptr, options, access uin
 	return int32(winErrno(err, errorInvalidFunction))
 }
 
+func registryStatus(dllName string, arguments ...uintptr) int32 {
+	result, _ := callProc(dllAdvapi32, dllName, arguments...)
+	return int32(result)
+}
+
+func _ccgo_RegCloseKey(tls *libc.TLS, key uintptr) int32 {
+	return registryStatus("RegCloseKey", key)
+}
+
+func _ccgo_RegConnectRegistryW(tls *libc.TLS, computerName, key, result uintptr) int32 {
+	return registryStatus("RegConnectRegistryW", computerName, key, result)
+}
+
+func _ccgo_RegCreateKeyExW(tls *libc.TLS, key, subkey uintptr, reserved uint32, class uintptr, options, access uint32, securityAttributes, result, disposition uintptr) int32 {
+	return registryStatus(
+		"RegCreateKeyExW",
+		key,
+		subkey,
+		uintptr(reserved),
+		class,
+		uintptr(options),
+		uintptr(access),
+		securityAttributes,
+		result,
+		disposition,
+	)
+}
+
+func _ccgo_RegDeleteKeyW(tls *libc.TLS, key, subkey uintptr) int32 {
+	return registryStatus("RegDeleteKeyW", key, subkey)
+}
+
+func _ccgo_RegDeleteValueW(tls *libc.TLS, key, value uintptr) int32 {
+	return registryStatus("RegDeleteValueW", key, value)
+}
+
+func _ccgo_RegEnumKeyExW(tls *libc.TLS, key uintptr, index uint32, name, nameLength, reserved, class, classLength, lastWriteTime uintptr) int32 {
+	return registryStatus(
+		"RegEnumKeyExW",
+		key,
+		uintptr(index),
+		name,
+		nameLength,
+		reserved,
+		class,
+		classLength,
+		lastWriteTime,
+	)
+}
+
+func _ccgo_RegEnumValueW(tls *libc.TLS, key uintptr, index uint32, valueName, valueNameLength, reserved, valueType, data, dataLength uintptr) int32 {
+	return registryStatus(
+		"RegEnumValueW",
+		key,
+		uintptr(index),
+		valueName,
+		valueNameLength,
+		reserved,
+		valueType,
+		data,
+		dataLength,
+	)
+}
+
+func _ccgo_RegQueryValueExW(tls *libc.TLS, key, valueName, reserved, valueType, data, dataLength uintptr) int32 {
+	return registryStatus("RegQueryValueExW", key, valueName, reserved, valueType, data, dataLength)
+}
+
+func _ccgo_RegSetValueExW(tls *libc.TLS, key, valueName uintptr, reserved, valueType uint32, data uintptr, dataLength uint32) int32 {
+	return registryStatus(
+		"RegSetValueExW",
+		key,
+		valueName,
+		uintptr(reserved),
+		uintptr(valueType),
+		data,
+		uintptr(dataLength),
+	)
+}
+
 func _ccgo_MessageBeep(tls *libc.TLS, kind uint32) int32 {
 	return boolProc(tls, dllUser32, "MessageBeep", uintptr(kind))
+}
+
+func _ccgo_abort(tls *libc.TLS) {
+	callUCRTWithErrno(tls, "abort")
+}
+
+func _ccgo_raise(tls *libc.TLS, number int32) int32 {
+	signalMu.Lock()
+	handler := windowsSignals[number]
+	signalMu.Unlock()
+
+	switch handler {
+	case 1: // SIG_IGN
+		return 0
+	case 0: // SIG_DFL
+		return int32(callUCRTWithErrno(tls, "raise", uintptr(number)))
+	default:
+		(*(*func(*libc.TLS, int32))(unsafe.Pointer(&struct{ uintptr }{handler})))(tls, number)
+		return 0
+	}
 }
 
 type winsockExtensionProc struct {
@@ -2322,6 +2479,23 @@ func _ccgo_TransmitFile(tls *libc.TLS, socket uint64, file uintptr, bytesToWrite
 		return 0
 	}
 	return 1
+}
+
+func _ccgo_getservbyname(tls *libc.TLS, name, protocol uintptr) uintptr {
+	result, err := callProc(dllWS2, "getservbyname", name, protocol)
+	if result == 0 {
+		setWSAErrorFrom(tls, err)
+	}
+	return result
+}
+
+func _ccgo_inet_ntoa(tls *libc.TLS, address Tin_addr) uintptr {
+	value := *(*uint32)(unsafe.Pointer(&address))
+	result, err := callProc(dllWS2, "inet_ntoa", uintptr(value))
+	if result == 0 {
+		setWSAErrorFrom(tls, err)
+	}
+	return result
 }
 
 func _ccgo_socket(tls *libc.TLS, family, socketType, protocol int32) uint64 {
