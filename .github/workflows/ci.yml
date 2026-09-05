@@ -67,3 +67,15 @@ jobs:
           case = unittest.FunctionTestCase(lambda: unittest.TestCase().assertEqual(2 + 3, 5));
           result = unittest.TextTestRunner(verbosity=2).run(unittest.TestSuite([case]));
           assert result.wasSuccessful()"
+  windows-arm64:
+    # Experimental: generated and cross-built, not yet validated on hardware.
+    runs-on: windows-11-arm
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: go.mod
+      - run: go build -o cpython-go.exe ./cmd/cpython-go
+      - run: ./cpython-go.exe -c "print(45)"
+      - run: ./cpython-go.exe -c "import sys, json, threading, subprocess, hashlib, pickle, re, datetime; print(sys.platform, sys.version_info[:2], json.dumps([1]))"
