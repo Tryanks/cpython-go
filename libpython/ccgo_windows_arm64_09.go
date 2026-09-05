@@ -18,40 +18,6 @@ var _ reflect.Type
 
 var _ unsafe.Pointer
 
-func _os_spawnve(tls *libc.TLS, module uintptr, args uintptr, nargs TPy_ssize_t) (r uintptr) {
-	bp := tls.Alloc(96)
-	defer tls.Free(96)
-	var argv, env, return_value uintptr
-	var mode int32
-	var _ Tpath_t
-	_, _, _, _ = argv, env, mode, return_value
-	return_value = libc.UintptrFromInt32(0)
-	**(**Tpath_t)(__ccgo_up(bp)) = Tpath_t{
-		Ffunction_name: __ccgo_ts + 240061,
-		Fargument_name: __ccgo_ts + 28662,
-		Fmake_wide:     int32(1),
-		Ffd:            -int32(1),
-	}
-	if !(libc.Bool(!false) && int64(libc.Int32FromInt32(4)) <= nargs && nargs <= int64(libc.Int32FromInt32(4)) || X_PyArg_CheckPositional(tls, __ccgo_ts+240061, nargs, int64(libc.Int32FromInt32(4)), int64(libc.Int32FromInt32(4))) != 0) {
-		goto exit
-	}
-	mode = XPyLong_AsInt(tls, **(**uintptr)(__ccgo_up(args)))
-	if mode == -int32(1) && XPyErr_Occurred(tls) != 0 {
-		goto exit
-	}
-	if !(_path_converter(tls, **(**uintptr)(__ccgo_up(args + 1*8)), bp) != 0) {
-		goto exit
-	}
-	argv = **(**uintptr)(__ccgo_up(args + 2*8))
-	env = **(**uintptr)(__ccgo_up(args + 3*8))
-	return_value = _os_spawnve_impl(tls, module, mode, bp, argv, env)
-	goto exit
-exit:
-	;
-	_path_cleanup(tls, bp)
-	return return_value
-}
-
 var _os_getpid__doc__ = [54]int8{'g', 'e', 't', 'p', 'i', 'd', '(', '$', 'm', 'o', 'd', 'u', 'l', 'e', ',', ' ', '/', ')', 10, '-', '-', 10, 10, 'R', 'e', 't', 'u', 'r', 'n', ' ', 't', 'h', 'e', ' ', 'c', 'u', 'r', 'r', 'e', 'n', 't', ' ', 'p', 'r', 'o', 'c', 'e', 's', 's', ' ', 'i', 'd', '.'}
 
 func _os_getpid(tls *libc.TLS, module uintptr, _unused_ignored uintptr) (r uintptr) {
@@ -2460,7 +2426,7 @@ var _DirEntryType_spec = TPyType_Spec{
 }
 
 func _is_extended_path(tls *libc.TLS, path uintptr) (r int32) {
-	return libc.BoolInt32(libc.Xwcsncmp(tls, path, __ccgo_ts+156520, uint64(4)) == 0)
+	return libc.BoolInt32(_ccgo_wcsncmp(tls, path, __ccgo_ts+156520, uint64(4)) == 0)
 }
 
 func _join_path_filenameW(tls *libc.TLS, path_wide uintptr, filename uintptr, normalize int32) (r uintptr) {
@@ -4349,7 +4315,7 @@ func _trip_signal(tls *libc.TLS, sig_num int32) {
 		interp = X_PyInterpreterState_Main(tls)
 		**(**uint8)(__ccgo_up(bp)) = uint8(sig_num)
 		if libc.AtomicLoadPInt32(uintptr(unsafe.Pointer(&X_PyRuntime))+1224+368+8) != 0 {
-			rc = int64(libc.Xsend(tls, uint64(fd), bp, int32(1), 0))
+			rc = int64(_ccgo_send(tls, uint64(fd), bp, int32(1), 0))
 			if rc < 0 {
 				last_error = int32(libc.XGetLastError(tls))
 				if libc.AtomicLoadPInt32(uintptr(unsafe.Pointer(&X_PyRuntime))+1224+368+4) != 0 || last_error != libc.Int32FromInt32(MWSABASEERR)+libc.Int32FromInt32(35) {
@@ -4392,7 +4358,7 @@ func _signal_raise_signal_impl(tls *libc.TLS, module uintptr, signalnum int32) (
 	var err int32
 	_, _ = _save, err
 	_save = XPyEval_SaveThread(tls)
-	err = libc.Xraise(tls, signalnum)
+	err = _ccgo_raise(tls, signalnum)
 	XPyEval_RestoreThread(tls, _save)
 	if err != 0 {
 		return XPyErr_SetFromErrno(tls, XPyExc_OSError)
@@ -4607,8 +4573,8 @@ _4:
 	_11:
 		;
 
-		if libc.Xgetsockopt(tls, sockfd, int32(0xffff), int32(0x1007), bp+128, bp+132) != 0 {
-			err = libc.XWSAGetLastError(tls)
+		if _ccgo_getsockopt(tls, sockfd, int32(0xffff), int32(0x1007), bp+128, bp+132) != 0 {
+			err = _ccgo_WSAGetLastError(tls)
 			if err != libc.Int32FromInt32(MWSABASEERR)+libc.Int32FromInt32(38) {
 				XPyErr_SetExcFromWindowsErr(tls, XPyExc_OSError, err)
 				return libc.UintptrFromInt32(0)
@@ -8614,7 +8580,7 @@ _6:
 	goto _4
 _4:
 	if v3 != 0 {
-		libc.Xsprintf(tls, bp, __ccgo_ts+243621, libc.VaList(bp+72, int32(**(**uint8)(__ccgo_up(object + 25 + 3)))<<int32(16)|int32(**(**uint8)(__ccgo_up(object + 25 + 4)))<<int32(8)|int32(**(**uint8)(__ccgo_up(object + 25 + 5)))))
+		_ccgo_sprintf(tls, bp, __ccgo_ts+243621, libc.VaList(bp+72, int32(**(**uint8)(__ccgo_up(object + 25 + 3)))<<int32(16)|int32(**(**uint8)(__ccgo_up(object + 25 + 4)))<<int32(8)|int32(**(**uint8)(__ccgo_up(object + 25 + 5)))))
 	} else {
 		v1 = object
 		v2 = uintptr(unsafe.Pointer(&_PyDateTime_DateTimeType))
@@ -8634,9 +8600,9 @@ _4:
 		goto _15
 	_15:
 		if v3 != 0 {
-			libc.Xsprintf(tls, bp, __ccgo_ts+243621, libc.VaList(bp+72, int32(**(**uint8)(__ccgo_up(object + 25 + 7)))<<int32(16)|int32(**(**uint8)(__ccgo_up(object + 25 + 8)))<<int32(8)|int32(**(**uint8)(__ccgo_up(object + 25 + 9)))))
+			_ccgo_sprintf(tls, bp, __ccgo_ts+243621, libc.VaList(bp+72, int32(**(**uint8)(__ccgo_up(object + 25 + 7)))<<int32(16)|int32(**(**uint8)(__ccgo_up(object + 25 + 8)))<<int32(8)|int32(**(**uint8)(__ccgo_up(object + 25 + 9)))))
 		} else {
-			libc.Xsprintf(tls, bp, __ccgo_ts+243621, libc.VaList(bp+72, 0))
+			_ccgo_sprintf(tls, bp, __ccgo_ts+243621, libc.VaList(bp+72, 0))
 		}
 	}
 	return XPyUnicode_FromString(tls, bp)
@@ -82332,7 +82298,7 @@ func _detach_thread1(tls *libc.TLS, self uintptr) (r int32) {
 	}
 
 	if XPyThread_detach_thread(tls, (*TThreadHandle)(unsafe.Pointer(self)).Fos_handle) != 0 {
-		libc.Xfprintf(tls, libc.X__acrt_iob_func(tls, uint32(2)), __ccgo_ts+261987, 0)
+		_ccgo_fprintf(tls, libc.X__acrt_iob_func(tls, uint32(2)), __ccgo_ts+261987, 0)
 		return -int32(1)
 	}
 	return 0
@@ -86284,7 +86250,7 @@ func _parse_time_t_args(tls *libc.TLS, args uintptr, format uintptr, pwhen uintp
 		return 0
 	}
 	if **(**uintptr)(__ccgo_up(bp)) == libc.UintptrFromInt32(0) || **(**uintptr)(__ccgo_up(bp)) == uintptr(unsafe.Pointer(&X_Py_NoneStruct)) {
-		**(**Ttime_t)(__ccgo_up(bp + 8)) = libc.Xtime(tls, libc.UintptrFromInt32(0))
+		**(**Ttime_t)(__ccgo_up(bp + 8)) = _ccgo_time(tls, libc.UintptrFromInt32(0))
 	} else {
 		if X_PyTime_ObjectToTime_t(tls, **(**uintptr)(__ccgo_up(bp)), bp+8, int32(E_PyTime_ROUND_FLOOR)) == -int32(1) {
 			return 0
@@ -86487,7 +86453,7 @@ func _time_strftime1(tls *libc.TLS, module uintptr, args uintptr) (r uintptr) {
 	}
 	state = _get_time_state(tls, module)
 	if **(**uintptr)(__ccgo_up(bp)) == libc.UintptrFromInt32(0) {
-		tt = libc.Xtime(tls, libc.UintptrFromInt32(0))
+		tt = _ccgo_time(tls, libc.UintptrFromInt32(0))
 		if X_PyTime_localtime(tls, tt, bp+8) != 0 {
 			return libc.UintptrFromInt32(0)
 		}
@@ -86873,7 +86839,7 @@ func _time_asctime(tls *libc.TLS, module uintptr, args uintptr) (r uintptr) {
 	}
 	state = _get_time_state(tls, module)
 	if **(**uintptr)(__ccgo_up(bp)) == libc.UintptrFromInt32(0) {
-		tt = libc.Xtime(tls, libc.UintptrFromInt32(0))
+		tt = _ccgo_time(tls, libc.UintptrFromInt32(0))
 		if X_PyTime_localtime(tls, tt, bp+8) != 0 {
 			return libc.UintptrFromInt32(0)
 		}

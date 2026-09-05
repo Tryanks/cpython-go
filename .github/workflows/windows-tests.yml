@@ -1,0 +1,65 @@
+name: windows-tests
+
+on:
+  workflow_dispatch:
+  push:
+    branches: ['windows-*']
+
+jobs:
+  cpython-tests:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: windows-latest
+            arch: amd64
+          - os: windows-11-arm
+            arch: arm64
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 240
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check out CPython 3.14.7 tests
+        uses: actions/checkout@v4
+        with:
+          repository: python/cpython
+          ref: v3.14.7
+          path: cpython-3.14.7
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: go.mod
+      - name: Build test standard library
+        shell: pwsh
+        run: |
+          $extra = @(
+            Get-ChildItem internal/stdlib-extra/*.py
+            Get-ChildItem stdlib/sysconfigdata/*.py
+          ) | ForEach-Object { $_.FullName }
+          go run ./internal/cmd/mkstdlib -tests -o stdlib/python314_tests.zip.gz cpython-3.14.7/Lib @extra
+      - name: Build test interpreter
+        run: go build -tags cpython_test -o cpython-go-tests.exe ./cmd/cpython-go
+      - name: Run CPython unittest batch
+        id: batch
+        continue-on-error: true
+        shell: pwsh
+        run: |
+          $env:PYTHONPATH = (Resolve-Path cpython-3.14.7/Lib).Path
+          go run ./internal/builders/windows/test_batch.go `
+            -exe ./cpython-go-tests.exe `
+            -timeout 90s `
+            -output windows-test-results `
+            -label windows/${{ matrix.arch }}
+      - name: Publish test table
+        if: always()
+        shell: pwsh
+        run: Get-Content windows-test-results/summary.md | Add-Content $env:GITHUB_STEP_SUMMARY
+      - name: Upload test results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: windows-tests-${{ matrix.arch }}
+          path: windows-test-results
+      - name: Fail on test failures
+        if: steps.batch.outcome == 'failure'
+        shell: pwsh
+        run: exit 1

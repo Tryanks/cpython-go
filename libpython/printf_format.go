@@ -2,6 +2,7 @@ package libpython
 
 import (
 	"fmt"
+	"runtime"
 	"strconv"
 	"strings"
 	"unsafe"
@@ -65,7 +66,7 @@ func parseCFormat(format string, pos *int, ap *uintptr) cFormatSpec {
 			}
 		}
 	}
-	for _, length := range []string{"hh", "ll", "h", "l", "j", "z", "t", "L"} {
+	for _, length := range []string{"I64", "I32", "hh", "ll", "h", "l", "j", "z", "t", "L", "I"} {
 		if strings.HasPrefix(format[*pos:], length) {
 			s.length = length
 			*pos += len(length)
@@ -101,8 +102,13 @@ func (s cFormatSpec) signedArg(ap *uintptr) int64 {
 		return int64(int8(v))
 	case "h":
 		return int64(int16(v))
-	case "":
+	case "", "I32":
 		return int64(int32(v))
+	case "l":
+		if runtime.GOOS == "windows" {
+			return int64(int32(v))
+		}
+		return v
 	default:
 		return v
 	}
@@ -115,8 +121,13 @@ func (s cFormatSpec) unsignedArg(ap *uintptr) uint64 {
 		return uint64(uint8(v))
 	case "h":
 		return uint64(uint16(v))
-	case "":
+	case "", "I32":
 		return uint64(uint32(v))
+	case "l":
+		if runtime.GOOS == "windows" {
+			return uint64(uint32(v))
+		}
+		return v
 	default:
 		return v
 	}

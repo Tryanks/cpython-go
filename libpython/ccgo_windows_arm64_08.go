@@ -18,6 +18,74 @@ var _ reflect.Type
 
 var _ unsafe.Pointer
 
+func _expat_end_ns_handler(tls *libc.TLS, op3 uintptr, prefix_in uintptr) {
+	var prefix, res, self, st, target, v10, v3, v5 uintptr
+	var v1 int32
+	var v9 Tuint32_t
+	_, _, _, _, _, _, _, _, _, _ = prefix, res, self, st, target, v1, v10, v3, v5, v9
+	self = op3
+	res = libc.UintptrFromInt32(0)
+	if XPyErr_Occurred(tls) != 0 {
+		return
+	}
+	if !(prefix_in != 0) {
+		prefix_in = __ccgo_ts + 2
+	}
+	st = (*TXMLParserObject)(unsafe.Pointer(self)).Fstate
+	v3 = (*TPyObject)(unsafe.Pointer((*TXMLParserObject)(unsafe.Pointer(self)).Ftarget)).Fob_type
+	goto _4
+_4:
+	v1 = libc.BoolInt32(v3 == (*Telementtreestate)(unsafe.Pointer(st)).FTreeBuilder_Type)
+	goto _2
+_2:
+	if v1 != 0 {
+
+		target = (*TXMLParserObject)(unsafe.Pointer(self)).Ftarget
+		if (*TTreeBuilderObject)(unsafe.Pointer(target)).Fevents_append != 0 && (*TTreeBuilderObject)(unsafe.Pointer(target)).Fend_ns_event_obj != 0 {
+			res = _treebuilder_handle_end_ns(tls, target, uintptr(unsafe.Pointer(&X_Py_NoneStruct)))
+		}
+	} else {
+		if (*TXMLParserObject)(unsafe.Pointer(self)).Fhandle_end_ns != 0 {
+			prefix = XPyUnicode_DecodeUTF8(tls, prefix_in, int64(libc.Xstrlen(tls, prefix_in)), __ccgo_ts+18501)
+			if !(prefix != 0) {
+				return
+			}
+			res = XPyObject_CallOneArg(tls, (*TXMLParserObject)(unsafe.Pointer(self)).Fhandle_end_ns, prefix)
+			v3 = prefix
+			v1 = libc.BoolInt32(int32(*(*Tuint32_t)(unsafe.Pointer(v3))) < 0)
+			goto _7
+		_7:
+			if v1 != 0 {
+				goto _8
+			}
+			v5 = v3
+			*(*Tuint32_t)(unsafe.Pointer(v5)) = *(*Tuint32_t)(unsafe.Pointer(v5)) - 1
+			v9 = *(*Tuint32_t)(unsafe.Pointer(v5))
+			if v9 == libc.Uint32FromInt32(0) {
+				X_Py_Dealloc(tls, v3)
+			}
+		_8:
+		}
+	}
+	v3 = res
+	if v3 != libc.UintptrFromInt32(0) {
+		v5 = v3
+		v1 = libc.BoolInt32(int32(*(*Tuint32_t)(unsafe.Pointer(v5))) < 0)
+		goto _14
+	_14:
+		if v1 != 0 {
+			goto _15
+		}
+		v10 = v5
+		*(*Tuint32_t)(unsafe.Pointer(v10)) = *(*Tuint32_t)(unsafe.Pointer(v10)) - 1
+		v9 = *(*Tuint32_t)(unsafe.Pointer(v10))
+		if v9 == libc.Uint32FromInt32(0) {
+			X_Py_Dealloc(tls, v5)
+		}
+	_15:
+	}
+}
+
 func _expat_comment_handler(tls *libc.TLS, op3 uintptr, comment_in uintptr) {
 	var comment, res, self, st, target, v3, v5, v6 uintptr
 	var v1 int32
@@ -3057,7 +3125,7 @@ func __elementtree_Element_set(tls *libc.TLS, self uintptr, args uintptr, nargs 
 	var key, return_value, value uintptr
 	_, _, _ = key, return_value, value
 	return_value = libc.UintptrFromInt32(0)
-	if !(libc.Bool(!false) && int64(libc.Int32FromInt32(2)) <= nargs && nargs <= int64(libc.Int32FromInt32(2)) || X_PyArg_CheckPositional(tls, __ccgo_ts+57271, nargs, int64(libc.Int32FromInt32(2)), int64(libc.Int32FromInt32(2))) != 0) {
+	if !(libc.Bool(!false) && int64(libc.Int32FromInt32(2)) <= nargs && nargs <= int64(libc.Int32FromInt32(2)) || X_PyArg_CheckPositional(tls, __ccgo_ts+57258, nargs, int64(libc.Int32FromInt32(2)), int64(libc.Int32FromInt32(2))) != 0) {
 		goto exit
 	}
 	key = **(**uintptr)(__ccgo_up(args))
@@ -3529,7 +3597,7 @@ var _element_methods = [22]TPyMethodDef{
 		Fml_doc:   uintptr(unsafe.Pointer(&__elementtree_Element_get__doc__)),
 	},
 	2: {
-		Fml_name:  __ccgo_ts + 57271,
+		Fml_name:  __ccgo_ts + 57258,
 		Fml_flags: int32(MMETH_FASTCALL),
 		Fml_doc:   uintptr(unsafe.Pointer(&__elementtree_Element_set__doc__)),
 	},
@@ -41241,7 +41309,7 @@ func __getucname(tls *libc.TLS, self uintptr, code TPy_UCS4, buffer uintptr, buf
 
 	if prefixid == int32(1) {
 		prefix = _derived_name_prefixes[prefixid]
-		if libc.X__builtin_snprintf(tls, buffer, uint64(buflen), __ccgo_ts+223421, libc.VaList(bp+8, prefix, code)) >= buflen {
+		if _ccgo___builtin_snprintf(tls, buffer, uint64(buflen), __ccgo_ts+223421, libc.VaList(bp+8, prefix, code)) >= buflen {
 			return 0
 		}
 		return int32(1)
@@ -47531,7 +47599,7 @@ func _select_select_impl(tls *libc.TLS, module uintptr, rlist uintptr, wlist uin
 		} else {
 			v6 = libc.UintptrFromInt32(0)
 		}
-		n = libc.Xselect(tls, max, v4, v5, v6, tvp)
+		n = _ccgo_select(tls, max, v4, v5, v6, tvp)
 		XPyEval_RestoreThread(tls, _save)
 		if **(**int32)(__ccgo_up(libc.X_errno(tls))) != int32(MEINTR) {
 			break
@@ -47555,7 +47623,7 @@ func _select_select_impl(tls *libc.TLS, module uintptr, rlist uintptr, wlist uin
 		}
 	}
 	if n == -int32(1) {
-		XPyErr_SetExcFromWindowsErr(tls, XPyExc_OSError, libc.XWSAGetLastError(tls))
+		XPyErr_SetExcFromWindowsErr(tls, XPyExc_OSError, _ccgo_WSAGetLastError(tls))
 	} else {
 
 		rlist = _set2list(tls, bp+36936, bp)
@@ -75706,7 +75774,7 @@ func _select_error(tls *libc.TLS) (r uintptr) {
 func _set_error1(tls *libc.TLS) (r uintptr) {
 	var err_no int32
 	_ = err_no
-	err_no = libc.XWSAGetLastError(tls)
+	err_no = _ccgo_WSAGetLastError(tls)
 
 	if err_no != 0 {
 		return XPyErr_SetExcFromWindowsErr(tls, XPyExc_OSError, err_no)
@@ -75784,7 +75852,7 @@ func _internal_setblocking(tls *libc.TLS, s uintptr, block int32) (r int32) {
 	result = -int32(1)
 	_save = XPyEval_SaveThread(tls)
 	**(**Tu_long)(__ccgo_up(bp)) = libc.BoolUint32(!(block != 0))
-	if libc.Xioctlsocket(tls, _get_sock_fd(tls, s), int32(libc.Uint32FromUint32(0x80000000)|uint32(libc.Int32FromInt64(4)&libc.Int32FromInt32(0x7f)<<libc.Int32FromInt32(16))|uint32(libc.Int32FromUint8('f')<<libc.Int32FromInt32(8))|uint32(libc.Int32FromInt32(126))), bp) != 0 {
+	if _ccgo_ioctlsocket(tls, _get_sock_fd(tls, s), int32(libc.Uint32FromUint32(0x80000000)|uint32(libc.Int32FromInt64(4)&libc.Int32FromInt32(0x7f)<<libc.Int32FromInt32(16))|uint32(libc.Int32FromUint8('f')<<libc.Int32FromInt32(8))|uint32(libc.Int32FromInt32(126))), bp) != 0 {
 		goto done
 	}
 	result = 0
@@ -75793,7 +75861,7 @@ done:
 	;
 	XPyEval_RestoreThread(tls, _save)
 	if result != 0 {
-		XPyErr_SetExcFromWindowsErr(tls, XPyExc_OSError, libc.XWSAGetLastError(tls))
+		XPyErr_SetExcFromWindowsErr(tls, XPyExc_OSError, _ccgo_WSAGetLastError(tls))
 	}
 	return result
 }
@@ -75865,9 +75933,9 @@ func _internal_select(tls *libc.TLS, s uintptr, writing int32, interval TPyTime_
 
 	_save = XPyEval_SaveThread(tls)
 	if writing != 0 {
-		n = libc.Xselect(tls, int32(_get_sock_fd(tls, s)+libc.Uint64FromInt32(1)), libc.UintptrFromInt32(0), bp, bp+520, tvp)
+		n = _ccgo_select(tls, int32(_get_sock_fd(tls, s)+libc.Uint64FromInt32(1)), libc.UintptrFromInt32(0), bp, bp+520, tvp)
 	} else {
-		n = libc.Xselect(tls, int32(_get_sock_fd(tls, s)+libc.Uint64FromInt32(1)), bp, libc.UintptrFromInt32(0), bp+520, tvp)
+		n = _ccgo_select(tls, int32(_get_sock_fd(tls, s)+libc.Uint64FromInt32(1)), bp, libc.UintptrFromInt32(0), bp+520, tvp)
 	}
 	XPyEval_RestoreThread(tls, _save)
 	if n < 0 {
@@ -75931,9 +75999,9 @@ func _sock_call_ex(tls *libc.TLS, s uintptr, writing int32, __ccgo_fp_sock_func 
 			}
 			if res == -int32(1) {
 				if err != 0 {
-					**(**int32)(__ccgo_up(err)) = libc.XWSAGetLastError(tls)
+					**(**int32)(__ccgo_up(err)) = _ccgo_WSAGetLastError(tls)
 				}
-				if libc.XWSAGetLastError(tls) == libc.Int32FromInt32(MWSABASEERR)+libc.Int32FromInt32(4) {
+				if _ccgo_WSAGetLastError(tls) == libc.Int32FromInt32(MWSABASEERR)+libc.Int32FromInt32(4) {
 
 					if XPyErr_CheckSignals(tls) != 0 {
 						if err != 0 {
@@ -75971,9 +76039,9 @@ func _sock_call_ex(tls *libc.TLS, s uintptr, writing int32, __ccgo_fp_sock_func 
 				return 0
 			}
 			if err != 0 {
-				**(**int32)(__ccgo_up(err)) = libc.XWSAGetLastError(tls)
+				**(**int32)(__ccgo_up(err)) = _ccgo_WSAGetLastError(tls)
 			}
-			if !(libc.XWSAGetLastError(tls) == libc.Int32FromInt32(MWSABASEERR)+libc.Int32FromInt32(4)) {
+			if !(_ccgo_WSAGetLastError(tls) == libc.Int32FromInt32(MWSABASEERR)+libc.Int32FromInt32(4)) {
 				break
 			}
 
@@ -75985,7 +76053,7 @@ func _sock_call_ex(tls *libc.TLS, s uintptr, writing int32, __ccgo_fp_sock_func 
 			}
 
 		}
-		if (*TPySocketSockObject)(unsafe.Pointer(s)).Fsock_timeout > 0 && libc.XWSAGetLastError(tls) == libc.Int32FromInt32(MWSABASEERR)+libc.Int32FromInt32(35) {
+		if (*TPySocketSockObject)(unsafe.Pointer(s)).Fsock_timeout > 0 && _ccgo_WSAGetLastError(tls) == libc.Int32FromInt32(MWSABASEERR)+libc.Int32FromInt32(35) {
 
 			continue
 		}
@@ -76157,7 +76225,7 @@ func _setbdaddr(tls *libc.TLS, name uintptr, bdaddr uintptr) (r int32) {
 	var _ uint32
 	var _ int8
 	_ = n
-	n = libc.Xsscanf(tls, name, __ccgo_ts+225198, libc.VaList(bp+40, bp+20, bp+16, bp+12, bp+8, bp+4, bp, bp+24))
+	n = _ccgo_sscanf(tls, name, __ccgo_ts+225198, libc.VaList(bp+40, bp+20, bp+16, bp+12, bp+8, bp+4, bp, bp+24))
 	if n == int32(6) && **(**uint32)(__ccgo_up(bp))|**(**uint32)(__ccgo_up(bp + 4))|**(**uint32)(__ccgo_up(bp + 8))|**(**uint32)(__ccgo_up(bp + 12))|**(**uint32)(__ccgo_up(bp + 16))|**(**uint32)(__ccgo_up(bp + 20)) < uint32(256) {
 		**(**Tbdaddr_t)(__ccgo_up(bdaddr)) = uint64(**(**uint32)(__ccgo_up(bp)) & libc.Uint32FromInt32(0xFF))
 		**(**Tbdaddr_t)(__ccgo_up(bdaddr)) |= uint64(**(**uint32)(__ccgo_up(bp + 4))&libc.Uint32FromInt32(0xFF)) << libc.Int32FromInt32(8)
@@ -76745,7 +76813,7 @@ func _sock_accept_impl(tls *libc.TLS, s uintptr, data uintptr) (r int32) {
 	ctx = data
 	addr = (*Tsock_accept)(unsafe.Pointer(ctx)).Faddrbuf
 	paddrlen = (*Tsock_accept)(unsafe.Pointer(ctx)).Faddrlen
-	(*Tsock_accept)(unsafe.Pointer(ctx)).Fresult = libc.Xaccept(tls, _get_sock_fd(tls, s), addr, paddrlen)
+	(*Tsock_accept)(unsafe.Pointer(ctx)).Fresult = _ccgo_accept(tls, _get_sock_fd(tls, s), addr, paddrlen)
 	return libc.BoolInt32((*Tsock_accept)(unsafe.Pointer(ctx)).Fresult != uint64(^libc.Int32FromInt32(0)))
 }
 
@@ -76780,12 +76848,12 @@ func _sock_accept(tls *libc.TLS, self uintptr, _unused_ignored uintptr) (r uintp
 	newfd = (**(**Tsock_accept)(__ccgo_up(bp + 136))).Fresult
 	if !(_ccgo_SetHandleInformation(tls, uintptr(newfd), uint32(MHANDLE_FLAG_INHERIT), uint32(0)) != 0) {
 		XPyErr_SetFromWindowsErr(tls, 0)
-		libc.Xclosesocket(tls, newfd)
+		_ccgo_closesocket(tls, newfd)
 		goto finally
 	}
 	sock = XPyLong_FromLongLong(tls, int64(newfd))
 	if sock == libc.UintptrFromInt32(0) {
-		libc.Xclosesocket(tls, newfd)
+		_ccgo_closesocket(tls, newfd)
 		goto finally
 	}
 	addr = _makesockaddr(tls, _get_sock_fd(tls, s), bp, uint64(**(**Tsocklen_t)(__ccgo_up(bp + 128))), (*TPySocketSockObject)(unsafe.Pointer(s)).Fsock_proto)
@@ -76978,7 +77046,7 @@ func _sock_setsockopt(tls *libc.TLS, self uintptr, args uintptr) (r uintptr) {
 			}
 			goto done
 		}
-		res = libc.Xsetsockopt(tls, _get_sock_fd(tls, s), **(**int32)(__ccgo_up(bp)), **(**int32)(__ccgo_up(bp + 4)), bp+88, int32(4))
+		res = _ccgo_setsockopt(tls, _get_sock_fd(tls, s), **(**int32)(__ccgo_up(bp)), **(**int32)(__ccgo_up(bp + 4)), bp+88, int32(4))
 		goto done
 	}
 	XPyErr_Clear(tls)
@@ -76987,7 +77055,7 @@ func _sock_setsockopt(tls *libc.TLS, self uintptr, args uintptr) (r uintptr) {
 	goto _2
 _2:
 	if XPyArg_ParseTuple(tls, args, __ccgo_ts+226188, libc.VaList(bp+120, bp, bp+4, v1, bp+96, bp+92)) != 0 {
-		res = libc.Xsetsockopt(tls, _get_sock_fd(tls, s), **(**int32)(__ccgo_up(bp)), **(**int32)(__ccgo_up(bp + 4)), libc.UintptrFromInt32(0), int32(**(**uint32)(__ccgo_up(bp + 92))))
+		res = _ccgo_setsockopt(tls, _get_sock_fd(tls, s), **(**int32)(__ccgo_up(bp)), **(**int32)(__ccgo_up(bp + 4)), libc.UintptrFromInt32(0), int32(**(**uint32)(__ccgo_up(bp + 92))))
 		goto done
 	}
 	XPyErr_Clear(tls)
@@ -77000,7 +77068,7 @@ _2:
 		XPyErr_Format(tls, XPyExc_OverflowError, __ccgo_ts+226221, libc.VaList(bp+120, int32(M__INT_MAX__)))
 		return libc.UintptrFromInt32(0)
 	}
-	res = libc.Xsetsockopt(tls, _get_sock_fd(tls, s), **(**int32)(__ccgo_up(bp)), **(**int32)(__ccgo_up(bp + 4)), (**(**TPy_buffer)(__ccgo_up(bp + 8))).Fbuf, int32((**(**TPy_buffer)(__ccgo_up(bp + 8))).Flen1))
+	res = _ccgo_setsockopt(tls, _get_sock_fd(tls, s), **(**int32)(__ccgo_up(bp)), **(**int32)(__ccgo_up(bp + 4)), (**(**TPy_buffer)(__ccgo_up(bp + 8))).Fbuf, int32((**(**TPy_buffer)(__ccgo_up(bp + 8))).Flen1))
 	XPyBuffer_Release(tls, bp+8)
 	goto done
 done:
@@ -77035,7 +77103,7 @@ func _sock_getsockopt(tls *libc.TLS, self uintptr, args uintptr) (r uintptr) {
 			return XPyLong_FromLong(tls, (*TPySocketSockObject)(unsafe.Pointer(s)).Fquickack)
 		}
 		**(**Tsocklen_t)(__ccgo_up(bp + 24)) = int32(4)
-		res = libc.Xgetsockopt(tls, _get_sock_fd(tls, s), **(**int32)(__ccgo_up(bp)), **(**int32)(__ccgo_up(bp + 4)), bp+20, bp+24)
+		res = _ccgo_getsockopt(tls, _get_sock_fd(tls, s), **(**int32)(__ccgo_up(bp)), **(**int32)(__ccgo_up(bp + 4)), bp+20, bp+24)
 		if res < 0 {
 			return (*(*func(*libc.TLS) uintptr)(unsafe.Pointer(&struct{ uintptr }{(*TPySocketSockObject)(unsafe.Pointer(s)).Ferrorhandler})))(tls)
 		}
@@ -77052,7 +77120,7 @@ func _sock_getsockopt(tls *libc.TLS, self uintptr, args uintptr) (r uintptr) {
 	v1 = **(**uintptr)(__ccgo_up(bp + 8)) + 32
 	goto _2
 _2:
-	res = libc.Xgetsockopt(tls, _get_sock_fd(tls, s), **(**int32)(__ccgo_up(bp)), **(**int32)(__ccgo_up(bp + 4)), v1, bp+16)
+	res = _ccgo_getsockopt(tls, _get_sock_fd(tls, s), **(**int32)(__ccgo_up(bp)), **(**int32)(__ccgo_up(bp + 4)), v1, bp+16)
 	if res < 0 {
 		v1 = **(**uintptr)(__ccgo_up(bp + 8))
 		v4 = libc.BoolInt32(int32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
@@ -77091,7 +77159,7 @@ func _sock_bind(tls *libc.TLS, self uintptr, addro uintptr) (r uintptr) {
 		return libc.UintptrFromInt32(0)
 	}
 	_save = XPyEval_SaveThread(tls)
-	res = libc.Xbind(tls, _get_sock_fd(tls, s), bp, **(**int32)(__ccgo_up(bp + 128)))
+	res = _ccgo_bind(tls, _get_sock_fd(tls, s), bp, **(**int32)(__ccgo_up(bp + 128)))
 	XPyEval_RestoreThread(tls, _save)
 	if res < 0 {
 		return (*(*func(*libc.TLS) uintptr)(unsafe.Pointer(&struct{ uintptr }{(*TPySocketSockObject)(unsafe.Pointer(s)).Ferrorhandler})))(tls)
@@ -77110,7 +77178,7 @@ func __socket_socket_close_impl(tls *libc.TLS, s uintptr) (r uintptr) {
 		_set_sock_fd(tls, s, uint64(^libc.Int32FromInt32(0)))
 
 		_save = XPyEval_SaveThread(tls)
-		res = libc.Xclosesocket(tls, fd)
+		res = _ccgo_closesocket(tls, fd)
 		XPyEval_RestoreThread(tls, _save)
 
 		if res < 0 && **(**int32)(__ccgo_up(libc.X_errno(tls))) != int32(MECONNRESET) {
@@ -77136,7 +77204,7 @@ func _sock_connect_impl(tls *libc.TLS, s uintptr, _unused_data uintptr) (r int32
 	var _ int32
 	var _ Tsocklen_t
 	**(**Tsocklen_t)(__ccgo_up(bp + 4)) = int32(4)
-	if libc.Xgetsockopt(tls, _get_sock_fd(tls, s), int32(0xffff), int32(0x1007), bp, bp+4) != 0 {
+	if _ccgo_getsockopt(tls, _get_sock_fd(tls, s), int32(0xffff), int32(0x1007), bp, bp+4) != 0 {
 
 		return 0
 	}
@@ -77173,15 +77241,15 @@ func _internal_connect(tls *libc.TLS, s uintptr, addr uintptr, addrlen int32, ra
 	var _ int32
 	_, _, _ = _save, res, wait_connect
 	_save = XPyEval_SaveThread(tls)
-	res = libc.Xconnect(tls, _get_sock_fd(tls, s), addr, addrlen)
+	res = _ccgo_connect(tls, _get_sock_fd(tls, s), addr, addrlen)
 	XPyEval_RestoreThread(tls, _save)
 	if !(res != 0) {
 
 		return 0
 	}
 
-	**(**int32)(__ccgo_up(bp)) = libc.XWSAGetLastError(tls)
-	if libc.XWSAGetLastError(tls) == libc.Int32FromInt32(MWSABASEERR)+libc.Int32FromInt32(4) {
+	**(**int32)(__ccgo_up(bp)) = _ccgo_WSAGetLastError(tls)
+	if _ccgo_WSAGetLastError(tls) == libc.Int32FromInt32(MWSABASEERR)+libc.Int32FromInt32(4) {
 		if XPyErr_CheckSignals(tls) != 0 {
 			return -int32(1)
 		}
@@ -77279,7 +77347,7 @@ func _sock_getsockname(tls *libc.TLS, self uintptr, _unused_ignored uintptr) (r 
 	}
 	libc.Xmemset(tls, bp, 0, uint64(**(**Tsocklen_t)(__ccgo_up(bp + 128))))
 	_save = XPyEval_SaveThread(tls)
-	res = libc.Xgetsockname(tls, _get_sock_fd(tls, s), bp, bp+128)
+	res = _ccgo_getsockname(tls, _get_sock_fd(tls, s), bp, bp+128)
 	XPyEval_RestoreThread(tls, _save)
 	if res < 0 {
 		return (*(*func(*libc.TLS) uintptr)(unsafe.Pointer(&struct{ uintptr }{(*TPySocketSockObject)(unsafe.Pointer(s)).Ferrorhandler})))(tls)
@@ -77301,7 +77369,7 @@ func _sock_getpeername(tls *libc.TLS, self uintptr, _unused_ignored uintptr) (r 
 	}
 	libc.Xmemset(tls, bp, 0, uint64(**(**Tsocklen_t)(__ccgo_up(bp + 128))))
 	_save = XPyEval_SaveThread(tls)
-	res = libc.Xgetpeername(tls, _get_sock_fd(tls, s), bp, bp+128)
+	res = _ccgo_getpeername(tls, _get_sock_fd(tls, s), bp, bp+128)
 	XPyEval_RestoreThread(tls, _save)
 	if res < 0 {
 		return (*(*func(*libc.TLS) uintptr)(unsafe.Pointer(&struct{ uintptr }{(*TPySocketSockObject)(unsafe.Pointer(s)).Ferrorhandler})))(tls)
@@ -77327,7 +77395,7 @@ func _sock_listen(tls *libc.TLS, self uintptr, args uintptr) (r uintptr) {
 	if **(**int32)(__ccgo_up(bp)) < 0 {
 		**(**int32)(__ccgo_up(bp)) = 0
 	}
-	res = libc.Xlisten(tls, _get_sock_fd(tls, s), **(**int32)(__ccgo_up(bp)))
+	res = _ccgo_listen(tls, _get_sock_fd(tls, s), **(**int32)(__ccgo_up(bp)))
 	XPyEval_RestoreThread(tls, _save)
 	if res < 0 {
 		return (*(*func(*libc.TLS) uintptr)(unsafe.Pointer(&struct{ uintptr }{(*TPySocketSockObject)(unsafe.Pointer(s)).Ferrorhandler})))(tls)
@@ -77349,7 +77417,7 @@ func _sock_recv_impl(tls *libc.TLS, s uintptr, data uintptr) (r int32) {
 	if (*Tsock_recv)(unsafe.Pointer(ctx)).Flen1 > int64(M__INT_MAX__) {
 		(*Tsock_recv)(unsafe.Pointer(ctx)).Flen1 = int64(M__INT_MAX__)
 	}
-	(*Tsock_recv)(unsafe.Pointer(ctx)).Fresult = int64(libc.Xrecv(tls, _get_sock_fd(tls, s), (*Tsock_recv)(unsafe.Pointer(ctx)).Fcbuf, int32((*Tsock_recv)(unsafe.Pointer(ctx)).Flen1), (*Tsock_recv)(unsafe.Pointer(ctx)).Fflags))
+	(*Tsock_recv)(unsafe.Pointer(ctx)).Fresult = int64(_ccgo_recv(tls, _get_sock_fd(tls, s), (*Tsock_recv)(unsafe.Pointer(ctx)).Fcbuf, int32((*Tsock_recv)(unsafe.Pointer(ctx)).Flen1), (*Tsock_recv)(unsafe.Pointer(ctx)).Fflags))
 	return libc.BoolInt32((*Tsock_recv)(unsafe.Pointer(ctx)).Fresult >= 0)
 }
 
@@ -77711,7 +77779,7 @@ func _sock_send_impl(tls *libc.TLS, s uintptr, data uintptr) (r int32) {
 	if (*Tsock_send)(unsafe.Pointer(ctx)).Flen1 > int64(M__INT_MAX__) {
 		(*Tsock_send)(unsafe.Pointer(ctx)).Flen1 = int64(M__INT_MAX__)
 	}
-	(*Tsock_send)(unsafe.Pointer(ctx)).Fresult = int64(libc.Xsend(tls, _get_sock_fd(tls, s), (*Tsock_send)(unsafe.Pointer(ctx)).Fbuf, int32((*Tsock_send)(unsafe.Pointer(ctx)).Flen1), (*Tsock_send)(unsafe.Pointer(ctx)).Fflags))
+	(*Tsock_send)(unsafe.Pointer(ctx)).Fresult = int64(_ccgo_send(tls, _get_sock_fd(tls, s), (*Tsock_send)(unsafe.Pointer(ctx)).Fbuf, int32((*Tsock_send)(unsafe.Pointer(ctx)).Flen1), (*Tsock_send)(unsafe.Pointer(ctx)).Fflags))
 	return libc.BoolInt32((*Tsock_send)(unsafe.Pointer(ctx)).Fresult >= 0)
 }
 
@@ -77903,7 +77971,7 @@ func _sock_shutdown(tls *libc.TLS, self uintptr, arg uintptr) (r uintptr) {
 		return libc.UintptrFromInt32(0)
 	}
 	_save = XPyEval_SaveThread(tls)
-	res = libc.Xshutdown(tls, _get_sock_fd(tls, s), how)
+	res = _ccgo_shutdown(tls, _get_sock_fd(tls, s), how)
 	XPyEval_RestoreThread(tls, _save)
 	if res < 0 {
 		return (*(*func(*libc.TLS) uintptr)(unsafe.Pointer(&struct{ uintptr }{(*TPySocketSockObject)(unsafe.Pointer(s)).Ferrorhandler})))(tls)
@@ -78207,7 +78275,7 @@ func _sock_finalize(tls *libc.TLS, self uintptr) {
 		_set_sock_fd(tls, s, uint64(^libc.Int32FromInt32(0)))
 
 		_save = XPyEval_SaveThread(tls)
-		libc.Xclosesocket(tls, fd)
+		_ccgo_closesocket(tls, fd)
 		XPyEval_RestoreThread(tls, _save)
 	}
 
@@ -78361,7 +78429,7 @@ _2:
 			}
 			if !(_ccgo_SetHandleInformation(tls, uintptr(fd), uint32(MHANDLE_FLAG_INHERIT), uint32(0)) != 0) {
 				XPyErr_SetFromWindowsErr(tls, 0)
-				libc.Xclosesocket(tls, fd)
+				_ccgo_closesocket(tls, fd)
 				return -int32(1)
 			}
 			family = (**(**TWSAPROTOCOL_INFOW)(__ccgo_up(bp))).FiAddressFamily
@@ -78378,20 +78446,20 @@ _2:
 			}
 			**(**Tsocklen_t)(__ccgo_up(bp + 760)) = int32(128)
 			libc.Xmemset(tls, bp+632, 0, uint64(**(**Tsocklen_t)(__ccgo_up(bp + 760))))
-			if libc.Xgetsockname(tls, fd, bp+632, bp+760) == 0 {
+			if _ccgo_getsockname(tls, fd, bp+632, bp+760) == 0 {
 				if family == -int32(1) {
 					family = int32((*Tsockaddr)(unsafe.Pointer(bp + 632)).Fsa_family)
 				}
 			} else {
 
-				if family == -int32(1) || libc.XWSAGetLastError(tls) == libc.Int32FromInt32(MWSABASEERR)+libc.Int32FromInt32(38) {
+				if family == -int32(1) || _ccgo_WSAGetLastError(tls) == libc.Int32FromInt32(MWSABASEERR)+libc.Int32FromInt32(38) {
 					_set_error1(tls)
 					return -int32(1)
 				}
 			}
 			if type1 == -int32(1) {
 				**(**Tsocklen_t)(__ccgo_up(bp + 768)) = int32(4)
-				if libc.Xgetsockopt(tls, fd, int32(0xffff), int32(0x1008), bp+764, bp+768) == 0 {
+				if _ccgo_getsockopt(tls, fd, int32(0xffff), int32(0x1008), bp+764, bp+768) == 0 {
 					type1 = **(**int32)(__ccgo_up(bp + 764))
 				} else {
 					_set_error1(tls)
@@ -78420,7 +78488,7 @@ _2:
 		}
 	}
 	if _init_sockobject(tls, state, self1, fd, family, type1, proto) == -int32(1) {
-		libc.Xclosesocket(tls, fd)
+		_ccgo_closesocket(tls, fd)
 		return -int32(1)
 	}
 	return 0
@@ -78579,7 +78647,7 @@ func _gethost_common(tls *libc.TLS, state uintptr, h uintptr, addr uintptr, alen
 	addr_list = libc.UintptrFromInt32(0)
 	if h == libc.UintptrFromInt32(0) {
 
-		_set_herror(tls, state, libc.XWSAGetLastError(tls))
+		_set_herror(tls, state, _ccgo_WSAGetLastError(tls))
 		return libc.UintptrFromInt32(0)
 	}
 	if int32((*Thostent)(unsafe.Pointer(h)).Fh_addrtype) != af {
@@ -78848,7 +78916,7 @@ func _socket_getservbyname(tls *libc.TLS, self uintptr, args uintptr) (r uintptr
 		return libc.UintptrFromInt32(0)
 	}
 	_save = XPyEval_SaveThread(tls)
-	sp = libc.Xgetservbyname(tls, **(**uintptr)(__ccgo_up(bp)), **(**uintptr)(__ccgo_up(bp + 8)))
+	sp = _ccgo_getservbyname(tls, **(**uintptr)(__ccgo_up(bp)), **(**uintptr)(__ccgo_up(bp + 8)))
 	XPyEval_RestoreThread(tls, _save)
 	if sp == libc.UintptrFromInt32(0) {
 		XPyErr_SetString(tls, XPyExc_OSError, __ccgo_ts+227510)
@@ -78920,10 +78988,10 @@ func _socket_close(tls *libc.TLS, self uintptr, fdobj uintptr) (r uintptr) {
 		return libc.UintptrFromInt32(0)
 	}
 	_save = XPyEval_SaveThread(tls)
-	res = libc.Xclosesocket(tls, fd)
+	res = _ccgo_closesocket(tls, fd)
 	XPyEval_RestoreThread(tls, _save)
 
-	if res < 0 && !(libc.XWSAGetLastError(tls) == libc.Int32FromInt32(MWSABASEERR)+libc.Int32FromInt32(54)) {
+	if res < 0 && !(_ccgo_WSAGetLastError(tls) == libc.Int32FromInt32(MWSABASEERR)+libc.Int32FromInt32(54)) {
 		return _set_error1(tls)
 	}
 	return uintptr(unsafe.Pointer(&X_Py_NoneStruct))
@@ -78949,12 +79017,12 @@ func _socket_dup(tls *libc.TLS, self uintptr, fdobj uintptr) (r uintptr) {
 	}
 	if !(_ccgo_SetHandleInformation(tls, uintptr(newfd), uint32(MHANDLE_FLAG_INHERIT), uint32(0)) != 0) {
 		XPyErr_SetFromWindowsErr(tls, 0)
-		libc.Xclosesocket(tls, newfd)
+		_ccgo_closesocket(tls, newfd)
 		return libc.UintptrFromInt32(0)
 	}
 	newfdobj = XPyLong_FromLongLong(tls, int64(newfd))
 	if newfdobj == libc.UintptrFromInt32(0) {
-		libc.Xclosesocket(tls, newfd)
+		_ccgo_closesocket(tls, newfd)
 	}
 	return newfdobj
 }
@@ -79009,7 +79077,7 @@ func __socket_inet_ntoa_impl(tls *libc.TLS, module uintptr, packed_ip uintptr) (
 	}
 	libc.Xmemcpy(tls, bp, (*TPy_buffer)(unsafe.Pointer(packed_ip)).Fbuf, uint64((*TPy_buffer)(unsafe.Pointer(packed_ip)).Flen1))
 	XPyBuffer_Release(tls, packed_ip)
-	return XPyUnicode_FromString(tls, libc.Xinet_ntoa(tls, **(**Tin_addr)(__ccgo_up(bp))))
+	return XPyUnicode_FromString(tls, _ccgo_inet_ntoa(tls, **(**Tin_addr)(__ccgo_up(bp))))
 }
 
 func _socket_inet_pton(tls *libc.TLS, self uintptr, args uintptr) (r uintptr) {
@@ -84459,6 +84527,14 @@ const MPSWIZB_DISABLEDFINISH = 8
 const MPSWIZB_FINISH = 4
 
 const MPSWIZB_NEXT = 2
+
+const MPy_AcceptEx = "ccgo_AcceptEx"
+
+const MPy_ConnectEx = "ccgo_ConnectEx"
+
+const MPy_DisconnectEx = "ccgo_DisconnectEx"
+
+const MPy_TransmitFile = "ccgo_TransmitFile"
 
 const MQID_SYNC = 4294967295
 
@@ -92734,117 +92810,7 @@ func _SetFromWindowsErr(tls *libc.TLS, err TDWORD) (r uintptr) {
 	return XPyErr_SetExcFromWindowsErr(tls, exception_type, int32(err))
 }
 
-var _Py_AcceptEx = uintptr(0)
-
-func init() {
-	p := unsafe.Pointer(&_Py_AcceptEx)
-	*(*uintptr)(unsafe.Add(p, 0)) = libc.UintptrFromInt32(0)
-}
-
-var _Py_ConnectEx = uintptr(0)
-
-func init() {
-	p := unsafe.Pointer(&_Py_ConnectEx)
-	*(*uintptr)(unsafe.Add(p, 0)) = libc.UintptrFromInt32(0)
-}
-
-var _Py_DisconnectEx = uintptr(0)
-
-func init() {
-	p := unsafe.Pointer(&_Py_DisconnectEx)
-	*(*uintptr)(unsafe.Add(p, 0)) = libc.UintptrFromInt32(0)
-}
-
-var _Py_TransmitFile = uintptr(0)
-
-func init() {
-	p := unsafe.Pointer(&_Py_TransmitFile)
-	*(*uintptr)(unsafe.Add(p, 0)) = libc.UintptrFromInt32(0)
-}
-
 func _initialize_function_pointers(tls *libc.TLS) (r int32) {
-	bp := tls.Alloc(80)
-	defer tls.Free(80)
-	var s TSOCKET
-	var _ TGUID
-	var _ TGUID
-	var _ TGUID
-	var _ TGUID
-	var _ TDWORD
-	_ = s
-	**(**TGUID)(__ccgo_up(bp)) = TGUID{
-		FData1: uint32(0xb5367df1),
-		FData2: uint16(0xcbac),
-		FData3: uint16(0x11cf),
-		FData4: [8]uint8{
-			0: uint8(0x95),
-			1: uint8(0xca),
-			3: uint8(0x80),
-			4: uint8(0x5f),
-			5: uint8(0x48),
-			6: uint8(0xa1),
-			7: uint8(0x92),
-		},
-	}
-	**(**TGUID)(__ccgo_up(bp + 16)) = TGUID{
-		FData1: uint32(0x25a207b9),
-		FData2: uint16(0xddf3),
-		FData3: uint16(0x4660),
-		FData4: [8]uint8{
-			0: uint8(0x8e),
-			1: uint8(0xe9),
-			2: uint8(0x76),
-			3: uint8(0xe5),
-			4: uint8(0x8c),
-			5: uint8(0x74),
-			6: uint8(0x06),
-			7: uint8(0x3e),
-		},
-	}
-	**(**TGUID)(__ccgo_up(bp + 32)) = TGUID{
-		FData1: uint32(0x7fda2e11),
-		FData2: uint16(0x8630),
-		FData3: uint16(0x436f),
-		FData4: [8]uint8{
-			0: uint8(0xa0),
-			1: uint8(0x31),
-			2: uint8(0xf5),
-			3: uint8(0x36),
-			4: uint8(0xa6),
-			5: uint8(0xee),
-			6: uint8(0xc1),
-			7: uint8(0x57),
-		},
-	}
-	**(**TGUID)(__ccgo_up(bp + 48)) = TGUID{
-		FData1: uint32(0xb5367df0),
-		FData2: uint16(0xcbac),
-		FData3: uint16(0x11cf),
-		FData4: [8]uint8{
-			0: uint8(0x95),
-			1: uint8(0xca),
-			3: uint8(0x80),
-			4: uint8(0x5f),
-			5: uint8(0x48),
-			6: uint8(0xa1),
-			7: uint8(0x92),
-		},
-	}
-	if _Py_AcceptEx != libc.UintptrFromInt32(0) && _Py_ConnectEx != libc.UintptrFromInt32(0) && _Py_DisconnectEx != libc.UintptrFromInt32(0) && _Py_TransmitFile != libc.UintptrFromInt32(0) {
-
-		return 0
-	}
-	s = libc.Xsocket(tls, int32(2), int32(1), int32(6))
-	if s == uint64(^libc.Int32FromInt32(0)) {
-		_SetFromWindowsErr(tls, uint32(libc.XWSAGetLastError(tls)))
-		return -int32(1)
-	}
-	if !(-libc.Int32FromInt32(1) != _WSAIoctl(tls, s, uint32(libc.Uint32FromUint32(0x80000000)|libc.Uint32FromInt32(0x40000000)|uint32(libc.Int32FromInt32(MIOC_WS2))|uint32(libc.Int32FromInt32(6))), bp, uint32(16), uintptr(unsafe.Pointer(&_Py_AcceptEx)), uint32(8), bp+64, libc.UintptrFromInt32(0), libc.UintptrFromInt32(0))) || !(-libc.Int32FromInt32(1) != _WSAIoctl(tls, s, uint32(libc.Uint32FromUint32(0x80000000)|libc.Uint32FromInt32(0x40000000)|uint32(libc.Int32FromInt32(MIOC_WS2))|uint32(libc.Int32FromInt32(6))), bp+16, uint32(16), uintptr(unsafe.Pointer(&_Py_ConnectEx)), uint32(8), bp+64, libc.UintptrFromInt32(0), libc.UintptrFromInt32(0))) || !(-libc.Int32FromInt32(1) != _WSAIoctl(tls, s, uint32(libc.Uint32FromUint32(0x80000000)|libc.Uint32FromInt32(0x40000000)|uint32(libc.Int32FromInt32(MIOC_WS2))|uint32(libc.Int32FromInt32(6))), bp+32, uint32(16), uintptr(unsafe.Pointer(&_Py_DisconnectEx)), uint32(8), bp+64, libc.UintptrFromInt32(0), libc.UintptrFromInt32(0))) || !(-libc.Int32FromInt32(1) != _WSAIoctl(tls, s, uint32(libc.Uint32FromUint32(0x80000000)|libc.Uint32FromInt32(0x40000000)|uint32(libc.Int32FromInt32(MIOC_WS2))|uint32(libc.Int32FromInt32(6))), bp+48, uint32(16), uintptr(unsafe.Pointer(&_Py_TransmitFile)), uint32(8), bp+64, libc.UintptrFromInt32(0), libc.UintptrFromInt32(0))) {
-		libc.Xclosesocket(tls, s)
-		_SetFromWindowsErr(tls, uint32(libc.XWSAGetLastError(tls)))
-		return -int32(1)
-	}
-	libc.Xclosesocket(tls, s)
 	return 0
 }
 
@@ -93041,21 +93007,21 @@ func __overlapped_BindLocal_impl(tls *libc.TLS, module uintptr, Socket THANDLE, 
 		(**(**Tsockaddr_in)(__ccgo_up(bp))).Fsin_family = int16(2)
 		(**(**Tsockaddr_in)(__ccgo_up(bp))).Fsin_port = uint16(0)
 		*(*Tu_long)(unsafe.Pointer(bp + 4)) = libc.Uint32FromInt32(0x00000000)
-		ret = libc.BoolInt32(libc.Xbind(tls, uint64(Socket), bp, int32(16)) != -int32(1))
+		ret = libc.BoolInt32(_ccgo_bind(tls, uint64(Socket), bp, int32(16)) != -int32(1))
 	} else {
 		if Family == int32(MAF_INET6) {
 			libc.Xmemset(tls, bp+16, 0, uint64(28))
 			(**(**Tsockaddr_in6)(__ccgo_up(bp + 16))).Fsin6_family = int16(MAF_INET6)
 			(**(**Tsockaddr_in6)(__ccgo_up(bp + 16))).Fsin6_port = uint16(0)
 			(**(**Tsockaddr_in6)(__ccgo_up(bp + 16))).Fsin6_addr = _ccgo_in6addr_any
-			ret = libc.BoolInt32(libc.Xbind(tls, uint64(Socket), bp+16, int32(28)) != -int32(1))
+			ret = libc.BoolInt32(_ccgo_bind(tls, uint64(Socket), bp+16, int32(28)) != -int32(1))
 		} else {
 			XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+231346)
 			return libc.UintptrFromInt32(0)
 		}
 	}
 	if !(ret != 0) {
-		return _SetFromWindowsErr(tls, uint32(libc.XWSAGetLastError(tls)))
+		return _SetFromWindowsErr(tls, uint32(_ccgo_WSAGetLastError(tls)))
 	}
 	return uintptr(unsafe.Pointer(&X_Py_NoneStruct))
 }
@@ -93279,7 +93245,7 @@ func _Overlapped_dealloc(tls *libc.TLS, op2 uintptr) {
 		if _CancelIoEx(tls, (*TOverlappedObject)(unsafe.Pointer(self)).Fhandle, self+16) != 0 {
 			wait = int32(MTRUE)
 		}
-		ret = libc.XGetOverlappedResult(tls, (*TOverlappedObject)(unsafe.Pointer(self)).Fhandle, self+16, bp, wait)
+		ret = _ccgo_GetOverlappedResult(tls, (*TOverlappedObject)(unsafe.Pointer(self)).Fhandle, self+16, bp, wait)
 		XPyEval_RestoreThread(tls, _save)
 		if ret != 0 {
 			v1 = uint32(0)
@@ -93450,7 +93416,7 @@ func __overlapped_Overlapped_getresult_impl(tls *libc.TLS, self1 uintptr, wait T
 		return libc.UintptrFromInt32(0)
 	}
 	_save = XPyEval_SaveThread(tls)
-	ret = libc.XGetOverlappedResult(tls, (*TOverlappedObject)(unsafe.Pointer(self1)).Fhandle, self1+16, bp, wait)
+	ret = _ccgo_GetOverlappedResult(tls, (*TOverlappedObject)(unsafe.Pointer(self1)).Fhandle, self1+16, bp, wait)
 	XPyEval_RestoreThread(tls, _save)
 	if ret != 0 {
 		v2 = uint32(0)
@@ -93815,7 +93781,7 @@ func _do_WSARecv(tls *libc.TLS, self uintptr, handle THANDLE, bufstart uintptr, 
 	ret = _WSARecv(tls, uint64(handle), bp+8, uint32(1), bp+4, bp, self+16, libc.UintptrFromInt32(0))
 	XPyEval_RestoreThread(tls, _save)
 	if ret < 0 {
-		v2 = int32(libc.XWSAGetLastError(tls))
+		v2 = int32(_ccgo_WSAGetLastError(tls))
 	} else {
 		v2 = 0
 	}
@@ -93953,7 +93919,7 @@ func __overlapped_Overlapped_WSASend_impl(tls *libc.TLS, self uintptr, handle TH
 	ret = _WSASend(tls, uint64(handle), bp+8, uint32(1), bp, flags, self+16, libc.UintptrFromInt32(0))
 	XPyEval_RestoreThread(tls, _save)
 	if ret < 0 {
-		v2 = int32(libc.XWSAGetLastError(tls))
+		v2 = int32(_ccgo_WSAGetLastError(tls))
 	} else {
 		v2 = 0
 	}
@@ -93998,12 +93964,12 @@ func __overlapped_Overlapped_AcceptEx_impl(tls *libc.TLS, self uintptr, ListenSo
 	v1 = buf + 32
 	goto _2
 _2:
-	ret = (*(*func(*libc.TLS, TSOCKET, TSOCKET, TPVOID, TDWORD, TDWORD, TDWORD, TLPDWORD, TLPOVERLAPPED) TWINBOOL)(unsafe.Pointer(&struct{ uintptr }{_Py_AcceptEx})))(tls, uint64(ListenSocket), uint64(AcceptSocket), v1, uint32(0), size, size, bp, self+16)
+	ret = _ccgo_AcceptEx(tls, uint64(ListenSocket), uint64(AcceptSocket), v1, uint32(0), size, size, bp, self+16)
 	XPyEval_RestoreThread(tls, _save)
 	if ret != 0 {
 		v4 = 0
 	} else {
-		v4 = int32(libc.XWSAGetLastError(tls))
+		v4 = int32(_ccgo_WSAGetLastError(tls))
 	}
 	v3 = uint32(v4)
 	err = v3
@@ -94050,7 +94016,7 @@ _2:
 		}
 		(*TSOCKADDR)(unsafe.Pointer(Address)).Fsa_family = uint16(2)
 		if _WSAStringToAddressW(tls, Host, int32(2), libc.UintptrFromInt32(0), Address, bp) < 0 {
-			_SetFromWindowsErr(tls, uint32(libc.XWSAGetLastError(tls)))
+			_SetFromWindowsErr(tls, uint32(_ccgo_WSAGetLastError(tls)))
 			**(**int32)(__ccgo_up(bp)) = -int32(1)
 		} else {
 			(*TSOCKADDR_IN)(unsafe.Pointer(Address)).Fsin_port = libc.Xhtons(tls, **(**uint16)(__ccgo_up(bp + 16)))
@@ -94067,7 +94033,7 @@ _2:
 		}
 		(*TSOCKADDR)(unsafe.Pointer(Address)).Fsa_family = uint16(MAF_INET6)
 		if _WSAStringToAddressW(tls, Host, int32(MAF_INET6), libc.UintptrFromInt32(0), Address, bp) < 0 {
-			_SetFromWindowsErr(tls, uint32(libc.XWSAGetLastError(tls)))
+			_SetFromWindowsErr(tls, uint32(_ccgo_WSAGetLastError(tls)))
 			**(**int32)(__ccgo_up(bp)) = -int32(1)
 		} else {
 			(*TSOCKADDR_IN6)(unsafe.Pointer(Address)).Fsin6_port = libc.Xhtons(tls, **(**uint16)(__ccgo_up(bp + 16)))
@@ -94106,12 +94072,12 @@ func __overlapped_Overlapped_ConnectEx_impl(tls *libc.TLS, self uintptr, Connect
 	(*TOverlappedObject)(unsafe.Pointer(self)).Ftype1 = uint32(ETYPE_CONNECT)
 	(*TOverlappedObject)(unsafe.Pointer(self)).Fhandle = ConnectSocket
 	_save = XPyEval_SaveThread(tls)
-	ret = (*(*func(*libc.TLS, TSOCKET, uintptr, int32, TPVOID, TDWORD, TLPDWORD, TLPOVERLAPPED) TWINBOOL)(unsafe.Pointer(&struct{ uintptr }{_Py_ConnectEx})))(tls, uint64(ConnectSocket), Address, Length, libc.UintptrFromInt32(0), uint32(0), libc.UintptrFromInt32(0), self+16)
+	ret = _ccgo_ConnectEx(tls, uint64(ConnectSocket), Address, Length, libc.UintptrFromInt32(0), uint32(0), libc.UintptrFromInt32(0), self+16)
 	XPyEval_RestoreThread(tls, _save)
 	if ret != 0 {
 		v2 = 0
 	} else {
-		v2 = int32(libc.XWSAGetLastError(tls))
+		v2 = int32(_ccgo_WSAGetLastError(tls))
 	}
 	v1 = uint32(v2)
 	err = v1
@@ -94142,12 +94108,12 @@ func __overlapped_Overlapped_DisconnectEx_impl(tls *libc.TLS, self uintptr, Sock
 	(*TOverlappedObject)(unsafe.Pointer(self)).Ftype1 = uint32(ETYPE_DISCONNECT)
 	(*TOverlappedObject)(unsafe.Pointer(self)).Fhandle = Socket
 	_save = XPyEval_SaveThread(tls)
-	ret = (*(*func(*libc.TLS, TSOCKET, TLPOVERLAPPED, TDWORD, TDWORD) TWINBOOL)(unsafe.Pointer(&struct{ uintptr }{_Py_DisconnectEx})))(tls, uint64(Socket), self+16, flags, uint32(0))
+	ret = _ccgo_DisconnectEx(tls, uint64(Socket), self+16, flags, uint32(0))
 	XPyEval_RestoreThread(tls, _save)
 	if ret != 0 {
 		v2 = 0
 	} else {
-		v2 = int32(libc.XWSAGetLastError(tls))
+		v2 = int32(_ccgo_WSAGetLastError(tls))
 	}
 	v1 = uint32(v2)
 	err = v1
@@ -94180,12 +94146,12 @@ func __overlapped_Overlapped_TransmitFile_impl(tls *libc.TLS, self uintptr, Sock
 	(*TOverlappedObject)(unsafe.Pointer(self)).Foverlapped.F__ccgo2_16.F__ccgo0_0.FOffset = offset
 	(*TOverlappedObject)(unsafe.Pointer(self)).Foverlapped.F__ccgo2_16.F__ccgo0_0.FOffsetHigh = offset_high
 	_save = XPyEval_SaveThread(tls)
-	ret = (*(*func(*libc.TLS, TSOCKET, THANDLE, TDWORD, TDWORD, TLPOVERLAPPED, TLPTRANSMIT_FILE_BUFFERS, TDWORD) TWINBOOL)(unsafe.Pointer(&struct{ uintptr }{_Py_TransmitFile})))(tls, uint64(Socket), File, count_to_write, count_per_send, self+16, libc.UintptrFromInt32(0), flags)
+	ret = _ccgo_TransmitFile(tls, uint64(Socket), File, count_to_write, count_per_send, self+16, libc.UintptrFromInt32(0), flags)
 	XPyEval_RestoreThread(tls, _save)
 	if ret != 0 {
 		v2 = 0
 	} else {
-		v2 = int32(libc.XWSAGetLastError(tls))
+		v2 = int32(_ccgo_WSAGetLastError(tls))
 	}
 	v1 = uint32(v2)
 	err = v1
@@ -94423,7 +94389,7 @@ func __overlapped_WSAConnect_impl(tls *libc.TLS, module uintptr, ConnectSocket T
 	if err == 0 {
 		return uintptr(unsafe.Pointer(&X_Py_NoneStruct))
 	} else {
-		return _SetFromWindowsErr(tls, uint32(libc.XWSAGetLastError(tls)))
+		return _SetFromWindowsErr(tls, uint32(_ccgo_WSAGetLastError(tls)))
 	}
 	return r
 }
@@ -94463,7 +94429,7 @@ func __overlapped_Overlapped_WSASendTo_impl(tls *libc.TLS, self uintptr, handle 
 	ret = _WSASendTo(tls, uint64(handle), bp+32, uint32(1), bp+28, flags, Address, AddressLength, self+16, libc.UintptrFromInt32(0))
 	XPyEval_RestoreThread(tls, _save)
 	if ret == -int32(1) {
-		v2 = int32(libc.XWSAGetLastError(tls))
+		v2 = int32(_ccgo_WSAGetLastError(tls))
 	} else {
 		v2 = 0
 	}
@@ -94531,7 +94497,7 @@ _3:
 	ret = _WSARecvFrom(tls, uint64(handle), bp+8, uint32(1), bp+4, bp, self+64+16, self+64+44, self+16, libc.UintptrFromInt32(0))
 	XPyEval_RestoreThread(tls, _save)
 	if ret < 0 {
-		v5 = int32(libc.XWSAGetLastError(tls))
+		v5 = int32(_ccgo_WSAGetLastError(tls))
 	} else {
 		v5 = 0
 	}
@@ -94594,7 +94560,7 @@ func __overlapped_Overlapped_WSARecvFromInto_impl(tls *libc.TLS, self uintptr, h
 	ret = _WSARecvFrom(tls, uint64(handle), bp+8, uint32(1), bp+4, bp, self+64+88, self+64+116, self+16, libc.UintptrFromInt32(0))
 	XPyEval_RestoreThread(tls, _save)
 	if ret < 0 {
-		v2 = int32(libc.XWSAGetLastError(tls))
+		v2 = int32(_ccgo_WSAGetLastError(tls))
 	} else {
 		v2 = 0
 	}
@@ -96583,7 +96549,7 @@ func _winsound_MessageBeep_impl(tls *libc.TLS, module uintptr, type1 int32) (r u
 	var ok TBOOL
 	_, _ = _save, ok
 	_save = XPyEval_SaveThread(tls)
-	ok = libc.XMessageBeep(tls, uint32(type1))
+	ok = _ccgo_MessageBeep(tls, uint32(type1))
 	XPyEval_RestoreThread(tls, _save)
 	if !(ok != 0) {
 		XPyErr_SetExcFromWindowsErr(tls, XPyExc_RuntimeError, 0)
@@ -97753,7 +97719,7 @@ func _faulthandler_fatal_error(tls *libc.TLS, signum int32) {
 		X_Py_write_noraise(tls, fd, __ccgo_ts+233621, libc.Xstrlen(tls, __ccgo_ts+233621))
 	} else {
 		**(**[23]int8)(__ccgo_up(bp)) = [23]int8{}
-		libc.X__builtin_snprintf(tls, bp, uint64(23), __ccgo_ts+17653, libc.VaList(bp+32, signum))
+		_ccgo___builtin_snprintf(tls, bp, uint64(23), __ccgo_ts+17653, libc.VaList(bp+32, signum))
 		X_Py_write_noraise(tls, fd, __ccgo_ts+233624, libc.Xstrlen(tls, __ccgo_ts+233624))
 		X_Py_write_noraise(tls, fd, bp, libc.Xstrlen(tls, bp))
 		X_Py_write_noraise(tls, fd, __ccgo_ts+233621, libc.Xstrlen(tls, __ccgo_ts+233621))
@@ -97767,7 +97733,7 @@ func _faulthandler_fatal_error(tls *libc.TLS, signum int32) {
 		return
 	}
 
-	libc.Xraise(tls, signum)
+	_ccgo_raise(tls, signum)
 }
 
 func _faulthandler_ignore_exception(tls *libc.TLS, code TDWORD) (r int32) {
@@ -98303,7 +98269,7 @@ func _faulthandler_raise_sigsegv(tls *libc.TLS) {
 	_faulthandler_suppress_crash_report(tls)
 
 	for int32(1) != 0 {
-		libc.Xraise(tls, int32(MSIGSEGV))
+		_ccgo_raise(tls, int32(MSIGSEGV))
 	}
 }
 
@@ -98365,14 +98331,14 @@ func _faulthandler_sigfpe(tls *libc.TLS, self uintptr, _unused_dummy uintptr) (r
 	y = 0
 	z = x / y
 
-	libc.Xraise(tls, int32(MSIGFPE))
+	_ccgo_raise(tls, int32(MSIGFPE))
 
 	return XPyLong_FromLong(tls, z)
 }
 
 func _faulthandler_sigabrt(tls *libc.TLS, self uintptr, args uintptr) (r uintptr) {
 	_faulthandler_suppress_crash_report(tls)
-	libc.Xabort(tls)
+	_ccgo_abort(tls)
 	return uintptr(unsafe.Pointer(&X_Py_NoneStruct))
 }
 
@@ -98386,7 +98352,7 @@ func _faulthandler_raise_exception(tls *libc.TLS, self uintptr, args uintptr) (r
 		return libc.UintptrFromInt32(0)
 	}
 	_faulthandler_suppress_crash_report(tls)
-	libc.XRaiseException(tls, uint32(**(**uint32)(__ccgo_up(bp))), uint32(**(**uint32)(__ccgo_up(bp + 4))), uint32(0), libc.UintptrFromInt32(0))
+	_ccgo_RaiseException(tls, uint32(**(**uint32)(__ccgo_up(bp))), uint32(**(**uint32)(__ccgo_up(bp + 4))), uint32(0), libc.UintptrFromInt32(0))
 	return uintptr(unsafe.Pointer(&X_Py_NoneStruct))
 }
 
@@ -100849,7 +100815,7 @@ func _convertenviron(tls *libc.TLS) (r uintptr) {
 	}
 
 	_ccgo__wgetenv(tls, __ccgo_ts+148384)
-	e = **(**uintptr)(__ccgo_up(libc.X__p__wenviron(tls)))
+	e = **(**uintptr)(__ccgo_up(_ccgo___p__wenviron(tls)))
 	if e == libc.UintptrFromInt32(0) {
 		return d
 	}
@@ -101122,7 +101088,7 @@ func _win32_wchdir(tls *libc.TLS, path TLPCWSTR) (r TBOOL) {
 			return MFALSE
 		}
 	}
-	is_unc_like_path = libc.BoolInt32(libc.Xwcsncmp(tls, new_path, __ccgo_ts+236245, uint64(2)) == 0 || libc.Xwcsncmp(tls, new_path, __ccgo_ts+236251, uint64(2)) == 0)
+	is_unc_like_path = libc.BoolInt32(_ccgo_wcsncmp(tls, new_path, __ccgo_ts+236245, uint64(2)) == 0 || _ccgo_wcsncmp(tls, new_path, __ccgo_ts+236251, uint64(2)) == 0)
 	if !(is_unc_like_path != 0) {
 		(**(**[4]Twchar_t)(__ccgo_up(bp + 520)))[int32(1)] = **(**Twchar_t)(__ccgo_up(new_path))
 		result = _SetEnvironmentVariableW(tls, bp+520, new_path)
@@ -107459,7 +107425,7 @@ func _os_getlogin_impl(tls *libc.TLS, module uintptr) (r uintptr) {
 	_ = result
 	result = libc.UintptrFromInt32(0)
 	**(**TDWORD)(__ccgo_up(bp + 516)) = uint32(libc.Uint64FromInt64(514) / libc.Uint64FromInt64(2))
-	if libc.XGetUserNameW(tls, bp, bp+516) != 0 {
+	if _ccgo_GetUserNameW(tls, bp, bp+516) != 0 {
 
 		result = XPyUnicode_FromWideChar(tls, bp, int64(**(**TDWORD)(__ccgo_up(bp + 516))-uint32(1)))
 	} else {
@@ -107597,7 +107563,7 @@ func _os_readlink_impl(tls *libc.TLS, module uintptr, path uintptr, dir_fd int32
 		}
 	}
 	if name != 0 {
-		if nameLen > int64(4) && libc.Xwcsncmp(tls, name, __ccgo_ts+238864, uint64(4)) == 0 {
+		if nameLen > int64(4) && _ccgo_wcsncmp(tls, name, __ccgo_ts+238864, uint64(4)) == 0 {
 
 			**(**Twchar_t)(__ccgo_up(name + 1*2)) = uint16('\\')
 		}
@@ -107999,7 +107965,7 @@ func _os_dup2_impl(tls *libc.TLS, module uintptr, fd int32, fd2 int32, inheritab
 	res = 0
 
 	_save = XPyEval_SaveThread(tls)
-	res = libc.Xdup2(tls, fd, fd2)
+	res = _ccgo_dup2(tls, fd, fd2)
 	XPyEval_RestoreThread(tls, _save)
 	if res < 0 {
 		_posix_error(tls)
@@ -108310,7 +108276,7 @@ _9:
 		return libc.UintptrFromInt32(0)
 	}
 
-	err = libc.X_wputenv(tls, env)
+	err = _ccgo__wputenv(tls, env)
 	if err != 0 {
 		_posix_error(tls)
 		XPyMem_Free(tls, env)
@@ -108575,7 +108541,7 @@ func _setup_confname_tables(tls *libc.TLS, module uintptr) (r int32) {
 
 func _os_abort_impl(tls *libc.TLS, module uintptr) (r uintptr) {
 
-	libc.Xabort(tls)
+	_ccgo_abort(tls)
 
 	return r
 }
@@ -112417,6 +112383,40 @@ func _os_spawnv(tls *libc.TLS, module uintptr, args uintptr, nargs TPy_ssize_t) 
 	}
 	argv = **(**uintptr)(__ccgo_up(args + 2*8))
 	return_value = _os_spawnv_impl(tls, module, mode, bp, argv)
+	goto exit
+exit:
+	;
+	_path_cleanup(tls, bp)
+	return return_value
+}
+
+func _os_spawnve(tls *libc.TLS, module uintptr, args uintptr, nargs TPy_ssize_t) (r uintptr) {
+	bp := tls.Alloc(96)
+	defer tls.Free(96)
+	var argv, env, return_value uintptr
+	var mode int32
+	var _ Tpath_t
+	_, _, _, _ = argv, env, mode, return_value
+	return_value = libc.UintptrFromInt32(0)
+	**(**Tpath_t)(__ccgo_up(bp)) = Tpath_t{
+		Ffunction_name: __ccgo_ts + 240061,
+		Fargument_name: __ccgo_ts + 28662,
+		Fmake_wide:     int32(1),
+		Ffd:            -int32(1),
+	}
+	if !(libc.Bool(!false) && int64(libc.Int32FromInt32(4)) <= nargs && nargs <= int64(libc.Int32FromInt32(4)) || X_PyArg_CheckPositional(tls, __ccgo_ts+240061, nargs, int64(libc.Int32FromInt32(4)), int64(libc.Int32FromInt32(4))) != 0) {
+		goto exit
+	}
+	mode = XPyLong_AsInt(tls, **(**uintptr)(__ccgo_up(args)))
+	if mode == -int32(1) && XPyErr_Occurred(tls) != 0 {
+		goto exit
+	}
+	if !(_path_converter(tls, **(**uintptr)(__ccgo_up(args + 1*8)), bp) != 0) {
+		goto exit
+	}
+	argv = **(**uintptr)(__ccgo_up(args + 2*8))
+	env = **(**uintptr)(__ccgo_up(args + 3*8))
+	return_value = _os_spawnve_impl(tls, module, mode, bp, argv, env)
 	goto exit
 exit:
 	;

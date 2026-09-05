@@ -466,3 +466,39 @@ diff --color -ruN a/Modules/signalmodule.c b/Modules/signalmodule.c
  #  include "socketmodule.h"       // SOCKET_T
 +#  endif
  #endif
+
+overlapped.c: native Winsock extension pointers are not ccgo Go function
+pointers. Give the transpiled build direct shim symbols while retaining
+CPython's pointer-loading path for the native helper build.
+diff --color -ruN a/Modules/overlapped.c b/Modules/overlapped.c
+--- a/Modules/overlapped.c
++++ b/Modules/overlapped.c
+@@ -164,0 +165,26 @@
++#if defined(MS_WINDOWS) && defined(CCGO) && defined(__CCGO__)
++/* Native Winsock extension pointers cannot be called as ccgo Go function
++ * pointers.  Give ccgo ordinary undefined symbols that libpython implements
++ * by crossing the syscall boundary explicitly.  The native helper build does
++ * not define __CCGO__ and retains CPython's normal pointer-loading path. */
++extern BOOL PASCAL ccgo_AcceptEx(
++    SOCKET, SOCKET, PVOID, DWORD, DWORD, DWORD, LPDWORD, LPOVERLAPPED);
++extern BOOL PASCAL ccgo_ConnectEx(
++    SOCKET, const struct sockaddr *, int, PVOID, DWORD, LPDWORD,
++    LPOVERLAPPED);
++extern BOOL PASCAL ccgo_DisconnectEx(SOCKET, LPOVERLAPPED, DWORD, DWORD);
++extern BOOL PASCAL ccgo_TransmitFile(
++    SOCKET, HANDLE, DWORD, DWORD, LPOVERLAPPED,
++    LPTRANSMIT_FILE_BUFFERS, DWORD);
++
++#define Py_AcceptEx ccgo_AcceptEx
++#define Py_ConnectEx ccgo_ConnectEx
++#define Py_DisconnectEx ccgo_DisconnectEx
++#define Py_TransmitFile ccgo_TransmitFile
++
++static int
++initialize_function_pointers(void)
++{
++    return 0;
++}
++#else
+@@ -213,0 +240 @@
++#endif

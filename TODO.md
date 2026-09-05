@@ -20,9 +20,13 @@ is parked here.
 - Cross-platform dedupe of identical generated declarations with
   modernc.org/undup (the repo grows ~37MB per target).
 
-- Branch `windows-net` (pushed) holds the start of the Winsock work: CI
-  network probes; the socket shims themselves are still to be written
-  (modernc TODOs: socket/bind/connect/listen/accept/recv/send/select/...).
+- Windows (both arches, 38/71 modules fully pass): remaining groups are
+  locale/CRT fidelity (setlocale restore, tm_gmtoff), missing optional
+  modules (_ctypes, _multiprocessing, _testcapi, _testconsole), Win32 file /
+  errno / process semantics in test_os/pathlib/shutil/tempfile/zipfile,
+  code-page codecs (CP932...), mmap resize, test_signal exits with
+  0xc0000409, and modules exceeding the 90 s budget (math, io, hashlib,
+  builtin, asyncio).
 
 ## Interpreter gaps
 

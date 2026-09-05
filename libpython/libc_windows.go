@@ -3,6 +3,7 @@
 package libpython
 
 import (
+	"fmt"
 	"math"
 	"math/bits"
 	"os"
@@ -29,12 +30,15 @@ const (
 	errorInvalidParam    = 87
 	errorCallNotImpl     = 120
 	errorProcNotFound    = 127
+	socketError          = int32(-1)
+	invalidSocket        = ^uint64(0)
 )
 
 var (
 	dllKernel32 = windows.NewLazySystemDLL("kernel32.dll")
 	dllAdvapi32 = windows.NewLazySystemDLL("advapi32.dll")
 	dllVersion  = windows.NewLazySystemDLL("version.dll")
+	dllUser32   = windows.NewLazySystemDLL("user32.dll")
 	dllWS2      = windows.NewLazySystemDLL("ws2_32.dll")
 	dllIPHlp    = windows.NewLazySystemDLL("iphlpapi.dll")
 	dllRPCRT4   = windows.NewLazySystemDLL("rpcrt4.dll")
@@ -332,6 +336,38 @@ func _ccgo_wcschr(tls *libc.TLS, src uintptr, value uint16) uintptr {
 	}
 }
 
+func _ccgo_wcsncmp(tls *libc.TLS, left, right uintptr, count uint64) int32 {
+	for index := uint64(0); index < count; index++ {
+		offset := uintptr(index * 2)
+		leftValue := *(*uint16)(unsafe.Pointer(left + offset))
+		rightValue := *(*uint16)(unsafe.Pointer(right + offset))
+		if leftValue < rightValue {
+			return -1
+		}
+		if leftValue > rightValue {
+			return 1
+		}
+		if leftValue == 0 {
+			return 0
+		}
+	}
+	return 0
+}
+
+// CPython's tokenizer uses a single-byte pushback after probing source
+// encodings. modernc's Windows ungetc is an unconditional TODO; its FILE
+// implementation is unbuffered, so rewinding by one byte provides the exact
+// behavior needed by these readers.
+func _ccgo_ungetc(tls *libc.TLS, c int32, stream uintptr) int32 {
+	if c == -1 {
+		return -1
+	}
+	if libc.Xfseek(tls, stream, -1, 1) != 0 {
+		return -1
+	}
+	return int32(byte(c))
+}
+
 func _ccgo_OutputDebugStringW(tls *libc.TLS, text uintptr) {
 	// Debugger output is advisory. Avoid modernc's TODO panic while keeping
 	// fatal-error reporting on the process' real stderr intact.
@@ -385,6 +421,10 @@ func _ccgo___builtin_clzl(tls *libc.TLS, value uint32) int32 {
 var (
 	windowsWideStringMu    sync.Mutex
 	windowsWideStringCache = map[string]uintptr{}
+	windowsEnvironmentMu   sync.Mutex
+	windowsEnvironmentKey  string
+	windowsEnvironmentList []uintptr
+	windowsEnvironment     uintptr
 )
 
 func windowsStableWideString(tls *libc.TLS, value string) uintptr {
@@ -419,6 +459,61 @@ func _ccgo__wgetenv(tls *libc.TLS, name uintptr) uintptr {
 		return 0
 	}
 	return windowsStableWideString(tls, value)
+}
+
+// modernc's bootWinEnviron omits the required trailing null pointer. Reading
+// its _wenviron can therefore walk beyond the Go slice, which is especially
+// visible on arm64 when the next backing-array slot is nonzero. Publish an
+// explicitly terminated, process-environment-backed array instead.
+func _ccgo___p__wenviron(tls *libc.TLS) uintptr {
+	entries := os.Environ()
+	key := strings.Join(entries, "\x00")
+
+	windowsEnvironmentMu.Lock()
+	defer windowsEnvironmentMu.Unlock()
+	if windowsEnvironment == 0 || key != windowsEnvironmentKey {
+		list := make([]uintptr, 0, len(entries)+1)
+		for _, entry := range entries {
+			list = append(list, windowsStableWideString(tls, entry))
+		}
+		list = append(list, 0)
+		windowsEnvironmentList = list
+		windowsEnvironment = uintptr(unsafe.Pointer(&windowsEnvironmentList[0]))
+		windowsEnvironmentKey = key
+	}
+	return uintptr(unsafe.Pointer(&windowsEnvironment))
+}
+
+func _ccgo__wputenv(tls *libc.TLS, environment uintptr) int32 {
+	if environment == 0 {
+		setErrno(tls, int32(errno.EINVAL))
+		return -1
+	}
+	text := wideString(environment)
+	separator := strings.IndexByte(text, '=')
+	if separator == 0 && len(text) > 1 {
+		// Windows reserves leading '=' names for drive-current-directory
+		// entries; their assignment delimiter is the next '='.
+		if rest := strings.IndexByte(text[1:], '='); rest >= 0 {
+			separator = rest + 1
+		}
+	}
+	if separator <= 0 {
+		setErrno(tls, int32(errno.EINVAL))
+		return -1
+	}
+	name, value := text[:separator], text[separator+1:]
+	var err error
+	if value == "" {
+		err = os.Unsetenv(name)
+	} else {
+		err = os.Setenv(name, value)
+	}
+	if err != nil {
+		setErrno(tls, int32(errno.EINVAL))
+		return -1
+	}
+	return 0
 }
 
 // modernc's _wopen passes UTF-16 storage to its narrow GoString helper, which
@@ -520,6 +615,12 @@ func moderncFdToFile(fd int32) (*moderncWindowsFile, bool)
 //go:linkname moderncWrapFdHandle modernc.org/libc.wrapFdHandle
 func moderncWrapFdHandle(handle windows.Handle) (uintptr, int32)
 
+//go:linkname moderncAddFile modernc.org/libc.addFile
+func moderncAddFile(handle windows.Handle, fd int32) uintptr
+
+//go:linkname moderncRemoveFile modernc.org/libc.remFile
+func moderncRemoveFile(file *moderncWindowsFile)
+
 func fdHandle(tls *libc.TLS, fd int32) (windows.Handle, bool) {
 	f, ok := moderncFdToFile(fd)
 	if !ok {
@@ -528,6 +629,18 @@ func fdHandle(tls *libc.TLS, fd int32) (windows.Handle, bool) {
 		return 0, false
 	}
 	return f.handle, true
+}
+
+// A modernc Windows descriptor already owns a FILE-like object. fdopen only
+// needs to expose that object's token; the duplicated descriptor passed by
+// CPython gives fclose the expected ownership semantics.
+func _ccgo_fdopen(tls *libc.TLS, fd int32, mode uintptr) uintptr {
+	file, ok := moderncFdToFile(fd)
+	if !ok {
+		setErrno(tls, int32(errno.EBADF))
+		return 0
+	}
+	return file.token
 }
 
 func ___timezone(tls *libc.TLS) uintptr {
@@ -608,6 +721,39 @@ func _dup(tls *libc.TLS, fd int32) int32 {
 	}
 	_, result := moderncWrapFdHandle(duplicate)
 	return result
+}
+
+// modernc's Windows dup2 is an unconditional TODO. DuplicateHandle gives the
+// target descriptor independent ownership, then the private descriptor-table
+// helpers install it at the exact number required by dup2. CPython applies a
+// requested non-inheritable setting immediately after this call.
+func _ccgo_dup2(tls *libc.TLS, oldfd, newfd int32) int32 {
+	if newfd < 0 {
+		setErrno(tls, int32(errno.EBADF))
+		return -1
+	}
+	source, ok := moderncFdToFile(oldfd)
+	if !ok {
+		setErrno(tls, int32(errno.EBADF))
+		return -1
+	}
+	if oldfd == newfd {
+		return newfd
+	}
+
+	current := windows.CurrentProcess()
+	var duplicate windows.Handle
+	if err := windows.DuplicateHandle(current, source.handle, current, &duplicate, 0, true, windows.DUPLICATE_SAME_ACCESS); err != nil {
+		setWinError(tls, err, errorInvalidHandle)
+		setErrno(tls, int32(errno.EBADF))
+		return -1
+	}
+	if target, exists := moderncFdToFile(newfd); exists {
+		moderncRemoveFile(target)
+		_ = windows.CloseHandle(target.handle)
+	}
+	moderncAddFile(duplicate, newfd)
+	return newfd
 }
 
 func _clearerr(tls *libc.TLS, stream uintptr) {
@@ -1251,6 +1397,66 @@ func _ccgo_SetHandleInformation(tls *libc.TLS, handle uintptr, mask, flags uint3
 	return 1
 }
 
+// modernc's Windows GetOverlappedResult is an unconditional TODO panic.
+func _ccgo_GetOverlappedResult(tls *libc.TLS, handle, overlapped, transferred uintptr, wait int32) int32 {
+	err := windows.GetOverlappedResult(
+		windows.Handle(handle),
+		(*windows.Overlapped)(unsafe.Pointer(overlapped)),
+		(*uint32)(unsafe.Pointer(transferred)),
+		wait != 0,
+	)
+	if err != nil {
+		setWinError(tls, err, errorInvalidFunction)
+		return 0
+	}
+	return 1
+}
+
+func _ccgo_CreateFileMappingA(tls *libc.TLS, file, securityAttributes uintptr, protect, maximumSizeHigh, maximumSizeLow uint32, name uintptr) uintptr {
+	result, err := callProc(
+		dllKernel32,
+		"CreateFileMappingA",
+		file,
+		securityAttributes,
+		uintptr(protect),
+		uintptr(maximumSizeHigh),
+		uintptr(maximumSizeLow),
+		name,
+	)
+	if result == 0 {
+		setWinError(tls, err, errorInvalidParam)
+	}
+	return result
+}
+
+func _ccgo_CreateMutexW(tls *libc.TLS, securityAttributes uintptr, initialOwner int32, name uintptr) uintptr {
+	result, err := callProc(dllKernel32, "CreateMutexW", securityAttributes, uintptr(uint32(initialOwner)), name)
+	if result == 0 {
+		setWinError(tls, err, errorInvalidParam)
+	}
+	return result
+}
+
+func _ccgo_ExitProcess(tls *libc.TLS, exitCode uint32) int32 {
+	_, _ = callProc(dllKernel32, "ExitProcess", uintptr(exitCode))
+	return 0
+}
+
+func _ccgo_GetUserNameW(tls *libc.TLS, buffer, size uintptr) int32 {
+	return boolProc(tls, dllAdvapi32, "GetUserNameW", buffer, size)
+}
+
+func _ccgo_RaiseException(tls *libc.TLS, exceptionCode, exceptionFlags, argumentCount uint32, arguments uintptr) {
+	_, _ = callProc(
+		dllKernel32,
+		"RaiseException",
+		uintptr(exceptionCode),
+		uintptr(exceptionFlags),
+		uintptr(argumentCount),
+		arguments,
+	)
+}
+
 func _ccgo_GetShortPathNameW(tls *libc.TLS, path, buffer uintptr, capacity uint32) uint32 {
 	r, err := callProc(dllKernel32, "GetShortPathNameW", path, buffer, uintptr(capacity))
 	if r == 0 {
@@ -1299,7 +1505,13 @@ func _VirtualQuery(tls *libc.TLS, address, buffer uintptr, length uint64) uint64
 }
 
 func _GetCurrentThreadStackLimits(tls *libc.TLS, low, high uintptr) {
-	_, _ = callProc(dllKernel32, "GetCurrentThreadStackLimits", low, high)
+	// Generated C frames live on modernc's TLS stack, not on the native OS
+	// thread stack.  _ccgo_frame_address reports positions in this virtual
+	// range, so CPython's recursion limits must be initialized from the same
+	// range or every comparison is false and recursive C calls can exhaust the
+	// Go goroutine stack.
+	*(*uintptr)(unsafe.Pointer(low)) = virtualCStackTop - uintptr(virtualCStackSize)
+	*(*uintptr)(unsafe.Pointer(high)) = virtualCStackTop
 }
 
 func _SetThreadStackGuarantee(tls *libc.TLS, size uintptr) int32 {
@@ -2072,17 +2284,17 @@ func _ConvertInterfaceLuidToNameW(tls *libc.TLS, luid, name uintptr, length uint
 }
 
 func _if_nametoindex(tls *libc.TLS, name uintptr) uint32 {
-	r, _ := callProc(dllIPHlp, "if_nametoindex", name)
+	r, err := callProc(dllIPHlp, "if_nametoindex", name)
 	if r == 0 {
-		setWSAError(tls)
+		setWSAErrorFrom(tls, err)
 	}
 	return uint32(r)
 }
 
 func _if_indextoname(tls *libc.TLS, index uint32, name uintptr) uintptr {
-	r, _ := callProc(dllIPHlp, "if_indextoname", uintptr(index), name)
+	r, err := callProc(dllIPHlp, "if_indextoname", uintptr(index), name)
 	if r == 0 {
-		setWSAError(tls)
+		setWSAErrorFrom(tls, err)
 	}
 	return r
 }
@@ -2102,14 +2314,465 @@ func _RpcStringFreeW(tls *libc.TLS, text uintptr) int32 {
 	return int32(r)
 }
 
-func setWSAError(tls *libc.TLS) {
-	r, _ := callProc(dllWS2, "WSAGetLastError")
-	value := uint32(r)
+func recordWSAError(tls *libc.TLS, value uint32) {
 	if value == 0 {
 		value = errorInvalidFunction
 	}
 	tls.SetLastError(value)
 	setErrno(tls, int32(value))
+}
+
+func setWSAError(tls *libc.TLS) {
+	r, _ := callProc(dllWS2, "WSAGetLastError")
+	recordWSAError(tls, uint32(r))
+}
+
+// A syscall's returned errno is captured while the goroutine is still on the
+// calling OS thread. Prefer it to a later WSAGetLastError call, which could run
+// after the goroutine has migrated to another thread.
+func setWSAErrorFrom(tls *libc.TLS, err error) {
+	if value := winErrno(err, 0); value != 0 {
+		recordWSAError(tls, value)
+		return
+	}
+	setWSAError(tls)
+}
+
+func socketResult(tls *libc.TLS, result uintptr, err error) int32 {
+	value := int32(result)
+	if value == socketError {
+		setWSAErrorFrom(tls, err)
+	}
+	return value
+}
+
+func _ccgo_WSAGetLastError(tls *libc.TLS) int32 {
+	return int32(tls.GetLastError())
+}
+
+func _ccgo_WSASetLastError(tls *libc.TLS, value int32) {
+	_WSASetLastError(tls, value)
+}
+
+func _ccgo_time(tls *libc.TLS, location uintptr) int64 {
+	now := time.Now().Unix()
+	if location != 0 {
+		*(*int64)(unsafe.Pointer(location)) = now
+	}
+	return now
+}
+
+func _ccgo_RegOpenKeyExW(tls *libc.TLS, key, subkey uintptr, options, access uint32, result uintptr) int32 {
+	err := windows.RegOpenKeyEx(
+		windows.Handle(key),
+		u16ptr(subkey),
+		options,
+		access,
+		(*windows.Handle)(unsafe.Pointer(result)),
+	)
+	if err == nil {
+		return 0
+	}
+	return int32(winErrno(err, errorInvalidFunction))
+}
+
+func registryStatus(dllName string, arguments ...uintptr) int32 {
+	result, _ := callProc(dllAdvapi32, dllName, arguments...)
+	return int32(result)
+}
+
+func _ccgo_RegCloseKey(tls *libc.TLS, key uintptr) int32 {
+	return registryStatus("RegCloseKey", key)
+}
+
+func _ccgo_RegConnectRegistryW(tls *libc.TLS, computerName, key, result uintptr) int32 {
+	return registryStatus("RegConnectRegistryW", computerName, key, result)
+}
+
+func _ccgo_RegCreateKeyExW(tls *libc.TLS, key, subkey uintptr, reserved uint32, class uintptr, options, access uint32, securityAttributes, result, disposition uintptr) int32 {
+	return registryStatus(
+		"RegCreateKeyExW",
+		key,
+		subkey,
+		uintptr(reserved),
+		class,
+		uintptr(options),
+		uintptr(access),
+		securityAttributes,
+		result,
+		disposition,
+	)
+}
+
+func _ccgo_RegDeleteKeyW(tls *libc.TLS, key, subkey uintptr) int32 {
+	return registryStatus("RegDeleteKeyW", key, subkey)
+}
+
+func _ccgo_RegDeleteValueW(tls *libc.TLS, key, value uintptr) int32 {
+	return registryStatus("RegDeleteValueW", key, value)
+}
+
+func _ccgo_RegEnumKeyExW(tls *libc.TLS, key uintptr, index uint32, name, nameLength, reserved, class, classLength, lastWriteTime uintptr) int32 {
+	return registryStatus(
+		"RegEnumKeyExW",
+		key,
+		uintptr(index),
+		name,
+		nameLength,
+		reserved,
+		class,
+		classLength,
+		lastWriteTime,
+	)
+}
+
+func _ccgo_RegEnumValueW(tls *libc.TLS, key uintptr, index uint32, valueName, valueNameLength, reserved, valueType, data, dataLength uintptr) int32 {
+	return registryStatus(
+		"RegEnumValueW",
+		key,
+		uintptr(index),
+		valueName,
+		valueNameLength,
+		reserved,
+		valueType,
+		data,
+		dataLength,
+	)
+}
+
+func _ccgo_RegQueryValueExW(tls *libc.TLS, key, valueName, reserved, valueType, data, dataLength uintptr) int32 {
+	return registryStatus("RegQueryValueExW", key, valueName, reserved, valueType, data, dataLength)
+}
+
+func _ccgo_RegSetValueExW(tls *libc.TLS, key, valueName uintptr, reserved, valueType uint32, data uintptr, dataLength uint32) int32 {
+	return registryStatus(
+		"RegSetValueExW",
+		key,
+		valueName,
+		uintptr(reserved),
+		uintptr(valueType),
+		data,
+		uintptr(dataLength),
+	)
+}
+
+func _ccgo_MessageBeep(tls *libc.TLS, kind uint32) int32 {
+	return boolProc(tls, dllUser32, "MessageBeep", uintptr(kind))
+}
+
+func _ccgo_abort(tls *libc.TLS) {
+	callUCRTWithErrno(tls, "abort")
+}
+
+func _ccgo_raise(tls *libc.TLS, number int32) int32 {
+	signalMu.Lock()
+	handler := windowsSignals[number]
+	signalMu.Unlock()
+
+	switch handler {
+	case 1: // SIG_IGN
+		return 0
+	case 0: // SIG_DFL
+		return int32(callUCRTWithErrno(tls, "raise", uintptr(number)))
+	default:
+		(*(*func(*libc.TLS, int32))(unsafe.Pointer(&struct{ uintptr }{handler})))(tls, number)
+		return 0
+	}
+}
+
+type winsockExtensionProc struct {
+	once    sync.Once
+	address uintptr
+	err     error
+}
+
+var (
+	connectExProc     winsockExtensionProc
+	disconnectExProc  winsockExtensionProc
+	wsaidDisconnectEx = windows.GUID{
+		Data1: 0x7fda2e11,
+		Data2: 0x8630,
+		Data3: 0x436f,
+		Data4: [8]byte{0xa0, 0x31, 0xf5, 0x36, 0xa6, 0xee, 0xc1, 0x57},
+	}
+)
+
+func loadWinsockExtension(extension *winsockExtensionProc, guid *windows.GUID) (uintptr, error) {
+	extension.once.Do(func() {
+		socket, err := windows.Socket(windows.AF_INET, windows.SOCK_STREAM, windows.IPPROTO_TCP)
+		if err != nil {
+			extension.err = err
+			return
+		}
+		defer windows.Closesocket(socket)
+
+		var bytesReturned uint32
+		extension.err = windows.WSAIoctl(
+			socket,
+			windows.SIO_GET_EXTENSION_FUNCTION_POINTER,
+			(*byte)(unsafe.Pointer(guid)),
+			uint32(unsafe.Sizeof(*guid)),
+			(*byte)(unsafe.Pointer(&extension.address)),
+			uint32(unsafe.Sizeof(extension.address)),
+			&bytesReturned,
+			nil,
+			0,
+		)
+	})
+	return extension.address, extension.err
+}
+
+// CPython normally calls these Winsock extension functions through pointers
+// returned by WSAIoctl. A native function address is not a ccgo Go function
+// pointer, so the ccgo-only overlapped.c patch routes the calls through these
+// wrappers and syscall.SyscallN (or x/sys direct DLL wrappers) instead.
+func _ccgo_AcceptEx(tls *libc.TLS, listenSocket, acceptSocket uint64, output uintptr, receiveDataLength, localAddressLength, remoteAddressLength uint32, bytesReceived, overlapped uintptr) int32 {
+	err := windows.AcceptEx(
+		windows.Handle(listenSocket),
+		windows.Handle(acceptSocket),
+		byteptr(output),
+		receiveDataLength,
+		localAddressLength,
+		remoteAddressLength,
+		(*uint32)(unsafe.Pointer(bytesReceived)),
+		(*windows.Overlapped)(unsafe.Pointer(overlapped)),
+	)
+	if err != nil {
+		setWSAErrorFrom(tls, err)
+		return 0
+	}
+	return 1
+}
+
+func _ccgo_ConnectEx(tls *libc.TLS, socket uint64, address uintptr, addressLength int32, sendBuffer uintptr, sendDataLength uint32, bytesSent, overlapped uintptr) int32 {
+	procedure, err := loadWinsockExtension(&connectExProc, &windows.WSAID_CONNECTEX)
+	if err != nil {
+		setWSAErrorFrom(tls, err)
+		return 0
+	}
+	result, _, err := syscall.SyscallN(
+		procedure,
+		uintptr(socket),
+		address,
+		uintptr(uint32(addressLength)),
+		sendBuffer,
+		uintptr(sendDataLength),
+		bytesSent,
+		overlapped,
+	)
+	if result == 0 {
+		setWSAErrorFrom(tls, err)
+		return 0
+	}
+	return 1
+}
+
+func _ccgo_DisconnectEx(tls *libc.TLS, socket uint64, overlapped uintptr, flags, reserved uint32) int32 {
+	procedure, err := loadWinsockExtension(&disconnectExProc, &wsaidDisconnectEx)
+	if err != nil {
+		setWSAErrorFrom(tls, err)
+		return 0
+	}
+	result, _, err := syscall.SyscallN(
+		procedure,
+		uintptr(socket),
+		overlapped,
+		uintptr(flags),
+		uintptr(reserved),
+	)
+	if result == 0 {
+		setWSAErrorFrom(tls, err)
+		return 0
+	}
+	return 1
+}
+
+func _ccgo_TransmitFile(tls *libc.TLS, socket uint64, file uintptr, bytesToWrite, bytesPerSend uint32, overlapped, transmitBuffers uintptr, flags uint32) int32 {
+	err := windows.TransmitFile(
+		windows.Handle(socket),
+		windows.Handle(file),
+		bytesToWrite,
+		bytesPerSend,
+		(*windows.Overlapped)(unsafe.Pointer(overlapped)),
+		(*windows.TransmitFileBuffers)(unsafe.Pointer(transmitBuffers)),
+		flags,
+	)
+	if err != nil {
+		setWSAErrorFrom(tls, err)
+		return 0
+	}
+	return 1
+}
+
+func _ccgo_getservbyname(tls *libc.TLS, name, protocol uintptr) uintptr {
+	result, err := callProc(dllWS2, "getservbyname", name, protocol)
+	if result == 0 {
+		setWSAErrorFrom(tls, err)
+	}
+	return result
+}
+
+func _ccgo_inet_ntoa(tls *libc.TLS, address Tin_addr) uintptr {
+	value := *(*uint32)(unsafe.Pointer(&address))
+	result, err := callProc(dllWS2, "inet_ntoa", uintptr(value))
+	if result == 0 {
+		setWSAErrorFrom(tls, err)
+	}
+	return result
+}
+
+func _ccgo_socket(tls *libc.TLS, family, socketType, protocol int32) uint64 {
+	handle, err := windows.Socket(int(family), int(socketType), int(protocol))
+	if err != nil {
+		setWSAErrorFrom(tls, err)
+		return invalidSocket
+	}
+	return uint64(handle)
+}
+
+func _ccgo_bind(tls *libc.TLS, socket uint64, address uintptr, addressLength int32) int32 {
+	result, err := callProc(dllWS2, "bind", uintptr(socket), address, uintptr(uint32(addressLength)))
+	return socketResult(tls, result, err)
+}
+
+func _ccgo_connect(tls *libc.TLS, socket uint64, address uintptr, addressLength int32) int32 {
+	result, err := callProc(dllWS2, "connect", uintptr(socket), address, uintptr(uint32(addressLength)))
+	return socketResult(tls, result, err)
+}
+
+func _ccgo_listen(tls *libc.TLS, socket uint64, backlog int32) int32 {
+	if err := windows.Listen(windows.Handle(socket), int(backlog)); err != nil {
+		setWSAErrorFrom(tls, err)
+		return socketError
+	}
+	return 0
+}
+
+func _ccgo_accept(tls *libc.TLS, socket uint64, address, addressLength uintptr) uint64 {
+	result, err := callProc(dllWS2, "accept", uintptr(socket), address, addressLength)
+	accepted := uint64(result)
+	if accepted == invalidSocket {
+		setWSAErrorFrom(tls, err)
+	}
+	return accepted
+}
+
+func _ccgo_getpeername(tls *libc.TLS, socket uint64, address, addressLength uintptr) int32 {
+	result, err := callProc(dllWS2, "getpeername", uintptr(socket), address, addressLength)
+	return socketResult(tls, result, err)
+}
+
+func _ccgo_getsockname(tls *libc.TLS, socket uint64, address, addressLength uintptr) int32 {
+	result, err := callProc(dllWS2, "getsockname", uintptr(socket), address, addressLength)
+	return socketResult(tls, result, err)
+}
+
+func _ccgo_recv(tls *libc.TLS, socket uint64, buffer uintptr, length, flags int32) int32 {
+	result, err := callProc(dllWS2, "recv", uintptr(socket), buffer, uintptr(uint32(length)), uintptr(uint32(flags)))
+	return socketResult(tls, result, err)
+}
+
+func _ccgo_send(tls *libc.TLS, socket uint64, buffer uintptr, length, flags int32) int32 {
+	result, err := callProc(dllWS2, "send", uintptr(socket), buffer, uintptr(uint32(length)), uintptr(uint32(flags)))
+	return socketResult(tls, result, err)
+}
+
+func _ccgo_recvfrom(tls *libc.TLS, socket uint64, buffer uintptr, length, flags int32, from, fromLength uintptr) int32 {
+	result, err := callProc(dllWS2, "recvfrom", uintptr(socket), buffer, uintptr(uint32(length)), uintptr(uint32(flags)), from, fromLength)
+	return socketResult(tls, result, err)
+}
+
+func _ccgo_sendto(tls *libc.TLS, socket uint64, buffer uintptr, length, flags int32, to uintptr, toLength int32) int32 {
+	result, err := callProc(dllWS2, "sendto", uintptr(socket), buffer, uintptr(uint32(length)), uintptr(uint32(flags)), to, uintptr(uint32(toLength)))
+	return socketResult(tls, result, err)
+}
+
+func _ccgo_shutdown(tls *libc.TLS, socket uint64, how int32) int32 {
+	if err := windows.Shutdown(windows.Handle(socket), int(how)); err != nil {
+		setWSAErrorFrom(tls, err)
+		return socketError
+	}
+	return 0
+}
+
+func _ccgo_sscanf(tls *libc.TLS, input, format, args uintptr) int32 {
+	// This is the sole sscanf call in the generated Windows archive. CPython
+	// uses it to parse a six-byte Bluetooth address and a seventh conversion
+	// to reject trailing input. modernc's scanner panics on the final %c.
+	if libc.GoString(format) != "%X:%X:%X:%X:%X:%X%c" {
+		setErrno(tls, int32(errno.EINVAL))
+		return 0
+	}
+	var values [6]uint32
+	var trailing rune
+	converted, _ := fmt.Sscanf(
+		libc.GoString(input),
+		"%X:%X:%X:%X:%X:%X%c",
+		&values[0], &values[1], &values[2],
+		&values[3], &values[4], &values[5], &trailing,
+	)
+	for index := range values {
+		destination := libc.VaUintptr(&args)
+		if index < converted {
+			*(*uint32)(unsafe.Pointer(destination)) = values[index]
+		}
+	}
+	trailingDestination := libc.VaUintptr(&args)
+	if converted == 7 {
+		*(*int8)(unsafe.Pointer(trailingDestination)) = int8(trailing)
+	}
+	return int32(converted)
+}
+
+func _ccgo_getsockopt(tls *libc.TLS, socket uint64, level, option int32, value, valueLength uintptr) int32 {
+	if err := windows.Getsockopt(
+		windows.Handle(socket),
+		level,
+		option,
+		byteptr(value),
+		(*int32)(unsafe.Pointer(valueLength)),
+	); err != nil {
+		setWSAErrorFrom(tls, err)
+		return socketError
+	}
+	return 0
+}
+
+func _ccgo_setsockopt(tls *libc.TLS, socket uint64, level, option int32, value uintptr, valueLength int32) int32 {
+	if err := windows.Setsockopt(windows.Handle(socket), level, option, byteptr(value), valueLength); err != nil {
+		setWSAErrorFrom(tls, err)
+		return socketError
+	}
+	return 0
+}
+
+// Winsock's fd_set is a uint32 count, four bytes of alignment padding, then
+// an array of 64-bit SOCKET values on both supported targets. The generated
+// Tfd_set/Tfd_set1 layouts match that ABI, so pass their storage through.
+func _ccgo_select(tls *libc.TLS, nfds int32, readfds, writefds, exceptfds, timeout uintptr) int32 {
+	result, err := callProc(
+		dllWS2,
+		"select",
+		uintptr(uint32(nfds)),
+		readfds,
+		writefds,
+		exceptfds,
+		timeout,
+	)
+	return socketResult(tls, result, err)
+}
+
+func _ccgo_ioctlsocket(tls *libc.TLS, socket uint64, command int32, argument uintptr) int32 {
+	result, err := callProc(dllWS2, "ioctlsocket", uintptr(socket), uintptr(uint32(command)), argument)
+	return socketResult(tls, result, err)
+}
+
+func _ccgo_closesocket(tls *libc.TLS, socket uint64) int32 {
+	if err := windows.Closesocket(windows.Handle(socket)); err != nil {
+		setWSAErrorFrom(tls, err)
+		return socketError
+	}
+	return 0
 }
 
 func _WSASetLastError(tls *libc.TLS, value int32) {
@@ -2120,16 +2783,16 @@ func _WSASetLastError(tls *libc.TLS, value int32) {
 
 func _WSACleanup(tls *libc.TLS) int32 {
 	if err := windows.WSACleanup(); err != nil {
-		setWSAError(tls)
+		setWSAErrorFrom(tls, err)
 		return -1
 	}
 	return 0
 }
 
 func _WSAConnect(tls *libc.TLS, socket uint64, address uintptr, addressLength int32, callerData, calleeData, sqos, gqos uintptr) int32 {
-	r, _ := callProc(dllWS2, "WSAConnect", uintptr(socket), address, uintptr(addressLength), callerData, calleeData, sqos, gqos)
+	r, err := callProc(dllWS2, "WSAConnect", uintptr(socket), address, uintptr(uint32(addressLength)), callerData, calleeData, sqos, gqos)
 	if int32(r) == -1 {
-		setWSAError(tls)
+		setWSAErrorFrom(tls, err)
 	}
 	return int32(r)
 }
@@ -2137,7 +2800,7 @@ func _WSAConnect(tls *libc.TLS, socket uint64, address uintptr, addressLength in
 func _WSADuplicateSocketW(tls *libc.TLS, socket uint64, processID uint32, info uintptr) int32 {
 	err := windows.WSADuplicateSocket(windows.Handle(socket), processID, (*windows.WSAProtocolInfo)(unsafe.Pointer(info)))
 	if err != nil {
-		setWSAError(tls)
+		setWSAErrorFrom(tls, err)
 		return -1
 	}
 	return 0
@@ -2156,7 +2819,7 @@ func _WSAIoctl(tls *libc.TLS, socket uint64, code uint32, inBuffer uintptr, inLe
 		completion,
 	)
 	if err != nil {
-		setWSAError(tls)
+		setWSAErrorFrom(tls, err)
 		return -1
 	}
 	return 0
@@ -2173,7 +2836,7 @@ func _WSARecv(tls *libc.TLS, socket uint64, buffers uintptr, count uint32, recei
 		(*byte)(unsafe.Pointer(completion)),
 	)
 	if err != nil {
-		setWSAError(tls)
+		setWSAErrorFrom(tls, err)
 		return -1
 	}
 	return 0
@@ -2192,7 +2855,7 @@ func _WSARecvFrom(tls *libc.TLS, socket uint64, buffers uintptr, count uint32, r
 		(*byte)(unsafe.Pointer(completion)),
 	)
 	if err != nil {
-		setWSAError(tls)
+		setWSAErrorFrom(tls, err)
 		return -1
 	}
 	return 0
@@ -2209,7 +2872,7 @@ func _WSASend(tls *libc.TLS, socket uint64, buffers uintptr, count uint32, sent 
 		(*byte)(unsafe.Pointer(completion)),
 	)
 	if err != nil {
-		setWSAError(tls)
+		setWSAErrorFrom(tls, err)
 		return -1
 	}
 	return 0
@@ -2228,7 +2891,7 @@ func _WSASendTo(tls *libc.TLS, socket uint64, buffers uintptr, count uint32, sen
 		(*byte)(unsafe.Pointer(completion)),
 	)
 	if err != nil {
-		setWSAError(tls)
+		setWSAErrorFrom(tls, err)
 		return -1
 	}
 	return 0
@@ -2237,16 +2900,16 @@ func _WSASendTo(tls *libc.TLS, socket uint64, buffers uintptr, count uint32, sen
 func _WSASocketW(tls *libc.TLS, family, socketType, protocol int32, info uintptr, group, flags uint32) uint64 {
 	handle, err := windows.WSASocket(family, socketType, protocol, (*windows.WSAProtocolInfo)(unsafe.Pointer(info)), group, flags)
 	if err != nil {
-		setWSAError(tls)
-		return ^uint64(0)
+		setWSAErrorFrom(tls, err)
+		return invalidSocket
 	}
 	return uint64(handle)
 }
 
 func _WSAStringToAddressW(tls *libc.TLS, text uintptr, family int32, info, address, length uintptr) int32 {
-	r, _ := callProc(dllWS2, "WSAStringToAddressW", text, uintptr(family), info, address, length)
+	r, err := callProc(dllWS2, "WSAStringToAddressW", text, uintptr(uint32(family)), info, address, length)
 	if int32(r) == -1 {
-		setWSAError(tls)
+		setWSAErrorFrom(tls, err)
 	}
 	return int32(r)
 }
@@ -2265,49 +2928,41 @@ func ___WSAFDIsSet(tls *libc.TLS, socket uint64, set uintptr) int32 {
 }
 
 func _recvfrom(tls *libc.TLS, socket uint64, buffer uintptr, length, flags int32, from, fromLength uintptr) int32 {
-	r, _ := callProc(dllWS2, "recvfrom", uintptr(socket), buffer, uintptr(length), uintptr(flags), from, fromLength)
-	if int32(r) == -1 {
-		setWSAError(tls)
-	}
-	return int32(r)
+	return _ccgo_recvfrom(tls, socket, buffer, length, flags, from, fromLength)
 }
 
 func _sendto(tls *libc.TLS, socket uint64, buffer uintptr, length, flags int32, to uintptr, toLength int32) int32 {
-	r, _ := callProc(dllWS2, "sendto", uintptr(socket), buffer, uintptr(length), uintptr(flags), to, uintptr(toLength))
-	if int32(r) == -1 {
-		setWSAError(tls)
-	}
-	return int32(r)
+	return _ccgo_sendto(tls, socket, buffer, length, flags, to, toLength)
 }
 
 func _gethostbyaddr(tls *libc.TLS, address uintptr, length, family int32) uintptr {
-	r, _ := callProc(dllWS2, "gethostbyaddr", address, uintptr(length), uintptr(family))
+	r, err := callProc(dllWS2, "gethostbyaddr", address, uintptr(uint32(length)), uintptr(uint32(family)))
 	if r == 0 {
-		setWSAError(tls)
+		setWSAErrorFrom(tls, err)
 	}
 	return r
 }
 
 func _gethostbyname(tls *libc.TLS, name uintptr) uintptr {
-	r, _ := callProc(dllWS2, "gethostbyname", name)
+	r, err := callProc(dllWS2, "gethostbyname", name)
 	if r == 0 {
-		setWSAError(tls)
+		setWSAErrorFrom(tls, err)
 	}
 	return r
 }
 
 func _getservbyport(tls *libc.TLS, port int32, protocol uintptr) uintptr {
-	r, _ := callProc(dllWS2, "getservbyport", uintptr(port), protocol)
+	r, err := callProc(dllWS2, "getservbyport", uintptr(uint32(port)), protocol)
 	if r == 0 {
-		setWSAError(tls)
+		setWSAErrorFrom(tls, err)
 	}
 	return r
 }
 
 func _getprotobyname(tls *libc.TLS, name uintptr) uintptr {
-	r, _ := callProc(dllWS2, "getprotobyname", name)
+	r, err := callProc(dllWS2, "getprotobyname", name)
 	if r == 0 {
-		setWSAError(tls)
+		setWSAErrorFrom(tls, err)
 	}
 	return r
 }
@@ -2318,17 +2973,17 @@ func _inet_addr(tls *libc.TLS, address uintptr) uint32 {
 }
 
 func _inet_pton(tls *libc.TLS, family int32, source, destination uintptr) int32 {
-	r, _ := callProc(dllWS2, "inet_pton", uintptr(family), source, destination)
+	r, err := callProc(dllWS2, "inet_pton", uintptr(uint32(family)), source, destination)
 	if int32(r) == -1 {
-		setWSAError(tls)
+		setWSAErrorFrom(tls, err)
 	}
 	return int32(r)
 }
 
 func _inet_ntop(tls *libc.TLS, family int32, source, destination uintptr, size uint64) uintptr {
-	r, _ := callProc(dllWS2, "inet_ntop", uintptr(family), source, destination, uintptr(size))
+	r, err := callProc(dllWS2, "inet_ntop", uintptr(uint32(family)), source, destination, uintptr(size))
 	if r == 0 {
-		setWSAError(tls)
+		setWSAErrorFrom(tls, err)
 	}
 	return r
 }

@@ -18,6 +18,96 @@ var _ reflect.Type
 
 var _ unsafe.Pointer
 
+func XPyCriticalSection_End(tls *libc.TLS, c uintptr) {
+}
+
+func XPyCriticalSection2_Begin(tls *libc.TLS, c uintptr, a uintptr, b uintptr) {
+}
+
+func XPyCriticalSection2_BeginMutex(tls *libc.TLS, c uintptr, m1 uintptr, m2 uintptr) {
+}
+
+func XPyCriticalSection2_End(tls *libc.TLS, c uintptr) {
+}
+
+const MPy_MARSHAL_VERSION = 5
+
+const MSESSION_ACTIVE = 1
+
+const MSESSION_UNUSED = 0
+
+type T_PyXI_failure = struct {
+	Fcode      T_PyXI_errcode
+	Fmsg       uintptr
+	Fmsg_owned int32
+}
+
+type Txi_failure = T_PyXI_failure
+
+type T_PyXI_session = struct {
+	Fstatus          int32
+	Fswitched        int32
+	Fprev_tstate     uintptr
+	Finit_tstate     uintptr
+	Fown_init_tstate int32
+	Frunning         int32
+	Fmain_ns         uintptr
+	F_preserved      uintptr
+}
+
+type Txi_session = T_PyXI_session
+
+func __Py_GetMainfile(tls *libc.TLS, buffer uintptr, maxlen Tsize_t) (r TPy_ssize_t) {
+	var module, tstate, v1, v3, v4, v9 uintptr
+	var size TPy_ssize_t
+	var v5 int32
+	var v8 Tuint32_t
+	_, _, _, _, _, _, _, _, _ = module, size, tstate, v1, v3, v4, v5, v8, v9
+	v1 = (*_ccgo_tls_tstate(tls))
+	goto _2
+_2:
+
+	tstate = v1
+	module = X_Py_GetMainModule(tls, tstate)
+	if X_Py_CheckMainModule(tls, module) < 0 {
+		v3 = module
+		if v3 != libc.UintptrFromInt32(0) {
+			v4 = v3
+			v5 = libc.BoolInt32(int32(*(*Tuint32_t)(unsafe.Pointer(v4))) < 0)
+			goto _6
+		_6:
+			if v5 != 0 {
+				goto _7
+			}
+			v9 = v4
+			*(*Tuint32_t)(unsafe.Pointer(v9)) = *(*Tuint32_t)(unsafe.Pointer(v9)) - 1
+			v8 = *(*Tuint32_t)(unsafe.Pointer(v9))
+			if v8 == libc.Uint32FromInt32(0) {
+				X_Py_Dealloc(tls, v4)
+			}
+		_7:
+		}
+		return int64(-int32(1))
+	}
+	size = X_PyModule_GetFilenameUTF8(tls, module, buffer, int64(maxlen))
+	v1 = module
+	v5 = libc.BoolInt32(int32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
+	goto _12
+_12:
+	if v5 != 0 {
+		goto _13
+	}
+	v3 = v1
+	*(*Tuint32_t)(unsafe.Pointer(v3)) = *(*Tuint32_t)(unsafe.Pointer(v3)) - 1
+	v8 = *(*Tuint32_t)(unsafe.Pointer(v3))
+	if v8 == libc.Uint32FromInt32(0) {
+		X_Py_Dealloc(tls, v1)
+	}
+_13:
+	;
+	return size
+}
+
 func _runpy_run_path(tls *libc.TLS, filename uintptr, modname uintptr) (r uintptr) {
 	bp := tls.Alloc(32)
 	defer tls.Free(32)
@@ -27287,7 +27377,7 @@ func _hamt_py_set(tls *libc.TLS, op uintptr, args uintptr) (r uintptr) {
 	var _ uintptr
 	var _ uintptr
 	_ = self
-	if !(XPyArg_UnpackTuple(tls, args, __ccgo_ts+57258, int64(2), int64(2), libc.VaList(bp+24, bp, bp+8)) != 0) {
+	if !(XPyArg_UnpackTuple(tls, args, __ccgo_ts+57271, int64(2), int64(2), libc.VaList(bp+24, bp, bp+8)) != 0) {
 		return libc.UintptrFromInt32(0)
 	}
 	self = op
@@ -27381,7 +27471,7 @@ func _hamt_py_keys(tls *libc.TLS, op uintptr, _unused_args uintptr) (r uintptr) 
 
 var _PyHamt_methods = [7]TPyMethodDef{
 	0: {
-		Fml_name:  __ccgo_ts + 57258,
+		Fml_name:  __ccgo_ts + 57271,
 		Fml_flags: int32(MMETH_VARARGS),
 	},
 	1: {
@@ -28731,7 +28821,7 @@ done:
 			libc.Xfputs(tls, __ccgo_ts+143124, libc.X__acrt_iob_func(tls, uint32(2)))
 			(*TPyInterpreterState)(unsafe.Pointer(interp)).Fimports.Ffind_and_load.Fheader = 0
 		}
-		libc.Xfprintf(tls, libc.X__acrt_iob_func(tls, uint32(2)), __ccgo_ts+143180, libc.VaList(bp+32, (*TPyInterpreterState)(unsafe.Pointer(interp)).Fimports.Ffind_and_load.Fimport_level*int32(2), XPyUnicode_AsUTF8(tls, name1)))
+		_ccgo_fprintf(tls, libc.X__acrt_iob_func(tls, uint32(2)), __ccgo_ts+143180, libc.VaList(bp+32, (*TPyInterpreterState)(unsafe.Pointer(interp)).Fimports.Ffind_and_load.Fimport_level*int32(2), XPyUnicode_AsUTF8(tls, name1)))
 	}
 	return 0
 }
@@ -33386,7 +33476,7 @@ _70:
 		XPyTime_PerfCounterRaw(tls, bp+32)
 		cum = **(**TPyTime_t)(__ccgo_up(bp + 32)) - **(**TPyTime_t)(__ccgo_up(bp))
 		(*TPyInterpreterState)(unsafe.Pointer(interp)).Fimports.Ffind_and_load.Fimport_level = (*TPyInterpreterState)(unsafe.Pointer(interp)).Fimports.Ffind_and_load.Fimport_level - 1
-		libc.Xfprintf(tls, libc.X__acrt_iob_func(tls, uint32(2)), __ccgo_ts+145096, libc.VaList(bp+48, int32(X_PyTime_AsMicroseconds(tls, cum-(*TPyInterpreterState)(unsafe.Pointer(interp)).Fimports.Ffind_and_load.Faccumulated, int32(E_PyTime_ROUND_CEILING))), int32(X_PyTime_AsMicroseconds(tls, cum, int32(E_PyTime_ROUND_CEILING))), (*TPyInterpreterState)(unsafe.Pointer(interp)).Fimports.Ffind_and_load.Fimport_level*int32(2), __ccgo_ts+2, XPyUnicode_AsUTF8(tls, abs_name)))
+		_ccgo_fprintf(tls, libc.X__acrt_iob_func(tls, uint32(2)), __ccgo_ts+145096, libc.VaList(bp+48, int32(X_PyTime_AsMicroseconds(tls, cum-(*TPyInterpreterState)(unsafe.Pointer(interp)).Fimports.Ffind_and_load.Faccumulated, int32(E_PyTime_ROUND_CEILING))), int32(X_PyTime_AsMicroseconds(tls, cum, int32(E_PyTime_ROUND_CEILING))), (*TPyInterpreterState)(unsafe.Pointer(interp)).Fimports.Ffind_and_load.Fimport_level*int32(2), __ccgo_ts+2, XPyUnicode_AsUTF8(tls, abs_name)))
 		(*TPyInterpreterState)(unsafe.Pointer(interp)).Fimports.Ffind_and_load.Faccumulated = accumulated_copy + cum
 	}
 	return mod
@@ -39597,9 +39687,9 @@ func _config_usage(tls *libc.TLS, error1 int32, program uintptr) {
 		v1 = libc.X__acrt_iob_func(tls, uint32(1))
 	}
 	f = v1
-	libc.Xfprintf(tls, f, uintptr(unsafe.Pointer(&_usage_line)), libc.VaList(bp+8, program))
+	_ccgo_fprintf(tls, f, uintptr(unsafe.Pointer(&_usage_line)), libc.VaList(bp+8, program))
 	if error1 != 0 {
-		libc.Xfprintf(tls, f, __ccgo_ts+150650, 0)
+		_ccgo_fprintf(tls, f, __ccgo_ts+150650, 0)
 	} else {
 		libc.Xfputs(tls, uintptr(unsafe.Pointer(&_usage_help)), f)
 	}
@@ -39608,7 +39698,7 @@ func _config_usage(tls *libc.TLS, error1 int32, program uintptr) {
 func _config_envvars_usage(tls *libc.TLS) {
 	bp := tls.Alloc(32)
 	defer tls.Free(32)
-	libc.Xprintf(tls, uintptr(unsafe.Pointer(&_usage_envvars)), libc.VaList(bp+8, int32(libc.Uint16FromInt32(';')), __ccgo_ts+150689, int32(libc.Uint16FromInt32(';'))))
+	_ccgo_printf(tls, uintptr(unsafe.Pointer(&_usage_envvars)), libc.VaList(bp+8, int32(libc.Uint16FromInt32(';')), __ccgo_ts+150689, int32(libc.Uint16FromInt32(';'))))
 }
 
 func _config_xoptions_usage(tls *libc.TLS) {
@@ -39691,7 +39781,7 @@ func _config_parse_cmdline(tls *libc.TLS, config uintptr, warnoptions uintptr, o
 					return status
 				}
 			} else {
-				libc.Xfprintf(tls, libc.X__acrt_iob_func(tls, uint32(2)), __ccgo_ts+150738, 0)
+				_ccgo_fprintf(tls, libc.X__acrt_iob_func(tls, uint32(2)), __ccgo_ts+150738, 0)
 				_config_usage(tls, int32(1), program)
 				return TPyStatus{
 					F_type:    int32(E_PyStatus_TYPE_EXIT),
@@ -39787,7 +39877,7 @@ func _config_parse_cmdline(tls *libc.TLS, config uintptr, warnoptions uintptr, o
 		} else {
 			v1 = __ccgo_ts + 142223
 		}
-		libc.Xprintf(tls, __ccgo_ts+150810, libc.VaList(bp+16, v1))
+		_ccgo_printf(tls, __ccgo_ts+150810, libc.VaList(bp+16, v1))
 		return TPyStatus{
 			F_type: int32(E_PyStatus_TYPE_EXIT),
 		}
@@ -54024,7 +54114,7 @@ func _read_object(tls *libc.TLS, p uintptr) (r uintptr) {
 	var v uintptr
 	_ = v
 	if XPyErr_Occurred(tls) != 0 {
-		libc.Xfprintf(tls, libc.X__acrt_iob_func(tls, uint32(2)), __ccgo_ts+155630, 0)
+		_ccgo_fprintf(tls, libc.X__acrt_iob_func(tls, uint32(2)), __ccgo_ts+155630, 0)
 		return libc.UintptrFromInt32(0)
 	}
 	if (*TRFILE)(unsafe.Pointer(p)).Fptr != 0 && (*TRFILE)(unsafe.Pointer(p)).Fend != 0 {
@@ -55532,7 +55622,7 @@ func XPyOS_vsnprintf(tls *libc.TLS, str uintptr, size Tsize_t, format uintptr, v
 		len1 = -int32(666)
 		goto Done
 	}
-	v1 = libc.X__mingw_vsnprintf(tls, str, size, format, va)
+	v1 = _ccgo___mingw_vsnprintf(tls, str, size, format, va)
 	goto _2
 _2:
 	len1 = v1
@@ -71844,7 +71934,7 @@ func X_Py_get_xoption(tls *libc.TLS, xoptions uintptr, name uintptr) (r uintptr)
 		} else {
 			len1 = libc.Xwcslen(tls, option)
 		}
-		if libc.Xwcsncmp(tls, option, name, len1) == 0 && int32(**(**Twchar_t)(__ccgo_up(name + uintptr(len1)*2))) == int32('\000') {
+		if _ccgo_wcsncmp(tls, option, name, len1) == 0 && int32(**(**Twchar_t)(__ccgo_up(name + uintptr(len1)*2))) == int32('\000') {
 			return option
 		}
 		goto _1
@@ -73726,7 +73816,7 @@ _2:
 		if v7 && v1 != 0 && XPyList_Size(tls, **(**uintptr)(__ccgo_up(bp))) > 0 {
 			warnings_module = XPyImport_ImportModule(tls, __ccgo_ts+157871)
 			if warnings_module == libc.UintptrFromInt32(0) {
-				libc.Xfprintf(tls, libc.X__acrt_iob_func(tls, uint32(2)), __ccgo_ts+157880, 0)
+				_ccgo_fprintf(tls, libc.X__acrt_iob_func(tls, uint32(2)), __ccgo_ts+157880, 0)
 				X_PyErr_Print(tls, tstate)
 			}
 			v3 = warnings_module
@@ -76223,7 +76313,7 @@ _2:
 
 func _fatal_error_exit(tls *libc.TLS, status int32) {
 	if status < 0 {
-		libc.Xabort(tls)
+		_ccgo_abort(tls)
 	} else {
 		libc.Xexit(tls, status)
 	}
@@ -76471,7 +76561,7 @@ func X_Py_FatalErrorFormat(tls *libc.TLS, func1 uintptr, format uintptr, va uint
 		X_Py_write_noraise(tls, fd, __ccgo_ts+85095, uint64(int32(libc.Xstrlen(tls, __ccgo_ts+85095))))
 	}
 	vargs = va
-	libc.Xvfprintf(tls, stream, format, vargs)
+	_ccgo_vfprintf(tls, stream, format, vargs)
 	_ = vargs
 	libc.Xfputs(tls, __ccgo_ts+10493, stream)
 	libc.Xfflush(tls, stream)

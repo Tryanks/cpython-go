@@ -30,6 +30,7 @@ jobs:
       - run: go build -o cpython-go.exe ./cmd/cpython-go
       - run: ./cpython-go.exe -c "print(45)"
       - run: ./cpython-go.exe -c "import sys, json; print(sys.platform, sys.version_info[:2], json.dumps([1]))"
+      - run: ./cpython-go.exe -X faulthandler -c "print('xoption-ok')"
       - name: Import Windows runtime modules
         run: ./cpython-go.exe -c "import os, subprocess, threading, hashlib, pickle, re, datetime; print('imports-ok')"
       - name: Exercise Python runtime modules
@@ -42,10 +43,12 @@ jobs:
           assert pickle.loads(pickle.dumps({'runtime': 314})) == {'runtime': 314};
           assert re.fullmatch('[a-z]+', 'runtime') and datetime.date(2026, 9, 5).isoformat() == '2026-09-05';
           print('runtime-ok')"
-      - name: Exercise os.pipe handle inheritance
+      - name: Exercise os.pipe and descriptor duplication
         run: >-
           ./cpython-go.exe -c "import os;
-          read_fd, write_fd = os.pipe(); os.write(write_fd, b'pipe'); os.close(write_fd);
+          read_fd, write_fd = os.pipe(); duplicate = os.dup(write_fd);
+          os.dup2(write_fd, duplicate); os.close(write_fd);
+          os.write(duplicate, b'pipe'); os.close(duplicate);
           assert os.read(read_fd, 4) == b'pipe'; os.close(read_fd); print('os-pipe-ok')"
       - name: Exercise subprocess process wait
         timeout-minutes: 1
@@ -67,6 +70,12 @@ jobs:
           case = unittest.FunctionTestCase(lambda: unittest.TestCase().assertEqual(2 + 3, 5));
           result = unittest.TextTestRunner(verbosity=2).run(unittest.TestSuite([case]));
           assert result.wasSuccessful()"
+      - name: Exercise generated C recursion guard
+        timeout-minutes: 1
+        run: ./cpython-go.exe internal/builders/windows/recursion_smoke.py
+      - name: Exercise Winsock and asyncio
+        timeout-minutes: 2
+        run: ./cpython-go.exe internal/builders/windows/network_smoke.py
   windows-arm64:
     runs-on: windows-11-arm
     steps:
@@ -76,4 +85,50 @@ jobs:
           go-version-file: go.mod
       - run: go build -o cpython-go.exe ./cmd/cpython-go
       - run: ./cpython-go.exe -c "print(45)"
-      - run: ./cpython-go.exe -c "import sys, json, threading, subprocess, hashlib, pickle, re, datetime; print(sys.platform, sys.version_info[:2], json.dumps([1]))"
+      - run: ./cpython-go.exe -c "import sys, json; print(sys.platform, sys.version_info[:2], json.dumps([1]))"
+      - run: ./cpython-go.exe -X faulthandler -c "print('xoption-ok')"
+      - name: Import Windows runtime modules
+        run: ./cpython-go.exe -c "import os, subprocess, threading, hashlib, pickle, re, datetime; print('imports-ok')"
+      - name: Exercise Python runtime modules
+        run: >-
+          ./cpython-go.exe -c "import os, threading, hashlib, pickle, re, datetime;
+          seen = []; thread = threading.Thread(target=lambda: seen.append('thread-ok'));
+          thread.start(); thread.join();
+          assert os.name == 'nt' and seen == ['thread-ok'];
+          assert hashlib.sha256(b'windows').hexdigest() == '340d600392818df2413382dc7d8325c360d83ea49a262d31760348484bbc10b5';
+          assert pickle.loads(pickle.dumps({'runtime': 314})) == {'runtime': 314};
+          assert re.fullmatch('[a-z]+', 'runtime') and datetime.date(2026, 9, 5).isoformat() == '2026-09-05';
+          print('runtime-ok')"
+      - name: Exercise os.pipe and descriptor duplication
+        run: >-
+          ./cpython-go.exe -c "import os;
+          read_fd, write_fd = os.pipe(); duplicate = os.dup(write_fd);
+          os.dup2(write_fd, duplicate); os.close(write_fd);
+          os.write(duplicate, b'pipe'); os.close(duplicate);
+          assert os.read(read_fd, 4) == b'pipe'; os.close(read_fd); print('os-pipe-ok')"
+      - name: Exercise subprocess process wait
+        timeout-minutes: 1
+        run: >-
+          ./cpython-go.exe -c "import subprocess, sys;
+          print('executable', repr(sys.executable), flush=True);
+          result = subprocess.run([sys.executable, '-c', 'print(46)'], timeout=15);
+          print('subprocess-returncode', result.returncode, flush=True);
+          assert result.returncode == 0"
+      - name: Exercise subprocess pipe EOF
+        timeout-minutes: 1
+        run: >-
+          ./cpython-go.exe -c "import subprocess, sys;
+          output = subprocess.check_output([sys.executable, '-c', 'print(47)'], text=True, timeout=15);
+          assert output == '47\n'; print('subprocess-eof-ok')"
+      - name: Run unittest smoke test
+        run: >-
+          ./cpython-go.exe -c "import unittest;
+          case = unittest.FunctionTestCase(lambda: unittest.TestCase().assertEqual(2 + 3, 5));
+          result = unittest.TextTestRunner(verbosity=2).run(unittest.TestSuite([case]));
+          assert result.wasSuccessful()"
+      - name: Exercise generated C recursion guard
+        timeout-minutes: 1
+        run: ./cpython-go.exe internal/builders/windows/recursion_smoke.py
+      - name: Exercise Winsock and asyncio
+        timeout-minutes: 2
+        run: ./cpython-go.exe internal/builders/windows/network_smoke.py

@@ -18,6 +18,41 @@ var _ reflect.Type
 
 var _ unsafe.Pointer
 
+func _py_scanstring(tls *libc.TLS, _unused_self uintptr, args uintptr) (r uintptr) {
+	bp := tls.Alloc(64)
+	defer tls.Free(64)
+	var flags uint32
+	var rval, v1 uintptr
+	var v3 int32
+	var _ TPy_ssize_t
+	var _ TPy_ssize_t
+	var _ uintptr
+	var _ int32
+	_, _, _, _ = flags, rval, v1, v3
+	**(**TPy_ssize_t)(__ccgo_up(bp + 16)) = int64(-int32(1))
+	**(**int32)(__ccgo_up(bp + 24)) = int32(1)
+	if !(XPyArg_ParseTuple(tls, args, __ccgo_ts+182981, libc.VaList(bp+40, bp, bp+8, bp+24)) != 0) {
+		return libc.UintptrFromInt32(0)
+	}
+	v1 = (*TPyObject)(unsafe.Pointer(**(**uintptr)(__ccgo_up(bp)))).Fob_type
+	goto _2
+_2:
+	flags = (*TPyTypeObject)(unsafe.Pointer(v1)).Ftp_flags
+	v3 = libc.BoolInt32(flags&(libc.Uint32FromUint32(1)<<libc.Int32FromInt32(28)) != uint32(0))
+	goto _4
+_4:
+	if v3 != 0 {
+		rval = _scanstring_unicode(tls, **(**uintptr)(__ccgo_up(bp)), **(**TPy_ssize_t)(__ccgo_up(bp + 8)), **(**int32)(__ccgo_up(bp + 24)), bp+16)
+	} else {
+		v1 = (*TPyObject)(unsafe.Pointer(**(**uintptr)(__ccgo_up(bp)))).Fob_type
+		goto _6
+	_6:
+		XPyErr_Format(tls, XPyExc_TypeError, __ccgo_ts+182997, libc.VaList(bp+40, (*TPyTypeObject)(unsafe.Pointer(v1)).Ftp_name))
+		return libc.UintptrFromInt32(0)
+	}
+	return __build_rval_index_tuple(tls, rval, **(**TPy_ssize_t)(__ccgo_up(bp + 16)))
+}
+
 func _py_encode_basestring_ascii(tls *libc.TLS, _unused_self uintptr, pystr uintptr) (r uintptr) {
 	bp := tls.Alloc(16)
 	defer tls.Free(16)
@@ -12102,7 +12137,7 @@ func _save_long(tls *libc.TLS, self uintptr, obj uintptr) (r int32) {
 				}
 			}
 		} else {
-			libc.Xsprintf(tls, bp+12, __ccgo_ts+186481, libc.VaList(bp+72, int32(EINT_), val))
+			_ccgo_sprintf(tls, bp+12, __ccgo_ts+186481, libc.VaList(bp+72, int32(EINT_), val))
 			len1 = int64(libc.Xstrlen(tls, bp+12))
 		}
 		if __Pickler_Write(tls, self, bp+12, len1) < 0 {
@@ -25913,7 +25948,7 @@ func _analyze_pe(tls *libc.TLS, mod_path uintptr, remote_base uintptr, secname u
 		}
 		return libc.UintptrFromInt32(0)
 	}
-	hMap = libc.XCreateFileMappingA(tls, hFile, libc.UintptrFromInt32(0), uint32(MPAGE_READONLY), uint32(0), uint32(0), uintptr(0))
+	hMap = _ccgo_CreateFileMappingA(tls, hFile, libc.UintptrFromInt32(0), uint32(MPAGE_READONLY), uint32(0), uint32(0), uintptr(0))
 	if !(hMap != 0) {
 		error11 = libc.XGetLastError(tls)
 		XPyErr_SetFromWindowsErr(tls, int32(error11))

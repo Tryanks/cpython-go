@@ -164,6 +164,19 @@ below.
 
 ## Windows runtime CI iterations
 
+- The broad CPython batch exposed Go stack exhaustion in deeply recursive C
+  paths (`test_json`, `test_copy`, and `test_ast`). Windows initialized
+  CPython's recursion guard with native OS-thread addresses while
+  `_ccgo_frame_address` reports positions in the virtual modernc TLS stack;
+  those disjoint ranges disabled the guard. `_GetCurrentThreadStackLimits`
+  now publishes the matching virtual 8 MiB range, with a deep-JSON CI smoke.
+- The next complete batch showed that 26 apparent module crashes shared one
+  child-process startup bug in modernc's `Xwcsncmp`: `-X faulthandler` compares
+  a four-code-unit option with a 12-code-unit prefix and modernc sliced both
+  strings to 12. The routed comparison follows C bounds semantics. The batch's
+  only remaining `TODOTODO` was modernc's `%c` scanf conversion in CPython's
+  fixed Bluetooth-address parser; that sole `sscanf` call is routed as well.
+
 - Run 33949767829 (`main`): the executable built, then `print(45)` failed in
   `_PyPreConfig_Read` because modernc's Windows `Xsetlocale` always returned
   null; fatal reporting then hit modernc's `XOutputDebugStringW` TODO panic.
@@ -238,3 +251,46 @@ below.
   round-trip; it passed together with pipe EOF, subprocess, and unittest. The
   Windows job was promoted from `continue-on-error` to a required CI job after
   this result.
+- Run 33954290777: the first network probe imported far enough to hit
+  modernc's `Xungetc` TODO in the tokenizer. The Windows route now implements
+  the required one-byte pushback by rewinding modernc's unbuffered stream.
+- Run 33955118375: name resolution, synchronous loopback TCP echo, Winsock
+  `select`, `socketpair()`, and `asyncio.sleep(0)` passed on amd64 and arm64.
+  The Proactor server then tried to invoke the native `AcceptEx` address as a
+  ccgo Go function pointer and faulted at address `-1`.
+- The `overlapped.c` patch now uses direct `ccgo_AcceptEx`,
+  `ccgo_ConnectEx`, `ccgo_DisconnectEx`, and `ccgo_TransmitFile` declarations
+  only under `MS_WINDOWS && CCGO && __CCGO__`; the ordinary native helper build
+  retains CPython's original extension-pointer discovery. With no other Docker
+  container active, both generated architectures were refreshed from this
+  worktree using `run.sh --ccgo amd64` and then
+  `WINDOWS_BUILDER_SKIP_BUILD=1 run.sh --ccgo arm64`.
+- Run 33957766878 crossed the extension bridge and completed
+  `asyncio.sleep(0)`, then exposed modernc's `XGetOverlappedResult` TODO when
+  the accept completed. Routing that call through `x/sys/windows` completed
+  the IOCP lifecycle.
+- Run 33957987714 passed on Windows amd64, Windows arm64, Linux amd64, Linux
+  arm64, and macOS. Both Windows jobs completed the full network smoke:
+  resolver, TCP/select, socketpair, Proactor TCP echo, and local HTTP GET.
+- After merging the POSIX routing work from `main`, run 33958539480 exposed a
+  latent arm64 startup fault: modernc's `_wenviron` array lacks a terminating
+  null pointer. Routing `__p__wenviron` to explicitly terminated stable UTF-16
+  storage and synchronizing `_wgetenv`/`_wputenv` with Go's live environment
+  fixed the out-of-bounds `wcschr` walk. Run 33958794432 then passed all five
+  Windows, Linux, and macOS jobs at the merged head.
+- A function-body audit of every remaining generated `libc.X*` call found one
+  additional real modernc TODO, `Xdup2`. It is routed through a handle and
+  private-descriptor-table implementation and has a required CI smoke covering
+  replacement of an existing descriptor. `Xfileno` is the only textual audit
+  match left and has a concrete Windows body.
+- Batch run 33957766857 showed that compiler `__builtin_snprintf` and MinGW
+  `__mingw_vsnprintf` aliases still reached modernc's formatter indirectly and
+  triggered its unsupported-conversion TODO. Both aliases now use the routed
+  Windows formatter too; the same artifacts confirmed the later registry and
+  `fdopen` routes were needed and identified stack-overflow and compatibility
+  failures separately from Go TODOs.
+- `.github/workflows/windows-tests.yml` checks out CPython v3.14.7, embeds its
+  test library, builds with `cpython_test`, and runs the selected 71 modules
+  one process at a time on both Windows runners. The wrapper records test
+  count/outcome/crash/timeout, emits a Markdown job summary, and uploads every
+  module log.
