@@ -993,15 +993,51 @@ func _fcopyfile(tls *libc.TLS, inFD, outFD int32, state uintptr, flags uint32) i
 	return -1
 }
 
-// ponytail: Darwin's headers/trailers form is unsupported; plain transfers are real.
 func _sendfile(tls *libc.TLS, inFD, outFD int32, offset int64, lenp, hdtr uintptr, flags int32) int32 {
-	if hdtr != 0 || flags != 0 {
+	if flags != 0 {
 		setErrno(tls, int32(errno.ENOSYS))
 		return -1
 	}
-	n := int(*(*int64)(unsafe.Pointer(lenp)))
+	requested := int(*(*int64)(unsafe.Pointer(lenp)))
+	written := 0
+	var vectors *Tsf_hdtr
+	if hdtr != 0 {
+		vectors = (*Tsf_hdtr)(unsafe.Pointer(hdtr))
+	}
+	writeVectors := func(p uintptr, count int32) error {
+		if p == 0 || count <= 0 {
+			return nil
+		}
+		for i := int32(0); i < count; i++ {
+			iov := (*Tiovec)(unsafe.Pointer(p + uintptr(i)*unsafe.Sizeof(Tiovec{})))
+			data := cBytes(iov.Fiov_base, uint64(iov.Fiov_len))
+			for len(data) != 0 {
+				n, err := unix.Write(int(outFD), data)
+				written += n
+				if err != nil {
+					return err
+				}
+				data = data[n:]
+			}
+		}
+		return nil
+	}
+	if vectors != nil && vectors.Fheaders != 0 {
+		if err := writeVectors(vectors.Fheaders, vectors.Fhdr_cnt); err != nil {
+			*(*int64)(unsafe.Pointer(lenp)) = int64(written)
+			return errnoResult(tls, err)
+		}
+	}
+	fileBytes := requested - written
+	if fileBytes < 0 {
+		fileBytes = 0
+	}
 	off := offset
-	written, err := unix.Sendfile(int(outFD), int(inFD), &off, n)
+	n, err := unix.Sendfile(int(outFD), int(inFD), &off, fileBytes)
+	written += n
+	if err == nil && vectors != nil {
+		err = writeVectors(vectors.Ftrailers, vectors.Ftrl_cnt)
+	}
 	*(*int64)(unsafe.Pointer(lenp)) = int64(written)
 	return errnoResult(tls, err)
 }
