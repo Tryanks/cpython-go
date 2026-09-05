@@ -329,6 +329,32 @@ diff --color -ruN a/Include/pymacconfig.h b/Include/pymacconfig.h
  #  define HAVE_GCC_ASM_FOR_X64 1
  #  define SIZEOF_LONG_DOUBLE 16
 
+subprocess.py: cpython-go does not promptly finalize the original Windows
+pipe-end Handle after replacing it with an inheritable duplicate. Close each
+child-only source handle explicitly; otherwise the parent's extra write end
+keeps communicate()/check_output() blocked after the child exits.
+diff --color -ruN a/Lib/subprocess.py b/Lib/subprocess.py
+--- a/Lib/subprocess.py
++++ b/Lib/subprocess.py
+@@ -1380 +1380,4 @@
+-                p2cread = self._make_inheritable(p2cread)
++                inheritable = self._make_inheritable(p2cread)
++                if p2cread in err_close_fds:
++                    p2cread.Close()
++                p2cread = inheritable
+@@ -1400 +1403,4 @@
+-                c2pwrite = self._make_inheritable(c2pwrite)
++                inheritable = self._make_inheritable(c2pwrite)
++                if c2pwrite in err_close_fds:
++                    c2pwrite.Close()
++                c2pwrite = inheritable
+@@ -1422 +1428,4 @@
+-                errwrite = self._make_inheritable(errwrite)
++                inheritable = self._make_inheritable(errwrite)
++                if errwrite in err_close_fds:
++                    errwrite.Close()
++                errwrite = inheritable
+
 blake2module.c / hmacmodule.c: CPU feature detection uses <cpuid.h> inline
 asm on x86_64; under ccgo take the "no SIMD" path.
 diff --color -ruN a/Modules/blake2module.c b/Modules/blake2module.c
