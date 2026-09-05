@@ -486,6 +486,7 @@ var shimmedLibc = map[string][]string{"windows": {
 	"openpty",
 	"pathconf",
 	"poll",
+	"pow",
 	"printf",
 	"pthread_key_delete",
 	"raise",

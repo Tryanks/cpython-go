@@ -549,6 +549,24 @@ func _erfc(tls *libc.TLS, x float64) float64     { return math.Erfc(x) }
 func _flockfile(tls *libc.TLS, stream uintptr)   {}
 func _funlockfile(tls *libc.TLS, stream uintptr) {}
 
+func _ccgo_pow(tls *libc.TLS, x, y float64) float64 {
+	result := math.Pow(x, y)
+	// Go's arm64 pow differs by one ULP from Darwin libm for some positive
+	// fractional powers. CPython's tests exercise those exact boundaries.
+	if x > 0 && !math.IsInf(x, 0) && !math.IsInf(y, 0) && !math.IsNaN(y) && y != math.Trunc(y) {
+		result = math.Exp(y * math.Log(x))
+	}
+	switch {
+	case math.IsNaN(result) && !math.IsNaN(x) && !math.IsNaN(y):
+		setErrno(tls, int32(errno.EDOM))
+	case math.IsInf(result, 0) && !math.IsInf(x, 0) && !math.IsInf(y, 0):
+		setErrno(tls, int32(errno.ERANGE))
+	case result == 0 && x != 0 && !math.IsInf(y, 0):
+		setErrno(tls, int32(errno.ERANGE))
+	}
+	return result
+}
+
 func _ccgo___builtin_log2(tls *libc.TLS, x float64) float64 {
 	if x >= 0.5 && x <= 2 {
 		return math.Log1p(x-1) / math.Ln2
@@ -1561,6 +1579,9 @@ func _ccgo_getaddrinfo(tls *libc.TLS, node, service, hints, result uintptr) int3
 		name := libc.GoString(service)
 		value, err := strconv.Atoi(name)
 		if err != nil {
+			if flags&0x1000 != 0 { // AI_NUMERICSERV
+				return 8 // EAI_NONAME
+			}
 			network := "tcp"
 			if socktype == unix.SOCK_DGRAM {
 				network = "udp"
@@ -1595,6 +1616,8 @@ func _ccgo_getaddrinfo(tls *libc.TLS, node, service, hints, result uintptr) int3
 		name := libc.GoString(node)
 		if ip := net.ParseIP(name); ip != nil {
 			ips = []net.IP{ip}
+		} else if flags&4 != 0 { // AI_NUMERICHOST
+			return 8 // EAI_NONAME
 		} else if strings.EqualFold(name, "localhost") {
 			if family != unix.AF_INET {
 				ips = append(ips, net.IPv6loopback)

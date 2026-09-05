@@ -23926,7 +23926,7 @@ func X_Py_c_pow(tls *libc.TLS, a TPy_complex, b TPy_complex) (r1 TPy_complex) {
 			r.Fimag1 = float64(0)
 		} else {
 			vabs = libc.X__builtin_hypot(tls, a.Freal1, a.Fimag1)
-			len1 = libc.Xpow(tls, vabs, b.Freal1)
+			len1 = _ccgo_pow(tls, vabs, b.Freal1)
 			at = libc.Xatan2(tls, a.Fimag1, a.Freal1)
 			phase = float64(at * b.Freal1)
 			if b.Fimag1 != float64(0) {
@@ -52906,7 +52906,7 @@ _37:
 	}
 
 	**(**int32)(__ccgo_up(libc.X__error(tls))) = 0
-	ix = libc.Xpow(tls, **(**float64)(__ccgo_up(bp + 16)), **(**float64)(__ccgo_up(bp + 24)))
+	ix = _ccgo_pow(tls, **(**float64)(__ccgo_up(bp + 16)), **(**float64)(__ccgo_up(bp + 24)))
 	v12 = ix
 	if **(**int32)(__ccgo_up(libc.X__error(tls))) == libc.Int32FromInt32(0) {
 		if v12 == float64(libc.X__builtin_huge_valf(tls)) || v12 == -float64(libc.X__builtin_huge_valf(tls)) {
