@@ -43072,7 +43072,7 @@ func _check_force_ascii(tls *libc.TLS) (r int32) {
 	var _ [20]uint8
 	var _ [1]Twchar_t
 	_, _, _, _, _, _, _ = alias, codeset, i, is_ascii, loc, res, uch
-	loc = libc.Xsetlocale(tls, MLC_CTYPE, libc.UintptrFromInt32(0))
+	loc = _ccgo_setlocale(tls, MLC_CTYPE, libc.UintptrFromInt32(0))
 	if loc == libc.UintptrFromInt32(0) {
 		goto error
 	}
@@ -44888,7 +44888,7 @@ func X_Py_GetLocaleconvNumeric(tls *libc.TLS, lc uintptr, decimal_point uintptr,
 	oldloc = libc.UintptrFromInt32(0)
 	loc = libc.UintptrFromInt32(0)
 	if change_locale != 0 {
-		oldloc = libc.Xsetlocale(tls, MLC_CTYPE, libc.UintptrFromInt32(0))
+		oldloc = _ccgo_setlocale(tls, MLC_CTYPE, libc.UintptrFromInt32(0))
 		if !(oldloc != 0) {
 			XPyErr_SetString(tls, XPyExc_RuntimeWarning, __ccgo_ts+174669)
 			return -int32(1)
@@ -44898,13 +44898,13 @@ func X_Py_GetLocaleconvNumeric(tls *libc.TLS, lc uintptr, decimal_point uintptr,
 			XPyErr_NoMemory(tls)
 			return -int32(1)
 		}
-		loc = libc.Xsetlocale(tls, int32(MLC_NUMERIC), libc.UintptrFromInt32(0))
+		loc = _ccgo_setlocale(tls, int32(MLC_NUMERIC), libc.UintptrFromInt32(0))
 		if loc != libc.UintptrFromInt32(0) && libc.Xstrcmp(tls, loc, oldloc) == 0 {
 			loc = libc.UintptrFromInt32(0)
 		}
 		if loc != libc.UintptrFromInt32(0) {
 
-			libc.Xsetlocale(tls, MLC_CTYPE, loc)
+			_ccgo_setlocale(tls, MLC_CTYPE, loc)
 		}
 	}
 	res = -int32(1)
@@ -44921,7 +44921,7 @@ func X_Py_GetLocaleconvNumeric(tls *libc.TLS, lc uintptr, decimal_point uintptr,
 done:
 	;
 	if loc != libc.UintptrFromInt32(0) {
-		libc.Xsetlocale(tls, MLC_CTYPE, oldloc)
+		_ccgo_setlocale(tls, MLC_CTYPE, oldloc)
 	}
 	XPyMem_Free(tls, oldloc)
 	return res

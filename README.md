@@ -19,10 +19,10 @@ built: other modules that need external C libraries (`_ssl`, `_ctypes`,
 
 | GOOS/GOARCH   | Generated | Smoke tests (CI) | CPython test suite |
 |---------------|-----------|------------------|--------------------|
-| darwin/arm64  | yes       | yes              | 81 of 107 modules fully pass |
+| darwin/arm64  | yes       | yes              | 83 of 107 modules fully pass |
 | darwin/amd64  | yes       | yes (local)      | 32 of 53 modules fully pass |
 | linux/amd64   | yes       | yes              | not run yet        |
-| linux/arm64   | yes       | yes              | 43 of 72 modules fully pass |
+| linux/arm64   | yes       | yes              | 44 of 72 modules fully pass |
 | windows/amd64 | yes       | yes              | 38 of 71 modules fully pass |
 | windows/arm64 | yes       | yes              | 38 of 71 modules fully pass |
 

@@ -52066,7 +52066,7 @@ func _child_exec(tls *libc.TLS, exec_array uintptr, argv uintptr, envp uintptr, 
 	}
 	if child_sigmask != 0 {
 		_reset_signal_handlers(tls, child_sigmask)
-		v1 = libc.Xpthread_sigmask(tls, int32(MSIG_SETMASK), child_sigmask, libc.UintptrFromInt32(0))
+		v1 = _ccgo_pthread_sigmask(tls, int32(MSIG_SETMASK), child_sigmask, libc.UintptrFromInt32(0))
 		**(**int32)(__ccgo_up(libc.X__errno_location(tls))) = v1
 		if v1 != 0 {
 			goto error
@@ -52620,7 +52620,7 @@ _8:
 	old_sigmask = libc.UintptrFromInt32(0)
 	if preexec_fn == uintptr(unsafe.Pointer(&X_Py_NoneStruct)) && **(**Tuid_t)(__ccgo_up(bp + 40)) == libc.Uint32FromInt32(-libc.Int32FromInt32(1)) && **(**Tgid_t)(__ccgo_up(bp + 36)) == libc.Uint32FromInt32(-libc.Int32FromInt32(1)) && extra_group_size < 0 {
 		libc.Xsigfillset(tls, bp+176)
-		v15 = libc.Xpthread_sigmask(tls, MSIG_BLOCK, bp+176, bp+48)
+		v15 = _ccgo_pthread_sigmask(tls, MSIG_BLOCK, bp+176, bp+48)
 		saved_errno = v15
 		if v15 != 0 {
 			goto cleanup
@@ -52635,7 +52635,7 @@ _8:
 	}
 	if old_sigmask != 0 {
 
-		libc.Xpthread_sigmask(tls, int32(MSIG_SETMASK), old_sigmask, libc.UintptrFromInt32(0))
+		_ccgo_pthread_sigmask(tls, int32(MSIG_SETMASK), old_sigmask, libc.UintptrFromInt32(0))
 	}
 	if need_after_fork != 0 {
 		XPyOS_AfterFork_Parent(tls)
@@ -82538,7 +82538,7 @@ func _faulthandler_thread(tls *libc.TLS, unused uintptr) {
 	_, _, _ = errmsg, ok, st
 
 	libc.Xsigfillset(tls, bp)
-	libc.Xpthread_sigmask(tls, int32(MSIG_SETMASK), bp, libc.UintptrFromInt32(0))
+	_ccgo_pthread_sigmask(tls, int32(MSIG_SETMASK), bp, libc.UintptrFromInt32(0))
 	for cond := true; cond; cond = ok != 0 && X_PyRuntime.Ffaulthandler.Fthread.Frepeat != 0 {
 		st = XPyThread_acquire_lock_timed(tls, X_PyRuntime.Ffaulthandler.Fthread.Fcancel_event, X_PyRuntime.Ffaulthandler.Fthread.Ftimeout_us, 0)
 		if st == int32(EPY_LOCK_ACQUIRED) {

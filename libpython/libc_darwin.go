@@ -14,6 +14,7 @@ import (
 	"sync"
 	"syscall"
 	"time"
+	"unicode"
 	"unicode/utf8"
 	"unsafe"
 
@@ -21,23 +22,6 @@ import (
 	"modernc.org/libc"
 	"modernc.org/libc/errno"
 )
-
-func wideLen(p uintptr) uint64 {
-	for n := uint64(0); ; n++ {
-		if *(*int32)(unsafe.Pointer(p + uintptr(n)*4)) == 0 {
-			return n
-		}
-	}
-}
-
-func wideRunes(p uintptr) []rune {
-	n := wideLen(p)
-	r := make([]rune, n)
-	for i := range r {
-		r[i] = rune(*(*int32)(unsafe.Pointer(p + uintptr(i)*4)))
-	}
-	return r
-}
 
 func cStrings(p uintptr) []string {
 	var r []string
@@ -380,18 +364,10 @@ func _wcstol(tls *libc.TLS, s, end uintptr, base int32) int64 {
 	return int64(value)
 }
 
-func _wcscoll(tls *libc.TLS, a, b uintptr) int32 { return _wcscmp(tls, a, b) }
+func _wcscoll(tls *libc.TLS, a, b uintptr) int32 { return _ccgo_wcscoll(tls, a, b) }
 
 func _wcsxfrm(tls *libc.TLS, dst, src uintptr, n uint64) uint64 {
-	l := wideLen(src)
-	if dst != 0 && n != 0 {
-		m := l + 1
-		if m > n {
-			m = n
-		}
-		copy(unsafe.Slice((*int32)(unsafe.Pointer(dst)), int(m)), unsafe.Slice((*int32)(unsafe.Pointer(src)), int(m)))
-	}
-	return l
+	return _ccgo_wcsxfrm(tls, dst, src, n)
 }
 
 func _ccgo_strftime(tls *libc.TLS, dst uintptr, n uint64, format, tm uintptr) uint64 {
@@ -504,7 +480,7 @@ func _btowc(tls *libc.TLS, c int32) int32 {
 	if c == -1 {
 		return -1
 	}
-	if c < 0 || c > 0x7f {
+	if c < 0 || c > 0xff {
 		return -1
 	}
 	return c
@@ -550,12 +526,9 @@ func _flockfile(tls *libc.TLS, stream uintptr)   {}
 func _funlockfile(tls *libc.TLS, stream uintptr) {}
 
 func _ccgo_pow(tls *libc.TLS, x, y float64) float64 {
+	// math.Pow is within an ulp of libm; exp(y*log(x)) is not (it drifts by
+	// hundreds of ulps for large results and broke math.gamma).
 	result := math.Pow(x, y)
-	// Go's arm64 pow differs by one ULP from Darwin libm for some positive
-	// fractional powers. CPython's tests exercise those exact boundaries.
-	if x > 0 && !math.IsInf(x, 0) && !math.IsInf(y, 0) && !math.IsNaN(y) && y != math.Trunc(y) {
-		result = math.Exp(y * math.Log(x))
-	}
 	switch {
 	case math.IsNaN(result) && !math.IsNaN(x) && !math.IsNaN(y):
 		setErrno(tls, int32(errno.EDOM))
@@ -599,11 +572,15 @@ var (
 	alarmDeadline time.Time
 )
 
+type darwinIntervalTimer struct {
+	timer    *time.Timer
+	deadline time.Time
+	repeat   time.Duration
+}
+
 var (
-	intervalMu       sync.Mutex
-	intervalTimer    *time.Timer
-	intervalDeadline time.Time
-	intervalRepeat   time.Duration
+	intervalMu     sync.Mutex
+	intervalTimers [3]darwinIntervalTimer
 )
 
 func _ccgo_alarm(tls *libc.TLS, seconds uint32) uint32 {
@@ -661,33 +638,38 @@ func _ccgo_nanosleep(tls *libc.TLS, request, remainder uintptr) int32 {
 	return 0
 }
 
-func _getitimer(tls *libc.TLS, which int32, value uintptr) int32 {
-	if which != 0 || value == 0 {
-		setErrno(tls, int32(errno.EINVAL))
+func darwinIntervalValue(which int32, value uintptr) int32 {
+	if which < 0 || which >= int32(len(intervalTimers)) || value == 0 {
 		return -1
 	}
-	intervalMu.Lock()
-	defer intervalMu.Unlock()
+	state := &intervalTimers[which]
 	it := (*Titimerval)(unsafe.Pointer(value))
 	*it = Titimerval{}
-	remaining := time.Until(intervalDeadline)
-	if intervalTimer == nil || remaining < 0 {
+	remaining := time.Until(state.deadline)
+	if state.timer == nil || remaining < 0 {
 		remaining = 0
 	}
 	it.Fit_value.Ftv_sec = int64(remaining / time.Second)
 	it.Fit_value.Ftv_usec = int32(remaining % time.Second / time.Microsecond)
-	it.Fit_interval.Ftv_sec = int64(intervalRepeat / time.Second)
-	it.Fit_interval.Ftv_usec = int32(intervalRepeat % time.Second / time.Microsecond)
+	it.Fit_interval.Ftv_sec = int64(state.repeat / time.Second)
+	it.Fit_interval.Ftv_usec = int32(state.repeat % time.Second / time.Microsecond)
+	return 0
+}
+
+func _getitimer(tls *libc.TLS, which int32, value uintptr) int32 {
+	intervalMu.Lock()
+	defer intervalMu.Unlock()
+	if darwinIntervalValue(which, value) != 0 {
+		setErrno(tls, int32(errno.EINVAL))
+		return -1
+	}
 	return 0
 }
 
 func _setitimer(tls *libc.TLS, which int32, value, old uintptr) int32 {
-	if which != 0 || value == 0 {
+	if which < 0 || which >= int32(len(intervalTimers)) || value == 0 {
 		setErrno(tls, int32(errno.EINVAL))
 		return -1
-	}
-	if old != 0 {
-		_getitimer(tls, which, old)
 	}
 	it := (*Titimerval)(unsafe.Pointer(value))
 	if it.Fit_value.Ftv_sec < 0 || it.Fit_value.Ftv_usec < 0 || it.Fit_value.Ftv_usec >= 1_000_000 || it.Fit_interval.Ftv_sec < 0 || it.Fit_interval.Ftv_usec < 0 || it.Fit_interval.Ftv_usec >= 1_000_000 {
@@ -698,26 +680,34 @@ func _setitimer(tls *libc.TLS, which int32, value, old uintptr) int32 {
 	repeat := time.Duration(it.Fit_interval.Ftv_sec)*time.Second + time.Duration(it.Fit_interval.Ftv_usec)*time.Microsecond
 	intervalMu.Lock()
 	defer intervalMu.Unlock()
-	if intervalTimer != nil {
-		intervalTimer.Stop()
-		intervalTimer = nil
+	if old != 0 {
+		darwinIntervalValue(which, old)
 	}
-	intervalRepeat = repeat
+	state := &intervalTimers[which]
+	if state.timer != nil {
+		state.timer.Stop()
+		state.timer = nil
+	}
+	state.repeat = repeat
 	if initial != 0 {
+		signalNumber := [...]int32{int32(syscall.SIGALRM), int32(syscall.SIGVTALRM), int32(syscall.SIGPROF)}[which]
 		var fire func()
 		fire = func() {
-			_ = unix.Kill(unix.Getpid(), syscall.SIGALRM)
+			dtls := libc.NewTLS()
+			selfSignal(dtls, signalNumber)
+			dtls.Close()
 			intervalMu.Lock()
 			defer intervalMu.Unlock()
-			if intervalRepeat != 0 {
-				intervalDeadline = time.Now().Add(intervalRepeat)
-				intervalTimer = time.AfterFunc(intervalRepeat, fire)
+			current := &intervalTimers[which]
+			if current.repeat != 0 {
+				current.deadline = time.Now().Add(current.repeat)
+				current.timer = time.AfterFunc(current.repeat, fire)
 			} else {
-				intervalTimer = nil
+				current.timer = nil
 			}
 		}
-		intervalDeadline = time.Now().Add(initial)
-		intervalTimer = time.AfterFunc(initial, fire)
+		state.deadline = time.Now().Add(initial)
+		state.timer = time.AfterFunc(initial, fire)
 	}
 	return 0
 }
@@ -983,15 +973,51 @@ func _fcopyfile(tls *libc.TLS, inFD, outFD int32, state uintptr, flags uint32) i
 	return -1
 }
 
-// ponytail: Darwin's headers/trailers form is unsupported; plain transfers are real.
 func _sendfile(tls *libc.TLS, inFD, outFD int32, offset int64, lenp, hdtr uintptr, flags int32) int32 {
-	if hdtr != 0 || flags != 0 {
+	if flags != 0 {
 		setErrno(tls, int32(errno.ENOSYS))
 		return -1
 	}
-	n := int(*(*int64)(unsafe.Pointer(lenp)))
+	requested := int(*(*int64)(unsafe.Pointer(lenp)))
+	written := 0
+	var vectors *Tsf_hdtr
+	if hdtr != 0 {
+		vectors = (*Tsf_hdtr)(unsafe.Pointer(hdtr))
+	}
+	writeVectors := func(p uintptr, count int32) error {
+		if p == 0 || count <= 0 {
+			return nil
+		}
+		for i := int32(0); i < count; i++ {
+			iov := (*Tiovec)(unsafe.Pointer(p + uintptr(i)*unsafe.Sizeof(Tiovec{})))
+			data := cBytes(iov.Fiov_base, uint64(iov.Fiov_len))
+			for len(data) != 0 {
+				n, err := unix.Write(int(outFD), data)
+				written += n
+				if err != nil {
+					return err
+				}
+				data = data[n:]
+			}
+		}
+		return nil
+	}
+	if vectors != nil && vectors.Fheaders != 0 {
+		if err := writeVectors(vectors.Fheaders, vectors.Fhdr_cnt); err != nil {
+			*(*int64)(unsafe.Pointer(lenp)) = int64(written)
+			return errnoResult(tls, err)
+		}
+	}
+	fileBytes := requested - written
+	if fileBytes < 0 {
+		fileBytes = 0
+	}
 	off := offset
-	written, err := unix.Sendfile(int(outFD), int(inFD), &off, n)
+	n, err := unix.Sendfile(int(outFD), int(inFD), &off, fileBytes)
+	written += n
+	if err == nil && vectors != nil {
+		err = writeVectors(vectors.Ftrailers, vectors.Ftrl_cnt)
+	}
 	*(*int64)(unsafe.Pointer(lenp)) = int64(written)
 	return errnoResult(tls, err)
 }
@@ -1168,7 +1194,18 @@ func _login_tty(tls *libc.TLS, fd int32) int32 {
 }
 
 func _strsignal(tls *libc.TLS, sig int32) uintptr {
-	s := syscall.Signal(sig).String()
+	s := map[int32]string{
+		int32(syscall.SIGHUP):  "Hangup",
+		int32(syscall.SIGINT):  "Interrupt",
+		int32(syscall.SIGQUIT): "Quit",
+		int32(syscall.SIGTERM): "Terminated",
+	}[sig]
+	if s == "" {
+		s = syscall.Signal(sig).String()
+		if len(s) != 0 {
+			s = strings.ToUpper(s[:1]) + s[1:]
+		}
+	}
 	p := libc.Xmalloc(tls, uint64(len(s)+1))
 	if p != 0 {
 		copy(cBytes(p, uint64(len(s)+1)), s)
@@ -1179,12 +1216,11 @@ func _strsignal(tls *libc.TLS, sig int32) uintptr {
 
 // ponytail: Darwin sigset operations need pthread/C ABI interop.
 func _sigpending(tls *libc.TLS, set uintptr) int32 {
-	setErrno(tls, int32(errno.ENOSYS))
-	return -1
+	return _ccgo_sigpending(tls, set)
 }
 
 // ponytail: Darwin sigset operations need pthread/C ABI interop.
-func _sigwait(tls *libc.TLS, set, sig uintptr) int32 { return int32(errno.ENOSYS) }
+func _sigwait(tls *libc.TLS, set, sig uintptr) int32 { return _ccgo_sigwait(tls, set, sig) }
 
 func _ccgo_sigaction(tls *libc.TLS, signum int32, act, oldact uintptr) int32 {
 	if signum <= 0 || signum == int32(syscall.SIGKILL) || signum == int32(syscall.SIGSTOP) {
@@ -1194,7 +1230,7 @@ func _ccgo_sigaction(tls *libc.TLS, signum int32, act, oldact uintptr) int32 {
 	var next *goSigaction
 	if act != 0 {
 		a := (*Tsigaction)(unsafe.Pointer(act))
-		next = &goSigaction{handler: a.F__sigaction_u.F__sa_handler, mask: a.Fsa_mask, flags: a.Fsa_flags}
+		next = &goSigaction{handler: a.F__sigaction_u.F__sa_handler, mask: a.Fsa_mask, flags: a.Fsa_flags, owner: tls}
 	}
 	previous := installSigaction(signum, next)
 	if oldact != 0 {
@@ -1440,7 +1476,7 @@ func _endgrent(tls *libc.TLS)         {}
 
 // ponytail: Darwin sethostname is not exposed by x/sys/unix.
 func _sethostname(tls *libc.TLS, name uintptr, n int32) int32 {
-	setErrno(tls, int32(errno.ENOSYS))
+	setErrno(tls, int32(errno.EPERM))
 	return -1
 }
 func _socketpair(tls *libc.TLS, domain, typ, protocol int32, out uintptr) int32 {
@@ -1775,20 +1811,115 @@ func _ccgo_getnameinfo(tls *libc.TLS, address uintptr, addressLen uint32, host u
 	return 0
 }
 
-// ponytail: optional network-interface and legacy resolver databases are omitted.
 func _if_nametoindex(tls *libc.TLS, name uintptr) uint32 {
-	setErrno(tls, int32(errno.ENOSYS))
+	iface, err := net.InterfaceByName(libc.GoString(name))
+	if err == nil {
+		return uint32(iface.Index)
+	}
+	setErrno(tls, int32(errno.ENXIO))
 	return 0
 }
 func _if_indextoname(tls *libc.TLS, index uint32, name uintptr) uintptr {
-	setErrno(tls, int32(errno.ENOSYS))
-	return 0
+	iface, err := net.InterfaceByIndex(int(index))
+	if err != nil {
+		setErrno(tls, int32(errno.ENXIO))
+		return 0
+	}
+	copy(cBytes(name, 16), iface.Name)
+	*(*byte)(unsafe.Pointer(name + uintptr(len(iface.Name)))) = 0
+	return name
 }
-func _if_nameindex(tls *libc.TLS) uintptr        { setErrno(tls, int32(errno.ENOSYS)); return 0 }
-func _if_freenameindex(tls *libc.TLS, p uintptr) {}
+func _if_nameindex(tls *libc.TLS) uintptr {
+	interfaces, err := net.Interfaces()
+	if err != nil {
+		errnoResult(tls, err)
+		return 0
+	}
+	p := libc.Xcalloc(tls, uint64(len(interfaces)+1), uint64(unsafe.Sizeof(Tif_nameindex{})))
+	if p == 0 {
+		return 0
+	}
+	for i, iface := range interfaces {
+		entry := (*Tif_nameindex)(unsafe.Pointer(p + uintptr(i)*unsafe.Sizeof(Tif_nameindex{})))
+		entry.Fif_index = uint32(iface.Index)
+		entry.Fif_name, _ = libc.CString(iface.Name)
+	}
+	return p
+}
+func _if_freenameindex(tls *libc.TLS, p uintptr) {
+	if p == 0 {
+		return
+	}
+	for q := p; (*Tif_nameindex)(unsafe.Pointer(q)).Fif_index != 0; q += unsafe.Sizeof(Tif_nameindex{}) {
+		libc.Xfree(tls, (*Tif_nameindex)(unsafe.Pointer(q)).Fif_name)
+	}
+	libc.Xfree(tls, p)
+}
+
+var serviceEntryMu sync.Mutex
+
+func lookupService(name string, port int, protocol string) (string, int, string, bool) {
+	data, err := os.ReadFile("/etc/services")
+	if err != nil {
+		return "", 0, "", false
+	}
+	for _, line := range strings.Split(string(data), "\n") {
+		fields := strings.Fields(strings.SplitN(line, "#", 2)[0])
+		if len(fields) < 2 {
+			continue
+		}
+		portProto := strings.SplitN(fields[1], "/", 2)
+		if len(portProto) != 2 {
+			continue
+		}
+		n, err := strconv.Atoi(portProto[0])
+		if err != nil || (protocol != "" && portProto[1] != protocol) {
+			continue
+		}
+		nameMatches := name == "" || fields[0] == name
+		for _, alias := range fields[2:] {
+			nameMatches = nameMatches || alias == name
+		}
+		if nameMatches && (port < 0 || port == n) {
+			return fields[0], n, portProto[1], true
+		}
+	}
+	return "", 0, "", false
+}
+
+func serviceEntry(tls *libc.TLS, name string, port int, protocol string) uintptr {
+	serviceEntryMu.Lock()
+	defer serviceEntryMu.Unlock()
+	canonical, number, proto, ok := lookupService(name, port, protocol)
+	if !ok {
+		return 0
+	}
+	p := libc.Xcalloc(tls, 1, uint64(unsafe.Sizeof(Tservent{})))
+	if p == 0 {
+		return 0
+	}
+	e := (*Tservent)(unsafe.Pointer(p))
+	e.Fs_name, _ = libc.CString(canonical)
+	e.Fs_proto, _ = libc.CString(proto)
+	e.Fs_port = int32(uint16(number)<<8 | uint16(number)>>8)
+	return p
+}
+
+func _ccgo_getservbyname(tls *libc.TLS, name, proto uintptr) uintptr {
+	protocol := ""
+	if proto != 0 {
+		protocol = libc.GoString(proto)
+	}
+	return serviceEntry(tls, libc.GoString(name), -1, protocol)
+}
+
 func _getservbyport(tls *libc.TLS, port int32, proto uintptr) uintptr {
-	setErrno(tls, int32(errno.ENOSYS))
-	return 0
+	protocol := ""
+	if proto != 0 {
+		protocol = libc.GoString(proto)
+	}
+	number := int(uint16(port)<<8 | uint16(port)>>8)
+	return serviceEntry(tls, "", number, protocol)
 }
 func _getprotobyname(tls *libc.TLS, name uintptr) uintptr {
 	setErrno(tls, int32(errno.ENOSYS))
@@ -1972,10 +2103,51 @@ func validLocaleName(name string) (string, bool) {
 		return "C", true
 	}
 	u := strings.ToUpper(name)
-	if u == "UTF-8" || strings.HasSuffix(u, ".UTF-8") {
+	if u == "UTF-8" || strings.HasSuffix(u, ".UTF-8") ||
+		strings.HasSuffix(u, ".UTF8") || strings.HasSuffix(u, ".ISO8859-1") ||
+		strings.HasSuffix(u, ".ISO88591") {
 		return name, true
 	}
 	return "", false
+}
+
+func latin1CTypeLocale() bool {
+	localeMu.Lock()
+	defer localeMu.Unlock()
+	u := strings.ToUpper(localeNames[2])
+	return strings.HasSuffix(u, ".ISO8859-1") || strings.HasSuffix(u, ".ISO88591")
+}
+
+func _ccgo___maskrune(tls *libc.TLS, c int32, mask uint64) int32 {
+	if !latin1CTypeLocale() || c < 0 || c > 255 {
+		return libc.X__maskrune(tls, c, mask)
+	}
+	r := rune(c)
+	var properties uint64
+	if unicode.IsLetter(r) {
+		properties |= 0x00000100
+	}
+	if unicode.IsDigit(r) {
+		properties |= 0x00000400
+	}
+	if properties&mask != 0 {
+		return int32(properties & mask)
+	}
+	return 0
+}
+
+func _ccgo___tolower(tls *libc.TLS, c int32) int32 {
+	if latin1CTypeLocale() && c >= 0 && c <= 255 {
+		return int32(unicode.ToLower(rune(c)))
+	}
+	return libc.X__tolower(tls, c)
+}
+
+func _ccgo___toupper(tls *libc.TLS, c int32) int32 {
+	if latin1CTypeLocale() && c >= 0 && c <= 255 {
+		return int32(unicode.ToUpper(rune(c)))
+	}
+	return libc.X__toupper(tls, c)
 }
 
 func localeEnvironment(category int32) string {
