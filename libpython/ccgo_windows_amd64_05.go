@@ -28636,7 +28636,7 @@ func XPy_GETENV(tls *libc.TLS, name uintptr) (r uintptr) {
 	if XPy_IgnoreEnvironmentFlag != 0 {
 		return libc.UintptrFromInt32(0)
 	}
-	return libc.Xgetenv(tls, name)
+	return _ccgo_getenv(tls, name)
 }
 
 func XPyStatus_Ok(tls *libc.TLS) (r TPyStatus) {
@@ -61874,7 +61874,7 @@ func XPy_GetSepA(tls *libc.TLS, name uintptr) (r int8) {
 	if int32(_sep) != int32('\000') {
 		return _sep
 	}
-	msystem = libc.Xgetenv(tls, __ccgo_ts+156512)
+	msystem = _ccgo_getenv(tls, __ccgo_ts+156512)
 	if msystem != libc.UintptrFromInt32(0) && libc.Xstrcmp(tls, msystem, __ccgo_ts+2) != 0 {
 		_sep = int8('/')
 	} else {
@@ -61921,7 +61921,7 @@ func XPy_GetSepW(tls *libc.TLS, name uintptr) (r Twchar_t) {
 	if int32(_sep1) != int32('\000') {
 		return _sep1
 	}
-	msystem = libc.Xgetenv(tls, __ccgo_ts+156512)
+	msystem = _ccgo_getenv(tls, __ccgo_ts+156512)
 	if msystem != libc.UintptrFromInt32(0) && libc.Xstrcmp(tls, msystem, __ccgo_ts+2) != 0 {
 		_sep1 = uint16('/')
 	} else {
@@ -63103,7 +63103,7 @@ func X_Py_GetEnv(tls *libc.TLS, use_environment int32, name uintptr) (r uintptr)
 	if !(use_environment != 0) {
 		return libc.UintptrFromInt32(0)
 	}
-	var1 = libc.Xgetenv(tls, name)
+	var1 = _ccgo_getenv(tls, name)
 	if var1 != 0 && int32(**(**int8)(__ccgo_up(var1))) != int32('\000') {
 		return var1
 	} else {

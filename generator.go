@@ -580,6 +580,7 @@ var shimmedLibc = map[string][]string{"windows": {
 	"dup2",
 	"fdopen",
 	"fprintf",
+	"getenv",
 	"getpeername",
 	"getservbyname",
 	"getsockname",

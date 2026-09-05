@@ -40257,7 +40257,7 @@ func _getDebugLevel(tls *libc.TLS, variableName uintptr, defaultDebugLevel uint3
 	var value, valueOrNull uintptr
 	var _ uintptr
 	_, _, _ = debugLevel, value, valueOrNull
-	valueOrNull = libc.Xgetenv(tls, variableName)
+	valueOrNull = _ccgo_getenv(tls, variableName)
 	if valueOrNull == libc.UintptrFromInt32(0) {
 		return defaultDebugLevel
 	}

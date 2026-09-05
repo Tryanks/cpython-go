@@ -704,6 +704,8 @@ func _ccgo___builtin_clzl(tls *libc.TLS, value uint32) int32 {
 var (
 	windowsWideStringMu    sync.Mutex
 	windowsWideStringCache = map[string]uintptr{}
+	windowsNarrowStringMu  sync.Mutex
+	windowsNarrowStrings   = map[string]uintptr{}
 	windowsEnvironmentMu   sync.Mutex
 	windowsEnvironmentKey  string
 	windowsEnvironmentList []uintptr
@@ -728,6 +730,35 @@ func windowsStableWideString(tls *libc.TLS, value string) uintptr {
 	*(*uint16)(unsafe.Pointer(p + uintptr(len(encoded))*2)) = 0
 	windowsWideStringCache[value] = p
 	return p
+}
+
+func windowsStableNarrowString(tls *libc.TLS, value string) uintptr {
+	windowsNarrowStringMu.Lock()
+	defer windowsNarrowStringMu.Unlock()
+	if p := windowsNarrowStrings[value]; p != 0 {
+		return p
+	}
+	p, err := libc.CString(value)
+	if err != nil {
+		setErrno(tls, int32(errno.ENOMEM))
+		return 0
+	}
+	windowsNarrowStrings[value] = p
+	return p
+}
+
+// CPython's os.environ mutates the process through the wide CRT API, while
+// Py_GETENV still performs narrow lookups. modernc's getenv reads a startup
+// cache and misses those updates (notably PYTHONBREAKPOINT in test_builtin).
+func _ccgo_getenv(tls *libc.TLS, name uintptr) uintptr {
+	if name == 0 {
+		return 0
+	}
+	value, ok := os.LookupEnv(libc.GoString(name))
+	if !ok {
+		return 0
+	}
+	return windowsStableNarrowString(tls, value)
 }
 
 // modernc's cached wide environment drops its final entry and does not track

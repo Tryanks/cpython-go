@@ -23007,7 +23007,7 @@ _5:
 func _use_alt_sep(tls *libc.TLS) (r int32) {
 	var msystem uintptr
 	_ = msystem
-	msystem = libc.Xgetenv(tls, __ccgo_ts+156512)
+	msystem = _ccgo_getenv(tls, __ccgo_ts+156512)
 	if msystem != libc.UintptrFromInt32(0) && libc.Xstrcmp(tls, msystem, __ccgo_ts+2) != 0 {
 		return int32(1)
 	}
