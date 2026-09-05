@@ -1610,6 +1610,13 @@ func _ccgo_getaddrinfo(tls *libc.TLS, node, service, hints, result uintptr) int3
 	if family != unix.AF_UNSPEC && family != unix.AF_INET && family != unix.AF_INET6 {
 		return 5 // EAI_FAMILY
 	}
+	// The interpreter is configured with --disable-ipv6 (no sockaddr_in6
+	// parsing in socketmodule), so an unspecified family must not yield
+	// AF_INET6 entries that bind()/connect() would then reject.
+	// ponytail: drop this once IPv6 is enabled in generator.go.
+	if family == unix.AF_UNSPEC {
+		family = unix.AF_INET
+	}
 	port := 0
 	if service != 0 {
 		name := libc.GoString(service)
@@ -2423,3 +2430,8 @@ func _ccgo_mknod(tls *libc.TLS, path uintptr, mode uint16, device int32) int32 {
 
 // ponytail: TSS keys are never reused, so deleting one is a no-op.
 func _ccgo_pthread_key_delete(tls *libc.TLS, key uint64) int32 { return 0 }
+
+// Routed here by generator.go: modernc's darwin/amd64 Xlink is a TODO panic.
+func _ccgo_link(tls *libc.TLS, oldpath, newpath uintptr) int32 {
+	return errnoResult(tls, unix.Link(libc.GoString(oldpath), libc.GoString(newpath)))
+}

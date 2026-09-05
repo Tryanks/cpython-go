@@ -89819,7 +89819,7 @@ func _os_link_impl(tls *libc.TLS, module uintptr, src uintptr, dst uintptr, src_
 	}
 	_save = XPyEval_SaveThread(tls)
 
-	result = libc.Xlink(tls, (*Tpath_t)(unsafe.Pointer(src)).Fnarrow, (*Tpath_t)(unsafe.Pointer(dst)).Fnarrow)
+	result = _ccgo_link(tls, (*Tpath_t)(unsafe.Pointer(src)).Fnarrow, (*Tpath_t)(unsafe.Pointer(dst)).Fnarrow)
 	XPyEval_RestoreThread(tls, _save)
 	if result != 0 {
 		return _path_error2(tls, src, dst)

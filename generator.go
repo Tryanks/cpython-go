@@ -628,6 +628,7 @@ var shimmedLibc = map[string][]string{"windows": {
 	"inet_ntop",
 	"inet_pton",
 	"kill",
+	"link",
 	"localeconv",
 	"localtime",
 	"localtime_r",
@@ -669,6 +670,7 @@ var shimmedLibc = map[string][]string{"windows": {
 	"unsetenv",
 	"vfprintf",
 	"write",
+
 }, "linux": {
 	// modernc's transpiled musl stdio locking hits an unsupported inline
 	// asm barrier (atomic_arch.h) and aborts; the interpreter serializes
