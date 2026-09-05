@@ -383,6 +383,125 @@ func _ccgo_CloseHandle(tls *libc.TLS, handle uintptr) int32 {
 	return 1
 }
 
+// modernc.org/libc stores failures from most Win32 wrappers in errno, while
+// its GetLastError reads that same errno slot. CPython deliberately clears
+// errno in several paths before consulting LastError. Prefer modernc's slot
+// while an unrouted wrapper has populated it, then fall back to the independent
+// LastError channel maintained by the shims below.
+func _ccgo_GetLastError(tls *libc.TLS) uint32 {
+	if value := *(*int32)(unsafe.Pointer(libc.X_errno(tls))); value != 0 {
+		return uint32(value)
+	}
+	return tls.GetLastError()
+}
+
+func _ccgo_CreateDirectoryW(tls *libc.TLS, path, securityAttributes uintptr) int32 {
+	return boolProc(tls, dllKernel32, "CreateDirectoryW", path, securityAttributes)
+}
+
+func _ccgo_CreateFileW(tls *libc.TLS, path uintptr, desiredAccess, shareMode uint32, securityAttributes uintptr, creationDisposition, flagsAndAttributes uint32, templateFile uintptr) uintptr {
+	return handleProc(
+		tls,
+		dllKernel32,
+		"CreateFileW",
+		^uintptr(0),
+		path,
+		uintptr(desiredAccess),
+		uintptr(shareMode),
+		securityAttributes,
+		uintptr(creationDisposition),
+		uintptr(flagsAndAttributes),
+		templateFile,
+	)
+}
+
+func _ccgo_DeleteFileW(tls *libc.TLS, path uintptr) int32 {
+	return boolProc(tls, dllKernel32, "DeleteFileW", path)
+}
+
+func _ccgo_FindClose(tls *libc.TLS, handle uintptr) int32 {
+	return boolProc(tls, dllKernel32, "FindClose", handle)
+}
+
+func _ccgo_FindFirstFileW(tls *libc.TLS, path, data uintptr) uintptr {
+	return handleProc(tls, dllKernel32, "FindFirstFileW", ^uintptr(0), path, data)
+}
+
+func _ccgo_FindNextFileW(tls *libc.TLS, handle, data uintptr) int32 {
+	return boolProc(tls, dllKernel32, "FindNextFileW", handle, data)
+}
+
+func _ccgo_GetFileAttributesExW(tls *libc.TLS, path uintptr, infoLevel int32, information uintptr) int32 {
+	return boolProc(tls, dllKernel32, "GetFileAttributesExW", path, uintptr(infoLevel), information)
+}
+
+func _ccgo_GetFileAttributesW(tls *libc.TLS, path uintptr) uint32 {
+	r, err := callProc(dllKernel32, "GetFileAttributesW", path)
+	if uint32(r) == ^uint32(0) {
+		setWinError(tls, err, errorInvalidFunction)
+	}
+	return uint32(r)
+}
+
+func _ccgo_GetFileInformationByHandle(tls *libc.TLS, handle, information uintptr) int32 {
+	return boolProc(tls, dllKernel32, "GetFileInformationByHandle", handle, information)
+}
+
+func _ccgo_GetFileType(tls *libc.TLS, handle uintptr) uint32 {
+	// FILE_TYPE_UNKNOWN (zero) may be a valid result, so clear LastError first
+	// and only publish the native error when the call leaves one behind.
+	_SetLastError(tls, 0)
+	r, err := callProc(dllKernel32, "GetFileType", handle)
+	if r == 0 && winErrno(err, 0) != 0 {
+		setWinError(tls, err, errorInvalidHandle)
+	}
+	return uint32(r)
+}
+
+func _ccgo_MultiByteToWideChar(tls *libc.TLS, codePage, flags uint32, source uintptr, sourceLength int32, destination uintptr, destinationLength int32) int32 {
+	r, err := callProc(
+		dllKernel32,
+		"MultiByteToWideChar",
+		uintptr(codePage),
+		uintptr(flags),
+		source,
+		uintptr(sourceLength),
+		destination,
+		uintptr(destinationLength),
+	)
+	if r == 0 {
+		setWinError(tls, err, errorInvalidParam)
+	}
+	return int32(r)
+}
+
+func _ccgo_RemoveDirectoryW(tls *libc.TLS, path uintptr) int32 {
+	return boolProc(tls, dllKernel32, "RemoveDirectoryW", path)
+}
+
+func _ccgo_SetFileAttributesW(tls *libc.TLS, path uintptr, attributes uint32) int32 {
+	return boolProc(tls, dllKernel32, "SetFileAttributesW", path, uintptr(attributes))
+}
+
+func _ccgo_WideCharToMultiByte(tls *libc.TLS, codePage, flags uint32, source uintptr, sourceLength int32, destination uintptr, destinationLength int32, defaultChar, usedDefaultChar uintptr) int32 {
+	r, err := callProc(
+		dllKernel32,
+		"WideCharToMultiByte",
+		uintptr(codePage),
+		uintptr(flags),
+		source,
+		uintptr(sourceLength),
+		destination,
+		uintptr(destinationLength),
+		defaultChar,
+		usedDefaultChar,
+	)
+	if r == 0 {
+		setWinError(tls, err, errorInvalidParam)
+	}
+	return int32(r)
+}
+
 // LoadLibraryW and FreeLibrary are needed by CPython's optional Windows API
 // probes. Native procedure addresses cannot be invoked through ccgo's Go
 // function-pointer representation, so GetProcAddress reports an unavailable

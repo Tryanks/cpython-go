@@ -17784,7 +17784,7 @@ func _overlapped_dealloc(tls *libc.TLS, op2 uintptr) {
 	var v9 Tuint32_t
 	var _ TDWORD
 	_, _, _, _, _, _, _, _, _, _ = _tmp_old_op, _tmp_op_ptr, err, self, tp, tstate, v1, v3, v6, v9
-	err = int32(libc.XGetLastError(tls))
+	err = int32(_ccgo_GetLastError(tls))
 	self = op2
 	XPyObject_GC_UnTrack(tls, self)
 	if (*TOverlappedObject1)(unsafe.Pointer(self)).Fpending != 0 {
@@ -19723,7 +19723,7 @@ func __winapi_Overlapped_GetOverlappedResult_impl(tls *libc.TLS, self1 uintptr, 
 	if res != 0 {
 		v1 = uint32(0)
 	} else {
-		v1 = libc.XGetLastError(tls)
+		v1 = _ccgo_GetLastError(tls)
 	}
 	err = v1
 	switch err {
@@ -19797,7 +19797,7 @@ func __winapi_Overlapped_cancel_impl(tls *libc.TLS, self uintptr) (r uintptr) {
 		XPyEval_RestoreThread(tls, _save)
 	}
 
-	if !(res != 0) && libc.XGetLastError(tls) != uint32(1168) {
+	if !(res != 0) && _ccgo_GetLastError(tls) != uint32(1168) {
 		return XPyErr_SetExcFromWindowsErr(tls, XPyExc_OSError, 0)
 	}
 	(*TOverlappedObject1)(unsafe.Pointer(self)).Fpending = 0
@@ -19933,7 +19933,7 @@ func __winapi_ConnectNamedPipe_impl(tls *libc.TLS, module uintptr, handle THANDL
 	success = _ConnectNamedPipe(tls, handle, v1)
 	XPyEval_RestoreThread(tls, _save)
 	if overlapped != 0 {
-		err = int32(libc.XGetLastError(tls))
+		err = int32(_ccgo_GetLastError(tls))
 
 		if err == int32(997) {
 			(*TOverlappedObject1)(unsafe.Pointer(overlapped)).Fpending = int32(1)
@@ -19997,7 +19997,7 @@ func __winapi_CreateFile_impl(tls *libc.TLS, module uintptr, file_name TLPCWSTR,
 		return uintptr(int64(-libc.Int32FromInt32(1)))
 	}
 	_save = XPyEval_SaveThread(tls)
-	handle = libc.XCreateFileW(tls, file_name, desired_access, share_mode, security_attributes, creation_disposition, flags_and_attributes, template_file)
+	handle = _ccgo_CreateFileW(tls, file_name, desired_access, share_mode, security_attributes, creation_disposition, flags_and_attributes, template_file)
 	XPyEval_RestoreThread(tls, _save)
 	if handle == uintptr(int64(-libc.Int32FromInt32(1))) {
 		XPyErr_SetFromWindowsErr(tls, 0)
@@ -20094,7 +20094,7 @@ func __winapi_CreateJunction_impl(tls *libc.TLS, module uintptr, src_path TLPCWS
 	if !(_AdjustTokenPrivileges(tls, **(**THANDLE)(__ccgo_up(bp)), MFALSE, bp+8, uint32(64), bp+72, bp+136) != 0) {
 		goto cleanup
 	}
-	if libc.XGetFileAttributesW(tls, src_path) == uint32(-libc.Int32FromInt32(1)) {
+	if _ccgo_GetFileAttributesW(tls, src_path) == uint32(-libc.Int32FromInt32(1)) {
 		goto cleanup
 	}
 
@@ -20202,10 +20202,10 @@ func __winapi_CreateJunction_impl(tls *libc.TLS, module uintptr, src_path TLPCWS
 
 	libc.Xwcscpy(tls, rdb+8+8+uintptr(prefix_len)*2+uintptr(print_len)*2+uintptr(1)*2, rdb+8+8+uintptr(prefix_len)*2)
 
-	if !(libc.XCreateDirectoryW(tls, dst_path, libc.UintptrFromInt32(0)) != 0) {
+	if !(_ccgo_CreateDirectoryW(tls, dst_path, libc.UintptrFromInt32(0)) != 0) {
 		goto cleanup
 	}
-	junction = libc.XCreateFileW(tls, dst_path, libc.Uint32FromUint32(0x80000000)|uint32(libc.Int32FromInt32(0x40000000)), uint32(0), libc.UintptrFromInt32(0), uint32(MOPEN_EXISTING), uint32(libc.Int32FromInt32(MFILE_FLAG_OPEN_REPARSE_POINT)|libc.Int32FromInt32(MFILE_FLAG_BACKUP_SEMANTICS)), libc.UintptrFromInt32(0))
+	junction = _ccgo_CreateFileW(tls, dst_path, libc.Uint32FromUint32(0x80000000)|uint32(libc.Int32FromInt32(0x40000000)), uint32(0), libc.UintptrFromInt32(0), uint32(MOPEN_EXISTING), uint32(libc.Int32FromInt32(MFILE_FLAG_OPEN_REPARSE_POINT)|libc.Int32FromInt32(MFILE_FLAG_BACKUP_SEMANTICS)), libc.UintptrFromInt32(0))
 	if junction == uintptr(int64(-libc.Int32FromInt32(1))) {
 		goto cleanup
 	}
@@ -20216,7 +20216,7 @@ func __winapi_CreateJunction_impl(tls *libc.TLS, module uintptr, src_path TLPCWS
 	goto cleanup
 cleanup:
 	;
-	**(**TDWORD)(__ccgo_up(bp + 140)) = libc.XGetLastError(tls)
+	**(**TDWORD)(__ccgo_up(bp + 140)) = _ccgo_GetLastError(tls)
 	if **(**TDWORD)(__ccgo_up(bp + 136)) != 0 {
 		_AdjustTokenPrivileges(tls, **(**THANDLE)(__ccgo_up(bp)), MFALSE, bp+72, **(**TDWORD)(__ccgo_up(bp + 136)), libc.UintptrFromInt32(0), libc.UintptrFromInt32(0))
 	}
@@ -20287,7 +20287,7 @@ func __winapi_CreatePipe_impl(tls *libc.TLS, module uintptr, pipe_attrs uintptr,
 	result = libc.XCreatePipe(tls, bp, bp+8, libc.UintptrFromInt32(0), size)
 	XPyEval_RestoreThread(tls, _save)
 	if !(result != 0) {
-		return XPyErr_SetFromWindowsErr(tls, int32(libc.XGetLastError(tls)))
+		return XPyErr_SetFromWindowsErr(tls, int32(_ccgo_GetLastError(tls)))
 	}
 	return XPy_BuildValue(tls, __ccgo_ts+215105, libc.VaList(bp+24, XPyLong_FromUnsignedLongLong(tls, uint64(**(**THANDLE)(__ccgo_up(bp)))), XPyLong_FromUnsignedLongLong(tls, uint64(**(**THANDLE)(__ccgo_up(bp + 8))))))
 }
@@ -21192,9 +21192,9 @@ func _getattributelist(tls *libc.TLS, obj uintptr, name uintptr, attribute_list 
 	}
 
 	result = _InitializeProcThreadAttributeList(tls, libc.UintptrFromInt32(0), attribute_count, uint32(0), bp+8)
-	if result != 0 || libc.XGetLastError(tls) != uint32(122) {
+	if result != 0 || _ccgo_GetLastError(tls) != uint32(122) {
 		ret = -int32(1)
-		XPyErr_SetFromWindowsErr(tls, int32(libc.XGetLastError(tls)))
+		XPyErr_SetFromWindowsErr(tls, int32(_ccgo_GetLastError(tls)))
 		goto cleanup
 	}
 	(*TAttributeList)(unsafe.Pointer(attribute_list)).Fattribute_list = XPyMem_Malloc(tls, **(**TSIZE_T)(__ccgo_up(bp + 8)))
@@ -21205,7 +21205,7 @@ func _getattributelist(tls *libc.TLS, obj uintptr, name uintptr, attribute_list 
 	}
 	result = _InitializeProcThreadAttributeList(tls, (*TAttributeList)(unsafe.Pointer(attribute_list)).Fattribute_list, attribute_count, uint32(0), bp+8)
 	if !(result != 0) {
-		err = libc.XGetLastError(tls)
+		err = _ccgo_GetLastError(tls)
 
 		XPyMem_Free(tls, (*TAttributeList)(unsafe.Pointer(attribute_list)).Fattribute_list)
 		(*TAttributeList)(unsafe.Pointer(attribute_list)).Fattribute_list = libc.UintptrFromInt32(0)
@@ -21217,7 +21217,7 @@ func _getattributelist(tls *libc.TLS, obj uintptr, name uintptr, attribute_list 
 		result = _UpdateProcThreadAttribute(tls, (*TAttributeList)(unsafe.Pointer(attribute_list)).Fattribute_list, uint32(0), uint64(int32(EProcThreadAttributeHandleList)&libc.Int32FromInt32(MPROC_THREAD_ATTRIBUTE_NUMBER)|libc.Int32FromInt32(0)|libc.Int32FromInt32(MPROC_THREAD_ATTRIBUTE_INPUT)|libc.Int32FromInt32(0)), (*TAttributeList)(unsafe.Pointer(attribute_list)).Fhandle_list, uint64(**(**TPy_ssize_t)(__ccgo_up(bp))), libc.UintptrFromInt32(0), libc.UintptrFromInt32(0))
 		if !(result != 0) {
 			ret = -int32(1)
-			XPyErr_SetFromWindowsErr(tls, int32(libc.XGetLastError(tls)))
+			XPyErr_SetFromWindowsErr(tls, int32(_ccgo_GetLastError(tls)))
 			goto cleanup
 		}
 	}
@@ -21310,7 +21310,7 @@ _4:
 	result = libc.XCreateProcessW(tls, application_name, command_line_copy, libc.UintptrFromInt32(0), libc.UintptrFromInt32(0), inherit_handles, creation_flags|uint32(MEXTENDED_STARTUPINFO_PRESENT)|uint32(MCREATE_UNICODE_ENVIRONMENT), wenvironment, current_directory, bp+24, bp)
 	XPyEval_RestoreThread(tls, _save)
 	if !(result != 0) {
-		XPyErr_SetFromWindowsErr(tls, int32(libc.XGetLastError(tls)))
+		XPyErr_SetFromWindowsErr(tls, int32(_ccgo_GetLastError(tls)))
 		goto cleanup
 	}
 	ret = XPy_BuildValue(tls, __ccgo_ts+287948, libc.VaList(bp+160, XPyLong_FromUnsignedLongLong(tls, uint64((**(**TPROCESS_INFORMATION)(__ccgo_up(bp))).FhProcess)), XPyLong_FromUnsignedLongLong(tls, uint64((**(**TPROCESS_INFORMATION)(__ccgo_up(bp))).FhThread)), (**(**TPROCESS_INFORMATION)(__ccgo_up(bp))).FdwProcessId, (**(**TPROCESS_INFORMATION)(__ccgo_up(bp))).FdwThreadId))
@@ -21335,7 +21335,7 @@ func __winapi_DuplicateHandle_impl(tls *libc.TLS, module uintptr, source_process
 	result = libc.XDuplicateHandle(tls, source_process_handle, source_handle, target_process_handle, bp, desired_access, inherit_handle, options)
 	XPyEval_RestoreThread(tls, _save)
 	if !(result != 0) {
-		XPyErr_SetFromWindowsErr(tls, int32(libc.XGetLastError(tls)))
+		XPyErr_SetFromWindowsErr(tls, int32(_ccgo_GetLastError(tls)))
 		return uintptr(int64(-libc.Int32FromInt32(1)))
 	}
 	return **(**THANDLE)(__ccgo_up(bp))
@@ -21361,7 +21361,7 @@ func __winapi_GetExitCodeProcess_impl(tls *libc.TLS, module uintptr, process THA
 	_ = result
 	result = libc.XGetExitCodeProcess(tls, process, bp)
 	if !(result != 0) {
-		XPyErr_SetFromWindowsErr(tls, int32(libc.XGetLastError(tls)))
+		XPyErr_SetFromWindowsErr(tls, int32(_ccgo_GetLastError(tls)))
 		**(**TDWORD)(__ccgo_up(bp)) = uint32(4294967295)
 	}
 	return **(**TDWORD)(__ccgo_up(bp))
@@ -21369,7 +21369,7 @@ func __winapi_GetExitCodeProcess_impl(tls *libc.TLS, module uintptr, process THA
 
 func __winapi_GetLastError_impl(tls *libc.TLS, module uintptr) (r TDWORD) {
 
-	return libc.XGetLastError(tls)
+	return _ccgo_GetLastError(tls)
 }
 
 func __winapi_GetLongPathName_impl(tls *libc.TLS, module uintptr, path TLPCWSTR) (r uintptr) {
@@ -21413,7 +21413,7 @@ func __winapi_GetModuleFileName_impl(tls *libc.TLS, module uintptr, module_handl
 	(**(**[260]TWCHAR)(__ccgo_up(bp)))[libc.Int32FromInt32(MMAX_PATH)-libc.Int32FromInt32(1)] = uint16('\000')
 	XPyEval_RestoreThread(tls, _save)
 	if !(result != 0) {
-		return XPyErr_SetFromWindowsErr(tls, int32(libc.XGetLastError(tls)))
+		return XPyErr_SetFromWindowsErr(tls, int32(_ccgo_GetLastError(tls)))
 	}
 	return XPyUnicode_FromWideChar(tls, bp, int64(libc.Xwcslen(tls, bp)))
 }
@@ -21457,7 +21457,7 @@ func __winapi_GetStdHandle_impl(tls *libc.TLS, module uintptr, std_handle TDWORD
 	handle = libc.XGetStdHandle(tls, std_handle)
 	XPyEval_RestoreThread(tls, _save)
 	if handle == uintptr(int64(-libc.Int32FromInt32(1))) {
-		XPyErr_SetFromWindowsErr(tls, int32(libc.XGetLastError(tls)))
+		XPyErr_SetFromWindowsErr(tls, int32(_ccgo_GetLastError(tls)))
 	}
 	return handle
 }
@@ -21582,7 +21582,7 @@ func __winapi_OpenProcess_impl(tls *libc.TLS, module uintptr, desired_access TDW
 	handle = _OpenProcess(tls, desired_access, inherit_handle, process_id)
 	XPyEval_RestoreThread(tls, _save)
 	if handle == libc.UintptrFromInt32(0) {
-		XPyErr_SetFromWindowsErr(tls, int32(libc.XGetLastError(tls)))
+		XPyErr_SetFromWindowsErr(tls, int32(_ccgo_GetLastError(tls)))
 		handle = uintptr(int64(-libc.Int32FromInt32(1)))
 	}
 	return handle
@@ -21674,7 +21674,7 @@ func __winapi_LCMapStringEx_impl(tls *libc.TLS, module uintptr, locale TLPCWSTR,
 	}
 	dest_size = _LCMapStringEx(tls, locale, flags, src_, int32(**(**TPy_ssize_t)(__ccgo_up(bp))), libc.UintptrFromInt32(0), 0, libc.UintptrFromInt32(0), libc.UintptrFromInt32(0), 0)
 	if dest_size <= 0 {
-		error1 = libc.XGetLastError(tls)
+		error1 = _ccgo_GetLastError(tls)
 		XPyMem_Free(tls, src_)
 		return XPyErr_SetFromWindowsErr(tls, int32(error1))
 	}
@@ -21690,7 +21690,7 @@ func __winapi_LCMapStringEx_impl(tls *libc.TLS, module uintptr, locale TLPCWSTR,
 	}
 	nmapped = _LCMapStringEx(tls, locale, flags, src_, int32(**(**TPy_ssize_t)(__ccgo_up(bp))), dest, dest_size, libc.UintptrFromInt32(0), libc.UintptrFromInt32(0), 0)
 	if nmapped <= 0 {
-		error11 = libc.XGetLastError(tls)
+		error11 = _ccgo_GetLastError(tls)
 		XPyMem_Free(tls, src_)
 		XPyMem_Free(tls, dest)
 		return XPyErr_SetFromWindowsErr(tls, int32(error11))
@@ -21756,7 +21756,7 @@ _8:
 	if ret != 0 {
 		v10 = uint32(0)
 	} else {
-		v10 = libc.XGetLastError(tls)
+		v10 = _ccgo_GetLastError(tls)
 	}
 	err = v10
 	if overlapped != 0 {
@@ -21818,7 +21818,7 @@ func __winapi_ReleaseMutex_impl(tls *libc.TLS, module uintptr, mutex THANDLE) (r
 	err = 0
 	_save = XPyEval_SaveThread(tls)
 	if !(_ReleaseMutex(tls, mutex) != 0) {
-		err = int32(libc.XGetLastError(tls))
+		err = int32(_ccgo_GetLastError(tls))
 	}
 	XPyEval_RestoreThread(tls, _save)
 	if err != 0 {
@@ -21835,7 +21835,7 @@ func __winapi_ResetEvent_impl(tls *libc.TLS, module uintptr, event THANDLE) (r u
 	err = 0
 	_save = XPyEval_SaveThread(tls)
 	if !(libc.XResetEvent(tls, event) != 0) {
-		err = int32(libc.XGetLastError(tls))
+		err = int32(_ccgo_GetLastError(tls))
 	}
 	XPyEval_RestoreThread(tls, _save)
 	if err != 0 {
@@ -21852,7 +21852,7 @@ func __winapi_SetEvent_impl(tls *libc.TLS, module uintptr, event THANDLE) (r uin
 	err = 0
 	_save = XPyEval_SaveThread(tls)
 	if !(libc.XSetEvent(tls, event) != 0) {
-		err = int32(libc.XGetLastError(tls))
+		err = int32(_ccgo_GetLastError(tls))
 	}
 	XPyEval_RestoreThread(tls, _save)
 	if err != 0 {
@@ -21914,7 +21914,7 @@ func __winapi_TerminateProcess_impl(tls *libc.TLS, module uintptr, handle THANDL
 	}
 	result = _TerminateProcess(tls, handle, exit_code)
 	if !(result != 0) {
-		return XPyErr_SetFromWindowsErr(tls, int32(libc.XGetLastError(tls)))
+		return XPyErr_SetFromWindowsErr(tls, int32(_ccgo_GetLastError(tls)))
 	}
 	return uintptr(unsafe.Pointer(&X_Py_NoneStruct))
 }
@@ -21967,7 +21967,7 @@ func __batched_WaitForMultipleObjects_thread(tls *libc.TLS, param TLPVOID) (r TD
 	data = param
 	libc.AtomicStorePUint32(data+536, _WaitForMultipleObjects(tls, (*TBatchedWaitData)(unsafe.Pointer(data)).Fhandle_count, data, MFALSE, uint32(MINFINITE)))
 	if libc.AtomicLoadPUint32(data+536) == libc.Uint32FromUint32(0xffffffff) {
-		err = libc.XGetLastError(tls)
+		err = _ccgo_GetLastError(tls)
 		libc.XSetEvent(tls, (*TBatchedWaitData)(unsafe.Pointer(data)).Fcancel_event)
 		return err
 	} else {
@@ -22146,7 +22146,7 @@ func __winapi_BatchedWaitForMultipleObjects_impl(tls *libc.TLS, module uintptr, 
 			result = _WaitForMultipleObjects(tls, (*TBatchedWaitData)(unsafe.Pointer(thread_data[i])).Fhandle_count, thread_data[i], int32(MTRUE), timeout)
 
 			if result == libc.Uint32FromUint32(0xffffffff) {
-				**(**TDWORD)(__ccgo_up(bp + 512)) = libc.XGetLastError(tls)
+				**(**TDWORD)(__ccgo_up(bp + 512)) = _ccgo_GetLastError(tls)
 			} else {
 				if result == uint32(258) {
 					**(**TDWORD)(__ccgo_up(bp + 512)) = uint32(258)
@@ -22158,7 +22158,7 @@ func __winapi_BatchedWaitForMultipleObjects_impl(tls *libc.TLS, module uintptr, 
 					**(**TDWORD)(__ccgo_up(bp + 512)) = uint32(572)
 				} else {
 					if result == libc.Uint32FromUint32(0xffffffff) {
-						**(**TDWORD)(__ccgo_up(bp + 512)) = libc.XGetLastError(tls)
+						**(**TDWORD)(__ccgo_up(bp + 512)) = _ccgo_GetLastError(tls)
 					}
 				}
 			}
@@ -22179,7 +22179,7 @@ func __winapi_BatchedWaitForMultipleObjects_impl(tls *libc.TLS, module uintptr, 
 			data1 = thread_data[i]
 			(*TBatchedWaitData)(unsafe.Pointer(data1)).Fthread = libc.XCreateThread(tls, libc.UintptrFromInt32(0), uint64(1), __ccgo_fp(__batched_WaitForMultipleObjects_thread), data1, uint32(MCREATE_SUSPENDED), libc.UintptrFromInt32(0))
 			if !((*TBatchedWaitData)(unsafe.Pointer(data1)).Fthread != 0) {
-				**(**TDWORD)(__ccgo_up(bp + 512)) = libc.XGetLastError(tls)
+				**(**TDWORD)(__ccgo_up(bp + 512)) = _ccgo_GetLastError(tls)
 				break
 			}
 			v9 = handle_count
@@ -22221,7 +22221,7 @@ func __winapi_BatchedWaitForMultipleObjects_impl(tls *libc.TLS, module uintptr, 
 		result = _WaitForMultipleObjects(tls, uint32(handle_count), bp, wait_all, milliseconds)
 
 		if result == libc.Uint32FromUint32(0xffffffff) {
-			**(**TDWORD)(__ccgo_up(bp + 512)) = libc.XGetLastError(tls)
+			**(**TDWORD)(__ccgo_up(bp + 512)) = _ccgo_GetLastError(tls)
 		} else {
 			if result == uint32(258) {
 				**(**TDWORD)(__ccgo_up(bp + 512)) = uint32(258)
@@ -22244,7 +22244,7 @@ func __winapi_BatchedWaitForMultipleObjects_impl(tls *libc.TLS, module uintptr, 
 			}
 			if !(**(**TDWORD)(__ccgo_up(bp + 512)) != 0) && libc.AtomicLoadPUint32(thread_data[i]+536) == libc.Uint32FromUint32(0xffffffff) {
 				if !(libc.XGetExitCodeThread(tls, (*TBatchedWaitData)(unsafe.Pointer(thread_data[i])).Fthread, bp+512) != 0) {
-					**(**TDWORD)(__ccgo_up(bp + 512)) = libc.XGetLastError(tls)
+					**(**TDWORD)(__ccgo_up(bp + 512)) = _ccgo_GetLastError(tls)
 				}
 			}
 			_ccgo_CloseHandle(tls, (*TBatchedWaitData)(unsafe.Pointer(thread_data[i])).Fthread)
@@ -22496,7 +22496,7 @@ func __winapi_WaitForSingleObject_impl(tls *libc.TLS, module uintptr, handle THA
 	result = libc.XWaitForSingleObject(tls, handle, milliseconds)
 	XPyEval_RestoreThread(tls, _save)
 	if result == libc.Uint32FromUint32(0xffffffff) {
-		XPyErr_SetFromWindowsErr(tls, int32(libc.XGetLastError(tls)))
+		XPyErr_SetFromWindowsErr(tls, int32(_ccgo_GetLastError(tls)))
 		return -int32(1)
 	}
 	return int32(result)
@@ -22563,7 +22563,7 @@ func __winapi_WriteFile_impl(tls *libc.TLS, module uintptr, handle THANDLE, buff
 	if ret != 0 {
 		v10 = uint32(0)
 	} else {
-		v10 = libc.XGetLastError(tls)
+		v10 = _ccgo_GetLastError(tls)
 	}
 	err = v10
 	if overlapped != 0 {
@@ -22609,9 +22609,9 @@ func __winapi_GetFileType_impl(tls *libc.TLS, module uintptr, handle THANDLE) (r
 	var result TDWORD
 	_, _ = _save, result
 	_save = XPyEval_SaveThread(tls)
-	result = libc.XGetFileType(tls, handle)
+	result = _ccgo_GetFileType(tls, handle)
 	XPyEval_RestoreThread(tls, _save)
-	if result == uint32(MFILE_TYPE_UNKNOWN) && libc.XGetLastError(tls) != uint32(0) {
+	if result == uint32(MFILE_TYPE_UNKNOWN) && _ccgo_GetLastError(tls) != uint32(0) {
 		XPyErr_SetFromWindowsErr(tls, 0)
 		return uint32(-libc.Int32FromInt32(1))
 	}
@@ -28662,7 +28662,7 @@ func _getpath_isdir(tls *libc.TLS, _unused_self uintptr, args uintptr) (r1 uintp
 	}
 	path = XPyUnicode_AsWideCharString(tls, **(**uintptr)(__ccgo_up(bp)), libc.UintptrFromInt32(0))
 	if path != 0 {
-		attr = libc.XGetFileAttributesW(tls, path)
+		attr = _ccgo_GetFileAttributesW(tls, path)
 		if attr != uint32(-libc.Int32FromInt32(1)) && attr&uint32(MFILE_ATTRIBUTE_DIRECTORY) != 0 {
 			v1 = uintptr(unsafe.Pointer(&X_Py_TrueStruct))
 		} else {
@@ -28702,7 +28702,7 @@ func _getpath_isfile(tls *libc.TLS, _unused_self uintptr, args uintptr) (r1 uint
 	}
 	path = XPyUnicode_AsWideCharString(tls, **(**uintptr)(__ccgo_up(bp)), libc.UintptrFromInt32(0))
 	if path != 0 {
-		attr = libc.XGetFileAttributesW(tls, path)
+		attr = _ccgo_GetFileAttributesW(tls, path)
 		if attr != uint32(-libc.Int32FromInt32(1)) && !(attr&libc.Uint32FromInt32(MFILE_ATTRIBUTE_DIRECTORY) != 0) {
 			v1 = uintptr(unsafe.Pointer(&X_Py_TrueStruct))
 		} else {
@@ -28743,7 +28743,7 @@ func _getpath_isxfile(tls *libc.TLS, _unused_self uintptr, args uintptr) (r1 uin
 	}
 	path = XPyUnicode_AsWideCharString(tls, **(**uintptr)(__ccgo_up(bp)), bp+8)
 	if path != 0 {
-		attr = libc.XGetFileAttributesW(tls, path)
+		attr = _ccgo_GetFileAttributesW(tls, path)
 		if attr != uint32(-libc.Int32FromInt32(1)) && !(attr&libc.Uint32FromInt32(MFILE_ATTRIBUTE_DIRECTORY) != 0) && **(**TPy_ssize_t)(__ccgo_up(bp + 8)) >= int64(4) && _CompareStringOrdinal(tls, path+uintptr(**(**TPy_ssize_t)(__ccgo_up(bp + 8)))*2-uintptr(4)*2, -int32(1), __ccgo_ts+248007, -int32(1), int32(1)) == int32(MCSTR_EQUAL) {
 			v1 = uintptr(unsafe.Pointer(&X_Py_TrueStruct))
 		} else {
@@ -29153,18 +29153,18 @@ func _getpath_realpath(tls *libc.TLS, _unused_self uintptr, args uintptr) (r uin
 		return libc.UintptrFromInt32(0)
 	}
 	_save = XPyEval_SaveThread(tls)
-	hFile = libc.XCreateFileW(tls, path, uint32(0), uint32(0), libc.UintptrFromInt32(0), uint32(MOPEN_EXISTING), uint32(MFILE_FLAG_BACKUP_SEMANTICS), libc.UintptrFromInt32(0))
+	hFile = _ccgo_CreateFileW(tls, path, uint32(0), uint32(0), libc.UintptrFromInt32(0), uint32(MOPEN_EXISTING), uint32(MFILE_FLAG_BACKUP_SEMANTICS), libc.UintptrFromInt32(0))
 	if hFile != uintptr(int64(-libc.Int32FromInt32(1))) {
 		len1 = int32(_GetFinalPathNameByHandleW(tls, hFile, bp+8, uint32(MMAXPATHLEN), uint32(MVOLUME_NAME_DOS)))
 		if len1 != 0 {
 			v1 = uint32(0)
 		} else {
-			v1 = libc.XGetLastError(tls)
+			v1 = _ccgo_GetLastError(tls)
 		}
 		err = int32(v1)
 		_ccgo_CloseHandle(tls, hFile)
 	} else {
-		err = int32(libc.XGetLastError(tls))
+		err = int32(_ccgo_GetLastError(tls))
 	}
 	XPyEval_RestoreThread(tls, _save)
 	if err != 0 {
@@ -29174,7 +29174,7 @@ func _getpath_realpath(tls *libc.TLS, _unused_self uintptr, args uintptr) (r uin
 		if len1 <= int32(MMAXPATHLEN) {
 			p = bp + 8
 			if 0 == _ccgo_wcsncmp(tls, p, __ccgo_ts+156520, uint64(4)) {
-				if libc.XGetFileAttributesW(tls, p+4*2) != uint32(-libc.Int32FromInt32(1)) {
+				if _ccgo_GetFileAttributesW(tls, p+4*2) != uint32(-libc.Int32FromInt32(1)) {
 					p = p + uintptr(4)*2
 					len1 = len1 - int32(4)
 				}

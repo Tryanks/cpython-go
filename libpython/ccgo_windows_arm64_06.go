@@ -25949,9 +25949,9 @@ _6:
 	if debugger_script_path_w == libc.UintptrFromInt32(0) {
 		goto error
 	}
-	attr = libc.XGetFileAttributesW(tls, debugger_script_path_w)
+	attr = _ccgo_GetFileAttributesW(tls, debugger_script_path_w)
 	if attr == uint32(-libc.Int32FromInt32(1)) {
-		err = libc.XGetLastError(tls)
+		err = _ccgo_GetLastError(tls)
 		XPyMem_Free(tls, debugger_script_path_w)
 		if err == uint32(2) || err == uint32(3) {
 			XPyErr_SetString(tls, XPyExc_FileNotFoundError, __ccgo_ts+169087)
@@ -30442,7 +30442,7 @@ func _PyCOND_TIMEDWAIT1(tls *libc.TLS, cv uintptr, cs uintptr, us int64) (r int3
 	_ = success
 	success = _SleepConditionVariableSRW(tls, cv, cs, uint32(us/libc.Int64FromInt32(1000)), uint32(0))
 	if !(success != 0) {
-		if libc.XGetLastError(tls) == uint32(1460) {
+		if _ccgo_GetLastError(tls) == uint32(1460) {
 			return int32(1)
 		}
 		return -int32(1)
@@ -30843,9 +30843,9 @@ func XPyThread_tss_get(tls *libc.TLS, key uintptr) (r1 uintptr) {
 	var err int32
 	var r uintptr
 	_, _ = err, r
-	err = int32(libc.XGetLastError(tls))
+	err = int32(_ccgo_GetLastError(tls))
 	r = _TlsGetValue(tls, (*TPy_tss_t)(unsafe.Pointer(key)).F_key)
-	if r != 0 || !(libc.XGetLastError(tls) != 0) {
+	if r != 0 || !(_ccgo_GetLastError(tls) != 0) {
 		_SetLastError(tls, uint32(err))
 	}
 	return r
@@ -47553,9 +47553,9 @@ func X_Py_fstat_noraise(tls *libc.TLS, fd int32, status uintptr) (r int32) {
 		return -int32(1)
 	}
 	libc.Xmemset(tls, status, 0, uint64(128))
-	type1 = int32(libc.XGetFileType(tls, h))
+	type1 = int32(_ccgo_GetFileType(tls, h))
 	if type1 == MFILE_TYPE_UNKNOWN {
-		error1 = libc.XGetLastError(tls)
+		error1 = _ccgo_GetLastError(tls)
 		if error1 != uint32(0) {
 			**(**int32)(__ccgo_up(libc.X_errno(tls))) = Xwinerror_to_errno(tls, int32(error1))
 			return -int32(1)
@@ -47572,9 +47572,9 @@ func X_Py_fstat_noraise(tls *libc.TLS, fd int32, status uintptr) (r int32) {
 		}
 		return 0
 	}
-	if !(libc.XGetFileInformationByHandle(tls, h, bp) != 0) || !(_GetFileInformationByHandleEx(tls, h, int32(EFileBasicInfo), bp+56, uint32(40)) != 0) {
+	if !(_ccgo_GetFileInformationByHandle(tls, h, bp) != 0) || !(_GetFileInformationByHandleEx(tls, h, int32(EFileBasicInfo), bp+56, uint32(40)) != 0) {
 
-		**(**int32)(__ccgo_up(libc.X_errno(tls))) = Xwinerror_to_errno(tls, int32(libc.XGetLastError(tls)))
+		**(**int32)(__ccgo_up(libc.X_errno(tls))) = Xwinerror_to_errno(tls, int32(_ccgo_GetLastError(tls)))
 		return -int32(1)
 	}
 	if !(_GetFileInformationByHandleEx(tls, h, int32(EFileIdInfo), bp+96, uint32(24)) != 0) {
@@ -47977,7 +47977,7 @@ _4:
 	if wpath == libc.UintptrFromInt32(0) {
 		return libc.UintptrFromInt32(0)
 	}
-	usize = libc.XMultiByteToWideChar(tls, uint32(MCP_ACP), uint32(0), mode, -int32(1), bp+8, int32(libc.Uint64FromInt64(20)/libc.Uint64FromInt64(2)))
+	usize = _ccgo_MultiByteToWideChar(tls, uint32(MCP_ACP), uint32(0), mode, -int32(1), bp+8, int32(libc.Uint64FromInt64(20)/libc.Uint64FromInt64(2)))
 	if usize == 0 {
 		XPyErr_SetFromWindowsErr(tls, 0)
 		XPyMem_Free(tls, wpath)
@@ -48828,7 +48828,7 @@ func X_Py_IsValidFD(tls *libc.TLS, fd int32) (r int32) {
 		return 0
 	}
 	hfile = uintptr(__get_osfhandle(tls, fd))
-	return libc.BoolInt32(hfile != uintptr(int64(-libc.Int32FromInt32(1))) && libc.XGetFileType(tls, hfile) != uint32(MFILE_TYPE_UNKNOWN))
+	return libc.BoolInt32(hfile != uintptr(int64(-libc.Int32FromInt32(1))) && _ccgo_GetFileType(tls, hfile) != uint32(MFILE_TYPE_UNKNOWN))
 }
 
 const MCASE_COST = 1
@@ -49279,7 +49279,7 @@ func X_PyImport_FindSharedFuncptrWindows(tls *libc.TLS, prefix uintptr, shortnam
 
 	_ccgo_SetErrorMode(tls, old_mode)
 	if hDLL == libc.UintptrFromInt32(0) {
-		errorCode = uint32(libc.XGetLastError(tls))
+		errorCode = uint32(_ccgo_GetLastError(tls))
 		theLength = int32(libc.XFormatMessageW(tls, uint32(libc.Int32FromInt32(MFORMAT_MESSAGE_FROM_SYSTEM)|libc.Int32FromInt32(MFORMAT_MESSAGE_IGNORE_INSERTS)), libc.UintptrFromInt32(0), errorCode, uint32(int32(uint16(libc.Int32FromInt32(MSUBLANG_DEFAULT)))<<libc.Int32FromInt32(10)|int32(uint16(libc.Int32FromInt32(MLANG_NEUTRAL)))), bp+272, uint32(libc.Uint64FromInt64(512)/libc.Uint64FromInt64(2)), libc.UintptrFromInt32(0)))
 
 		if theLength == 0 {

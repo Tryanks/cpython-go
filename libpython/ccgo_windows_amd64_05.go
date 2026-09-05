@@ -14443,7 +14443,7 @@ func _PyCOND_TIMEDWAIT(tls *libc.TLS, cv uintptr, cs uintptr, us int64) (r int32
 	_ = success
 	success = _SleepConditionVariableSRW(tls, cv, cs, uint32(us/libc.Int64FromInt32(1000)), uint32(0))
 	if !(success != 0) {
-		if libc.XGetLastError(tls) == uint32(1460) {
+		if _ccgo_GetLastError(tls) == uint32(1460) {
 			return int32(1)
 		}
 		return -int32(1)
@@ -14846,7 +14846,7 @@ _2:
 func XPyEval_RestoreThread(tls *libc.TLS, tstate1 uintptr) {
 	var err int32
 	_ = err
-	err = int32(libc.XGetLastError(tls))
+	err = int32(_ccgo_GetLastError(tls))
 	if tstate1 == libc.UintptrFromInt32(0) {
 		X_Py_FatalErrorFunc(tls, uintptr(unsafe.Pointer(&___func__118)), __ccgo_ts+121252)
 	}
@@ -48545,7 +48545,7 @@ func X_PySemaphore_Init(tls *libc.TLS, sema uintptr) {
 	defer tls.Free(16)
 	(*T_PySemaphore)(unsafe.Pointer(sema)).Fplatform_sem = _CreateSemaphoreA(tls, libc.UintptrFromInt32(0), 0, int32(10), libc.UintptrFromInt32(0))
 	if !((*T_PySemaphore)(unsafe.Pointer(sema)).Fplatform_sem != 0) {
-		X_Py_FatalErrorFormat(tls, uintptr(unsafe.Pointer(&___func__82)), __ccgo_ts+156338, libc.VaList(bp+8, libc.XGetLastError(tls)))
+		X_Py_FatalErrorFormat(tls, uintptr(unsafe.Pointer(&___func__82)), __ccgo_ts+156338, libc.VaList(bp+8, _ccgo_GetLastError(tls)))
 	}
 }
 
@@ -48601,7 +48601,7 @@ func __PySemaphore_PlatformWait(tls *libc.TLS, sema uintptr, timeout TPyTime_t) 
 			if wait == uint32(258) {
 				res = int32(EPy_PARK_TIMEOUT)
 			} else {
-				X_Py_FatalErrorFormat(tls, uintptr(unsafe.Pointer(&___func__83)), __ccgo_ts+156386, libc.VaList(bp+24, wait, libc.XGetLastError(tls), (*T_PySemaphore)(unsafe.Pointer(sema)).Fplatform_sem))
+				X_Py_FatalErrorFormat(tls, uintptr(unsafe.Pointer(&___func__83)), __ccgo_ts+156386, libc.VaList(bp+24, wait, _ccgo_GetLastError(tls), (*T_PySemaphore)(unsafe.Pointer(sema)).Fplatform_sem))
 			}
 		}
 	}
@@ -48644,7 +48644,7 @@ func X_PySemaphore_Wakeup(tls *libc.TLS, sema uintptr) {
 	bp := tls.Alloc(32)
 	defer tls.Free(32)
 	if !(_ReleaseSemaphore(tls, (*T_PySemaphore)(unsafe.Pointer(sema)).Fplatform_sem, int32(1), libc.UintptrFromInt32(0)) != 0) {
-		X_Py_FatalErrorFormat(tls, uintptr(unsafe.Pointer(&___func__84)), __ccgo_ts+156446, libc.VaList(bp+8, libc.XGetLastError(tls), (*T_PySemaphore)(unsafe.Pointer(sema)).Fplatform_sem))
+		X_Py_FatalErrorFormat(tls, uintptr(unsafe.Pointer(&___func__84)), __ccgo_ts+156446, libc.VaList(bp+8, _ccgo_GetLastError(tls), (*T_PySemaphore)(unsafe.Pointer(sema)).Fplatform_sem))
 	}
 }
 

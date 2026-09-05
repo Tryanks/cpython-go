@@ -37063,7 +37063,7 @@ func _mmap_mmap_size_impl(tls *libc.TLS, self uintptr) (r uintptr) {
 		low = libc.XGetFileSize(tls, (*Tmmap_object)(unsafe.Pointer(self)).Ffile_handle, bp)
 		if low == libc.Uint32FromUint32(0xffffffff) {
 
-			error1 = libc.XGetLastError(tls)
+			error1 = _ccgo_GetLastError(tls)
 			if error1 != uint32(0) {
 				return XPyErr_SetFromWindowsErr(tls, int32(error1))
 			}
@@ -37120,20 +37120,20 @@ func _mmap_mmap_resize_impl(tls *libc.TLS, self uintptr, new_size TPy_ssize_t) (
 
 	if (*Tmmap_object)(unsafe.Pointer(self)).Ffile_handle != uintptr(int64(-libc.Int32FromInt32(1))) {
 		if !(libc.XUnmapViewOfFile(tls, (*Tmmap_object)(unsafe.Pointer(self)).Fdata) != 0) {
-			return XPyErr_SetFromWindowsErr(tls, int32(libc.XGetLastError(tls)))
+			return XPyErr_SetFromWindowsErr(tls, int32(_ccgo_GetLastError(tls)))
 		}
 		(*Tmmap_object)(unsafe.Pointer(self)).Fdata = libc.UintptrFromInt32(0)
 
 		if !(_SetFilePointerEx(tls, (*Tmmap_object)(unsafe.Pointer(self)).Ffile_handle, **(**TLARGE_INTEGER)(__ccgo_up(bp + 8)), libc.UintptrFromInt32(0), uint32(MFILE_BEGIN)) != 0) || !(libc.XSetEndOfFile(tls, (*Tmmap_object)(unsafe.Pointer(self)).Ffile_handle) != 0) {
 
-			file_resize_error = libc.XGetLastError(tls)
+			file_resize_error = _ccgo_GetLastError(tls)
 			*(*TLONGLONG)(unsafe.Pointer(bp + 8)) = (*Tmmap_object)(unsafe.Pointer(self)).Fsize
 			new_size = (*Tmmap_object)(unsafe.Pointer(self)).Fsize
 		}
 	}
 
 	(*Tmmap_object)(unsafe.Pointer(self)).Fmap_handle = libc.XCreateFileMappingW(tls, (*Tmmap_object)(unsafe.Pointer(self)).Ffile_handle, libc.UintptrFromInt32(0), uint32(MPAGE_READWRITE), uint32(*(*TLONG)(unsafe.Add(unsafe.Pointer(&**(**TLARGE_INTEGER)(__ccgo_up(bp + 8))), 4))), *(*TDWORD)(unsafe.Pointer(&**(**TLARGE_INTEGER)(__ccgo_up(bp + 8)))), (*Tmmap_object)(unsafe.Pointer(self)).Ftagname)
-	error1 = libc.XGetLastError(tls)
+	error1 = _ccgo_GetLastError(tls)
 
 	if error1 == uint32(183) {
 		_ccgo_CloseHandle(tls, (*Tmmap_object)(unsafe.Pointer(self)).Fmap_handle)
@@ -37151,12 +37151,12 @@ func _mmap_mmap_resize_impl(tls *libc.TLS, self uintptr, new_size TPy_ssize_t) (
 					}
 					libc.Xmemcpy(tls, (*Tmmap_object)(unsafe.Pointer(self)).Fdata, old_data, uint64(v1))
 					if !(libc.XUnmapViewOfFile(tls, old_data) != 0) {
-						error1 = libc.XGetLastError(tls)
+						error1 = _ccgo_GetLastError(tls)
 					}
 				}
 				(*Tmmap_object)(unsafe.Pointer(self)).Fsize = new_size
 			} else {
-				error1 = libc.XGetLastError(tls)
+				error1 = _ccgo_GetLastError(tls)
 				_ccgo_CloseHandle(tls, (*Tmmap_object)(unsafe.Pointer(self)).Fmap_handle)
 				(*Tmmap_object)(unsafe.Pointer(self)).Fmap_handle = libc.UintptrFromInt32(0)
 			}
@@ -37207,7 +37207,7 @@ func _mmap_mmap_flush_impl(tls *libc.TLS, self uintptr, offset TPy_ssize_t, size
 		return uintptr(unsafe.Pointer(&X_Py_NoneStruct))
 	}
 	if !(libc.XFlushViewOfFile(tls, (*Tmmap_object)(unsafe.Pointer(self)).Fdata+uintptr(offset), uint64(size)) != 0) {
-		XPyErr_SetFromWindowsErr(tls, int32(libc.XGetLastError(tls)))
+		XPyErr_SetFromWindowsErr(tls, int32(_ccgo_GetLastError(tls)))
 		return libc.UintptrFromInt32(0)
 	}
 	return uintptr(unsafe.Pointer(&X_Py_NoneStruct))
@@ -38008,7 +38008,7 @@ func _new_mmap_object(tls *libc.TLS, type1 uintptr, args uintptr, kwdict uintptr
 	if fh != 0 {
 
 		if !(libc.XDuplicateHandle(tls, libc.XGetCurrentProcess(tls), fh, libc.XGetCurrentProcess(tls), m_obj+64, uint32(0), MFALSE, uint32(MDUPLICATE_SAME_ACCESS)) != 0) {
-			dwErr = libc.XGetLastError(tls)
+			dwErr = _ccgo_GetLastError(tls)
 			v1 = m_obj
 			v2 = libc.BoolInt32(int32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
 			goto _3
@@ -38031,7 +38031,7 @@ func _new_mmap_object(tls *libc.TLS, type1 uintptr, args uintptr, kwdict uintptr
 			low = libc.XGetFileSize(tls, fh, bp+32)
 
 			if v8 = low == libc.Uint32FromUint32(0xffffffff); v8 {
-				v7 = libc.XGetLastError(tls)
+				v7 = _ccgo_GetLastError(tls)
 				dwErr = v7
 			}
 			if v8 && v7 != uint32(0) {
@@ -38185,12 +38185,12 @@ func _new_mmap_object(tls *libc.TLS, type1 uintptr, args uintptr, kwdict uintptr
 		if (*Tmmap_object)(unsafe.Pointer(m_obj)).Fdata != libc.UintptrFromInt32(0) {
 			return m_obj
 		} else {
-			dwErr = libc.XGetLastError(tls)
+			dwErr = _ccgo_GetLastError(tls)
 			_ccgo_CloseHandle(tls, (*Tmmap_object)(unsafe.Pointer(m_obj)).Fmap_handle)
 			(*Tmmap_object)(unsafe.Pointer(m_obj)).Fmap_handle = libc.UintptrFromInt32(0)
 		}
 	} else {
-		dwErr = libc.XGetLastError(tls)
+		dwErr = _ccgo_GetLastError(tls)
 	}
 	v1 = m_obj
 	v2 = libc.BoolInt32(int32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
@@ -69683,7 +69683,7 @@ func _socket_gethostname(tls *libc.TLS, self uintptr, unused uintptr) (r uintptr
 	if libc.XGetComputerNameExW(tls, int32(EComputerNamePhysicalDnsHostname), bp, bp+32) != 0 {
 		return XPyUnicode_FromWideChar(tls, bp, int64(**(**TDWORD)(__ccgo_up(bp + 32))))
 	}
-	if libc.XGetLastError(tls) != uint32(234) {
+	if _ccgo_GetLastError(tls) != uint32(234) {
 		return XPyErr_SetFromWindowsErr(tls, 0)
 	}
 	if **(**TDWORD)(__ccgo_up(bp + 32)) == uint32(0) {
@@ -98180,7 +98180,7 @@ func _SetFromWindowsErr(tls *libc.TLS, err TDWORD) (r uintptr) {
 	var exception_type uintptr
 	_ = exception_type
 	if err == uint32(0) {
-		err = libc.XGetLastError(tls)
+		err = _ccgo_GetLastError(tls)
 	}
 	switch err {
 	case uint32(1225):
@@ -98234,7 +98234,7 @@ func __overlapped_GetQueuedCompletionStatus_impl(tls *libc.TLS, module uintptr, 
 	if ret != 0 {
 		v1 = uint32(0)
 	} else {
-		v1 = libc.XGetLastError(tls)
+		v1 = _ccgo_GetLastError(tls)
 	}
 	err = v1
 	if **(**uintptr)(__ccgo_up(bp + 16)) == libc.UintptrFromInt32(0) {
@@ -98619,7 +98619,7 @@ func _Overlapped_dealloc(tls *libc.TLS, op2 uintptr) {
 	var v8 Tuint32_t
 	var _ TDWORD
 	_, _, _, _, _, _, _, _, _, _, _ = _save, olderr, ret, self, tp, wait, v1, v2, v4, v5, v8
-	olderr = libc.XGetLastError(tls)
+	olderr = _ccgo_GetLastError(tls)
 	wait = MFALSE
 	self = op2
 	if !(uint32((*TOVERLAPPED)(unsafe.Pointer(self+16)).FInternal) != libc.Uint32FromInt32(0x00000103)) && (*TOverlappedObject)(unsafe.Pointer(self)).Ftype1 != uint32(ETYPE_NOT_STARTED) {
@@ -98633,7 +98633,7 @@ func _Overlapped_dealloc(tls *libc.TLS, op2 uintptr) {
 		if ret != 0 {
 			v1 = uint32(0)
 		} else {
-			v1 = libc.XGetLastError(tls)
+			v1 = _ccgo_GetLastError(tls)
 		}
 		switch v1 {
 		case uint32(0):
@@ -98769,7 +98769,7 @@ func __overlapped_Overlapped_cancel_impl(tls *libc.TLS, self uintptr) (r uintptr
 		XPyEval_RestoreThread(tls, _save)
 	}
 
-	if !(ret != 0) && libc.XGetLastError(tls) != uint32(1168) {
+	if !(ret != 0) && _ccgo_GetLastError(tls) != uint32(1168) {
 		return _SetFromWindowsErr(tls, uint32(0))
 	}
 	return uintptr(unsafe.Pointer(&X_Py_NoneStruct))
@@ -98804,7 +98804,7 @@ func __overlapped_Overlapped_getresult_impl(tls *libc.TLS, self1 uintptr, wait T
 	if ret != 0 {
 		v2 = uint32(0)
 	} else {
-		v2 = libc.XGetLastError(tls)
+		v2 = _ccgo_GetLastError(tls)
 	}
 	v1 = v2
 	err = v1
@@ -99083,7 +99083,7 @@ func _do_ReadFile(tls *libc.TLS, self uintptr, handle THANDLE, bufstart uintptr,
 	if ret != 0 {
 		v2 = uint32(0)
 	} else {
-		v2 = libc.XGetLastError(tls)
+		v2 = _ccgo_GetLastError(tls)
 	}
 	v1 = v2
 	err = v1
@@ -99258,7 +99258,7 @@ func __overlapped_Overlapped_WriteFile_impl(tls *libc.TLS, self uintptr, handle 
 	if ret != 0 {
 		v2 = uint32(0)
 	} else {
-		v2 = libc.XGetLastError(tls)
+		v2 = _ccgo_GetLastError(tls)
 	}
 	v1 = v2
 	err = v1
@@ -99570,7 +99570,7 @@ func __overlapped_Overlapped_ConnectNamedPipe_impl(tls *libc.TLS, self uintptr, 
 	if ret != 0 {
 		v2 = uint32(0)
 	} else {
-		v2 = libc.XGetLastError(tls)
+		v2 = _ccgo_GetLastError(tls)
 	}
 	v1 = v2
 	err = v1
@@ -99598,7 +99598,7 @@ func __overlapped_Overlapped_ConnectPipe_impl(tls *libc.TLS, self uintptr, Addre
 	var _save uintptr
 	_, _ = PipeHandle, _save
 	_save = XPyEval_SaveThread(tls)
-	PipeHandle = libc.XCreateFileW(tls, Address, libc.Uint32FromUint32(0x80000000)|uint32(libc.Int32FromInt32(0x40000000)), uint32(0), libc.UintptrFromInt32(0), uint32(MOPEN_EXISTING), uint32(MFILE_FLAG_OVERLAPPED), libc.UintptrFromInt32(0))
+	PipeHandle = _ccgo_CreateFileW(tls, Address, libc.Uint32FromUint32(0x80000000)|uint32(libc.Int32FromInt32(0x40000000)), uint32(0), libc.UintptrFromInt32(0), uint32(MOPEN_EXISTING), uint32(MFILE_FLAG_OVERLAPPED), libc.UintptrFromInt32(0))
 	XPyEval_RestoreThread(tls, _save)
 	if PipeHandle == uintptr(int64(-libc.Int32FromInt32(1))) {
 		return _SetFromWindowsErr(tls, uint32(0))
@@ -106353,7 +106353,7 @@ func _posix_error(tls *libc.TLS) (r uintptr) {
 
 func _win32_error(tls *libc.TLS, function uintptr, filename uintptr) (r uintptr) {
 
-	**(**int32)(__ccgo_up(libc.X_errno(tls))) = int32(libc.XGetLastError(tls))
+	**(**int32)(__ccgo_up(libc.X_errno(tls))) = int32(_ccgo_GetLastError(tls))
 	if filename != 0 {
 		return XPyErr_SetFromWindowsErrWithFilename(tls, **(**int32)(__ccgo_up(libc.X_errno(tls))), filename)
 	} else {
@@ -106373,7 +106373,7 @@ func _win32_error_object_err(tls *libc.TLS, function uintptr, filename uintptr, 
 }
 
 func _win32_error_object(tls *libc.TLS, function uintptr, filename uintptr) (r uintptr) {
-	**(**int32)(__ccgo_up(libc.X_errno(tls))) = int32(libc.XGetLastError(tls))
+	**(**int32)(__ccgo_up(libc.X_errno(tls))) = int32(_ccgo_GetLastError(tls))
 	return _win32_error_object_err(tls, function, filename, uint32(**(**int32)(__ccgo_up(libc.X_errno(tls)))))
 }
 
@@ -106533,14 +106533,14 @@ func _attributes_from_dir(tls *libc.TLS, pszFile TLPCWSTR, info uintptr, reparse
 			return MFALSE
 		}
 	}
-	hFindFile = libc.XFindFirstFileW(tls, filename, bp)
+	hFindFile = _ccgo_FindFirstFileW(tls, filename, bp)
 	if pszFile != filename {
 		libc.Xfree(tls, filename)
 	}
 	if hFindFile == uintptr(int64(-libc.Int32FromInt32(1))) {
 		return MFALSE
 	}
-	libc.XFindClose(tls, hFindFile)
+	_ccgo_FindClose(tls, hFindFile)
 	_find_data_to_file_info(tls, bp, info, reparse_tag)
 	return int32(MTRUE)
 }
@@ -106584,10 +106584,10 @@ func _win32_xstat_slow_impl(tls *libc.TLS, path uintptr, result uintptr, travers
 	if !(traverse != 0) {
 		flags = flags | uint32(MFILE_FLAG_OPEN_REPARSE_POINT)
 	}
-	hFile = libc.XCreateFileW(tls, path, access, uint32(0), libc.UintptrFromInt32(0), uint32(MOPEN_EXISTING), flags, libc.UintptrFromInt32(0))
+	hFile = _ccgo_CreateFileW(tls, path, access, uint32(0), libc.UintptrFromInt32(0), uint32(MOPEN_EXISTING), flags, libc.UintptrFromInt32(0))
 	if hFile == uintptr(int64(-libc.Int32FromInt32(1))) {
 
-		error1 = libc.XGetLastError(tls)
+		error1 = _ccgo_GetLastError(tls)
 		switch error1 {
 		case uint32(5):
 			fallthrough
@@ -106595,7 +106595,7 @@ func _win32_xstat_slow_impl(tls *libc.TLS, path uintptr, result uintptr, travers
 
 			if !(_attributes_from_dir(tls, path, bp, bp+120+4) != 0) {
 
-				switch libc.XGetLastError(tls) {
+				switch _ccgo_GetLastError(tls) {
 				case uint32(2):
 					fallthrough
 				case uint32(3):
@@ -106620,7 +106620,7 @@ func _win32_xstat_slow_impl(tls *libc.TLS, path uintptr, result uintptr, travers
 			}
 		case uint32(87):
 
-			hFile = libc.XCreateFileW(tls, path, access|uint32(0x80000000), uint32(libc.Int32FromInt32(MFILE_SHARE_READ)|libc.Int32FromInt32(MFILE_SHARE_WRITE)), libc.UintptrFromInt32(0), uint32(MOPEN_EXISTING), flags, libc.UintptrFromInt32(0))
+			hFile = _ccgo_CreateFileW(tls, path, access|uint32(0x80000000), uint32(libc.Int32FromInt32(MFILE_SHARE_READ)|libc.Int32FromInt32(MFILE_SHARE_WRITE)), libc.UintptrFromInt32(0), uint32(MOPEN_EXISTING), flags, libc.UintptrFromInt32(0))
 			if hFile == uintptr(int64(-libc.Int32FromInt32(1))) {
 				_SetLastError(tls, error1)
 				return -int32(1)
@@ -106630,7 +106630,7 @@ func _win32_xstat_slow_impl(tls *libc.TLS, path uintptr, result uintptr, travers
 			if traverse != 0 {
 				traverse = MFALSE
 				isUnhandledTag = int32(MTRUE)
-				hFile = libc.XCreateFileW(tls, path, access, uint32(0), libc.UintptrFromInt32(0), uint32(MOPEN_EXISTING), flags|uint32(MFILE_FLAG_OPEN_REPARSE_POINT), libc.UintptrFromInt32(0))
+				hFile = _ccgo_CreateFileW(tls, path, access, uint32(0), libc.UintptrFromInt32(0), uint32(MOPEN_EXISTING), flags|uint32(MFILE_FLAG_OPEN_REPARSE_POINT), libc.UintptrFromInt32(0))
 			}
 			if hFile == uintptr(int64(-libc.Int32FromInt32(1))) {
 				_SetLastError(tls, error1)
@@ -106642,13 +106642,13 @@ func _win32_xstat_slow_impl(tls *libc.TLS, path uintptr, result uintptr, travers
 	}
 	if hFile != uintptr(int64(-libc.Int32FromInt32(1))) {
 
-		fileType = libc.XGetFileType(tls, hFile)
+		fileType = _ccgo_GetFileType(tls, hFile)
 		if fileType != uint32(MFILE_TYPE_DISK) {
-			if fileType == uint32(MFILE_TYPE_UNKNOWN) && libc.XGetLastError(tls) != uint32(0) {
+			if fileType == uint32(MFILE_TYPE_UNKNOWN) && _ccgo_GetLastError(tls) != uint32(0) {
 				retval = -int32(1)
 				goto cleanup
 			}
-			fileAttributes = libc.XGetFileAttributesW(tls, path)
+			fileAttributes = _ccgo_GetFileAttributesW(tls, path)
 			libc.Xmemset(tls, result, 0, uint64(128))
 			if fileAttributes != uint32(-libc.Int32FromInt32(1)) && fileAttributes&uint32(MFILE_ATTRIBUTE_DIRECTORY) != 0 {
 
@@ -106671,7 +106671,7 @@ func _win32_xstat_slow_impl(tls *libc.TLS, path uintptr, result uintptr, travers
 		if !(traverse != 0) {
 			if !(_GetFileInformationByHandleEx(tls, hFile, int32(EFileAttributeTagInfo), bp+120, uint32(8)) != 0) {
 
-				switch libc.XGetLastError(tls) {
+				switch _ccgo_GetLastError(tls) {
 				case uint32(87):
 					fallthrough
 				case uint32(1):
@@ -106702,8 +106702,8 @@ func _win32_xstat_slow_impl(tls *libc.TLS, path uintptr, result uintptr, travers
 				}
 			}
 		}
-		if !(libc.XGetFileInformationByHandle(tls, hFile, bp) != 0) || !(_GetFileInformationByHandleEx(tls, hFile, int32(EFileBasicInfo), bp+56, uint32(40)) != 0) {
-			switch libc.XGetLastError(tls) {
+		if !(_ccgo_GetFileInformationByHandle(tls, hFile, bp) != 0) || !(_GetFileInformationByHandleEx(tls, hFile, int32(EFileBasicInfo), bp+56, uint32(40)) != 0) {
+			switch _ccgo_GetLastError(tls) {
 			case uint32(87):
 				fallthrough
 			case uint32(1):
@@ -106732,7 +106732,7 @@ cleanup:
 	if hFile != uintptr(int64(-libc.Int32FromInt32(1))) {
 
 		if retval != 0 {
-			v1 = libc.XGetLastError(tls)
+			v1 = _ccgo_GetLastError(tls)
 		} else {
 			v1 = uint32(0)
 		}
@@ -106783,7 +106783,7 @@ _2:
 			return 0
 		}
 	} else {
-		switch libc.XGetLastError(tls) {
+		switch _ccgo_GetLastError(tls) {
 		case uint32(2):
 			fallthrough
 		case uint32(3):
@@ -107717,7 +107717,7 @@ func _os_access_impl(tls *libc.TLS, module uintptr, path uintptr, mode int32, di
 		return -int32(1)
 	}
 	_save = XPyEval_SaveThread(tls)
-	attr = libc.XGetFileAttributesW(tls, (*Tpath_t)(unsafe.Pointer(path)).Fwide)
+	attr = _ccgo_GetFileAttributesW(tls, (*Tpath_t)(unsafe.Pointer(path)).Fwide)
 	XPyEval_RestoreThread(tls, _save)
 
 	return_value = libc.BoolInt32(attr != uint32(-libc.Int32FromInt32(1)) && (!(mode&libc.Int32FromInt32(2) != 0) || !(attr&libc.Uint32FromInt32(MFILE_ATTRIBUTE_READONLY) != 0) || attr&uint32(MFILE_ATTRIBUTE_DIRECTORY) != 0))
@@ -107747,7 +107747,7 @@ func _os_chdir_impl(tls *libc.TLS, module uintptr, path uintptr) (r uintptr) {
 func _win32_lchmod(tls *libc.TLS, path TLPCWSTR, mode int32) (r int32) {
 	var attr TDWORD
 	_ = attr
-	attr = libc.XGetFileAttributesW(tls, path)
+	attr = _ccgo_GetFileAttributesW(tls, path)
 	if attr == uint32(-libc.Int32FromInt32(1)) {
 		return 0
 	}
@@ -107756,7 +107756,7 @@ func _win32_lchmod(tls *libc.TLS, path TLPCWSTR, mode int32) (r int32) {
 	} else {
 		attr = attr | uint32(MFILE_ATTRIBUTE_READONLY)
 	}
-	return libc.XSetFileAttributesW(tls, path, attr)
+	return _ccgo_SetFileAttributesW(tls, path, attr)
 }
 
 func _win32_hchmod(tls *libc.TLS, hfile THANDLE, mode int32) (r int32) {
@@ -107807,7 +107807,7 @@ func _os_chmod_impl(tls *libc.TLS, module uintptr, path uintptr, mode int32, dir
 		result = _win32_fchmod(tls, (*Tpath_t)(unsafe.Pointer(path)).Ffd, mode)
 	} else {
 		if follow_symlinks != 0 {
-			hfile = libc.XCreateFileW(tls, (*Tpath_t)(unsafe.Pointer(path)).Fwide, uint32(libc.Int32FromInt32(MFILE_READ_ATTRIBUTES)|libc.Int32FromInt32(MFILE_WRITE_ATTRIBUTES)), uint32(0), libc.UintptrFromInt32(0), uint32(MOPEN_EXISTING), uint32(MFILE_FLAG_BACKUP_SEMANTICS), libc.UintptrFromInt32(0))
+			hfile = _ccgo_CreateFileW(tls, (*Tpath_t)(unsafe.Pointer(path)).Fwide, uint32(libc.Int32FromInt32(MFILE_READ_ATTRIBUTES)|libc.Int32FromInt32(MFILE_WRITE_ATTRIBUTES)), uint32(0), libc.UintptrFromInt32(0), uint32(MOPEN_EXISTING), uint32(MFILE_FLAG_BACKUP_SEMANTICS), libc.UintptrFromInt32(0))
 			if hfile != uintptr(int64(-libc.Int32FromInt32(1))) {
 				result = _win32_hchmod(tls, hfile, mode)
 				_ccgo_CloseHandle(tls, hfile)
@@ -108023,10 +108023,10 @@ func __listdir_windows_no_opendir(tls *libc.TLS, path uintptr, _list uintptr) (r
 		goto exit
 	}
 	_save = XPyEval_SaveThread(tls)
-	hFindFile = libc.XFindFirstFileW(tls, wnamebuf, bp+16)
+	hFindFile = _ccgo_FindFirstFileW(tls, wnamebuf, bp+16)
 	XPyEval_RestoreThread(tls, _save)
 	if hFindFile == uintptr(int64(-libc.Int32FromInt32(1))) {
-		error1 = int32(libc.XGetLastError(tls))
+		error1 = int32(_ccgo_GetLastError(tls))
 		if error1 == int32(2) {
 			goto exit
 		}
@@ -108150,10 +108150,10 @@ func __listdir_windows_no_opendir(tls *libc.TLS, path uintptr, _list uintptr) (r
 		_39:
 		}
 		_save1 = XPyEval_SaveThread(tls)
-		result = libc.XFindNextFileW(tls, hFindFile, bp+16)
+		result = _ccgo_FindNextFileW(tls, hFindFile, bp+16)
 		XPyEval_RestoreThread(tls, _save1)
 
-		if !(result != 0) && libc.XGetLastError(tls) != uint32(18) {
+		if !(result != 0) && _ccgo_GetLastError(tls) != uint32(18) {
 			_path_error(tls, path)
 			_tmp_op_ptr3 = bp
 			_tmp_old_op3 = **(**uintptr)(__ccgo_up(_tmp_op_ptr3))
@@ -108181,7 +108181,7 @@ func __listdir_windows_no_opendir(tls *libc.TLS, path uintptr, _list uintptr) (r
 exit:
 	;
 	if hFindFile != uintptr(int64(-libc.Int32FromInt32(1))) {
-		if libc.XFindClose(tls, hFindFile) == MFALSE {
+		if _ccgo_FindClose(tls, hFindFile) == MFALSE {
 			if **(**uintptr)(__ccgo_up(bp)) != libc.UintptrFromInt32(0) {
 				_path_error(tls, path)
 				_tmp_op_ptr4 = bp
@@ -108331,7 +108331,7 @@ func _os_listvolumes_impl(tls *libc.TLS, module uintptr) (r uintptr) {
 	_save = XPyEval_SaveThread(tls)
 	find = _FindFirstVolumeW(tls, bp+8, uint32(libc.Uint64FromInt64(522)/libc.Uint64FromInt64(2)))
 	if find == uintptr(int64(-libc.Int32FromInt32(1))) {
-		err = int32(libc.XGetLastError(tls))
+		err = int32(_ccgo_GetLastError(tls))
 	}
 	XPyEval_RestoreThread(tls, _save)
 	for !(err != 0) {
@@ -108392,7 +108392,7 @@ func _os_listvolumes_impl(tls *libc.TLS, module uintptr) (r uintptr) {
 		;
 		_save1 = XPyEval_SaveThread(tls)
 		if !(_FindNextVolumeW(tls, find, bp+8, uint32(libc.Uint64FromInt64(522)/libc.Uint64FromInt64(2))) != 0) {
-			err = int32(libc.XGetLastError(tls))
+			err = int32(_ccgo_GetLastError(tls))
 		}
 		XPyEval_RestoreThread(tls, _save1)
 	}
@@ -108445,9 +108445,9 @@ func _os_listmounts_impl(tls *libc.TLS, module uintptr, volume uintptr) (r uintp
 	result = libc.UintptrFromInt32(0)
 
 	_save = XPyEval_SaveThread(tls)
-	attributes = libc.XGetFileAttributesW(tls, (*Tpath_t)(unsafe.Pointer(volume)).Fwide)
+	attributes = _ccgo_GetFileAttributesW(tls, (*Tpath_t)(unsafe.Pointer(volume)).Fwide)
 	XPyEval_RestoreThread(tls, _save)
-	if attributes == uint32(-libc.Int32FromInt32(1)) && libc.XGetLastError(tls) == uint32(1005) {
+	if attributes == uint32(-libc.Int32FromInt32(1)) && _ccgo_GetLastError(tls) == uint32(1005) {
 		return XPyErr_SetFromWindowsErr(tls, int32(1005))
 	}
 	if XPySys_Audit(tls, __ccgo_ts+249091, __ccgo_ts+41785, libc.VaList(bp+536, (*Tpath_t)(unsafe.Pointer(volume)).Fobject)) < 0 {
@@ -108460,7 +108460,7 @@ func _os_listmounts_impl(tls *libc.TLS, module uintptr, volume uintptr) (r uintp
 		if success != 0 {
 			break
 		}
-		if libc.XGetLastError(tls) != uint32(234) {
+		if _ccgo_GetLastError(tls) != uint32(234) {
 			XPyErr_SetFromWindowsErr(tls, 0)
 			goto exit
 		}
@@ -108544,21 +108544,21 @@ func _os__path_isdevdrive_impl(tls *libc.TLS, module uintptr, path uintptr) (r1 
 	_save = XPyEval_SaveThread(tls)
 	if !(_GetVolumePathNameW(tls, (*Tpath_t)(unsafe.Pointer(path)).Fwide, bp, uint32(MMAX_PATH)) != 0) {
 
-		err = int32(libc.XGetLastError(tls))
+		err = int32(_ccgo_GetLastError(tls))
 	} else {
 		if _GetDriveTypeW(tls, bp) != uint32(MDRIVE_FIXED) {
 
 			r = uintptr(unsafe.Pointer(&X_Py_FalseStruct))
 		} else {
-			hVolume = libc.XCreateFileW(tls, bp, uint32(libc.Int32FromInt32(MFILE_READ_ATTRIBUTES)), uint32(libc.Int32FromInt32(MFILE_SHARE_READ)|libc.Int32FromInt32(MFILE_SHARE_WRITE)), libc.UintptrFromInt32(0), uint32(MOPEN_EXISTING), uint32(MFILE_FLAG_BACKUP_SEMANTICS), libc.UintptrFromInt32(0))
+			hVolume = _ccgo_CreateFileW(tls, bp, uint32(libc.Int32FromInt32(MFILE_READ_ATTRIBUTES)), uint32(libc.Int32FromInt32(MFILE_SHARE_READ)|libc.Int32FromInt32(MFILE_SHARE_WRITE)), libc.UintptrFromInt32(0), uint32(MOPEN_EXISTING), uint32(MFILE_FLAG_BACKUP_SEMANTICS), libc.UintptrFromInt32(0))
 			if hVolume == uintptr(int64(-libc.Int32FromInt32(1))) {
-				err = int32(libc.XGetLastError(tls))
+				err = int32(_ccgo_GetLastError(tls))
 			} else {
 				**(**TFILE_FS_PERSISTENT_VOLUME_INFORMATION)(__ccgo_up(bp + 520)) = TFILE_FS_PERSISTENT_VOLUME_INFORMATION{}
 				(**(**TFILE_FS_PERSISTENT_VOLUME_INFORMATION)(__ccgo_up(bp + 520))).FVersion = uint32(1)
 				(**(**TFILE_FS_PERSISTENT_VOLUME_INFORMATION)(__ccgo_up(bp + 520))).FFlagMask = uint32(PERSISTENT_VOLUME_STATE_DEV_VOLUME)
 				if !(libc.XDeviceIoControl(tls, hVolume, uint32(libc.Int32FromInt32(MFILE_DEVICE_FILE_SYSTEM)<<libc.Int32FromInt32(16)|libc.Int32FromInt32(MFILE_ANY_ACCESS)<<libc.Int32FromInt32(14)|libc.Int32FromInt32(143)<<libc.Int32FromInt32(2)|libc.Int32FromInt32(MMETHOD_BUFFERED)), bp+520, uint32(16), bp+520, uint32(16), libc.UintptrFromInt32(0), libc.UintptrFromInt32(0)) != 0) {
-					err = int32(libc.XGetLastError(tls))
+					err = int32(_ccgo_GetLastError(tls))
 				}
 				_ccgo_CloseHandle(tls, hVolume)
 				if err == int32(87) {
@@ -108703,7 +108703,7 @@ func _os__getfinalpathname_impl(tls *libc.TLS, module uintptr, path uintptr) (r 
 	target_path = bp
 	buf_size = int32(libc.Uint64FromInt64(520) / libc.Uint64FromInt64(2))
 	_save = XPyEval_SaveThread(tls)
-	hFile = libc.XCreateFileW(tls, (*Tpath_t)(unsafe.Pointer(path)).Fwide, uint32(0), uint32(0), libc.UintptrFromInt32(0), uint32(MOPEN_EXISTING), uint32(MFILE_FLAG_BACKUP_SEMANTICS), libc.UintptrFromInt32(0))
+	hFile = _ccgo_CreateFileW(tls, (*Tpath_t)(unsafe.Pointer(path)).Fwide, uint32(0), uint32(0), libc.UintptrFromInt32(0), uint32(MOPEN_EXISTING), uint32(MFILE_FLAG_BACKUP_SEMANTICS), libc.UintptrFromInt32(0))
 	XPyEval_RestoreThread(tls, _save)
 	if hFile == uintptr(int64(-libc.Int32FromInt32(1))) {
 		return _win32_error_object(tls, __ccgo_ts+249122, (*Tpath_t)(unsafe.Pointer(path)).Fobject)
@@ -108782,7 +108782,7 @@ func _os__findfirstfile_impl(tls *libc.TLS, module uintptr, path uintptr) (r uin
 	var _ TWIN32_FIND_DATAW
 	_, _, _, _ = _save, hFindFile, result, wRealFileName
 	_save = XPyEval_SaveThread(tls)
-	hFindFile = libc.XFindFirstFileW(tls, (*Tpath_t)(unsafe.Pointer(path)).Fwide, bp)
+	hFindFile = _ccgo_FindFirstFileW(tls, (*Tpath_t)(unsafe.Pointer(path)).Fwide, bp)
 	XPyEval_RestoreThread(tls, _save)
 	if hFindFile == uintptr(int64(-libc.Int32FromInt32(1))) {
 		_path_error(tls, path)
@@ -108790,7 +108790,7 @@ func _os__findfirstfile_impl(tls *libc.TLS, module uintptr, path uintptr) (r uin
 	}
 	wRealFileName = bp + 44
 	result = XPyUnicode_FromWideChar(tls, wRealFileName, int64(libc.Xwcslen(tls, wRealFileName)))
-	libc.XFindClose(tls, hFindFile)
+	_ccgo_FindClose(tls, hFindFile)
 	return result
 }
 
@@ -108937,7 +108937,7 @@ func __testFileTypeByHandle(tls *libc.TLS, hfile THANDLE, testedType int32, disk
 	var _ TFILE_ATTRIBUTE_TAG_INFO
 	var _ TFILE_BASIC_INFO
 	_ = diskDevice
-	diskDevice = libc.BoolInt32(libc.XGetFileType(tls, hfile) == uint32(MFILE_TYPE_DISK))
+	diskDevice = libc.BoolInt32(_ccgo_GetFileType(tls, hfile) == uint32(MFILE_TYPE_DISK))
 	if diskOnly != 0 && !(diskDevice != 0) {
 		return MFALSE
 	}
@@ -108985,7 +108985,7 @@ _2:
 			return result
 		}
 	} else {
-		switch int32(libc.XGetLastError(tls)) {
+		switch int32(_ccgo_GetLastError(tls)) {
 		case int32(2):
 			fallthrough
 		case int32(3):
@@ -109018,13 +109018,13 @@ _2:
 	if testedType != int32(1) && testedType != int32(2) {
 		flags = flags | uint32(MFILE_FLAG_OPEN_REPARSE_POINT)
 	}
-	hfile = libc.XCreateFileW(tls, path, uint32(libc.Int32FromInt32(MFILE_READ_ATTRIBUTES)), uint32(0), libc.UintptrFromInt32(0), uint32(MOPEN_EXISTING), flags, libc.UintptrFromInt32(0))
+	hfile = _ccgo_CreateFileW(tls, path, uint32(libc.Int32FromInt32(MFILE_READ_ATTRIBUTES)), uint32(0), libc.UintptrFromInt32(0), uint32(MOPEN_EXISTING), flags, libc.UintptrFromInt32(0))
 	if hfile != uintptr(int64(-libc.Int32FromInt32(1))) {
 		result1 = __testFileTypeByHandle(tls, hfile, testedType, MFALSE)
 		_ccgo_CloseHandle(tls, hfile)
 		return result1
 	}
-	switch libc.XGetLastError(tls) {
+	switch _ccgo_GetLastError(tls) {
 	case uint32(5):
 		fallthrough
 	case uint32(32):
@@ -109090,7 +109090,7 @@ _2:
 			return int32(MTRUE)
 		}
 	} else {
-		switch int32(libc.XGetLastError(tls)) {
+		switch int32(_ccgo_GetLastError(tls)) {
 		case int32(2):
 			fallthrough
 		case int32(3):
@@ -109123,7 +109123,7 @@ _2:
 	if !(followLinks != 0) {
 		flags = flags | uint32(MFILE_FLAG_OPEN_REPARSE_POINT)
 	}
-	hfile = libc.XCreateFileW(tls, path, uint32(libc.Int32FromInt32(MFILE_READ_ATTRIBUTES)), uint32(0), libc.UintptrFromInt32(0), uint32(MOPEN_EXISTING), flags, libc.UintptrFromInt32(0))
+	hfile = _ccgo_CreateFileW(tls, path, uint32(libc.Int32FromInt32(MFILE_READ_ATTRIBUTES)), uint32(0), libc.UintptrFromInt32(0), uint32(MOPEN_EXISTING), flags, libc.UintptrFromInt32(0))
 	if hfile != uintptr(int64(-libc.Int32FromInt32(1))) {
 		if followLinks != 0 {
 			_ccgo_CloseHandle(tls, hfile)
@@ -109135,13 +109135,13 @@ _2:
 		if !(result != 0) {
 			return int32(MTRUE)
 		}
-		hfile = libc.XCreateFileW(tls, path, uint32(libc.Int32FromInt32(MFILE_READ_ATTRIBUTES)), uint32(0), libc.UintptrFromInt32(0), uint32(MOPEN_EXISTING), uint32(MFILE_FLAG_BACKUP_SEMANTICS), libc.UintptrFromInt32(0))
+		hfile = _ccgo_CreateFileW(tls, path, uint32(libc.Int32FromInt32(MFILE_READ_ATTRIBUTES)), uint32(0), libc.UintptrFromInt32(0), uint32(MOPEN_EXISTING), uint32(MFILE_FLAG_BACKUP_SEMANTICS), libc.UintptrFromInt32(0))
 		if hfile != uintptr(int64(-libc.Int32FromInt32(1))) {
 			_ccgo_CloseHandle(tls, hfile)
 			return int32(MTRUE)
 		}
 	}
-	switch libc.XGetLastError(tls) {
+	switch _ccgo_GetLastError(tls) {
 	case uint32(5):
 		fallthrough
 	case uint32(32):
@@ -109181,7 +109181,7 @@ func __testFileExists(tls *libc.TLS, path uintptr, followLinks TBOOL) (r TBOOL) 
 	if (*Tpath_t)(unsafe.Pointer(path)).Ffd != -int32(1) {
 		hfile = X_Py_get_osfhandle_noraise(tls, (*Tpath_t)(unsafe.Pointer(path)).Ffd)
 		if hfile != uintptr(int64(-libc.Int32FromInt32(1))) {
-			if libc.XGetFileType(tls, hfile) != uint32(MFILE_TYPE_UNKNOWN) || !(libc.XGetLastError(tls) != 0) {
+			if _ccgo_GetFileType(tls, hfile) != uint32(MFILE_TYPE_UNKNOWN) || !(_ccgo_GetLastError(tls) != 0) {
 				result = int32(MTRUE)
 			}
 		}
@@ -109486,13 +109486,13 @@ func _os_mkdir_impl(tls *libc.TLS, module uintptr, path uintptr, mode int32, dir
 		pSecAttr = bp
 
 		if !(_ConvertStringSecurityDescriptorToSecurityDescriptorW(tls, __ccgo_ts+249202, uint32(MSDDL_REVISION_1), bp+8, bp+24) != 0) {
-			error1 = int32(libc.XGetLastError(tls))
+			error1 = int32(_ccgo_GetLastError(tls))
 		}
 	}
 	if !(error1 != 0) {
-		result = libc.XCreateDirectoryW(tls, (*Tpath_t)(unsafe.Pointer(path)).Fwide, pSecAttr)
+		result = _ccgo_CreateDirectoryW(tls, (*Tpath_t)(unsafe.Pointer(path)).Fwide, pSecAttr)
 		if (**(**TSECURITY_ATTRIBUTES)(__ccgo_up(bp))).FlpSecurityDescriptor != 0 && libc.XLocalFree(tls, (**(**TSECURITY_ATTRIBUTES)(__ccgo_up(bp))).FlpSecurityDescriptor) != 0 {
-			error1 = int32(libc.XGetLastError(tls))
+			error1 = int32(_ccgo_GetLastError(tls))
 		}
 	}
 	XPyEval_RestoreThread(tls, _save)
@@ -109578,7 +109578,7 @@ func _os_rmdir_impl(tls *libc.TLS, module uintptr, path uintptr, dir_fd int32) (
 	}
 	_save = XPyEval_SaveThread(tls)
 
-	result = libc.BoolInt32(!(libc.XRemoveDirectoryW(tls, (*Tpath_t)(unsafe.Pointer(path)).Fwide) != 0))
+	result = libc.BoolInt32(!(_ccgo_RemoveDirectoryW(tls, (*Tpath_t)(unsafe.Pointer(path)).Fwide) != 0))
 	XPyEval_RestoreThread(tls, _save)
 	if result != 0 {
 		return _path_error(tls, path)
@@ -109628,22 +109628,22 @@ func XPy_DeleteFileW(tls *libc.TLS, lpFileName TLPCWSTR) (r TBOOL) {
 	_, _, _ = find_data_handle, is_directory, is_link
 	is_directory = 0
 	is_link = 0
-	if libc.XGetFileAttributesExW(tls, lpFileName, int32(EGetFileExInfoStandard), bp) != 0 {
+	if _ccgo_GetFileAttributesExW(tls, lpFileName, int32(EGetFileExInfoStandard), bp) != 0 {
 		is_directory = int32((**(**TWIN32_FILE_ATTRIBUTE_DATA)(__ccgo_up(bp))).FdwFileAttributes & uint32(MFILE_ATTRIBUTE_DIRECTORY))
 
 		if is_directory != 0 && (**(**TWIN32_FILE_ATTRIBUTE_DATA)(__ccgo_up(bp))).FdwFileAttributes&uint32(MFILE_ATTRIBUTE_REPARSE_POINT) != 0 {
-			find_data_handle = libc.XFindFirstFileW(tls, lpFileName, bp+36)
+			find_data_handle = _ccgo_FindFirstFileW(tls, lpFileName, bp+36)
 			if find_data_handle != uintptr(int64(-libc.Int32FromInt32(1))) {
 
 				is_link = libc.BoolInt32((**(**TWIN32_FIND_DATAW)(__ccgo_up(bp + 36))).FdwReserved0 == uint32(0xA000000C) || (**(**TWIN32_FIND_DATAW)(__ccgo_up(bp + 36))).FdwReserved0 == uint32(0xA0000003))
-				libc.XFindClose(tls, find_data_handle)
+				_ccgo_FindClose(tls, find_data_handle)
 			}
 		}
 	}
 	if is_directory != 0 && is_link != 0 {
-		return libc.XRemoveDirectoryW(tls, lpFileName)
+		return _ccgo_RemoveDirectoryW(tls, lpFileName)
 	}
-	return libc.XDeleteFileW(tls, lpFileName)
+	return _ccgo_DeleteFileW(tls, lpFileName)
 }
 
 func _os_unlink_impl(tls *libc.TLS, module uintptr, path uintptr, dir_fd int32) (r uintptr) {
@@ -109880,7 +109880,7 @@ func _os_utime_impl(tls *libc.TLS, module uintptr, path uintptr, times uintptr, 
 		return libc.UintptrFromInt32(0)
 	}
 	_save = XPyEval_SaveThread(tls)
-	hFile = libc.XCreateFileW(tls, (*Tpath_t)(unsafe.Pointer(path)).Fwide, uint32(libc.Int32FromInt32(MFILE_WRITE_ATTRIBUTES)), uint32(0), libc.UintptrFromInt32(0), uint32(MOPEN_EXISTING), uint32(MFILE_FLAG_BACKUP_SEMANTICS), libc.UintptrFromInt32(0))
+	hFile = _ccgo_CreateFileW(tls, (*Tpath_t)(unsafe.Pointer(path)).Fwide, uint32(libc.Int32FromInt32(MFILE_WRITE_ATTRIBUTES)), uint32(0), libc.UintptrFromInt32(0), uint32(MOPEN_EXISTING), uint32(MFILE_FLAG_BACKUP_SEMANTICS), libc.UintptrFromInt32(0))
 	XPyEval_RestoreThread(tls, _save)
 	if hFile == uintptr(int64(-libc.Int32FromInt32(1))) {
 		_path_error(tls, path)
@@ -112810,7 +112810,7 @@ func _os_getlogin_impl(tls *libc.TLS, module uintptr) (r uintptr) {
 
 		result = XPyUnicode_FromWideChar(tls, bp, int64(**(**TDWORD)(__ccgo_up(bp + 516))-uint32(1)))
 	} else {
-		result = XPyErr_SetFromWindowsErr(tls, int32(libc.XGetLastError(tls)))
+		result = XPyErr_SetFromWindowsErr(tls, int32(_ccgo_GetLastError(tls)))
 	}
 	return result
 }
@@ -112908,7 +112908,7 @@ func _os_readlink_impl(tls *libc.TLS, module uintptr, path uintptr, dir_fd int32
 	**(**uintptr)(__ccgo_up(bp + 16392)) = libc.UintptrFromInt32(0)
 
 	_save = XPyEval_SaveThread(tls)
-	reparse_point_handle = libc.XCreateFileW(tls, (*Tpath_t)(unsafe.Pointer(path)).Fwide, uint32(0), uint32(0), uintptr(0), uint32(MOPEN_EXISTING), uint32(libc.Int32FromInt32(MFILE_FLAG_OPEN_REPARSE_POINT)|libc.Int32FromInt32(MFILE_FLAG_BACKUP_SEMANTICS)), uintptr(0))
+	reparse_point_handle = _ccgo_CreateFileW(tls, (*Tpath_t)(unsafe.Pointer(path)).Fwide, uint32(0), uint32(0), uintptr(0), uint32(MOPEN_EXISTING), uint32(libc.Int32FromInt32(MFILE_FLAG_OPEN_REPARSE_POINT)|libc.Int32FromInt32(MFILE_FLAG_BACKUP_SEMANTICS)), uintptr(0))
 	if reparse_point_handle != uintptr(int64(-libc.Int32FromInt32(1))) {
 
 		io_result = uint32(libc.XDeviceIoControl(tls, reparse_point_handle, uint32(libc.Int32FromInt32(MFILE_DEVICE_FILE_SYSTEM)<<libc.Int32FromInt32(16)|libc.Int32FromInt32(MFILE_ANY_ACCESS)<<libc.Int32FromInt32(14)|libc.Int32FromInt32(42)<<libc.Int32FromInt32(2)|libc.Int32FromInt32(MMETHOD_BUFFERED)), uintptr(0), uint32(0), bp+4, uint32(16384), bp, uintptr(0)))
@@ -113061,7 +113061,7 @@ func __check_dirW(tls *libc.TLS, src TLPCWSTR, dest TLPCWSTR) (r int32) {
 	if __joinW(tls, bp+556, bp+36, src) != 0 {
 		return 0
 	}
-	return libc.BoolInt32(libc.XGetFileAttributesExW(tls, bp+556, int32(EGetFileExInfoStandard), bp) != 0 && (**(**TWIN32_FILE_ATTRIBUTE_DATA)(__ccgo_up(bp))).FdwFileAttributes&uint32(MFILE_ATTRIBUTE_DIRECTORY) != 0)
+	return libc.BoolInt32(_ccgo_GetFileAttributesExW(tls, bp+556, int32(EGetFileExInfoStandard), bp) != 0 && (**(**TWIN32_FILE_ATTRIBUTE_DATA)(__ccgo_up(bp))).FdwFileAttributes&uint32(MFILE_ATTRIBUTE_DIRECTORY) != 0)
 }
 
 func _os_symlink_impl(tls *libc.TLS, module uintptr, src uintptr, dst uintptr, target_is_directory int32, dir_fd int32) (r uintptr) {
@@ -113092,13 +113092,13 @@ func _os_symlink_impl(tls *libc.TLS, module uintptr, src uintptr, dst uintptr, t
 	}
 	result = uint32(_CreateSymbolicLinkW(tls, (*Tpath_t)(unsafe.Pointer(dst)).Fwide, (*Tpath_t)(unsafe.Pointer(src)).Fwide, flags))
 	XPyEval_RestoreThread(tls, _save)
-	if _windows_has_symlink_unprivileged_flag != 0 && !(result != 0) && uint32(87) == libc.XGetLastError(tls) {
+	if _windows_has_symlink_unprivileged_flag != 0 && !(result != 0) && uint32(87) == _ccgo_GetLastError(tls) {
 		_save1 = XPyEval_SaveThread(tls)
 
 		flags = flags & uint32(^libc.Int32FromInt32(MSYMBOLIC_LINK_FLAG_ALLOW_UNPRIVILEGED_CREATE))
 		result = uint32(_CreateSymbolicLinkW(tls, (*Tpath_t)(unsafe.Pointer(dst)).Fwide, (*Tpath_t)(unsafe.Pointer(src)).Fwide, flags))
 		XPyEval_RestoreThread(tls, _save1)
-		if result != 0 || uint32(87) != libc.XGetLastError(tls) {
+		if result != 0 || uint32(87) != _ccgo_GetLastError(tls) {
 			_windows_has_symlink_unprivileged_flag = MFALSE
 		}
 	}

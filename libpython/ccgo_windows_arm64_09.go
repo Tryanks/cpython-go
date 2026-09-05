@@ -484,7 +484,7 @@ func _os__getdiskusage_impl(tls *libc.TLS, module uintptr, path uintptr) (r uint
 	retval = _GetDiskFreeSpaceExW(tls, (*Tpath_t)(unsafe.Pointer(path)).Fwide, bp, bp+8, bp+16)
 	XPyEval_RestoreThread(tls, _save)
 	if retval == 0 {
-		if libc.XGetLastError(tls) == uint32(267) {
+		if _ccgo_GetLastError(tls) == uint32(267) {
 			dir_path = libc.UintptrFromInt32(0)
 			if uint64((*Tpath_t)(unsafe.Pointer(path)).Flength+libc.Int64FromInt32(1)) > libc.Uint64FromInt64(9223372036854775807)/libc.Uint64FromInt64(2) {
 				v1 = libc.UintptrFromInt32(0)
@@ -502,7 +502,7 @@ func _os__getdiskusage_impl(tls *libc.TLS, module uintptr, path uintptr) (r uint
 				XPyEval_RestoreThread(tls, _save1)
 			}
 
-			err = libc.XGetLastError(tls)
+			err = _ccgo_GetLastError(tls)
 			XPyMem_Free(tls, dir_path)
 			if retval != 0 {
 				goto success
@@ -7187,7 +7187,7 @@ func _ScandirIterator_closedir(tls *libc.TLS, iterator uintptr) {
 	}
 	(*TScandirIterator)(unsafe.Pointer(iterator)).Fhandle = uintptr(int64(-libc.Int32FromInt32(1)))
 	_save = XPyEval_SaveThread(tls)
-	libc.XFindClose(tls, handle)
+	_ccgo_FindClose(tls, handle)
 	XPyEval_RestoreThread(tls, _save)
 }
 
@@ -7204,11 +7204,11 @@ func _ScandirIterator_iternext(tls *libc.TLS, op uintptr) (r uintptr) {
 	for int32(1) != 0 {
 		if !((*TScandirIterator)(unsafe.Pointer(iterator)).Ffirst_time != 0) {
 			_save = XPyEval_SaveThread(tls)
-			success = libc.XFindNextFileW(tls, (*TScandirIterator)(unsafe.Pointer(iterator)).Fhandle, file_data)
+			success = _ccgo_FindNextFileW(tls, (*TScandirIterator)(unsafe.Pointer(iterator)).Fhandle, file_data)
 			XPyEval_RestoreThread(tls, _save)
 			if !(success != 0) {
 
-				if libc.XGetLastError(tls) != uint32(18) {
+				if _ccgo_GetLastError(tls) != uint32(18) {
 					_path_error(tls, iterator+16)
 				}
 				break
@@ -7411,7 +7411,7 @@ func _os_scandir_impl(tls *libc.TLS, module uintptr, path uintptr) (r uintptr) {
 		goto error
 	}
 	_save = XPyEval_SaveThread(tls)
-	(*TScandirIterator)(unsafe.Pointer(iterator)).Fhandle = libc.XFindFirstFileW(tls, path_strW, iterator+120)
+	(*TScandirIterator)(unsafe.Pointer(iterator)).Fhandle = _ccgo_FindFirstFileW(tls, path_strW, iterator+120)
 	XPyEval_RestoreThread(tls, _save)
 	if (*TScandirIterator)(unsafe.Pointer(iterator)).Fhandle == uintptr(int64(-libc.Int32FromInt32(1))) {
 		_path_error(tls, iterator+16)
@@ -7634,7 +7634,7 @@ func _os__add_dll_directory_impl(tls *libc.TLS, module uintptr, path uintptr) (r
 	v1 = _AddDllDirectory(tls, (*Tpath_t)(unsafe.Pointer(path)).Fwide)
 	cookie = v1
 	if !(v1 != 0) {
-		err = libc.XGetLastError(tls)
+		err = _ccgo_GetLastError(tls)
 	}
 	XPyEval_RestoreThread(tls, _save)
 	if err != 0 {
@@ -7657,7 +7657,7 @@ func _os__remove_dll_directory_impl(tls *libc.TLS, module uintptr, cookie uintpt
 	cookieValue = XPyCapsule_GetPointer(tls, cookie, __ccgo_ts+252575)
 	_save = XPyEval_SaveThread(tls)
 	if !(_RemoveDllDirectory(tls, cookieValue) != 0) {
-		err = libc.XGetLastError(tls)
+		err = _ccgo_GetLastError(tls)
 	}
 	XPyEval_RestoreThread(tls, _save)
 	if err != 0 {
@@ -8873,7 +8873,7 @@ func _trip_signal(tls *libc.TLS, sig_num int32) {
 		if libc.AtomicLoadPInt32(uintptr(unsafe.Pointer(&X_PyRuntime))+1224+368+8) != 0 {
 			rc = int64(_ccgo_send(tls, uint64(fd), bp, int32(1), 0))
 			if rc < 0 {
-				last_error = int32(libc.XGetLastError(tls))
+				last_error = int32(_ccgo_GetLastError(tls))
 				if libc.AtomicLoadPInt32(uintptr(unsafe.Pointer(&X_PyRuntime))+1224+368+4) != 0 || last_error != libc.Int32FromInt32(MWSABASEERR)+libc.Int32FromInt32(35) {
 
 					X_PyEval_AddPendingCall(tls, interp, __ccgo_fp(_report_wakeup_send_error), uintptr(int64(last_error)), int32(M_Py_PENDING_MAINTHREADONLY))
@@ -38951,7 +38951,7 @@ _5:
 	XPyEval_RestoreThread(tls, _save1)
 	if fstat_result < 0 {
 
-		if libc.XGetLastError(tls) == uint32(6) {
+		if _ccgo_GetLastError(tls) == uint32(6) {
 			XPyErr_SetFromWindowsErr(tls, 0)
 			goto error
 		}
@@ -59567,7 +59567,7 @@ func __wchar_to_utf8_count(tls *libc.TLS, s uintptr, len1 TDWORD, n TDWORD) (r T
 			}
 			mid = v2
 		}
-		wlen = uint32(libc.XMultiByteToWideChar(tls, uint32(MCP_UTF8), uint32(0), s, int32(mid), libc.UintptrFromInt32(0), 0))
+		wlen = uint32(_ccgo_MultiByteToWideChar(tls, uint32(MCP_UTF8), uint32(0), s, int32(mid), libc.UintptrFromInt32(0), 0))
 		if wlen <= n {
 			s = s + uintptr(mid)
 			start = start + mid
@@ -59821,13 +59821,13 @@ _2:
 		}
 		_save = XPyEval_SaveThread(tls)
 
-		handle = libc.XCreateFileW(tls, name, libc.Uint32FromUint32(0x80000000)|uint32(libc.Int32FromInt32(0x40000000)), uint32(libc.Int32FromInt32(MFILE_SHARE_READ)|libc.Int32FromInt32(MFILE_SHARE_WRITE)), libc.UintptrFromInt32(0), uint32(MOPEN_EXISTING), uint32(0), libc.UintptrFromInt32(0))
+		handle = _ccgo_CreateFileW(tls, name, libc.Uint32FromUint32(0x80000000)|uint32(libc.Int32FromInt32(0x40000000)), uint32(libc.Int32FromInt32(MFILE_SHARE_READ)|libc.Int32FromInt32(MFILE_SHARE_WRITE)), libc.UintptrFromInt32(0), uint32(MOPEN_EXISTING), uint32(0), libc.UintptrFromInt32(0))
 		if handle == uintptr(int64(-libc.Int32FromInt32(1))) {
-			handle = libc.XCreateFileW(tls, name, access, uint32(libc.Int32FromInt32(MFILE_SHARE_READ)|libc.Int32FromInt32(MFILE_SHARE_WRITE)), libc.UintptrFromInt32(0), uint32(MOPEN_EXISTING), uint32(0), libc.UintptrFromInt32(0))
+			handle = _ccgo_CreateFileW(tls, name, access, uint32(libc.Int32FromInt32(MFILE_SHARE_READ)|libc.Int32FromInt32(MFILE_SHARE_WRITE)), libc.UintptrFromInt32(0), uint32(MOPEN_EXISTING), uint32(0), libc.UintptrFromInt32(0))
 		}
 		XPyEval_RestoreThread(tls, _save)
 		if handle == uintptr(int64(-libc.Int32FromInt32(1))) {
-			XPyErr_SetExcFromWindowsErrWithFilenameObject(tls, XPyExc_OSError, int32(libc.XGetLastError(tls)), nameobj)
+			XPyErr_SetExcFromWindowsErrWithFilenameObject(tls, XPyExc_OSError, int32(_ccgo_GetLastError(tls)), nameobj)
 			goto error
 		}
 		if int32(uint32(*(*uint8)(unsafe.Pointer(self + 20))&0x4>>2)) != 0 {
@@ -60136,18 +60136,18 @@ func _read_console_w(tls *libc.TLS, handle THANDLE, maxlen TDWORD, readlen uintp
 		_SetLastError(tls, uint32(0))
 		res = libc.XReadConsoleW(tls, handle, buf+uintptr(off)*2, len1, bp, libc.UintptrFromInt32(0))
 		if !(res != 0) {
-			err = int32(libc.XGetLastError(tls))
+			err = int32(_ccgo_GetLastError(tls))
 			break
 		}
 		if v3 = **(**TDWORD)(__ccgo_up(bp)) == uint32(-libc.Int32FromInt32(1)); v3 {
-			v2 = int32(libc.XGetLastError(tls))
+			v2 = int32(_ccgo_GetLastError(tls))
 			err = v2
 		}
 		if v3 && v2 == int32(995) {
 			break
 		}
 		if **(**TDWORD)(__ccgo_up(bp)) == uint32(0) {
-			err = int32(libc.XGetLastError(tls))
+			err = int32(_ccgo_GetLastError(tls))
 			if err != int32(995) {
 				break
 			}
@@ -60272,20 +60272,20 @@ func _readinto(tls *libc.TLS, state uintptr, self uintptr, buf uintptr, len1 TPy
 	u8n = uint32(0)
 	_save = XPyEval_SaveThread(tls)
 	if len1 < int64(4) {
-		if libc.XWideCharToMultiByte(tls, uint32(MCP_UTF8), uint32(0), wbuf, int32(**(**TDWORD)(__ccgo_up(bp))), self+48, int32(libc.Uint64FromInt64(4)/libc.Uint64FromInt64(1)), libc.UintptrFromInt32(0), libc.UintptrFromInt32(0)) != 0 {
+		if _ccgo_WideCharToMultiByte(tls, uint32(MCP_UTF8), uint32(0), wbuf, int32(**(**TDWORD)(__ccgo_up(bp))), self+48, int32(libc.Uint64FromInt64(4)/libc.Uint64FromInt64(1)), libc.UintptrFromInt32(0), libc.UintptrFromInt32(0)) != 0 {
 			u8n = __copyfrombuf(tls, self, buf, uint32(len1))
 		}
 	} else {
-		u8n = uint32(libc.XWideCharToMultiByte(tls, uint32(MCP_UTF8), uint32(0), wbuf, int32(**(**TDWORD)(__ccgo_up(bp))), buf, int32(uint32(len1)), libc.UintptrFromInt32(0), libc.UintptrFromInt32(0)))
+		u8n = uint32(_ccgo_WideCharToMultiByte(tls, uint32(MCP_UTF8), uint32(0), wbuf, int32(**(**TDWORD)(__ccgo_up(bp))), buf, int32(uint32(len1)), libc.UintptrFromInt32(0), libc.UintptrFromInt32(0)))
 	}
 	if u8n != 0 {
 		read_len = read_len + u8n
 		u8n = uint32(0)
 	} else {
-		err = int32(libc.XGetLastError(tls))
+		err = int32(_ccgo_GetLastError(tls))
 		if err == int32(122) {
 
-			u8n = uint32(libc.XWideCharToMultiByte(tls, uint32(MCP_UTF8), uint32(0), wbuf, int32(**(**TDWORD)(__ccgo_up(bp))), libc.UintptrFromInt32(0), 0, libc.UintptrFromInt32(0), libc.UintptrFromInt32(0)))
+			u8n = uint32(_ccgo_WideCharToMultiByte(tls, uint32(MCP_UTF8), uint32(0), wbuf, int32(**(**TDWORD)(__ccgo_up(bp))), libc.UintptrFromInt32(0), 0, libc.UintptrFromInt32(0), libc.UintptrFromInt32(0)))
 		}
 	}
 	XPyEval_RestoreThread(tls, _save)
@@ -60408,10 +60408,10 @@ func __io__WindowsConsoleIO_readall_impl(tls *libc.TLS, self1 uintptr) (r uintpt
 	}
 	if len1 != 0 {
 		_save = XPyEval_SaveThread(tls)
-		bytes_size = uint32(libc.XWideCharToMultiByte(tls, uint32(MCP_UTF8), uint32(0), buf, int32(len1), libc.UintptrFromInt32(0), 0, libc.UintptrFromInt32(0), libc.UintptrFromInt32(0)))
+		bytes_size = uint32(_ccgo_WideCharToMultiByte(tls, uint32(MCP_UTF8), uint32(0), buf, int32(len1), libc.UintptrFromInt32(0), 0, libc.UintptrFromInt32(0), libc.UintptrFromInt32(0)))
 		XPyEval_RestoreThread(tls, _save)
 		if !(bytes_size != 0) {
-			err = libc.XGetLastError(tls)
+			err = _ccgo_GetLastError(tls)
 			XPyMem_Free(tls, buf)
 			return XPyErr_SetFromWindowsErr(tls, int32(err))
 		}
@@ -60429,10 +60429,10 @@ _2:
 		v1 = **(**uintptr)(__ccgo_up(bp + 8)) + 32
 		goto _4
 	_4:
-		bytes_size = uint32(libc.XWideCharToMultiByte(tls, uint32(MCP_UTF8), uint32(0), buf, int32(len1), v1+uintptr(rn), int32(bytes_size-rn), libc.UintptrFromInt32(0), libc.UintptrFromInt32(0)))
+		bytes_size = uint32(_ccgo_WideCharToMultiByte(tls, uint32(MCP_UTF8), uint32(0), buf, int32(len1), v1+uintptr(rn), int32(bytes_size-rn), libc.UintptrFromInt32(0), libc.UintptrFromInt32(0)))
 		XPyEval_RestoreThread(tls, _save1)
 		if !(bytes_size != 0) {
-			err1 = libc.XGetLastError(tls)
+			err1 = _ccgo_GetLastError(tls)
 			XPyMem_Free(tls, buf)
 			_tmp_op_ptr = bp + 8
 			_tmp_old_op = **(**uintptr)(__ccgo_up(_tmp_op_ptr))
@@ -60662,7 +60662,7 @@ func __io__WindowsConsoleIO_write_impl(tls *libc.TLS, self uintptr, cls1 uintptr
 	for int32(1) != 0 {
 
 		len1 = __find_last_utf8_boundary(tls, (*TPy_buffer)(unsafe.Pointer(b)).Fbuf, len1)
-		wlen = uint32(libc.XMultiByteToWideChar(tls, uint32(MCP_UTF8), uint32(0), (*TPy_buffer)(unsafe.Pointer(b)).Fbuf, int32(len1), libc.UintptrFromInt32(0), 0))
+		wlen = uint32(_ccgo_MultiByteToWideChar(tls, uint32(MCP_UTF8), uint32(0), (*TPy_buffer)(unsafe.Pointer(b)).Fbuf, int32(len1), libc.UintptrFromInt32(0), 0))
 		if wlen <= max_wlen {
 			break
 		}
@@ -60678,7 +60678,7 @@ func __io__WindowsConsoleIO_write_impl(tls *libc.TLS, self uintptr, cls1 uintptr
 		return libc.UintptrFromInt32(0)
 	}
 	_save1 = XPyEval_SaveThread(tls)
-	wlen = uint32(libc.XMultiByteToWideChar(tls, uint32(MCP_UTF8), uint32(0), (*TPy_buffer)(unsafe.Pointer(b)).Fbuf, int32(len1), wbuf, int32(wlen)))
+	wlen = uint32(_ccgo_MultiByteToWideChar(tls, uint32(MCP_UTF8), uint32(0), (*TPy_buffer)(unsafe.Pointer(b)).Fbuf, int32(len1), wbuf, int32(wlen)))
 	if wlen != 0 {
 		res = libc.XWriteConsoleW(tls, handle, wbuf, wlen, bp, libc.UintptrFromInt32(0))
 		if res != 0 && **(**TDWORD)(__ccgo_up(bp)) < wlen {
@@ -60690,7 +60690,7 @@ func __io__WindowsConsoleIO_write_impl(tls *libc.TLS, self uintptr, cls1 uintptr
 	}
 	XPyEval_RestoreThread(tls, _save1)
 	if !(res != 0) {
-		err = libc.XGetLastError(tls)
+		err = _ccgo_GetLastError(tls)
 		XPyMem_Free(tls, wbuf)
 		return XPyErr_SetFromWindowsErr(tls, int32(err))
 	}

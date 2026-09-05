@@ -16216,12 +16216,12 @@ func _decode_code_page_strict(tls *libc.TLS, code_page TUINT, buf uintptr, bufsi
 	flags = uint32(MMB_ERR_INVALID_CHARS)
 
 	for {
-		v1 = uint32(libc.XMultiByteToWideChar(tls, code_page, flags, in, insize, libc.UintptrFromInt32(0), 0))
+		v1 = uint32(_ccgo_MultiByteToWideChar(tls, code_page, flags, in, insize, libc.UintptrFromInt32(0), 0))
 		outsize = v1
 		if !(v1 <= uint32(0)) {
 			break
 		}
-		if !(flags != 0) || libc.XGetLastError(tls) != uint32(1004) {
+		if !(flags != 0) || _ccgo_GetLastError(tls) != uint32(1004) {
 			goto error
 		}
 
@@ -16234,7 +16234,7 @@ func _decode_code_page_strict(tls *libc.TLS, code_page TUINT, buf uintptr, bufsi
 	}
 	out = **(**uintptr)(__ccgo_up(buf)) + uintptr(n)*2
 
-	outsize = uint32(libc.XMultiByteToWideChar(tls, code_page, flags, in, insize, out, int32(outsize)))
+	outsize = uint32(_ccgo_MultiByteToWideChar(tls, code_page, flags, in, insize, out, int32(outsize)))
 	if outsize <= uint32(0) {
 		goto error
 	}
@@ -16242,7 +16242,7 @@ func _decode_code_page_strict(tls *libc.TLS, code_page TUINT, buf uintptr, bufsi
 	goto error
 error:
 	;
-	if libc.XGetLastError(tls) == uint32(1113) {
+	if _ccgo_GetLastError(tls) == uint32(1113) {
 		return -int32(2)
 	}
 	XPyErr_SetFromWindowsErr(tls, 0)
@@ -16332,11 +16332,11 @@ func _decode_code_page_errors(tls *libc.TLS, code_page TUINT, buf uintptr, bufsi
 
 		insize = int32(1)
 		for cond := true; cond; cond = insize <= int32(4) && **(**uintptr)(__ccgo_up(bp))+uintptr(insize) <= **(**uintptr)(__ccgo_up(bp + 16)) {
-			outsize = int64(libc.XMultiByteToWideChar(tls, code_page, flags, **(**uintptr)(__ccgo_up(bp)), insize, bp+24, int32(libc.Uint64FromInt64(4)/libc.Uint64FromInt64(2))))
+			outsize = int64(_ccgo_MultiByteToWideChar(tls, code_page, flags, **(**uintptr)(__ccgo_up(bp)), insize, bp+24, int32(libc.Uint64FromInt64(4)/libc.Uint64FromInt64(2))))
 			if outsize > 0 {
 				break
 			}
-			err = libc.XGetLastError(tls)
+			err = _ccgo_GetLastError(tls)
 			if err == uint32(1004) && flags != 0 {
 
 				flags = uint32(0)
@@ -16571,7 +16571,7 @@ func _encode_code_page_strict(tls *libc.TLS, code_page TUINT, outbytes uintptr, 
 		return -int32(1)
 	}
 
-	outsize = libc.XWideCharToMultiByte(tls, code_page, flags, p, int32(**(**TPy_ssize_t)(__ccgo_up(bp + 8))), libc.UintptrFromInt32(0), 0, libc.UintptrFromInt32(0), pusedDefaultChar)
+	outsize = _ccgo_WideCharToMultiByte(tls, code_page, flags, p, int32(**(**TPy_ssize_t)(__ccgo_up(bp + 8))), libc.UintptrFromInt32(0), 0, libc.UintptrFromInt32(0), pusedDefaultChar)
 	if outsize <= 0 {
 		goto error
 	}
@@ -16606,7 +16606,7 @@ func _encode_code_page_strict(tls *libc.TLS, code_page TUINT, outbytes uintptr, 
 		out = v1 + uintptr(n)
 	}
 
-	outsize = libc.XWideCharToMultiByte(tls, code_page, flags, p, int32(**(**TPy_ssize_t)(__ccgo_up(bp + 8))), out, outsize, libc.UintptrFromInt32(0), pusedDefaultChar)
+	outsize = _ccgo_WideCharToMultiByte(tls, code_page, flags, p, int32(**(**TPy_ssize_t)(__ccgo_up(bp + 8))), out, outsize, libc.UintptrFromInt32(0), pusedDefaultChar)
 	if outsize <= 0 {
 		goto error
 	}
@@ -16623,7 +16623,7 @@ done:
 	goto error
 error:
 	;
-	if libc.XGetLastError(tls) == uint32(1113) {
+	if _ccgo_GetLastError(tls) == uint32(1113) {
 		ret = -int32(2)
 		goto done
 	}
@@ -16856,7 +16856,7 @@ func _encode_code_page_errors(tls *libc.TLS, code_page TUINT, outbytes uintptr, 
 			(**(**[2]Twchar_t)(__ccgo_up(bp + 40)))[int32(1)] = uint16(v20)
 			charsize = int32(2)
 		}
-		outsize = int64(libc.XWideCharToMultiByte(tls, code_page, flags1, bp+40, charsize, bp, int32(libc.Uint64FromInt64(4)/libc.Uint64FromInt64(1)), libc.UintptrFromInt32(0), pusedDefaultChar))
+		outsize = int64(_ccgo_WideCharToMultiByte(tls, code_page, flags1, bp+40, charsize, bp, int32(libc.Uint64FromInt64(4)/libc.Uint64FromInt64(1)), libc.UintptrFromInt32(0), pusedDefaultChar))
 		if outsize > 0 {
 			if pusedDefaultChar == libc.UintptrFromInt32(0) || !(**(**TBOOL)(__ccgo_up(pusedDefaultChar)) != 0) {
 				pos = pos + 1
@@ -16865,7 +16865,7 @@ func _encode_code_page_errors(tls *libc.TLS, code_page TUINT, outbytes uintptr, 
 				continue
 			}
 		} else {
-			if libc.XGetLastError(tls) != uint32(1113) {
+			if _ccgo_GetLastError(tls) != uint32(1113) {
 				XPyErr_SetFromWindowsErr(tls, 0)
 				goto error
 			}
