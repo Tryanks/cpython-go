@@ -89,7 +89,7 @@ func fp(f any) uintptr {
 // hostTrampoline has the METH_VARARGS|METH_KEYWORDS calling convention. self
 // is the int identifying the Go closure in hostReg.
 func hostTrampoline(tls *libc.TLS, self, args, kwargs uintptr) uintptr {
-	id := libpython.XPyLong_AsLong(tls, self)
+	id := int64(libpython.XPyLong_AsLong(tls, self))
 	hostMu.Lock()
 	e := hostReg[id]
 	hostMu.Unlock()

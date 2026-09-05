@@ -49264,14 +49264,14 @@ func X_PyImport_FindSharedFuncptrWindows(tls *libc.TLS, prefix uintptr, shortnam
 	XPyOS_snprintf(tls, bp, uint64(258), __ccgo_ts+174222, libc.VaList(bp+1048, prefix, shortname))
 	hDLL = libc.UintptrFromInt32(0)
 
-	old_mode = libc.XSetErrorMode(tls, uint32(MSEM_FAILCRITICALERRORS))
+	old_mode = _ccgo_SetErrorMode(tls, uint32(MSEM_FAILCRITICALERRORS))
 
 	_save = XPyEval_SaveThread(tls)
 	hDLL = libc.XLoadLibraryExW(tls, wpathname, libc.UintptrFromInt32(0), load_library_flags)
 	XPyEval_RestoreThread(tls, _save)
 	XPyMem_Free(tls, wpathname)
 
-	libc.XSetErrorMode(tls, old_mode)
+	_ccgo_SetErrorMode(tls, old_mode)
 	if hDLL == libc.UintptrFromInt32(0) {
 		errorCode = uint32(libc.XGetLastError(tls))
 		theLength = int32(libc.XFormatMessageW(tls, uint32(libc.Int32FromInt32(MFORMAT_MESSAGE_FROM_SYSTEM)|libc.Int32FromInt32(MFORMAT_MESSAGE_IGNORE_INSERTS)), libc.UintptrFromInt32(0), errorCode, uint32(int32(uint16(libc.Int32FromInt32(MSUBLANG_DEFAULT)))<<libc.Int32FromInt32(10)|int32(uint16(libc.Int32FromInt32(MLANG_NEUTRAL)))), bp+272, uint32(libc.Uint64FromInt64(512)/libc.Uint64FromInt64(2)), libc.UintptrFromInt32(0)))

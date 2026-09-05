@@ -24,7 +24,24 @@ func _ccgo_builtin_fma(tls *libc.TLS, x, y, z float64) float64    { return math.
 // __builtin___strncat_chk(dst, src, n, dstsize): the _FORTIFY_SOURCE variant
 // of strncat. ponytail: dstsize is ignored, same as plain strncat.
 func _ccgo_builtin___strncat_chk(tls *libc.TLS, dst, src uintptr, n int32, dstsize uint64) uintptr {
-	return libc.Xstrncat(tls, dst, src, uint64(n))
+	return _ccgo_strncat(tls, dst, src, uint64(n))
+}
+
+func _ccgo_strncat(tls *libc.TLS, dst, src uintptr, n uint64) uintptr {
+	p := dst
+	for *(*byte)(unsafe.Pointer(p)) != 0 {
+		p++
+	}
+	for i := uint64(0); i < n; i++ {
+		c := *(*byte)(unsafe.Pointer(src + uintptr(i)))
+		*(*byte)(unsafe.Pointer(p)) = c
+		if c == 0 {
+			return dst
+		}
+		p++
+	}
+	*(*byte)(unsafe.Pointer(p)) = 0
+	return dst
 }
 
 // Atomic loads missing from modernc.org/libc for 8/16 bit operands.

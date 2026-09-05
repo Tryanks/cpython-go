@@ -200,6 +200,9 @@ func __Py_atomic_load_int64(tls *libc.TLS, p uintptr) int64 {
 func __Py_atomic_load_int64_relaxed(tls *libc.TLS, p uintptr) int64 {
 	return atomic.LoadInt64((*int64)(unsafe.Pointer(p)))
 }
+func __Py_atomic_load_llong_relaxed(tls *libc.TLS, p uintptr) int64 {
+	return atomic.LoadInt64((*int64)(unsafe.Pointer(p)))
+}
 func __Py_atomic_load_int_acquire(tls *libc.TLS, p uintptr) int32 {
 	return atomic.LoadInt32((*int32)(unsafe.Pointer(p)))
 }
@@ -258,6 +261,9 @@ func __Py_atomic_store_int(tls *libc.TLS, p uintptr, value int32) {
 func __Py_atomic_store_int64_relaxed(tls *libc.TLS, p uintptr, value int64) {
 	atomic.StoreInt64((*int64)(unsafe.Pointer(p)), value)
 }
+func __Py_atomic_store_llong_relaxed(tls *libc.TLS, p uintptr, value int64) {
+	atomic.StoreInt64((*int64)(unsafe.Pointer(p)), value)
+}
 func __Py_atomic_store_int_relaxed(tls *libc.TLS, p uintptr, value int32) {
 	atomic.StoreInt32((*int32)(unsafe.Pointer(p)), value)
 }
@@ -280,6 +286,9 @@ func __Py_atomic_store_uint32(tls *libc.TLS, p uintptr, value uint32) {
 	atomic.StoreUint32((*uint32)(unsafe.Pointer(p)), value)
 }
 func __Py_atomic_store_uint32_release(tls *libc.TLS, p uintptr, value uint32) {
+	atomic.StoreUint32((*uint32)(unsafe.Pointer(p)), value)
+}
+func __Py_atomic_store_uint32_relaxed(tls *libc.TLS, p uintptr, value uint32) {
 	atomic.StoreUint32((*uint32)(unsafe.Pointer(p)), value)
 }
 func __Py_atomic_store_uint64(tls *libc.TLS, p uintptr, value uint64) {

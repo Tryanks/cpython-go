@@ -28,7 +28,7 @@ func (in *Interpreter) toPy(v any) (uintptr, error) {
 		}
 		return libpython.XPy_NewRef(in.tls, p), nil
 	case bool:
-		return libpython.XPyBool_FromLong(in.tls, b2i(x)), nil
+		return libpython.PyBoolFromBool(in.tls, x), nil
 	case int:
 		return in.fromInt64(int64(x))
 	case int8:

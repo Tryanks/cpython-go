@@ -14433,7 +14433,7 @@ func _msvcrt_SetErrorMode_impl(tls *libc.TLS, module uintptr, mode uint32) (r ui
 	/*[clinic end generated code: output=01d529293f00da8f input=d8b167258d32d907]*/
 	var res uint32
 	_ = res
-	res = libc.XSetErrorMode(tls, mode)
+	res = _ccgo_SetErrorMode(tls, mode)
 	return XPyLong_FromUnsignedLong(tls, res)
 }
 
@@ -18341,13 +18341,13 @@ func __winapi_GetShortPathName_impl(tls *libc.TLS, module uintptr, path TLPCWSTR
 	_, _, _, _, _ = _save, _save1, buffer, cchBuffer, result
 	result = libc.UintptrFromInt32(0)
 	_save = XPyEval_SaveThread(tls)
-	cchBuffer = libc.XGetShortPathNameW(tls, path, libc.UintptrFromInt32(0), uint32(0))
+	cchBuffer = _ccgo_GetShortPathNameW(tls, path, libc.UintptrFromInt32(0), uint32(0))
 	XPyEval_RestoreThread(tls, _save)
 	if cchBuffer != 0 {
 		buffer = XPyMem_Malloc(tls, uint64(cchBuffer)*uint64(2))
 		if buffer != 0 {
 			_save1 = XPyEval_SaveThread(tls)
-			cchBuffer = libc.XGetShortPathNameW(tls, path, buffer, cchBuffer)
+			cchBuffer = _ccgo_GetShortPathNameW(tls, path, buffer, cchBuffer)
 			XPyEval_RestoreThread(tls, _save1)
 			if cchBuffer != 0 {
 				result = XPyUnicode_FromWideChar(tls, buffer, int64(cchBuffer))

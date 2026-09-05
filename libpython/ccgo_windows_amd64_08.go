@@ -93115,7 +93115,7 @@ func __overlapped_BindLocal_impl(tls *libc.TLS, module uintptr, Socket THANDLE, 
 			libc.Xmemset(tls, bp+16, 0, uint64(28))
 			(**(**Tsockaddr_in6)(__ccgo_up(bp + 16))).Fsin6_family = int16(MAF_INET6)
 			(**(**Tsockaddr_in6)(__ccgo_up(bp + 16))).Fsin6_port = uint16(0)
-			(**(**Tsockaddr_in6)(__ccgo_up(bp + 16))).Fsin6_addr = libc.Xin6addr_any
+			(**(**Tsockaddr_in6)(__ccgo_up(bp + 16))).Fsin6_addr = _ccgo_in6addr_any
 			ret = libc.BoolInt32(libc.Xbind(tls, uint64(Socket), bp+16, int32(28)) != -int32(1))
 		} else {
 			XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+231437)
@@ -98353,8 +98353,8 @@ func _faulthandler_suppress_crash_report(tls *libc.TLS) {
 	var mode TUINT
 	_ = mode
 
-	mode = libc.XSetErrorMode(tls, uint32(MSEM_NOGPFAULTERRORBOX))
-	libc.XSetErrorMode(tls, mode|uint32(MSEM_NOGPFAULTERRORBOX))
+	mode = _ccgo_SetErrorMode(tls, uint32(MSEM_NOGPFAULTERRORBOX))
+	_ccgo_SetErrorMode(tls, mode|uint32(MSEM_NOGPFAULTERRORBOX))
 }
 
 func _faulthandler_read_null(tls *libc.TLS, self uintptr, args uintptr) (r uintptr) {
@@ -104327,7 +104327,7 @@ func _os_umask_impl(tls *libc.TLS, module uintptr, mask int32) (r uintptr) {
 	/*[clinic end generated code: output=a2e33ce3bc1a6e33 input=ab6bfd9b24d8a7e8]*/
 	var i int32
 	_ = i
-	i = libc.Xumask(tls, mask)
+	i = _ccgo_umask(tls, mask)
 	if i < 0 {
 		return _posix_error(tls)
 	}
