@@ -526,12 +526,9 @@ func _flockfile(tls *libc.TLS, stream uintptr)   {}
 func _funlockfile(tls *libc.TLS, stream uintptr) {}
 
 func _ccgo_pow(tls *libc.TLS, x, y float64) float64 {
+	// math.Pow is within an ulp of libm; exp(y*log(x)) is not (it drifts by
+	// hundreds of ulps for large results and broke math.gamma).
 	result := math.Pow(x, y)
-	// Go's arm64 pow differs by one ULP from Darwin libm for some positive
-	// fractional powers. CPython's tests exercise those exact boundaries.
-	if x > 0 && !math.IsInf(x, 0) && !math.IsInf(y, 0) && !math.IsNaN(y) && y != math.Trunc(y) {
-		result = math.Exp(y * math.Log(x))
-	}
 	switch {
 	case math.IsNaN(result) && !math.IsNaN(x) && !math.IsNaN(y):
 		setErrno(tls, int32(errno.EDOM))
