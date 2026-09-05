@@ -38547,7 +38547,7 @@ func _config_get_xoption_value(tls *libc.TLS, config uintptr, name uintptr) (r u
 	if xoption == libc.UintptrFromInt32(0) {
 		return libc.UintptrFromInt32(0)
 	}
-	sep = libc.Xwcschr(tls, xoption, uint16('='))
+	sep = _ccgo_wcschr(tls, xoption, uint16('='))
 	if sep != 0 {
 		v1 = sep + uintptr(1)*2
 	} else {
@@ -38732,7 +38732,7 @@ func _config_init_cpu_count(tls *libc.TLS, config uintptr) (r TPyStatus) {
 	xoption = _config_get_xoption(tls, config, __ccgo_ts+149011)
 	if xoption != 0 {
 		**(**int32)(__ccgo_up(bp + 4)) = -int32(1)
-		sep = libc.Xwcschr(tls, xoption, uint16('='))
+		sep = _ccgo_wcschr(tls, xoption, uint16('='))
 		if sep != 0 {
 			if libc.Xwcscmp(tls, sep+uintptr(1)*2, __ccgo_ts+149031) == 0 {
 				**(**int32)(__ccgo_up(bp + 4)) = -int32(1)
@@ -38780,7 +38780,7 @@ func _config_init_thread_inherit_context(tls *libc.TLS, config uintptr) (r TPySt
 	}
 	xoption = _config_get_xoption(tls, config, __ccgo_ts+149217)
 	if xoption != 0 {
-		sep = libc.Xwcschr(tls, xoption, uint16('='))
+		sep = _ccgo_wcschr(tls, xoption, uint16('='))
 		if !(sep != 0) || _config_wstr_to_int(tls, sep+uintptr(1)*2, bp+4) < 0 || **(**int32)(__ccgo_up(bp + 4)) < 0 || **(**int32)(__ccgo_up(bp + 4)) > int32(1) {
 			return TPyStatus{
 				F_type:   int32(E_PyStatus_TYPE_ERROR),
@@ -38815,7 +38815,7 @@ func _config_init_context_aware_warnings(tls *libc.TLS, config uintptr) (r TPySt
 	}
 	xoption = _config_get_xoption(tls, config, __ccgo_ts+149403)
 	if xoption != 0 {
-		sep = libc.Xwcschr(tls, xoption, uint16('='))
+		sep = _ccgo_wcschr(tls, xoption, uint16('='))
 		if !(sep != 0) || _config_wstr_to_int(tls, sep+uintptr(1)*2, bp+4) < 0 || **(**int32)(__ccgo_up(bp + 4)) < 0 || **(**int32)(__ccgo_up(bp + 4)) > int32(1) {
 			return TPyStatus{
 				F_type:   int32(E_PyStatus_TYPE_ERROR),
@@ -38900,7 +38900,7 @@ func _config_init_tracemalloc(tls *libc.TLS, config uintptr) (r TPyStatus) {
 	}
 	xoption = _config_get_xoption(tls, config, __ccgo_ts+149634)
 	if xoption != 0 {
-		sep = libc.Xwcschr(tls, xoption, uint16('='))
+		sep = _ccgo_wcschr(tls, xoption, uint16('='))
 		if sep != 0 {
 			if !(_config_wstr_to_int(tls, sep+uintptr(1)*2, bp) != 0) {
 				valid = libc.BoolInt32(**(**int32)(__ccgo_up(bp)) >= 0)
@@ -38949,7 +38949,7 @@ func _config_init_int_max_str_digits(tls *libc.TLS, config uintptr) (r TPyStatus
 	}
 	xoption = _config_get_xoption(tls, config, __ccgo_ts+149801)
 	if xoption != 0 {
-		sep = libc.Xwcschr(tls, xoption, uint16('='))
+		sep = _ccgo_wcschr(tls, xoption, uint16('='))
 		valid1 = libc.BoolUint8(0 != 0)
 		if sep != 0 {
 			if !(_config_wstr_to_int(tls, sep+uintptr(1)*2, bp) != 0) {
@@ -38978,7 +38978,7 @@ func _config_init_pycache_prefix(tls *libc.TLS, config uintptr) (r TPyStatus) {
 	_, _ = sep, xoption
 	xoption = _config_get_xoption(tls, config, __ccgo_ts+149912)
 	if xoption != 0 {
-		sep = libc.Xwcschr(tls, xoption, uint16('='))
+		sep = _ccgo_wcschr(tls, xoption, uint16('='))
 		if sep != 0 && libc.Xwcslen(tls, sep) > uint64(1) {
 			(*TPyConfig)(unsafe.Pointer(config)).Fpycache_prefix = X_PyMem_RawWcsdup(tls, sep+uintptr(1)*2)
 			if (*TPyConfig)(unsafe.Pointer(config)).Fpycache_prefix == libc.UintptrFromInt32(0) {
@@ -41144,7 +41144,7 @@ func _config_add_xoption(tls *libc.TLS, dict uintptr, str uintptr) (r int32) {
 	_, _, _, _, _, _, _, _, _ = cur_refcnt, name, name_end, value, v1, v10, v2, v4, v7
 	name = libc.UintptrFromInt32(0)
 	value = libc.UintptrFromInt32(0)
-	name_end = libc.Xwcschr(tls, str, uint16('='))
+	name_end = _ccgo_wcschr(tls, str, uint16('='))
 	if !(name_end != 0) {
 		name = XPyUnicode_FromWideChar(tls, str, int64(-int32(1)))
 		if name == libc.UintptrFromInt32(0) {
@@ -70477,10 +70477,10 @@ func XPy_NormalizeSepsW(tls *libc.TLS, name uintptr) {
 	if int32(**(**Twchar_t)(__ccgo_up(name))) != int32('\000') && int32(**(**Twchar_t)(__ccgo_up(name + 1*2))) == int32(':') {
 		**(**Twchar_t)(__ccgo_up(name)) = _towupper(tls, **(**Twchar_t)(__ccgo_up(name)))
 	}
-	seps = libc.Xwcschr(tls, name, altsep)
+	seps = _ccgo_wcschr(tls, name, altsep)
 	for seps != 0 {
 		**(**Twchar_t)(__ccgo_up(seps)) = sep
-		seps = libc.Xwcschr(tls, seps, altsep)
+		seps = _ccgo_wcschr(tls, seps, altsep)
 	}
 }
 
@@ -70490,10 +70490,10 @@ func XPy_NormalizeSepsPathcchW(tls *libc.TLS, name uintptr) {
 	_, _, _ = altsep, sep, seps
 	sep = uint16('\\')
 	altsep = uint16('/')
-	seps = libc.Xwcschr(tls, name, altsep)
+	seps = _ccgo_wcschr(tls, name, altsep)
 	for seps != 0 {
 		**(**Twchar_t)(__ccgo_up(seps)) = sep
-		seps = libc.Xwcschr(tls, seps, altsep)
+		seps = _ccgo_wcschr(tls, seps, altsep)
 	}
 }
 
@@ -70665,7 +70665,7 @@ func X_PyPathConfig_UpdateGlobal(tls *libc.TLS, config uintptr) (r TPyStatus) {
 			break
 		}
 		libc.Xwcscpy(tls, p, **(**uintptr)(__ccgo_up((*TPyConfig)(unsafe.Pointer(config)).Fmodule_search_paths.Fitems + uintptr(i1)*8)))
-		p = libc.Xwcschr(tls, p, uint16('\000'))
+		p = _ccgo_wcschr(tls, p, uint16('\000'))
 		v3 = p
 		p += 2
 		**(**Twchar_t)(__ccgo_up(v3)) = uint16(';')
@@ -71687,7 +71687,7 @@ func X_Py_get_xoption(tls *libc.TLS, xoptions uintptr, name uintptr) (r uintptr)
 			break
 		}
 		option = **(**uintptr)(__ccgo_up((*TPyWideStringList)(unsafe.Pointer(xoptions)).Fitems + uintptr(i)*8))
-		sep = libc.Xwcschr(tls, option, uint16('='))
+		sep = _ccgo_wcschr(tls, option, uint16('='))
 		if sep != libc.UintptrFromInt32(0) {
 			len1 = uint64((int64(sep) - int64(option)) / 2)
 		} else {
@@ -71715,7 +71715,7 @@ func _preconfig_init_utf8_mode(tls *libc.TLS, config uintptr, cmdline uintptr) (
 	}
 	xopt = X_Py_get_xoption(tls, cmdline+16, __ccgo_ts+156673)
 	if xopt != 0 {
-		sep = libc.Xwcschr(tls, xopt, uint16('='))
+		sep = _ccgo_wcschr(tls, xopt, uint16('='))
 		if sep != 0 {
 			xopt = sep + uintptr(1)*2
 			if libc.Xwcscmp(tls, xopt, __ccgo_ts+156683) == 0 {

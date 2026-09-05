@@ -17,6 +17,7 @@ to native callback/function-pointer boundaries.
 - `setlocale` — partial, routed: deterministic process-wide C/UTF-8 category state; Windows encoding decisions still use `GetACP` and the console code pages, as CPython expects.
 - `mbstowcs` — real for the routed fixed locale: strict UTF-8 to UTF-16 conversion, including sizing and bounded output.
 - `wcstombs` — real for the routed fixed locale: strict UTF-16 to UTF-8 conversion without splitting a multibyte output sequence.
+- `wcschr` — real, routed: returns the address of a requested UTF-16 code unit, including the terminating null (modernc incorrectly returned null when searching for `L'\0'`).
 - `___daylight` — real: returns UCRT's `_daylight` storage through `__daylight`.
 - `___doserrno` — real: returns UCRT's per-thread DOS-error storage through `__doserrno`.
 - `___sys_errlist` — real: returns UCRT's error-string table through `__sys_errlist`.

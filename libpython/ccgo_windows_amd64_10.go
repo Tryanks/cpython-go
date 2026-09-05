@@ -25928,7 +25928,7 @@ func _getpath_readlines(tls *libc.TLS, _unused_self uintptr, args uintptr) (r ui
 	p1 = wbuffer
 	p2 = p1
 	for {
-		v1 = libc.Xwcschr(tls, p1, uint16('\n'))
+		v1 = _ccgo_wcschr(tls, p1, uint16('\n'))
 		p2 = v1
 		if !(v1 != libc.UintptrFromInt32(0)) {
 			break

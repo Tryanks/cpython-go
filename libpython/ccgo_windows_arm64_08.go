@@ -100857,7 +100857,7 @@ func _convertenviron(tls *libc.TLS) (r uintptr) {
 		if !(**(**uintptr)(__ccgo_up(e)) != libc.UintptrFromInt32(0)) {
 			break
 		}
-		p = libc.Xwcschr(tls, **(**uintptr)(__ccgo_up(e)), uint16('='))
+		p = _ccgo_wcschr(tls, **(**uintptr)(__ccgo_up(e)), uint16('='))
 		if p == libc.UintptrFromInt32(0) {
 			goto _1
 		}
@@ -103537,7 +103537,7 @@ func _os__path_splitroot_impl(tls *libc.TLS, module uintptr, path uintptr) (r ui
 		return XPyErr_NoMemory(tls)
 	}
 	libc.Xwcscpy(tls, buffer, (*Tpath_t)(unsafe.Pointer(path)).Fwide)
-	p = libc.Xwcschr(tls, buffer, uint16('/'))
+	p = _ccgo_wcschr(tls, buffer, uint16('/'))
 	for {
 		if !(p != 0) {
 			break
@@ -103546,7 +103546,7 @@ func _os__path_splitroot_impl(tls *libc.TLS, module uintptr, path uintptr) (r ui
 		goto _1
 	_1:
 		;
-		p = libc.Xwcschr(tls, p, uint16('/'))
+		p = _ccgo_wcschr(tls, p, uint16('/'))
 	}
 	_save = XPyEval_SaveThread(tls)
 	ret = _PathCchSkipRoot(tls, buffer, bp)

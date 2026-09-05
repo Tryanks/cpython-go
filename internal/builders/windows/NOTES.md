@@ -177,3 +177,7 @@ until the Windows libc supplement is added.
   PathCch wrappers with pure-Go UTF-16 path operations, and routed modernc's
   `_wopen` (which decodes a UTF-16 pointer as narrow bytes) and `_wgetenv`
   (whose cached environment drops an entry) before the next run.
+- Run 33950390306: getpath completed, then
+  `_PyPathConfig_UpdateGlobal` dereferenced null while appending the Windows
+  path delimiter. modernc's `Xwcschr` returns null instead of the terminator
+  address for `wcschr(text, L'\0')`; routed it to a correct UTF-16 scan.

@@ -434,6 +434,7 @@ var shimmedLibc = map[string][]string{"windows": {
 	"setlocale",
 	"strncat",
 	"umask",
+	"wcschr",
 	"wcstombs",
 }, "darwin": {
 	"__builtin___snprintf_chk",

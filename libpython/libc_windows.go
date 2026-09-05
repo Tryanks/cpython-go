@@ -318,6 +318,19 @@ func _ccgo_wcstombs(tls *libc.TLS, dst, src uintptr, limit uint64) uint64 {
 	return written
 }
 
+func _ccgo_wcschr(tls *libc.TLS, src uintptr, value uint16) uintptr {
+	for {
+		current := *(*uint16)(unsafe.Pointer(src))
+		if current == value {
+			return src
+		}
+		if current == 0 {
+			return 0
+		}
+		src += 2
+	}
+}
+
 func _ccgo_OutputDebugStringW(tls *libc.TLS, text uintptr) {
 	// Debugger output is advisory. Avoid modernc's TODO panic while keeping
 	// fatal-error reporting on the process' real stderr intact.

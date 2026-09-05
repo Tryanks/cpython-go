@@ -27149,7 +27149,7 @@ _2:
 	if opts == libc.UintptrFromInt32(0) {
 		goto error
 	}
-	name_end = libc.Xwcschr(tls, s, uint16('='))
+	name_end = _ccgo_wcschr(tls, s, uint16('='))
 	if !(name_end != 0) {
 		name = XPyUnicode_FromWideChar(tls, s, int64(-int32(1)))
 		if name == libc.UintptrFromInt32(0) {
@@ -29884,7 +29884,7 @@ func _makepathobject(tls *libc.TLS, path uintptr, delim Twchar_t) (r uintptr) {
 	n = int32(1)
 	p = path
 	for {
-		v1 = libc.Xwcschr(tls, p, delim)
+		v1 = _ccgo_wcschr(tls, p, delim)
 		p = v1
 		if !(v1 != libc.UintptrFromInt32(0)) {
 			break
@@ -29898,7 +29898,7 @@ func _makepathobject(tls *libc.TLS, path uintptr, delim Twchar_t) (r uintptr) {
 	}
 	i = 0
 	for {
-		p = libc.Xwcschr(tls, path, delim)
+		p = _ccgo_wcschr(tls, path, delim)
 		if p == libc.UintptrFromInt32(0) {
 			p = path + uintptr(libc.Xwcslen(tls, path))*2
 		}
@@ -35548,7 +35548,7 @@ func X_PyOS_GetOpt(tls *libc.TLS, argc TPy_ssize_t, argv uintptr, longindex uint
 		X_PyOS_optarg = **(**uintptr)(__ccgo_up(argv + uintptr(v1)*8))
 		return (*T_PyOS_LongOption)(unsafe.Pointer(opt)).Fval
 	}
-	v3 = libc.Xwcschr(tls, __ccgo_ts+172712, option)
+	v3 = _ccgo_wcschr(tls, __ccgo_ts+172712, option)
 	ptr = v3
 	if v3 == libc.UintptrFromInt32(0) {
 		if X_PyOS_opterr != 0 {
