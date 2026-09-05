@@ -12981,7 +12981,7 @@ func _normalize_century(tls *libc.TLS) (r int32) {
 			Ftm_mday: int32(1),
 			Ftm_year: -int32(1801),
 		}
-		_cache = libc.BoolInt32(libc.Xstrftime(tls, bp, uint64(5), __ccgo_ts+255316, bp+8) != 0 && libc.Xstrcmp(tls, bp, __ccgo_ts+255319) != 0)
+		_cache = libc.BoolInt32(_ccgo_strftime(tls, bp, uint64(5), __ccgo_ts+255316, bp+8) != 0 && libc.Xstrcmp(tls, bp, __ccgo_ts+255319) != 0)
 	}
 	return _cache
 }
@@ -22248,7 +22248,7 @@ func _local_timezone_from_timestamp(tls *libc.TLS, timestamp Ttime_t) (r uintptr
 	if X_PyTime_localtime(tls, timestamp, bp) != 0 {
 		return libc.UintptrFromInt32(0)
 	}
-	libc.Xstrftime(tls, bp+72, uint64(100), __ccgo_ts+260283, bp)
+	_ccgo_strftime(tls, bp+72, uint64(100), __ccgo_ts+260283, bp)
 	zone = bp + 72
 	local_time = _new_datetime_ex2(tls, (**(**Ttm)(__ccgo_up(bp))).Ftm_year+int32(1900), (**(**Ttm)(__ccgo_up(bp))).Ftm_mon+int32(1), (**(**Ttm)(__ccgo_up(bp))).Ftm_mday, (**(**Ttm)(__ccgo_up(bp))).Ftm_hour, (**(**Ttm)(__ccgo_up(bp))).Ftm_min, (**(**Ttm)(__ccgo_up(bp))).Ftm_sec, 0, uintptr(unsafe.Pointer(&X_Py_NoneStruct)), 0, uintptr(unsafe.Pointer(&_PyDateTime_DateTimeType)))
 	if local_time == libc.UintptrFromInt32(0) {
@@ -90857,7 +90857,7 @@ func _time_localtime(tls *libc.TLS, module uintptr, args uintptr) (r uintptr) {
 	}
 	state = _get_time_state(tls, module)
 	**(**Ttm)(__ccgo_up(bp + 44)) = **(**Ttm)(__ccgo_up(bp + 8))
-	libc.Xstrftime(tls, bp+80, uint64(100), __ccgo_ts+260283, bp+8)
+	_ccgo_strftime(tls, bp+80, uint64(100), __ccgo_ts+260283, bp+8)
 	gmtoff = _timegm(tls, bp+8) - **(**Ttime_t)(__ccgo_up(bp))
 	return _tmtotuple(tls, state, bp+44, bp+80, gmtoff)
 	return r

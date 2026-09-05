@@ -1731,6 +1731,11 @@ func _strncat(tls *libc.TLS, dst, src uintptr, n uint64) uintptr {
 	return _ccgo_strncat(tls, dst, src, n)
 }
 
+func _ccgo_strftime(tls *libc.TLS, dst uintptr, capacity uint64, format, tm uintptr) uint64 {
+	r, _ := callProc(dllUCRT, "strftime", dst, uintptr(capacity), format, tm)
+	return uint64(r)
+}
+
 func _strnicmp(tls *libc.TLS, a, b uintptr, n uint64) int32 {
 	r, _ := callProc(dllUCRT, "_strnicmp", a, b, uintptr(n))
 	return int32(r)

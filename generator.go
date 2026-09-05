@@ -607,6 +607,7 @@ var shimmedLibc = map[string][]string{"windows": {
 	"socket",
 	"sprintf",
 	"sscanf",
+	"strftime",
 	"strncat",
 	"time",
 	"tolower",
