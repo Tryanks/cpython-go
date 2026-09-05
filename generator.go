@@ -462,6 +462,7 @@ var shimmedLibc = map[string][]string{"windows": {
 	"bind",
 	"closesocket",
 	"connect",
+	"dup2",
 	"fdopen",
 	"fprintf",
 	"getpeername",

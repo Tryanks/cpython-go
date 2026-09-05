@@ -19,7 +19,7 @@ run the interpreter on `windows-latest` and `windows-11-arm`, then cover:
   `asyncio.start_server`; and
 - an `http.client` GET against a local `http.server` thread.
 
-Run 33957987714 passed this suite on Windows amd64 and arm64 together with the
+Run 33958794432 passed this suite on Windows amd64 and arm64 together with the
 Linux amd64, Linux arm64, and macOS jobs.
 
 The broader `.github/workflows/windows-tests.yml` runs on pushes to

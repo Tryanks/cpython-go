@@ -9,7 +9,7 @@ both `libc.TLS.SetLastError` and the errno slot read by modernc's
 or Winsock error codes return those values directly.
 
 The runtime is exercised on GitHub Actions on both `windows-latest`
-(`windows/amd64`) and `windows-11-arm` (`windows/arm64`). Run 33957987714
+(`windows/amd64`) and `windows-11-arm` (`windows/arm64`). Run 33958794432
 passed interpreter startup, the existing runtime/process/pipe checks, the
 network suite described below, and every non-Windows CI job. The partial
 entries and native callback boundaries below remain explicit limits rather
@@ -55,8 +55,11 @@ than claims of complete Windows compatibility.
 - `_wgetenv` — real, routed: reads Go's live process environment and returns stable UTF-16 storage.
 - `_wopen` — real, routed: converts the UTF-16 path, maps UCRT `_O_*` flags to `x/sys/windows` values, and then enters modernc's narrow open and private descriptor table.
 - `_wputenv` — real, routed: updates Go's live process environment and handles
-  CPython's name-only deletion form, keeping `os.environ` reconstruction and
+  CPython's `name=` deletion form, keeping `os.environ` reconstruction and
   child inheritance synchronized.
+- `dup2` — real, routed: duplicates the underlying Windows handle, replaces
+  the exact target entry in modernc's private descriptor table, and preserves
+  Windows' inheritable-by-default behavior for CPython to refine when asked.
 - `__wputenv_s` — partial: validates the UCRT contract and updates Go's process environment, which interoperates with modernc; it does not update a separately cached UCRT `_wenviron` array.
 - `__wspawnv` — partial: implements `_P_WAIT`, `_P_NOWAIT`, `_P_NOWAITO`, `_P_OVERLAY`, and `_P_DETACH` with `os/exec`; asynchronous results are synthetic handles understood by `__cwait`.
 - `__wspawnve` — partial: same mode/handle ceiling as `__wspawnv`, with the supplied environment.
@@ -338,10 +341,10 @@ function is implemented. Generated shard calls that reach known v1.75.7 TODO
 implementations are routed through the supplement, including locale and
 encoding, printf-family conversions, `fdopen`, time, registry, console, file
 mapping/mutex/process operations, Winsock, and overlapped completion. An audit
-of the remaining generated `libc.X*` calls against modernc's Windows TODOs
-leaves only `Xfileno`, whose Windows implementation is concrete (the audit is
-a conservative text scan because that function's surrounding source contains
-other TODO markers).
+of the remaining generated `libc.X*` calls against modernc's Windows
+panic/TODO function bodies leaves only `Xfileno`, whose Windows implementation
+is concrete. The last actual overlap, `Xdup2`, is routed through the descriptor
+table implementation above.
 
 `.github/workflows/ci.yml` treats both Windows architectures as required and
 runs `internal/builders/windows/network_smoke.py`. It covers name resolution,

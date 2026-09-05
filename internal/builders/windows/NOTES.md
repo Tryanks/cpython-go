@@ -259,6 +259,17 @@ below.
 - Run 33957987714 passed on Windows amd64, Windows arm64, Linux amd64, Linux
   arm64, and macOS. Both Windows jobs completed the full network smoke:
   resolver, TCP/select, socketpair, Proactor TCP echo, and local HTTP GET.
+- After merging the POSIX routing work from `main`, run 33958539480 exposed a
+  latent arm64 startup fault: modernc's `_wenviron` array lacks a terminating
+  null pointer. Routing `__p__wenviron` to explicitly terminated stable UTF-16
+  storage and synchronizing `_wgetenv`/`_wputenv` with Go's live environment
+  fixed the out-of-bounds `wcschr` walk. Run 33958794432 then passed all five
+  Windows, Linux, and macOS jobs at the merged head.
+- A function-body audit of every remaining generated `libc.X*` call found one
+  additional real modernc TODO, `Xdup2`. It is routed through a handle and
+  private-descriptor-table implementation and has a required CI smoke covering
+  replacement of an existing descriptor. `Xfileno` is the only textual audit
+  match left and has a concrete Windows body.
 - `.github/workflows/windows-tests.yml` checks out CPython v3.14.7, embeds its
   test library, builds with `cpython_test`, and runs the selected 71 modules
   one process at a time on both Windows runners. The wrapper records test

@@ -42,10 +42,12 @@ jobs:
           assert pickle.loads(pickle.dumps({'runtime': 314})) == {'runtime': 314};
           assert re.fullmatch('[a-z]+', 'runtime') and datetime.date(2026, 9, 5).isoformat() == '2026-09-05';
           print('runtime-ok')"
-      - name: Exercise os.pipe handle inheritance
+      - name: Exercise os.pipe and descriptor duplication
         run: >-
           ./cpython-go.exe -c "import os;
-          read_fd, write_fd = os.pipe(); os.write(write_fd, b'pipe'); os.close(write_fd);
+          read_fd, write_fd = os.pipe(); duplicate = os.dup(write_fd);
+          os.dup2(write_fd, duplicate); os.close(write_fd);
+          os.write(duplicate, b'pipe'); os.close(duplicate);
           assert os.read(read_fd, 4) == b'pipe'; os.close(read_fd); print('os-pipe-ok')"
       - name: Exercise subprocess process wait
         timeout-minutes: 1
@@ -92,10 +94,12 @@ jobs:
           assert pickle.loads(pickle.dumps({'runtime': 314})) == {'runtime': 314};
           assert re.fullmatch('[a-z]+', 'runtime') and datetime.date(2026, 9, 5).isoformat() == '2026-09-05';
           print('runtime-ok')"
-      - name: Exercise os.pipe handle inheritance
+      - name: Exercise os.pipe and descriptor duplication
         run: >-
           ./cpython-go.exe -c "import os;
-          read_fd, write_fd = os.pipe(); os.write(write_fd, b'pipe'); os.close(write_fd);
+          read_fd, write_fd = os.pipe(); duplicate = os.dup(write_fd);
+          os.dup2(write_fd, duplicate); os.close(write_fd);
+          os.write(duplicate, b'pipe'); os.close(duplicate);
           assert os.read(read_fd, 4) == b'pipe'; os.close(read_fd); print('os-pipe-ok')"
       - name: Exercise subprocess process wait
         timeout-minutes: 1

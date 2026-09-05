@@ -471,16 +471,24 @@ func _ccgo__wputenv(tls *libc.TLS, environment uintptr) int32 {
 		return -1
 	}
 	text := wideString(environment)
-	name, value, hasValue := strings.Cut(text, "=")
-	if name == "" || strings.ContainsRune(name, '\x00') {
+	separator := strings.IndexByte(text, '=')
+	if separator == 0 && len(text) > 1 {
+		// Windows reserves leading '=' names for drive-current-directory
+		// entries; their assignment delimiter is the next '='.
+		if rest := strings.IndexByte(text[1:], '='); rest >= 0 {
+			separator = rest + 1
+		}
+	}
+	if separator <= 0 {
 		setErrno(tls, int32(errno.EINVAL))
 		return -1
 	}
+	name, value := text[:separator], text[separator+1:]
 	var err error
-	if hasValue {
-		err = os.Setenv(name, value)
-	} else {
+	if value == "" {
 		err = os.Unsetenv(name)
+	} else {
+		err = os.Setenv(name, value)
 	}
 	if err != nil {
 		setErrno(tls, int32(errno.EINVAL))
@@ -588,6 +596,12 @@ func moderncFdToFile(fd int32) (*moderncWindowsFile, bool)
 //go:linkname moderncWrapFdHandle modernc.org/libc.wrapFdHandle
 func moderncWrapFdHandle(handle windows.Handle) (uintptr, int32)
 
+//go:linkname moderncAddFile modernc.org/libc.addFile
+func moderncAddFile(handle windows.Handle, fd int32) uintptr
+
+//go:linkname moderncRemoveFile modernc.org/libc.remFile
+func moderncRemoveFile(file *moderncWindowsFile)
+
 func fdHandle(tls *libc.TLS, fd int32) (windows.Handle, bool) {
 	f, ok := moderncFdToFile(fd)
 	if !ok {
@@ -688,6 +702,39 @@ func _dup(tls *libc.TLS, fd int32) int32 {
 	}
 	_, result := moderncWrapFdHandle(duplicate)
 	return result
+}
+
+// modernc's Windows dup2 is an unconditional TODO. DuplicateHandle gives the
+// target descriptor independent ownership, then the private descriptor-table
+// helpers install it at the exact number required by dup2. CPython applies a
+// requested non-inheritable setting immediately after this call.
+func _ccgo_dup2(tls *libc.TLS, oldfd, newfd int32) int32 {
+	if newfd < 0 {
+		setErrno(tls, int32(errno.EBADF))
+		return -1
+	}
+	source, ok := moderncFdToFile(oldfd)
+	if !ok {
+		setErrno(tls, int32(errno.EBADF))
+		return -1
+	}
+	if oldfd == newfd {
+		return newfd
+	}
+
+	current := windows.CurrentProcess()
+	var duplicate windows.Handle
+	if err := windows.DuplicateHandle(current, source.handle, current, &duplicate, 0, true, windows.DUPLICATE_SAME_ACCESS); err != nil {
+		setWinError(tls, err, errorInvalidHandle)
+		setErrno(tls, int32(errno.EBADF))
+		return -1
+	}
+	if target, exists := moderncFdToFile(newfd); exists {
+		moderncRemoveFile(target)
+		_ = windows.CloseHandle(target.handle)
+	}
+	moderncAddFile(duplicate, newfd)
+	return newfd
 }
 
 func _clearerr(tls *libc.TLS, stream uintptr) {

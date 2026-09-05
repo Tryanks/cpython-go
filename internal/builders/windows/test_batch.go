@@ -133,16 +133,16 @@ func classify(output string, err error, timedOut bool) string {
 	if timedOut {
 		return "TIMEOUT"
 	}
-	if match := outcomePattern.FindAllStringSubmatch(output, -1); len(match) != 0 {
-		outcome := strings.TrimSpace(match[len(match)-1][1])
-		if strings.HasPrefix(outcome, "FAILED") || err == nil {
-			return outcome
-		}
-	}
 	for _, line := range strings.Split(strings.ReplaceAll(output, "\r\n", "\n"), "\n") {
 		trimmed := strings.TrimSpace(line)
 		if strings.Contains(trimmed, "TODOTODO") || strings.HasPrefix(trimmed, "panic:") || strings.HasPrefix(trimmed, "fatal error:") {
 			return "CRASH: " + trimmed
+		}
+	}
+	if match := outcomePattern.FindAllStringSubmatch(output, -1); len(match) != 0 {
+		outcome := strings.TrimSpace(match[len(match)-1][1])
+		if strings.HasPrefix(outcome, "FAILED") || err == nil {
+			return outcome
 		}
 	}
 	if err != nil {

@@ -107965,7 +107965,7 @@ func _os_dup2_impl(tls *libc.TLS, module uintptr, fd int32, fd2 int32, inheritab
 	res = 0
 
 	_save = XPyEval_SaveThread(tls)
-	res = libc.Xdup2(tls, fd, fd2)
+	res = _ccgo_dup2(tls, fd, fd2)
 	XPyEval_RestoreThread(tls, _save)
 	if res < 0 {
 		_posix_error(tls)
