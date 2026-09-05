@@ -1,0 +1,22 @@
+name: ci
+on:
+  push:
+    branches: [main]
+  pull_request:
+jobs:
+  test:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [macos-15, ubuntu-24.04, ubuntu-24.04-arm]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: go.mod
+      - run: go vet . ./cmd/... ./stdlib ./internal/...
+      - run: go build ./cmd/cpython-go
+      - run: ./cpython-go -c 'import sys, json, threading, subprocess; print(sys.platform, sys.version_info[:2], json.dumps([1]))'
+      - run: go test -count=1 .
+      - run: go test -count=1 -vet=off ./libpython
