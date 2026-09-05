@@ -88,6 +88,21 @@ var (
 		// transpiled module is resolved to modernc.org/libz at ccgo link time.
 		"ac_cv_lib_z_gzread=yes",
 		"ac_cv_lib_z_inflateCopy=yes",
+		// Likewise, configure's SQLite feature probes use the native library,
+		// while the transpiled extension resolves to modernc.org/libsqlite3.
+		// Seed the complete set from configure.ac so cross targets do not need
+		// a target-native SQLite library just to enable the static module.
+		"ac_cv_lib_sqlite3_sqlite3_bind_double=yes",
+		"ac_cv_lib_sqlite3_sqlite3_column_decltype=yes",
+		"ac_cv_lib_sqlite3_sqlite3_column_double=yes",
+		"ac_cv_lib_sqlite3_sqlite3_complete=yes",
+		"ac_cv_lib_sqlite3_sqlite3_progress_handler=yes",
+		"ac_cv_lib_sqlite3_sqlite3_result_double=yes",
+		"ac_cv_lib_sqlite3_sqlite3_set_authorizer=yes",
+		"ac_cv_lib_sqlite3_sqlite3_trace_v2=yes",
+		"ac_cv_lib_sqlite3_sqlite3_value_double=yes",
+		"ac_cv_lib_sqlite3_sqlite3_load_extension=yes",
+		"ac_cv_lib_sqlite3_sqlite3_serialize=yes",
 		// x87 control-word inline asm (Python/pymath.c) cannot be transpiled.
 		"ac_cv_gcc_asm_for_x87=no",
 		"ac_cv_gcc_asm_for_mc68881=no",
@@ -108,7 +123,6 @@ var (
 		"py_cv_module__hashlib=n/a",
 		"py_cv_module__lzma=n/a",
 		"py_cv_module__scproxy=n/a",
-		"py_cv_module__sqlite3=n/a",
 		"py_cv_module__ssl=n/a",
 		"py_cv_module__tkinter=n/a",
 		"py_cv_module__uuid=n/a",
@@ -233,15 +247,20 @@ func main() {
 	}
 	libzDir := moduleDir("modernc.org/libz")
 	libzInclude := filepath.Join(libzDir, "include", goos, goarch)
-	includeFlag := "-I" + libzInclude
-	// Always parse CPython's zlib consumers against libz's own headers. The
-	// native compiler also sees this flag while producing the build helpers;
-	// their platform libz is ABI-compatible and satisfies python.exe below.
+	libsqlite3Dir := moduleDir("modernc.org/libsqlite3")
+	libsqlite3Include := filepath.Join(libsqlite3Dir, "include")
+	includeFlags := "-I" + libzInclude + " -I" + libsqlite3Include
+	// Always parse external-library consumers against the matching modernc
+	// headers. The native compiler also sees these flags while producing build
+	// helpers; platform libz/libsqlite3 are ABI-compatible and satisfy
+	// python.exe below.
 	configureEnv = append(configureEnv,
-		"CFLAGS="+strings.TrimSpace(os.Getenv("CFLAGS")+" "+includeFlag),
-		"CPPFLAGS="+strings.TrimSpace(os.Getenv("CPPFLAGS")+" "+includeFlag),
-		"ZLIB_CFLAGS="+includeFlag,
+		"CFLAGS="+strings.TrimSpace(os.Getenv("CFLAGS")+" "+includeFlags),
+		"CPPFLAGS="+strings.TrimSpace(os.Getenv("CPPFLAGS")+" "+includeFlags),
+		"ZLIB_CFLAGS=-I"+libzInclude,
 		"ZLIB_LIBS=-lz",
+		"LIBSQLITE3_CFLAGS=-I"+libsqlite3Include,
+		"LIBSQLITE3_LIBS=-lsqlite3",
 	)
 	switch target {
 	case "darwin/arm64", "darwin/amd64":
@@ -359,7 +378,7 @@ func main() {
 	linkArgs = append(linkArgs, hacl...)
 	// Keep libz after the archives: ccgo's package-backed library extraction,
 	// like a traditional static linker, is order-sensitive.
-	linkArgs = append(linkArgs, "-Lmodernc.org", "-lz")
+	linkArgs = append(linkArgs, "-Lmodernc.org", "-lz", "-lsqlite3")
 	ccMain(linkArgs)
 	postprocess(result, base)
 	if goos != "windows" {
@@ -431,9 +450,10 @@ func postprocess(result, base string) {
 	shell(gsed, "-i", `s/iqlibc\.X__builtin_\([a-zA-Z0-9_]\+\)(/_ccgo_builtin_\1(/g`, result)
 	shell(gsed, "-i", `s/libc\.Atomic\(Load\|Store\)PUint\(8\|16\)(/_ccgo_Atomic\1PUint\2(/g`, result)
 	// splitgo repeats imports and ccgo's blank-identifier import guards in
-	// every shard. libz is only called from the shard containing the zlib and
-	// binascii modules, so add a guard to keep the other shards valid Go.
+	// every shard. Package-backed libraries are only called from the shards
+	// containing their extension modules, so add guards for all other shards.
 	ensureImportGuard(result, `"modernc.org/libz"`, "var _ = libz.Xcrc32")
+	ensureImportGuard(result, `"modernc.org/libsqlite3"`, "var _ = libsqlite3.Xsqlite3_libversion_number")
 	// `_Py_FREELIST_FREE(name, op, Py_TYPE(op)->tp_free)` passes a function
 	// pointer field into a static inline function; ccgo emits a direct call
 	// on the uintptr field. Call through the pointer instead.

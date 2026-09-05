@@ -35,7 +35,6 @@ py_cv_module__gdbm=n/a
 py_cv_module__hashlib=n/a
 py_cv_module__lzma=n/a
 py_cv_module__scproxy=n/a
-py_cv_module__sqlite3=n/a
 py_cv_module__ssl=n/a
 py_cv_module__tkinter=n/a
 py_cv_module__uuid=n/a
