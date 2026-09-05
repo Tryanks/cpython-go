@@ -9,11 +9,32 @@
 package main
 
 import (
+	"fmt"
 	"os"
+	"runtime/pprof"
 
 	cpython "github.com/Tryanks/cpython-go"
 )
 
 func main() {
-	os.Exit(cpython.Main(os.Args))
+	os.Exit(run())
+}
+
+func run() int {
+	profile := os.Getenv("CPYTHON_GO_CPUPROFILE")
+	if profile == "" {
+		return cpython.Main(os.Args)
+	}
+	f, err := os.Create(profile)
+	if err != nil {
+		fmt.Fprintln(os.Stderr, "cpython-go: create CPU profile:", err)
+		return 2
+	}
+	defer f.Close()
+	if err := pprof.StartCPUProfile(f); err != nil {
+		fmt.Fprintln(os.Stderr, "cpython-go: start CPU profile:", err)
+		return 2
+	}
+	defer pprof.StopCPUProfile()
+	return cpython.Main(os.Args)
 }

@@ -2,9 +2,10 @@
 # Use of this source code is governed by the MIT license that can be found in
 # the LICENSE file.
 
-.PHONY: all build test generate regenerate postprocess stdlib clean
+.PHONY: all build test generate regenerate postprocess pgo stdlib clean
 
 CPYTHON_SRC ?= /tmp/cpython-3.14
+PPROF ?= go run github.com/google/pprof@v0.0.0-20260709232956-b9395ee17fa0
 
 all: build test
 
@@ -27,6 +28,18 @@ regenerate:
 # Only the rewrites + sharding of an already linked single file.
 postprocess:
 	GO_GENERATE_POSTPROCESS=1 go run generator.go
+
+# Refresh the Go PGO profile with three runs of the interpreter benchmark.
+# The training binary explicitly disables the existing profile.
+pgo:
+	mkdir -p tmp/pgo
+	go build -pgo=off -o tmp/cpython-go-pgo-training ./cmd/cpython-go
+	for n in 1 2 3; do \
+		CPYTHON_GO_CPUPROFILE=tmp/pgo/profile-$$n.pprof \
+			./tmp/cpython-go-pgo-training internal/bench/bench.py; \
+	done
+	$(PPROF) -proto -output=cmd/cpython-go/default.pgo \
+		tmp/pgo/profile-1.pprof tmp/pgo/profile-2.pprof tmp/pgo/profile-3.pprof
 
 stdlib:
 	go run ./internal/cmd/mkstdlib -o stdlib/python314.zip tmp/darwin_arm64/cpython/Lib internal/stdlib-extra/*.py stdlib/sysconfigdata/*.py

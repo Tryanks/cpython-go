@@ -40,6 +40,60 @@ go run ./cmd/cpython-go script.py
 The standard library is extracted once to `$HOME/Library/Caches/cpython-go`
 (or the platform cache dir); set `PYTHONHOME` to use another installation.
 
+## Performance
+
+The following is a local Darwin/arm64 comparison in seconds (lower is
+better). Each in-process workload runs three times with `time.perf_counter`
+and reports the minimum; startup is the minimum wall time of three fresh
+`-c pass` processes. "Before" is the saved non-PGO cpython-go binary and
+"PGO" uses `cmd/cpython-go/default.pgo`. The six-workload elapsed-time sum is
+4.1% lower with PGO.
+
+| Workload | Native CPython 3.14 | cpython-go before | cpython-go PGO | PGO change | PGO / native |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| nbody | 0.055531 | 0.224310 | 0.216804 | -3.3% | 3.90x |
+| richards | 0.019012 | 0.076815 | 0.077005 | +0.2% | 4.05x |
+| regex | 0.062668 | 0.090183 | 0.088730 | -1.6% | 1.42x |
+| json | 0.022035 | 0.050346 | 0.048147 | -4.4% | 2.19x |
+| dict / str | 0.111961 | 0.348806 | 0.323817 | -7.2% | 2.89x |
+| generator / closure | 0.023237 | 0.099475 | 0.099327 | -0.1% | 4.27x |
+| startup | 0.010697 | 0.028045 | 0.029262 | +4.3% | 2.74x |
+
+Exact benchmark commands, run from the repository root:
+
+```sh
+GOCACHE=$PWD/tmp/go-cache go build -pgo=off -o tmp/cpython-go-baseline ./cmd/cpython-go
+/usr/bin/python3 internal/bench/run.py ./tmp/cpython-go-baseline
+/usr/bin/python3 internal/bench/run.py /usr/bin/env \
+  PYTHONPATH=tmp/darwin_arm64/cpython/Lib \
+  tmp/darwin_arm64/build/python.exe
+make pgo
+GOCACHE=$PWD/tmp/go-cache go build -o tmp/cpython-go ./cmd/cpython-go
+/usr/bin/python3 internal/bench/run.py ./tmp/cpython-go
+```
+
+`make pgo` builds an unoptimized-by-PGO training binary, records three CPU
+profiles of the suite, merges them, and refreshes `default.pgo`; normal Go
+builds then select it automatically. The profile is workload- and
+architecture-specific, so refresh it after substantial interpreter changes.
+There is no positive Go compiler optimization level to enable through
+`-gcflags` (`-N` and `-l` disable optimization and inlining). `GOAMD64` and
+`GOARM64` are build environment choices rather than `go.mod` settings. On
+this build, `-ldflags='-s -w'` reduced the PGO executable from 37,783,602 to
+27,135,634 bytes (28.2%); it strips symbol/debug metadata and is a size, not
+an execution-speed, option.
+
+Pymalloc was also tested after a full Darwin/arm64 regeneration. All requested
+core suites passed, but alternating benchmarks showed roughly 1-3% regressions
+in Richards, regex, and JSON and about 4% in the dict/string workload, so the
+transpiled build continues to use `--without-pymalloc`. Darwin's libc shim has
+working `mmap`/`munmap`; Windows pymalloc regeneration would instead exercise
+its `VirtualAlloc`/`VirtualFree` paths.
+
+These are small microbenchmarks on one machine, not pyperformance-calibrated
+results. Minimum-of-three reduces incidental scheduler noise but does not
+provide confidence intervals, and startup includes stdlib/cache and OS effects.
+
 ## Embedding
 
 The root package embeds the interpreter in a Go program:
