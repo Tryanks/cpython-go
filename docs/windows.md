@@ -1,42 +1,74 @@
-# Windows targets (windows/amd64, windows/arm64) — plan
+# Windows targets (windows/amd64 and windows/arm64)
 
-Findings (research, 2026-09-05):
+CPython 3.14.7 is transpiled with ccgo and built as a pure-Go executable for
+both Windows architectures. The generated sources live in
+`libpython/ccgo_windows_<arch>_*.go`; `libpython/libc_windows.go` supplies the
+UCRT, Win32, and Winsock surface that modernc.org/libc does not implement or
+implements with an incompatible ABI.
 
-- cznic precedent: libquickjs cross-generates windows from Linux with
-  llvm-mingw (GNU mingw-w64 is rejected: ccgo cannot type-check its
-  `_mingw.h` `__int128` use), `--goos windows --goarch amd64 --cpp <clang>`,
-  `-map gcc=...,ar=...`, `-mlong-double-64`, and shares the amd64 output with
-  arm64 via a `windows && (amd64 || arm64)` build line. ccgo's `-winapi`
-  generates DLL trampolines from selected headers; `-winabi` is dead code.
-  modernc.org/libc ships no Windows headers; the mingw sysroot provides them.
-  libc's windows layer is thin (hand-written, x/sys/windows based).
-- CPython has no upstream mingw support. MSYS2 maintains a 103-patch port
-  for 3.14.7 (https://github.com/msys2-contrib/cpython-mingw, branch
-  mingw-v3.14.7). It is validated for native MSYS2 builds, not for cross
-  builds from Linux/macOS; cross-configure needs `--with-build-python` (a
-  build-host Python 3.14) and a CONFIG_SITE with precomputed `ac_cv_*`.
-- The MSVC/PCbuild layout is not usable with ccgo (cl.exe/MSBuild, MSVC
-  extensions such as `__try`).
-- Win32 API gap in modernc.org/libc for CPython's Windows code: ~70 of ~150
-  sampled calls missing; expect 90–130 after a full link, 2–4k lines of
-  supplement (files/paths/volumes, processes, TLS/synchronisation, named
-  pipes/overlapped I/O, console/locale, Winsock, security/RPC).
+## Current validation
 
-Plan:
+Both Windows jobs in `.github/workflows/ci.yml` are required. They build and
+run the interpreter on `windows-latest` and `windows-11-arm`, then cover:
 
-1. Builder container (linux/arm64, llvm-mingw aarch64-host bundle, Linux
-   Python 3.14, autotools, Go) — `internal/builders/windows/`.
-2. Plain cross build of `libpython3.14.a` with the MSYS2 patch set, amd64
-   then arm64; CONFIG_SITE per arch; NOTES.md of every workaround.
-3. **Done:** `ccgo -exec make` for amd64, including cc/v4 fixes, link,
-   postprocess, and sharding. The typecheck inventory is in
-   `internal/builders/windows/UNDEFINED.md` (211 missing symbols and eight
-   non-undefined ABI/type errors after deduplication).
-4. Write `libpython/libc_windows.go` from that inventory; first acceptance
-   `print(45)` on Windows.
-5. Behaviour on amd64 (os/pathlib/io/threading/subprocess/socket tests),
-   then arm64.
+- startup, imports, threading, hashing, pickle, regex, datetime, and unittest;
+- `os.pipe`, process creation/waiting, subprocess output, and pipe EOF;
+- `socket.getaddrinfo`, loopback TCP echo, `select.select`, and
+  `socket.socketpair()`;
+- `asyncio.sleep(0)` and a Proactor TCP client/server using
+  `asyncio.start_server`; and
+- an `http.client` GET against a local `http.server` thread.
 
-Estimate: 3–5 weeks to an amd64 boot, 6–10 weeks for both architectures.
-A Windows host (GitHub Actions runner or a Windows 11 ARM64 VM) is needed
-from step 2 on to run the produced binaries.
+Run 33957987714 passed this suite on Windows amd64 and arm64 together with the
+Linux amd64, Linux arm64, and macOS jobs.
+
+The broader `.github/workflows/windows-tests.yml` runs on pushes to
+`windows-*` branches and by manual dispatch. It checks out CPython v3.14.7,
+builds `stdlib/python314_tests.zip.gz`, builds the interpreter with the
+`cpython_test` tag, and runs the selected CPython `test.*` modules in separate
+processes. Each module has a 90-second limit; the workflow writes a Markdown
+table to the job summary and uploads the table plus complete logs as an
+artifact for each architecture.
+
+## Winsock and overlapped I/O
+
+Generated calls to modernc's TODO socket functions are routed to Windows
+implementations. The shims preserve Win64 `SOCKET`, `SOCKET_ERROR`,
+`INVALID_SOCKET`, native sockaddr memory, Winsock `fd_set` (a count plus an
+array of sockets), and immediate WSA error capture in ccgo TLS.
+
+CPython's Proactor normally obtains `AcceptEx`, `ConnectEx`, `DisconnectEx`,
+and `TransmitFile` addresses with `SIO_GET_EXTENSION_FUNCTION_POINTER`. A
+native address cannot be invoked as a ccgo Go function value. A narrowly
+guarded `MS_WINDOWS && CCGO && __CCGO__` patch therefore calls Go bridge
+symbols directly; native object compilation keeps CPython's original path.
+The bridges use `golang.org/x/sys/windows` or a native syscall trampoline and
+retain normal overlapped/`ERROR_IO_PENDING` behavior. Completion is finalized
+through the routed `GetOverlappedResult` implementation.
+
+## Regeneration
+
+The pinned builder uses the MSYS2 CPython 3.14.7 MinGW patch set and
+llvm-mingw. From the repository root, with no other project builder container
+running:
+
+```sh
+internal/builders/windows/run.sh --ccgo amd64 /tmp/cpython-3.14.7
+WINDOWS_BUILDER_SKIP_BUILD=1 internal/builders/windows/run.sh --ccgo arm64 /tmp/cpython-3.14.7
+```
+
+`generator.go` applies the project patch before the pinned MSYS2 patch,
+transpiles each archive member, shards the result, and rewrites the sorted
+per-OS `shimmedLibc` calls to their `_ccgo_*` implementations. See
+`internal/builders/windows/NOTES.md` for builder details and
+`internal/builders/windows/RUNTIME.md` for the function-by-function runtime
+contract.
+
+## Known limits
+
+Native APIs that require callbacks cannot consume a transpiled Go function
+pointer. Optional wait registration and vectored exception handling therefore
+return deterministic `ERROR_CALL_NOT_IMPLEMENTED` results. OS-delivered C
+signals are also partial. Native `.pyd` loading is unsupported: optional DLL
+symbol probes take CPython's fallback paths, while the standard library and
+built-in extension modules are linked into the generated Go package.

@@ -402,6 +402,10 @@ func _ccgo___builtin_clzl(tls *libc.TLS, value uint32) int32 {
 var (
 	windowsWideStringMu    sync.Mutex
 	windowsWideStringCache = map[string]uintptr{}
+	windowsEnvironmentMu   sync.Mutex
+	windowsEnvironmentKey  string
+	windowsEnvironmentList []uintptr
+	windowsEnvironment     uintptr
 )
 
 func windowsStableWideString(tls *libc.TLS, value string) uintptr {
@@ -436,6 +440,53 @@ func _ccgo__wgetenv(tls *libc.TLS, name uintptr) uintptr {
 		return 0
 	}
 	return windowsStableWideString(tls, value)
+}
+
+// modernc's bootWinEnviron omits the required trailing null pointer. Reading
+// its _wenviron can therefore walk beyond the Go slice, which is especially
+// visible on arm64 when the next backing-array slot is nonzero. Publish an
+// explicitly terminated, process-environment-backed array instead.
+func _ccgo___p__wenviron(tls *libc.TLS) uintptr {
+	entries := os.Environ()
+	key := strings.Join(entries, "\x00")
+
+	windowsEnvironmentMu.Lock()
+	defer windowsEnvironmentMu.Unlock()
+	if windowsEnvironment == 0 || key != windowsEnvironmentKey {
+		list := make([]uintptr, 0, len(entries)+1)
+		for _, entry := range entries {
+			list = append(list, windowsStableWideString(tls, entry))
+		}
+		list = append(list, 0)
+		windowsEnvironmentList = list
+		windowsEnvironment = uintptr(unsafe.Pointer(&windowsEnvironmentList[0]))
+		windowsEnvironmentKey = key
+	}
+	return uintptr(unsafe.Pointer(&windowsEnvironment))
+}
+
+func _ccgo__wputenv(tls *libc.TLS, environment uintptr) int32 {
+	if environment == 0 {
+		setErrno(tls, int32(errno.EINVAL))
+		return -1
+	}
+	text := wideString(environment)
+	name, value, hasValue := strings.Cut(text, "=")
+	if name == "" || strings.ContainsRune(name, '\x00') {
+		setErrno(tls, int32(errno.EINVAL))
+		return -1
+	}
+	var err error
+	if hasValue {
+		err = os.Setenv(name, value)
+	} else {
+		err = os.Unsetenv(name)
+	}
+	if err != nil {
+		setErrno(tls, int32(errno.EINVAL))
+		return -1
+	}
+	return 0
 }
 
 // modernc's _wopen passes UTF-16 storage to its narrow GoString helper, which

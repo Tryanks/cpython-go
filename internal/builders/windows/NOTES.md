@@ -238,3 +238,29 @@ below.
   round-trip; it passed together with pipe EOF, subprocess, and unittest. The
   Windows job was promoted from `continue-on-error` to a required CI job after
   this result.
+- Run 33954290777: the first network probe imported far enough to hit
+  modernc's `Xungetc` TODO in the tokenizer. The Windows route now implements
+  the required one-byte pushback by rewinding modernc's unbuffered stream.
+- Run 33955118375: name resolution, synchronous loopback TCP echo, Winsock
+  `select`, `socketpair()`, and `asyncio.sleep(0)` passed on amd64 and arm64.
+  The Proactor server then tried to invoke the native `AcceptEx` address as a
+  ccgo Go function pointer and faulted at address `-1`.
+- The `overlapped.c` patch now uses direct `ccgo_AcceptEx`,
+  `ccgo_ConnectEx`, `ccgo_DisconnectEx`, and `ccgo_TransmitFile` declarations
+  only under `MS_WINDOWS && CCGO && __CCGO__`; the ordinary native helper build
+  retains CPython's original extension-pointer discovery. With no other Docker
+  container active, both generated architectures were refreshed from this
+  worktree using `run.sh --ccgo amd64` and then
+  `WINDOWS_BUILDER_SKIP_BUILD=1 run.sh --ccgo arm64`.
+- Run 33957766878 crossed the extension bridge and completed
+  `asyncio.sleep(0)`, then exposed modernc's `XGetOverlappedResult` TODO when
+  the accept completed. Routing that call through `x/sys/windows` completed
+  the IOCP lifecycle.
+- Run 33957987714 passed on Windows amd64, Windows arm64, Linux amd64, Linux
+  arm64, and macOS. Both Windows jobs completed the full network smoke:
+  resolver, TCP/select, socketpair, Proactor TCP echo, and local HTTP GET.
+- `.github/workflows/windows-tests.yml` checks out CPython v3.14.7, embeds its
+  test library, builds with `cpython_test`, and runs the selected 71 modules
+  one process at a time on both Windows runners. The wrapper records test
+  count/outcome/crash/timeout, emits a Markdown job summary, and uploads every
+  module log.

@@ -8,16 +8,19 @@ both `libc.TLS.SetLastError` and the errno slot read by modernc's
 `libc.XGetLastError`; APIs that return HRESULT, NTSTATUS, RPC_STATUS, LSTATUS,
 or Winsock error codes return those values directly.
 
-The amd64 runtime is exercised on GitHub Actions `windows-latest` (Windows
-Server 2025). Run 33952410898 passed interpreter startup, `sys`/`json`, the
-requested module imports and behavior checks, process creation and pipe EOF,
-and a small `unittest` run. The partial entries and native
-callback/function-pointer boundaries below remain explicit limits rather than
-claims of complete Windows compatibility.
+The runtime is exercised on GitHub Actions on both `windows-latest`
+(`windows/amd64`) and `windows-11-arm` (`windows/arm64`). Run 33957987714
+passed interpreter startup, the existing runtime/process/pipe checks, the
+network suite described below, and every non-Windows CI job. The partial
+entries and native callback boundaries below remain explicit limits rather
+than claims of complete Windows compatibility.
 
 ## UCRT and pure-Go compatibility
 
 - `__builtin_clzl` — real, routed: counts leading zeroes in Windows' 32-bit C `unsigned long`; modernc's generic non-Linux implementation incorrectly uses a 64-bit count.
+- `__p__wenviron` — real, routed: publishes a process-environment-backed
+  UTF-16 pointer array with the required trailing null pointer; modernc's
+  Windows bootstrap omits that terminator.
 - `setlocale` — partial, routed: deterministic process-wide C/UTF-8 category state; Windows encoding decisions still use `GetACP` and the console code pages, as CPython expects.
 - `mbstowcs` — real for the routed fixed locale: strict UTF-8 to UTF-16 conversion, including sizing and bounded output.
 - `wcstombs` — real for the routed fixed locale: strict UTF-16 to UTF-8 conversion without splitting a multibyte output sequence.
@@ -51,12 +54,22 @@ claims of complete Windows compatibility.
 - `__wgetcwd` — real: writes or allocates a NUL-terminated UTF-16 working directory; short buffers report `ERANGE`.
 - `_wgetenv` — real, routed: reads Go's live process environment and returns stable UTF-16 storage.
 - `_wopen` — real, routed: converts the UTF-16 path, maps UCRT `_O_*` flags to `x/sys/windows` values, and then enters modernc's narrow open and private descriptor table.
+- `_wputenv` — real, routed: updates Go's live process environment and handles
+  CPython's name-only deletion form, keeping `os.environ` reconstruction and
+  child inheritance synchronized.
 - `__wputenv_s` — partial: validates the UCRT contract and updates Go's process environment, which interoperates with modernc; it does not update a separately cached UCRT `_wenviron` array.
 - `__wspawnv` — partial: implements `_P_WAIT`, `_P_NOWAIT`, `_P_NOWAITO`, `_P_OVERLAY`, and `_P_DETACH` with `os/exec`; asynchronous results are synthetic handles understood by `__cwait`.
 - `__wspawnve` — partial: same mode/handle ceiling as `__wspawnv`, with the supplied environment.
 - `__wsystem` — real for normal commands: runs `cmd.exe /c`, returns its exit status, and reports `ENOENT` on launcher failure.
 - `_clearerr` — partial: clears modernc's stream error flag; modernc exposes no independent EOF flag to clear.
 - `_clock` — real: forwards to UCRT `clock` and returns its millisecond `clock_t` value.
+- `fdopen` — real, routed: returns the existing modernc `FILE` token for a
+  descriptor. CPython duplicates the descriptor before this call, so the
+  subsequent `fclose` has normal ownership semantics.
+- `fprintf`, `printf`, `snprintf`, `sprintf`, `vfprintf`, `vsnprintf`, and
+  `vsprintf` — routed through the shared ccgo `va_list` formatter. This covers
+  Microsoft `I`, `I32`, and `I64` integer lengths and Windows' 32-bit `long`
+  ABI instead of entering modernc's unsupported conversions.
 - `_dup` — real: duplicates the underlying Windows handle and registers the duplicate in modernc's descriptor table.
 - `_erf` — real: implemented with `math.Erf`.
 - `_erfc` — real: implemented with `math.Erfc`.
@@ -68,6 +81,12 @@ claims of complete Windows compatibility.
 - `_localtime_s` — real: fills the generated UCRT `tm` layout from a 64-bit `time_t` in the local zone, including hemisphere-independent DST detection; invalid pointers return `EINVAL`.
 - `_mbrtowc` — real: forwards to UCRT `mbrtowc`, preserves its `mbstate_t`, and mirrors UCRT errno into modernc errno.
 - `_signal` — partial: stores and returns ccgo handler values but cannot register them as native callbacks, so handlers are not delivered by the OS.
+- `raise` — partial, routed: directly invokes a registered ccgo handler (or
+  honors `SIG_IGN`); the default disposition is delegated to UCRT.
+- `time` — real, routed: returns Unix seconds and optionally writes the
+  Windows 64-bit `time_t` result.
+- `ungetc` — real for modernc's unbuffered streams, routed: rewinds the stream
+  by one byte, which covers CPython's tokenizer encoding probe.
 - `_strncat` — real: appends at most `n` bytes and always writes the required terminator for valid C inputs.
 - `_strnicmp` — real: forwards to UCRT `_strnicmp`.
 - `_swprintf` — partial: consumes the ccgo `va_list` through the shared C formatter and writes UTF-16; CPython's current `cp%u` call is covered, but the formatter does not implement every Microsoft wide-printf extension.
@@ -93,10 +112,17 @@ claims of complete Windows compatibility.
 
 - `CloseHandle` — real, routed: closes the native handle and returns the exact
   Win32 BOOL result; modernc incorrectly returned nonzero `EINVAL` on failure.
+- `CreateFileMappingA` and `CreateMutexW` — real, routed: direct native calls
+  with their handle and LastError contracts.
+- `ExitProcess` — real, routed: terminates with the caller's requested status.
 - `FreeLibrary` — real, routed: direct release with LastError propagation.
+- `GetOverlappedResult` — real, routed through `windows.GetOverlappedResult`;
+  completion byte counts, blocking behavior, and Win32 errors are preserved.
 - `GetProcAddress` — stub, routed: returns null/`ERROR_PROC_NOT_FOUND` because a native `FARPROC` cannot be invoked through ccgo's Go function-pointer representation; optional Windows APIs take their fallback paths and native `.pyd` loading remains unsupported.
 - `LoadLibraryW` — real, routed: direct load with LastError propagation.
 - `OutputDebugStringW` — intentional no-op: debugger output is advisory and fatal diagnostics continue to use stderr.
+- `RaiseException` — real, routed: forwards the exception code, flags, and
+  pointer-sized argument array to kernel32.
 - `_AcquireSRWLockExclusive` — real: direct `AcquireSRWLockExclusive` call.
 - `_AddDllDirectory` — real: direct call; failure returns zero and mirrors LastError.
 - `_AddVectoredExceptionHandler` — stub: returns zero and reports `ERROR_CALL_NOT_IMPLEMENTED` (120), because a ccgo Go function value is not a native exception callback.
@@ -197,10 +223,28 @@ claims of complete Windows compatibility.
 
 ## ws2_32.dll
 
+- `socket`, `bind`, `connect`, `listen`, `accept`, `recv`, `send`,
+  `recvfrom`, `sendto`, `shutdown`, `getsockopt`, `setsockopt`,
+  `ioctlsocket`, and `closesocket` — real, routed: preserve Win64 `SOCKET`,
+  `SOCKET_ERROR`/`INVALID_SOCKET`, caller-owned sockaddr layouts, and Winsock
+  error status.
+- `select` — real, routed: calls ws2_32 with the Winsock `fd_set` layout
+  (`u_int` count followed by 64 pointer-sized `SOCKET` values), not the POSIX
+  bit-mask layout.
+- `WSAGetLastError` and `WSASetLastError` — real, routed: WSA errors are
+  captured immediately after native calls and mirrored in the ccgo TLS so a
+  goroutine migration cannot lose the status before CPython reads it.
+- `getservbyname` and `inet_ntoa` — real, routed legacy Winsock lookups.
+- `AcceptEx`, `ConnectEx`, `DisconnectEx`, and `TransmitFile` — real ccgo
+  bridges. Under `MS_WINDOWS && CCGO && __CCGO__`, the CPython patch calls Go
+  wrappers directly instead of treating native extension addresses returned
+  by `SIO_GET_EXTENSION_FUNCTION_POINTER` as ccgo function values. The wrappers
+  use `x/sys/windows` or a native `syscall.SyscallN` trampoline and retain
+  overlapped `ERROR_IO_PENDING` behavior.
 - `_WSACleanup` — real: uses `windows.WSACleanup` and mirrors `WSAGetLastError` on failure.
 - `_WSAConnect` — real: direct call preserving all optional QOS buffers.
 - `_WSADuplicateSocketW` — real: uses `windows.WSADuplicateSocket` and writes `WSAPROTOCOL_INFOW`.
-- `_WSAIoctl` — real for direct operations and CPython's null-completion calls: uses `windows.WSAIoctl`; native extension-function pointers returned by `SIO_GET_EXTENSION_FUNCTION_POINTER` still cross a generated ccgo/native-call ABI boundary and need runtime validation.
+- `_WSAIoctl` — real for direct operations and CPython's null-completion calls: uses `windows.WSAIoctl`; the extension-function case is handled by the direct bridges above.
 - `_WSARecv` — real for CPython's null-completion calls: uses `windows.WSARecv`, including overlapped I/O.
 - `_WSARecvFrom` — real for CPython's null-completion calls: uses `windows.WSARecvFrom`, including overlapped I/O and address outputs.
 - `_WSASend` — real for CPython's null-completion calls: uses `windows.WSASend`, including overlapped I/O.
@@ -225,6 +269,12 @@ claims of complete Windows compatibility.
 
 ## advapi32.dll
 
+- `GetUserNameW` — real, routed: direct buffer/required-size call with
+  LastError propagation.
+- `RegCloseKey`, `RegConnectRegistryW`, `RegCreateKeyExW`, `RegDeleteKeyW`,
+  `RegDeleteValueW`, `RegEnumKeyExW`, `RegEnumValueW`, `RegOpenKeyExW`,
+  `RegQueryValueExW`, and `RegSetValueExW` — real, routed: return native
+  `LSTATUS` values directly and preserve every optional output pointer.
 - `_AdjustTokenPrivileges` — real: direct call; even a successful `ERROR_NOT_ALL_ASSIGNED` status is mirrored for generated `GetLastError` checks.
 - `_ConvertStringSecurityDescriptorToSecurityDescriptorW` — real: direct call writing the allocated descriptor and optional size.
 - `_LookupPrivilegeValueA` — real: direct ANSI privilege lookup.
@@ -263,6 +313,7 @@ claims of complete Windows compatibility.
 - `_PathCchSkipRoot` — real for drive, rooted, UNC, and extended-device paths: pure-Go root parsing writes a pointer into the input path and avoids a runtime `pathcch.dll` dependency.
 - `_BCryptGenRandom` — real: direct call returning NTSTATUS.
 - `_PlaySoundW` — real: direct call with LastError propagation on failure.
+- `MessageBeep` — real, routed through user32 with BOOL/LastError semantics.
 
 ## CPython inlines, compiler helpers, and routed ABI fixes
 
@@ -280,16 +331,30 @@ claims of complete Windows compatibility.
 - `_ccgo_in6addr_any` — real: generated-layout, all-zero IPv6 wildcard value.
 - `PyBoolFromBool` — real: isolates the platform-dependent `PyBool_FromLong` integer width for root-package conversion.
 
-## Pre-existing modernc runtime blockers outside this inventory
+## Routed modernc runtime gaps and validation
 
 Type-check success does not imply that every already-declared modernc Windows
-function is implemented. In v1.75.7, core socket entry points including
-`Xsocket`, `Xbind`, `Xconnect`, `Xlisten`, `Xaccept`, `Xrecv`, `Xsend`,
-`Xshutdown`, `Xgetsockopt`, `Xsetsockopt`, `Xselect`, `Xioctlsocket`,
-`Xclosesocket`, and `XWSAGetLastError` still panic with `TODO`. `Xsetlocale`
-returns zero unconditionally and `Xmbstowcs` panics; both are now routed, as
-are `Xwcstombs` (to keep conversion consistent) and the diagnostic-only
-`XOutputDebugStringW`. `XSetHandleInformation` still panics and
-`XCloseHandle` returns nonzero `EINVAL` when native close fails; both calls are
-now routed to the exact Win32 contracts as well. The socket symbols still gate
-networking.
+function is implemented. Generated shard calls that reach known v1.75.7 TODO
+implementations are routed through the supplement, including locale and
+encoding, printf-family conversions, `fdopen`, time, registry, console, file
+mapping/mutex/process operations, Winsock, and overlapped completion. An audit
+of the remaining generated `libc.X*` calls against modernc's Windows TODOs
+leaves only `Xfileno`, whose Windows implementation is concrete (the audit is
+a conservative text scan because that function's surrounding source contains
+other TODO markers).
+
+`.github/workflows/ci.yml` treats both Windows architectures as required and
+runs `internal/builders/windows/network_smoke.py`. It covers name resolution,
+loopback TCP echo, Winsock `select`, the Windows `socketpair()` emulation,
+`asyncio.sleep(0)`, a Proactor `asyncio.start_server` echo, and an
+`http.client` GET served by a local `http.server` thread. The separate
+`.github/workflows/windows-tests.yml` builds the CPython 3.14.7 test-flavor
+stdlib and interpreter, runs each selected `test.*` module in an isolated
+process with a 90-second timeout, and publishes its Markdown table and full
+logs as per-architecture artifacts.
+
+The remaining explicit runtime ceilings are native callbacks such as
+`RegisterWaitForSingleObject` and vectored exception handlers, incomplete
+process-global signal delivery, and ordinary CPython compatibility failures
+exposed by the broad test batch. Those paths fail deterministically rather
+than passing a ccgo function value to native code.

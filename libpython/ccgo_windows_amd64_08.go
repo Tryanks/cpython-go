@@ -100815,7 +100815,7 @@ func _convertenviron(tls *libc.TLS) (r uintptr) {
 	}
 
 	_ccgo__wgetenv(tls, __ccgo_ts+148384)
-	e = **(**uintptr)(__ccgo_up(libc.X__p__wenviron(tls)))
+	e = **(**uintptr)(__ccgo_up(_ccgo___p__wenviron(tls)))
 	if e == libc.UintptrFromInt32(0) {
 		return d
 	}
@@ -108276,7 +108276,7 @@ _9:
 		return libc.UintptrFromInt32(0)
 	}
 
-	err = libc.X_wputenv(tls, env)
+	err = _ccgo__wputenv(tls, env)
 	if err != 0 {
 		_posix_error(tls)
 		XPyMem_Free(tls, env)
