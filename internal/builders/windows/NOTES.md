@@ -160,3 +160,11 @@ until the Windows libc supplement is added.
 - `tmp/windows_arm64/build/libpython3.14.a`: 234 members; contains
   `posixmodule.o` and `_winapi.o`; inspected member header `COFF-ARM64`,
   machine `IMAGE_FILE_MACHINE_ARM64`.
+
+## Windows runtime CI iterations
+
+- Run 33949767829 (`main`): the executable built, then `print(45)` failed in
+  `_PyPreConfig_Read` because modernc's Windows `Xsetlocale` always returned
+  null; fatal reporting then hit modernc's `XOutputDebugStringW` TODO panic.
+  Routed both calls and proactively routed the known-TODO `Xmbstowcs` plus
+  matching `Xwcstombs` to deterministic UTF-8/UTF-16 shims.

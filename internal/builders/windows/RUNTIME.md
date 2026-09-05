@@ -14,6 +14,9 @@ to native callback/function-pointer boundaries.
 
 ## UCRT and pure-Go compatibility
 
+- `setlocale` — partial, routed: deterministic process-wide C/UTF-8 category state; Windows encoding decisions still use `GetACP` and the console code pages, as CPython expects.
+- `mbstowcs` — real for the routed fixed locale: strict UTF-8 to UTF-16 conversion, including sizing and bounded output.
+- `wcstombs` — real for the routed fixed locale: strict UTF-16 to UTF-8 conversion without splitting a multibyte output sequence.
 - `___daylight` — real: returns UCRT's `_daylight` storage through `__daylight`.
 - `___doserrno` — real: returns UCRT's per-thread DOS-error storage through `__doserrno`.
 - `___sys_errlist` — real: returns UCRT's error-string table through `__sys_errlist`.
@@ -76,6 +79,7 @@ to native callback/function-pointer boundaries.
 
 ## kernel32.dll
 
+- `OutputDebugStringW` — intentional no-op: debugger output is advisory and fatal diagnostics continue to use stderr.
 - `_AcquireSRWLockExclusive` — real: direct `AcquireSRWLockExclusive` call.
 - `_AddDllDirectory` — real: direct call; failure returns zero and mirrors LastError.
 - `_AddVectoredExceptionHandler` — stub: returns zero and reports `ERROR_CALL_NOT_IMPLEMENTED` (120), because a ccgo Go function value is not a native exception callback.
@@ -262,8 +266,7 @@ Type-check success does not imply that every already-declared modernc Windows
 function is implemented. In v1.75.7, core socket entry points including
 `Xsocket`, `Xbind`, `Xconnect`, `Xlisten`, `Xaccept`, `Xrecv`, `Xsend`,
 `Xshutdown`, `Xgetsockopt`, `Xsetsockopt`, `Xselect`, `Xioctlsocket`,
-`Xclosesocket`, and `XWSAGetLastError` still panic with `TODO`; `Xsetlocale`
-returns zero unconditionally. Those symbols were not undefined and therefore
-were not routed in this milestone, but the first Windows smoke test should
-expect them to gate networking and locale initialization independently of the
-supplement above.
+`Xclosesocket`, and `XWSAGetLastError` still panic with `TODO`. `Xsetlocale`
+returns zero unconditionally and `Xmbstowcs` panics; both are now routed, as
+are `Xwcstombs` (to keep conversion consistent) and the diagnostic-only
+`XOutputDebugStringW`. The socket symbols still gate networking.
