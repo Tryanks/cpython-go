@@ -2,8 +2,16 @@
 # Cross-compile the CPython 3.14.7 static library for Windows.
 #
 #   internal/builders/windows/run.sh amd64 /tmp/cpython-3.14.7
+#   internal/builders/windows/run.sh --ccgo amd64 /tmp/cpython-3.14.7
 #   WINDOWS_BUILDER_SKIP_BUILD=1 internal/builders/windows/run.sh arm64 /tmp/cpython-3.14.7
 set -eu
+
+if [ "${1:-}" = --ccgo ]; then
+	shift
+	ccgo=1
+else
+	ccgo=0
+fi
 
 if [ "${1:-}" = --inside ]; then
 	shift
@@ -34,12 +42,29 @@ if [ "$inside" -eq 0 ]; then
 	if [ -z "${WINDOWS_BUILDER_SKIP_BUILD:-}" ]; then
 		docker build --platform linux/arm64 -t cpython-go-builder:windows "$here"
 	fi
+	ccgo_arg=
+	if [ "$ccgo" -eq 1 ]; then
+		ccgo_arg=--ccgo
+	fi
 	exec docker run --rm --platform linux/arm64 \
 		-v "$repo":/src \
 		-v "$src":/cpython:ro \
+		-v cpython-go-gomod-windows:/go/pkg/mod \
 		-e JOBS="${JOBS:-4}" \
 		cpython-go-builder:windows \
-		/src/internal/builders/windows/run.sh --inside "$arch" /cpython
+		/src/internal/builders/windows/run.sh $ccgo_arg --inside "$arch" /cpython
+fi
+
+if [ "$ccgo" -eq 1 ]; then
+	export CPYTHON_SRC="$src"
+	export TARGET_GOOS=windows
+	export TARGET_GOARCH="$arch"
+	export MINGW_TRIPLE="$host"
+	export BUILD_TRIPLE=aarch64-unknown-linux-gnu
+	export BUILD_PYTHON=/usr/local/bin/python3.14
+	export CONFIG_SITE="/src/internal/builders/windows/config.site.${arch}"
+	export GOMAXPROCS="${JOBS:-4}"
+	exec go run generator.go
 fi
 
 scratch="/src/tmp/windows_${arch}"

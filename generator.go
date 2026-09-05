@@ -248,6 +248,44 @@ func main() {
 			"-Dsched_yield=ccgo_sched_yield",
 			"-Dwcschr=ccgo_wcschr",
 		)
+	case "windows/amd64":
+		triple := env("MINGW_TRIPLE", "x86_64-w64-mingw32")
+		compiler, err := exec.LookPath(triple + "-gcc")
+		if err != nil {
+			fail(1, "%s-gcc: %v", triple, err)
+		}
+		ar, err := exec.LookPath(triple + "-ar")
+		if err != nil {
+			fail(1, "%s-ar: %v", triple, err)
+		}
+		for _, name := range []string{"CC", "CCGO_CC", "CCGO_GCC", "CCGO_CLANG", "CCGO_CPP"} {
+			os.Setenv(name, compiler)
+		}
+		// ccgo records the pre-shim `gcc`/`ar` from PATH as the real tools.
+		// Put cross-tool wrappers first so make can use the shim-compatible
+		// names without the native side accidentally falling back to host GCC.
+		toolDir, _ := filepath.Abs(filepath.Join(tmp, goos+"_"+goarch, "tools"))
+		mkdirAll(toolDir)
+		for name, tool := range map[string]string{"gcc": compiler, "ar": ar} {
+			wrapper := filepath.Join(toolDir, name)
+			if err := os.WriteFile(wrapper, []byte("#!/bin/sh\nexec \""+tool+"\" \"$@\"\n"), 0o755); err != nil {
+				fail(1, "%v", err)
+			}
+		}
+		os.Setenv("PATH", toolDir+string(os.PathListSeparator)+os.Getenv("PATH"))
+		ccArgs = append(ccArgs,
+			"--cpp", compiler,
+			"--goos", goos,
+			"--goarch", goarch,
+			"-map", "gcc=gcc,ar=ar",
+			// cc/v4 cannot parse LLVM 23's x86 intrinsic headers. CPython's
+			// configured GCC-compatible paths do not need their inline bodies.
+			"-D__INTRIN_H=1",
+			"-D__X86INTRIN_H=1",
+			// mingw-w64 provides ssize_t but not the POSIX SSIZE_MAX macro.
+			"-DSSIZE_MAX=INTPTR_MAX",
+			"-DPATH_MAX=260",
+		)
 	}
 	configureEnv = append(configureEnv, configureEnvOS[goos]...)
 	if goos == "darwin" && goarch != runtime.GOARCH {
@@ -278,13 +316,23 @@ func main() {
 		return
 	case os.Getenv("GO_GENERATE_SKIP_BUILD") != "":
 	case os.Getenv("GO_GENERATE_INCREMENTAL") != "":
-		ccExec(append(ccArgs, "-exec", "make", "-C", build, "-j", j, libName))
+		if goos == "windows" {
+			ccExec(append(ccArgs, "-exec", "make", "-C", build, "-j", j,
+				"CC=gcc", "AR=ar", "GITVERSION=:", "GITTAG=:", "GITBRANCH=:", libName))
+		} else {
+			ccExec(append(ccArgs, "-exec", "make", "-C", build, "-j", j, libName))
+		}
 	default:
 		prepareSource()
 		removeAll(build)
 		mkdirAll(build)
 		configure(src)
-		ccExec(append(ccArgs, "-exec", "make", "-C", build, "-j", j, libName))
+		if goos == "windows" {
+			ccExec(append(ccArgs, "-exec", "make", "-C", build, "-j", j,
+				"CC=gcc", "AR=ar", "GITVERSION=:", "GITTAG=:", "GITBRANCH=:", libName))
+		} else {
+			ccExec(append(ccArgs, "-exec", "make", "-C", build, "-j", j, libName))
+		}
 	}
 
 	hacl, _ := filepath.Glob(filepath.Join(build, "Modules", "_hacl", "*.a"))
@@ -295,7 +343,9 @@ func main() {
 		filepath.Join(build, "Modules", "expat", "libexpat.a"),
 	), hacl...))
 	postprocess(result, base)
-	sysconfigdata()
+	if goos != "windows" {
+		sysconfigdata()
+	}
 }
 
 // sysconfigdata builds the native python.exe (the .o files are native) to
@@ -365,7 +415,7 @@ var threadLocals = [][2]string{
 
 // shimmedLibc lists, per GOOS, the libc.X<name> calls rewritten to
 // _ccgo_<name> (defined in libpython/libc_<goos>.go). Keep sorted.
-var shimmedLibc = map[string][]string{"darwin": {
+var shimmedLibc = map[string][]string{"windows": {}, "darwin": {
 	"__builtin___snprintf_chk",
 	"__builtin___sprintf_chk",
 	"__builtin___vsnprintf_chk",
@@ -461,6 +511,11 @@ func prepareSource() {
 	mkdirAll(filepath.Dir(srcCopy))
 	shell("cp", "-R", orig, srcCopy)
 	patches, _ := filepath.Glob(filepath.Join("internal", "patch", "*.diff"))
+	if goos == "windows" {
+		// Match the proven plain cross-build order: the common ccgo patch is
+		// applied before the pinned MSYS2 MinGW port.
+		patches = append(patches, filepath.Join("internal", "patch", "windows", "cpython-3.14.7-msys2.diff"))
+	}
 	for _, p := range patches {
 		b, err := os.ReadFile(p)
 		if err != nil {
@@ -475,10 +530,37 @@ func prepareSource() {
 			fail(1, "patch %s: %v", p, err)
 		}
 	}
+	if goos == "windows" {
+		cmd := exec.Command("autoreconf", "-vfi")
+		cmd.Dir = srcCopy
+		cmd.Stdout = os.Stdout
+		cmd.Stderr = os.Stderr
+		if err := cmd.Run(); err != nil {
+			fail(1, "autoreconf: %v", err)
+		}
+	}
 }
 
 func configure(src string) {
-	cmd := exec.Command(filepath.Join(src, "configure"), configureArgs...)
+	args := configureArgs
+	if goos == "windows" {
+		triple := env("MINGW_TRIPLE", "x86_64-w64-mingw32")
+		args = append(append([]string{}, configureArgs...),
+			"--host="+triple,
+			"--build="+env("BUILD_TRIPLE", "aarch64-unknown-linux-gnu"),
+			"--prefix=/usr/local",
+			"--with-build-python="+env("BUILD_PYTHON", "/usr/local/bin/python3.14"),
+			"--disable-experimental-jit",
+		)
+		os.Setenv("CONFIG_SITE", env("CONFIG_SITE", filepath.Join("/src", "internal", "builders", "windows", "config.site."+goarch)))
+		os.Setenv("CXX", triple+"-clang++")
+		os.Setenv("AR", triple+"-ar")
+		os.Setenv("RANLIB", triple+"-ranlib")
+		os.Setenv("READELF", triple+"-readelf")
+		os.Setenv("STRIP", triple+"-strip")
+		os.Setenv("WINDRES", triple+"-windres")
+	}
+	cmd := exec.Command(filepath.Join(src, "configure"), args...)
 	cmd.Dir = build
 	cmd.Env = append(os.Environ(), configureEnv...)
 	cmd.Stdout = os.Stdout

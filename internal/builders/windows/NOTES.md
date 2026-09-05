@@ -95,10 +95,68 @@ to the native `Programs/_freeze_module.py` via `/usr/local/bin/python3.14`.
 Later ccgo generation must keep that native `PYTHON_FOR_BUILD` path and avoid
 or override every direct `./$(BUILDPYTHON)` rule.
 
+The Windows generator deliberately skips `sysconfigdata()`: the cross-built
+`python.exe` cannot run in the Linux builder. Windows `_sysconfigdata` must be
+obtained by a different mechanism in a later milestone.
+
+## ccgo generation
+
+Run the amd64 transpilation with:
+
+```sh
+internal/builders/windows/run.sh --ccgo amd64 /tmp/cpython-3.14.7
+```
+
+The container mounts the repository and a persistent Windows Go module cache,
+sets `TARGET_GOOS`, `TARGET_GOARCH`, `MINGW_TRIPLE`, `BUILD_TRIPLE`,
+`BUILD_PYTHON`, and `CONFIG_SITE`, then runs `go run generator.go`. During make,
+`CC=gcc AR=ar` select names ccgo can shim; ccgo maps them to llvm-mingw.
+
+The successful amd64 run exposed these ccgo-specific failures, in order:
+
+- Mapping `gcc` directly to the llvm-mingw executable was insufficient.
+  `ccgo -exec` records the pre-shim `gcc` found on `PATH` in `CCGO_GCC`, which
+  selected the Linux host compiler and mixed glibc declarations with the
+  MinGW configuration (`gid_t`, `uid_t`, and `LONG_BIT` failures). The
+  generator now prepends tiny `gcc` and `ar` wrappers for the cross tools and
+  maps the shim names to those wrappers.
+- cc/v4 could not parse LLVM 23's `ia32intrin.h` and `f16cintrin.h` inline
+  bodies. Defining both `__INTRIN_H` and `__X86INTRIN_H` bypasses those bodies;
+  CPython does not require them on the selected GCC-compatible code paths.
+- mingw-w64 defines `ssize_t` but not the POSIX `SSIZE_MAX` or `PATH_MAX`
+  macros used by these translation units. The ccgo invocation supplies
+  `SSIZE_MAX=INTPTR_MAX` and `PATH_MAX=260`.
+- cc/v4 rejected MSVC `_Pragma(section(...))` declarations in
+  `pycore_debug_offsets.h`, reached from `pylifecycle.c` and
+  `_asynciomodule.c`. The common patch omits only those section-placement
+  pragmas under `MS_WINDOWS && CCGO`; the metadata object remains defined.
+- cc/v4 rejected C23 declarations immediately following two `case` labels in
+  `posixmodule.c`. Braces around those case bodies make their scopes explicit.
+- Linking initially found duplicate `HV_GUID_*` globals from both
+  `socketmodule` and `signalmodule`: `signalmodule.c` included all of
+  `socketmodule.h` only to obtain `SOCKET_T`. Under `MS_WINDOWS && CCGO`, the
+  patch includes `winsock2.h` and defines that one typedef instead.
+
+The generated archive contains 234 `.o.go` members, exactly matching all 234
+native members. The build tree contains 246 native `.o` and 246 `.o.go` files
+when the six HACL archives and expat objects are included.
+
+`ccMain` links `libpython3.14.ago`, all six `Modules/_hacl/*.ago` archives, and
+`Modules/expat/libexpat.ago`. Postprocessing moved 1,461 variables (2,176,140
+bytes) into the data blob and reduced Go source from 59,369,280 to 35,279,840
+bytes. The result is 12 numbered Go shards, one data Go file, and one data
+blob. Type-check gaps are inventoried in `UNDEFINED.md`; no runtime is expected
+until the Windows libc supplement is added.
+
 ## Verified outputs
 
 - `tmp/windows_amd64/build/libpython3.14.a`: 234 members; contains
   `posixmodule.o` and `_winapi.o`; inspected member format `pe-x86-64`.
+- `tmp/windows_amd64/build/libpython3.14.ago`: 234 members; every native archive
+  member has a matching transpiled member.
+- `libpython/ccgo_windows_amd64_00.go` through `_11.go`,
+  `ccgo_windows_amd64_data.go`, and `ccgo_windows_amd64_data.bin`: 37,455,980
+  bytes total (35,279,840 bytes of Go plus a 2,176,140-byte data blob).
 - `tmp/windows_arm64/build/libpython3.14.a`: 234 members; contains
   `posixmodule.o` and `_winapi.o`; inspected member header `COFF-ARM64`,
   machine `IMAGE_FILE_MACHINE_ARM64`.

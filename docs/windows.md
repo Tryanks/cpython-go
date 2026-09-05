@@ -28,9 +28,12 @@ Plan:
    Python 3.14, autotools, Go) — `internal/builders/windows/`.
 2. Plain cross build of `libpython3.14.a` with the MSYS2 patch set, amd64
    then arm64; CONFIG_SITE per arch; NOTES.md of every workaround.
-3. `ccgo -exec make` for amd64; fix cc/v4 issues on the Windows units.
-4. Link, shard, typecheck; write `libpython/libc_windows.go` from the
-   undefined-symbol list; first acceptance `print(45)` on Windows.
+3. **Done:** `ccgo -exec make` for amd64, including cc/v4 fixes, link,
+   postprocess, and sharding. The typecheck inventory is in
+   `internal/builders/windows/UNDEFINED.md` (211 missing symbols and eight
+   non-undefined ABI/type errors after deduplication).
+4. Write `libpython/libc_windows.go` from that inventory; first acceptance
+   `print(45)` on Windows.
 5. Behaviour on amd64 (os/pathlib/io/threading/subprocess/socket tests),
    then arm64.
 

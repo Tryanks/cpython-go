@@ -382,7 +382,7 @@ return/yield. Initialize and return a fresh union instead.
 --- a/Include/internal/pycore_stackref.h
 +++ b/Include/internal/pycore_stackref.h
 @@ -633,7 +633,10 @@
-     }
+ }
      PyObject *obj = BITS_TO_PTR_MASKED(ref);
      Py_INCREF(obj);
 -    ref.bits = (uintptr_t)obj;
@@ -395,3 +395,42 @@ return/yield. Initialize and return a fresh union instead.
 +    PyStackRef_CheckValid(result);
 +    return result;
  }
+
+pycore_debug_offsets.h: ccgo cannot parse the MSVC custom-section pragma;
+the debugger metadata remains a normal global in generated Go.
+posixmodule.c: C11 rejects declarations immediately after labels. Clang treats
+them as a C23 extension, but cc/v4 does not; scope the two case bodies.
+diff --color -ruN a/Include/internal/pycore_debug_offsets.h b/Include/internal/pycore_debug_offsets.h
+--- a/Include/internal/pycore_debug_offsets.h
++++ b/Include/internal/pycore_debug_offsets.h
+@@ -28 +28 @@
+-#if defined(MS_WINDOWS)
++#if defined(MS_WINDOWS) && !defined(CCGO)
+diff --color -ruN a/Modules/posixmodule.c b/Modules/posixmodule.c
+--- a/Modules/posixmodule.c
++++ b/Modules/posixmodule.c
+@@ -5363 +5363 @@
+-    case ERROR_INVALID_PARAMETER:
++    case ERROR_INVALID_PARAMETER: {
+@@ -5378,0 +5379 @@
++    }
+@@ -5432 +5433 @@
+-    case ERROR_INVALID_PARAMETER:
++    case ERROR_INVALID_PARAMETER: {
+@@ -5435,0 +5437 @@
++    }
+
+signalmodule.c: it only needs SOCKET_T from socketmodule.h on Windows. Avoid
+pulling hvsocket.h's DEFINE_GUID globals into a second ccgo translation unit.
+diff --color -ruN a/Modules/signalmodule.c b/Modules/signalmodule.c
+--- a/Modules/signalmodule.c
++++ b/Modules/signalmodule.c
+@@ -21,3 +21,8 @@
+ #ifdef MS_WINDOWS
++#  ifdef CCGO
++#    include <winsock2.h>
++typedef SOCKET SOCKET_T;
++#  else
+ #  include "socketmodule.h"       // SOCKET_T
++#  endif
+ #endif
