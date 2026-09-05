@@ -9281,7 +9281,7 @@ func __locale_strcoll_impl(tls *libc.TLS, module uintptr, os1 uintptr, os2 uintp
 		goto done
 	}
 
-	result = XPyLong_FromLong(tls, int64(libc.Xwcscoll(tls, ws1, ws2)))
+	result = XPyLong_FromLong(tls, int64(_ccgo_wcscoll(tls, ws1, ws2)))
 	goto done
 done:
 	;
@@ -9329,7 +9329,7 @@ func __locale_strxfrm_impl(tls *libc.TLS, module uintptr, str uintptr) (r uintpt
 		goto exit
 	}
 	**(**int32)(__ccgo_up(libc.X__errno_location(tls))) = 0
-	n2 = libc.Xwcsxfrm(tls, buf, s, libc.Uint64FromInt64(**(**TPy_ssize_t)(__ccgo_up(bp))))
+	n2 = _ccgo_wcsxfrm(tls, buf, s, libc.Uint64FromInt64(**(**TPy_ssize_t)(__ccgo_up(bp))))
 	if **(**int32)(__ccgo_up(libc.X__errno_location(tls))) != 0 && **(**int32)(__ccgo_up(libc.X__errno_location(tls))) != int32(MERANGE) {
 		XPyErr_SetFromErrno(tls, XPyExc_OSError)
 		goto exit
@@ -9343,7 +9343,7 @@ func __locale_strxfrm_impl(tls *libc.TLS, module uintptr, str uintptr) (r uintpt
 		}
 		buf = new_buf
 		**(**int32)(__ccgo_up(libc.X__errno_location(tls))) = 0
-		n2 = libc.Xwcsxfrm(tls, buf, s, n2+uint64(1))
+		n2 = _ccgo_wcsxfrm(tls, buf, s, n2+uint64(1))
 		if **(**int32)(__ccgo_up(libc.X__errno_location(tls))) != 0 {
 			XPyErr_SetFromErrno(tls, XPyExc_OSError)
 			goto exit

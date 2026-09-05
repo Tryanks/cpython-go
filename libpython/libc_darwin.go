@@ -14,6 +14,7 @@ import (
 	"sync"
 	"syscall"
 	"time"
+	"unicode"
 	"unicode/utf8"
 	"unsafe"
 
@@ -380,18 +381,10 @@ func _wcstol(tls *libc.TLS, s, end uintptr, base int32) int64 {
 	return int64(value)
 }
 
-func _wcscoll(tls *libc.TLS, a, b uintptr) int32 { return _wcscmp(tls, a, b) }
+func _wcscoll(tls *libc.TLS, a, b uintptr) int32 { return _ccgo_wcscoll(tls, a, b) }
 
 func _wcsxfrm(tls *libc.TLS, dst, src uintptr, n uint64) uint64 {
-	l := wideLen(src)
-	if dst != 0 && n != 0 {
-		m := l + 1
-		if m > n {
-			m = n
-		}
-		copy(unsafe.Slice((*int32)(unsafe.Pointer(dst)), int(m)), unsafe.Slice((*int32)(unsafe.Pointer(src)), int(m)))
-	}
-	return l
+	return _ccgo_wcsxfrm(tls, dst, src, n)
 }
 
 func _ccgo_strftime(tls *libc.TLS, dst uintptr, n uint64, format, tm uintptr) uint64 {
@@ -504,7 +497,7 @@ func _btowc(tls *libc.TLS, c int32) int32 {
 	if c == -1 {
 		return -1
 	}
-	if c < 0 || c > 0x7f {
+	if c < 0 || c > 0xff {
 		return -1
 	}
 	return c
@@ -1440,7 +1433,7 @@ func _endgrent(tls *libc.TLS)         {}
 
 // ponytail: Darwin sethostname is not exposed by x/sys/unix.
 func _sethostname(tls *libc.TLS, name uintptr, n int32) int32 {
-	setErrno(tls, int32(errno.ENOSYS))
+	setErrno(tls, int32(errno.EPERM))
 	return -1
 }
 func _socketpair(tls *libc.TLS, domain, typ, protocol int32, out uintptr) int32 {
@@ -1775,20 +1768,115 @@ func _ccgo_getnameinfo(tls *libc.TLS, address uintptr, addressLen uint32, host u
 	return 0
 }
 
-// ponytail: optional network-interface and legacy resolver databases are omitted.
 func _if_nametoindex(tls *libc.TLS, name uintptr) uint32 {
-	setErrno(tls, int32(errno.ENOSYS))
+	iface, err := net.InterfaceByName(libc.GoString(name))
+	if err == nil {
+		return uint32(iface.Index)
+	}
+	setErrno(tls, int32(errno.ENXIO))
 	return 0
 }
 func _if_indextoname(tls *libc.TLS, index uint32, name uintptr) uintptr {
-	setErrno(tls, int32(errno.ENOSYS))
-	return 0
+	iface, err := net.InterfaceByIndex(int(index))
+	if err != nil {
+		setErrno(tls, int32(errno.ENXIO))
+		return 0
+	}
+	copy(cBytes(name, 16), iface.Name)
+	*(*byte)(unsafe.Pointer(name + uintptr(len(iface.Name)))) = 0
+	return name
 }
-func _if_nameindex(tls *libc.TLS) uintptr        { setErrno(tls, int32(errno.ENOSYS)); return 0 }
-func _if_freenameindex(tls *libc.TLS, p uintptr) {}
+func _if_nameindex(tls *libc.TLS) uintptr {
+	interfaces, err := net.Interfaces()
+	if err != nil {
+		errnoResult(tls, err)
+		return 0
+	}
+	p := libc.Xcalloc(tls, uint64(len(interfaces)+1), uint64(unsafe.Sizeof(Tif_nameindex{})))
+	if p == 0 {
+		return 0
+	}
+	for i, iface := range interfaces {
+		entry := (*Tif_nameindex)(unsafe.Pointer(p + uintptr(i)*unsafe.Sizeof(Tif_nameindex{})))
+		entry.Fif_index = uint32(iface.Index)
+		entry.Fif_name, _ = libc.CString(iface.Name)
+	}
+	return p
+}
+func _if_freenameindex(tls *libc.TLS, p uintptr) {
+	if p == 0 {
+		return
+	}
+	for q := p; (*Tif_nameindex)(unsafe.Pointer(q)).Fif_index != 0; q += unsafe.Sizeof(Tif_nameindex{}) {
+		libc.Xfree(tls, (*Tif_nameindex)(unsafe.Pointer(q)).Fif_name)
+	}
+	libc.Xfree(tls, p)
+}
+
+var serviceEntryMu sync.Mutex
+
+func lookupService(name string, port int, protocol string) (string, int, string, bool) {
+	data, err := os.ReadFile("/etc/services")
+	if err != nil {
+		return "", 0, "", false
+	}
+	for _, line := range strings.Split(string(data), "\n") {
+		fields := strings.Fields(strings.SplitN(line, "#", 2)[0])
+		if len(fields) < 2 {
+			continue
+		}
+		portProto := strings.SplitN(fields[1], "/", 2)
+		if len(portProto) != 2 {
+			continue
+		}
+		n, err := strconv.Atoi(portProto[0])
+		if err != nil || (protocol != "" && portProto[1] != protocol) {
+			continue
+		}
+		nameMatches := name == "" || fields[0] == name
+		for _, alias := range fields[2:] {
+			nameMatches = nameMatches || alias == name
+		}
+		if nameMatches && (port < 0 || port == n) {
+			return fields[0], n, portProto[1], true
+		}
+	}
+	return "", 0, "", false
+}
+
+func serviceEntry(tls *libc.TLS, name string, port int, protocol string) uintptr {
+	serviceEntryMu.Lock()
+	defer serviceEntryMu.Unlock()
+	canonical, number, proto, ok := lookupService(name, port, protocol)
+	if !ok {
+		return 0
+	}
+	p := libc.Xcalloc(tls, 1, uint64(unsafe.Sizeof(Tservent{})))
+	if p == 0 {
+		return 0
+	}
+	e := (*Tservent)(unsafe.Pointer(p))
+	e.Fs_name, _ = libc.CString(canonical)
+	e.Fs_proto, _ = libc.CString(proto)
+	e.Fs_port = int32(uint16(number)<<8 | uint16(number)>>8)
+	return p
+}
+
+func _ccgo_getservbyname(tls *libc.TLS, name, proto uintptr) uintptr {
+	protocol := ""
+	if proto != 0 {
+		protocol = libc.GoString(proto)
+	}
+	return serviceEntry(tls, libc.GoString(name), -1, protocol)
+}
+
 func _getservbyport(tls *libc.TLS, port int32, proto uintptr) uintptr {
-	setErrno(tls, int32(errno.ENOSYS))
-	return 0
+	protocol := ""
+	if proto != 0 {
+		protocol = libc.GoString(proto)
+	}
+	number := int(uint16(port)<<8 | uint16(port)>>8)
+	return serviceEntry(tls, "", number, protocol)
 }
 func _getprotobyname(tls *libc.TLS, name uintptr) uintptr {
 	setErrno(tls, int32(errno.ENOSYS))
@@ -1972,10 +2060,51 @@ func validLocaleName(name string) (string, bool) {
 		return "C", true
 	}
 	u := strings.ToUpper(name)
-	if u == "UTF-8" || strings.HasSuffix(u, ".UTF-8") {
+	if u == "UTF-8" || strings.HasSuffix(u, ".UTF-8") ||
+		strings.HasSuffix(u, ".UTF8") || strings.HasSuffix(u, ".ISO8859-1") ||
+		strings.HasSuffix(u, ".ISO88591") {
 		return name, true
 	}
 	return "", false
+}
+
+func latin1CTypeLocale() bool {
+	localeMu.Lock()
+	defer localeMu.Unlock()
+	u := strings.ToUpper(localeNames[2])
+	return strings.HasSuffix(u, ".ISO8859-1") || strings.HasSuffix(u, ".ISO88591")
+}
+
+func _ccgo___maskrune(tls *libc.TLS, c int32, mask uint64) int32 {
+	if !latin1CTypeLocale() || c < 0 || c > 255 {
+		return libc.X__maskrune(tls, c, mask)
+	}
+	r := rune(c)
+	var properties uint64
+	if unicode.IsLetter(r) {
+		properties |= 0x00000100
+	}
+	if unicode.IsDigit(r) {
+		properties |= 0x00000400
+	}
+	if properties&mask != 0 {
+		return int32(properties & mask)
+	}
+	return 0
+}
+
+func _ccgo___tolower(tls *libc.TLS, c int32) int32 {
+	if latin1CTypeLocale() && c >= 0 && c <= 255 {
+		return int32(unicode.ToLower(rune(c)))
+	}
+	return libc.X__tolower(tls, c)
+}
+
+func _ccgo___toupper(tls *libc.TLS, c int32) int32 {
+	if latin1CTypeLocale() && c >= 0 && c <= 255 {
+		return int32(unicode.ToUpper(rune(c)))
+	}
+	return libc.X__toupper(tls, c)
 }
 
 func localeEnvironment(category int32) string {
