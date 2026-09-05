@@ -1,9 +1,11 @@
-import asyncio
-import http.client
-import http.server
-import select
 import socket
+
+print("socket-import-ok", flush=True)
+
+import select
 import threading
+
+print("socket-support-imports-ok", flush=True)
 
 
 def join_thread(thread, name):
@@ -13,6 +15,7 @@ def join_thread(thread, name):
 
 addresses = socket.getaddrinfo("localhost", 80)
 assert addresses, "getaddrinfo returned no addresses"
+print("getaddrinfo-ok", flush=True)
 
 listener = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 listener.settimeout(10)
@@ -43,6 +46,7 @@ listener.close()
 join_thread(echo_thread, "echo")
 if echo_errors:
     raise echo_errors[0]
+print("tcp-echo-select-ok", flush=True)
 
 left, right = socket.socketpair()
 try:
@@ -55,8 +59,17 @@ try:
 finally:
     left.close()
     right.close()
+print("socketpair-ok", flush=True)
+
+import asyncio
 
 asyncio.run(asyncio.sleep(0))
+print("asyncio-ok", flush=True)
+
+import http.client
+import http.server
+
+print("http-imports-ok", flush=True)
 
 
 class Handler(http.server.BaseHTTPRequestHandler):
