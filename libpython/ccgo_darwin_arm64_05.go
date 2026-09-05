@@ -219,7 +219,7 @@ var _PyContextVar_methods = [5]TPyMethodDef{
 		Fml_doc:   uintptr(unsafe.Pointer(&__contextvars_ContextVar_get__doc__)),
 	},
 	1: {
-		Fml_name:  __ccgo_ts + 58012,
+		Fml_name:  __ccgo_ts + 57999,
 		Fml_flags: int32(MMETH_O),
 		Fml_doc:   uintptr(unsafe.Pointer(&__contextvars_ContextVar_set__doc__)),
 	},
@@ -19744,7 +19744,7 @@ func _vgetargs1_impl(tls *libc.TLS, compat_args uintptr, stack uintptr, nargs TP
 				return int32(1)
 			}
 			if fname == libc.UintptrFromInt32(0) {
-				v1 = __ccgo_ts + 40631
+				v1 = __ccgo_ts + 40618
 			} else {
 				v1 = fname
 			}
@@ -19759,7 +19759,7 @@ func _vgetargs1_impl(tls *libc.TLS, compat_args uintptr, stack uintptr, nargs TP
 			if min == int32(1) && max == int32(1) {
 				if compat_args == libc.UintptrFromInt32(0) {
 					if fname == libc.UintptrFromInt32(0) {
-						v1 = __ccgo_ts + 40631
+						v1 = __ccgo_ts + 40618
 					} else {
 						v1 = fname
 					}
@@ -19786,7 +19786,7 @@ func _vgetargs1_impl(tls *libc.TLS, compat_args uintptr, stack uintptr, nargs TP
 	if nargs < int64(min) || int64(max) < nargs {
 		if message == libc.UintptrFromInt32(0) {
 			if fname == libc.UintptrFromInt32(0) {
-				v1 = __ccgo_ts + 40631
+				v1 = __ccgo_ts + 40618
 			} else {
 				v1 = fname
 			}
@@ -21038,7 +21038,7 @@ func _convertsimple(tls *libc.TLS, arg uintptr, p_format uintptr, p_va uintptr, 
 		if v3 != 0 {
 			**(**uintptr)(__ccgo_up(p21)) = arg
 		} else {
-			return _converterr(tls, __ccgo_ts+17605, arg, msgbuf, bufsize)
+			return _converterr(tls, __ccgo_ts+17620, arg, msgbuf, bufsize)
 		}
 	case int32('Y'):
 		p22 = libc.VaUintptr(&**(**Tva_list)(__ccgo_up(p_va)))
@@ -21062,7 +21062,7 @@ func _convertsimple(tls *libc.TLS, arg uintptr, p_format uintptr, p_va uintptr, 
 		if v3 != 0 {
 			**(**uintptr)(__ccgo_up(p22)) = arg
 		} else {
-			return _converterr(tls, __ccgo_ts+15040, arg, msgbuf, bufsize)
+			return _converterr(tls, __ccgo_ts+15059, arg, msgbuf, bufsize)
 		}
 	case int32('U'):
 		p23 = libc.VaUintptr(&**(**Tva_list)(__ccgo_up(p_va)))
@@ -21614,7 +21614,7 @@ _5:
 	if nargs+nkwargs > int64(len1) {
 
 		if fname == libc.UintptrFromInt32(0) {
-			v3 = __ccgo_ts + 40631
+			v3 = __ccgo_ts + 40618
 		} else {
 			v3 = fname
 		}
@@ -21672,7 +21672,7 @@ _5:
 			if int64(max) < nargs {
 				if max == 0 {
 					if fname == libc.UintptrFromInt32(0) {
-						v3 = __ccgo_ts + 40631
+						v3 = __ccgo_ts + 40618
 					} else {
 						v3 = fname
 					}
@@ -21684,7 +21684,7 @@ _5:
 					XPyErr_Format(tls, XPyExc_TypeError, __ccgo_ts+142408, libc.VaList(bp+832, v3, v11))
 				} else {
 					if fname == libc.UintptrFromInt32(0) {
-						v3 = __ccgo_ts + 40631
+						v3 = __ccgo_ts + 40618
 					} else {
 						v3 = fname
 					}
@@ -21768,7 +21768,7 @@ _5:
 
 				} else {
 					if fname == libc.UintptrFromInt32(0) {
-						v3 = __ccgo_ts + 40631
+						v3 = __ccgo_ts + 40618
 					} else {
 						v3 = fname
 					}
@@ -21799,7 +21799,7 @@ _5:
 	}
 	if skip != 0 {
 		if fname == libc.UintptrFromInt32(0) {
-			v3 = __ccgo_ts + 40631
+			v3 = __ccgo_ts + 40618
 		} else {
 			v3 = fname
 		}
@@ -21868,7 +21868,7 @@ _5:
 				;
 
 				if fname == libc.UintptrFromInt32(0) {
-					v3 = __ccgo_ts + 40631
+					v3 = __ccgo_ts + 40618
 				} else {
 					v3 = fname
 				}
@@ -22466,7 +22466,7 @@ _7:
 	if nargs+nkwargs > int64(len1) {
 
 		if (*T_PyArg_Parser)(unsafe.Pointer(parser)).Ffname == libc.UintptrFromInt32(0) {
-			v1 = __ccgo_ts + 40631
+			v1 = __ccgo_ts + 40618
 		} else {
 			v1 = (*T_PyArg_Parser)(unsafe.Pointer(parser)).Ffname
 		}
@@ -22491,7 +22491,7 @@ _7:
 	if int64((*T_PyArg_Parser)(unsafe.Pointer(parser)).Fmax) < nargs {
 		if (*T_PyArg_Parser)(unsafe.Pointer(parser)).Fmax == 0 {
 			if (*T_PyArg_Parser)(unsafe.Pointer(parser)).Ffname == libc.UintptrFromInt32(0) {
-				v1 = __ccgo_ts + 40631
+				v1 = __ccgo_ts + 40618
 			} else {
 				v1 = (*T_PyArg_Parser)(unsafe.Pointer(parser)).Ffname
 			}
@@ -22503,7 +22503,7 @@ _7:
 			XPyErr_Format(tls, XPyExc_TypeError, __ccgo_ts+142408, libc.VaList(bp+816, v1, v10))
 		} else {
 			if (*T_PyArg_Parser)(unsafe.Pointer(parser)).Ffname == libc.UintptrFromInt32(0) {
-				v1 = __ccgo_ts + 40631
+				v1 = __ccgo_ts + 40618
 			} else {
 				v1 = (*T_PyArg_Parser)(unsafe.Pointer(parser)).Ffname
 			}
@@ -22603,7 +22603,7 @@ _7:
 				}
 				min = v3
 				if (*T_PyArg_Parser)(unsafe.Pointer(parser)).Ffname == libc.UintptrFromInt32(0) {
-					v1 = __ccgo_ts + 40631
+					v1 = __ccgo_ts + 40618
 				} else {
 					v1 = (*T_PyArg_Parser)(unsafe.Pointer(parser)).Ffname
 				}
@@ -22626,7 +22626,7 @@ _7:
 			} else {
 				keyword = **(**uintptr)(__ccgo_up(kwtuple + 32 + uintptr(i-int64(pos))*8))
 				if (*T_PyArg_Parser)(unsafe.Pointer(parser)).Ffname == libc.UintptrFromInt32(0) {
-					v1 = __ccgo_ts + 40631
+					v1 = __ccgo_ts + 40618
 				} else {
 					v1 = (*T_PyArg_Parser)(unsafe.Pointer(parser)).Ffname
 				}
@@ -22683,7 +22683,7 @@ _7:
 				;
 
 				if (*T_PyArg_Parser)(unsafe.Pointer(parser)).Ffname == libc.UintptrFromInt32(0) {
-					v1 = __ccgo_ts + 40631
+					v1 = __ccgo_ts + 40618
 				} else {
 					v1 = (*T_PyArg_Parser)(unsafe.Pointer(parser)).Ffname
 				}
@@ -22836,7 +22836,7 @@ _9:
 	if !(varpos != 0) && nargs+nkwargs > int64(maxargs) {
 
 		if (*T_PyArg_Parser)(unsafe.Pointer(parser)).Ffname == libc.UintptrFromInt32(0) {
-			v2 = __ccgo_ts + 40631
+			v2 = __ccgo_ts + 40618
 		} else {
 			v2 = (*T_PyArg_Parser)(unsafe.Pointer(parser)).Ffname
 		}
@@ -22861,7 +22861,7 @@ _9:
 	if !(varpos != 0) && nargs > int64(maxpos) {
 		if maxpos == 0 {
 			if (*T_PyArg_Parser)(unsafe.Pointer(parser)).Ffname == libc.UintptrFromInt32(0) {
-				v2 = __ccgo_ts + 40631
+				v2 = __ccgo_ts + 40618
 			} else {
 				v2 = (*T_PyArg_Parser)(unsafe.Pointer(parser)).Ffname
 			}
@@ -22873,7 +22873,7 @@ _9:
 			XPyErr_Format(tls, XPyExc_TypeError, __ccgo_ts+142408, libc.VaList(bp+24, v2, v18))
 		} else {
 			if (*T_PyArg_Parser)(unsafe.Pointer(parser)).Ffname == libc.UintptrFromInt32(0) {
-				v2 = __ccgo_ts + 40631
+				v2 = __ccgo_ts + 40618
 			} else {
 				v2 = (*T_PyArg_Parser)(unsafe.Pointer(parser)).Ffname
 			}
@@ -22898,7 +22898,7 @@ _9:
 	}
 	if nargs < int64(minposonly) {
 		if (*T_PyArg_Parser)(unsafe.Pointer(parser)).Ffname == libc.UintptrFromInt32(0) {
-			v2 = __ccgo_ts + 40631
+			v2 = __ccgo_ts + 40618
 		} else {
 			v2 = (*T_PyArg_Parser)(unsafe.Pointer(parser)).Ffname
 		}
@@ -22990,7 +22990,7 @@ _9:
 
 				keyword = **(**uintptr)(__ccgo_up(kwtuple + 32 + uintptr(i-posonly)*8))
 				if (*T_PyArg_Parser)(unsafe.Pointer(parser)).Ffname == libc.UintptrFromInt32(0) {
-					v2 = __ccgo_ts + 40631
+					v2 = __ccgo_ts + 40618
 				} else {
 					v2 = (*T_PyArg_Parser)(unsafe.Pointer(parser)).Ffname
 				}
@@ -23041,7 +23041,7 @@ _9:
 				;
 
 				if (*T_PyArg_Parser)(unsafe.Pointer(parser)).Ffname == libc.UintptrFromInt32(0) {
-					v2 = __ccgo_ts + 40631
+					v2 = __ccgo_ts + 40618
 				} else {
 					v2 = (*T_PyArg_Parser)(unsafe.Pointer(parser)).Ffname
 				}
@@ -27987,7 +27987,7 @@ func _hamt_py_set(tls *libc.TLS, op uintptr, args uintptr) (r uintptr) {
 	var _ uintptr
 	var _ uintptr
 	_ = self
-	if !(XPyArg_UnpackTuple(tls, args, __ccgo_ts+58012, int64(2), int64(2), libc.VaList(bp+24, bp, bp+8)) != 0) {
+	if !(XPyArg_UnpackTuple(tls, args, __ccgo_ts+57999, int64(2), int64(2), libc.VaList(bp+24, bp, bp+8)) != 0) {
 		return libc.UintptrFromInt32(0)
 	}
 	self = op
@@ -28081,7 +28081,7 @@ func _hamt_py_keys(tls *libc.TLS, op uintptr, _unused_args uintptr) (r uintptr) 
 
 var _PyHamt_methods = [7]TPyMethodDef{
 	0: {
-		Fml_name:  __ccgo_ts + 58012,
+		Fml_name:  __ccgo_ts + 57999,
 		Fml_flags: int32(MMETH_VARARGS),
 	},
 	1: {
@@ -35740,7 +35740,7 @@ func __imp_get_frozen_object_impl(tls *libc.TLS, module uintptr, name uintptr, d
 		(**(**Tfrozen_info)(__ccgo_up(bp))).Fsize = (**(**TPy_buffer)(__ccgo_up(bp + 40))).Flen1
 	} else {
 		if dataobj != uintptr(unsafe.Pointer(&X_Py_NoneStruct)) {
-			X_PyArg_BadArgument(tls, __ccgo_ts+144127, __ccgo_ts+16497, __ccgo_ts+17605, dataobj)
+			X_PyArg_BadArgument(tls, __ccgo_ts+144127, __ccgo_ts+16497, __ccgo_ts+17620, dataobj)
 			return libc.UintptrFromInt32(0)
 		} else {
 			status = _find_frozen(tls, name, bp)
