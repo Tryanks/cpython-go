@@ -24,6 +24,12514 @@ var _ = libsqlite3.Xsqlite3_libversion_number
 
 var _ = libz.Xcrc32
 
+var __kwtuple364 = struct {
+	F_this_is_not_used TPyGC_Head
+	Fob_base           TPyVarObject
+	Fob_hash           TPy_hash_t
+	Fob_item           [1]uintptr
+}{
+	Fob_base: TPyVarObject{
+		Fob_base: TPyObject{
+			F__ccgo0_0: *(*struct {
+				F__ccgo1_0 [0]struct {
+					Fob_refcnt   Tuint32_t
+					Fob_overflow Tuint16_t
+					Fob_flags    Tuint16_t
+				}
+				Fob_refcnt_full Tint64_t
+			})(unsafe.Pointer(&[1]uint64{0x50000c0000000})),
+			Fob_type: uintptr(unsafe.Pointer(&XPyTuple_Type)),
+		},
+		Fob_size: int64(libc.Int32FromInt32(1)),
+	},
+	Fob_hash: int64(-int32(1)),
+	Fob_item: [1]uintptr{
+		0: uintptr(unsafe.Pointer(&X_PyRuntime)) + 13416 + 20712 + 1232 + 31096,
+	},
+}
+
+var __keywords415 = [2]uintptr{
+	0: __ccgo_ts + 155407,
+	1: libc.UintptrFromInt32(0),
+}
+
+var __parser414 = T_PyArg_Parser{
+	Fkeywords: uintptr(unsafe.Pointer(&__keywords415)),
+	Ffname:    __ccgo_ts + 365847,
+	Fkwtuple:  uintptr(unsafe.Pointer(&__kwtuple364)) + 16,
+}
+
+func __opcode_has_free(tls *libc.TLS, module uintptr, args uintptr, nargs TPy_ssize_t, kwnames uintptr) (r uintptr) {
+	bp := tls.Alloc(16)
+	defer tls.Free(16)
+	var _return_value, opcode int32
+	var return_value, v1 uintptr
+	var _ [1]uintptr
+	_, _, _, _ = _return_value, opcode, return_value, v1
+	return_value = libc.UintptrFromInt32(0)
+	if libc.Bool(libc.Bool(true) && libc.Bool(libc.UintptrFromInt32(0) == libc.UintptrFromInt32(0))) && kwnames == libc.UintptrFromInt32(0) && int64(libc.Int32FromInt32(1)) <= nargs && (libc.Bool(0 != 0) || nargs <= int64(libc.Int32FromInt32(1))) && args != libc.UintptrFromInt32(0) {
+		v1 = args
+	} else {
+		v1 = X_PyArg_UnpackKeywords(tls, args, nargs, libc.UintptrFromInt32(0), kwnames, uintptr(unsafe.Pointer(&__parser415)), int32(1), int32(1), 0, 0, bp)
+	}
+	args = v1
+	if !(args != 0) {
+		goto exit
+	}
+	opcode = XPyLong_AsInt(tls, **(**uintptr)(__ccgo_up(args)))
+	if opcode == -int32(1) && XPyErr_Occurred(tls) != 0 {
+		goto exit
+	}
+	_return_value = __opcode_has_free_impl(tls, module, opcode)
+	if _return_value == -int32(1) && XPyErr_Occurred(tls) != 0 {
+		goto exit
+	}
+	return_value = XPyBool_FromLong(tls, int64(_return_value))
+	goto exit
+exit:
+	;
+	return return_value
+	return r
+}
+
+var __kwtuple365 = struct {
+	F_this_is_not_used TPyGC_Head
+	Fob_base           TPyVarObject
+	Fob_hash           TPy_hash_t
+	Fob_item           [1]uintptr
+}{
+	Fob_base: TPyVarObject{
+		Fob_base: TPyObject{
+			F__ccgo0_0: *(*struct {
+				F__ccgo1_0 [0]struct {
+					Fob_refcnt   Tuint32_t
+					Fob_overflow Tuint16_t
+					Fob_flags    Tuint16_t
+				}
+				Fob_refcnt_full Tint64_t
+			})(unsafe.Pointer(&[1]uint64{0x50000c0000000})),
+			Fob_type: uintptr(unsafe.Pointer(&XPyTuple_Type)),
+		},
+		Fob_size: int64(libc.Int32FromInt32(1)),
+	},
+	Fob_hash: int64(-int32(1)),
+	Fob_item: [1]uintptr{
+		0: uintptr(unsafe.Pointer(&X_PyRuntime)) + 13416 + 20712 + 1232 + 31096,
+	},
+}
+
+var __keywords416 = [2]uintptr{
+	0: __ccgo_ts + 155407,
+	1: libc.UintptrFromInt32(0),
+}
+
+var __parser415 = T_PyArg_Parser{
+	Fkeywords: uintptr(unsafe.Pointer(&__keywords416)),
+	Ffname:    __ccgo_ts + 365856,
+	Fkwtuple:  uintptr(unsafe.Pointer(&__kwtuple365)) + 16,
+}
+
+func __opcode_has_local(tls *libc.TLS, module uintptr, args uintptr, nargs TPy_ssize_t, kwnames uintptr) (r uintptr) {
+	bp := tls.Alloc(16)
+	defer tls.Free(16)
+	var _return_value, opcode int32
+	var return_value, v1 uintptr
+	var _ [1]uintptr
+	_, _, _, _ = _return_value, opcode, return_value, v1
+	return_value = libc.UintptrFromInt32(0)
+	if libc.Bool(libc.Bool(true) && libc.Bool(libc.UintptrFromInt32(0) == libc.UintptrFromInt32(0))) && kwnames == libc.UintptrFromInt32(0) && int64(libc.Int32FromInt32(1)) <= nargs && (libc.Bool(0 != 0) || nargs <= int64(libc.Int32FromInt32(1))) && args != libc.UintptrFromInt32(0) {
+		v1 = args
+	} else {
+		v1 = X_PyArg_UnpackKeywords(tls, args, nargs, libc.UintptrFromInt32(0), kwnames, uintptr(unsafe.Pointer(&__parser416)), int32(1), int32(1), 0, 0, bp)
+	}
+	args = v1
+	if !(args != 0) {
+		goto exit
+	}
+	opcode = XPyLong_AsInt(tls, **(**uintptr)(__ccgo_up(args)))
+	if opcode == -int32(1) && XPyErr_Occurred(tls) != 0 {
+		goto exit
+	}
+	_return_value = __opcode_has_local_impl(tls, module, opcode)
+	if _return_value == -int32(1) && XPyErr_Occurred(tls) != 0 {
+		goto exit
+	}
+	return_value = XPyBool_FromLong(tls, int64(_return_value))
+	goto exit
+exit:
+	;
+	return return_value
+	return r
+}
+
+var __kwtuple366 = struct {
+	F_this_is_not_used TPyGC_Head
+	Fob_base           TPyVarObject
+	Fob_hash           TPy_hash_t
+	Fob_item           [1]uintptr
+}{
+	Fob_base: TPyVarObject{
+		Fob_base: TPyObject{
+			F__ccgo0_0: *(*struct {
+				F__ccgo1_0 [0]struct {
+					Fob_refcnt   Tuint32_t
+					Fob_overflow Tuint16_t
+					Fob_flags    Tuint16_t
+				}
+				Fob_refcnt_full Tint64_t
+			})(unsafe.Pointer(&[1]uint64{0x50000c0000000})),
+			Fob_type: uintptr(unsafe.Pointer(&XPyTuple_Type)),
+		},
+		Fob_size: int64(libc.Int32FromInt32(1)),
+	},
+	Fob_hash: int64(-int32(1)),
+	Fob_item: [1]uintptr{
+		0: uintptr(unsafe.Pointer(&X_PyRuntime)) + 13416 + 20712 + 1232 + 31096,
+	},
+}
+
+var __keywords417 = [2]uintptr{
+	0: __ccgo_ts + 155407,
+	1: libc.UintptrFromInt32(0),
+}
+
+var __parser416 = T_PyArg_Parser{
+	Fkeywords: uintptr(unsafe.Pointer(&__keywords417)),
+	Ffname:    __ccgo_ts + 365865,
+	Fkwtuple:  uintptr(unsafe.Pointer(&__kwtuple366)) + 16,
+}
+
+func __opcode_has_exc(tls *libc.TLS, module uintptr, args uintptr, nargs TPy_ssize_t, kwnames uintptr) (r uintptr) {
+	bp := tls.Alloc(16)
+	defer tls.Free(16)
+	var _return_value, opcode int32
+	var return_value, v1 uintptr
+	var _ [1]uintptr
+	_, _, _, _ = _return_value, opcode, return_value, v1
+	return_value = libc.UintptrFromInt32(0)
+	if libc.Bool(libc.Bool(true) && libc.Bool(libc.UintptrFromInt32(0) == libc.UintptrFromInt32(0))) && kwnames == libc.UintptrFromInt32(0) && int64(libc.Int32FromInt32(1)) <= nargs && (libc.Bool(0 != 0) || nargs <= int64(libc.Int32FromInt32(1))) && args != libc.UintptrFromInt32(0) {
+		v1 = args
+	} else {
+		v1 = X_PyArg_UnpackKeywords(tls, args, nargs, libc.UintptrFromInt32(0), kwnames, uintptr(unsafe.Pointer(&__parser417)), int32(1), int32(1), 0, 0, bp)
+	}
+	args = v1
+	if !(args != 0) {
+		goto exit
+	}
+	opcode = XPyLong_AsInt(tls, **(**uintptr)(__ccgo_up(args)))
+	if opcode == -int32(1) && XPyErr_Occurred(tls) != 0 {
+		goto exit
+	}
+	_return_value = __opcode_has_exc_impl(tls, module, opcode)
+	if _return_value == -int32(1) && XPyErr_Occurred(tls) != 0 {
+		goto exit
+	}
+	return_value = XPyBool_FromLong(tls, int64(_return_value))
+	goto exit
+exit:
+	;
+	return return_value
+	return r
+}
+
+var __kwtuple367 = struct {
+	F_this_is_not_used TPyGC_Head
+	Fob_base           TPyVarObject
+	Fob_hash           TPy_hash_t
+	Fob_item           [1]uintptr
+}{
+	Fob_base: TPyVarObject{
+		Fob_base: TPyObject{
+			F__ccgo0_0: *(*struct {
+				F__ccgo1_0 [0]struct {
+					Fob_refcnt   Tuint32_t
+					Fob_overflow Tuint16_t
+					Fob_flags    Tuint16_t
+				}
+				Fob_refcnt_full Tint64_t
+			})(unsafe.Pointer(&[1]uint64{0x50000c0000000})),
+			Fob_type: uintptr(unsafe.Pointer(&XPyTuple_Type)),
+		},
+		Fob_size: int64(libc.Int32FromInt32(1)),
+	},
+	Fob_hash: int64(-int32(1)),
+	Fob_item: [1]uintptr{
+		0: uintptr(unsafe.Pointer(&X_PyRuntime)) + 13416 + 20712 + 1232 + 31096,
+	},
+}
+
+var __keywords418 = [2]uintptr{
+	0: __ccgo_ts + 155407,
+	1: libc.UintptrFromInt32(0),
+}
+
+var __parser417 = T_PyArg_Parser{
+	Fkeywords: uintptr(unsafe.Pointer(&__keywords418)),
+	Ffname:    __ccgo_ts + 365875,
+	Fkwtuple:  uintptr(unsafe.Pointer(&__kwtuple367)) + 16,
+}
+
+func __opcode_get_specialization_stats(tls *libc.TLS, module uintptr, _unused_ignored uintptr) (r uintptr) {
+	return __opcode_get_specialization_stats_impl(tls, module)
+}
+
+func __opcode_get_nb_ops(tls *libc.TLS, module uintptr, _unused_ignored uintptr) (r uintptr) {
+	return __opcode_get_nb_ops_impl(tls, module)
+}
+
+func __opcode_get_intrinsic1_descs(tls *libc.TLS, module uintptr, _unused_ignored uintptr) (r uintptr) {
+	return __opcode_get_intrinsic1_descs_impl(tls, module)
+}
+
+func __opcode_get_intrinsic2_descs(tls *libc.TLS, module uintptr, _unused_ignored uintptr) (r uintptr) {
+	return __opcode_get_intrinsic2_descs_impl(tls, module)
+}
+
+func __opcode_get_special_method_names(tls *libc.TLS, module uintptr, _unused_ignored uintptr) (r uintptr) {
+	return __opcode_get_special_method_names_impl(tls, module)
+}
+
+func __opcode_get_executor(tls *libc.TLS, module uintptr, args uintptr, nargs TPy_ssize_t, kwnames uintptr) (r uintptr) {
+	bp := tls.Alloc(16)
+	defer tls.Free(16)
+	var code, return_value, v1 uintptr
+	var offset int32
+	var _ [2]uintptr
+	_, _, _, _ = code, offset, return_value, v1
+	return_value = libc.UintptrFromInt32(0)
+	if libc.Bool(libc.Bool(true) && libc.Bool(libc.UintptrFromInt32(0) == libc.UintptrFromInt32(0))) && kwnames == libc.UintptrFromInt32(0) && int64(libc.Int32FromInt32(2)) <= nargs && (libc.Bool(0 != 0) || nargs <= int64(libc.Int32FromInt32(2))) && args != libc.UintptrFromInt32(0) {
+		v1 = args
+	} else {
+		v1 = X_PyArg_UnpackKeywords(tls, args, nargs, libc.UintptrFromInt32(0), kwnames, uintptr(unsafe.Pointer(&__parser418)), int32(2), int32(2), 0, 0, bp)
+	}
+	args = v1
+	if !(args != 0) {
+		goto exit
+	}
+	code = **(**uintptr)(__ccgo_up(args))
+	offset = XPyLong_AsInt(tls, **(**uintptr)(__ccgo_up(args + 1*8)))
+	if offset == -int32(1) && XPyErr_Occurred(tls) != 0 {
+		goto exit
+	}
+	return_value = __opcode_get_executor_impl(tls, module, code, offset)
+	goto exit
+exit:
+	;
+	return return_value
+	return r
+}
+
+var __kwtuple368 = struct {
+	F_this_is_not_used TPyGC_Head
+	Fob_base           TPyVarObject
+	Fob_hash           TPy_hash_t
+	Fob_item           [2]uintptr
+}{
+	Fob_base: TPyVarObject{
+		Fob_base: TPyObject{
+			F__ccgo0_0: *(*struct {
+				F__ccgo1_0 [0]struct {
+					Fob_refcnt   Tuint32_t
+					Fob_overflow Tuint16_t
+					Fob_flags    Tuint16_t
+				}
+				Fob_refcnt_full Tint64_t
+			})(unsafe.Pointer(&[1]uint64{0x50000c0000000})),
+			Fob_type: uintptr(unsafe.Pointer(&XPyTuple_Type)),
+		},
+		Fob_size: int64(libc.Int32FromInt32(2)),
+	},
+	Fob_hash: int64(-int32(1)),
+	Fob_item: [2]uintptr{
+		0: uintptr(unsafe.Pointer(&X_PyRuntime)) + 13416 + 20712 + 1232 + 17128,
+		1: uintptr(unsafe.Pointer(&X_PyRuntime)) + 13416 + 20712 + 1232 + 30656,
+	},
+}
+
+var __keywords419 = [3]uintptr{
+	0: __ccgo_ts + 21519,
+	1: __ccgo_ts + 30650,
+	2: libc.UintptrFromInt32(0),
+}
+
+var __parser418 = T_PyArg_Parser{
+	Fkeywords: uintptr(unsafe.Pointer(&__keywords419)),
+	Ffname:    __ccgo_ts + 365883,
+	Fkwtuple:  uintptr(unsafe.Pointer(&__kwtuple368)) + 16,
+}
+
+func __opcode_stack_effect_impl(tls *libc.TLS, module uintptr, opcode int32, oparg uintptr, jump uintptr) (r int32) {
+	/*[clinic end generated code: output=64a18f2ead954dbb input=461c9d4a44851898]*/
+	var effect, jump_int, oparg_int int32
+	_, _, _ = effect, jump_int, oparg_int
+	oparg_int = 0
+	if oparg != uintptr(unsafe.Pointer(&X_Py_NoneStruct)) {
+		oparg_int = int32(XPyLong_AsLong(tls, oparg))
+		if oparg_int == -int32(1) && XPyErr_Occurred(tls) != 0 {
+			return -int32(1)
+		}
+	}
+	if jump == uintptr(unsafe.Pointer(&X_Py_NoneStruct)) {
+		jump_int = -int32(1)
+	} else {
+		if jump == uintptr(unsafe.Pointer(&X_Py_TrueStruct)) {
+			jump_int = int32(1)
+		} else {
+			if jump == uintptr(unsafe.Pointer(&X_Py_FalseStruct)) {
+				jump_int = 0
+			} else {
+				XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+365896)
+				return -int32(1)
+			}
+		}
+	}
+	effect = XPyCompile_OpcodeStackEffectWithJump(tls, opcode, oparg_int, jump_int)
+	if effect == int32(MINT_MAX) {
+		XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+365943)
+		return -int32(1)
+	}
+	return effect
+}
+
+func __opcode_is_valid_impl(tls *libc.TLS, module uintptr, opcode int32) (r int32) {
+
+	return libc.BoolInt32(opcode >= 0 && opcode < int32(267) && X_PyOpcode_opcode_metadata[opcode].Fvalid_entry != 0)
+}
+
+func __opcode_has_arg_impl(tls *libc.TLS, module uintptr, opcode int32) (r int32) {
+
+	return libc.BoolInt32(opcode >= 0 && opcode < int32(267) && X_PyOpcode_opcode_metadata[opcode].Fvalid_entry != 0 && libc.Int32FromUint16(X_PyOpcode_opcode_metadata[opcode].Fflags)&int32(MHAS_ARG_FLAG) != 0)
+}
+
+func __opcode_has_const_impl(tls *libc.TLS, module uintptr, opcode int32) (r int32) {
+
+	return libc.BoolInt32(opcode >= 0 && opcode < int32(267) && X_PyOpcode_opcode_metadata[opcode].Fvalid_entry != 0 && libc.Int32FromUint16(X_PyOpcode_opcode_metadata[opcode].Fflags)&int32(MHAS_CONST_FLAG) != 0)
+}
+
+func __opcode_has_name_impl(tls *libc.TLS, module uintptr, opcode int32) (r int32) {
+
+	return libc.BoolInt32(opcode >= 0 && opcode < int32(267) && X_PyOpcode_opcode_metadata[opcode].Fvalid_entry != 0 && libc.Int32FromUint16(X_PyOpcode_opcode_metadata[opcode].Fflags)&int32(MHAS_NAME_FLAG) != 0)
+}
+
+func __opcode_has_jump_impl(tls *libc.TLS, module uintptr, opcode int32) (r int32) {
+
+	return libc.BoolInt32(opcode >= 0 && opcode < int32(267) && X_PyOpcode_opcode_metadata[opcode].Fvalid_entry != 0 && libc.Int32FromUint16(X_PyOpcode_opcode_metadata[opcode].Fflags)&int32(MHAS_JUMP_FLAG) != 0)
+}
+
+func __opcode_has_free_impl(tls *libc.TLS, module uintptr, opcode int32) (r int32) {
+
+	return libc.BoolInt32(opcode >= 0 && opcode < int32(267) && X_PyOpcode_opcode_metadata[opcode].Fvalid_entry != 0 && libc.Int32FromUint16(X_PyOpcode_opcode_metadata[opcode].Fflags)&int32(MHAS_FREE_FLAG) != 0)
+}
+
+func __opcode_has_local_impl(tls *libc.TLS, module uintptr, opcode int32) (r int32) {
+
+	return libc.BoolInt32(opcode >= 0 && opcode < int32(267) && X_PyOpcode_opcode_metadata[opcode].Fvalid_entry != 0 && libc.Int32FromUint16(X_PyOpcode_opcode_metadata[opcode].Fflags)&int32(MHAS_LOCAL_FLAG) != 0)
+}
+
+func __opcode_has_exc_impl(tls *libc.TLS, module uintptr, opcode int32) (r int32) {
+
+	return libc.BoolInt32(opcode >= 0 && opcode < int32(267) && X_PyOpcode_opcode_metadata[opcode].Fvalid_entry != 0 && (opcode == int32(MSETUP_FINALLY) || opcode == int32(MSETUP_WITH) || opcode == int32(MSETUP_CLEANUP)))
+}
+
+func __opcode_get_specialization_stats_impl(tls *libc.TLS, module uintptr) (r uintptr) {
+
+	return uintptr(unsafe.Pointer(&X_Py_NoneStruct))
+}
+
+func __opcode_get_nb_ops_impl(tls *libc.TLS, module uintptr) (r uintptr) {
+	bp := tls.Alloc(32)
+	defer tls.Free(32)
+	/*[clinic end generated code: output=d997d306cc15426f input=9462fc544c823176]*/
+	var i, v2 int32
+	var list, list1, pair, pair1, pair10, pair11, pair12, pair13, pair14, pair15, pair16, pair17, pair18, pair19, pair2, pair20, pair21, pair22, pair23, pair24, pair25, pair26, pair3, pair4, pair5, pair6, pair7, pair8, pair9, v1, v6 uintptr
+	var v5 Tuint32_t
+	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = i, list, list1, pair, pair1, pair10, pair11, pair12, pair13, pair14, pair15, pair16, pair17, pair18, pair19, pair2, pair20, pair21, pair22, pair23, pair24, pair25, pair26, pair3, pair4, pair5, pair6, pair7, pair8, pair9, v1, v2, v5, v6
+	list1 = XPyList_New(tls, int64(libc.Int32FromInt32(MNB_OPARG_LAST)+libc.Int32FromInt32(1)))
+	if list1 == libc.UintptrFromInt32(0) {
+		return libc.UintptrFromInt32(0)
+	}
+	pair = XPy_BuildValue(tls, __ccgo_ts+173630, libc.VaList(bp+8, __ccgo_ts+365967, __ccgo_ts+11970))
+	if pair == libc.UintptrFromInt32(0) {
+		v1 = list1
+		v2 = libc.BoolInt32(libc.Int32FromUint32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
+		goto _3
+	_3:
+		if v2 != 0 {
+			goto _4
+		}
+		v6 = v1
+		*(*Tuint32_t)(unsafe.Pointer(v6)) = *(*Tuint32_t)(unsafe.Pointer(v6)) - 1
+		v5 = *(*Tuint32_t)(unsafe.Pointer(v6))
+		if v5 == libc.Uint32FromInt32(0) {
+			X_Py_Dealloc(tls, v1)
+		}
+	_4:
+		;
+		return libc.UintptrFromInt32(0)
+	}
+	list = list1
+	**(**uintptr)(__ccgo_up((*TPyListObject)(unsafe.Pointer(list)).Fob_item + uintptr(int64(libc.Int32FromInt32(MNB_ADD)))*8)) = pair
+	pair1 = XPy_BuildValue(tls, __ccgo_ts+173630, libc.VaList(bp+8, __ccgo_ts+365974, __ccgo_ts+11951))
+	if pair1 == libc.UintptrFromInt32(0) {
+		v1 = list1
+		v2 = libc.BoolInt32(libc.Int32FromUint32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
+		goto _9
+	_9:
+		if v2 != 0 {
+			goto _10
+		}
+		v6 = v1
+		*(*Tuint32_t)(unsafe.Pointer(v6)) = *(*Tuint32_t)(unsafe.Pointer(v6)) - 1
+		v5 = *(*Tuint32_t)(unsafe.Pointer(v6))
+		if v5 == libc.Uint32FromInt32(0) {
+			X_Py_Dealloc(tls, v1)
+		}
+	_10:
+		;
+		return libc.UintptrFromInt32(0)
+	}
+	list = list1
+	**(**uintptr)(__ccgo_up((*TPyListObject)(unsafe.Pointer(list)).Fob_item + uintptr(int64(libc.Int32FromInt32(MNB_AND)))*8)) = pair1
+	pair2 = XPy_BuildValue(tls, __ccgo_ts+173630, libc.VaList(bp+8, __ccgo_ts+365981, __ccgo_ts+12026))
+	if pair2 == libc.UintptrFromInt32(0) {
+		v1 = list1
+		v2 = libc.BoolInt32(libc.Int32FromUint32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
+		goto _15
+	_15:
+		if v2 != 0 {
+			goto _16
+		}
+		v6 = v1
+		*(*Tuint32_t)(unsafe.Pointer(v6)) = *(*Tuint32_t)(unsafe.Pointer(v6)) - 1
+		v5 = *(*Tuint32_t)(unsafe.Pointer(v6))
+		if v5 == libc.Uint32FromInt32(0) {
+			X_Py_Dealloc(tls, v1)
+		}
+	_16:
+		;
+		return libc.UintptrFromInt32(0)
+	}
+	list = list1
+	**(**uintptr)(__ccgo_up((*TPyListObject)(unsafe.Pointer(list)).Fob_item + uintptr(int64(libc.Int32FromInt32(MNB_FLOOR_DIVIDE)))*8)) = pair2
+	pair3 = XPy_BuildValue(tls, __ccgo_ts+173630, libc.VaList(bp+8, __ccgo_ts+365997, __ccgo_ts+11953))
+	if pair3 == libc.UintptrFromInt32(0) {
+		v1 = list1
+		v2 = libc.BoolInt32(libc.Int32FromUint32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
+		goto _21
+	_21:
+		if v2 != 0 {
+			goto _22
+		}
+		v6 = v1
+		*(*Tuint32_t)(unsafe.Pointer(v6)) = *(*Tuint32_t)(unsafe.Pointer(v6)) - 1
+		v5 = *(*Tuint32_t)(unsafe.Pointer(v6))
+		if v5 == libc.Uint32FromInt32(0) {
+			X_Py_Dealloc(tls, v1)
+		}
+	_22:
+		;
+		return libc.UintptrFromInt32(0)
+	}
+	list = list1
+	**(**uintptr)(__ccgo_up((*TPyListObject)(unsafe.Pointer(list)).Fob_item + uintptr(int64(libc.Int32FromInt32(MNB_LSHIFT)))*8)) = pair3
+	pair4 = XPy_BuildValue(tls, __ccgo_ts+173630, libc.VaList(bp+8, __ccgo_ts+366007, __ccgo_ts+12024))
+	if pair4 == libc.UintptrFromInt32(0) {
+		v1 = list1
+		v2 = libc.BoolInt32(libc.Int32FromUint32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
+		goto _27
+	_27:
+		if v2 != 0 {
+			goto _28
+		}
+		v6 = v1
+		*(*Tuint32_t)(unsafe.Pointer(v6)) = *(*Tuint32_t)(unsafe.Pointer(v6)) - 1
+		v5 = *(*Tuint32_t)(unsafe.Pointer(v6))
+		if v5 == libc.Uint32FromInt32(0) {
+			X_Py_Dealloc(tls, v1)
+		}
+	_28:
+		;
+		return libc.UintptrFromInt32(0)
+	}
+	list = list1
+	**(**uintptr)(__ccgo_up((*TPyListObject)(unsafe.Pointer(list)).Fob_item + uintptr(int64(libc.Int32FromInt32(MNB_MATRIX_MULTIPLY)))*8)) = pair4
+	pair5 = XPy_BuildValue(tls, __ccgo_ts+173630, libc.VaList(bp+8, __ccgo_ts+366026, __ccgo_ts+1827))
+	if pair5 == libc.UintptrFromInt32(0) {
+		v1 = list1
+		v2 = libc.BoolInt32(libc.Int32FromUint32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
+		goto _33
+	_33:
+		if v2 != 0 {
+			goto _34
+		}
+		v6 = v1
+		*(*Tuint32_t)(unsafe.Pointer(v6)) = *(*Tuint32_t)(unsafe.Pointer(v6)) - 1
+		v5 = *(*Tuint32_t)(unsafe.Pointer(v6))
+		if v5 == libc.Uint32FromInt32(0) {
+			X_Py_Dealloc(tls, v1)
+		}
+	_34:
+		;
+		return libc.UintptrFromInt32(0)
+	}
+	list = list1
+	**(**uintptr)(__ccgo_up((*TPyListObject)(unsafe.Pointer(list)).Fob_item + uintptr(int64(libc.Int32FromInt32(MNB_MULTIPLY)))*8)) = pair5
+	pair6 = XPy_BuildValue(tls, __ccgo_ts+173630, libc.VaList(bp+8, __ccgo_ts+366038, __ccgo_ts+12031))
+	if pair6 == libc.UintptrFromInt32(0) {
+		v1 = list1
+		v2 = libc.BoolInt32(libc.Int32FromUint32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
+		goto _39
+	_39:
+		if v2 != 0 {
+			goto _40
+		}
+		v6 = v1
+		*(*Tuint32_t)(unsafe.Pointer(v6)) = *(*Tuint32_t)(unsafe.Pointer(v6)) - 1
+		v5 = *(*Tuint32_t)(unsafe.Pointer(v6))
+		if v5 == libc.Uint32FromInt32(0) {
+			X_Py_Dealloc(tls, v1)
+		}
+	_40:
+		;
+		return libc.UintptrFromInt32(0)
+	}
+	list = list1
+	**(**uintptr)(__ccgo_up((*TPyListObject)(unsafe.Pointer(list)).Fob_item + uintptr(int64(libc.Int32FromInt32(MNB_REMAINDER)))*8)) = pair6
+	pair7 = XPy_BuildValue(tls, __ccgo_ts+173630, libc.VaList(bp+8, __ccgo_ts+366051, __ccgo_ts+11947))
+	if pair7 == libc.UintptrFromInt32(0) {
+		v1 = list1
+		v2 = libc.BoolInt32(libc.Int32FromUint32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
+		goto _45
+	_45:
+		if v2 != 0 {
+			goto _46
+		}
+		v6 = v1
+		*(*Tuint32_t)(unsafe.Pointer(v6)) = *(*Tuint32_t)(unsafe.Pointer(v6)) - 1
+		v5 = *(*Tuint32_t)(unsafe.Pointer(v6))
+		if v5 == libc.Uint32FromInt32(0) {
+			X_Py_Dealloc(tls, v1)
+		}
+	_46:
+		;
+		return libc.UintptrFromInt32(0)
+	}
+	list = list1
+	**(**uintptr)(__ccgo_up((*TPyListObject)(unsafe.Pointer(list)).Fob_item + uintptr(int64(libc.Int32FromInt32(MNB_OR)))*8)) = pair7
+	pair8 = XPy_BuildValue(tls, __ccgo_ts+173630, libc.VaList(bp+8, __ccgo_ts+366057, __ccgo_ts+117841))
+	if pair8 == libc.UintptrFromInt32(0) {
+		v1 = list1
+		v2 = libc.BoolInt32(libc.Int32FromUint32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
+		goto _51
+	_51:
+		if v2 != 0 {
+			goto _52
+		}
+		v6 = v1
+		*(*Tuint32_t)(unsafe.Pointer(v6)) = *(*Tuint32_t)(unsafe.Pointer(v6)) - 1
+		v5 = *(*Tuint32_t)(unsafe.Pointer(v6))
+		if v5 == libc.Uint32FromInt32(0) {
+			X_Py_Dealloc(tls, v1)
+		}
+	_52:
+		;
+		return libc.UintptrFromInt32(0)
+	}
+	list = list1
+	**(**uintptr)(__ccgo_up((*TPyListObject)(unsafe.Pointer(list)).Fob_item + uintptr(int64(libc.Int32FromInt32(MNB_POWER)))*8)) = pair8
+	pair9 = XPy_BuildValue(tls, __ccgo_ts+173630, libc.VaList(bp+8, __ccgo_ts+366066, __ccgo_ts+11956))
+	if pair9 == libc.UintptrFromInt32(0) {
+		v1 = list1
+		v2 = libc.BoolInt32(libc.Int32FromUint32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
+		goto _57
+	_57:
+		if v2 != 0 {
+			goto _58
+		}
+		v6 = v1
+		*(*Tuint32_t)(unsafe.Pointer(v6)) = *(*Tuint32_t)(unsafe.Pointer(v6)) - 1
+		v5 = *(*Tuint32_t)(unsafe.Pointer(v6))
+		if v5 == libc.Uint32FromInt32(0) {
+			X_Py_Dealloc(tls, v1)
+		}
+	_58:
+		;
+		return libc.UintptrFromInt32(0)
+	}
+	list = list1
+	**(**uintptr)(__ccgo_up((*TPyListObject)(unsafe.Pointer(list)).Fob_item + uintptr(int64(libc.Int32FromInt32(MNB_RSHIFT)))*8)) = pair9
+	pair10 = XPy_BuildValue(tls, __ccgo_ts+173630, libc.VaList(bp+8, __ccgo_ts+366076, __ccgo_ts+11959))
+	if pair10 == libc.UintptrFromInt32(0) {
+		v1 = list1
+		v2 = libc.BoolInt32(libc.Int32FromUint32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
+		goto _63
+	_63:
+		if v2 != 0 {
+			goto _64
+		}
+		v6 = v1
+		*(*Tuint32_t)(unsafe.Pointer(v6)) = *(*Tuint32_t)(unsafe.Pointer(v6)) - 1
+		v5 = *(*Tuint32_t)(unsafe.Pointer(v6))
+		if v5 == libc.Uint32FromInt32(0) {
+			X_Py_Dealloc(tls, v1)
+		}
+	_64:
+		;
+		return libc.UintptrFromInt32(0)
+	}
+	list = list1
+	**(**uintptr)(__ccgo_up((*TPyListObject)(unsafe.Pointer(list)).Fob_item + uintptr(int64(libc.Int32FromInt32(MNB_SUBTRACT)))*8)) = pair10
+	pair11 = XPy_BuildValue(tls, __ccgo_ts+173630, libc.VaList(bp+8, __ccgo_ts+366088, __ccgo_ts+12029))
+	if pair11 == libc.UintptrFromInt32(0) {
+		v1 = list1
+		v2 = libc.BoolInt32(libc.Int32FromUint32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
+		goto _69
+	_69:
+		if v2 != 0 {
+			goto _70
+		}
+		v6 = v1
+		*(*Tuint32_t)(unsafe.Pointer(v6)) = *(*Tuint32_t)(unsafe.Pointer(v6)) - 1
+		v5 = *(*Tuint32_t)(unsafe.Pointer(v6))
+		if v5 == libc.Uint32FromInt32(0) {
+			X_Py_Dealloc(tls, v1)
+		}
+	_70:
+		;
+		return libc.UintptrFromInt32(0)
+	}
+	list = list1
+	**(**uintptr)(__ccgo_up((*TPyListObject)(unsafe.Pointer(list)).Fob_item + uintptr(int64(libc.Int32FromInt32(MNB_TRUE_DIVIDE)))*8)) = pair11
+	pair12 = XPy_BuildValue(tls, __ccgo_ts+173630, libc.VaList(bp+8, __ccgo_ts+366103, __ccgo_ts+11949))
+	if pair12 == libc.UintptrFromInt32(0) {
+		v1 = list1
+		v2 = libc.BoolInt32(libc.Int32FromUint32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
+		goto _75
+	_75:
+		if v2 != 0 {
+			goto _76
+		}
+		v6 = v1
+		*(*Tuint32_t)(unsafe.Pointer(v6)) = *(*Tuint32_t)(unsafe.Pointer(v6)) - 1
+		v5 = *(*Tuint32_t)(unsafe.Pointer(v6))
+		if v5 == libc.Uint32FromInt32(0) {
+			X_Py_Dealloc(tls, v1)
+		}
+	_76:
+		;
+		return libc.UintptrFromInt32(0)
+	}
+	list = list1
+	**(**uintptr)(__ccgo_up((*TPyListObject)(unsafe.Pointer(list)).Fob_item + uintptr(int64(libc.Int32FromInt32(MNB_XOR)))*8)) = pair12
+	pair13 = XPy_BuildValue(tls, __ccgo_ts+173630, libc.VaList(bp+8, __ccgo_ts+366110, __ccgo_ts+12078))
+	if pair13 == libc.UintptrFromInt32(0) {
+		v1 = list1
+		v2 = libc.BoolInt32(libc.Int32FromUint32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
+		goto _81
+	_81:
+		if v2 != 0 {
+			goto _82
+		}
+		v6 = v1
+		*(*Tuint32_t)(unsafe.Pointer(v6)) = *(*Tuint32_t)(unsafe.Pointer(v6)) - 1
+		v5 = *(*Tuint32_t)(unsafe.Pointer(v6))
+		if v5 == libc.Uint32FromInt32(0) {
+			X_Py_Dealloc(tls, v1)
+		}
+	_82:
+		;
+		return libc.UintptrFromInt32(0)
+	}
+	list = list1
+	**(**uintptr)(__ccgo_up((*TPyListObject)(unsafe.Pointer(list)).Fob_item + uintptr(int64(libc.Int32FromInt32(MNB_INPLACE_ADD)))*8)) = pair13
+	pair14 = XPy_BuildValue(tls, __ccgo_ts+173630, libc.VaList(bp+8, __ccgo_ts+366125, __ccgo_ts+12051))
+	if pair14 == libc.UintptrFromInt32(0) {
+		v1 = list1
+		v2 = libc.BoolInt32(libc.Int32FromUint32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
+		goto _87
+	_87:
+		if v2 != 0 {
+			goto _88
+		}
+		v6 = v1
+		*(*Tuint32_t)(unsafe.Pointer(v6)) = *(*Tuint32_t)(unsafe.Pointer(v6)) - 1
+		v5 = *(*Tuint32_t)(unsafe.Pointer(v6))
+		if v5 == libc.Uint32FromInt32(0) {
+			X_Py_Dealloc(tls, v1)
+		}
+	_88:
+		;
+		return libc.UintptrFromInt32(0)
+	}
+	list = list1
+	**(**uintptr)(__ccgo_up((*TPyListObject)(unsafe.Pointer(list)).Fob_item + uintptr(int64(libc.Int32FromInt32(MNB_INPLACE_AND)))*8)) = pair14
+	pair15 = XPy_BuildValue(tls, __ccgo_ts+173630, libc.VaList(bp+8, __ccgo_ts+366140, __ccgo_ts+12068))
+	if pair15 == libc.UintptrFromInt32(0) {
+		v1 = list1
+		v2 = libc.BoolInt32(libc.Int32FromUint32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
+		goto _93
+	_93:
+		if v2 != 0 {
+			goto _94
+		}
+		v6 = v1
+		*(*Tuint32_t)(unsafe.Pointer(v6)) = *(*Tuint32_t)(unsafe.Pointer(v6)) - 1
+		v5 = *(*Tuint32_t)(unsafe.Pointer(v6))
+		if v5 == libc.Uint32FromInt32(0) {
+			X_Py_Dealloc(tls, v1)
+		}
+	_94:
+		;
+		return libc.UintptrFromInt32(0)
+	}
+	list = list1
+	**(**uintptr)(__ccgo_up((*TPyListObject)(unsafe.Pointer(list)).Fob_item + uintptr(int64(libc.Int32FromInt32(MNB_INPLACE_FLOOR_DIVIDE)))*8)) = pair15
+	pair16 = XPy_BuildValue(tls, __ccgo_ts+173630, libc.VaList(bp+8, __ccgo_ts+366164, __ccgo_ts+12054))
+	if pair16 == libc.UintptrFromInt32(0) {
+		v1 = list1
+		v2 = libc.BoolInt32(libc.Int32FromUint32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
+		goto _99
+	_99:
+		if v2 != 0 {
+			goto _100
+		}
+		v6 = v1
+		*(*Tuint32_t)(unsafe.Pointer(v6)) = *(*Tuint32_t)(unsafe.Pointer(v6)) - 1
+		v5 = *(*Tuint32_t)(unsafe.Pointer(v6))
+		if v5 == libc.Uint32FromInt32(0) {
+			X_Py_Dealloc(tls, v1)
+		}
+	_100:
+		;
+		return libc.UintptrFromInt32(0)
+	}
+	list = list1
+	**(**uintptr)(__ccgo_up((*TPyListObject)(unsafe.Pointer(list)).Fob_item + uintptr(int64(libc.Int32FromInt32(MNB_INPLACE_LSHIFT)))*8)) = pair16
+	pair17 = XPy_BuildValue(tls, __ccgo_ts+173630, libc.VaList(bp+8, __ccgo_ts+366182, __ccgo_ts+12065))
+	if pair17 == libc.UintptrFromInt32(0) {
+		v1 = list1
+		v2 = libc.BoolInt32(libc.Int32FromUint32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
+		goto _105
+	_105:
+		if v2 != 0 {
+			goto _106
+		}
+		v6 = v1
+		*(*Tuint32_t)(unsafe.Pointer(v6)) = *(*Tuint32_t)(unsafe.Pointer(v6)) - 1
+		v5 = *(*Tuint32_t)(unsafe.Pointer(v6))
+		if v5 == libc.Uint32FromInt32(0) {
+			X_Py_Dealloc(tls, v1)
+		}
+	_106:
+		;
+		return libc.UintptrFromInt32(0)
+	}
+	list = list1
+	**(**uintptr)(__ccgo_up((*TPyListObject)(unsafe.Pointer(list)).Fob_item + uintptr(int64(libc.Int32FromInt32(MNB_INPLACE_MATRIX_MULTIPLY)))*8)) = pair17
+	pair18 = XPy_BuildValue(tls, __ccgo_ts+173630, libc.VaList(bp+8, __ccgo_ts+366209, __ccgo_ts+12081))
+	if pair18 == libc.UintptrFromInt32(0) {
+		v1 = list1
+		v2 = libc.BoolInt32(libc.Int32FromUint32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
+		goto _111
+	_111:
+		if v2 != 0 {
+			goto _112
+		}
+		v6 = v1
+		*(*Tuint32_t)(unsafe.Pointer(v6)) = *(*Tuint32_t)(unsafe.Pointer(v6)) - 1
+		v5 = *(*Tuint32_t)(unsafe.Pointer(v6))
+		if v5 == libc.Uint32FromInt32(0) {
+			X_Py_Dealloc(tls, v1)
+		}
+	_112:
+		;
+		return libc.UintptrFromInt32(0)
+	}
+	list = list1
+	**(**uintptr)(__ccgo_up((*TPyListObject)(unsafe.Pointer(list)).Fob_item + uintptr(int64(libc.Int32FromInt32(MNB_INPLACE_MULTIPLY)))*8)) = pair18
+	pair19 = XPy_BuildValue(tls, __ccgo_ts+173630, libc.VaList(bp+8, __ccgo_ts+366229, __ccgo_ts+12075))
+	if pair19 == libc.UintptrFromInt32(0) {
+		v1 = list1
+		v2 = libc.BoolInt32(libc.Int32FromUint32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
+		goto _117
+	_117:
+		if v2 != 0 {
+			goto _118
+		}
+		v6 = v1
+		*(*Tuint32_t)(unsafe.Pointer(v6)) = *(*Tuint32_t)(unsafe.Pointer(v6)) - 1
+		v5 = *(*Tuint32_t)(unsafe.Pointer(v6))
+		if v5 == libc.Uint32FromInt32(0) {
+			X_Py_Dealloc(tls, v1)
+		}
+	_118:
+		;
+		return libc.UintptrFromInt32(0)
+	}
+	list = list1
+	**(**uintptr)(__ccgo_up((*TPyListObject)(unsafe.Pointer(list)).Fob_item + uintptr(int64(libc.Int32FromInt32(MNB_INPLACE_REMAINDER)))*8)) = pair19
+	pair20 = XPy_BuildValue(tls, __ccgo_ts+173630, libc.VaList(bp+8, __ccgo_ts+366250, __ccgo_ts+12045))
+	if pair20 == libc.UintptrFromInt32(0) {
+		v1 = list1
+		v2 = libc.BoolInt32(libc.Int32FromUint32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
+		goto _123
+	_123:
+		if v2 != 0 {
+			goto _124
+		}
+		v6 = v1
+		*(*Tuint32_t)(unsafe.Pointer(v6)) = *(*Tuint32_t)(unsafe.Pointer(v6)) - 1
+		v5 = *(*Tuint32_t)(unsafe.Pointer(v6))
+		if v5 == libc.Uint32FromInt32(0) {
+			X_Py_Dealloc(tls, v1)
+		}
+	_124:
+		;
+		return libc.UintptrFromInt32(0)
+	}
+	list = list1
+	**(**uintptr)(__ccgo_up((*TPyListObject)(unsafe.Pointer(list)).Fob_item + uintptr(int64(libc.Int32FromInt32(MNB_INPLACE_OR)))*8)) = pair20
+	pair21 = XPy_BuildValue(tls, __ccgo_ts+173630, libc.VaList(bp+8, __ccgo_ts+366264, __ccgo_ts+12084))
+	if pair21 == libc.UintptrFromInt32(0) {
+		v1 = list1
+		v2 = libc.BoolInt32(libc.Int32FromUint32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
+		goto _129
+	_129:
+		if v2 != 0 {
+			goto _130
+		}
+		v6 = v1
+		*(*Tuint32_t)(unsafe.Pointer(v6)) = *(*Tuint32_t)(unsafe.Pointer(v6)) - 1
+		v5 = *(*Tuint32_t)(unsafe.Pointer(v6))
+		if v5 == libc.Uint32FromInt32(0) {
+			X_Py_Dealloc(tls, v1)
+		}
+	_130:
+		;
+		return libc.UintptrFromInt32(0)
+	}
+	list = list1
+	**(**uintptr)(__ccgo_up((*TPyListObject)(unsafe.Pointer(list)).Fob_item + uintptr(int64(libc.Int32FromInt32(MNB_INPLACE_POWER)))*8)) = pair21
+	pair22 = XPy_BuildValue(tls, __ccgo_ts+173630, libc.VaList(bp+8, __ccgo_ts+366281, __ccgo_ts+12058))
+	if pair22 == libc.UintptrFromInt32(0) {
+		v1 = list1
+		v2 = libc.BoolInt32(libc.Int32FromUint32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
+		goto _135
+	_135:
+		if v2 != 0 {
+			goto _136
+		}
+		v6 = v1
+		*(*Tuint32_t)(unsafe.Pointer(v6)) = *(*Tuint32_t)(unsafe.Pointer(v6)) - 1
+		v5 = *(*Tuint32_t)(unsafe.Pointer(v6))
+		if v5 == libc.Uint32FromInt32(0) {
+			X_Py_Dealloc(tls, v1)
+		}
+	_136:
+		;
+		return libc.UintptrFromInt32(0)
+	}
+	list = list1
+	**(**uintptr)(__ccgo_up((*TPyListObject)(unsafe.Pointer(list)).Fob_item + uintptr(int64(libc.Int32FromInt32(MNB_INPLACE_RSHIFT)))*8)) = pair22
+	pair23 = XPy_BuildValue(tls, __ccgo_ts+173630, libc.VaList(bp+8, __ccgo_ts+366299, __ccgo_ts+12062))
+	if pair23 == libc.UintptrFromInt32(0) {
+		v1 = list1
+		v2 = libc.BoolInt32(libc.Int32FromUint32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
+		goto _141
+	_141:
+		if v2 != 0 {
+			goto _142
+		}
+		v6 = v1
+		*(*Tuint32_t)(unsafe.Pointer(v6)) = *(*Tuint32_t)(unsafe.Pointer(v6)) - 1
+		v5 = *(*Tuint32_t)(unsafe.Pointer(v6))
+		if v5 == libc.Uint32FromInt32(0) {
+			X_Py_Dealloc(tls, v1)
+		}
+	_142:
+		;
+		return libc.UintptrFromInt32(0)
+	}
+	list = list1
+	**(**uintptr)(__ccgo_up((*TPyListObject)(unsafe.Pointer(list)).Fob_item + uintptr(int64(libc.Int32FromInt32(MNB_INPLACE_SUBTRACT)))*8)) = pair23
+	pair24 = XPy_BuildValue(tls, __ccgo_ts+173630, libc.VaList(bp+8, __ccgo_ts+366319, __ccgo_ts+12072))
+	if pair24 == libc.UintptrFromInt32(0) {
+		v1 = list1
+		v2 = libc.BoolInt32(libc.Int32FromUint32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
+		goto _147
+	_147:
+		if v2 != 0 {
+			goto _148
+		}
+		v6 = v1
+		*(*Tuint32_t)(unsafe.Pointer(v6)) = *(*Tuint32_t)(unsafe.Pointer(v6)) - 1
+		v5 = *(*Tuint32_t)(unsafe.Pointer(v6))
+		if v5 == libc.Uint32FromInt32(0) {
+			X_Py_Dealloc(tls, v1)
+		}
+	_148:
+		;
+		return libc.UintptrFromInt32(0)
+	}
+	list = list1
+	**(**uintptr)(__ccgo_up((*TPyListObject)(unsafe.Pointer(list)).Fob_item + uintptr(int64(libc.Int32FromInt32(MNB_INPLACE_TRUE_DIVIDE)))*8)) = pair24
+	pair25 = XPy_BuildValue(tls, __ccgo_ts+173630, libc.VaList(bp+8, __ccgo_ts+366342, __ccgo_ts+12048))
+	if pair25 == libc.UintptrFromInt32(0) {
+		v1 = list1
+		v2 = libc.BoolInt32(libc.Int32FromUint32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
+		goto _153
+	_153:
+		if v2 != 0 {
+			goto _154
+		}
+		v6 = v1
+		*(*Tuint32_t)(unsafe.Pointer(v6)) = *(*Tuint32_t)(unsafe.Pointer(v6)) - 1
+		v5 = *(*Tuint32_t)(unsafe.Pointer(v6))
+		if v5 == libc.Uint32FromInt32(0) {
+			X_Py_Dealloc(tls, v1)
+		}
+	_154:
+		;
+		return libc.UintptrFromInt32(0)
+	}
+	list = list1
+	**(**uintptr)(__ccgo_up((*TPyListObject)(unsafe.Pointer(list)).Fob_item + uintptr(int64(libc.Int32FromInt32(MNB_INPLACE_XOR)))*8)) = pair25
+	pair26 = XPy_BuildValue(tls, __ccgo_ts+173630, libc.VaList(bp+8, __ccgo_ts+366357, __ccgo_ts+43384))
+	if pair26 == libc.UintptrFromInt32(0) {
+		v1 = list1
+		v2 = libc.BoolInt32(libc.Int32FromUint32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
+		goto _159
+	_159:
+		if v2 != 0 {
+			goto _160
+		}
+		v6 = v1
+		*(*Tuint32_t)(unsafe.Pointer(v6)) = *(*Tuint32_t)(unsafe.Pointer(v6)) - 1
+		v5 = *(*Tuint32_t)(unsafe.Pointer(v6))
+		if v5 == libc.Uint32FromInt32(0) {
+			X_Py_Dealloc(tls, v1)
+		}
+	_160:
+		;
+		return libc.UintptrFromInt32(0)
+	}
+	list = list1
+	**(**uintptr)(__ccgo_up((*TPyListObject)(unsafe.Pointer(list)).Fob_item + uintptr(int64(libc.Int32FromInt32(MNB_SUBSCR)))*8)) = pair26
+	i = 0
+	for {
+		if !(i <= int32(MNB_OPARG_LAST)) {
+			break
+		}
+		if **(**uintptr)(__ccgo_up((*TPyListObject)(unsafe.Pointer(list1)).Fob_item + uintptr(i)*8)) == libc.UintptrFromInt32(0) {
+			v1 = list1
+			v2 = libc.BoolInt32(libc.Int32FromUint32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
+			goto _166
+		_166:
+			if v2 != 0 {
+				goto _167
+			}
+			v6 = v1
+			*(*Tuint32_t)(unsafe.Pointer(v6)) = *(*Tuint32_t)(unsafe.Pointer(v6)) - 1
+			v5 = *(*Tuint32_t)(unsafe.Pointer(v6))
+			if v5 == libc.Uint32FromInt32(0) {
+				X_Py_Dealloc(tls, v1)
+			}
+		_167:
+			;
+			XPyErr_Format(tls, XPyExc_ValueError, __ccgo_ts+366367, libc.VaList(bp+8, i))
+			return libc.UintptrFromInt32(0)
+		}
+		goto _163
+	_163:
+		;
+		i = i + 1
+	}
+	return list1
+}
+
+func __opcode_get_intrinsic1_descs_impl(tls *libc.TLS, module uintptr) (r uintptr) {
+	/*[clinic end generated code: output=bd1ddb6b4447d18b input=13b51c712618459b]*/
+	var i, v3 int32
+	var list, list1, name, v2, v7 uintptr
+	var v6 Tuint32_t
+	_, _, _, _, _, _, _, _ = i, list, list1, name, v2, v3, v6, v7
+	list1 = XPyList_New(tls, int64(libc.Int32FromInt32(MMAX_INTRINSIC_1)+libc.Int32FromInt32(1)))
+	if list1 == libc.UintptrFromInt32(0) {
+		return libc.UintptrFromInt32(0)
+	}
+	i = 0
+	for {
+		if !(i <= int32(MMAX_INTRINSIC_1)) {
+			break
+		}
+		name = X_PyCompile_GetUnaryIntrinsicName(tls, i)
+		if name == libc.UintptrFromInt32(0) {
+			v2 = list1
+			v3 = libc.BoolInt32(libc.Int32FromUint32(*(*Tuint32_t)(unsafe.Pointer(v2))) < 0)
+			goto _4
+		_4:
+			if v3 != 0 {
+				goto _5
+			}
+			v7 = v2
+			*(*Tuint32_t)(unsafe.Pointer(v7)) = *(*Tuint32_t)(unsafe.Pointer(v7)) - 1
+			v6 = *(*Tuint32_t)(unsafe.Pointer(v7))
+			if v6 == libc.Uint32FromInt32(0) {
+				X_Py_Dealloc(tls, v2)
+			}
+		_5:
+			;
+			return libc.UintptrFromInt32(0)
+		}
+		list = list1
+		**(**uintptr)(__ccgo_up((*TPyListObject)(unsafe.Pointer(list)).Fob_item + uintptr(int64(i))*8)) = name
+		goto _1
+	_1:
+		;
+		i = i + 1
+	}
+	return list1
+}
+
+func __opcode_get_intrinsic2_descs_impl(tls *libc.TLS, module uintptr) (r uintptr) {
+	/*[clinic end generated code: output=40e62bc27584c8a0 input=e83068f249f5471b]*/
+	var i, v3 int32
+	var list, list1, name, v2, v7 uintptr
+	var v6 Tuint32_t
+	_, _, _, _, _, _, _, _ = i, list, list1, name, v2, v3, v6, v7
+	list1 = XPyList_New(tls, int64(libc.Int32FromInt32(MMAX_INTRINSIC_2)+libc.Int32FromInt32(1)))
+	if list1 == libc.UintptrFromInt32(0) {
+		return libc.UintptrFromInt32(0)
+	}
+	i = 0
+	for {
+		if !(i <= int32(MMAX_INTRINSIC_2)) {
+			break
+		}
+		name = X_PyCompile_GetBinaryIntrinsicName(tls, i)
+		if name == libc.UintptrFromInt32(0) {
+			v2 = list1
+			v3 = libc.BoolInt32(libc.Int32FromUint32(*(*Tuint32_t)(unsafe.Pointer(v2))) < 0)
+			goto _4
+		_4:
+			if v3 != 0 {
+				goto _5
+			}
+			v7 = v2
+			*(*Tuint32_t)(unsafe.Pointer(v7)) = *(*Tuint32_t)(unsafe.Pointer(v7)) - 1
+			v6 = *(*Tuint32_t)(unsafe.Pointer(v7))
+			if v6 == libc.Uint32FromInt32(0) {
+				X_Py_Dealloc(tls, v2)
+			}
+		_5:
+			;
+			return libc.UintptrFromInt32(0)
+		}
+		list = list1
+		**(**uintptr)(__ccgo_up((*TPyListObject)(unsafe.Pointer(list)).Fob_item + uintptr(int64(i))*8)) = name
+		goto _1
+	_1:
+		;
+		i = i + 1
+	}
+	return list1
+}
+
+func __opcode_get_special_method_names_impl(tls *libc.TLS, module uintptr) (r uintptr) {
+	/*[clinic end generated code: output=fce72614cd988d17 input=25f2115560bdf163]*/
+	var i, v3 int32
+	var list, list1, name, v2, v7 uintptr
+	var v6 Tuint32_t
+	_, _, _, _, _, _, _, _ = i, list, list1, name, v2, v3, v6, v7
+	list1 = XPyList_New(tls, int64(libc.Int32FromInt32(MSPECIAL_MAX)+libc.Int32FromInt32(1)))
+	if list1 == libc.UintptrFromInt32(0) {
+		return libc.UintptrFromInt32(0)
+	}
+	i = 0
+	for {
+		if !(i <= int32(MSPECIAL_MAX)) {
+			break
+		}
+		name = X_Py_SpecialMethods[i].Fname
+		if name == libc.UintptrFromInt32(0) {
+			v2 = list1
+			v3 = libc.BoolInt32(libc.Int32FromUint32(*(*Tuint32_t)(unsafe.Pointer(v2))) < 0)
+			goto _4
+		_4:
+			if v3 != 0 {
+				goto _5
+			}
+			v7 = v2
+			*(*Tuint32_t)(unsafe.Pointer(v7)) = *(*Tuint32_t)(unsafe.Pointer(v7)) - 1
+			v6 = *(*Tuint32_t)(unsafe.Pointer(v7))
+			if v6 == libc.Uint32FromInt32(0) {
+				X_Py_Dealloc(tls, v2)
+			}
+		_5:
+			;
+			return libc.UintptrFromInt32(0)
+		}
+		list = list1
+		**(**uintptr)(__ccgo_up((*TPyListObject)(unsafe.Pointer(list)).Fob_item + uintptr(int64(i))*8)) = name
+		goto _1
+	_1:
+		;
+		i = i + 1
+	}
+	return list1
+}
+
+func __opcode_get_executor_impl(tls *libc.TLS, module uintptr, code uintptr, offset int32) (r uintptr) {
+	bp := tls.Alloc(16)
+	defer tls.Free(16)
+	/*[clinic end generated code: output=c035c7a47b16648f input=85eff93ea7aac282]*/
+	var v1 int32
+	var v3, v5 uintptr
+	_, _, _ = v1, v3, v5
+	v3 = (*TPyObject)(unsafe.Pointer(code)).Fob_type
+	goto _4
+_4:
+	v1 = libc.BoolInt32(v3 == uintptr(unsafe.Pointer(&XPyCode_Type)))
+	goto _2
+_2:
+	if !(v1 != 0) {
+		v5 = (*TPyObject)(unsafe.Pointer(code)).Fob_type
+		goto _6
+	_6:
+		XPyErr_Format(tls, XPyExc_TypeError, __ccgo_ts+366403, libc.VaList(bp+8, (*TPyTypeObject)(unsafe.Pointer(v5)).Ftp_name))
+		return libc.UintptrFromInt32(0)
+	}
+	XPyErr_Format(tls, XPyExc_RuntimeError, __ccgo_ts+366440, 0)
+	return libc.UintptrFromInt32(0)
+}
+
+var _opcode_functions = [16]TPyMethodDef{
+	0: {
+		Fml_name:  __ccgo_ts + 365798,
+		Fml_flags: libc.Int32FromInt32(MMETH_FASTCALL) | libc.Int32FromInt32(MMETH_KEYWORDS),
+		Fml_doc:   uintptr(unsafe.Pointer(&__opcode_stack_effect__doc__)),
+	},
+	1: {
+		Fml_name:  __ccgo_ts + 365811,
+		Fml_flags: libc.Int32FromInt32(MMETH_FASTCALL) | libc.Int32FromInt32(MMETH_KEYWORDS),
+		Fml_doc:   uintptr(unsafe.Pointer(&__opcode_is_valid__doc__)),
+	},
+	2: {
+		Fml_name:  __ccgo_ts + 365820,
+		Fml_flags: libc.Int32FromInt32(MMETH_FASTCALL) | libc.Int32FromInt32(MMETH_KEYWORDS),
+		Fml_doc:   uintptr(unsafe.Pointer(&__opcode_has_arg__doc__)),
+	},
+	3: {
+		Fml_name:  __ccgo_ts + 365828,
+		Fml_flags: libc.Int32FromInt32(MMETH_FASTCALL) | libc.Int32FromInt32(MMETH_KEYWORDS),
+		Fml_doc:   uintptr(unsafe.Pointer(&__opcode_has_const__doc__)),
+	},
+	4: {
+		Fml_name:  __ccgo_ts + 365838,
+		Fml_flags: libc.Int32FromInt32(MMETH_FASTCALL) | libc.Int32FromInt32(MMETH_KEYWORDS),
+		Fml_doc:   uintptr(unsafe.Pointer(&__opcode_has_name__doc__)),
+	},
+	5: {
+		Fml_name:  __ccgo_ts + 365847,
+		Fml_flags: libc.Int32FromInt32(MMETH_FASTCALL) | libc.Int32FromInt32(MMETH_KEYWORDS),
+		Fml_doc:   uintptr(unsafe.Pointer(&__opcode_has_jump__doc__)),
+	},
+	6: {
+		Fml_name:  __ccgo_ts + 365856,
+		Fml_flags: libc.Int32FromInt32(MMETH_FASTCALL) | libc.Int32FromInt32(MMETH_KEYWORDS),
+		Fml_doc:   uintptr(unsafe.Pointer(&__opcode_has_free__doc__)),
+	},
+	7: {
+		Fml_name:  __ccgo_ts + 365865,
+		Fml_flags: libc.Int32FromInt32(MMETH_FASTCALL) | libc.Int32FromInt32(MMETH_KEYWORDS),
+		Fml_doc:   uintptr(unsafe.Pointer(&__opcode_has_local__doc__)),
+	},
+	8: {
+		Fml_name:  __ccgo_ts + 365875,
+		Fml_flags: libc.Int32FromInt32(MMETH_FASTCALL) | libc.Int32FromInt32(MMETH_KEYWORDS),
+		Fml_doc:   uintptr(unsafe.Pointer(&__opcode_has_exc__doc__)),
+	},
+	9: {
+		Fml_name:  __ccgo_ts + 366482,
+		Fml_flags: int32(MMETH_NOARGS),
+		Fml_doc:   uintptr(unsafe.Pointer(&__opcode_get_specialization_stats__doc__)),
+	},
+	10: {
+		Fml_name:  __ccgo_ts + 366507,
+		Fml_flags: int32(MMETH_NOARGS),
+		Fml_doc:   uintptr(unsafe.Pointer(&__opcode_get_nb_ops__doc__)),
+	},
+	11: {
+		Fml_name:  __ccgo_ts + 366518,
+		Fml_flags: int32(MMETH_NOARGS),
+		Fml_doc:   uintptr(unsafe.Pointer(&__opcode_get_intrinsic1_descs__doc__)),
+	},
+	12: {
+		Fml_name:  __ccgo_ts + 366539,
+		Fml_flags: int32(MMETH_NOARGS),
+		Fml_doc:   uintptr(unsafe.Pointer(&__opcode_get_intrinsic2_descs__doc__)),
+	},
+	13: {
+		Fml_name:  __ccgo_ts + 365883,
+		Fml_flags: libc.Int32FromInt32(MMETH_FASTCALL) | libc.Int32FromInt32(MMETH_KEYWORDS),
+		Fml_doc:   uintptr(unsafe.Pointer(&__opcode_get_executor__doc__)),
+	},
+	14: {
+		Fml_name:  __ccgo_ts + 366560,
+		Fml_flags: int32(MMETH_NOARGS),
+		Fml_doc:   uintptr(unsafe.Pointer(&__opcode_get_special_method_names__doc__)),
+	},
+	15: {},
+}
+
+func init() {
+	p := unsafe.Pointer(&_opcode_functions)
+	*(*uintptr)(unsafe.Add(p, 8)) = __ccgo_fp(__opcode_stack_effect)
+	*(*uintptr)(unsafe.Add(p, 40)) = __ccgo_fp(__opcode_is_valid)
+	*(*uintptr)(unsafe.Add(p, 72)) = __ccgo_fp(__opcode_has_arg)
+	*(*uintptr)(unsafe.Add(p, 104)) = __ccgo_fp(__opcode_has_const)
+	*(*uintptr)(unsafe.Add(p, 136)) = __ccgo_fp(__opcode_has_name)
+	*(*uintptr)(unsafe.Add(p, 168)) = __ccgo_fp(__opcode_has_jump)
+	*(*uintptr)(unsafe.Add(p, 200)) = __ccgo_fp(__opcode_has_free)
+	*(*uintptr)(unsafe.Add(p, 232)) = __ccgo_fp(__opcode_has_local)
+	*(*uintptr)(unsafe.Add(p, 264)) = __ccgo_fp(__opcode_has_exc)
+	*(*uintptr)(unsafe.Add(p, 296)) = __ccgo_fp(__opcode_get_specialization_stats)
+	*(*uintptr)(unsafe.Add(p, 328)) = __ccgo_fp(__opcode_get_nb_ops)
+	*(*uintptr)(unsafe.Add(p, 360)) = __ccgo_fp(__opcode_get_intrinsic1_descs)
+	*(*uintptr)(unsafe.Add(p, 392)) = __ccgo_fp(__opcode_get_intrinsic2_descs)
+	*(*uintptr)(unsafe.Add(p, 424)) = __ccgo_fp(__opcode_get_executor)
+	*(*uintptr)(unsafe.Add(p, 456)) = __ccgo_fp(__opcode_get_special_method_names)
+}
+
+func __opcode_exec(tls *libc.TLS, m uintptr) (r int32) {
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+366585, int64(libc.Int32FromInt32(MENABLE_SPECIALIZATION))) < 0 {
+		return -int32(1)
+	}
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+366607, int64(libc.Int32FromInt32(MENABLE_SPECIALIZATION))) < 0 {
+		return -int32(1)
+	}
+	return 0
+}
+
+var _module_slots10 = [4]TPyModuleDef_Slot{
+	0: {
+		Fslot: int32(MPy_mod_exec),
+	},
+	1: {
+		Fslot:  int32(MPy_mod_multiple_interpreters),
+		Fvalue: libc.UintptrFromInt32(2),
+	},
+	2: {
+		Fslot:  int32(MPy_mod_gil),
+		Fvalue: libc.UintptrFromInt32(1),
+	},
+	3: {},
+}
+
+func init() {
+	p := unsafe.Pointer(&_module_slots10)
+	*(*uintptr)(unsafe.Add(p, 8)) = __ccgo_fp(__opcode_exec)
+}
+
+var _opcodemodule = TPyModuleDef{
+	Fm_base: TPyModuleDef_Base{
+		Fob_base: TPyObject{
+			F__ccgo0_0: *(*struct {
+				F__ccgo1_0 [0]struct {
+					Fob_refcnt   Tuint32_t
+					Fob_overflow Tuint16_t
+					Fob_flags    Tuint16_t
+				}
+				Fob_refcnt_full Tint64_t
+			})(unsafe.Pointer(&[1]uint64{0x50000c0000000})),
+		},
+	},
+	Fm_name:    __ccgo_ts + 167371,
+	Fm_doc:     __ccgo_ts + 366632,
+	Fm_methods: uintptr(unsafe.Pointer(&_opcode_functions)),
+	Fm_slots:   uintptr(unsafe.Pointer(&_module_slots10)),
+}
+
+func XPyInit__opcode(tls *libc.TLS) (r uintptr) {
+	return XPyModuleDef_Init(tls, uintptr(unsafe.Pointer(&_opcodemodule)))
+}
+
+const M_METHODCALLER_MAX_ARGS = 8
+
+func __operator_truth(tls *libc.TLS, module uintptr, a uintptr) (r uintptr) {
+	var _return_value int32
+	var return_value uintptr
+	_, _ = _return_value, return_value
+	return_value = libc.UintptrFromInt32(0)
+	_return_value = __operator_truth_impl(tls, module, a)
+	if _return_value == -int32(1) && XPyErr_Occurred(tls) != 0 {
+		goto exit
+	}
+	return_value = XPyBool_FromLong(tls, int64(_return_value))
+	goto exit
+exit:
+	;
+	return return_value
+	return r
+}
+
+var __operator_add__doc__ = [41]int8{'a', 'd', 'd', '(', '$', 'm', 'o', 'd', 'u', 'l', 'e', ',', ' ', 'a', ',', ' ', 'b', ',', ' ', '/', ')', 10, '-', '-', 10, 10, 'S', 'a', 'm', 'e', ' ', 'a', 's', ' ', 'a', ' ', '+', ' ', 'b', '.'}
+
+func __operator_add(tls *libc.TLS, module uintptr, args uintptr, nargs TPy_ssize_t) (r uintptr) {
+	var a, b, return_value uintptr
+	_, _, _ = a, b, return_value
+	return_value = libc.UintptrFromInt32(0)
+	if !(libc.Bool(!false) && int64(libc.Int32FromInt32(2)) <= nargs && nargs <= int64(libc.Int32FromInt32(2)) || X_PyArg_CheckPositional(tls, __ccgo_ts+58202, nargs, int64(libc.Int32FromInt32(2)), int64(libc.Int32FromInt32(2))) != 0) {
+		goto exit
+	}
+	a = **(**uintptr)(__ccgo_up(args))
+	b = **(**uintptr)(__ccgo_up(args + 1*8))
+	return_value = __operator_add_impl(tls, module, a, b)
+	goto exit
+exit:
+	;
+	return return_value
+	return r
+}
+
+var __operator_sub__doc__ = [41]int8{'s', 'u', 'b', '(', '$', 'm', 'o', 'd', 'u', 'l', 'e', ',', ' ', 'a', ',', ' ', 'b', ',', ' ', '/', ')', 10, '-', '-', 10, 10, 'S', 'a', 'm', 'e', ' ', 'a', 's', ' ', 'a', ' ', '-', ' ', 'b', '.'}
+
+func __operator_sub(tls *libc.TLS, module uintptr, args uintptr, nargs TPy_ssize_t) (r uintptr) {
+	var a, b, return_value uintptr
+	_, _, _ = a, b, return_value
+	return_value = libc.UintptrFromInt32(0)
+	if !(libc.Bool(!false) && int64(libc.Int32FromInt32(2)) <= nargs && nargs <= int64(libc.Int32FromInt32(2)) || X_PyArg_CheckPositional(tls, __ccgo_ts+357709, nargs, int64(libc.Int32FromInt32(2)), int64(libc.Int32FromInt32(2))) != 0) {
+		goto exit
+	}
+	a = **(**uintptr)(__ccgo_up(args))
+	b = **(**uintptr)(__ccgo_up(args + 1*8))
+	return_value = __operator_sub_impl(tls, module, a, b)
+	goto exit
+exit:
+	;
+	return return_value
+	return r
+}
+
+var __operator_mul__doc__ = [41]int8{'m', 'u', 'l', '(', '$', 'm', 'o', 'd', 'u', 'l', 'e', ',', ' ', 'a', ',', ' ', 'b', ',', ' ', '/', ')', 10, '-', '-', 10, 10, 'S', 'a', 'm', 'e', ' ', 'a', 's', ' ', 'a', ' ', '*', ' ', 'b', '.'}
+
+func __operator_mul(tls *libc.TLS, module uintptr, args uintptr, nargs TPy_ssize_t) (r uintptr) {
+	var a, b, return_value uintptr
+	_, _, _ = a, b, return_value
+	return_value = libc.UintptrFromInt32(0)
+	if !(libc.Bool(!false) && int64(libc.Int32FromInt32(2)) <= nargs && nargs <= int64(libc.Int32FromInt32(2)) || X_PyArg_CheckPositional(tls, __ccgo_ts+366655, nargs, int64(libc.Int32FromInt32(2)), int64(libc.Int32FromInt32(2))) != 0) {
+		goto exit
+	}
+	a = **(**uintptr)(__ccgo_up(args))
+	b = **(**uintptr)(__ccgo_up(args + 1*8))
+	return_value = __operator_mul_impl(tls, module, a, b)
+	goto exit
+exit:
+	;
+	return return_value
+	return r
+}
+
+var __operator_matmul__doc__ = [44]int8{'m', 'a', 't', 'm', 'u', 'l', '(', '$', 'm', 'o', 'd', 'u', 'l', 'e', ',', ' ', 'a', ',', ' ', 'b', ',', ' ', '/', ')', 10, '-', '-', 10, 10, 'S', 'a', 'm', 'e', ' ', 'a', 's', ' ', 'a', ' ', '@', ' ', 'b', '.'}
+
+func __operator_matmul(tls *libc.TLS, module uintptr, args uintptr, nargs TPy_ssize_t) (r uintptr) {
+	var a, b, return_value uintptr
+	_, _, _ = a, b, return_value
+	return_value = libc.UintptrFromInt32(0)
+	if !(libc.Bool(!false) && int64(libc.Int32FromInt32(2)) <= nargs && nargs <= int64(libc.Int32FromInt32(2)) || X_PyArg_CheckPositional(tls, __ccgo_ts+276805, nargs, int64(libc.Int32FromInt32(2)), int64(libc.Int32FromInt32(2))) != 0) {
+		goto exit
+	}
+	a = **(**uintptr)(__ccgo_up(args))
+	b = **(**uintptr)(__ccgo_up(args + 1*8))
+	return_value = __operator_matmul_impl(tls, module, a, b)
+	goto exit
+exit:
+	;
+	return return_value
+	return r
+}
+
+var __operator_floordiv__doc__ = [47]int8{'f', 'l', 'o', 'o', 'r', 'd', 'i', 'v', '(', '$', 'm', 'o', 'd', 'u', 'l', 'e', ',', ' ', 'a', ',', ' ', 'b', ',', ' ', '/', ')', 10, '-', '-', 10, 10, 'S', 'a', 'm', 'e', ' ', 'a', 's', ' ', 'a', ' ', '/', '/', ' ', 'b', '.'}
+
+func __operator_floordiv(tls *libc.TLS, module uintptr, args uintptr, nargs TPy_ssize_t) (r uintptr) {
+	var a, b, return_value uintptr
+	_, _, _ = a, b, return_value
+	return_value = libc.UintptrFromInt32(0)
+	if !(libc.Bool(!false) && int64(libc.Int32FromInt32(2)) <= nargs && nargs <= int64(libc.Int32FromInt32(2)) || X_PyArg_CheckPositional(tls, __ccgo_ts+366659, nargs, int64(libc.Int32FromInt32(2)), int64(libc.Int32FromInt32(2))) != 0) {
+		goto exit
+	}
+	a = **(**uintptr)(__ccgo_up(args))
+	b = **(**uintptr)(__ccgo_up(args + 1*8))
+	return_value = __operator_floordiv_impl(tls, module, a, b)
+	goto exit
+exit:
+	;
+	return return_value
+	return r
+}
+
+var __operator_truediv__doc__ = [45]int8{'t', 'r', 'u', 'e', 'd', 'i', 'v', '(', '$', 'm', 'o', 'd', 'u', 'l', 'e', ',', ' ', 'a', ',', ' ', 'b', ',', ' ', '/', ')', 10, '-', '-', 10, 10, 'S', 'a', 'm', 'e', ' ', 'a', 's', ' ', 'a', ' ', '/', ' ', 'b', '.'}
+
+func __operator_truediv(tls *libc.TLS, module uintptr, args uintptr, nargs TPy_ssize_t) (r uintptr) {
+	var a, b, return_value uintptr
+	_, _, _ = a, b, return_value
+	return_value = libc.UintptrFromInt32(0)
+	if !(libc.Bool(!false) && int64(libc.Int32FromInt32(2)) <= nargs && nargs <= int64(libc.Int32FromInt32(2)) || X_PyArg_CheckPositional(tls, __ccgo_ts+366668, nargs, int64(libc.Int32FromInt32(2)), int64(libc.Int32FromInt32(2))) != 0) {
+		goto exit
+	}
+	a = **(**uintptr)(__ccgo_up(args))
+	b = **(**uintptr)(__ccgo_up(args + 1*8))
+	return_value = __operator_truediv_impl(tls, module, a, b)
+	goto exit
+exit:
+	;
+	return return_value
+	return r
+}
+
+var __operator_mod__doc__ = [41]int8{'m', 'o', 'd', '(', '$', 'm', 'o', 'd', 'u', 'l', 'e', ',', ' ', 'a', ',', ' ', 'b', ',', ' ', '/', ')', 10, '-', '-', 10, 10, 'S', 'a', 'm', 'e', ' ', 'a', 's', ' ', 'a', ' ', '%', ' ', 'b', '.'}
+
+func __operator_mod(tls *libc.TLS, module uintptr, args uintptr, nargs TPy_ssize_t) (r uintptr) {
+	var a, b, return_value uintptr
+	_, _, _ = a, b, return_value
+	return_value = libc.UintptrFromInt32(0)
+	if !(libc.Bool(!false) && int64(libc.Int32FromInt32(2)) <= nargs && nargs <= int64(libc.Int32FromInt32(2)) || X_PyArg_CheckPositional(tls, __ccgo_ts+88053, nargs, int64(libc.Int32FromInt32(2)), int64(libc.Int32FromInt32(2))) != 0) {
+		goto exit
+	}
+	a = **(**uintptr)(__ccgo_up(args))
+	b = **(**uintptr)(__ccgo_up(args + 1*8))
+	return_value = __operator_mod_impl(tls, module, a, b)
+	goto exit
+exit:
+	;
+	return return_value
+	return r
+}
+
+var __operator_neg__doc__ = [35]int8{'n', 'e', 'g', '(', '$', 'm', 'o', 'd', 'u', 'l', 'e', ',', ' ', 'a', ',', ' ', '/', ')', 10, '-', '-', 10, 10, 'S', 'a', 'm', 'e', ' ', 'a', 's', ' ', '-', 'a', '.'}
+
+var __operator_pos__doc__ = [35]int8{'p', 'o', 's', '(', '$', 'm', 'o', 'd', 'u', 'l', 'e', ',', ' ', 'a', ',', ' ', '/', ')', 10, '-', '-', 10, 10, 'S', 'a', 'm', 'e', ' ', 'a', 's', ' ', '+', 'a', '.'}
+
+var __operator_abs__doc__ = [39]int8{'a', 'b', 's', '(', '$', 'm', 'o', 'd', 'u', 'l', 'e', ',', ' ', 'a', ',', ' ', '/', ')', 10, '-', '-', 10, 10, 'S', 'a', 'm', 'e', ' ', 'a', 's', ' ', 'a', 'b', 's', '(', 'a', ')', '.'}
+
+var __operator_inv__doc__ = [35]int8{'i', 'n', 'v', '(', '$', 'm', 'o', 'd', 'u', 'l', 'e', ',', ' ', 'a', ',', ' ', '/', ')', 10, '-', '-', 10, 10, 'S', 'a', 'm', 'e', ' ', 'a', 's', ' ', '~', 'a', '.'}
+
+var __operator_invert__doc__ = [38]int8{'i', 'n', 'v', 'e', 'r', 't', '(', '$', 'm', 'o', 'd', 'u', 'l', 'e', ',', ' ', 'a', ',', ' ', '/', ')', 10, '-', '-', 10, 10, 'S', 'a', 'm', 'e', ' ', 'a', 's', ' ', '~', 'a', '.'}
+
+var __operator_lshift__doc__ = [45]int8{'l', 's', 'h', 'i', 'f', 't', '(', '$', 'm', 'o', 'd', 'u', 'l', 'e', ',', ' ', 'a', ',', ' ', 'b', ',', ' ', '/', ')', 10, '-', '-', 10, 10, 'S', 'a', 'm', 'e', ' ', 'a', 's', ' ', 'a', ' ', '<', '<', ' ', 'b', '.'}
+
+func __operator_lshift(tls *libc.TLS, module uintptr, args uintptr, nargs TPy_ssize_t) (r uintptr) {
+	var a, b, return_value uintptr
+	_, _, _ = a, b, return_value
+	return_value = libc.UintptrFromInt32(0)
+	if !(libc.Bool(!false) && int64(libc.Int32FromInt32(2)) <= nargs && nargs <= int64(libc.Int32FromInt32(2)) || X_PyArg_CheckPositional(tls, __ccgo_ts+366676, nargs, int64(libc.Int32FromInt32(2)), int64(libc.Int32FromInt32(2))) != 0) {
+		goto exit
+	}
+	a = **(**uintptr)(__ccgo_up(args))
+	b = **(**uintptr)(__ccgo_up(args + 1*8))
+	return_value = __operator_lshift_impl(tls, module, a, b)
+	goto exit
+exit:
+	;
+	return return_value
+	return r
+}
+
+var __operator_rshift__doc__ = [45]int8{'r', 's', 'h', 'i', 'f', 't', '(', '$', 'm', 'o', 'd', 'u', 'l', 'e', ',', ' ', 'a', ',', ' ', 'b', ',', ' ', '/', ')', 10, '-', '-', 10, 10, 'S', 'a', 'm', 'e', ' ', 'a', 's', ' ', 'a', ' ', '>', '>', ' ', 'b', '.'}
+
+func __operator_rshift(tls *libc.TLS, module uintptr, args uintptr, nargs TPy_ssize_t) (r uintptr) {
+	var a, b, return_value uintptr
+	_, _, _ = a, b, return_value
+	return_value = libc.UintptrFromInt32(0)
+	if !(libc.Bool(!false) && int64(libc.Int32FromInt32(2)) <= nargs && nargs <= int64(libc.Int32FromInt32(2)) || X_PyArg_CheckPositional(tls, __ccgo_ts+366683, nargs, int64(libc.Int32FromInt32(2)), int64(libc.Int32FromInt32(2))) != 0) {
+		goto exit
+	}
+	a = **(**uintptr)(__ccgo_up(args))
+	b = **(**uintptr)(__ccgo_up(args + 1*8))
+	return_value = __operator_rshift_impl(tls, module, a, b)
+	goto exit
+exit:
+	;
+	return return_value
+	return r
+}
+
+var __operator_not___doc__ = [39]int8{'n', 'o', 't', '_', '(', '$', 'm', 'o', 'd', 'u', 'l', 'e', ',', ' ', 'a', ',', ' ', '/', ')', 10, '-', '-', 10, 10, 'S', 'a', 'm', 'e', ' ', 'a', 's', ' ', 'n', 'o', 't', ' ', 'a', '.'}
+
+func __operator_not_(tls *libc.TLS, module uintptr, a uintptr) (r uintptr) {
+	var _return_value int32
+	var return_value uintptr
+	_, _ = _return_value, return_value
+	return_value = libc.UintptrFromInt32(0)
+	_return_value = __operator_not__impl(tls, module, a)
+	if _return_value == -int32(1) && XPyErr_Occurred(tls) != 0 {
+		goto exit
+	}
+	return_value = XPyBool_FromLong(tls, int64(_return_value))
+	goto exit
+exit:
+	;
+	return return_value
+	return r
+}
+
+var __operator_and___doc__ = [42]int8{'a', 'n', 'd', '_', '(', '$', 'm', 'o', 'd', 'u', 'l', 'e', ',', ' ', 'a', ',', ' ', 'b', ',', ' ', '/', ')', 10, '-', '-', 10, 10, 'S', 'a', 'm', 'e', ' ', 'a', 's', ' ', 'a', ' ', '&', ' ', 'b', '.'}
+
+func __operator_and_(tls *libc.TLS, module uintptr, args uintptr, nargs TPy_ssize_t) (r uintptr) {
+	var a, b, return_value uintptr
+	_, _, _ = a, b, return_value
+	return_value = libc.UintptrFromInt32(0)
+	if !(libc.Bool(!false) && int64(libc.Int32FromInt32(2)) <= nargs && nargs <= int64(libc.Int32FromInt32(2)) || X_PyArg_CheckPositional(tls, __ccgo_ts+366690, nargs, int64(libc.Int32FromInt32(2)), int64(libc.Int32FromInt32(2))) != 0) {
+		goto exit
+	}
+	a = **(**uintptr)(__ccgo_up(args))
+	b = **(**uintptr)(__ccgo_up(args + 1*8))
+	return_value = __operator_and__impl(tls, module, a, b)
+	goto exit
+exit:
+	;
+	return return_value
+	return r
+}
+
+var __operator_xor__doc__ = [41]int8{'x', 'o', 'r', '(', '$', 'm', 'o', 'd', 'u', 'l', 'e', ',', ' ', 'a', ',', ' ', 'b', ',', ' ', '/', ')', 10, '-', '-', 10, 10, 'S', 'a', 'm', 'e', ' ', 'a', 's', ' ', 'a', ' ', '^', ' ', 'b', '.'}
+
+func __operator_xor(tls *libc.TLS, module uintptr, args uintptr, nargs TPy_ssize_t) (r uintptr) {
+	var a, b, return_value uintptr
+	_, _, _ = a, b, return_value
+	return_value = libc.UintptrFromInt32(0)
+	if !(libc.Bool(!false) && int64(libc.Int32FromInt32(2)) <= nargs && nargs <= int64(libc.Int32FromInt32(2)) || X_PyArg_CheckPositional(tls, __ccgo_ts+366695, nargs, int64(libc.Int32FromInt32(2)), int64(libc.Int32FromInt32(2))) != 0) {
+		goto exit
+	}
+	a = **(**uintptr)(__ccgo_up(args))
+	b = **(**uintptr)(__ccgo_up(args + 1*8))
+	return_value = __operator_xor_impl(tls, module, a, b)
+	goto exit
+exit:
+	;
+	return return_value
+	return r
+}
+
+var __operator_or___doc__ = [41]int8{'o', 'r', '_', '(', '$', 'm', 'o', 'd', 'u', 'l', 'e', ',', ' ', 'a', ',', ' ', 'b', ',', ' ', '/', ')', 10, '-', '-', 10, 10, 'S', 'a', 'm', 'e', ' ', 'a', 's', ' ', 'a', ' ', '|', ' ', 'b', '.'}
+
+func __operator_or_(tls *libc.TLS, module uintptr, args uintptr, nargs TPy_ssize_t) (r uintptr) {
+	var a, b, return_value uintptr
+	_, _, _ = a, b, return_value
+	return_value = libc.UintptrFromInt32(0)
+	if !(libc.Bool(!false) && int64(libc.Int32FromInt32(2)) <= nargs && nargs <= int64(libc.Int32FromInt32(2)) || X_PyArg_CheckPositional(tls, __ccgo_ts+366699, nargs, int64(libc.Int32FromInt32(2)), int64(libc.Int32FromInt32(2))) != 0) {
+		goto exit
+	}
+	a = **(**uintptr)(__ccgo_up(args))
+	b = **(**uintptr)(__ccgo_up(args + 1*8))
+	return_value = __operator_or__impl(tls, module, a, b)
+	goto exit
+exit:
+	;
+	return return_value
+	return r
+}
+
+var __operator_iadd__doc__ = [43]int8{'i', 'a', 'd', 'd', '(', '$', 'm', 'o', 'd', 'u', 'l', 'e', ',', ' ', 'a', ',', ' ', 'b', ',', ' ', '/', ')', 10, '-', '-', 10, 10, 'S', 'a', 'm', 'e', ' ', 'a', 's', ' ', 'a', ' ', '+', '=', ' ', 'b', '.'}
+
+func __operator_iadd(tls *libc.TLS, module uintptr, args uintptr, nargs TPy_ssize_t) (r uintptr) {
+	var a, b, return_value uintptr
+	_, _, _ = a, b, return_value
+	return_value = libc.UintptrFromInt32(0)
+	if !(libc.Bool(!false) && int64(libc.Int32FromInt32(2)) <= nargs && nargs <= int64(libc.Int32FromInt32(2)) || X_PyArg_CheckPositional(tls, __ccgo_ts+366703, nargs, int64(libc.Int32FromInt32(2)), int64(libc.Int32FromInt32(2))) != 0) {
+		goto exit
+	}
+	a = **(**uintptr)(__ccgo_up(args))
+	b = **(**uintptr)(__ccgo_up(args + 1*8))
+	return_value = __operator_iadd_impl(tls, module, a, b)
+	goto exit
+exit:
+	;
+	return return_value
+	return r
+}
+
+var __operator_isub__doc__ = [43]int8{'i', 's', 'u', 'b', '(', '$', 'm', 'o', 'd', 'u', 'l', 'e', ',', ' ', 'a', ',', ' ', 'b', ',', ' ', '/', ')', 10, '-', '-', 10, 10, 'S', 'a', 'm', 'e', ' ', 'a', 's', ' ', 'a', ' ', '-', '=', ' ', 'b', '.'}
+
+func __operator_isub(tls *libc.TLS, module uintptr, args uintptr, nargs TPy_ssize_t) (r uintptr) {
+	var a, b, return_value uintptr
+	_, _, _ = a, b, return_value
+	return_value = libc.UintptrFromInt32(0)
+	if !(libc.Bool(!false) && int64(libc.Int32FromInt32(2)) <= nargs && nargs <= int64(libc.Int32FromInt32(2)) || X_PyArg_CheckPositional(tls, __ccgo_ts+366708, nargs, int64(libc.Int32FromInt32(2)), int64(libc.Int32FromInt32(2))) != 0) {
+		goto exit
+	}
+	a = **(**uintptr)(__ccgo_up(args))
+	b = **(**uintptr)(__ccgo_up(args + 1*8))
+	return_value = __operator_isub_impl(tls, module, a, b)
+	goto exit
+exit:
+	;
+	return return_value
+	return r
+}
+
+var __operator_imul__doc__ = [43]int8{'i', 'm', 'u', 'l', '(', '$', 'm', 'o', 'd', 'u', 'l', 'e', ',', ' ', 'a', ',', ' ', 'b', ',', ' ', '/', ')', 10, '-', '-', 10, 10, 'S', 'a', 'm', 'e', ' ', 'a', 's', ' ', 'a', ' ', '*', '=', ' ', 'b', '.'}
+
+func __operator_imul(tls *libc.TLS, module uintptr, args uintptr, nargs TPy_ssize_t) (r uintptr) {
+	var a, b, return_value uintptr
+	_, _, _ = a, b, return_value
+	return_value = libc.UintptrFromInt32(0)
+	if !(libc.Bool(!false) && int64(libc.Int32FromInt32(2)) <= nargs && nargs <= int64(libc.Int32FromInt32(2)) || X_PyArg_CheckPositional(tls, __ccgo_ts+366713, nargs, int64(libc.Int32FromInt32(2)), int64(libc.Int32FromInt32(2))) != 0) {
+		goto exit
+	}
+	a = **(**uintptr)(__ccgo_up(args))
+	b = **(**uintptr)(__ccgo_up(args + 1*8))
+	return_value = __operator_imul_impl(tls, module, a, b)
+	goto exit
+exit:
+	;
+	return return_value
+	return r
+}
+
+var __operator_imatmul__doc__ = [46]int8{'i', 'm', 'a', 't', 'm', 'u', 'l', '(', '$', 'm', 'o', 'd', 'u', 'l', 'e', ',', ' ', 'a', ',', ' ', 'b', ',', ' ', '/', ')', 10, '-', '-', 10, 10, 'S', 'a', 'm', 'e', ' ', 'a', 's', ' ', 'a', ' ', '@', '=', ' ', 'b', '.'}
+
+func __operator_imatmul(tls *libc.TLS, module uintptr, args uintptr, nargs TPy_ssize_t) (r uintptr) {
+	var a, b, return_value uintptr
+	_, _, _ = a, b, return_value
+	return_value = libc.UintptrFromInt32(0)
+	if !(libc.Bool(!false) && int64(libc.Int32FromInt32(2)) <= nargs && nargs <= int64(libc.Int32FromInt32(2)) || X_PyArg_CheckPositional(tls, __ccgo_ts+276812, nargs, int64(libc.Int32FromInt32(2)), int64(libc.Int32FromInt32(2))) != 0) {
+		goto exit
+	}
+	a = **(**uintptr)(__ccgo_up(args))
+	b = **(**uintptr)(__ccgo_up(args + 1*8))
+	return_value = __operator_imatmul_impl(tls, module, a, b)
+	goto exit
+exit:
+	;
+	return return_value
+	return r
+}
+
+var __operator_ifloordiv__doc__ = [49]int8{'i', 'f', 'l', 'o', 'o', 'r', 'd', 'i', 'v', '(', '$', 'm', 'o', 'd', 'u', 'l', 'e', ',', ' ', 'a', ',', ' ', 'b', ',', ' ', '/', ')', 10, '-', '-', 10, 10, 'S', 'a', 'm', 'e', ' ', 'a', 's', ' ', 'a', ' ', '/', '/', '=', ' ', 'b', '.'}
+
+func __operator_ifloordiv(tls *libc.TLS, module uintptr, args uintptr, nargs TPy_ssize_t) (r uintptr) {
+	var a, b, return_value uintptr
+	_, _, _ = a, b, return_value
+	return_value = libc.UintptrFromInt32(0)
+	if !(libc.Bool(!false) && int64(libc.Int32FromInt32(2)) <= nargs && nargs <= int64(libc.Int32FromInt32(2)) || X_PyArg_CheckPositional(tls, __ccgo_ts+366718, nargs, int64(libc.Int32FromInt32(2)), int64(libc.Int32FromInt32(2))) != 0) {
+		goto exit
+	}
+	a = **(**uintptr)(__ccgo_up(args))
+	b = **(**uintptr)(__ccgo_up(args + 1*8))
+	return_value = __operator_ifloordiv_impl(tls, module, a, b)
+	goto exit
+exit:
+	;
+	return return_value
+	return r
+}
+
+var __operator_itruediv__doc__ = [47]int8{'i', 't', 'r', 'u', 'e', 'd', 'i', 'v', '(', '$', 'm', 'o', 'd', 'u', 'l', 'e', ',', ' ', 'a', ',', ' ', 'b', ',', ' ', '/', ')', 10, '-', '-', 10, 10, 'S', 'a', 'm', 'e', ' ', 'a', 's', ' ', 'a', ' ', '/', '=', ' ', 'b', '.'}
+
+func __operator_itruediv(tls *libc.TLS, module uintptr, args uintptr, nargs TPy_ssize_t) (r uintptr) {
+	var a, b, return_value uintptr
+	_, _, _ = a, b, return_value
+	return_value = libc.UintptrFromInt32(0)
+	if !(libc.Bool(!false) && int64(libc.Int32FromInt32(2)) <= nargs && nargs <= int64(libc.Int32FromInt32(2)) || X_PyArg_CheckPositional(tls, __ccgo_ts+366728, nargs, int64(libc.Int32FromInt32(2)), int64(libc.Int32FromInt32(2))) != 0) {
+		goto exit
+	}
+	a = **(**uintptr)(__ccgo_up(args))
+	b = **(**uintptr)(__ccgo_up(args + 1*8))
+	return_value = __operator_itruediv_impl(tls, module, a, b)
+	goto exit
+exit:
+	;
+	return return_value
+	return r
+}
+
+var __operator_imod__doc__ = [43]int8{'i', 'm', 'o', 'd', '(', '$', 'm', 'o', 'd', 'u', 'l', 'e', ',', ' ', 'a', ',', ' ', 'b', ',', ' ', '/', ')', 10, '-', '-', 10, 10, 'S', 'a', 'm', 'e', ' ', 'a', 's', ' ', 'a', ' ', '%', '=', ' ', 'b', '.'}
+
+func __operator_imod(tls *libc.TLS, module uintptr, args uintptr, nargs TPy_ssize_t) (r uintptr) {
+	var a, b, return_value uintptr
+	_, _, _ = a, b, return_value
+	return_value = libc.UintptrFromInt32(0)
+	if !(libc.Bool(!false) && int64(libc.Int32FromInt32(2)) <= nargs && nargs <= int64(libc.Int32FromInt32(2)) || X_PyArg_CheckPositional(tls, __ccgo_ts+366737, nargs, int64(libc.Int32FromInt32(2)), int64(libc.Int32FromInt32(2))) != 0) {
+		goto exit
+	}
+	a = **(**uintptr)(__ccgo_up(args))
+	b = **(**uintptr)(__ccgo_up(args + 1*8))
+	return_value = __operator_imod_impl(tls, module, a, b)
+	goto exit
+exit:
+	;
+	return return_value
+	return r
+}
+
+var __operator_ilshift__doc__ = [47]int8{'i', 'l', 's', 'h', 'i', 'f', 't', '(', '$', 'm', 'o', 'd', 'u', 'l', 'e', ',', ' ', 'a', ',', ' ', 'b', ',', ' ', '/', ')', 10, '-', '-', 10, 10, 'S', 'a', 'm', 'e', ' ', 'a', 's', ' ', 'a', ' ', '<', '<', '=', ' ', 'b', '.'}
+
+func __operator_ilshift(tls *libc.TLS, module uintptr, args uintptr, nargs TPy_ssize_t) (r uintptr) {
+	var a, b, return_value uintptr
+	_, _, _ = a, b, return_value
+	return_value = libc.UintptrFromInt32(0)
+	if !(libc.Bool(!false) && int64(libc.Int32FromInt32(2)) <= nargs && nargs <= int64(libc.Int32FromInt32(2)) || X_PyArg_CheckPositional(tls, __ccgo_ts+366742, nargs, int64(libc.Int32FromInt32(2)), int64(libc.Int32FromInt32(2))) != 0) {
+		goto exit
+	}
+	a = **(**uintptr)(__ccgo_up(args))
+	b = **(**uintptr)(__ccgo_up(args + 1*8))
+	return_value = __operator_ilshift_impl(tls, module, a, b)
+	goto exit
+exit:
+	;
+	return return_value
+	return r
+}
+
+var __operator_irshift__doc__ = [47]int8{'i', 'r', 's', 'h', 'i', 'f', 't', '(', '$', 'm', 'o', 'd', 'u', 'l', 'e', ',', ' ', 'a', ',', ' ', 'b', ',', ' ', '/', ')', 10, '-', '-', 10, 10, 'S', 'a', 'm', 'e', ' ', 'a', 's', ' ', 'a', ' ', '>', '>', '=', ' ', 'b', '.'}
+
+func __operator_irshift(tls *libc.TLS, module uintptr, args uintptr, nargs TPy_ssize_t) (r uintptr) {
+	var a, b, return_value uintptr
+	_, _, _ = a, b, return_value
+	return_value = libc.UintptrFromInt32(0)
+	if !(libc.Bool(!false) && int64(libc.Int32FromInt32(2)) <= nargs && nargs <= int64(libc.Int32FromInt32(2)) || X_PyArg_CheckPositional(tls, __ccgo_ts+366750, nargs, int64(libc.Int32FromInt32(2)), int64(libc.Int32FromInt32(2))) != 0) {
+		goto exit
+	}
+	a = **(**uintptr)(__ccgo_up(args))
+	b = **(**uintptr)(__ccgo_up(args + 1*8))
+	return_value = __operator_irshift_impl(tls, module, a, b)
+	goto exit
+exit:
+	;
+	return return_value
+	return r
+}
+
+var __operator_iand__doc__ = [43]int8{'i', 'a', 'n', 'd', '(', '$', 'm', 'o', 'd', 'u', 'l', 'e', ',', ' ', 'a', ',', ' ', 'b', ',', ' ', '/', ')', 10, '-', '-', 10, 10, 'S', 'a', 'm', 'e', ' ', 'a', 's', ' ', 'a', ' ', '&', '=', ' ', 'b', '.'}
+
+func __operator_iand(tls *libc.TLS, module uintptr, args uintptr, nargs TPy_ssize_t) (r uintptr) {
+	var a, b, return_value uintptr
+	_, _, _ = a, b, return_value
+	return_value = libc.UintptrFromInt32(0)
+	if !(libc.Bool(!false) && int64(libc.Int32FromInt32(2)) <= nargs && nargs <= int64(libc.Int32FromInt32(2)) || X_PyArg_CheckPositional(tls, __ccgo_ts+366758, nargs, int64(libc.Int32FromInt32(2)), int64(libc.Int32FromInt32(2))) != 0) {
+		goto exit
+	}
+	a = **(**uintptr)(__ccgo_up(args))
+	b = **(**uintptr)(__ccgo_up(args + 1*8))
+	return_value = __operator_iand_impl(tls, module, a, b)
+	goto exit
+exit:
+	;
+	return return_value
+	return r
+}
+
+var __operator_ixor__doc__ = [43]int8{'i', 'x', 'o', 'r', '(', '$', 'm', 'o', 'd', 'u', 'l', 'e', ',', ' ', 'a', ',', ' ', 'b', ',', ' ', '/', ')', 10, '-', '-', 10, 10, 'S', 'a', 'm', 'e', ' ', 'a', 's', ' ', 'a', ' ', '^', '=', ' ', 'b', '.'}
+
+func __operator_ixor(tls *libc.TLS, module uintptr, args uintptr, nargs TPy_ssize_t) (r uintptr) {
+	var a, b, return_value uintptr
+	_, _, _ = a, b, return_value
+	return_value = libc.UintptrFromInt32(0)
+	if !(libc.Bool(!false) && int64(libc.Int32FromInt32(2)) <= nargs && nargs <= int64(libc.Int32FromInt32(2)) || X_PyArg_CheckPositional(tls, __ccgo_ts+366763, nargs, int64(libc.Int32FromInt32(2)), int64(libc.Int32FromInt32(2))) != 0) {
+		goto exit
+	}
+	a = **(**uintptr)(__ccgo_up(args))
+	b = **(**uintptr)(__ccgo_up(args + 1*8))
+	return_value = __operator_ixor_impl(tls, module, a, b)
+	goto exit
+exit:
+	;
+	return return_value
+	return r
+}
+
+var __operator_ior__doc__ = [42]int8{'i', 'o', 'r', '(', '$', 'm', 'o', 'd', 'u', 'l', 'e', ',', ' ', 'a', ',', ' ', 'b', ',', ' ', '/', ')', 10, '-', '-', 10, 10, 'S', 'a', 'm', 'e', ' ', 'a', 's', ' ', 'a', ' ', '|', '=', ' ', 'b', '.'}
+
+func __operator_ior(tls *libc.TLS, module uintptr, args uintptr, nargs TPy_ssize_t) (r uintptr) {
+	var a, b, return_value uintptr
+	_, _, _ = a, b, return_value
+	return_value = libc.UintptrFromInt32(0)
+	if !(libc.Bool(!false) && int64(libc.Int32FromInt32(2)) <= nargs && nargs <= int64(libc.Int32FromInt32(2)) || X_PyArg_CheckPositional(tls, __ccgo_ts+366768, nargs, int64(libc.Int32FromInt32(2)), int64(libc.Int32FromInt32(2))) != 0) {
+		goto exit
+	}
+	a = **(**uintptr)(__ccgo_up(args))
+	b = **(**uintptr)(__ccgo_up(args + 1*8))
+	return_value = __operator_ior_impl(tls, module, a, b)
+	goto exit
+exit:
+	;
+	return return_value
+	return r
+}
+
+func __operator_concat(tls *libc.TLS, module uintptr, args uintptr, nargs TPy_ssize_t) (r uintptr) {
+	var a, b, return_value uintptr
+	_, _, _ = a, b, return_value
+	return_value = libc.UintptrFromInt32(0)
+	if !(libc.Bool(!false) && int64(libc.Int32FromInt32(2)) <= nargs && nargs <= int64(libc.Int32FromInt32(2)) || X_PyArg_CheckPositional(tls, __ccgo_ts+366772, nargs, int64(libc.Int32FromInt32(2)), int64(libc.Int32FromInt32(2))) != 0) {
+		goto exit
+	}
+	a = **(**uintptr)(__ccgo_up(args))
+	b = **(**uintptr)(__ccgo_up(args + 1*8))
+	return_value = __operator_concat_impl(tls, module, a, b)
+	goto exit
+exit:
+	;
+	return return_value
+	return r
+}
+
+func __operator_iconcat(tls *libc.TLS, module uintptr, args uintptr, nargs TPy_ssize_t) (r uintptr) {
+	var a, b, return_value uintptr
+	_, _, _ = a, b, return_value
+	return_value = libc.UintptrFromInt32(0)
+	if !(libc.Bool(!false) && int64(libc.Int32FromInt32(2)) <= nargs && nargs <= int64(libc.Int32FromInt32(2)) || X_PyArg_CheckPositional(tls, __ccgo_ts+366779, nargs, int64(libc.Int32FromInt32(2)), int64(libc.Int32FromInt32(2))) != 0) {
+		goto exit
+	}
+	a = **(**uintptr)(__ccgo_up(args))
+	b = **(**uintptr)(__ccgo_up(args + 1*8))
+	return_value = __operator_iconcat_impl(tls, module, a, b)
+	goto exit
+exit:
+	;
+	return return_value
+	return r
+}
+
+func __operator_contains(tls *libc.TLS, module uintptr, args uintptr, nargs TPy_ssize_t) (r uintptr) {
+	var _return_value int32
+	var a, b, return_value uintptr
+	_, _, _, _ = _return_value, a, b, return_value
+	return_value = libc.UintptrFromInt32(0)
+	if !(libc.Bool(!false) && int64(libc.Int32FromInt32(2)) <= nargs && nargs <= int64(libc.Int32FromInt32(2)) || X_PyArg_CheckPositional(tls, __ccgo_ts+366787, nargs, int64(libc.Int32FromInt32(2)), int64(libc.Int32FromInt32(2))) != 0) {
+		goto exit
+	}
+	a = **(**uintptr)(__ccgo_up(args))
+	b = **(**uintptr)(__ccgo_up(args + 1*8))
+	_return_value = __operator_contains_impl(tls, module, a, b)
+	if _return_value == -int32(1) && XPyErr_Occurred(tls) != 0 {
+		goto exit
+	}
+	return_value = XPyBool_FromLong(tls, int64(_return_value))
+	goto exit
+exit:
+	;
+	return return_value
+	return r
+}
+
+func __operator_indexOf(tls *libc.TLS, module uintptr, args uintptr, nargs TPy_ssize_t) (r uintptr) {
+	var _return_value TPy_ssize_t
+	var a, b, return_value uintptr
+	_, _, _, _ = _return_value, a, b, return_value
+	return_value = libc.UintptrFromInt32(0)
+	if !(libc.Bool(!false) && int64(libc.Int32FromInt32(2)) <= nargs && nargs <= int64(libc.Int32FromInt32(2)) || X_PyArg_CheckPositional(tls, __ccgo_ts+366796, nargs, int64(libc.Int32FromInt32(2)), int64(libc.Int32FromInt32(2))) != 0) {
+		goto exit
+	}
+	a = **(**uintptr)(__ccgo_up(args))
+	b = **(**uintptr)(__ccgo_up(args + 1*8))
+	_return_value = __operator_indexOf_impl(tls, module, a, b)
+	if _return_value == int64(-int32(1)) && XPyErr_Occurred(tls) != 0 {
+		goto exit
+	}
+	return_value = XPyLong_FromSsize_t(tls, _return_value)
+	goto exit
+exit:
+	;
+	return return_value
+	return r
+}
+
+func __operator_countOf(tls *libc.TLS, module uintptr, args uintptr, nargs TPy_ssize_t) (r uintptr) {
+	var _return_value TPy_ssize_t
+	var a, b, return_value uintptr
+	_, _, _, _ = _return_value, a, b, return_value
+	return_value = libc.UintptrFromInt32(0)
+	if !(libc.Bool(!false) && int64(libc.Int32FromInt32(2)) <= nargs && nargs <= int64(libc.Int32FromInt32(2)) || X_PyArg_CheckPositional(tls, __ccgo_ts+366804, nargs, int64(libc.Int32FromInt32(2)), int64(libc.Int32FromInt32(2))) != 0) {
+		goto exit
+	}
+	a = **(**uintptr)(__ccgo_up(args))
+	b = **(**uintptr)(__ccgo_up(args + 1*8))
+	_return_value = __operator_countOf_impl(tls, module, a, b)
+	if _return_value == int64(-int32(1)) && XPyErr_Occurred(tls) != 0 {
+		goto exit
+	}
+	return_value = XPyLong_FromSsize_t(tls, _return_value)
+	goto exit
+exit:
+	;
+	return return_value
+	return r
+}
+
+var __operator_getitem__doc__ = [44]int8{'g', 'e', 't', 'i', 't', 'e', 'm', '(', '$', 'm', 'o', 'd', 'u', 'l', 'e', ',', ' ', 'a', ',', ' ', 'b', ',', ' ', '/', ')', 10, '-', '-', 10, 10, 'S', 'a', 'm', 'e', ' ', 'a', 's', ' ', 'a', '[', 'b', ']', '.'}
+
+func __operator_getitem(tls *libc.TLS, module uintptr, args uintptr, nargs TPy_ssize_t) (r uintptr) {
+	var a, b, return_value uintptr
+	_, _, _ = a, b, return_value
+	return_value = libc.UintptrFromInt32(0)
+	if !(libc.Bool(!false) && int64(libc.Int32FromInt32(2)) <= nargs && nargs <= int64(libc.Int32FromInt32(2)) || X_PyArg_CheckPositional(tls, __ccgo_ts+366812, nargs, int64(libc.Int32FromInt32(2)), int64(libc.Int32FromInt32(2))) != 0) {
+		goto exit
+	}
+	a = **(**uintptr)(__ccgo_up(args))
+	b = **(**uintptr)(__ccgo_up(args + 1*8))
+	return_value = __operator_getitem_impl(tls, module, a, b)
+	goto exit
+exit:
+	;
+	return return_value
+	return r
+}
+
+var __operator_setitem__doc__ = [51]int8{'s', 'e', 't', 'i', 't', 'e', 'm', '(', '$', 'm', 'o', 'd', 'u', 'l', 'e', ',', ' ', 'a', ',', ' ', 'b', ',', ' ', 'c', ',', ' ', '/', ')', 10, '-', '-', 10, 10, 'S', 'a', 'm', 'e', ' ', 'a', 's', ' ', 'a', '[', 'b', ']', ' ', '=', ' ', 'c', '.'}
+
+func __operator_setitem(tls *libc.TLS, module uintptr, args uintptr, nargs TPy_ssize_t) (r uintptr) {
+	var a, b, c, return_value uintptr
+	_, _, _, _ = a, b, c, return_value
+	return_value = libc.UintptrFromInt32(0)
+	if !(libc.Bool(!false) && int64(libc.Int32FromInt32(3)) <= nargs && nargs <= int64(libc.Int32FromInt32(3)) || X_PyArg_CheckPositional(tls, __ccgo_ts+366820, nargs, int64(libc.Int32FromInt32(3)), int64(libc.Int32FromInt32(3))) != 0) {
+		goto exit
+	}
+	a = **(**uintptr)(__ccgo_up(args))
+	b = **(**uintptr)(__ccgo_up(args + 1*8))
+	c = **(**uintptr)(__ccgo_up(args + 2*8))
+	return_value = __operator_setitem_impl(tls, module, a, b, c)
+	goto exit
+exit:
+	;
+	return return_value
+	return r
+}
+
+var __operator_delitem__doc__ = [48]int8{'d', 'e', 'l', 'i', 't', 'e', 'm', '(', '$', 'm', 'o', 'd', 'u', 'l', 'e', ',', ' ', 'a', ',', ' ', 'b', ',', ' ', '/', ')', 10, '-', '-', 10, 10, 'S', 'a', 'm', 'e', ' ', 'a', 's', ' ', 'd', 'e', 'l', ' ', 'a', '[', 'b', ']', '.'}
+
+func __operator_delitem(tls *libc.TLS, module uintptr, args uintptr, nargs TPy_ssize_t) (r uintptr) {
+	var a, b, return_value uintptr
+	_, _, _ = a, b, return_value
+	return_value = libc.UintptrFromInt32(0)
+	if !(libc.Bool(!false) && int64(libc.Int32FromInt32(2)) <= nargs && nargs <= int64(libc.Int32FromInt32(2)) || X_PyArg_CheckPositional(tls, __ccgo_ts+366828, nargs, int64(libc.Int32FromInt32(2)), int64(libc.Int32FromInt32(2))) != 0) {
+		goto exit
+	}
+	a = **(**uintptr)(__ccgo_up(args))
+	b = **(**uintptr)(__ccgo_up(args + 1*8))
+	return_value = __operator_delitem_impl(tls, module, a, b)
+	goto exit
+exit:
+	;
+	return return_value
+	return r
+}
+
+var __operator_eq__doc__ = [41]int8{'e', 'q', '(', '$', 'm', 'o', 'd', 'u', 'l', 'e', ',', ' ', 'a', ',', ' ', 'b', ',', ' ', '/', ')', 10, '-', '-', 10, 10, 'S', 'a', 'm', 'e', ' ', 'a', 's', ' ', 'a', ' ', '=', '=', ' ', 'b', '.'}
+
+func __operator_eq(tls *libc.TLS, module uintptr, args uintptr, nargs TPy_ssize_t) (r uintptr) {
+	var a, b, return_value uintptr
+	_, _, _ = a, b, return_value
+	return_value = libc.UintptrFromInt32(0)
+	if !(libc.Bool(!false) && int64(libc.Int32FromInt32(2)) <= nargs && nargs <= int64(libc.Int32FromInt32(2)) || X_PyArg_CheckPositional(tls, __ccgo_ts+366836, nargs, int64(libc.Int32FromInt32(2)), int64(libc.Int32FromInt32(2))) != 0) {
+		goto exit
+	}
+	a = **(**uintptr)(__ccgo_up(args))
+	b = **(**uintptr)(__ccgo_up(args + 1*8))
+	return_value = __operator_eq_impl(tls, module, a, b)
+	goto exit
+exit:
+	;
+	return return_value
+	return r
+}
+
+var __operator_ne__doc__ = [41]int8{'n', 'e', '(', '$', 'm', 'o', 'd', 'u', 'l', 'e', ',', ' ', 'a', ',', ' ', 'b', ',', ' ', '/', ')', 10, '-', '-', 10, 10, 'S', 'a', 'm', 'e', ' ', 'a', 's', ' ', 'a', ' ', '!', '=', ' ', 'b', '.'}
+
+func __operator_ne(tls *libc.TLS, module uintptr, args uintptr, nargs TPy_ssize_t) (r uintptr) {
+	var a, b, return_value uintptr
+	_, _, _ = a, b, return_value
+	return_value = libc.UintptrFromInt32(0)
+	if !(libc.Bool(!false) && int64(libc.Int32FromInt32(2)) <= nargs && nargs <= int64(libc.Int32FromInt32(2)) || X_PyArg_CheckPositional(tls, __ccgo_ts+366839, nargs, int64(libc.Int32FromInt32(2)), int64(libc.Int32FromInt32(2))) != 0) {
+		goto exit
+	}
+	a = **(**uintptr)(__ccgo_up(args))
+	b = **(**uintptr)(__ccgo_up(args + 1*8))
+	return_value = __operator_ne_impl(tls, module, a, b)
+	goto exit
+exit:
+	;
+	return return_value
+	return r
+}
+
+var __operator_lt__doc__ = [40]int8{'l', 't', '(', '$', 'm', 'o', 'd', 'u', 'l', 'e', ',', ' ', 'a', ',', ' ', 'b', ',', ' ', '/', ')', 10, '-', '-', 10, 10, 'S', 'a', 'm', 'e', ' ', 'a', 's', ' ', 'a', ' ', '<', ' ', 'b', '.'}
+
+func __operator_lt(tls *libc.TLS, module uintptr, args uintptr, nargs TPy_ssize_t) (r uintptr) {
+	var a, b, return_value uintptr
+	_, _, _ = a, b, return_value
+	return_value = libc.UintptrFromInt32(0)
+	if !(libc.Bool(!false) && int64(libc.Int32FromInt32(2)) <= nargs && nargs <= int64(libc.Int32FromInt32(2)) || X_PyArg_CheckPositional(tls, __ccgo_ts+366842, nargs, int64(libc.Int32FromInt32(2)), int64(libc.Int32FromInt32(2))) != 0) {
+		goto exit
+	}
+	a = **(**uintptr)(__ccgo_up(args))
+	b = **(**uintptr)(__ccgo_up(args + 1*8))
+	return_value = __operator_lt_impl(tls, module, a, b)
+	goto exit
+exit:
+	;
+	return return_value
+	return r
+}
+
+var __operator_le__doc__ = [41]int8{'l', 'e', '(', '$', 'm', 'o', 'd', 'u', 'l', 'e', ',', ' ', 'a', ',', ' ', 'b', ',', ' ', '/', ')', 10, '-', '-', 10, 10, 'S', 'a', 'm', 'e', ' ', 'a', 's', ' ', 'a', ' ', '<', '=', ' ', 'b', '.'}
+
+func __operator_le(tls *libc.TLS, module uintptr, args uintptr, nargs TPy_ssize_t) (r uintptr) {
+	var a, b, return_value uintptr
+	_, _, _ = a, b, return_value
+	return_value = libc.UintptrFromInt32(0)
+	if !(libc.Bool(!false) && int64(libc.Int32FromInt32(2)) <= nargs && nargs <= int64(libc.Int32FromInt32(2)) || X_PyArg_CheckPositional(tls, __ccgo_ts+366845, nargs, int64(libc.Int32FromInt32(2)), int64(libc.Int32FromInt32(2))) != 0) {
+		goto exit
+	}
+	a = **(**uintptr)(__ccgo_up(args))
+	b = **(**uintptr)(__ccgo_up(args + 1*8))
+	return_value = __operator_le_impl(tls, module, a, b)
+	goto exit
+exit:
+	;
+	return return_value
+	return r
+}
+
+var __operator_gt__doc__ = [40]int8{'g', 't', '(', '$', 'm', 'o', 'd', 'u', 'l', 'e', ',', ' ', 'a', ',', ' ', 'b', ',', ' ', '/', ')', 10, '-', '-', 10, 10, 'S', 'a', 'm', 'e', ' ', 'a', 's', ' ', 'a', ' ', '>', ' ', 'b', '.'}
+
+func __operator_gt(tls *libc.TLS, module uintptr, args uintptr, nargs TPy_ssize_t) (r uintptr) {
+	var a, b, return_value uintptr
+	_, _, _ = a, b, return_value
+	return_value = libc.UintptrFromInt32(0)
+	if !(libc.Bool(!false) && int64(libc.Int32FromInt32(2)) <= nargs && nargs <= int64(libc.Int32FromInt32(2)) || X_PyArg_CheckPositional(tls, __ccgo_ts+366848, nargs, int64(libc.Int32FromInt32(2)), int64(libc.Int32FromInt32(2))) != 0) {
+		goto exit
+	}
+	a = **(**uintptr)(__ccgo_up(args))
+	b = **(**uintptr)(__ccgo_up(args + 1*8))
+	return_value = __operator_gt_impl(tls, module, a, b)
+	goto exit
+exit:
+	;
+	return return_value
+	return r
+}
+
+var __operator_ge__doc__ = [41]int8{'g', 'e', '(', '$', 'm', 'o', 'd', 'u', 'l', 'e', ',', ' ', 'a', ',', ' ', 'b', ',', ' ', '/', ')', 10, '-', '-', 10, 10, 'S', 'a', 'm', 'e', ' ', 'a', 's', ' ', 'a', ' ', '>', '=', ' ', 'b', '.'}
+
+func __operator_ge(tls *libc.TLS, module uintptr, args uintptr, nargs TPy_ssize_t) (r uintptr) {
+	var a, b, return_value uintptr
+	_, _, _ = a, b, return_value
+	return_value = libc.UintptrFromInt32(0)
+	if !(libc.Bool(!false) && int64(libc.Int32FromInt32(2)) <= nargs && nargs <= int64(libc.Int32FromInt32(2)) || X_PyArg_CheckPositional(tls, __ccgo_ts+366851, nargs, int64(libc.Int32FromInt32(2)), int64(libc.Int32FromInt32(2))) != 0) {
+		goto exit
+	}
+	a = **(**uintptr)(__ccgo_up(args))
+	b = **(**uintptr)(__ccgo_up(args + 1*8))
+	return_value = __operator_ge_impl(tls, module, a, b)
+	goto exit
+exit:
+	;
+	return return_value
+	return r
+}
+
+var __operator_pow__doc__ = [42]int8{'p', 'o', 'w', '(', '$', 'm', 'o', 'd', 'u', 'l', 'e', ',', ' ', 'a', ',', ' ', 'b', ',', ' ', '/', ')', 10, '-', '-', 10, 10, 'S', 'a', 'm', 'e', ' ', 'a', 's', ' ', 'a', ' ', '*', '*', ' ', 'b', '.'}
+
+func __operator_pow(tls *libc.TLS, module uintptr, args uintptr, nargs TPy_ssize_t) (r uintptr) {
+	var a, b, return_value uintptr
+	_, _, _ = a, b, return_value
+	return_value = libc.UintptrFromInt32(0)
+	if !(libc.Bool(!false) && int64(libc.Int32FromInt32(2)) <= nargs && nargs <= int64(libc.Int32FromInt32(2)) || X_PyArg_CheckPositional(tls, __ccgo_ts+118282, nargs, int64(libc.Int32FromInt32(2)), int64(libc.Int32FromInt32(2))) != 0) {
+		goto exit
+	}
+	a = **(**uintptr)(__ccgo_up(args))
+	b = **(**uintptr)(__ccgo_up(args + 1*8))
+	return_value = __operator_pow_impl(tls, module, a, b)
+	goto exit
+exit:
+	;
+	return return_value
+	return r
+}
+
+var __operator_ipow__doc__ = [44]int8{'i', 'p', 'o', 'w', '(', '$', 'm', 'o', 'd', 'u', 'l', 'e', ',', ' ', 'a', ',', ' ', 'b', ',', ' ', '/', ')', 10, '-', '-', 10, 10, 'S', 'a', 'm', 'e', ' ', 'a', 's', ' ', 'a', ' ', '*', '*', '=', ' ', 'b', '.'}
+
+func __operator_ipow(tls *libc.TLS, module uintptr, args uintptr, nargs TPy_ssize_t) (r uintptr) {
+	var a, b, return_value uintptr
+	_, _, _ = a, b, return_value
+	return_value = libc.UintptrFromInt32(0)
+	if !(libc.Bool(!false) && int64(libc.Int32FromInt32(2)) <= nargs && nargs <= int64(libc.Int32FromInt32(2)) || X_PyArg_CheckPositional(tls, __ccgo_ts+366854, nargs, int64(libc.Int32FromInt32(2)), int64(libc.Int32FromInt32(2))) != 0) {
+		goto exit
+	}
+	a = **(**uintptr)(__ccgo_up(args))
+	b = **(**uintptr)(__ccgo_up(args + 1*8))
+	return_value = __operator_ipow_impl(tls, module, a, b)
+	goto exit
+exit:
+	;
+	return return_value
+	return r
+}
+
+var __operator_index__doc__ = [47]int8{'i', 'n', 'd', 'e', 'x', '(', '$', 'm', 'o', 'd', 'u', 'l', 'e', ',', ' ', 'a', ',', ' ', '/', ')', 10, '-', '-', 10, 10, 'S', 'a', 'm', 'e', ' ', 'a', 's', ' ', 'a', '.', '_', '_', 'i', 'n', 'd', 'e', 'x', '_', '_', '(', ')'}
+
+var __operator_is___doc__ = [42]int8{'i', 's', '_', '(', '$', 'm', 'o', 'd', 'u', 'l', 'e', ',', ' ', 'a', ',', ' ', 'b', ',', ' ', '/', ')', 10, '-', '-', 10, 10, 'S', 'a', 'm', 'e', ' ', 'a', 's', ' ', 'a', ' ', 'i', 's', ' ', 'b', '.'}
+
+func __operator_is_(tls *libc.TLS, module uintptr, args uintptr, nargs TPy_ssize_t) (r uintptr) {
+	var a, b, return_value uintptr
+	_, _, _ = a, b, return_value
+	return_value = libc.UintptrFromInt32(0)
+	if !(libc.Bool(!false) && int64(libc.Int32FromInt32(2)) <= nargs && nargs <= int64(libc.Int32FromInt32(2)) || X_PyArg_CheckPositional(tls, __ccgo_ts+366859, nargs, int64(libc.Int32FromInt32(2)), int64(libc.Int32FromInt32(2))) != 0) {
+		goto exit
+	}
+	a = **(**uintptr)(__ccgo_up(args))
+	b = **(**uintptr)(__ccgo_up(args + 1*8))
+	return_value = __operator_is__impl(tls, module, a, b)
+	goto exit
+exit:
+	;
+	return return_value
+	return r
+}
+
+var __operator_is_not__doc__ = [49]int8{'i', 's', '_', 'n', 'o', 't', '(', '$', 'm', 'o', 'd', 'u', 'l', 'e', ',', ' ', 'a', ',', ' ', 'b', ',', ' ', '/', ')', 10, '-', '-', 10, 10, 'S', 'a', 'm', 'e', ' ', 'a', 's', ' ', 'a', ' ', 'i', 's', ' ', 'n', 'o', 't', ' ', 'b', '.'}
+
+func __operator_is_not(tls *libc.TLS, module uintptr, args uintptr, nargs TPy_ssize_t) (r uintptr) {
+	var a, b, return_value uintptr
+	_, _, _ = a, b, return_value
+	return_value = libc.UintptrFromInt32(0)
+	if !(libc.Bool(!false) && int64(libc.Int32FromInt32(2)) <= nargs && nargs <= int64(libc.Int32FromInt32(2)) || X_PyArg_CheckPositional(tls, __ccgo_ts+366863, nargs, int64(libc.Int32FromInt32(2)), int64(libc.Int32FromInt32(2))) != 0) {
+		goto exit
+	}
+	a = **(**uintptr)(__ccgo_up(args))
+	b = **(**uintptr)(__ccgo_up(args + 1*8))
+	return_value = __operator_is_not_impl(tls, module, a, b)
+	goto exit
+exit:
+	;
+	return return_value
+	return r
+}
+
+var __operator_is_none__doc__ = [46]int8{'i', 's', '_', 'n', 'o', 'n', 'e', '(', '$', 'm', 'o', 'd', 'u', 'l', 'e', ',', ' ', 'a', ',', ' ', '/', ')', 10, '-', '-', 10, 10, 'S', 'a', 'm', 'e', ' ', 'a', 's', ' ', 'a', ' ', 'i', 's', ' ', 'N', 'o', 'n', 'e', '.'}
+
+var __operator_is_not_none__doc__ = [54]int8{'i', 's', '_', 'n', 'o', 't', '_', 'n', 'o', 'n', 'e', '(', '$', 'm', 'o', 'd', 'u', 'l', 'e', ',', ' ', 'a', ',', ' ', '/', ')', 10, '-', '-', 10, 10, 'S', 'a', 'm', 'e', ' ', 'a', 's', ' ', 'a', ' ', 'i', 's', ' ', 'n', 'o', 't', ' ', 'N', 'o', 'n', 'e', '.'}
+
+func __operator_length_hint(tls *libc.TLS, module uintptr, args uintptr, nargs TPy_ssize_t) (r uintptr) {
+	var _return_value, default_value, ival TPy_ssize_t
+	var iobj, obj, return_value, v1, v6 uintptr
+	var v2 int32
+	var v5 Tuint32_t
+	_, _, _, _, _, _, _, _, _, _ = _return_value, default_value, iobj, ival, obj, return_value, v1, v2, v5, v6
+	return_value = libc.UintptrFromInt32(0)
+	default_value = 0
+	if !(libc.Bool(!false) && int64(libc.Int32FromInt32(1)) <= nargs && nargs <= int64(libc.Int32FromInt32(2)) || X_PyArg_CheckPositional(tls, __ccgo_ts+366870, nargs, int64(libc.Int32FromInt32(1)), int64(libc.Int32FromInt32(2))) != 0) {
+		goto exit
+	}
+	obj = **(**uintptr)(__ccgo_up(args))
+	if nargs < int64(2) {
+		goto skip_optional
+	}
+	ival = int64(-int32(1))
+	iobj = X_PyNumber_Index(tls, **(**uintptr)(__ccgo_up(args + 1*8)))
+	if iobj != libc.UintptrFromInt32(0) {
+		ival = XPyLong_AsSsize_t(tls, iobj)
+		v1 = iobj
+		v2 = libc.BoolInt32(libc.Int32FromUint32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
+		goto _3
+	_3:
+		if v2 != 0 {
+			goto _4
+		}
+		v6 = v1
+		*(*Tuint32_t)(unsafe.Pointer(v6)) = *(*Tuint32_t)(unsafe.Pointer(v6)) - 1
+		v5 = *(*Tuint32_t)(unsafe.Pointer(v6))
+		if v5 == libc.Uint32FromInt32(0) {
+			X_Py_Dealloc(tls, v1)
+		}
+	_4:
+	}
+	if ival == int64(-int32(1)) && XPyErr_Occurred(tls) != 0 {
+		goto exit
+	}
+	default_value = ival
+	goto skip_optional
+skip_optional:
+	;
+	_return_value = __operator_length_hint_impl(tls, module, obj, default_value)
+	if _return_value == int64(-int32(1)) && XPyErr_Occurred(tls) != 0 {
+		goto exit
+	}
+	return_value = XPyLong_FromSsize_t(tls, _return_value)
+	goto exit
+exit:
+	;
+	return return_value
+	return r
+}
+
+func __operator__compare_digest(tls *libc.TLS, module uintptr, args uintptr, nargs TPy_ssize_t) (r uintptr) {
+	var a, b, return_value uintptr
+	_, _, _ = a, b, return_value
+	return_value = libc.UintptrFromInt32(0)
+	if !(libc.Bool(!false) && int64(libc.Int32FromInt32(2)) <= nargs && nargs <= int64(libc.Int32FromInt32(2)) || X_PyArg_CheckPositional(tls, __ccgo_ts+366882, nargs, int64(libc.Int32FromInt32(2)), int64(libc.Int32FromInt32(2))) != 0) {
+		goto exit
+	}
+	a = **(**uintptr)(__ccgo_up(args))
+	b = **(**uintptr)(__ccgo_up(args + 1*8))
+	return_value = __operator__compare_digest_impl(tls, module, a, b)
+	goto exit
+exit:
+	;
+	return return_value
+	return r
+}
+
+type T_operator_state = struct {
+	Fitemgetter_type   uintptr
+	Fattrgetter_type   uintptr
+	Fmethodcaller_type uintptr
+}
+
+func _get_operator_state(tls *libc.TLS, module uintptr) (r uintptr) {
+	var state, v1 uintptr
+	_, _ = state, v1
+	v1 = (*TPyModuleObject)(unsafe.Pointer(module)).Fmd_state
+	goto _2
+_2:
+	state = v1
+	return state
+}
+
+func __operator_truth_impl(tls *libc.TLS, module uintptr, a uintptr) (r int32) {
+
+	return XPyObject_IsTrue(tls, a)
+}
+
+func __operator_add_impl(tls *libc.TLS, module uintptr, a uintptr, b uintptr) (r uintptr) {
+
+	return XPyNumber_Add(tls, a, b)
+}
+
+func __operator_sub_impl(tls *libc.TLS, module uintptr, a uintptr, b uintptr) (r uintptr) {
+
+	return XPyNumber_Subtract(tls, a, b)
+}
+
+func __operator_mul_impl(tls *libc.TLS, module uintptr, a uintptr, b uintptr) (r uintptr) {
+
+	return XPyNumber_Multiply(tls, a, b)
+}
+
+func __operator_matmul_impl(tls *libc.TLS, module uintptr, a uintptr, b uintptr) (r uintptr) {
+
+	return XPyNumber_MatrixMultiply(tls, a, b)
+}
+
+func __operator_floordiv_impl(tls *libc.TLS, module uintptr, a uintptr, b uintptr) (r uintptr) {
+
+	return XPyNumber_FloorDivide(tls, a, b)
+}
+
+func __operator_truediv_impl(tls *libc.TLS, module uintptr, a uintptr, b uintptr) (r uintptr) {
+
+	return XPyNumber_TrueDivide(tls, a, b)
+}
+
+func __operator_mod_impl(tls *libc.TLS, module uintptr, a uintptr, b uintptr) (r uintptr) {
+
+	return XPyNumber_Remainder(tls, a, b)
+}
+
+func __operator_neg(tls *libc.TLS, module uintptr, a uintptr) (r uintptr) {
+
+	return XPyNumber_Negative(tls, a)
+}
+
+func __operator_pos(tls *libc.TLS, module uintptr, a uintptr) (r uintptr) {
+
+	return XPyNumber_Positive(tls, a)
+}
+
+func __operator_abs(tls *libc.TLS, module uintptr, a uintptr) (r uintptr) {
+
+	return XPyNumber_Absolute(tls, a)
+}
+
+func __operator_inv(tls *libc.TLS, module uintptr, a uintptr) (r uintptr) {
+
+	return XPyNumber_Invert(tls, a)
+}
+
+func __operator_invert(tls *libc.TLS, module uintptr, a uintptr) (r uintptr) {
+
+	return XPyNumber_Invert(tls, a)
+}
+
+func __operator_lshift_impl(tls *libc.TLS, module uintptr, a uintptr, b uintptr) (r uintptr) {
+
+	return XPyNumber_Lshift(tls, a, b)
+}
+
+func __operator_rshift_impl(tls *libc.TLS, module uintptr, a uintptr, b uintptr) (r uintptr) {
+
+	return XPyNumber_Rshift(tls, a, b)
+}
+
+func __operator_not__impl(tls *libc.TLS, module uintptr, a uintptr) (r int32) {
+
+	return XPyObject_Not(tls, a)
+}
+
+func __operator_and__impl(tls *libc.TLS, module uintptr, a uintptr, b uintptr) (r uintptr) {
+
+	return XPyNumber_And(tls, a, b)
+}
+
+func __operator_xor_impl(tls *libc.TLS, module uintptr, a uintptr, b uintptr) (r uintptr) {
+
+	return XPyNumber_Xor(tls, a, b)
+}
+
+func __operator_or__impl(tls *libc.TLS, module uintptr, a uintptr, b uintptr) (r uintptr) {
+
+	return XPyNumber_Or(tls, a, b)
+}
+
+func __operator_iadd_impl(tls *libc.TLS, module uintptr, a uintptr, b uintptr) (r uintptr) {
+
+	return XPyNumber_InPlaceAdd(tls, a, b)
+}
+
+func __operator_isub_impl(tls *libc.TLS, module uintptr, a uintptr, b uintptr) (r uintptr) {
+
+	return XPyNumber_InPlaceSubtract(tls, a, b)
+}
+
+func __operator_imul_impl(tls *libc.TLS, module uintptr, a uintptr, b uintptr) (r uintptr) {
+
+	return XPyNumber_InPlaceMultiply(tls, a, b)
+}
+
+func __operator_imatmul_impl(tls *libc.TLS, module uintptr, a uintptr, b uintptr) (r uintptr) {
+
+	return XPyNumber_InPlaceMatrixMultiply(tls, a, b)
+}
+
+func __operator_ifloordiv_impl(tls *libc.TLS, module uintptr, a uintptr, b uintptr) (r uintptr) {
+
+	return XPyNumber_InPlaceFloorDivide(tls, a, b)
+}
+
+func __operator_itruediv_impl(tls *libc.TLS, module uintptr, a uintptr, b uintptr) (r uintptr) {
+
+	return XPyNumber_InPlaceTrueDivide(tls, a, b)
+}
+
+func __operator_imod_impl(tls *libc.TLS, module uintptr, a uintptr, b uintptr) (r uintptr) {
+
+	return XPyNumber_InPlaceRemainder(tls, a, b)
+}
+
+func __operator_ilshift_impl(tls *libc.TLS, module uintptr, a uintptr, b uintptr) (r uintptr) {
+
+	return XPyNumber_InPlaceLshift(tls, a, b)
+}
+
+func __operator_irshift_impl(tls *libc.TLS, module uintptr, a uintptr, b uintptr) (r uintptr) {
+
+	return XPyNumber_InPlaceRshift(tls, a, b)
+}
+
+func __operator_iand_impl(tls *libc.TLS, module uintptr, a uintptr, b uintptr) (r uintptr) {
+
+	return XPyNumber_InPlaceAnd(tls, a, b)
+}
+
+func __operator_ixor_impl(tls *libc.TLS, module uintptr, a uintptr, b uintptr) (r uintptr) {
+
+	return XPyNumber_InPlaceXor(tls, a, b)
+}
+
+func __operator_ior_impl(tls *libc.TLS, module uintptr, a uintptr, b uintptr) (r uintptr) {
+
+	return XPyNumber_InPlaceOr(tls, a, b)
+}
+
+func __operator_concat_impl(tls *libc.TLS, module uintptr, a uintptr, b uintptr) (r uintptr) {
+
+	return XPySequence_Concat(tls, a, b)
+}
+
+func __operator_iconcat_impl(tls *libc.TLS, module uintptr, a uintptr, b uintptr) (r uintptr) {
+
+	return XPySequence_InPlaceConcat(tls, a, b)
+}
+
+func __operator_contains_impl(tls *libc.TLS, module uintptr, a uintptr, b uintptr) (r int32) {
+
+	return XPySequence_Contains(tls, a, b)
+}
+
+func __operator_indexOf_impl(tls *libc.TLS, module uintptr, a uintptr, b uintptr) (r TPy_ssize_t) {
+
+	return XPySequence_Index(tls, a, b)
+}
+
+func __operator_countOf_impl(tls *libc.TLS, module uintptr, a uintptr, b uintptr) (r TPy_ssize_t) {
+
+	return XPySequence_Count(tls, a, b)
+}
+
+func __operator_getitem_impl(tls *libc.TLS, module uintptr, a uintptr, b uintptr) (r uintptr) {
+
+	return XPyObject_GetItem(tls, a, b)
+}
+
+func __operator_setitem_impl(tls *libc.TLS, module uintptr, a uintptr, b uintptr, c uintptr) (r uintptr) {
+
+	if -int32(1) == XPyObject_SetItem(tls, a, b, c) {
+		return libc.UintptrFromInt32(0)
+	}
+	return uintptr(unsafe.Pointer(&X_Py_NoneStruct))
+}
+
+func __operator_delitem_impl(tls *libc.TLS, module uintptr, a uintptr, b uintptr) (r uintptr) {
+
+	if -int32(1) == XPyObject_DelItem(tls, a, b) {
+		return libc.UintptrFromInt32(0)
+	}
+	return uintptr(unsafe.Pointer(&X_Py_NoneStruct))
+}
+
+func __operator_eq_impl(tls *libc.TLS, module uintptr, a uintptr, b uintptr) (r uintptr) {
+
+	return XPyObject_RichCompare(tls, a, b, int32(MPy_EQ))
+}
+
+func __operator_ne_impl(tls *libc.TLS, module uintptr, a uintptr, b uintptr) (r uintptr) {
+
+	return XPyObject_RichCompare(tls, a, b, int32(MPy_NE))
+}
+
+func __operator_lt_impl(tls *libc.TLS, module uintptr, a uintptr, b uintptr) (r uintptr) {
+
+	return XPyObject_RichCompare(tls, a, b, MPy_LT)
+}
+
+func __operator_le_impl(tls *libc.TLS, module uintptr, a uintptr, b uintptr) (r uintptr) {
+
+	return XPyObject_RichCompare(tls, a, b, int32(MPy_LE))
+}
+
+func __operator_gt_impl(tls *libc.TLS, module uintptr, a uintptr, b uintptr) (r uintptr) {
+
+	return XPyObject_RichCompare(tls, a, b, int32(MPy_GT))
+}
+
+func __operator_ge_impl(tls *libc.TLS, module uintptr, a uintptr, b uintptr) (r uintptr) {
+
+	return XPyObject_RichCompare(tls, a, b, int32(MPy_GE))
+}
+
+func __operator_pow_impl(tls *libc.TLS, module uintptr, a uintptr, b uintptr) (r uintptr) {
+
+	return XPyNumber_Power(tls, a, b, uintptr(unsafe.Pointer(&X_Py_NoneStruct)))
+}
+
+func __operator_ipow_impl(tls *libc.TLS, module uintptr, a uintptr, b uintptr) (r uintptr) {
+
+	return XPyNumber_InPlacePower(tls, a, b, uintptr(unsafe.Pointer(&X_Py_NoneStruct)))
+}
+
+func __operator_index(tls *libc.TLS, module uintptr, a uintptr) (r uintptr) {
+
+	return XPyNumber_Index(tls, a)
+}
+
+func __operator_is__impl(tls *libc.TLS, module uintptr, a uintptr, b uintptr) (r uintptr) {
+	/*[clinic end generated code: output=bcd47a402e482e1d input=5fa9b97df03c427f]*/
+	var cur_refcnt Tuint32_t
+	var result, v1, v2, v3, v5 uintptr
+	_, _, _, _, _, _ = cur_refcnt, result, v1, v2, v3, v5
+	if a == b {
+		v1 = uintptr(unsafe.Pointer(&X_Py_TrueStruct))
+	} else {
+		v1 = uintptr(unsafe.Pointer(&X_Py_FalseStruct))
+	}
+	result = v1
+	v2 = result
+	v3 = v2
+	cur_refcnt = *(*Tuint32_t)(unsafe.Pointer(v3))
+	if uint64(cur_refcnt) >= libc.Uint64FromUint64(3)<<libc.Int32FromInt32(30) {
+		goto _4
+	}
+	*(*Tuint32_t)(unsafe.Pointer(v3)) = cur_refcnt + uint32(1)
+_4:
+	;
+	v5 = v2
+	goto _6
+_6:
+	return v5
+}
+
+func __operator_is_not_impl(tls *libc.TLS, module uintptr, a uintptr, b uintptr) (r uintptr) {
+	/*[clinic end generated code: output=491a1f2f81f6c7f9 input=5a93f7e1a93535f1]*/
+	var cur_refcnt Tuint32_t
+	var result, v1, v2, v3 uintptr
+	_, _, _, _, _ = cur_refcnt, result, v1, v2, v3
+	if a != b {
+		v1 = uintptr(unsafe.Pointer(&X_Py_TrueStruct))
+	} else {
+		v1 = uintptr(unsafe.Pointer(&X_Py_FalseStruct))
+	}
+	result = v1
+	v1 = result
+	v2 = v1
+	cur_refcnt = *(*Tuint32_t)(unsafe.Pointer(v2))
+	if uint64(cur_refcnt) >= libc.Uint64FromUint64(3)<<libc.Int32FromInt32(30) {
+		goto _4
+	}
+	*(*Tuint32_t)(unsafe.Pointer(v2)) = cur_refcnt + uint32(1)
+_4:
+	;
+	v3 = v1
+	goto _6
+_6:
+	return v3
+}
+
+func __operator_is_none(tls *libc.TLS, module uintptr, a uintptr) (r uintptr) {
+	/*[clinic end generated code: output=07159cc102261dec input=0448b38af7b8533d]*/
+	var cur_refcnt Tuint32_t
+	var result, v1, v2, v3, v5 uintptr
+	_, _, _, _, _, _ = cur_refcnt, result, v1, v2, v3, v5
+	if a == uintptr(unsafe.Pointer(&X_Py_NoneStruct)) {
+		v1 = uintptr(unsafe.Pointer(&X_Py_TrueStruct))
+	} else {
+		v1 = uintptr(unsafe.Pointer(&X_Py_FalseStruct))
+	}
+	result = v1
+	v2 = result
+	v3 = v2
+	cur_refcnt = *(*Tuint32_t)(unsafe.Pointer(v3))
+	if uint64(cur_refcnt) >= libc.Uint64FromUint64(3)<<libc.Int32FromInt32(30) {
+		goto _4
+	}
+	*(*Tuint32_t)(unsafe.Pointer(v3)) = cur_refcnt + uint32(1)
+_4:
+	;
+	v5 = v2
+	goto _6
+_6:
+	return v5
+}
+
+func __operator_is_not_none(tls *libc.TLS, module uintptr, a uintptr) (r uintptr) {
+	/*[clinic end generated code: output=b0168a51451d9140 input=7587f38ebac51688]*/
+	var cur_refcnt Tuint32_t
+	var result, v1, v2, v3, v5 uintptr
+	_, _, _, _, _, _ = cur_refcnt, result, v1, v2, v3, v5
+	if a == uintptr(unsafe.Pointer(&X_Py_NoneStruct)) {
+		v1 = uintptr(unsafe.Pointer(&X_Py_FalseStruct))
+	} else {
+		v1 = uintptr(unsafe.Pointer(&X_Py_TrueStruct))
+	}
+	result = v1
+	v2 = result
+	v3 = v2
+	cur_refcnt = *(*Tuint32_t)(unsafe.Pointer(v3))
+	if uint64(cur_refcnt) >= libc.Uint64FromUint64(3)<<libc.Int32FromInt32(30) {
+		goto _4
+	}
+	*(*Tuint32_t)(unsafe.Pointer(v3)) = cur_refcnt + uint32(1)
+_4:
+	;
+	v5 = v2
+	goto _6
+_6:
+	return v5
+}
+
+// C documentation
+//
+//	/*
+//	 * timing safe compare
+//	 *
+//	 * Returns 1 if the strings are equal.
+//	 * In case of len(a) != len(b) the function tries to keep the timing
+//	 * dependent on the length of b. CPU cache locality may still alter timing
+//	 * a bit.
+//	 */
+func __tscmp(tls *libc.TLS, _a uintptr, b uintptr, len_a TPy_ssize_t, len_b TPy_ssize_t) (r int32) {
+	bp := tls.Alloc(16)
+	defer tls.Free(16)
+	*(*uintptr)(unsafe.Pointer(bp)) = _a
+	var i, length TPy_ssize_t
+	var left, right, v2, v3 uintptr
+	var result uint8
+	_, _, _, _, _, _, _ = i, left, length, result, right, v2, v3
+
+	length = len_b
+	left = libc.UintptrFromInt32(0)
+	right = b
+
+	if len_a == length {
+		left = **(**uintptr)(__ccgo_up(bp))
+		result = uint8(0)
+	}
+	if len_a != length {
+		left = b
+		result = uint8(1)
+	}
+	i = 0
+	for {
+		if !(i < length) {
+			break
+		}
+		v2 = left
+		left = left + 1
+		v3 = right
+		right = right + 1
+		result = libc.Uint8FromInt32(int32(result) | (libc.Int32FromUint8(_ccgo_AtomicLoadPUint8(v2)) ^ libc.Int32FromUint8(_ccgo_AtomicLoadPUint8(v3))))
+		goto _1
+	_1:
+		;
+		i = i + 1
+	}
+	return libc.BoolInt32(libc.Int32FromUint8(result) == 0)
+}
+
+func __operator_length_hint_impl(tls *libc.TLS, module uintptr, obj uintptr, default_value TPy_ssize_t) (r TPy_ssize_t) {
+
+	return XPyObject_LengthHint(tls, obj, default_value)
+}
+
+func __operator__compare_digest_impl(tls *libc.TLS, module uintptr, a uintptr, b uintptr) (r uintptr) {
+	bp := tls.Alloc(192)
+	defer tls.Free(192)
+	/*[clinic end generated code: output=11d452bdd3a23cbc input=9ac7e2c4e30bc356]*/
+	var data, v1, v15, v18, v20, v23, v25, v27, v30, v32, v5 uintptr
+	var flags uint64
+	var rc, v3, v7 int32
+	var v10, v12, v16, v21 uint32
+	var v14, v9 bool
+	var v39, v41 TPy_ssize_t
+	var _ TPy_buffer
+	var _ TPy_buffer
+	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = data, flags, rc, v1, v10, v12, v14, v15, v16, v18, v20, v21, v23, v25, v27, v3, v30, v32, v39, v41, v5, v7, v9
+
+	v1 = (*TPyObject)(unsafe.Pointer(a)).Fob_type
+	goto _2
+_2:
+	flags = (*TPyTypeObject)(unsafe.Pointer(v1)).Ftp_flags
+	v3 = libc.BoolInt32(flags&(libc.Uint64FromUint64(1)<<libc.Int32FromInt32(28)) != uint64(0))
+	goto _4
+_4:
+	;
+	if v9 = v3 != 0; v9 {
+		v5 = (*TPyObject)(unsafe.Pointer(b)).Fob_type
+		goto _6
+	_6:
+		flags = (*TPyTypeObject)(unsafe.Pointer(v5)).Ftp_flags
+		v7 = libc.BoolInt32(flags&(libc.Uint64FromUint64(1)<<libc.Int32FromInt32(28)) != uint64(0))
+		goto _8
+	_8:
+	}
+	if v9 && v7 != 0 {
+		v10 = libc.Uint32FromInt32(int32(*(*uint32)(unsafe.Pointer(a + 32 + 0)) & 0x40 >> 6))
+		goto _11
+	_11:
+		;
+		if v14 = !(v10 != 0); !v14 {
+			v12 = libc.Uint32FromInt32(int32(*(*uint32)(unsafe.Pointer(b + 32 + 0)) & 0x40 >> 6))
+			goto _13
+		_13:
+		}
+		if v14 || !(v12 != 0) {
+			XPyErr_SetString(tls, XPyExc_TypeError, __ccgo_ts+366898)
+			return libc.UintptrFromInt32(0)
+		}
+		v1 = a
+		v10 = libc.Uint32FromInt32(int32(*(*uint32)(unsafe.Pointer(v1 + 32 + 0)) & 0x20 >> 5))
+		goto _17
+	_17:
+		if v10 != 0 {
+			v15 = v1
+			v12 = libc.Uint32FromInt32(int32(*(*uint32)(unsafe.Pointer(v15 + 32 + 0)) & 0x40 >> 6))
+			goto _22
+		_22:
+			if v12 != 0 {
+				v18 = v15 + libc.UintptrFromInt32(1)*40
+				goto _24
+			}
+			v18 = v15 + libc.UintptrFromInt32(1)*56
+			goto _24
+		_24:
+			v5 = v18
+			goto _19
+		}
+		data = *(*uintptr)(unsafe.Pointer(v1 + 56))
+		v20 = data
+		goto _26
+	_26:
+		v5 = v20
+		goto _19
+	_19:
+		v23 = b
+		v16 = libc.Uint32FromInt32(int32(*(*uint32)(unsafe.Pointer(v23 + 32 + 0)) & 0x20 >> 5))
+		goto _29
+	_29:
+		if v16 != 0 {
+			v27 = v23
+			v21 = libc.Uint32FromInt32(int32(*(*uint32)(unsafe.Pointer(v27 + 32 + 0)) & 0x40 >> 6))
+			goto _34
+		_34:
+			if v21 != 0 {
+				v30 = v27 + libc.UintptrFromInt32(1)*40
+				goto _36
+			}
+			v30 = v27 + libc.UintptrFromInt32(1)*56
+			goto _36
+		_36:
+			v25 = v30
+			goto _31
+		}
+		data = *(*uintptr)(unsafe.Pointer(v23 + 56))
+		v32 = data
+		goto _38
+	_38:
+		v25 = v32
+		goto _31
+	_31:
+		;
+		v39 = (*TPyASCIIObject)(unsafe.Pointer(a)).Flength
+		goto _40
+	_40:
+		;
+		v41 = (*TPyASCIIObject)(unsafe.Pointer(b)).Flength
+		goto _42
+	_42:
+		rc = __tscmp(tls, v5, v25, v39, v41)
+	} else {
+		if XPyObject_CheckBuffer(tls, a) == 0 && XPyObject_CheckBuffer(tls, b) == 0 {
+			v1 = (*TPyObject)(unsafe.Pointer(a)).Fob_type
+			goto _44
+		_44:
+			v5 = (*TPyObject)(unsafe.Pointer(b)).Fob_type
+			goto _46
+		_46:
+			XPyErr_Format(tls, XPyExc_TypeError, __ccgo_ts+366959, libc.VaList(bp+168, (*TPyTypeObject)(unsafe.Pointer(v1)).Ftp_name, (*TPyTypeObject)(unsafe.Pointer(v5)).Ftp_name))
+			return libc.UintptrFromInt32(0)
+		}
+		if XPyObject_GetBuffer(tls, a, bp, MPyBUF_SIMPLE) == -int32(1) {
+			return libc.UintptrFromInt32(0)
+		}
+		if (**(**TPy_buffer)(__ccgo_up(bp))).Fndim > int32(1) {
+			XPyErr_SetString(tls, XPyExc_BufferError, __ccgo_ts+220104)
+			XPyBuffer_Release(tls, bp)
+			return libc.UintptrFromInt32(0)
+		}
+		if XPyObject_GetBuffer(tls, b, bp+80, MPyBUF_SIMPLE) == -int32(1) {
+			XPyBuffer_Release(tls, bp)
+			return libc.UintptrFromInt32(0)
+		}
+		if (**(**TPy_buffer)(__ccgo_up(bp + 80))).Fndim > int32(1) {
+			XPyErr_SetString(tls, XPyExc_BufferError, __ccgo_ts+220104)
+			XPyBuffer_Release(tls, bp)
+			XPyBuffer_Release(tls, bp+80)
+			return libc.UintptrFromInt32(0)
+		}
+		rc = __tscmp(tls, (**(**TPy_buffer)(__ccgo_up(bp))).Fbuf, (**(**TPy_buffer)(__ccgo_up(bp + 80))).Fbuf, (**(**TPy_buffer)(__ccgo_up(bp))).Flen1, (**(**TPy_buffer)(__ccgo_up(bp + 80))).Flen1)
+		XPyBuffer_Release(tls, bp)
+		XPyBuffer_Release(tls, bp+80)
+	}
+	return XPyBool_FromLong(tls, int64(rc))
+}
+
+func __operator_call(tls *libc.TLS, module uintptr, args uintptr, nargs TPy_ssize_t, kwnames uintptr) (r uintptr) {
+	var v1 TPy_ssize_t
+	_ = v1
+	if !(libc.Bool(libc.Bool(libc.Bool(!true) && int64(libc.Int32FromInt32(1)) <= nargs) && nargs <= int64(0x7fffffffffffffff)) || X_PyArg_CheckPositional(tls, __ccgo_ts+207771, nargs, int64(libc.Int32FromInt32(1)), libc.Int64FromInt64(0x7fffffffffffffff)) != 0) {
+		return libc.UintptrFromInt32(0)
+	}
+	v1 = libc.Int64FromUint64(libc.Uint64FromInt64(nargs) & ^(libc.Uint64FromInt32(libc.Int32FromInt32(1)) << (libc.Uint64FromInt32(8)*libc.Uint64FromInt64(8) - libc.Uint64FromInt32(1))))
+	goto _2
+_2:
+	return XPyObject_Vectorcall(tls, **(**uintptr)(__ccgo_up(args)), args+1*8, libc.Uint64FromInt64(v1-libc.Int64FromInt32(1))|libc.Uint64FromInt32(libc.Int32FromInt32(1))<<(libc.Uint64FromInt32(8)*libc.Uint64FromInt64(8)-libc.Uint64FromInt32(1)), kwnames)
+}
+
+var _operator_methods = [56]TPyMethodDef{
+	0: {
+		Fml_name:  __ccgo_ts + 367035,
+		Fml_flags: int32(MMETH_O),
+		Fml_doc:   uintptr(unsafe.Pointer(&__operator_truth__doc__)),
+	},
+	1: {
+		Fml_name:  __ccgo_ts + 366787,
+		Fml_flags: int32(MMETH_FASTCALL),
+		Fml_doc:   uintptr(unsafe.Pointer(&__operator_contains__doc__)),
+	},
+	2: {
+		Fml_name:  __ccgo_ts + 366796,
+		Fml_flags: int32(MMETH_FASTCALL),
+		Fml_doc:   uintptr(unsafe.Pointer(&__operator_indexOf__doc__)),
+	},
+	3: {
+		Fml_name:  __ccgo_ts + 366804,
+		Fml_flags: int32(MMETH_FASTCALL),
+		Fml_doc:   uintptr(unsafe.Pointer(&__operator_countOf__doc__)),
+	},
+	4: {
+		Fml_name:  __ccgo_ts + 366859,
+		Fml_flags: int32(MMETH_FASTCALL),
+		Fml_doc:   uintptr(unsafe.Pointer(&__operator_is___doc__)),
+	},
+	5: {
+		Fml_name:  __ccgo_ts + 366863,
+		Fml_flags: int32(MMETH_FASTCALL),
+		Fml_doc:   uintptr(unsafe.Pointer(&__operator_is_not__doc__)),
+	},
+	6: {
+		Fml_name:  __ccgo_ts + 367041,
+		Fml_flags: int32(MMETH_O),
+		Fml_doc:   uintptr(unsafe.Pointer(&__operator_is_none__doc__)),
+	},
+	7: {
+		Fml_name:  __ccgo_ts + 367049,
+		Fml_flags: int32(MMETH_O),
+		Fml_doc:   uintptr(unsafe.Pointer(&__operator_is_not_none__doc__)),
+	},
+	8: {
+		Fml_name:  __ccgo_ts + 14927,
+		Fml_flags: int32(MMETH_O),
+		Fml_doc:   uintptr(unsafe.Pointer(&__operator_index__doc__)),
+	},
+	9: {
+		Fml_name:  __ccgo_ts + 58202,
+		Fml_flags: int32(MMETH_FASTCALL),
+		Fml_doc:   uintptr(unsafe.Pointer(&__operator_add__doc__)),
+	},
+	10: {
+		Fml_name:  __ccgo_ts + 357709,
+		Fml_flags: int32(MMETH_FASTCALL),
+		Fml_doc:   uintptr(unsafe.Pointer(&__operator_sub__doc__)),
+	},
+	11: {
+		Fml_name:  __ccgo_ts + 366655,
+		Fml_flags: int32(MMETH_FASTCALL),
+		Fml_doc:   uintptr(unsafe.Pointer(&__operator_mul__doc__)),
+	},
+	12: {
+		Fml_name:  __ccgo_ts + 276805,
+		Fml_flags: int32(MMETH_FASTCALL),
+		Fml_doc:   uintptr(unsafe.Pointer(&__operator_matmul__doc__)),
+	},
+	13: {
+		Fml_name:  __ccgo_ts + 366659,
+		Fml_flags: int32(MMETH_FASTCALL),
+		Fml_doc:   uintptr(unsafe.Pointer(&__operator_floordiv__doc__)),
+	},
+	14: {
+		Fml_name:  __ccgo_ts + 366668,
+		Fml_flags: int32(MMETH_FASTCALL),
+		Fml_doc:   uintptr(unsafe.Pointer(&__operator_truediv__doc__)),
+	},
+	15: {
+		Fml_name:  __ccgo_ts + 88053,
+		Fml_flags: int32(MMETH_FASTCALL),
+		Fml_doc:   uintptr(unsafe.Pointer(&__operator_mod__doc__)),
+	},
+	16: {
+		Fml_name:  __ccgo_ts + 367061,
+		Fml_flags: int32(MMETH_O),
+		Fml_doc:   uintptr(unsafe.Pointer(&__operator_neg__doc__)),
+	},
+	17: {
+		Fml_name:  __ccgo_ts + 319258,
+		Fml_flags: int32(MMETH_O),
+		Fml_doc:   uintptr(unsafe.Pointer(&__operator_pos__doc__)),
+	},
+	18: {
+		Fml_name:  __ccgo_ts + 120728,
+		Fml_flags: int32(MMETH_O),
+		Fml_doc:   uintptr(unsafe.Pointer(&__operator_abs__doc__)),
+	},
+	19: {
+		Fml_name:  __ccgo_ts + 367065,
+		Fml_flags: int32(MMETH_O),
+		Fml_doc:   uintptr(unsafe.Pointer(&__operator_inv__doc__)),
+	},
+	20: {
+		Fml_name:  __ccgo_ts + 308738,
+		Fml_flags: int32(MMETH_O),
+		Fml_doc:   uintptr(unsafe.Pointer(&__operator_invert__doc__)),
+	},
+	21: {
+		Fml_name:  __ccgo_ts + 366676,
+		Fml_flags: int32(MMETH_FASTCALL),
+		Fml_doc:   uintptr(unsafe.Pointer(&__operator_lshift__doc__)),
+	},
+	22: {
+		Fml_name:  __ccgo_ts + 366683,
+		Fml_flags: int32(MMETH_FASTCALL),
+		Fml_doc:   uintptr(unsafe.Pointer(&__operator_rshift__doc__)),
+	},
+	23: {
+		Fml_name:  __ccgo_ts + 367069,
+		Fml_flags: int32(MMETH_O),
+		Fml_doc:   uintptr(unsafe.Pointer(&__operator_not___doc__)),
+	},
+	24: {
+		Fml_name:  __ccgo_ts + 366690,
+		Fml_flags: int32(MMETH_FASTCALL),
+		Fml_doc:   uintptr(unsafe.Pointer(&__operator_and___doc__)),
+	},
+	25: {
+		Fml_name:  __ccgo_ts + 366695,
+		Fml_flags: int32(MMETH_FASTCALL),
+		Fml_doc:   uintptr(unsafe.Pointer(&__operator_xor__doc__)),
+	},
+	26: {
+		Fml_name:  __ccgo_ts + 366699,
+		Fml_flags: int32(MMETH_FASTCALL),
+		Fml_doc:   uintptr(unsafe.Pointer(&__operator_or___doc__)),
+	},
+	27: {
+		Fml_name:  __ccgo_ts + 366703,
+		Fml_flags: int32(MMETH_FASTCALL),
+		Fml_doc:   uintptr(unsafe.Pointer(&__operator_iadd__doc__)),
+	},
+	28: {
+		Fml_name:  __ccgo_ts + 366708,
+		Fml_flags: int32(MMETH_FASTCALL),
+		Fml_doc:   uintptr(unsafe.Pointer(&__operator_isub__doc__)),
+	},
+	29: {
+		Fml_name:  __ccgo_ts + 366713,
+		Fml_flags: int32(MMETH_FASTCALL),
+		Fml_doc:   uintptr(unsafe.Pointer(&__operator_imul__doc__)),
+	},
+	30: {
+		Fml_name:  __ccgo_ts + 276812,
+		Fml_flags: int32(MMETH_FASTCALL),
+		Fml_doc:   uintptr(unsafe.Pointer(&__operator_imatmul__doc__)),
+	},
+	31: {
+		Fml_name:  __ccgo_ts + 366718,
+		Fml_flags: int32(MMETH_FASTCALL),
+		Fml_doc:   uintptr(unsafe.Pointer(&__operator_ifloordiv__doc__)),
+	},
+	32: {
+		Fml_name:  __ccgo_ts + 366728,
+		Fml_flags: int32(MMETH_FASTCALL),
+		Fml_doc:   uintptr(unsafe.Pointer(&__operator_itruediv__doc__)),
+	},
+	33: {
+		Fml_name:  __ccgo_ts + 366737,
+		Fml_flags: int32(MMETH_FASTCALL),
+		Fml_doc:   uintptr(unsafe.Pointer(&__operator_imod__doc__)),
+	},
+	34: {
+		Fml_name:  __ccgo_ts + 366742,
+		Fml_flags: int32(MMETH_FASTCALL),
+		Fml_doc:   uintptr(unsafe.Pointer(&__operator_ilshift__doc__)),
+	},
+	35: {
+		Fml_name:  __ccgo_ts + 366750,
+		Fml_flags: int32(MMETH_FASTCALL),
+		Fml_doc:   uintptr(unsafe.Pointer(&__operator_irshift__doc__)),
+	},
+	36: {
+		Fml_name:  __ccgo_ts + 366758,
+		Fml_flags: int32(MMETH_FASTCALL),
+		Fml_doc:   uintptr(unsafe.Pointer(&__operator_iand__doc__)),
+	},
+	37: {
+		Fml_name:  __ccgo_ts + 366763,
+		Fml_flags: int32(MMETH_FASTCALL),
+		Fml_doc:   uintptr(unsafe.Pointer(&__operator_ixor__doc__)),
+	},
+	38: {
+		Fml_name:  __ccgo_ts + 366768,
+		Fml_flags: int32(MMETH_FASTCALL),
+		Fml_doc:   uintptr(unsafe.Pointer(&__operator_ior__doc__)),
+	},
+	39: {
+		Fml_name:  __ccgo_ts + 366772,
+		Fml_flags: int32(MMETH_FASTCALL),
+		Fml_doc:   uintptr(unsafe.Pointer(&__operator_concat__doc__)),
+	},
+	40: {
+		Fml_name:  __ccgo_ts + 366779,
+		Fml_flags: int32(MMETH_FASTCALL),
+		Fml_doc:   uintptr(unsafe.Pointer(&__operator_iconcat__doc__)),
+	},
+	41: {
+		Fml_name:  __ccgo_ts + 366812,
+		Fml_flags: int32(MMETH_FASTCALL),
+		Fml_doc:   uintptr(unsafe.Pointer(&__operator_getitem__doc__)),
+	},
+	42: {
+		Fml_name:  __ccgo_ts + 366820,
+		Fml_flags: int32(MMETH_FASTCALL),
+		Fml_doc:   uintptr(unsafe.Pointer(&__operator_setitem__doc__)),
+	},
+	43: {
+		Fml_name:  __ccgo_ts + 366828,
+		Fml_flags: int32(MMETH_FASTCALL),
+		Fml_doc:   uintptr(unsafe.Pointer(&__operator_delitem__doc__)),
+	},
+	44: {
+		Fml_name:  __ccgo_ts + 118282,
+		Fml_flags: int32(MMETH_FASTCALL),
+		Fml_doc:   uintptr(unsafe.Pointer(&__operator_pow__doc__)),
+	},
+	45: {
+		Fml_name:  __ccgo_ts + 366854,
+		Fml_flags: int32(MMETH_FASTCALL),
+		Fml_doc:   uintptr(unsafe.Pointer(&__operator_ipow__doc__)),
+	},
+	46: {
+		Fml_name:  __ccgo_ts + 366836,
+		Fml_flags: int32(MMETH_FASTCALL),
+		Fml_doc:   uintptr(unsafe.Pointer(&__operator_eq__doc__)),
+	},
+	47: {
+		Fml_name:  __ccgo_ts + 366839,
+		Fml_flags: int32(MMETH_FASTCALL),
+		Fml_doc:   uintptr(unsafe.Pointer(&__operator_ne__doc__)),
+	},
+	48: {
+		Fml_name:  __ccgo_ts + 366842,
+		Fml_flags: int32(MMETH_FASTCALL),
+		Fml_doc:   uintptr(unsafe.Pointer(&__operator_lt__doc__)),
+	},
+	49: {
+		Fml_name:  __ccgo_ts + 366845,
+		Fml_flags: int32(MMETH_FASTCALL),
+		Fml_doc:   uintptr(unsafe.Pointer(&__operator_le__doc__)),
+	},
+	50: {
+		Fml_name:  __ccgo_ts + 366848,
+		Fml_flags: int32(MMETH_FASTCALL),
+		Fml_doc:   uintptr(unsafe.Pointer(&__operator_gt__doc__)),
+	},
+	51: {
+		Fml_name:  __ccgo_ts + 366851,
+		Fml_flags: int32(MMETH_FASTCALL),
+		Fml_doc:   uintptr(unsafe.Pointer(&__operator_ge__doc__)),
+	},
+	52: {
+		Fml_name:  __ccgo_ts + 366882,
+		Fml_flags: int32(MMETH_FASTCALL),
+		Fml_doc:   uintptr(unsafe.Pointer(&__operator__compare_digest__doc__)),
+	},
+	53: {
+		Fml_name:  __ccgo_ts + 366870,
+		Fml_flags: int32(MMETH_FASTCALL),
+		Fml_doc:   uintptr(unsafe.Pointer(&__operator_length_hint__doc__)),
+	},
+	54: {
+		Fml_name:  __ccgo_ts + 207771,
+		Fml_flags: libc.Int32FromInt32(MMETH_FASTCALL) | libc.Int32FromInt32(MMETH_KEYWORDS),
+		Fml_doc:   uintptr(unsafe.Pointer(&__operator_call__doc__)),
+	},
+	55: {},
+}
+
+func init() {
+	p := unsafe.Pointer(&_operator_methods)
+	*(*uintptr)(unsafe.Add(p, 8)) = __ccgo_fp(__operator_truth)
+	*(*uintptr)(unsafe.Add(p, 40)) = __ccgo_fp(__operator_contains)
+	*(*uintptr)(unsafe.Add(p, 72)) = __ccgo_fp(__operator_indexOf)
+	*(*uintptr)(unsafe.Add(p, 104)) = __ccgo_fp(__operator_countOf)
+	*(*uintptr)(unsafe.Add(p, 136)) = __ccgo_fp(__operator_is_)
+	*(*uintptr)(unsafe.Add(p, 168)) = __ccgo_fp(__operator_is_not)
+	*(*uintptr)(unsafe.Add(p, 200)) = __ccgo_fp(__operator_is_none)
+	*(*uintptr)(unsafe.Add(p, 232)) = __ccgo_fp(__operator_is_not_none)
+	*(*uintptr)(unsafe.Add(p, 264)) = __ccgo_fp(__operator_index)
+	*(*uintptr)(unsafe.Add(p, 296)) = __ccgo_fp(__operator_add)
+	*(*uintptr)(unsafe.Add(p, 328)) = __ccgo_fp(__operator_sub)
+	*(*uintptr)(unsafe.Add(p, 360)) = __ccgo_fp(__operator_mul)
+	*(*uintptr)(unsafe.Add(p, 392)) = __ccgo_fp(__operator_matmul)
+	*(*uintptr)(unsafe.Add(p, 424)) = __ccgo_fp(__operator_floordiv)
+	*(*uintptr)(unsafe.Add(p, 456)) = __ccgo_fp(__operator_truediv)
+	*(*uintptr)(unsafe.Add(p, 488)) = __ccgo_fp(__operator_mod)
+	*(*uintptr)(unsafe.Add(p, 520)) = __ccgo_fp(__operator_neg)
+	*(*uintptr)(unsafe.Add(p, 552)) = __ccgo_fp(__operator_pos)
+	*(*uintptr)(unsafe.Add(p, 584)) = __ccgo_fp(__operator_abs)
+	*(*uintptr)(unsafe.Add(p, 616)) = __ccgo_fp(__operator_inv)
+	*(*uintptr)(unsafe.Add(p, 648)) = __ccgo_fp(__operator_invert)
+	*(*uintptr)(unsafe.Add(p, 680)) = __ccgo_fp(__operator_lshift)
+	*(*uintptr)(unsafe.Add(p, 712)) = __ccgo_fp(__operator_rshift)
+	*(*uintptr)(unsafe.Add(p, 744)) = __ccgo_fp(__operator_not_)
+	*(*uintptr)(unsafe.Add(p, 776)) = __ccgo_fp(__operator_and_)
+	*(*uintptr)(unsafe.Add(p, 808)) = __ccgo_fp(__operator_xor)
+	*(*uintptr)(unsafe.Add(p, 840)) = __ccgo_fp(__operator_or_)
+	*(*uintptr)(unsafe.Add(p, 872)) = __ccgo_fp(__operator_iadd)
+	*(*uintptr)(unsafe.Add(p, 904)) = __ccgo_fp(__operator_isub)
+	*(*uintptr)(unsafe.Add(p, 936)) = __ccgo_fp(__operator_imul)
+	*(*uintptr)(unsafe.Add(p, 968)) = __ccgo_fp(__operator_imatmul)
+	*(*uintptr)(unsafe.Add(p, 1000)) = __ccgo_fp(__operator_ifloordiv)
+	*(*uintptr)(unsafe.Add(p, 1032)) = __ccgo_fp(__operator_itruediv)
+	*(*uintptr)(unsafe.Add(p, 1064)) = __ccgo_fp(__operator_imod)
+	*(*uintptr)(unsafe.Add(p, 1096)) = __ccgo_fp(__operator_ilshift)
+	*(*uintptr)(unsafe.Add(p, 1128)) = __ccgo_fp(__operator_irshift)
+	*(*uintptr)(unsafe.Add(p, 1160)) = __ccgo_fp(__operator_iand)
+	*(*uintptr)(unsafe.Add(p, 1192)) = __ccgo_fp(__operator_ixor)
+	*(*uintptr)(unsafe.Add(p, 1224)) = __ccgo_fp(__operator_ior)
+	*(*uintptr)(unsafe.Add(p, 1256)) = __ccgo_fp(__operator_concat)
+	*(*uintptr)(unsafe.Add(p, 1288)) = __ccgo_fp(__operator_iconcat)
+	*(*uintptr)(unsafe.Add(p, 1320)) = __ccgo_fp(__operator_getitem)
+	*(*uintptr)(unsafe.Add(p, 1352)) = __ccgo_fp(__operator_setitem)
+	*(*uintptr)(unsafe.Add(p, 1384)) = __ccgo_fp(__operator_delitem)
+	*(*uintptr)(unsafe.Add(p, 1416)) = __ccgo_fp(__operator_pow)
+	*(*uintptr)(unsafe.Add(p, 1448)) = __ccgo_fp(__operator_ipow)
+	*(*uintptr)(unsafe.Add(p, 1480)) = __ccgo_fp(__operator_eq)
+	*(*uintptr)(unsafe.Add(p, 1512)) = __ccgo_fp(__operator_ne)
+	*(*uintptr)(unsafe.Add(p, 1544)) = __ccgo_fp(__operator_lt)
+	*(*uintptr)(unsafe.Add(p, 1576)) = __ccgo_fp(__operator_le)
+	*(*uintptr)(unsafe.Add(p, 1608)) = __ccgo_fp(__operator_gt)
+	*(*uintptr)(unsafe.Add(p, 1640)) = __ccgo_fp(__operator_ge)
+	*(*uintptr)(unsafe.Add(p, 1672)) = __ccgo_fp(__operator__compare_digest)
+	*(*uintptr)(unsafe.Add(p, 1704)) = __ccgo_fp(__operator_length_hint)
+	*(*uintptr)(unsafe.Add(p, 1736)) = __ccgo_fp(__operator_call)
+}
+
+func _text_signature(tls *libc.TLS, _unused_self uintptr, _unused_closure uintptr) (r uintptr) {
+	return XPyUnicode_FromString(tls, __ccgo_ts+367074)
+}
+
+var _common_getset = [2]TPyGetSetDef{
+	0: {
+		Fname: __ccgo_ts + 25571,
+	},
+	1: {},
+}
+
+func init() {
+	p := unsafe.Pointer(&_common_getset)
+	*(*uintptr)(unsafe.Add(p, 8)) = __ccgo_fp(_text_signature)
+}
+
+type Titemgetterobject = struct {
+	Fob_base    TPyObject
+	Fnitems     TPy_ssize_t
+	Fitem       uintptr
+	Findex      TPy_ssize_t
+	Fvectorcall Tvectorcallfunc
+}
+
+// C documentation
+//
+//	/* AC 3.5: treats first argument as an iterable, otherwise uses *args */
+func _itemgetter_new(tls *libc.TLS, type2 uintptr, args uintptr, kwds uintptr) (r uintptr) {
+	bp := tls.Alloc(32)
+	defer tls.Free(32)
+	var cur_refcnt Tuint32_t
+	var et, ig, mod, state, tuple, v5, v7, v8 uintptr
+	var index, nitems, v1, v3 TPy_ssize_t
+	var v12 int32
+	var _ uintptr
+	_, _, _, _, _, _, _, _, _, _, _, _, _, _ = cur_refcnt, et, ig, index, mod, nitems, state, tuple, v1, v12, v3, v5, v7, v8
+	if !(kwds == libc.UintptrFromInt32(0) || X_PyArg_NoKeywords(tls, __ccgo_ts+367083, kwds) != 0) {
+		return libc.UintptrFromInt32(0)
+	}
+	tuple = args
+	v3 = (*TPyVarObject)(unsafe.Pointer(tuple)).Fob_size
+	goto _4
+_4:
+	v1 = v3
+	goto _2
+_2:
+	nitems = v1
+	if nitems <= int64(1) {
+		if !(XPyArg_UnpackTuple(tls, args, __ccgo_ts+367083, int64(1), int64(1), libc.VaList(bp+16, bp)) != 0) {
+			return libc.UintptrFromInt32(0)
+		}
+	} else {
+		**(**uintptr)(__ccgo_up(bp)) = args
+	}
+	et = type2
+	mod = (*TPyHeapTypeObject)(unsafe.Pointer(et)).Fht_module
+	v5 = (*TPyModuleObject)(unsafe.Pointer(mod)).Fmd_state
+	goto _6
+_6:
+	state = v5
+
+	ig = X_PyObject_GC_New(tls, (*T_operator_state)(unsafe.Pointer(state)).Fitemgetter_type)
+	if ig == libc.UintptrFromInt32(0) {
+		return libc.UintptrFromInt32(0)
+	}
+	v5 = **(**uintptr)(__ccgo_up(bp))
+	v7 = v5
+	cur_refcnt = *(*Tuint32_t)(unsafe.Pointer(v7))
+	if uint64(cur_refcnt) >= libc.Uint64FromUint64(3)<<libc.Int32FromInt32(30) {
+		goto _9
+	}
+	*(*Tuint32_t)(unsafe.Pointer(v7)) = cur_refcnt + uint32(1)
+_9:
+	;
+	v8 = v5
+	goto _11
+_11:
+	(*Titemgetterobject)(unsafe.Pointer(ig)).Fitem = v8
+	(*Titemgetterobject)(unsafe.Pointer(ig)).Fnitems = nitems
+	(*Titemgetterobject)(unsafe.Pointer(ig)).Findex = int64(-int32(1))
+	v5 = (*TPyObject)(unsafe.Pointer(**(**uintptr)(__ccgo_up(bp)))).Fob_type
+	goto _15
+_15:
+	v12 = libc.BoolInt32(v5 == uintptr(unsafe.Pointer(&XPyLong_Type)))
+	goto _13
+_13:
+	if v12 != 0 {
+		index = XPyLong_AsSsize_t(tls, **(**uintptr)(__ccgo_up(bp)))
+		if index < 0 {
+
+			XPyErr_Clear(tls)
+		} else {
+			(*Titemgetterobject)(unsafe.Pointer(ig)).Findex = index
+		}
+	}
+	(*Titemgetterobject)(unsafe.Pointer(ig)).Fvectorcall = __ccgo_fp(_itemgetter_vectorcall)
+	XPyObject_GC_Track(tls, ig)
+	return ig
+}
+
+func _itemgetter_clear(tls *libc.TLS, op2 uintptr) (r int32) {
+	var _tmp_old_op, _tmp_op_ptr, ig, v1, v6 uintptr
+	var v2 int32
+	var v5 Tuint32_t
+	_, _, _, _, _, _, _ = _tmp_old_op, _tmp_op_ptr, ig, v1, v2, v5, v6
+	ig = op2
+	_tmp_op_ptr = ig + 24
+	_tmp_old_op = **(**uintptr)(__ccgo_up(_tmp_op_ptr))
+	if _tmp_old_op != libc.UintptrFromInt32(0) {
+		**(**uintptr)(__ccgo_up(_tmp_op_ptr)) = libc.UintptrFromInt32(0)
+		v1 = _tmp_old_op
+		v2 = libc.BoolInt32(libc.Int32FromUint32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
+		goto _3
+	_3:
+		if v2 != 0 {
+			goto _4
+		}
+		v6 = v1
+		*(*Tuint32_t)(unsafe.Pointer(v6)) = *(*Tuint32_t)(unsafe.Pointer(v6)) - 1
+		v5 = *(*Tuint32_t)(unsafe.Pointer(v6))
+		if v5 == libc.Uint32FromInt32(0) {
+			X_Py_Dealloc(tls, v1)
+		}
+	_4:
+	}
+	return 0
+}
+
+func _itemgetter_dealloc(tls *libc.TLS, op2 uintptr) {
+	var tp, v1, v3 uintptr
+	var v4 int32
+	var v7 Tuint32_t
+	_, _, _, _, _ = tp, v1, v3, v4, v7
+	v1 = (*TPyObject)(unsafe.Pointer(op2)).Fob_type
+	goto _2
+_2:
+	tp = v1
+	XPyObject_GC_UnTrack(tls, op2)
+	_itemgetter_clear(tls, op2)
+	(*(*func(*libc.TLS, uintptr))(unsafe.Pointer(&struct{ uintptr }{(*TPyTypeObject)(unsafe.Pointer(tp)).Ftp_free})))(tls, op2)
+	v1 = tp
+	v4 = libc.BoolInt32(libc.Int32FromUint32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
+	goto _5
+_5:
+	if v4 != 0 {
+		goto _6
+	}
+	v3 = v1
+	*(*Tuint32_t)(unsafe.Pointer(v3)) = *(*Tuint32_t)(unsafe.Pointer(v3)) - 1
+	v7 = *(*Tuint32_t)(unsafe.Pointer(v3))
+	if v7 == libc.Uint32FromInt32(0) {
+		X_Py_Dealloc(tls, v1)
+	}
+_6:
+}
+
+func _itemgetter_traverse(tls *libc.TLS, op uintptr, __ccgo_fp_visit Tvisitproc, arg uintptr) (r int32) {
+	var ig, v1, v3 uintptr
+	var vret, vret1 int32
+	_, _, _, _, _ = ig, vret, vret1, v1, v3
+	ig = op
+	v1 = (*TPyObject)(unsafe.Pointer(ig)).Fob_type
+	goto _2
+_2:
+	if v1 != 0 {
+		v3 = (*TPyObject)(unsafe.Pointer(ig)).Fob_type
+		goto _4
+	_4:
+		vret = (*(*func(*libc.TLS, uintptr, uintptr) int32)(unsafe.Pointer(&struct{ uintptr }{__ccgo_fp_visit})))(tls, v3, arg)
+		if vret != 0 {
+			return vret
+		}
+	}
+	if (*Titemgetterobject)(unsafe.Pointer(ig)).Fitem != 0 {
+		vret1 = (*(*func(*libc.TLS, uintptr, uintptr) int32)(unsafe.Pointer(&struct{ uintptr }{__ccgo_fp_visit})))(tls, (*Titemgetterobject)(unsafe.Pointer(ig)).Fitem, arg)
+		if vret1 != 0 {
+			return vret1
+		}
+	}
+	return 0
+}
+
+func _itemgetter_call(tls *libc.TLS, op1 uintptr, args uintptr, kw uintptr) (r uintptr) {
+	var ig, tuple uintptr
+	var v1, v11, v13, v3, v6, v8 TPy_ssize_t
+	var v10, v15, v5 bool
+	_, _, _, _, _, _, _, _, _, _, _ = ig, tuple, v1, v10, v11, v13, v15, v3, v5, v6, v8
+	if !(kw == libc.UintptrFromInt32(0) || X_PyArg_NoKeywords(tls, __ccgo_ts+367083, kw) != 0) {
+		return libc.UintptrFromInt32(0)
+	}
+	if v5 = libc.Bool(!false); v5 {
+		tuple = args
+		v3 = (*TPyVarObject)(unsafe.Pointer(tuple)).Fob_size
+		goto _4
+	_4:
+		v1 = v3
+		goto _2
+	_2:
+	}
+	if v10 = v5 && int64(libc.Int32FromInt32(1)) <= v1; v10 {
+		tuple = args
+		v8 = (*TPyVarObject)(unsafe.Pointer(tuple)).Fob_size
+		goto _9
+	_9:
+		v6 = v8
+		goto _7
+	_7:
+	}
+	if v15 = v10 && v6 <= int64(libc.Int32FromInt32(1)); !v15 {
+		tuple = args
+		v13 = (*TPyVarObject)(unsafe.Pointer(tuple)).Fob_size
+		goto _14
+	_14:
+		v11 = v13
+		goto _12
+	_12:
+	}
+	if !(v15 || X_PyArg_CheckPositional(tls, __ccgo_ts+367083, v11, int64(libc.Int32FromInt32(1)), int64(libc.Int32FromInt32(1))) != 0) {
+		return libc.UintptrFromInt32(0)
+	}
+	ig = op1
+	return _itemgetter_call_impl(tls, ig, **(**uintptr)(__ccgo_up(args + 32)))
+}
+
+func _itemgetter_vectorcall(tls *libc.TLS, op uintptr, args uintptr, nargsf Tsize_t, kwnames uintptr) (r uintptr) {
+	var ig uintptr
+	var nargs, v1 TPy_ssize_t
+	_, _, _ = ig, nargs, v1
+	if !(kwnames == libc.UintptrFromInt32(0) || X_PyArg_NoKwnames(tls, __ccgo_ts+367083, kwnames) != 0) {
+		return libc.UintptrFromInt32(0)
+	}
+	v1 = libc.Int64FromUint64(nargsf & ^(libc.Uint64FromInt32(libc.Int32FromInt32(1)) << (libc.Uint64FromInt32(8)*libc.Uint64FromInt64(8) - libc.Uint64FromInt32(1))))
+	goto _2
+_2:
+	nargs = v1
+	if !(libc.Bool(!false) && int64(libc.Int32FromInt32(1)) <= nargs && nargs <= int64(libc.Int32FromInt32(1)) || X_PyArg_CheckPositional(tls, __ccgo_ts+367083, nargs, int64(libc.Int32FromInt32(1)), int64(libc.Int32FromInt32(1))) != 0) {
+		return libc.UintptrFromInt32(0)
+	}
+	ig = op
+	return _itemgetter_call_impl(tls, ig, **(**uintptr)(__ccgo_up(args)))
+}
+
+func _itemgetter_call_impl(tls *libc.TLS, ig uintptr, obj1 uintptr) (r uintptr) {
+	var cur_refcnt, v21 Tuint32_t
+	var i, nitems, v6, v8 TPy_ssize_t
+	var item, result, tuple, tuple1, val, v11, v12, v3 uintptr
+	var v1 int32
+	var v10, v5 bool
+	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = cur_refcnt, i, item, nitems, result, tuple, tuple1, val, v1, v10, v11, v12, v21, v3, v5, v6, v8
+	nitems = (*Titemgetterobject)(unsafe.Pointer(ig)).Fnitems
+	if nitems == int64(1) {
+		if v5 = (*Titemgetterobject)(unsafe.Pointer(ig)).Findex >= 0; v5 {
+			v3 = (*TPyObject)(unsafe.Pointer(obj1)).Fob_type
+			goto _4
+		_4:
+			v1 = libc.BoolInt32(v3 == uintptr(unsafe.Pointer(&XPyTuple_Type)))
+			goto _2
+		_2:
+		}
+		if v10 = v5 && v1 != 0; v10 {
+			tuple = obj1
+			v8 = (*TPyVarObject)(unsafe.Pointer(tuple)).Fob_size
+			goto _9
+		_9:
+			v6 = v8
+			goto _7
+		_7:
+		}
+		if v10 && (*Titemgetterobject)(unsafe.Pointer(ig)).Findex < v6 {
+			result = **(**uintptr)(__ccgo_up(obj1 + 32 + uintptr((*Titemgetterobject)(unsafe.Pointer(ig)).Findex)*8))
+			v3 = result
+			v11 = v3
+			cur_refcnt = *(*Tuint32_t)(unsafe.Pointer(v11))
+			if uint64(cur_refcnt) >= libc.Uint64FromUint64(3)<<libc.Int32FromInt32(30) {
+				goto _13
+			}
+			*(*Tuint32_t)(unsafe.Pointer(v11)) = cur_refcnt + uint32(1)
+		_13:
+			;
+			v12 = v3
+			goto _15
+		_15:
+			return v12
+		}
+		return XPyObject_GetItem(tls, obj1, (*Titemgetterobject)(unsafe.Pointer(ig)).Fitem)
+	}
+	result = XPyTuple_New(tls, nitems)
+	if result == libc.UintptrFromInt32(0) {
+		return libc.UintptrFromInt32(0)
+	}
+	i = 0
+	for {
+		if !(i < nitems) {
+			break
+		}
+		item = **(**uintptr)(__ccgo_up((*Titemgetterobject)(unsafe.Pointer(ig)).Fitem + 32 + uintptr(i)*8))
+		val = XPyObject_GetItem(tls, obj1, item)
+		if val == libc.UintptrFromInt32(0) {
+			v3 = result
+			v1 = libc.BoolInt32(libc.Int32FromUint32(*(*Tuint32_t)(unsafe.Pointer(v3))) < 0)
+			goto _19
+		_19:
+			if v1 != 0 {
+				goto _20
+			}
+			v11 = v3
+			*(*Tuint32_t)(unsafe.Pointer(v11)) = *(*Tuint32_t)(unsafe.Pointer(v11)) - 1
+			v21 = *(*Tuint32_t)(unsafe.Pointer(v11))
+			if v21 == libc.Uint32FromInt32(0) {
+				X_Py_Dealloc(tls, v3)
+			}
+		_20:
+			;
+			return libc.UintptrFromInt32(0)
+		}
+		tuple1 = result
+		**(**uintptr)(__ccgo_up(tuple1 + 32 + uintptr(i)*8)) = val
+		goto _16
+	_16:
+		;
+		i = i + 1
+	}
+	return result
+}
+
+func _itemgetter_repr(tls *libc.TLS, op uintptr) (r uintptr) {
+	bp := tls.Alloc(32)
+	defer tls.Free(32)
+	var ig, repr, reprfmt, v1 uintptr
+	var status int32
+	_, _, _, _, _ = ig, repr, reprfmt, status, v1
+	ig = op
+	status = XPy_ReprEnter(tls, op)
+	if status != 0 {
+		if status < 0 {
+			return libc.UintptrFromInt32(0)
+		}
+		v1 = (*TPyObject)(unsafe.Pointer(ig)).Fob_type
+		goto _2
+	_2:
+		return XPyUnicode_FromFormat(tls, __ccgo_ts+54889, libc.VaList(bp+8, (*TPyTypeObject)(unsafe.Pointer(v1)).Ftp_name))
+	}
+	if (*Titemgetterobject)(unsafe.Pointer(ig)).Fnitems == int64(1) {
+		v1 = __ccgo_ts + 27197
+	} else {
+		v1 = __ccgo_ts + 27204
+	}
+	reprfmt = v1
+	v1 = (*TPyObject)(unsafe.Pointer(ig)).Fob_type
+	goto _5
+_5:
+	repr = XPyUnicode_FromFormat(tls, reprfmt, libc.VaList(bp+8, (*TPyTypeObject)(unsafe.Pointer(v1)).Ftp_name, (*Titemgetterobject)(unsafe.Pointer(ig)).Fitem))
+	XPy_ReprLeave(tls, op)
+	return repr
+}
+
+func _itemgetter_reduce(tls *libc.TLS, op uintptr, _unused_dummy uintptr) (r uintptr) {
+	bp := tls.Alloc(32)
+	defer tls.Free(32)
+	var ig, v1 uintptr
+	_, _ = ig, v1
+	ig = op
+	if (*Titemgetterobject)(unsafe.Pointer(ig)).Fnitems == int64(1) {
+		v1 = (*TPyObject)(unsafe.Pointer(ig)).Fob_type
+		goto _2
+	_2:
+		return XPy_BuildValue(tls, __ccgo_ts+33898, libc.VaList(bp+8, v1, (*Titemgetterobject)(unsafe.Pointer(ig)).Fitem))
+	}
+	v1 = (*TPyObject)(unsafe.Pointer(ig)).Fob_type
+	goto _4
+_4:
+	return XPyTuple_Pack(tls, int64(2), libc.VaList(bp+8, v1, (*Titemgetterobject)(unsafe.Pointer(ig)).Fitem))
+}
+
+var _reduce_doc13 = [38]int8{'R', 'e', 't', 'u', 'r', 'n', ' ', 's', 't', 'a', 't', 'e', ' ', 'i', 'n', 'f', 'o', 'r', 'm', 'a', 't', 'i', 'o', 'n', ' ', 'f', 'o', 'r', ' ', 'p', 'i', 'c', 'k', 'l', 'i', 'n', 'g'}
+
+var _itemgetter_methods = [2]TPyMethodDef{
+	0: {
+		Fml_name:  __ccgo_ts + 17238,
+		Fml_flags: int32(MMETH_NOARGS),
+		Fml_doc:   uintptr(unsafe.Pointer(&_reduce_doc13)),
+	},
+	1: {},
+}
+
+func init() {
+	p := unsafe.Pointer(&_itemgetter_methods)
+	*(*uintptr)(unsafe.Add(p, 8)) = __ccgo_fp(_itemgetter_reduce)
+}
+
+var _itemgetter_members = [2]TPyMemberDef{
+	0: {
+		Fname:   __ccgo_ts + 64068,
+		Ftype1:  int32(MPy_T_PYSSIZET),
+		Foffset: libc.Int64FromUint64(uint64(libc.UintptrFromInt32(0) + 40)),
+		Fflags:  int32(MPy_READONLY),
+	},
+	1: {},
+}
+
+var _itemgetter_type_slots = [12]TPyType_Slot{
+	0: {
+		Fslot:  int32(MPy_tp_doc),
+		Fpfunc: uintptr(unsafe.Pointer(&_itemgetter_doc)),
+	},
+	1: {
+		Fslot: int32(MPy_tp_dealloc),
+	},
+	2: {
+		Fslot: int32(MPy_tp_call),
+	},
+	3: {
+		Fslot: int32(MPy_tp_traverse),
+	},
+	4: {
+		Fslot: int32(MPy_tp_clear),
+	},
+	5: {
+		Fslot:  int32(MPy_tp_methods),
+		Fpfunc: uintptr(unsafe.Pointer(&_itemgetter_methods)),
+	},
+	6: {
+		Fslot:  int32(MPy_tp_members),
+		Fpfunc: uintptr(unsafe.Pointer(&_itemgetter_members)),
+	},
+	7: {
+		Fslot:  int32(MPy_tp_getset),
+		Fpfunc: uintptr(unsafe.Pointer(&_common_getset)),
+	},
+	8: {
+		Fslot: int32(MPy_tp_new),
+	},
+	9: {
+		Fslot: int32(MPy_tp_getattro),
+	},
+	10: {
+		Fslot: int32(MPy_tp_repr),
+	},
+	11: {},
+}
+
+func init() {
+	p := unsafe.Pointer(&_itemgetter_type_slots)
+	*(*uintptr)(unsafe.Add(p, 24)) = __ccgo_fp(_itemgetter_dealloc)
+	*(*uintptr)(unsafe.Add(p, 40)) = __ccgo_fp(_itemgetter_call)
+	*(*uintptr)(unsafe.Add(p, 56)) = __ccgo_fp(_itemgetter_traverse)
+	*(*uintptr)(unsafe.Add(p, 72)) = __ccgo_fp(_itemgetter_clear)
+	*(*uintptr)(unsafe.Add(p, 136)) = __ccgo_fp(_itemgetter_new)
+	*(*uintptr)(unsafe.Add(p, 152)) = __ccgo_fp(XPyObject_GenericGetAttr)
+	*(*uintptr)(unsafe.Add(p, 168)) = __ccgo_fp(_itemgetter_repr)
+}
+
+var _itemgetter_type_spec = TPyType_Spec{
+	Fname:      __ccgo_ts + 367094,
+	Fbasicsize: int32(48),
+	Fflags:     uint32(libc.Uint64FromInt32(libc.Int32FromInt32(MPy_TPFLAGS_HAVE_STACKLESS_EXTENSION)|libc.Int32FromInt32(0)) | libc.Uint64FromUint64(1)<<libc.Int32FromInt32(14) | libc.Uint64FromUint64(1)<<libc.Int32FromInt32(8) | libc.Uint64FromUint64(1)<<libc.Int32FromInt32(11)),
+	Fslots:     uintptr(unsafe.Pointer(&_itemgetter_type_slots)),
+}
+
+type Tattrgetterobject = struct {
+	Fob_base    TPyObject
+	Fnattrs     TPy_ssize_t
+	Fattr       uintptr
+	Fvectorcall Tvectorcallfunc
+}
+
+// C documentation
+//
+//	/* AC 3.5: treats first argument as an iterable, otherwise uses *args */
+func _attrgetter_new(tls *libc.TLS, type2 uintptr, args uintptr, kwds uintptr) (r uintptr) {
+	bp := tls.Alloc(48)
+	defer tls.Free(48)
+	var ag, attr_chain, data, data2, et, interp, mod, state, tstate, tuple, tuple1, v10, v14, v19, v5, v7 uintptr
+	var attr_chain_idx, char_idx, idx, item_len, nattrs, unibuff_from, unibuff_till, v1, v3 TPy_ssize_t
+	var cur_refcnt, v18 Tuint32_t
+	var dot_count, kind1, v12 int32
+	var flags uint64
+	var v23, v28 uint32
+	var v38 TPy_UCS4
+	var _ uintptr
+	var _ uintptr
+	var _ uintptr
+	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = ag, attr_chain, attr_chain_idx, char_idx, cur_refcnt, data, data2, dot_count, et, flags, idx, interp, item_len, kind1, mod, nattrs, state, tstate, tuple, tuple1, unibuff_from, unibuff_till, v1, v10, v12, v14, v18, v19, v23, v28, v3, v38, v5, v7
+	if !(kwds == libc.UintptrFromInt32(0) || X_PyArg_NoKeywords(tls, __ccgo_ts+367114, kwds) != 0) {
+		return libc.UintptrFromInt32(0)
+	}
+	tuple = args
+	v3 = (*TPyVarObject)(unsafe.Pointer(tuple)).Fob_size
+	goto _4
+_4:
+	v1 = v3
+	goto _2
+_2:
+	nattrs = v1
+	if nattrs <= int64(1) {
+		if !(XPyArg_UnpackTuple(tls, args, __ccgo_ts+367114, int64(1), int64(1), libc.VaList(bp+32, bp)) != 0) {
+			return libc.UintptrFromInt32(0)
+		}
+	}
+	**(**uintptr)(__ccgo_up(bp)) = XPyTuple_New(tls, nattrs)
+	if **(**uintptr)(__ccgo_up(bp)) == libc.UintptrFromInt32(0) {
+		return libc.UintptrFromInt32(0)
+	}
+	v5 = (*_ccgo_tls_tstate(tls))
+	goto _6
+_6:
+	tstate = v5
+	v7 = (*TPyThreadState)(unsafe.Pointer(tstate)).Finterp
+	goto _8
+_8:
+
+	interp = v7
+	idx = 0
+	for {
+		if !(idx < nattrs) {
+			break
+		}
+		**(**uintptr)(__ccgo_up(bp + 8)) = **(**uintptr)(__ccgo_up(args + 32 + uintptr(idx)*8))
+		v10 = (*TPyObject)(unsafe.Pointer(**(**uintptr)(__ccgo_up(bp + 8)))).Fob_type
+		goto _11
+	_11:
+		flags = (*TPyTypeObject)(unsafe.Pointer(v10)).Ftp_flags
+		v12 = libc.BoolInt32(flags&(libc.Uint64FromUint64(1)<<libc.Int32FromInt32(28)) != uint64(0))
+		goto _13
+	_13:
+		if !(v12 != 0) {
+			XPyErr_SetString(tls, XPyExc_TypeError, __ccgo_ts+367125)
+			v5 = **(**uintptr)(__ccgo_up(bp))
+			v12 = libc.BoolInt32(libc.Int32FromUint32(*(*Tuint32_t)(unsafe.Pointer(v5))) < 0)
+			goto _16
+		_16:
+			if v12 != 0 {
+				goto _17
+			}
+			v7 = v5
+			*(*Tuint32_t)(unsafe.Pointer(v7)) = *(*Tuint32_t)(unsafe.Pointer(v7)) - 1
+			v18 = *(*Tuint32_t)(unsafe.Pointer(v7))
+			if v18 == libc.Uint32FromInt32(0) {
+				X_Py_Dealloc(tls, v5)
+			}
+		_17:
+			;
+			return libc.UintptrFromInt32(0)
+		}
+		v1 = (*TPyASCIIObject)(unsafe.Pointer(**(**uintptr)(__ccgo_up(bp + 8)))).Flength
+		goto _21
+	_21:
+		item_len = v1
+		kind1 = int32(*(*uint32)(unsafe.Pointer(**(**uintptr)(__ccgo_up(bp + 8)) + 32 + 0)) & 0x1c >> 2)
+		v5 = **(**uintptr)(__ccgo_up(bp + 8))
+		v23 = libc.Uint32FromInt32(int32(*(*uint32)(unsafe.Pointer(v5 + 32 + 0)) & 0x20 >> 5))
+		goto _24
+	_24:
+		if v23 != 0 {
+			v10 = v5
+			v28 = libc.Uint32FromInt32(int32(*(*uint32)(unsafe.Pointer(v10 + 32 + 0)) & 0x40 >> 6))
+			goto _29
+		_29:
+			if v28 != 0 {
+				v14 = v10 + libc.UintptrFromInt32(1)*40
+				goto _31
+			}
+			v14 = v10 + libc.UintptrFromInt32(1)*56
+			goto _31
+		_31:
+			v7 = v14
+			goto _26
+		}
+		data = *(*uintptr)(unsafe.Pointer(v5 + 56))
+		v19 = data
+		goto _33
+	_33:
+		v7 = v19
+		goto _26
+	_26:
+		data2 = v7
+
+		dot_count = 0
+		char_idx = 0
+		for {
+			if !(char_idx < item_len) {
+				break
+			}
+			v12 = kind1
+			v5 = data2
+			v1 = char_idx
+			if v12 == int32(EPyUnicode_1BYTE_KIND) {
+				v38 = uint32(**(**TPy_UCS1)(__ccgo_up(v5 + uintptr(v1))))
+				goto _39
+			}
+			if v12 == int32(EPyUnicode_2BYTE_KIND) {
+				v38 = uint32(**(**TPy_UCS2)(__ccgo_up(v5 + uintptr(v1)*2)))
+				goto _39
+			}
+			v38 = **(**TPy_UCS4)(__ccgo_up(v5 + uintptr(v1)*4))
+			goto _39
+		_39:
+			if v38 == uint32('.') {
+				dot_count = dot_count + 1
+			}
+			goto _34
+		_34:
+			;
+			char_idx = char_idx + 1
+		}
+		if dot_count == 0 {
+			v5 = **(**uintptr)(__ccgo_up(bp + 8))
+			cur_refcnt = *(*Tuint32_t)(unsafe.Pointer(v5))
+			if uint64(cur_refcnt) >= libc.Uint64FromUint64(3)<<libc.Int32FromInt32(30) {
+				goto _41
+			}
+			*(*Tuint32_t)(unsafe.Pointer(v5)) = cur_refcnt + uint32(1)
+		_41:
+			;
+			X_PyUnicode_InternMortal(tls, interp, bp+8)
+			tuple1 = **(**uintptr)(__ccgo_up(bp))
+			**(**uintptr)(__ccgo_up(tuple1 + 32 + uintptr(idx)*8)) = **(**uintptr)(__ccgo_up(bp + 8))
+		} else {
+			attr_chain = XPyTuple_New(tls, int64(dot_count+int32(1)))
+			unibuff_from = 0
+			unibuff_till = 0
+			attr_chain_idx = 0
+			if attr_chain == libc.UintptrFromInt32(0) {
+				v5 = **(**uintptr)(__ccgo_up(bp))
+				v12 = libc.BoolInt32(libc.Int32FromUint32(*(*Tuint32_t)(unsafe.Pointer(v5))) < 0)
+				goto _44
+			_44:
+				if v12 != 0 {
+					goto _45
+				}
+				v7 = v5
+				*(*Tuint32_t)(unsafe.Pointer(v7)) = *(*Tuint32_t)(unsafe.Pointer(v7)) - 1
+				v18 = *(*Tuint32_t)(unsafe.Pointer(v7))
+				if v18 == libc.Uint32FromInt32(0) {
+					X_Py_Dealloc(tls, v5)
+				}
+			_45:
+				;
+				return libc.UintptrFromInt32(0)
+			}
+			for {
+				if !(dot_count > 0) {
+					break
+				}
+				for {
+					v12 = kind1
+					v5 = data2
+					v1 = unibuff_till
+					if v12 == int32(EPyUnicode_1BYTE_KIND) {
+						v38 = uint32(**(**TPy_UCS1)(__ccgo_up(v5 + uintptr(v1))))
+						goto _53
+					}
+					if v12 == int32(EPyUnicode_2BYTE_KIND) {
+						v38 = uint32(**(**TPy_UCS2)(__ccgo_up(v5 + uintptr(v1)*2)))
+						goto _53
+					}
+					v38 = **(**TPy_UCS4)(__ccgo_up(v5 + uintptr(v1)*4))
+					goto _53
+				_53:
+					if !(v38 != uint32('.')) {
+						break
+					}
+					unibuff_till = unibuff_till + 1
+				}
+				**(**uintptr)(__ccgo_up(bp + 16)) = XPyUnicode_Substring(tls, **(**uintptr)(__ccgo_up(bp + 8)), unibuff_from, unibuff_till)
+				if **(**uintptr)(__ccgo_up(bp + 16)) == libc.UintptrFromInt32(0) {
+					v5 = attr_chain
+					v12 = libc.BoolInt32(libc.Int32FromUint32(*(*Tuint32_t)(unsafe.Pointer(v5))) < 0)
+					goto _56
+				_56:
+					if v12 != 0 {
+						goto _57
+					}
+					v7 = v5
+					*(*Tuint32_t)(unsafe.Pointer(v7)) = *(*Tuint32_t)(unsafe.Pointer(v7)) - 1
+					v18 = *(*Tuint32_t)(unsafe.Pointer(v7))
+					if v18 == libc.Uint32FromInt32(0) {
+						X_Py_Dealloc(tls, v5)
+					}
+				_57:
+					;
+					v5 = **(**uintptr)(__ccgo_up(bp))
+					v12 = libc.BoolInt32(libc.Int32FromUint32(*(*Tuint32_t)(unsafe.Pointer(v5))) < 0)
+					goto _62
+				_62:
+					if v12 != 0 {
+						goto _63
+					}
+					v7 = v5
+					*(*Tuint32_t)(unsafe.Pointer(v7)) = *(*Tuint32_t)(unsafe.Pointer(v7)) - 1
+					v18 = *(*Tuint32_t)(unsafe.Pointer(v7))
+					if v18 == libc.Uint32FromInt32(0) {
+						X_Py_Dealloc(tls, v5)
+					}
+				_63:
+					;
+					return libc.UintptrFromInt32(0)
+				}
+				X_PyUnicode_InternMortal(tls, interp, bp+16)
+				tuple1 = attr_chain
+				**(**uintptr)(__ccgo_up(tuple1 + 32 + uintptr(attr_chain_idx)*8)) = **(**uintptr)(__ccgo_up(bp + 16))
+				attr_chain_idx = attr_chain_idx + 1
+				v1 = unibuff_till + libc.Int64FromInt32(1)
+				unibuff_from = v1
+				unibuff_till = v1
+				goto _48
+			_48:
+				;
+				dot_count = dot_count - 1
+			}
+
+			**(**uintptr)(__ccgo_up(bp + 16)) = XPyUnicode_Substring(tls, **(**uintptr)(__ccgo_up(bp + 8)), unibuff_from, item_len)
+			if **(**uintptr)(__ccgo_up(bp + 16)) == libc.UintptrFromInt32(0) {
+				v5 = attr_chain
+				v12 = libc.BoolInt32(libc.Int32FromUint32(*(*Tuint32_t)(unsafe.Pointer(v5))) < 0)
+				goto _69
+			_69:
+				if v12 != 0 {
+					goto _70
+				}
+				v7 = v5
+				*(*Tuint32_t)(unsafe.Pointer(v7)) = *(*Tuint32_t)(unsafe.Pointer(v7)) - 1
+				v18 = *(*Tuint32_t)(unsafe.Pointer(v7))
+				if v18 == libc.Uint32FromInt32(0) {
+					X_Py_Dealloc(tls, v5)
+				}
+			_70:
+				;
+				v5 = **(**uintptr)(__ccgo_up(bp))
+				v12 = libc.BoolInt32(libc.Int32FromUint32(*(*Tuint32_t)(unsafe.Pointer(v5))) < 0)
+				goto _75
+			_75:
+				if v12 != 0 {
+					goto _76
+				}
+				v7 = v5
+				*(*Tuint32_t)(unsafe.Pointer(v7)) = *(*Tuint32_t)(unsafe.Pointer(v7)) - 1
+				v18 = *(*Tuint32_t)(unsafe.Pointer(v7))
+				if v18 == libc.Uint32FromInt32(0) {
+					X_Py_Dealloc(tls, v5)
+				}
+			_76:
+				;
+				return libc.UintptrFromInt32(0)
+			}
+			X_PyUnicode_InternMortal(tls, interp, bp+16)
+			tuple1 = attr_chain
+			**(**uintptr)(__ccgo_up(tuple1 + 32 + uintptr(attr_chain_idx)*8)) = **(**uintptr)(__ccgo_up(bp + 16))
+			tuple1 = **(**uintptr)(__ccgo_up(bp))
+			**(**uintptr)(__ccgo_up(tuple1 + 32 + uintptr(idx)*8)) = attr_chain
+		}
+		goto _9
+	_9:
+		;
+		idx = idx + 1
+	}
+	et = type2
+	mod = (*TPyHeapTypeObject)(unsafe.Pointer(et)).Fht_module
+	v5 = (*TPyModuleObject)(unsafe.Pointer(mod)).Fmd_state
+	goto _80
+_80:
+	state = v5
+
+	ag = X_PyObject_GC_New(tls, (*T_operator_state)(unsafe.Pointer(state)).Fattrgetter_type)
+	if ag == libc.UintptrFromInt32(0) {
+		v5 = **(**uintptr)(__ccgo_up(bp))
+		v12 = libc.BoolInt32(libc.Int32FromUint32(*(*Tuint32_t)(unsafe.Pointer(v5))) < 0)
+		goto _83
+	_83:
+		if v12 != 0 {
+			goto _84
+		}
+		v7 = v5
+		*(*Tuint32_t)(unsafe.Pointer(v7)) = *(*Tuint32_t)(unsafe.Pointer(v7)) - 1
+		v18 = *(*Tuint32_t)(unsafe.Pointer(v7))
+		if v18 == libc.Uint32FromInt32(0) {
+			X_Py_Dealloc(tls, v5)
+		}
+	_84:
+		;
+		return libc.UintptrFromInt32(0)
+	}
+	(*Tattrgetterobject)(unsafe.Pointer(ag)).Fattr = **(**uintptr)(__ccgo_up(bp))
+	(*Tattrgetterobject)(unsafe.Pointer(ag)).Fnattrs = nattrs
+	(*Tattrgetterobject)(unsafe.Pointer(ag)).Fvectorcall = __ccgo_fp(_attrgetter_vectorcall)
+	XPyObject_GC_Track(tls, ag)
+	return ag
+}
+
+func _attrgetter_clear(tls *libc.TLS, op2 uintptr) (r int32) {
+	var _tmp_old_op, _tmp_op_ptr, ag, v1, v6 uintptr
+	var v2 int32
+	var v5 Tuint32_t
+	_, _, _, _, _, _, _ = _tmp_old_op, _tmp_op_ptr, ag, v1, v2, v5, v6
+	ag = op2
+	_tmp_op_ptr = ag + 24
+	_tmp_old_op = **(**uintptr)(__ccgo_up(_tmp_op_ptr))
+	if _tmp_old_op != libc.UintptrFromInt32(0) {
+		**(**uintptr)(__ccgo_up(_tmp_op_ptr)) = libc.UintptrFromInt32(0)
+		v1 = _tmp_old_op
+		v2 = libc.BoolInt32(libc.Int32FromUint32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
+		goto _3
+	_3:
+		if v2 != 0 {
+			goto _4
+		}
+		v6 = v1
+		*(*Tuint32_t)(unsafe.Pointer(v6)) = *(*Tuint32_t)(unsafe.Pointer(v6)) - 1
+		v5 = *(*Tuint32_t)(unsafe.Pointer(v6))
+		if v5 == libc.Uint32FromInt32(0) {
+			X_Py_Dealloc(tls, v1)
+		}
+	_4:
+	}
+	return 0
+}
+
+func _attrgetter_dealloc(tls *libc.TLS, op2 uintptr) {
+	var tp, v1, v3 uintptr
+	var v4 int32
+	var v7 Tuint32_t
+	_, _, _, _, _ = tp, v1, v3, v4, v7
+	v1 = (*TPyObject)(unsafe.Pointer(op2)).Fob_type
+	goto _2
+_2:
+	tp = v1
+	XPyObject_GC_UnTrack(tls, op2)
+	_attrgetter_clear(tls, op2)
+	(*(*func(*libc.TLS, uintptr))(unsafe.Pointer(&struct{ uintptr }{(*TPyTypeObject)(unsafe.Pointer(tp)).Ftp_free})))(tls, op2)
+	v1 = tp
+	v4 = libc.BoolInt32(libc.Int32FromUint32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
+	goto _5
+_5:
+	if v4 != 0 {
+		goto _6
+	}
+	v3 = v1
+	*(*Tuint32_t)(unsafe.Pointer(v3)) = *(*Tuint32_t)(unsafe.Pointer(v3)) - 1
+	v7 = *(*Tuint32_t)(unsafe.Pointer(v3))
+	if v7 == libc.Uint32FromInt32(0) {
+		X_Py_Dealloc(tls, v1)
+	}
+_6:
+}
+
+func _attrgetter_traverse(tls *libc.TLS, op uintptr, __ccgo_fp_visit Tvisitproc, arg uintptr) (r int32) {
+	var ag, v1, v3 uintptr
+	var vret, vret1 int32
+	_, _, _, _, _ = ag, vret, vret1, v1, v3
+	ag = op
+	if (*Tattrgetterobject)(unsafe.Pointer(ag)).Fattr != 0 {
+		vret = (*(*func(*libc.TLS, uintptr, uintptr) int32)(unsafe.Pointer(&struct{ uintptr }{__ccgo_fp_visit})))(tls, (*Tattrgetterobject)(unsafe.Pointer(ag)).Fattr, arg)
+		if vret != 0 {
+			return vret
+		}
+	}
+	v1 = (*TPyObject)(unsafe.Pointer(ag)).Fob_type
+	goto _2
+_2:
+	if v1 != 0 {
+		v3 = (*TPyObject)(unsafe.Pointer(ag)).Fob_type
+		goto _4
+	_4:
+		vret1 = (*(*func(*libc.TLS, uintptr, uintptr) int32)(unsafe.Pointer(&struct{ uintptr }{__ccgo_fp_visit})))(tls, v3, arg)
+		if vret1 != 0 {
+			return vret1
+		}
+	}
+	return 0
+}
+
+func _dotted_getattr(tls *libc.TLS, obj uintptr, attr uintptr) (r uintptr) {
+	var attr_name, newobj, tuple, v3, v9 uintptr
+	var cur_refcnt, v16 Tuint32_t
+	var name_count, name_idx, v5, v7 TPy_ssize_t
+	var v1 int32
+	_, _, _, _, _, _, _, _, _, _, _, _ = attr_name, cur_refcnt, name_count, name_idx, newobj, tuple, v1, v16, v3, v5, v7, v9
+
+	v3 = (*TPyObject)(unsafe.Pointer(attr)).Fob_type
+	goto _4
+_4:
+	v1 = libc.BoolInt32(v3 == uintptr(unsafe.Pointer(&XPyTuple_Type)))
+	goto _2
+_2:
+	if v1 != 0 {
+		name_idx = 0
+		tuple = attr
+		v7 = (*TPyVarObject)(unsafe.Pointer(tuple)).Fob_size
+		goto _8
+	_8:
+		v5 = v7
+		goto _6
+	_6:
+		name_count = v5
+		v3 = obj
+		cur_refcnt = *(*Tuint32_t)(unsafe.Pointer(v3))
+		if uint64(cur_refcnt) >= libc.Uint64FromUint64(3)<<libc.Int32FromInt32(30) {
+			goto _10
+		}
+		*(*Tuint32_t)(unsafe.Pointer(v3)) = cur_refcnt + uint32(1)
+	_10:
+		;
+		name_idx = 0
+		for {
+			if !(name_idx < name_count) {
+				break
+			}
+			attr_name = **(**uintptr)(__ccgo_up(attr + 32 + uintptr(name_idx)*8))
+			newobj = XPyObject_GetAttr(tls, obj, attr_name)
+			v3 = obj
+			v1 = libc.BoolInt32(libc.Int32FromUint32(*(*Tuint32_t)(unsafe.Pointer(v3))) < 0)
+			goto _14
+		_14:
+			if v1 != 0 {
+				goto _15
+			}
+			v9 = v3
+			*(*Tuint32_t)(unsafe.Pointer(v9)) = *(*Tuint32_t)(unsafe.Pointer(v9)) - 1
+			v16 = *(*Tuint32_t)(unsafe.Pointer(v9))
+			if v16 == libc.Uint32FromInt32(0) {
+				X_Py_Dealloc(tls, v3)
+			}
+		_15:
+			;
+			if newobj == libc.UintptrFromInt32(0) {
+				return libc.UintptrFromInt32(0)
+			}
+
+			obj = newobj
+			goto _11
+		_11:
+			;
+			name_idx = name_idx + 1
+		}
+	} else {
+		newobj = XPyObject_GetAttr(tls, obj, attr)
+		if newobj == libc.UintptrFromInt32(0) {
+			return libc.UintptrFromInt32(0)
+		}
+		obj = newobj
+	}
+	return obj
+}
+
+func _attrgetter_call(tls *libc.TLS, op1 uintptr, args uintptr, kw uintptr) (r uintptr) {
+	var ag, tuple uintptr
+	var v1, v11, v13, v3, v6, v8 TPy_ssize_t
+	var v10, v15, v5 bool
+	_, _, _, _, _, _, _, _, _, _, _ = ag, tuple, v1, v10, v11, v13, v15, v3, v5, v6, v8
+	if !(kw == libc.UintptrFromInt32(0) || X_PyArg_NoKeywords(tls, __ccgo_ts+367114, kw) != 0) {
+		return libc.UintptrFromInt32(0)
+	}
+	if v5 = libc.Bool(!false); v5 {
+		tuple = args
+		v3 = (*TPyVarObject)(unsafe.Pointer(tuple)).Fob_size
+		goto _4
+	_4:
+		v1 = v3
+		goto _2
+	_2:
+	}
+	if v10 = v5 && int64(libc.Int32FromInt32(1)) <= v1; v10 {
+		tuple = args
+		v8 = (*TPyVarObject)(unsafe.Pointer(tuple)).Fob_size
+		goto _9
+	_9:
+		v6 = v8
+		goto _7
+	_7:
+	}
+	if v15 = v10 && v6 <= int64(libc.Int32FromInt32(1)); !v15 {
+		tuple = args
+		v13 = (*TPyVarObject)(unsafe.Pointer(tuple)).Fob_size
+		goto _14
+	_14:
+		v11 = v13
+		goto _12
+	_12:
+	}
+	if !(v15 || X_PyArg_CheckPositional(tls, __ccgo_ts+367114, v11, int64(libc.Int32FromInt32(1)), int64(libc.Int32FromInt32(1))) != 0) {
+		return libc.UintptrFromInt32(0)
+	}
+	ag = op1
+	return _attrgetter_call_impl(tls, ag, **(**uintptr)(__ccgo_up(args + 32)))
+}
+
+func _attrgetter_vectorcall(tls *libc.TLS, op uintptr, args uintptr, nargsf Tsize_t, kwnames uintptr) (r uintptr) {
+	var ag uintptr
+	var nargs, v1 TPy_ssize_t
+	_, _, _ = ag, nargs, v1
+	if !(kwnames == libc.UintptrFromInt32(0) || X_PyArg_NoKwnames(tls, __ccgo_ts+367114, kwnames) != 0) {
+		return libc.UintptrFromInt32(0)
+	}
+	v1 = libc.Int64FromUint64(nargsf & ^(libc.Uint64FromInt32(libc.Int32FromInt32(1)) << (libc.Uint64FromInt32(8)*libc.Uint64FromInt64(8) - libc.Uint64FromInt32(1))))
+	goto _2
+_2:
+	nargs = v1
+	if !(libc.Bool(!false) && int64(libc.Int32FromInt32(1)) <= nargs && nargs <= int64(libc.Int32FromInt32(1)) || X_PyArg_CheckPositional(tls, __ccgo_ts+367114, nargs, int64(libc.Int32FromInt32(1)), int64(libc.Int32FromInt32(1))) != 0) {
+		return libc.UintptrFromInt32(0)
+	}
+	ag = op
+	return _attrgetter_call_impl(tls, ag, **(**uintptr)(__ccgo_up(args)))
+}
+
+func _attrgetter_call_impl(tls *libc.TLS, ag uintptr, obj uintptr) (r uintptr) {
+	var attr, result, tuple, val, v2, v7 uintptr
+	var i, nattrs TPy_ssize_t
+	var v3 int32
+	var v6 Tuint32_t
+	_, _, _, _, _, _, _, _, _, _ = attr, i, nattrs, result, tuple, val, v2, v3, v6, v7
+	nattrs = (*Tattrgetterobject)(unsafe.Pointer(ag)).Fnattrs
+	if (*Tattrgetterobject)(unsafe.Pointer(ag)).Fnattrs == int64(1) {
+
+		return _dotted_getattr(tls, obj, **(**uintptr)(__ccgo_up((*Tattrgetterobject)(unsafe.Pointer(ag)).Fattr + 32)))
+	}
+	result = XPyTuple_New(tls, nattrs)
+	if result == libc.UintptrFromInt32(0) {
+		return libc.UintptrFromInt32(0)
+	}
+	i = 0
+	for {
+		if !(i < nattrs) {
+			break
+		}
+		attr = **(**uintptr)(__ccgo_up((*Tattrgetterobject)(unsafe.Pointer(ag)).Fattr + 32 + uintptr(i)*8))
+		val = _dotted_getattr(tls, obj, attr)
+		if val == libc.UintptrFromInt32(0) {
+			v2 = result
+			v3 = libc.BoolInt32(libc.Int32FromUint32(*(*Tuint32_t)(unsafe.Pointer(v2))) < 0)
+			goto _4
+		_4:
+			if v3 != 0 {
+				goto _5
+			}
+			v7 = v2
+			*(*Tuint32_t)(unsafe.Pointer(v7)) = *(*Tuint32_t)(unsafe.Pointer(v7)) - 1
+			v6 = *(*Tuint32_t)(unsafe.Pointer(v7))
+			if v6 == libc.Uint32FromInt32(0) {
+				X_Py_Dealloc(tls, v2)
+			}
+		_5:
+			;
+			return libc.UintptrFromInt32(0)
+		}
+		tuple = result
+		**(**uintptr)(__ccgo_up(tuple + 32 + uintptr(i)*8)) = val
+		goto _1
+	_1:
+		;
+		i = i + 1
+	}
+	return result
+}
+
+func _dotjoinattr(tls *libc.TLS, attr uintptr, attrsep uintptr) (r uintptr) {
+	var cur_refcnt Tuint32_t
+	var v1 int32
+	var v3, v5, v6 uintptr
+	_, _, _, _, _ = cur_refcnt, v1, v3, v5, v6
+	v3 = (*TPyObject)(unsafe.Pointer(attr)).Fob_type
+	goto _4
+_4:
+	v1 = libc.BoolInt32(v3 == uintptr(unsafe.Pointer(&XPyTuple_Type)))
+	goto _2
+_2:
+	if v1 != 0 {
+		if **(**uintptr)(__ccgo_up(attrsep)) == libc.UintptrFromInt32(0) {
+			**(**uintptr)(__ccgo_up(attrsep)) = XPyUnicode_FromString(tls, __ccgo_ts+118072)
+			if **(**uintptr)(__ccgo_up(attrsep)) == libc.UintptrFromInt32(0) {
+				return libc.UintptrFromInt32(0)
+			}
+		}
+		return XPyUnicode_Join(tls, **(**uintptr)(__ccgo_up(attrsep)), attr)
+	} else {
+		v3 = attr
+		v5 = v3
+		cur_refcnt = *(*Tuint32_t)(unsafe.Pointer(v5))
+		if uint64(cur_refcnt) >= libc.Uint64FromUint64(3)<<libc.Int32FromInt32(30) {
+			goto _7
+		}
+		*(*Tuint32_t)(unsafe.Pointer(v5)) = cur_refcnt + uint32(1)
+	_7:
+		;
+		v6 = v3
+		goto _9
+	_9:
+		return v6
+	}
+	return r
+}
+
+func _attrgetter_args(tls *libc.TLS, ag uintptr) (r uintptr) {
+	bp := tls.Alloc(16)
+	defer tls.Free(16)
+	var attr, attrstr, attrstrings, tuple, v2, v3, v8 uintptr
+	var i TPy_ssize_t
+	var v4 int32
+	var v7 Tuint32_t
+	var _ uintptr
+	_, _, _, _, _, _, _, _, _, _ = attr, attrstr, attrstrings, i, tuple, v2, v3, v4, v7, v8
+	**(**uintptr)(__ccgo_up(bp)) = libc.UintptrFromInt32(0)
+	attrstrings = XPyTuple_New(tls, (*Tattrgetterobject)(unsafe.Pointer(ag)).Fnattrs)
+	if attrstrings == libc.UintptrFromInt32(0) {
+		return libc.UintptrFromInt32(0)
+	}
+	i = 0
+	for {
+		if !(i < (*Tattrgetterobject)(unsafe.Pointer(ag)).Fnattrs) {
+			break
+		}
+		attr = **(**uintptr)(__ccgo_up((*Tattrgetterobject)(unsafe.Pointer(ag)).Fattr + 32 + uintptr(i)*8))
+		attrstr = _dotjoinattr(tls, attr, bp)
+		if attrstr == libc.UintptrFromInt32(0) {
+			v2 = **(**uintptr)(__ccgo_up(bp))
+			if v2 != libc.UintptrFromInt32(0) {
+				v3 = v2
+				v4 = libc.BoolInt32(libc.Int32FromUint32(*(*Tuint32_t)(unsafe.Pointer(v3))) < 0)
+				goto _5
+			_5:
+				if v4 != 0 {
+					goto _6
+				}
+				v8 = v3
+				*(*Tuint32_t)(unsafe.Pointer(v8)) = *(*Tuint32_t)(unsafe.Pointer(v8)) - 1
+				v7 = *(*Tuint32_t)(unsafe.Pointer(v8))
+				if v7 == libc.Uint32FromInt32(0) {
+					X_Py_Dealloc(tls, v3)
+				}
+			_6:
+			}
+			v2 = attrstrings
+			v4 = libc.BoolInt32(libc.Int32FromUint32(*(*Tuint32_t)(unsafe.Pointer(v2))) < 0)
+			goto _11
+		_11:
+			if v4 != 0 {
+				goto _12
+			}
+			v3 = v2
+			*(*Tuint32_t)(unsafe.Pointer(v3)) = *(*Tuint32_t)(unsafe.Pointer(v3)) - 1
+			v7 = *(*Tuint32_t)(unsafe.Pointer(v3))
+			if v7 == libc.Uint32FromInt32(0) {
+				X_Py_Dealloc(tls, v2)
+			}
+		_12:
+			;
+			return libc.UintptrFromInt32(0)
+		}
+		tuple = attrstrings
+		**(**uintptr)(__ccgo_up(tuple + 32 + uintptr(i)*8)) = attrstr
+		goto _1
+	_1:
+		;
+		i = i + 1
+	}
+	v2 = **(**uintptr)(__ccgo_up(bp))
+	if v2 != libc.UintptrFromInt32(0) {
+		v3 = v2
+		v4 = libc.BoolInt32(libc.Int32FromUint32(*(*Tuint32_t)(unsafe.Pointer(v3))) < 0)
+		goto _18
+	_18:
+		if v4 != 0 {
+			goto _19
+		}
+		v8 = v3
+		*(*Tuint32_t)(unsafe.Pointer(v8)) = *(*Tuint32_t)(unsafe.Pointer(v8)) - 1
+		v7 = *(*Tuint32_t)(unsafe.Pointer(v8))
+		if v7 == libc.Uint32FromInt32(0) {
+			X_Py_Dealloc(tls, v3)
+		}
+	_19:
+	}
+	return attrstrings
+}
+
+func _attrgetter_repr(tls *libc.TLS, op3 uintptr) (r uintptr) {
+	bp := tls.Alloc(32)
+	defer tls.Free(32)
+	var ag, attr, attrstrings, repr, v1, v3, v5 uintptr
+	var status, v6 int32
+	var v9 Tuint32_t
+	var _ uintptr
+	_, _, _, _, _, _, _, _, _, _ = ag, attr, attrstrings, repr, status, v1, v3, v5, v6, v9
+	repr = libc.UintptrFromInt32(0)
+	ag = op3
+	status = XPy_ReprEnter(tls, op3)
+	if status != 0 {
+		if status < 0 {
+			return libc.UintptrFromInt32(0)
+		}
+		v1 = (*TPyObject)(unsafe.Pointer(ag)).Fob_type
+		goto _2
+	_2:
+		return XPyUnicode_FromFormat(tls, __ccgo_ts+54889, libc.VaList(bp+16, (*TPyTypeObject)(unsafe.Pointer(v1)).Ftp_name))
+	}
+	if (*Tattrgetterobject)(unsafe.Pointer(ag)).Fnattrs == int64(1) {
+		**(**uintptr)(__ccgo_up(bp)) = libc.UintptrFromInt32(0)
+		attr = _dotjoinattr(tls, **(**uintptr)(__ccgo_up((*Tattrgetterobject)(unsafe.Pointer(ag)).Fattr + 32)), bp)
+		if attr != libc.UintptrFromInt32(0) {
+			v1 = (*TPyObject)(unsafe.Pointer(ag)).Fob_type
+			goto _4
+		_4:
+			repr = XPyUnicode_FromFormat(tls, __ccgo_ts+27197, libc.VaList(bp+16, (*TPyTypeObject)(unsafe.Pointer(v1)).Ftp_name, attr))
+			v1 = attr
+			v6 = libc.BoolInt32(libc.Int32FromUint32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
+			goto _7
+		_7:
+			if v6 != 0 {
+				goto _8
+			}
+			v3 = v1
+			*(*Tuint32_t)(unsafe.Pointer(v3)) = *(*Tuint32_t)(unsafe.Pointer(v3)) - 1
+			v9 = *(*Tuint32_t)(unsafe.Pointer(v3))
+			if v9 == libc.Uint32FromInt32(0) {
+				X_Py_Dealloc(tls, v1)
+			}
+		_8:
+		}
+		v1 = **(**uintptr)(__ccgo_up(bp))
+		if v1 != libc.UintptrFromInt32(0) {
+			v3 = v1
+			v6 = libc.BoolInt32(libc.Int32FromUint32(*(*Tuint32_t)(unsafe.Pointer(v3))) < 0)
+			goto _14
+		_14:
+			if v6 != 0 {
+				goto _15
+			}
+			v5 = v3
+			*(*Tuint32_t)(unsafe.Pointer(v5)) = *(*Tuint32_t)(unsafe.Pointer(v5)) - 1
+			v9 = *(*Tuint32_t)(unsafe.Pointer(v5))
+			if v9 == libc.Uint32FromInt32(0) {
+				X_Py_Dealloc(tls, v3)
+			}
+		_15:
+		}
+	} else {
+		attrstrings = _attrgetter_args(tls, ag)
+		if attrstrings != libc.UintptrFromInt32(0) {
+			v1 = (*TPyObject)(unsafe.Pointer(ag)).Fob_type
+			goto _19
+		_19:
+			repr = XPyUnicode_FromFormat(tls, __ccgo_ts+27204, libc.VaList(bp+16, (*TPyTypeObject)(unsafe.Pointer(v1)).Ftp_name, attrstrings))
+			v1 = attrstrings
+			v6 = libc.BoolInt32(libc.Int32FromUint32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
+			goto _22
+		_22:
+			if v6 != 0 {
+				goto _23
+			}
+			v3 = v1
+			*(*Tuint32_t)(unsafe.Pointer(v3)) = *(*Tuint32_t)(unsafe.Pointer(v3)) - 1
+			v9 = *(*Tuint32_t)(unsafe.Pointer(v3))
+			if v9 == libc.Uint32FromInt32(0) {
+				X_Py_Dealloc(tls, v1)
+			}
+		_23:
+		}
+	}
+	XPy_ReprLeave(tls, op3)
+	return repr
+}
+
+func _attrgetter_reduce(tls *libc.TLS, op uintptr, _unused_dummy uintptr) (r uintptr) {
+	bp := tls.Alloc(32)
+	defer tls.Free(32)
+	var ag, attrstrings, v1 uintptr
+	_, _, _ = ag, attrstrings, v1
+	ag = op
+	attrstrings = _attrgetter_args(tls, ag)
+	if attrstrings == libc.UintptrFromInt32(0) {
+		return libc.UintptrFromInt32(0)
+	}
+	v1 = (*TPyObject)(unsafe.Pointer(ag)).Fob_type
+	goto _2
+_2:
+	return XPy_BuildValue(tls, __ccgo_ts+119727, libc.VaList(bp+8, v1, attrstrings))
+}
+
+var _attrgetter_methods = [2]TPyMethodDef{
+	0: {
+		Fml_name:  __ccgo_ts + 17238,
+		Fml_flags: int32(MMETH_NOARGS),
+		Fml_doc:   uintptr(unsafe.Pointer(&_reduce_doc13)),
+	},
+	1: {},
+}
+
+func init() {
+	p := unsafe.Pointer(&_attrgetter_methods)
+	*(*uintptr)(unsafe.Add(p, 8)) = __ccgo_fp(_attrgetter_reduce)
+}
+
+var _attrgetter_members = [2]TPyMemberDef{
+	0: {
+		Fname:   __ccgo_ts + 64068,
+		Ftype1:  int32(MPy_T_PYSSIZET),
+		Foffset: libc.Int64FromUint64(uint64(libc.UintptrFromInt32(0) + 32)),
+		Fflags:  int32(MPy_READONLY),
+	},
+	1: {},
+}
+
+var _attrgetter_type_slots = [12]TPyType_Slot{
+	0: {
+		Fslot:  int32(MPy_tp_doc),
+		Fpfunc: uintptr(unsafe.Pointer(&_attrgetter_doc)),
+	},
+	1: {
+		Fslot: int32(MPy_tp_dealloc),
+	},
+	2: {
+		Fslot: int32(MPy_tp_call),
+	},
+	3: {
+		Fslot: int32(MPy_tp_traverse),
+	},
+	4: {
+		Fslot: int32(MPy_tp_clear),
+	},
+	5: {
+		Fslot:  int32(MPy_tp_methods),
+		Fpfunc: uintptr(unsafe.Pointer(&_attrgetter_methods)),
+	},
+	6: {
+		Fslot:  int32(MPy_tp_members),
+		Fpfunc: uintptr(unsafe.Pointer(&_attrgetter_members)),
+	},
+	7: {
+		Fslot:  int32(MPy_tp_getset),
+		Fpfunc: uintptr(unsafe.Pointer(&_common_getset)),
+	},
+	8: {
+		Fslot: int32(MPy_tp_new),
+	},
+	9: {
+		Fslot: int32(MPy_tp_getattro),
+	},
+	10: {
+		Fslot: int32(MPy_tp_repr),
+	},
+	11: {},
+}
+
+func init() {
+	p := unsafe.Pointer(&_attrgetter_type_slots)
+	*(*uintptr)(unsafe.Add(p, 24)) = __ccgo_fp(_attrgetter_dealloc)
+	*(*uintptr)(unsafe.Add(p, 40)) = __ccgo_fp(_attrgetter_call)
+	*(*uintptr)(unsafe.Add(p, 56)) = __ccgo_fp(_attrgetter_traverse)
+	*(*uintptr)(unsafe.Add(p, 72)) = __ccgo_fp(_attrgetter_clear)
+	*(*uintptr)(unsafe.Add(p, 136)) = __ccgo_fp(_attrgetter_new)
+	*(*uintptr)(unsafe.Add(p, 152)) = __ccgo_fp(XPyObject_GenericGetAttr)
+	*(*uintptr)(unsafe.Add(p, 168)) = __ccgo_fp(_attrgetter_repr)
+}
+
+var _attrgetter_type_spec = TPyType_Spec{
+	Fname:      __ccgo_ts + 367157,
+	Fbasicsize: int32(40),
+	Fflags:     uint32(libc.Uint64FromInt32(libc.Int32FromInt32(MPy_TPFLAGS_HAVE_STACKLESS_EXTENSION)|libc.Int32FromInt32(0)) | libc.Uint64FromUint64(1)<<libc.Int32FromInt32(14) | libc.Uint64FromUint64(1)<<libc.Int32FromInt32(8) | libc.Uint64FromUint64(1)<<libc.Int32FromInt32(11)),
+	Fslots:     uintptr(unsafe.Pointer(&_attrgetter_type_slots)),
+}
+
+type Tmethodcallerobject = struct {
+	Fob_base            TPyObject
+	Fname               uintptr
+	Fargs               uintptr
+	Fkwds               uintptr
+	Fvectorcall_args    uintptr
+	Fvectorcall_kwnames uintptr
+	Fvectorcall         Tvectorcallfunc
+}
+
+func _methodcaller_vectorcall(tls *libc.TLS, op1 uintptr, args uintptr, nargsf Tsize_t, kwnames uintptr) (r uintptr) {
+	bp := tls.Alloc(64)
+	defer tls.Free(64)
+	var mc, tuple uintptr
+	var v1, v4, v7 TPy_ssize_t
+	var v3, v6, v9 bool
+	var _ [8]uintptr
+	_, _, _, _, _, _, _, _ = mc, tuple, v1, v3, v4, v6, v7, v9
+	mc = op1
+	if v3 = libc.Bool(!false); v3 {
+		v1 = libc.Int64FromUint64(nargsf & ^(libc.Uint64FromInt32(libc.Int32FromInt32(1)) << (libc.Uint64FromInt32(8)*libc.Uint64FromInt64(8) - libc.Uint64FromInt32(1))))
+		goto _2
+	_2:
+	}
+	if v6 = v3 && int64(libc.Int32FromInt32(1)) <= v1; v6 {
+		v4 = libc.Int64FromUint64(nargsf & ^(libc.Uint64FromInt32(libc.Int32FromInt32(1)) << (libc.Uint64FromInt32(8)*libc.Uint64FromInt64(8) - libc.Uint64FromInt32(1))))
+		goto _5
+	_5:
+	}
+	if v9 = v6 && v4 <= int64(libc.Int32FromInt32(1)); !v9 {
+		v7 = libc.Int64FromUint64(nargsf & ^(libc.Uint64FromInt32(libc.Int32FromInt32(1)) << (libc.Uint64FromInt32(8)*libc.Uint64FromInt64(8) - libc.Uint64FromInt32(1))))
+		goto _8
+	_8:
+	}
+	if !(v9 || X_PyArg_CheckPositional(tls, __ccgo_ts+367177, v7, int64(libc.Int32FromInt32(1)), int64(libc.Int32FromInt32(1))) != 0) || !(kwnames == libc.UintptrFromInt32(0) || X_PyArg_NoKwnames(tls, __ccgo_ts+367177, kwnames) != 0) {
+		return libc.UintptrFromInt32(0)
+	}
+	(**(**[8]uintptr)(__ccgo_up(bp)))[0] = **(**uintptr)(__ccgo_up(args))
+	tuple = (*Tmethodcallerobject)(unsafe.Pointer(mc)).Fvectorcall_args
+	v4 = (*TPyVarObject)(unsafe.Pointer(tuple)).Fob_size
+	goto _13
+_13:
+	v1 = v4
+	goto _11
+_11:
+	libc.X__builtin___memcpy_chk(tls, bp+uintptr(1)*8, (*Tmethodcallerobject)(unsafe.Pointer(mc)).Fvectorcall_args+32, uint64(8)*libc.Uint64FromInt64(v1), ^t__predefined_size_t(0))
+	tuple = (*Tmethodcallerobject)(unsafe.Pointer(mc)).Fargs
+	v4 = (*TPyVarObject)(unsafe.Pointer(tuple)).Fob_size
+	goto _17
+_17:
+	v1 = v4
+	goto _15
+_15:
+	return XPyObject_VectorcallMethod(tls, (*Tmethodcallerobject)(unsafe.Pointer(mc)).Fname, bp, libc.Uint64FromInt64(libc.Int64FromInt32(1)+v1)|libc.Uint64FromInt32(libc.Int32FromInt32(1))<<(libc.Uint64FromInt32(8)*libc.Uint64FromInt64(8)-libc.Uint64FromInt32(1)), (*Tmethodcallerobject)(unsafe.Pointer(mc)).Fvectorcall_kwnames)
+}
+
+func __methodcaller_initialize_vectorcall(tls *libc.TLS, mc uintptr) (r int32) {
+	var args, kwds, tuple, values, values_tuple, v1, v11, v6 uintptr
+	var cur_refcnt, v5 Tuint32_t
+	var v2 int32
+	var v7, v9 TPy_ssize_t
+	_, _, _, _, _, _, _, _, _, _, _, _, _ = args, cur_refcnt, kwds, tuple, values, values_tuple, v1, v11, v2, v5, v6, v7, v9
+	args = (*Tmethodcallerobject)(unsafe.Pointer(mc)).Fargs
+	kwds = (*Tmethodcallerobject)(unsafe.Pointer(mc)).Fkwds
+	if kwds != 0 && XPyDict_Size(tls, kwds) != 0 {
+		values = XPyDict_Values(tls, kwds)
+		if !(values != 0) {
+			return -int32(1)
+		}
+		values_tuple = XPySequence_Tuple(tls, values)
+		v1 = values
+		v2 = libc.BoolInt32(libc.Int32FromUint32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
+		goto _3
+	_3:
+		if v2 != 0 {
+			goto _4
+		}
+		v6 = v1
+		*(*Tuint32_t)(unsafe.Pointer(v6)) = *(*Tuint32_t)(unsafe.Pointer(v6)) - 1
+		v5 = *(*Tuint32_t)(unsafe.Pointer(v6))
+		if v5 == libc.Uint32FromInt32(0) {
+			X_Py_Dealloc(tls, v1)
+		}
+	_4:
+		;
+		if !(values_tuple != 0) {
+			return -int32(1)
+		}
+		tuple = args
+		v9 = (*TPyVarObject)(unsafe.Pointer(tuple)).Fob_size
+		goto _10
+	_10:
+		v7 = v9
+		goto _8
+	_8:
+		if v7 != 0 {
+			(*Tmethodcallerobject)(unsafe.Pointer(mc)).Fvectorcall_args = XPySequence_Concat(tls, args, values_tuple)
+			v1 = values_tuple
+			v2 = libc.BoolInt32(libc.Int32FromUint32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
+			goto _13
+		_13:
+			if v2 != 0 {
+				goto _14
+			}
+			v6 = v1
+			*(*Tuint32_t)(unsafe.Pointer(v6)) = *(*Tuint32_t)(unsafe.Pointer(v6)) - 1
+			v5 = *(*Tuint32_t)(unsafe.Pointer(v6))
+			if v5 == libc.Uint32FromInt32(0) {
+				X_Py_Dealloc(tls, v1)
+			}
+		_14:
+			;
+			if (*Tmethodcallerobject)(unsafe.Pointer(mc)).Fvectorcall_args == libc.UintptrFromInt32(0) {
+				return -int32(1)
+			}
+		} else {
+			(*Tmethodcallerobject)(unsafe.Pointer(mc)).Fvectorcall_args = values_tuple
+		}
+		(*Tmethodcallerobject)(unsafe.Pointer(mc)).Fvectorcall_kwnames = XPySequence_Tuple(tls, kwds)
+		if !((*Tmethodcallerobject)(unsafe.Pointer(mc)).Fvectorcall_kwnames != 0) {
+			return -int32(1)
+		}
+	} else {
+		v1 = args
+		v6 = v1
+		cur_refcnt = *(*Tuint32_t)(unsafe.Pointer(v6))
+		if uint64(cur_refcnt) >= libc.Uint64FromUint64(3)<<libc.Int32FromInt32(30) {
+			goto _19
+		}
+		*(*Tuint32_t)(unsafe.Pointer(v6)) = cur_refcnt + uint32(1)
+	_19:
+		;
+		v11 = v1
+		goto _21
+	_21:
+		(*Tmethodcallerobject)(unsafe.Pointer(mc)).Fvectorcall_args = v11
+		(*Tmethodcallerobject)(unsafe.Pointer(mc)).Fvectorcall_kwnames = libc.UintptrFromInt32(0)
+	}
+	(*Tmethodcallerobject)(unsafe.Pointer(mc)).Fvectorcall = __ccgo_fp(_methodcaller_vectorcall)
+	return 0
+}
+
+// C documentation
+//
+//	/* AC 3.5: variable number of arguments, not currently support by AC */
+func _methodcaller_new(tls *libc.TLS, type2 uintptr, args uintptr, kwds uintptr) (r uintptr) {
+	bp := tls.Alloc(16)
+	defer tls.Free(16)
+	var cur_refcnt, v31 Tuint32_t
+	var et, interp, mc, mod, state, tstate, tuple, v11, v12, v5, v9 uintptr
+	var flags uint64
+	var vectorcall_size, v1, v3 TPy_ssize_t
+	var v7 int32
+	var v37 int64
+	var _ uintptr
+	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = cur_refcnt, et, flags, interp, mc, mod, state, tstate, tuple, vectorcall_size, v1, v11, v12, v3, v31, v37, v5, v7, v9
+	tuple = args
+	v3 = (*TPyVarObject)(unsafe.Pointer(tuple)).Fob_size
+	goto _4
+_4:
+	v1 = v3
+	goto _2
+_2:
+	if v1 < int64(1) {
+		XPyErr_SetString(tls, XPyExc_TypeError, __ccgo_ts+367190)
+		return libc.UintptrFromInt32(0)
+	}
+	**(**uintptr)(__ccgo_up(bp)) = **(**uintptr)(__ccgo_up(args + 32))
+	v5 = (*TPyObject)(unsafe.Pointer(**(**uintptr)(__ccgo_up(bp)))).Fob_type
+	goto _6
+_6:
+	flags = (*TPyTypeObject)(unsafe.Pointer(v5)).Ftp_flags
+	v7 = libc.BoolInt32(flags&(libc.Uint64FromUint64(1)<<libc.Int32FromInt32(28)) != uint64(0))
+	goto _8
+_8:
+	if !(v7 != 0) {
+		XPyErr_SetString(tls, XPyExc_TypeError, __ccgo_ts+367248)
+		return libc.UintptrFromInt32(0)
+	}
+	et = type2
+	mod = (*TPyHeapTypeObject)(unsafe.Pointer(et)).Fht_module
+	v5 = (*TPyModuleObject)(unsafe.Pointer(mod)).Fmd_state
+	goto _10
+_10:
+	state = v5
+
+	mc = X_PyObject_GC_New(tls, (*T_operator_state)(unsafe.Pointer(state)).Fmethodcaller_type)
+	if mc == libc.UintptrFromInt32(0) {
+		return libc.UintptrFromInt32(0)
+	}
+	(*Tmethodcallerobject)(unsafe.Pointer(mc)).Fvectorcall = libc.UintptrFromInt32(0)
+	(*Tmethodcallerobject)(unsafe.Pointer(mc)).Fvectorcall_args = libc.UintptrFromInt32(0)
+	(*Tmethodcallerobject)(unsafe.Pointer(mc)).Fvectorcall_kwnames = libc.UintptrFromInt32(0)
+	v5 = kwds
+	v9 = v5
+	if v9 != libc.UintptrFromInt32(0) {
+		v11 = v9
+		cur_refcnt = *(*Tuint32_t)(unsafe.Pointer(v11))
+		if uint64(cur_refcnt) >= libc.Uint64FromUint64(3)<<libc.Int32FromInt32(30) {
+			goto _14
+		}
+		*(*Tuint32_t)(unsafe.Pointer(v11)) = cur_refcnt + uint32(1)
+	_14:
+	}
+	v12 = v5
+	goto _16
+_16:
+	(*Tmethodcallerobject)(unsafe.Pointer(mc)).Fkwds = v12
+	v5 = **(**uintptr)(__ccgo_up(bp))
+	cur_refcnt = *(*Tuint32_t)(unsafe.Pointer(v5))
+	if uint64(cur_refcnt) >= libc.Uint64FromUint64(3)<<libc.Int32FromInt32(30) {
+		goto _18
+	}
+	*(*Tuint32_t)(unsafe.Pointer(v5)) = cur_refcnt + uint32(1)
+_18:
+	;
+	v5 = (*_ccgo_tls_tstate(tls))
+	goto _20
+_20:
+	tstate = v5
+	v9 = (*TPyThreadState)(unsafe.Pointer(tstate)).Finterp
+	goto _22
+_22:
+	interp = v9
+	X_PyUnicode_InternMortal(tls, interp, bp)
+	(*Tmethodcallerobject)(unsafe.Pointer(mc)).Fname = **(**uintptr)(__ccgo_up(bp))
+	tuple = args
+	v3 = (*TPyVarObject)(unsafe.Pointer(tuple)).Fob_size
+	goto _26
+_26:
+	v1 = v3
+	goto _24
+_24:
+	(*Tmethodcallerobject)(unsafe.Pointer(mc)).Fargs = XPyTuple_GetSlice(tls, args, int64(1), v1)
+	if (*Tmethodcallerobject)(unsafe.Pointer(mc)).Fargs == libc.UintptrFromInt32(0) {
+		v5 = mc
+		v7 = libc.BoolInt32(libc.Int32FromUint32(*(*Tuint32_t)(unsafe.Pointer(v5))) < 0)
+		goto _29
+	_29:
+		if v7 != 0 {
+			goto _30
+		}
+		v9 = v5
+		*(*Tuint32_t)(unsafe.Pointer(v9)) = *(*Tuint32_t)(unsafe.Pointer(v9)) - 1
+		v31 = *(*Tuint32_t)(unsafe.Pointer(v9))
+		if v31 == libc.Uint32FromInt32(0) {
+			X_Py_Dealloc(tls, v5)
+		}
+	_30:
+		;
+		return libc.UintptrFromInt32(0)
+	}
+	tuple = args
+	v3 = (*TPyVarObject)(unsafe.Pointer(tuple)).Fob_size
+	goto _36
+_36:
+	v1 = v3
+	goto _34
+_34:
+	if kwds != 0 {
+		v37 = XPyDict_Size(tls, kwds)
+	} else {
+		v37 = 0
+	}
+	vectorcall_size = v1 + v37
+	if vectorcall_size < int64(libc.Int32FromInt32(M_METHODCALLER_MAX_ARGS)) {
+		if __methodcaller_initialize_vectorcall(tls, mc) < 0 {
+			v5 = mc
+			v7 = libc.BoolInt32(libc.Int32FromUint32(*(*Tuint32_t)(unsafe.Pointer(v5))) < 0)
+			goto _40
+		_40:
+			if v7 != 0 {
+				goto _41
+			}
+			v9 = v5
+			*(*Tuint32_t)(unsafe.Pointer(v9)) = *(*Tuint32_t)(unsafe.Pointer(v9)) - 1
+			v31 = *(*Tuint32_t)(unsafe.Pointer(v9))
+			if v31 == libc.Uint32FromInt32(0) {
+				X_Py_Dealloc(tls, v5)
+			}
+		_41:
+			;
+			return libc.UintptrFromInt32(0)
+		}
+	}
+	XPyObject_GC_Track(tls, mc)
+	return mc
+}
+
+func _methodcaller_clear(tls *libc.TLS, op2 uintptr) {
+	var _tmp_old_op, _tmp_old_op1, _tmp_old_op2, _tmp_old_op3, _tmp_old_op4, _tmp_op_ptr, _tmp_op_ptr1, _tmp_op_ptr2, _tmp_op_ptr3, _tmp_op_ptr4, mc, v1, v6 uintptr
+	var v5 Tuint32_t
+	var v2 int32
+	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = _tmp_old_op, _tmp_old_op1, _tmp_old_op2, _tmp_old_op3, _tmp_old_op4, _tmp_op_ptr, _tmp_op_ptr1, _tmp_op_ptr2, _tmp_op_ptr3, _tmp_op_ptr4, mc, v1, v2, v5, v6
+	mc = op2
+	_tmp_op_ptr = mc + 16
+	_tmp_old_op = **(**uintptr)(__ccgo_up(_tmp_op_ptr))
+	if _tmp_old_op != libc.UintptrFromInt32(0) {
+		**(**uintptr)(__ccgo_up(_tmp_op_ptr)) = libc.UintptrFromInt32(0)
+		v1 = _tmp_old_op
+		v2 = libc.BoolInt32(libc.Int32FromUint32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
+		goto _3
+	_3:
+		if v2 != 0 {
+			goto _4
+		}
+		v6 = v1
+		*(*Tuint32_t)(unsafe.Pointer(v6)) = *(*Tuint32_t)(unsafe.Pointer(v6)) - 1
+		v5 = *(*Tuint32_t)(unsafe.Pointer(v6))
+		if v5 == libc.Uint32FromInt32(0) {
+			X_Py_Dealloc(tls, v1)
+		}
+	_4:
+	}
+	_tmp_op_ptr1 = mc + 24
+	_tmp_old_op1 = **(**uintptr)(__ccgo_up(_tmp_op_ptr1))
+	if _tmp_old_op1 != libc.UintptrFromInt32(0) {
+		**(**uintptr)(__ccgo_up(_tmp_op_ptr1)) = libc.UintptrFromInt32(0)
+		v1 = _tmp_old_op1
+		v2 = libc.BoolInt32(libc.Int32FromUint32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
+		goto _9
+	_9:
+		if v2 != 0 {
+			goto _10
+		}
+		v6 = v1
+		*(*Tuint32_t)(unsafe.Pointer(v6)) = *(*Tuint32_t)(unsafe.Pointer(v6)) - 1
+		v5 = *(*Tuint32_t)(unsafe.Pointer(v6))
+		if v5 == libc.Uint32FromInt32(0) {
+			X_Py_Dealloc(tls, v1)
+		}
+	_10:
+	}
+	_tmp_op_ptr2 = mc + 32
+	_tmp_old_op2 = **(**uintptr)(__ccgo_up(_tmp_op_ptr2))
+	if _tmp_old_op2 != libc.UintptrFromInt32(0) {
+		**(**uintptr)(__ccgo_up(_tmp_op_ptr2)) = libc.UintptrFromInt32(0)
+		v1 = _tmp_old_op2
+		v2 = libc.BoolInt32(libc.Int32FromUint32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
+		goto _15
+	_15:
+		if v2 != 0 {
+			goto _16
+		}
+		v6 = v1
+		*(*Tuint32_t)(unsafe.Pointer(v6)) = *(*Tuint32_t)(unsafe.Pointer(v6)) - 1
+		v5 = *(*Tuint32_t)(unsafe.Pointer(v6))
+		if v5 == libc.Uint32FromInt32(0) {
+			X_Py_Dealloc(tls, v1)
+		}
+	_16:
+	}
+	_tmp_op_ptr3 = mc + 40
+	_tmp_old_op3 = **(**uintptr)(__ccgo_up(_tmp_op_ptr3))
+	if _tmp_old_op3 != libc.UintptrFromInt32(0) {
+		**(**uintptr)(__ccgo_up(_tmp_op_ptr3)) = libc.UintptrFromInt32(0)
+		v1 = _tmp_old_op3
+		v2 = libc.BoolInt32(libc.Int32FromUint32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
+		goto _21
+	_21:
+		if v2 != 0 {
+			goto _22
+		}
+		v6 = v1
+		*(*Tuint32_t)(unsafe.Pointer(v6)) = *(*Tuint32_t)(unsafe.Pointer(v6)) - 1
+		v5 = *(*Tuint32_t)(unsafe.Pointer(v6))
+		if v5 == libc.Uint32FromInt32(0) {
+			X_Py_Dealloc(tls, v1)
+		}
+	_22:
+	}
+	_tmp_op_ptr4 = mc + 48
+	_tmp_old_op4 = **(**uintptr)(__ccgo_up(_tmp_op_ptr4))
+	if _tmp_old_op4 != libc.UintptrFromInt32(0) {
+		**(**uintptr)(__ccgo_up(_tmp_op_ptr4)) = libc.UintptrFromInt32(0)
+		v1 = _tmp_old_op4
+		v2 = libc.BoolInt32(libc.Int32FromUint32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
+		goto _27
+	_27:
+		if v2 != 0 {
+			goto _28
+		}
+		v6 = v1
+		*(*Tuint32_t)(unsafe.Pointer(v6)) = *(*Tuint32_t)(unsafe.Pointer(v6)) - 1
+		v5 = *(*Tuint32_t)(unsafe.Pointer(v6))
+		if v5 == libc.Uint32FromInt32(0) {
+			X_Py_Dealloc(tls, v1)
+		}
+	_28:
+	}
+}
+
+func _methodcaller_dealloc(tls *libc.TLS, op2 uintptr) {
+	var tp, v1, v3 uintptr
+	var v4 int32
+	var v7 Tuint32_t
+	_, _, _, _, _ = tp, v1, v3, v4, v7
+	v1 = (*TPyObject)(unsafe.Pointer(op2)).Fob_type
+	goto _2
+_2:
+	tp = v1
+	XPyObject_GC_UnTrack(tls, op2)
+	_methodcaller_clear(tls, op2)
+	(*(*func(*libc.TLS, uintptr))(unsafe.Pointer(&struct{ uintptr }{(*TPyTypeObject)(unsafe.Pointer(tp)).Ftp_free})))(tls, op2)
+	v1 = tp
+	v4 = libc.BoolInt32(libc.Int32FromUint32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
+	goto _5
+_5:
+	if v4 != 0 {
+		goto _6
+	}
+	v3 = v1
+	*(*Tuint32_t)(unsafe.Pointer(v3)) = *(*Tuint32_t)(unsafe.Pointer(v3)) - 1
+	v7 = *(*Tuint32_t)(unsafe.Pointer(v3))
+	if v7 == libc.Uint32FromInt32(0) {
+		X_Py_Dealloc(tls, v1)
+	}
+_6:
+}
+
+func _methodcaller_traverse(tls *libc.TLS, op uintptr, __ccgo_fp_visit Tvisitproc, arg uintptr) (r int32) {
+	var mc, v1, v3 uintptr
+	var vret, vret1, vret2, vret3, vret4, vret5 int32
+	_, _, _, _, _, _, _, _, _ = mc, vret, vret1, vret2, vret3, vret4, vret5, v1, v3
+	mc = op
+	if (*Tmethodcallerobject)(unsafe.Pointer(mc)).Fname != 0 {
+		vret = (*(*func(*libc.TLS, uintptr, uintptr) int32)(unsafe.Pointer(&struct{ uintptr }{__ccgo_fp_visit})))(tls, (*Tmethodcallerobject)(unsafe.Pointer(mc)).Fname, arg)
+		if vret != 0 {
+			return vret
+		}
+	}
+	if (*Tmethodcallerobject)(unsafe.Pointer(mc)).Fargs != 0 {
+		vret1 = (*(*func(*libc.TLS, uintptr, uintptr) int32)(unsafe.Pointer(&struct{ uintptr }{__ccgo_fp_visit})))(tls, (*Tmethodcallerobject)(unsafe.Pointer(mc)).Fargs, arg)
+		if vret1 != 0 {
+			return vret1
+		}
+	}
+	if (*Tmethodcallerobject)(unsafe.Pointer(mc)).Fkwds != 0 {
+		vret2 = (*(*func(*libc.TLS, uintptr, uintptr) int32)(unsafe.Pointer(&struct{ uintptr }{__ccgo_fp_visit})))(tls, (*Tmethodcallerobject)(unsafe.Pointer(mc)).Fkwds, arg)
+		if vret2 != 0 {
+			return vret2
+		}
+	}
+	if (*Tmethodcallerobject)(unsafe.Pointer(mc)).Fvectorcall_args != 0 {
+		vret3 = (*(*func(*libc.TLS, uintptr, uintptr) int32)(unsafe.Pointer(&struct{ uintptr }{__ccgo_fp_visit})))(tls, (*Tmethodcallerobject)(unsafe.Pointer(mc)).Fvectorcall_args, arg)
+		if vret3 != 0 {
+			return vret3
+		}
+	}
+	if (*Tmethodcallerobject)(unsafe.Pointer(mc)).Fvectorcall_kwnames != 0 {
+		vret4 = (*(*func(*libc.TLS, uintptr, uintptr) int32)(unsafe.Pointer(&struct{ uintptr }{__ccgo_fp_visit})))(tls, (*Tmethodcallerobject)(unsafe.Pointer(mc)).Fvectorcall_kwnames, arg)
+		if vret4 != 0 {
+			return vret4
+		}
+	}
+	v1 = (*TPyObject)(unsafe.Pointer(mc)).Fob_type
+	goto _2
+_2:
+	if v1 != 0 {
+		v3 = (*TPyObject)(unsafe.Pointer(mc)).Fob_type
+		goto _4
+	_4:
+		vret5 = (*(*func(*libc.TLS, uintptr, uintptr) int32)(unsafe.Pointer(&struct{ uintptr }{__ccgo_fp_visit})))(tls, v3, arg)
+		if vret5 != 0 {
+			return vret5
+		}
+	}
+	return 0
+}
+
+func _methodcaller_call(tls *libc.TLS, op3 uintptr, args uintptr, kw uintptr) (r uintptr) {
+	var mc, method, obj, result, tuple, v16, v21 uintptr
+	var v1, v11, v13, v3, v6, v8 TPy_ssize_t
+	var v10, v15, v5 bool
+	var v17 int32
+	var v20 Tuint32_t
+	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = mc, method, obj, result, tuple, v1, v10, v11, v13, v15, v16, v17, v20, v21, v3, v5, v6, v8
+	mc = op3
+	if !(kw == libc.UintptrFromInt32(0) || X_PyArg_NoKeywords(tls, __ccgo_ts+367177, kw) != 0) {
+		return libc.UintptrFromInt32(0)
+	}
+	if v5 = libc.Bool(!false); v5 {
+		tuple = args
+		v3 = (*TPyVarObject)(unsafe.Pointer(tuple)).Fob_size
+		goto _4
+	_4:
+		v1 = v3
+		goto _2
+	_2:
+	}
+	if v10 = v5 && int64(libc.Int32FromInt32(1)) <= v1; v10 {
+		tuple = args
+		v8 = (*TPyVarObject)(unsafe.Pointer(tuple)).Fob_size
+		goto _9
+	_9:
+		v6 = v8
+		goto _7
+	_7:
+	}
+	if v15 = v10 && v6 <= int64(libc.Int32FromInt32(1)); !v15 {
+		tuple = args
+		v13 = (*TPyVarObject)(unsafe.Pointer(tuple)).Fob_size
+		goto _14
+	_14:
+		v11 = v13
+		goto _12
+	_12:
+	}
+	if !(v15 || X_PyArg_CheckPositional(tls, __ccgo_ts+367177, v11, int64(libc.Int32FromInt32(1)), int64(libc.Int32FromInt32(1))) != 0) {
+		return libc.UintptrFromInt32(0)
+	}
+	obj = **(**uintptr)(__ccgo_up(args + 32))
+	method = XPyObject_GetAttr(tls, obj, (*Tmethodcallerobject)(unsafe.Pointer(mc)).Fname)
+	if method == libc.UintptrFromInt32(0) {
+		return libc.UintptrFromInt32(0)
+	}
+	result = XPyObject_Call(tls, method, (*Tmethodcallerobject)(unsafe.Pointer(mc)).Fargs, (*Tmethodcallerobject)(unsafe.Pointer(mc)).Fkwds)
+	v16 = method
+	v17 = libc.BoolInt32(libc.Int32FromUint32(*(*Tuint32_t)(unsafe.Pointer(v16))) < 0)
+	goto _18
+_18:
+	if v17 != 0 {
+		goto _19
+	}
+	v21 = v16
+	*(*Tuint32_t)(unsafe.Pointer(v21)) = *(*Tuint32_t)(unsafe.Pointer(v21)) - 1
+	v20 = *(*Tuint32_t)(unsafe.Pointer(v21))
+	if v20 == libc.Uint32FromInt32(0) {
+		X_Py_Dealloc(tls, v16)
+	}
+_19:
+	;
+	return result
+}
+
+func _methodcaller_repr(tls *libc.TLS, op5 uintptr) (r uintptr) {
+	bp := tls.Alloc(64)
+	defer tls.Free(64)
+	var argreprs, joinedargreprs, mc, mp, onerepr, onerepr1, repr, sep, tuple, tuple1, v1, v10 uintptr
+	var i, numkwdargs, numposargs, numtotalargs, v4, v6 TPy_ssize_t
+	var status, v14 int32
+	var v17 Tuint32_t
+	var v3 int64
+	var _ uintptr
+	var _ TPy_ssize_t
+	var _ uintptr
+	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = argreprs, i, joinedargreprs, mc, mp, numkwdargs, numposargs, numtotalargs, onerepr, onerepr1, repr, sep, status, tuple, tuple1, v1, v10, v14, v17, v3, v4, v6
+	mc = op5
+	repr = libc.UintptrFromInt32(0)
+	status = XPy_ReprEnter(tls, op5)
+	if status != 0 {
+		if status < 0 {
+			return libc.UintptrFromInt32(0)
+		}
+		v1 = (*TPyObject)(unsafe.Pointer(mc)).Fob_type
+		goto _2
+	_2:
+		return XPyUnicode_FromFormat(tls, __ccgo_ts+54889, libc.VaList(bp+32, (*TPyTypeObject)(unsafe.Pointer(v1)).Ftp_name))
+	}
+	if (*Tmethodcallerobject)(unsafe.Pointer(mc)).Fkwds != libc.UintptrFromInt32(0) {
+		mp = (*Tmethodcallerobject)(unsafe.Pointer(mc)).Fkwds
+		v4 = (*TPyDictObject)(unsafe.Pointer(mp)).Fma_used
+		goto _5
+	_5:
+		v3 = v4
+	} else {
+		v3 = 0
+	}
+	numkwdargs = v3
+	tuple = (*Tmethodcallerobject)(unsafe.Pointer(mc)).Fargs
+	v6 = (*TPyVarObject)(unsafe.Pointer(tuple)).Fob_size
+	goto _9
+_9:
+	v4 = v6
+	goto _7
+_7:
+	numposargs = v4
+	numtotalargs = numposargs + numkwdargs
+	if numtotalargs == 0 {
+		v1 = (*TPyObject)(unsafe.Pointer(mc)).Fob_type
+		goto _11
+	_11:
+		repr = XPyUnicode_FromFormat(tls, __ccgo_ts+27197, libc.VaList(bp+32, (*TPyTypeObject)(unsafe.Pointer(v1)).Ftp_name, (*Tmethodcallerobject)(unsafe.Pointer(mc)).Fname))
+		XPy_ReprLeave(tls, op5)
+		return repr
+	}
+	argreprs = XPyTuple_New(tls, numtotalargs)
+	if argreprs == libc.UintptrFromInt32(0) {
+		XPy_ReprLeave(tls, op5)
+		return libc.UintptrFromInt32(0)
+	}
+	i = 0
+	for {
+		if !(i < numposargs) {
+			break
+		}
+		onerepr = XPyObject_Repr(tls, **(**uintptr)(__ccgo_up((*Tmethodcallerobject)(unsafe.Pointer(mc)).Fargs + 32 + uintptr(i)*8)))
+		if onerepr == libc.UintptrFromInt32(0) {
+			goto done
+		}
+		tuple1 = argreprs
+		**(**uintptr)(__ccgo_up(tuple1 + 32 + uintptr(i)*8)) = onerepr
+		goto _12
+	_12:
+		;
+		i = i + 1
+	}
+	if numkwdargs != 0 {
+		**(**TPy_ssize_t)(__ccgo_up(bp + 16)) = 0
+		for XPyDict_Next(tls, (*Tmethodcallerobject)(unsafe.Pointer(mc)).Fkwds, bp+16, bp, bp+8) != 0 {
+			onerepr1 = XPyUnicode_FromFormat(tls, __ccgo_ts+54897, libc.VaList(bp+32, **(**uintptr)(__ccgo_up(bp)), **(**uintptr)(__ccgo_up(bp + 8))))
+			if onerepr1 == libc.UintptrFromInt32(0) {
+				goto done
+			}
+			if i >= numtotalargs {
+				i = int64(-int32(1))
+				v1 = onerepr1
+				v14 = libc.BoolInt32(libc.Int32FromUint32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
+				goto _15
+			_15:
+				if v14 != 0 {
+					goto _16
+				}
+				v10 = v1
+				*(*Tuint32_t)(unsafe.Pointer(v10)) = *(*Tuint32_t)(unsafe.Pointer(v10)) - 1
+				v17 = *(*Tuint32_t)(unsafe.Pointer(v10))
+				if v17 == libc.Uint32FromInt32(0) {
+					X_Py_Dealloc(tls, v1)
+				}
+			_16:
+				;
+				break
+			}
+			tuple1 = argreprs
+			**(**uintptr)(__ccgo_up(tuple1 + 32 + uintptr(i)*8)) = onerepr1
+			i = i + 1
+		}
+		if i != numtotalargs {
+			XPyErr_SetString(tls, XPyExc_RuntimeError, __ccgo_ts+367277)
+			goto done
+		}
+	}
+	sep = XPyUnicode_FromString(tls, __ccgo_ts+33836)
+	if sep == libc.UintptrFromInt32(0) {
+		goto done
+	}
+	joinedargreprs = XPyUnicode_Join(tls, sep, argreprs)
+	v1 = sep
+	v14 = libc.BoolInt32(libc.Int32FromUint32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
+	goto _21
+_21:
+	if v14 != 0 {
+		goto _22
+	}
+	v10 = v1
+	*(*Tuint32_t)(unsafe.Pointer(v10)) = *(*Tuint32_t)(unsafe.Pointer(v10)) - 1
+	v17 = *(*Tuint32_t)(unsafe.Pointer(v10))
+	if v17 == libc.Uint32FromInt32(0) {
+		X_Py_Dealloc(tls, v1)
+	}
+_22:
+	;
+	if joinedargreprs == libc.UintptrFromInt32(0) {
+		goto done
+	}
+	v1 = (*TPyObject)(unsafe.Pointer(mc)).Fob_type
+	goto _26
+_26:
+	repr = XPyUnicode_FromFormat(tls, __ccgo_ts+28351, libc.VaList(bp+32, (*TPyTypeObject)(unsafe.Pointer(v1)).Ftp_name, (*Tmethodcallerobject)(unsafe.Pointer(mc)).Fname, joinedargreprs))
+	v1 = joinedargreprs
+	v14 = libc.BoolInt32(libc.Int32FromUint32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
+	goto _29
+_29:
+	if v14 != 0 {
+		goto _30
+	}
+	v10 = v1
+	*(*Tuint32_t)(unsafe.Pointer(v10)) = *(*Tuint32_t)(unsafe.Pointer(v10)) - 1
+	v17 = *(*Tuint32_t)(unsafe.Pointer(v10))
+	if v17 == libc.Uint32FromInt32(0) {
+		X_Py_Dealloc(tls, v1)
+	}
+_30:
+	;
+	goto done
+done:
+	;
+	v1 = argreprs
+	v14 = libc.BoolInt32(libc.Int32FromUint32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
+	goto _35
+_35:
+	if v14 != 0 {
+		goto _36
+	}
+	v10 = v1
+	*(*Tuint32_t)(unsafe.Pointer(v10)) = *(*Tuint32_t)(unsafe.Pointer(v10)) - 1
+	v17 = *(*Tuint32_t)(unsafe.Pointer(v10))
+	if v17 == libc.Uint32FromInt32(0) {
+		X_Py_Dealloc(tls, v1)
+	}
+_36:
+	;
+	XPy_ReprLeave(tls, op5)
+	return repr
+}
+
+func _methodcaller_reduce(tls *libc.TLS, op6 uintptr, _unused_dummy uintptr) (r uintptr) {
+	bp := tls.Alloc(48)
+	defer tls.Free(48)
+	var arg, constructor, mc, mp, newargs, partial, tuple, tuple1, v11, v8, v9 uintptr
+	var callargcount, i, v1, v4, v6 TPy_ssize_t
+	var cur_refcnt, v27 Tuint32_t
+	var v24 int32
+	var v3 bool
+	var _ [2]uintptr
+	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = arg, callargcount, constructor, cur_refcnt, i, mc, mp, newargs, partial, tuple, tuple1, v1, v11, v24, v27, v3, v4, v6, v8, v9
+	mc = op6
+	if v3 = !((*Tmethodcallerobject)(unsafe.Pointer(mc)).Fkwds != 0); !v3 {
+		mp = (*Tmethodcallerobject)(unsafe.Pointer(mc)).Fkwds
+		v1 = (*TPyDictObject)(unsafe.Pointer(mp)).Fma_used
+		goto _2
+	_2:
+	}
+	if v3 || v1 == 0 {
+		tuple = (*Tmethodcallerobject)(unsafe.Pointer(mc)).Fargs
+		v6 = (*TPyVarObject)(unsafe.Pointer(tuple)).Fob_size
+		goto _7
+	_7:
+		v4 = v6
+		goto _5
+	_5:
+		callargcount = v4
+		newargs = XPyTuple_New(tls, int64(1)+callargcount)
+		if newargs == libc.UintptrFromInt32(0) {
+			return libc.UintptrFromInt32(0)
+		}
+		v8 = (*Tmethodcallerobject)(unsafe.Pointer(mc)).Fname
+		v9 = v8
+		cur_refcnt = *(*Tuint32_t)(unsafe.Pointer(v9))
+		if uint64(cur_refcnt) >= libc.Uint64FromUint64(3)<<libc.Int32FromInt32(30) {
+			goto _10
+		}
+		*(*Tuint32_t)(unsafe.Pointer(v9)) = cur_refcnt + uint32(1)
+	_10:
+		;
+		v11 = v8
+		goto _12
+	_12:
+		;
+		tuple1 = newargs
+		**(**uintptr)(__ccgo_up(tuple1 + 32 + uintptr(int64(libc.Int32FromInt32(0)))*8)) = v11
+		i = 0
+		for {
+			if !(i < callargcount) {
+				break
+			}
+			arg = **(**uintptr)(__ccgo_up((*Tmethodcallerobject)(unsafe.Pointer(mc)).Fargs + 32 + uintptr(i)*8))
+			v8 = arg
+			v9 = v8
+			cur_refcnt = *(*Tuint32_t)(unsafe.Pointer(v9))
+			if uint64(cur_refcnt) >= libc.Uint64FromUint64(3)<<libc.Int32FromInt32(30) {
+				goto _16
+			}
+			*(*Tuint32_t)(unsafe.Pointer(v9)) = cur_refcnt + uint32(1)
+		_16:
+			;
+			v11 = v8
+			goto _18
+		_18:
+			;
+			tuple1 = newargs
+			**(**uintptr)(__ccgo_up(tuple1 + 32 + uintptr(i+libc.Int64FromInt32(1))*8)) = v11
+			goto _13
+		_13:
+			;
+			i = i + 1
+		}
+		v8 = (*TPyObject)(unsafe.Pointer(mc)).Fob_type
+		goto _20
+	_20:
+		return XPy_BuildValue(tls, __ccgo_ts+119727, libc.VaList(bp+24, v8, newargs))
+	} else {
+		partial = XPyImport_ImportModuleAttrString(tls, __ccgo_ts+168188, __ccgo_ts+188191)
+		if !(partial != 0) {
+			return libc.UintptrFromInt32(0)
+		}
+		v8 = (*TPyObject)(unsafe.Pointer(mc)).Fob_type
+		goto _22
+	_22:
+		(**(**[2]uintptr)(__ccgo_up(bp)))[0] = v8
+		(**(**[2]uintptr)(__ccgo_up(bp)))[int32(1)] = (*Tmethodcallerobject)(unsafe.Pointer(mc)).Fname
+		constructor = XPyObject_VectorcallDict(tls, partial, bp, uint64(2), (*Tmethodcallerobject)(unsafe.Pointer(mc)).Fkwds)
+		v8 = partial
+		v24 = libc.BoolInt32(libc.Int32FromUint32(*(*Tuint32_t)(unsafe.Pointer(v8))) < 0)
+		goto _25
+	_25:
+		if v24 != 0 {
+			goto _26
+		}
+		v9 = v8
+		*(*Tuint32_t)(unsafe.Pointer(v9)) = *(*Tuint32_t)(unsafe.Pointer(v9)) - 1
+		v27 = *(*Tuint32_t)(unsafe.Pointer(v9))
+		if v27 == libc.Uint32FromInt32(0) {
+			X_Py_Dealloc(tls, v8)
+		}
+	_26:
+		;
+		return XPy_BuildValue(tls, __ccgo_ts+273098, libc.VaList(bp+24, constructor, (*Tmethodcallerobject)(unsafe.Pointer(mc)).Fargs))
+	}
+	return r
+}
+
+var _methodcaller_methods = [2]TPyMethodDef{
+	0: {
+		Fml_name:  __ccgo_ts + 17238,
+		Fml_flags: int32(MMETH_NOARGS),
+		Fml_doc:   uintptr(unsafe.Pointer(&_reduce_doc13)),
+	},
+	1: {},
+}
+
+func init() {
+	p := unsafe.Pointer(&_methodcaller_methods)
+	*(*uintptr)(unsafe.Add(p, 8)) = __ccgo_fp(_methodcaller_reduce)
+}
+
+var _methodcaller_members = [2]TPyMemberDef{
+	0: {
+		Fname:   __ccgo_ts + 64068,
+		Ftype1:  int32(MPy_T_PYSSIZET),
+		Foffset: libc.Int64FromUint64(uint64(libc.UintptrFromInt32(0) + 56)),
+		Fflags:  int32(MPy_READONLY),
+	},
+	1: {},
+}
+
+var _methodcaller_type_slots = [12]TPyType_Slot{
+	0: {
+		Fslot:  int32(MPy_tp_doc),
+		Fpfunc: uintptr(unsafe.Pointer(&_methodcaller_doc)),
+	},
+	1: {
+		Fslot: int32(MPy_tp_dealloc),
+	},
+	2: {
+		Fslot: int32(MPy_tp_call),
+	},
+	3: {
+		Fslot: int32(MPy_tp_traverse),
+	},
+	4: {
+		Fslot: int32(MPy_tp_clear),
+	},
+	5: {
+		Fslot:  int32(MPy_tp_methods),
+		Fpfunc: uintptr(unsafe.Pointer(&_methodcaller_methods)),
+	},
+	6: {
+		Fslot:  int32(MPy_tp_members),
+		Fpfunc: uintptr(unsafe.Pointer(&_methodcaller_members)),
+	},
+	7: {
+		Fslot:  int32(MPy_tp_getset),
+		Fpfunc: uintptr(unsafe.Pointer(&_common_getset)),
+	},
+	8: {
+		Fslot: int32(MPy_tp_new),
+	},
+	9: {
+		Fslot: int32(MPy_tp_getattro),
+	},
+	10: {
+		Fslot: int32(MPy_tp_repr),
+	},
+	11: {},
+}
+
+func init() {
+	p := unsafe.Pointer(&_methodcaller_type_slots)
+	*(*uintptr)(unsafe.Add(p, 24)) = __ccgo_fp(_methodcaller_dealloc)
+	*(*uintptr)(unsafe.Add(p, 40)) = __ccgo_fp(_methodcaller_call)
+	*(*uintptr)(unsafe.Add(p, 56)) = __ccgo_fp(_methodcaller_traverse)
+	*(*uintptr)(unsafe.Add(p, 72)) = __ccgo_fp(_methodcaller_clear)
+	*(*uintptr)(unsafe.Add(p, 136)) = __ccgo_fp(_methodcaller_new)
+	*(*uintptr)(unsafe.Add(p, 152)) = __ccgo_fp(XPyObject_GenericGetAttr)
+	*(*uintptr)(unsafe.Add(p, 168)) = __ccgo_fp(_methodcaller_repr)
+}
+
+var _methodcaller_type_spec = TPyType_Spec{
+	Fname:      __ccgo_ts + 367321,
+	Fbasicsize: int32(64),
+	Fflags:     uint32(libc.Uint64FromInt32(libc.Int32FromInt32(MPy_TPFLAGS_HAVE_STACKLESS_EXTENSION)|libc.Int32FromInt32(0)) | libc.Uint64FromUint64(1)<<libc.Int32FromInt32(14) | libc.Uint64FromUint64(1)<<libc.Int32FromInt32(11) | libc.Uint64FromUint64(1)<<libc.Int32FromInt32(8)),
+	Fslots:     uintptr(unsafe.Pointer(&_methodcaller_type_slots)),
+}
+
+func _operator_exec(tls *libc.TLS, module uintptr) (r int32) {
+	var state uintptr
+	_ = state
+	state = _get_operator_state(tls, module)
+	(*T_operator_state)(unsafe.Pointer(state)).Fattrgetter_type = XPyType_FromModuleAndSpec(tls, module, uintptr(unsafe.Pointer(&_attrgetter_type_spec)), libc.UintptrFromInt32(0))
+	if (*T_operator_state)(unsafe.Pointer(state)).Fattrgetter_type == libc.UintptrFromInt32(0) {
+		return -int32(1)
+	}
+	if XPyModule_AddType(tls, module, (*T_operator_state)(unsafe.Pointer(state)).Fattrgetter_type) < 0 {
+		return -int32(1)
+	}
+	(*T_operator_state)(unsafe.Pointer(state)).Fitemgetter_type = XPyType_FromModuleAndSpec(tls, module, uintptr(unsafe.Pointer(&_itemgetter_type_spec)), libc.UintptrFromInt32(0))
+	if (*T_operator_state)(unsafe.Pointer(state)).Fitemgetter_type == libc.UintptrFromInt32(0) {
+		return -int32(1)
+	}
+	if XPyModule_AddType(tls, module, (*T_operator_state)(unsafe.Pointer(state)).Fitemgetter_type) < 0 {
+		return -int32(1)
+	}
+	(*T_operator_state)(unsafe.Pointer(state)).Fmethodcaller_type = XPyType_FromModuleAndSpec(tls, module, uintptr(unsafe.Pointer(&_methodcaller_type_spec)), libc.UintptrFromInt32(0))
+	if (*T_operator_state)(unsafe.Pointer(state)).Fmethodcaller_type == libc.UintptrFromInt32(0) {
+		return -int32(1)
+	}
+	if XPyModule_AddType(tls, module, (*T_operator_state)(unsafe.Pointer(state)).Fmethodcaller_type) < 0 {
+		return -int32(1)
+	}
+	return 0
+}
+
+var _operator_slots = [4]TPyModuleDef_Slot{
+	0: {
+		Fslot: int32(MPy_mod_exec),
+	},
+	1: {
+		Fslot:  int32(MPy_mod_multiple_interpreters),
+		Fvalue: libc.UintptrFromInt32(2),
+	},
+	2: {
+		Fslot:  int32(MPy_mod_gil),
+		Fvalue: libc.UintptrFromInt32(1),
+	},
+	3: {},
+}
+
+func init() {
+	p := unsafe.Pointer(&_operator_slots)
+	*(*uintptr)(unsafe.Add(p, 8)) = __ccgo_fp(_operator_exec)
+}
+
+func _operator_traverse(tls *libc.TLS, module uintptr, __ccgo_fp_visit Tvisitproc, arg uintptr) (r int32) {
+	var state uintptr
+	var vret, vret1, vret2 int32
+	_, _, _, _ = state, vret, vret1, vret2
+	state = _get_operator_state(tls, module)
+	if (*T_operator_state)(unsafe.Pointer(state)).Fattrgetter_type != 0 {
+		vret = (*(*func(*libc.TLS, uintptr, uintptr) int32)(unsafe.Pointer(&struct{ uintptr }{__ccgo_fp_visit})))(tls, (*T_operator_state)(unsafe.Pointer(state)).Fattrgetter_type, arg)
+		if vret != 0 {
+			return vret
+		}
+	}
+	if (*T_operator_state)(unsafe.Pointer(state)).Fitemgetter_type != 0 {
+		vret1 = (*(*func(*libc.TLS, uintptr, uintptr) int32)(unsafe.Pointer(&struct{ uintptr }{__ccgo_fp_visit})))(tls, (*T_operator_state)(unsafe.Pointer(state)).Fitemgetter_type, arg)
+		if vret1 != 0 {
+			return vret1
+		}
+	}
+	if (*T_operator_state)(unsafe.Pointer(state)).Fmethodcaller_type != 0 {
+		vret2 = (*(*func(*libc.TLS, uintptr, uintptr) int32)(unsafe.Pointer(&struct{ uintptr }{__ccgo_fp_visit})))(tls, (*T_operator_state)(unsafe.Pointer(state)).Fmethodcaller_type, arg)
+		if vret2 != 0 {
+			return vret2
+		}
+	}
+	return 0
+}
+
+func _operator_clear(tls *libc.TLS, module uintptr) (r int32) {
+	var _tmp_old_op, _tmp_old_op1, _tmp_old_op2, _tmp_op_ptr, _tmp_op_ptr1, _tmp_op_ptr2, state, v1, v6 uintptr
+	var v5 Tuint32_t
+	var v2 int32
+	_, _, _, _, _, _, _, _, _, _, _ = _tmp_old_op, _tmp_old_op1, _tmp_old_op2, _tmp_op_ptr, _tmp_op_ptr1, _tmp_op_ptr2, state, v1, v2, v5, v6
+	state = _get_operator_state(tls, module)
+	_tmp_op_ptr = state + 8
+	_tmp_old_op = **(**uintptr)(__ccgo_up(_tmp_op_ptr))
+	if _tmp_old_op != libc.UintptrFromInt32(0) {
+		**(**uintptr)(__ccgo_up(_tmp_op_ptr)) = libc.UintptrFromInt32(0)
+		v1 = _tmp_old_op
+		v2 = libc.BoolInt32(libc.Int32FromUint32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
+		goto _3
+	_3:
+		if v2 != 0 {
+			goto _4
+		}
+		v6 = v1
+		*(*Tuint32_t)(unsafe.Pointer(v6)) = *(*Tuint32_t)(unsafe.Pointer(v6)) - 1
+		v5 = *(*Tuint32_t)(unsafe.Pointer(v6))
+		if v5 == libc.Uint32FromInt32(0) {
+			X_Py_Dealloc(tls, v1)
+		}
+	_4:
+	}
+	_tmp_op_ptr1 = state
+	_tmp_old_op1 = **(**uintptr)(__ccgo_up(_tmp_op_ptr1))
+	if _tmp_old_op1 != libc.UintptrFromInt32(0) {
+		**(**uintptr)(__ccgo_up(_tmp_op_ptr1)) = libc.UintptrFromInt32(0)
+		v1 = _tmp_old_op1
+		v2 = libc.BoolInt32(libc.Int32FromUint32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
+		goto _9
+	_9:
+		if v2 != 0 {
+			goto _10
+		}
+		v6 = v1
+		*(*Tuint32_t)(unsafe.Pointer(v6)) = *(*Tuint32_t)(unsafe.Pointer(v6)) - 1
+		v5 = *(*Tuint32_t)(unsafe.Pointer(v6))
+		if v5 == libc.Uint32FromInt32(0) {
+			X_Py_Dealloc(tls, v1)
+		}
+	_10:
+	}
+	_tmp_op_ptr2 = state + 16
+	_tmp_old_op2 = **(**uintptr)(__ccgo_up(_tmp_op_ptr2))
+	if _tmp_old_op2 != libc.UintptrFromInt32(0) {
+		**(**uintptr)(__ccgo_up(_tmp_op_ptr2)) = libc.UintptrFromInt32(0)
+		v1 = _tmp_old_op2
+		v2 = libc.BoolInt32(libc.Int32FromUint32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
+		goto _15
+	_15:
+		if v2 != 0 {
+			goto _16
+		}
+		v6 = v1
+		*(*Tuint32_t)(unsafe.Pointer(v6)) = *(*Tuint32_t)(unsafe.Pointer(v6)) - 1
+		v5 = *(*Tuint32_t)(unsafe.Pointer(v6))
+		if v5 == libc.Uint32FromInt32(0) {
+			X_Py_Dealloc(tls, v1)
+		}
+	_16:
+	}
+	return 0
+}
+
+func _operator_free(tls *libc.TLS, module uintptr) {
+	_operator_clear(tls, module)
+}
+
+var _operatormodule = TPyModuleDef{
+	Fm_base: TPyModuleDef_Base{
+		Fob_base: TPyObject{
+			F__ccgo0_0: *(*struct {
+				F__ccgo1_0 [0]struct {
+					Fob_refcnt   Tuint32_t
+					Fob_overflow Tuint16_t
+					Fob_flags    Tuint16_t
+				}
+				Fob_refcnt_full Tint64_t
+			})(unsafe.Pointer(&[1]uint64{0x50000c0000000})),
+		},
+	},
+	Fm_name:    __ccgo_ts + 167396,
+	Fm_doc:     uintptr(unsafe.Pointer(&_operator_doc)),
+	Fm_size:    int64(24),
+	Fm_methods: uintptr(unsafe.Pointer(&_operator_methods)),
+	Fm_slots:   uintptr(unsafe.Pointer(&_operator_slots)),
+}
+
+func init() {
+	p := unsafe.Pointer(&_operatormodule)
+	*(*uintptr)(unsafe.Add(p, 80)) = __ccgo_fp(_operator_traverse)
+	*(*uintptr)(unsafe.Add(p, 88)) = __ccgo_fp(_operator_clear)
+	*(*uintptr)(unsafe.Add(p, 96)) = __ccgo_fp(_operator_free)
+}
+
+func XPyInit__operator(tls *libc.TLS) (r uintptr) {
+	return XPyModuleDef_Init(tls, uintptr(unsafe.Pointer(&_operatormodule)))
+}
+
+const MSF_SNAPSHOT = 2097152
+
+const MS_ENFMT = 1024
+
+const MS_IFDOOR = 0
+
+const MS_IFPORT = 0
+
+const MS_IMODE = 4095
+
+const MUF_NOUNLINK = 16
+
+func __PyLong_AsMode_t(tls *libc.TLS, op1 uintptr) (r Tmode_t) {
+	var flags, value uint64
+	var mode Tmode_t
+	var v1 uintptr
+	var v3 int32
+	_, _, _, _, _ = flags, mode, value, v1, v3
+	v1 = (*TPyObject)(unsafe.Pointer(op1)).Fob_type
+	goto _2
+_2:
+	flags = XPyType_GetFlags(tls, v1)
+	v3 = libc.BoolInt32(flags&(libc.Uint64FromUint64(1)<<libc.Int32FromInt32(24)) != uint64(0))
+	goto _4
+_4:
+	if v3 != 0 {
+		value = XPyLong_AsUnsignedLong(tls, op1)
+	} else {
+		op1 = XPyNumber_Index(tls, op1)
+		if op1 == libc.UintptrFromInt32(0) {
+			return libc.Uint16FromInt32(-libc.Int32FromInt32(1))
+		}
+		value = XPyLong_AsUnsignedLong(tls, op1)
+		X_Py_DecRef(tls, op1)
+	}
+	if value == libc.Uint64FromInt32(-libc.Int32FromInt32(1)) && XPyErr_Occurred(tls) != 0 {
+		return libc.Uint16FromInt32(-libc.Int32FromInt32(1))
+	}
+	mode = uint16(value)
+	if uint64(mode) != value {
+		XPyErr_SetString(tls, XPyExc_OverflowError, __ccgo_ts+367343)
+		return libc.Uint16FromInt32(-libc.Int32FromInt32(1))
+	}
+	return mode
+}
+
+func _stat_S_ISDIR(tls *libc.TLS, self uintptr, omode uintptr) (r uintptr) {
+	var mode Tmode_t
+	_ = mode
+	mode = __PyLong_AsMode_t(tls, omode)
+	if libc.Int32FromUint16(mode) == libc.Int32FromUint16(libc.Uint16FromInt32(-libc.Int32FromInt32(1))) && XPyErr_Occurred(tls) != 0 {
+		return libc.UintptrFromInt32(0)
+	}
+	return XPyBool_FromLong(tls, libc.BoolInt64(libc.Int32FromUint16(mode)&libc.Int32FromInt32(MS_IFMT) == libc.Int32FromInt32(MS_IFDIR)))
+}
+
+func _stat_S_ISCHR(tls *libc.TLS, self uintptr, omode uintptr) (r uintptr) {
+	var mode Tmode_t
+	_ = mode
+	mode = __PyLong_AsMode_t(tls, omode)
+	if libc.Int32FromUint16(mode) == libc.Int32FromUint16(libc.Uint16FromInt32(-libc.Int32FromInt32(1))) && XPyErr_Occurred(tls) != 0 {
+		return libc.UintptrFromInt32(0)
+	}
+	return XPyBool_FromLong(tls, libc.BoolInt64(libc.Int32FromUint16(mode)&libc.Int32FromInt32(MS_IFMT) == libc.Int32FromInt32(MS_IFCHR)))
+}
+
+func _stat_S_ISBLK(tls *libc.TLS, self uintptr, omode uintptr) (r uintptr) {
+	var mode Tmode_t
+	_ = mode
+	mode = __PyLong_AsMode_t(tls, omode)
+	if libc.Int32FromUint16(mode) == libc.Int32FromUint16(libc.Uint16FromInt32(-libc.Int32FromInt32(1))) && XPyErr_Occurred(tls) != 0 {
+		return libc.UintptrFromInt32(0)
+	}
+	return XPyBool_FromLong(tls, libc.BoolInt64(libc.Int32FromUint16(mode)&libc.Int32FromInt32(MS_IFMT) == libc.Int32FromInt32(MS_IFBLK)))
+}
+
+func _stat_S_ISREG(tls *libc.TLS, self uintptr, omode uintptr) (r uintptr) {
+	var mode Tmode_t
+	_ = mode
+	mode = __PyLong_AsMode_t(tls, omode)
+	if libc.Int32FromUint16(mode) == libc.Int32FromUint16(libc.Uint16FromInt32(-libc.Int32FromInt32(1))) && XPyErr_Occurred(tls) != 0 {
+		return libc.UintptrFromInt32(0)
+	}
+	return XPyBool_FromLong(tls, libc.BoolInt64(libc.Int32FromUint16(mode)&libc.Int32FromInt32(MS_IFMT) == libc.Int32FromInt32(MS_IFREG)))
+}
+
+func _stat_S_ISFIFO(tls *libc.TLS, self uintptr, omode uintptr) (r uintptr) {
+	var mode Tmode_t
+	_ = mode
+	mode = __PyLong_AsMode_t(tls, omode)
+	if libc.Int32FromUint16(mode) == libc.Int32FromUint16(libc.Uint16FromInt32(-libc.Int32FromInt32(1))) && XPyErr_Occurred(tls) != 0 {
+		return libc.UintptrFromInt32(0)
+	}
+	return XPyBool_FromLong(tls, libc.BoolInt64(libc.Int32FromUint16(mode)&libc.Int32FromInt32(MS_IFMT) == libc.Int32FromInt32(MS_IFIFO)))
+}
+
+func _stat_S_ISLNK(tls *libc.TLS, self uintptr, omode uintptr) (r uintptr) {
+	var mode Tmode_t
+	_ = mode
+	mode = __PyLong_AsMode_t(tls, omode)
+	if libc.Int32FromUint16(mode) == libc.Int32FromUint16(libc.Uint16FromInt32(-libc.Int32FromInt32(1))) && XPyErr_Occurred(tls) != 0 {
+		return libc.UintptrFromInt32(0)
+	}
+	return XPyBool_FromLong(tls, libc.BoolInt64(libc.Int32FromUint16(mode)&libc.Int32FromInt32(MS_IFMT) == libc.Int32FromInt32(MS_IFLNK)))
+}
+
+func _stat_S_ISSOCK(tls *libc.TLS, self uintptr, omode uintptr) (r uintptr) {
+	var mode Tmode_t
+	_ = mode
+	mode = __PyLong_AsMode_t(tls, omode)
+	if libc.Int32FromUint16(mode) == libc.Int32FromUint16(libc.Uint16FromInt32(-libc.Int32FromInt32(1))) && XPyErr_Occurred(tls) != 0 {
+		return libc.UintptrFromInt32(0)
+	}
+	return XPyBool_FromLong(tls, libc.BoolInt64(libc.Int32FromUint16(mode)&libc.Int32FromInt32(MS_IFMT) == libc.Int32FromInt32(MS_IFSOCK)))
+}
+
+var _stat_S_ISSOCK_doc = [62]int8{'S', '_', 'I', 'S', 'S', 'O', 'C', 'K', '(', 'm', 'o', 'd', 'e', ')', ' ', '-', '>', ' ', 'b', 'o', 'o', 'l', 10, 10, 'R', 'e', 't', 'u', 'r', 'n', ' ', 'T', 'r', 'u', 'e', ' ', 'i', 'f', ' ', 'm', 'o', 'd', 'e', ' ', 'i', 's', ' ', 'f', 'r', 'o', 'm', ' ', 'a', ' ', 's', 'o', 'c', 'k', 'e', 't', '.'}
+
+func _stat_S_ISDOOR(tls *libc.TLS, self uintptr, omode uintptr) (r uintptr) {
+	var mode Tmode_t
+	_ = mode
+	mode = __PyLong_AsMode_t(tls, omode)
+	if libc.Int32FromUint16(mode) == libc.Int32FromUint16(libc.Uint16FromInt32(-libc.Int32FromInt32(1))) && XPyErr_Occurred(tls) != 0 {
+		return libc.UintptrFromInt32(0)
+	}
+	return XPyBool_FromLong(tls, 0)
+}
+
+var _stat_S_ISDOOR_doc = [60]int8{'S', '_', 'I', 'S', 'D', 'O', 'O', 'R', '(', 'm', 'o', 'd', 'e', ')', ' ', '-', '>', ' ', 'b', 'o', 'o', 'l', 10, 10, 'R', 'e', 't', 'u', 'r', 'n', ' ', 'T', 'r', 'u', 'e', ' ', 'i', 'f', ' ', 'm', 'o', 'd', 'e', ' ', 'i', 's', ' ', 'f', 'r', 'o', 'm', ' ', 'a', ' ', 'd', 'o', 'o', 'r', '.'}
+
+func _stat_S_ISPORT(tls *libc.TLS, self uintptr, omode uintptr) (r uintptr) {
+	var mode Tmode_t
+	_ = mode
+	mode = __PyLong_AsMode_t(tls, omode)
+	if libc.Int32FromUint16(mode) == libc.Int32FromUint16(libc.Uint16FromInt32(-libc.Int32FromInt32(1))) && XPyErr_Occurred(tls) != 0 {
+		return libc.UintptrFromInt32(0)
+	}
+	return XPyBool_FromLong(tls, 0)
+}
+
+func _stat_S_ISWHT(tls *libc.TLS, self uintptr, omode uintptr) (r uintptr) {
+	var mode Tmode_t
+	_ = mode
+	mode = __PyLong_AsMode_t(tls, omode)
+	if libc.Int32FromUint16(mode) == libc.Int32FromUint16(libc.Uint16FromInt32(-libc.Int32FromInt32(1))) && XPyErr_Occurred(tls) != 0 {
+		return libc.UintptrFromInt32(0)
+	}
+	return XPyBool_FromLong(tls, libc.BoolInt64(libc.Int32FromUint16(mode)&libc.Int32FromInt32(MS_IFMT) == libc.Int32FromInt32(MS_IFWHT)))
+}
+
+var _stat_S_ISWHT_doc = [63]int8{'S', '_', 'I', 'S', 'W', 'H', 'T', '(', 'm', 'o', 'd', 'e', ')', ' ', '-', '>', ' ', 'b', 'o', 'o', 'l', 10, 10, 'R', 'e', 't', 'u', 'r', 'n', ' ', 'T', 'r', 'u', 'e', ' ', 'i', 'f', ' ', 'm', 'o', 'd', 'e', ' ', 'i', 's', ' ', 'f', 'r', 'o', 'm', ' ', 'a', ' ', 'w', 'h', 'i', 't', 'e', 'o', 'u', 't', '.'}
+
+func _stat_S_IMODE(tls *libc.TLS, self uintptr, omode uintptr) (r uintptr) {
+	var mode Tmode_t
+	_ = mode
+	mode = __PyLong_AsMode_t(tls, omode)
+	if libc.Int32FromUint16(mode) == libc.Int32FromUint16(libc.Uint16FromInt32(-libc.Int32FromInt32(1))) && XPyErr_Occurred(tls) != 0 {
+		return libc.UintptrFromInt32(0)
+	}
+	return XPyLong_FromUnsignedLong(tls, libc.Uint64FromInt32(libc.Int32FromUint16(mode)&int32(MS_IMODE)))
+}
+
+func _stat_S_IFMT(tls *libc.TLS, self uintptr, omode uintptr) (r uintptr) {
+	var mode Tmode_t
+	_ = mode
+	mode = __PyLong_AsMode_t(tls, omode)
+	if libc.Int32FromUint16(mode) == libc.Int32FromUint16(libc.Uint16FromInt32(-libc.Int32FromInt32(1))) && XPyErr_Occurred(tls) != 0 {
+		return libc.UintptrFromInt32(0)
+	}
+	return XPyLong_FromUnsignedLong(tls, libc.Uint64FromInt32(libc.Int32FromUint16(mode)&int32(MS_IFMT)))
+}
+
+func _filetype(tls *libc.TLS, mode Tmode_t) (r int8) {
+
+	if libc.Int32FromUint16(mode)&int32(MS_IFMT) == int32(MS_IFREG) {
+		return int8('-')
+	}
+	if libc.Int32FromUint16(mode)&int32(MS_IFMT) == int32(MS_IFDIR) {
+		return int8('d')
+	}
+	if libc.Int32FromUint16(mode)&int32(MS_IFMT) == int32(MS_IFLNK) {
+		return int8('l')
+	}
+
+	if libc.Int32FromUint16(mode)&int32(MS_IFMT) == int32(MS_IFBLK) {
+		return int8('b')
+	}
+	if libc.Int32FromUint16(mode)&int32(MS_IFMT) == int32(MS_IFCHR) {
+		return int8('c')
+	}
+	if libc.Int32FromUint16(mode)&int32(MS_IFMT) == int32(MS_IFIFO) {
+		return int8('p')
+	}
+	if libc.Int32FromUint16(mode)&int32(MS_IFMT) == int32(MS_IFSOCK) {
+		return int8('s')
+	}
+
+	if 0 != 0 {
+		return int8('D')
+	}
+	if 0 != 0 {
+		return int8('P')
+	}
+	if libc.Int32FromUint16(mode)&int32(MS_IFMT) == int32(MS_IFWHT) {
+		return int8('w')
+	}
+
+	return int8('?')
+}
+
+func _fileperm(tls *libc.TLS, mode Tmode_t, buf uintptr) {
+	var v1 int32
+	_ = v1
+	if libc.Int32FromUint16(mode)&int32(MS_IRUSR) != 0 {
+		v1 = int32('r')
+	} else {
+		v1 = int32('-')
+	}
+	**(**int8)(__ccgo_up(buf)) = int8(v1)
+	if libc.Int32FromUint16(mode)&int32(MS_IWUSR) != 0 {
+		v1 = int32('w')
+	} else {
+		v1 = int32('-')
+	}
+	**(**int8)(__ccgo_up(buf + 1)) = int8(v1)
+	if libc.Int32FromUint16(mode)&int32(MS_ISUID) != 0 {
+		if libc.Int32FromUint16(mode)&int32(MS_IXUSR) != 0 {
+			v1 = int32('s')
+		} else {
+			v1 = int32('S')
+		}
+		**(**int8)(__ccgo_up(buf + 2)) = int8(v1)
+	} else {
+		if libc.Int32FromUint16(mode)&int32(MS_IXUSR) != 0 {
+			v1 = int32('x')
+		} else {
+			v1 = int32('-')
+		}
+		**(**int8)(__ccgo_up(buf + 2)) = int8(v1)
+	}
+	if libc.Int32FromUint16(mode)&int32(MS_IRGRP) != 0 {
+		v1 = int32('r')
+	} else {
+		v1 = int32('-')
+	}
+	**(**int8)(__ccgo_up(buf + 3)) = int8(v1)
+	if libc.Int32FromUint16(mode)&int32(MS_IWGRP) != 0 {
+		v1 = int32('w')
+	} else {
+		v1 = int32('-')
+	}
+	**(**int8)(__ccgo_up(buf + 4)) = int8(v1)
+	if libc.Int32FromUint16(mode)&int32(MS_ISGID) != 0 {
+		if libc.Int32FromUint16(mode)&int32(MS_IXGRP) != 0 {
+			v1 = int32('s')
+		} else {
+			v1 = int32('S')
+		}
+		**(**int8)(__ccgo_up(buf + 5)) = int8(v1)
+	} else {
+		if libc.Int32FromUint16(mode)&int32(MS_IXGRP) != 0 {
+			v1 = int32('x')
+		} else {
+			v1 = int32('-')
+		}
+		**(**int8)(__ccgo_up(buf + 5)) = int8(v1)
+	}
+	if libc.Int32FromUint16(mode)&int32(MS_IROTH) != 0 {
+		v1 = int32('r')
+	} else {
+		v1 = int32('-')
+	}
+	**(**int8)(__ccgo_up(buf + 6)) = int8(v1)
+	if libc.Int32FromUint16(mode)&int32(MS_IWOTH) != 0 {
+		v1 = int32('w')
+	} else {
+		v1 = int32('-')
+	}
+	**(**int8)(__ccgo_up(buf + 7)) = int8(v1)
+	if libc.Int32FromUint16(mode)&int32(MS_ISVTX) != 0 {
+		if libc.Int32FromUint16(mode)&int32(MS_IXOTH) != 0 {
+			v1 = int32('t')
+		} else {
+			v1 = int32('T')
+		}
+		**(**int8)(__ccgo_up(buf + 8)) = int8(v1)
+	} else {
+		if libc.Int32FromUint16(mode)&int32(MS_IXOTH) != 0 {
+			v1 = int32('x')
+		} else {
+			v1 = int32('-')
+		}
+		**(**int8)(__ccgo_up(buf + 8)) = int8(v1)
+	}
+}
+
+var _stat_filemode_doc = [59]int8{'C', 'o', 'n', 'v', 'e', 'r', 't', ' ', 'a', ' ', 'f', 'i', 'l', 'e', '\'', 's', ' ', 'm', 'o', 'd', 'e', ' ', 't', 'o', ' ', 'a', ' ', 's', 't', 'r', 'i', 'n', 'g', ' ', 'o', 'f', ' ', 't', 'h', 'e', ' ', 'f', 'o', 'r', 'm', ' ', '\'', '-', 'r', 'w', 'x', 'r', 'w', 'x', 'r', 'w', 'x', '\''}
+
+func _stat_filemode(tls *libc.TLS, self uintptr, omode uintptr) (r uintptr) {
+	bp := tls.Alloc(16)
+	defer tls.Free(16)
+	var mode Tmode_t
+	var _ [10]int8
+	_ = mode
+	mode = __PyLong_AsMode_t(tls, omode)
+	if libc.Int32FromUint16(mode) == libc.Int32FromUint16(libc.Uint16FromInt32(-libc.Int32FromInt32(1))) && XPyErr_Occurred(tls) != 0 {
+		return libc.UintptrFromInt32(0)
+	}
+	(**(**[10]int8)(__ccgo_up(bp)))[0] = _filetype(tls, mode)
+	_fileperm(tls, mode, bp+1)
+	return XPyUnicode_FromStringAndSize(tls, bp, int64(10))
+}
+
+var _stat_methods = [14]TPyMethodDef{
+	0: {
+		Fml_name:  __ccgo_ts + 367361,
+		Fml_flags: int32(MMETH_O),
+		Fml_doc:   uintptr(unsafe.Pointer(&_stat_S_ISDIR_doc)),
+	},
+	1: {
+		Fml_name:  __ccgo_ts + 367369,
+		Fml_flags: int32(MMETH_O),
+		Fml_doc:   uintptr(unsafe.Pointer(&_stat_S_ISCHR_doc)),
+	},
+	2: {
+		Fml_name:  __ccgo_ts + 367377,
+		Fml_flags: int32(MMETH_O),
+		Fml_doc:   uintptr(unsafe.Pointer(&_stat_S_ISBLK_doc)),
+	},
+	3: {
+		Fml_name:  __ccgo_ts + 367385,
+		Fml_flags: int32(MMETH_O),
+		Fml_doc:   uintptr(unsafe.Pointer(&_stat_S_ISREG_doc)),
+	},
+	4: {
+		Fml_name:  __ccgo_ts + 367393,
+		Fml_flags: int32(MMETH_O),
+		Fml_doc:   uintptr(unsafe.Pointer(&_stat_S_ISFIFO_doc)),
+	},
+	5: {
+		Fml_name:  __ccgo_ts + 367402,
+		Fml_flags: int32(MMETH_O),
+		Fml_doc:   uintptr(unsafe.Pointer(&_stat_S_ISLNK_doc)),
+	},
+	6: {
+		Fml_name:  __ccgo_ts + 367410,
+		Fml_flags: int32(MMETH_O),
+		Fml_doc:   uintptr(unsafe.Pointer(&_stat_S_ISSOCK_doc)),
+	},
+	7: {
+		Fml_name:  __ccgo_ts + 367419,
+		Fml_flags: int32(MMETH_O),
+		Fml_doc:   uintptr(unsafe.Pointer(&_stat_S_ISDOOR_doc)),
+	},
+	8: {
+		Fml_name:  __ccgo_ts + 367428,
+		Fml_flags: int32(MMETH_O),
+		Fml_doc:   uintptr(unsafe.Pointer(&_stat_S_ISPORT_doc)),
+	},
+	9: {
+		Fml_name:  __ccgo_ts + 367437,
+		Fml_flags: int32(MMETH_O),
+		Fml_doc:   uintptr(unsafe.Pointer(&_stat_S_ISWHT_doc)),
+	},
+	10: {
+		Fml_name:  __ccgo_ts + 367445,
+		Fml_flags: int32(MMETH_O),
+		Fml_doc:   uintptr(unsafe.Pointer(&_stat_S_IMODE_doc)),
+	},
+	11: {
+		Fml_name:  __ccgo_ts + 367453,
+		Fml_flags: int32(MMETH_O),
+		Fml_doc:   uintptr(unsafe.Pointer(&_stat_S_IFMT_doc)),
+	},
+	12: {
+		Fml_name:  __ccgo_ts + 367460,
+		Fml_flags: int32(MMETH_O),
+		Fml_doc:   uintptr(unsafe.Pointer(&_stat_filemode_doc)),
+	},
+	13: {},
+}
+
+func init() {
+	p := unsafe.Pointer(&_stat_methods)
+	*(*uintptr)(unsafe.Add(p, 8)) = __ccgo_fp(_stat_S_ISDIR)
+	*(*uintptr)(unsafe.Add(p, 40)) = __ccgo_fp(_stat_S_ISCHR)
+	*(*uintptr)(unsafe.Add(p, 72)) = __ccgo_fp(_stat_S_ISBLK)
+	*(*uintptr)(unsafe.Add(p, 104)) = __ccgo_fp(_stat_S_ISREG)
+	*(*uintptr)(unsafe.Add(p, 136)) = __ccgo_fp(_stat_S_ISFIFO)
+	*(*uintptr)(unsafe.Add(p, 168)) = __ccgo_fp(_stat_S_ISLNK)
+	*(*uintptr)(unsafe.Add(p, 200)) = __ccgo_fp(_stat_S_ISSOCK)
+	*(*uintptr)(unsafe.Add(p, 232)) = __ccgo_fp(_stat_S_ISDOOR)
+	*(*uintptr)(unsafe.Add(p, 264)) = __ccgo_fp(_stat_S_ISPORT)
+	*(*uintptr)(unsafe.Add(p, 296)) = __ccgo_fp(_stat_S_ISWHT)
+	*(*uintptr)(unsafe.Add(p, 328)) = __ccgo_fp(_stat_S_IMODE)
+	*(*uintptr)(unsafe.Add(p, 360)) = __ccgo_fp(_stat_S_IFMT)
+	*(*uintptr)(unsafe.Add(p, 392)) = __ccgo_fp(_stat_filemode)
+}
+
+func _stat_exec(tls *libc.TLS, module uintptr) (r int32) {
+	var i int32
+	var st_constants [10]uintptr
+	_, _ = i, st_constants
+	if XPyModule_AddIntConstant(tls, module, __ccgo_ts+367469, int64(MS_IFDIR)) < 0 {
+		return -int32(1)
+	}
+	if XPyModule_AddIntConstant(tls, module, __ccgo_ts+367477, int64(MS_IFCHR)) < 0 {
+		return -int32(1)
+	}
+	if XPyModule_AddIntConstant(tls, module, __ccgo_ts+367485, int64(MS_IFBLK)) < 0 {
+		return -int32(1)
+	}
+	if XPyModule_AddIntConstant(tls, module, __ccgo_ts+367493, int64(MS_IFREG)) < 0 {
+		return -int32(1)
+	}
+	if XPyModule_AddIntConstant(tls, module, __ccgo_ts+367501, int64(MS_IFIFO)) < 0 {
+		return -int32(1)
+	}
+	if XPyModule_AddIntConstant(tls, module, __ccgo_ts+367509, int64(MS_IFLNK)) < 0 {
+		return -int32(1)
+	}
+	if XPyModule_AddIntConstant(tls, module, __ccgo_ts+367517, int64(MS_IFSOCK)) < 0 {
+		return -int32(1)
+	}
+	if XPyModule_AddIntConstant(tls, module, __ccgo_ts+367526, MS_IFDOOR) < 0 {
+		return -int32(1)
+	}
+	if XPyModule_AddIntConstant(tls, module, __ccgo_ts+367535, MS_IFPORT) < 0 {
+		return -int32(1)
+	}
+	if XPyModule_AddIntConstant(tls, module, __ccgo_ts+367544, int64(MS_IFWHT)) < 0 {
+		return -int32(1)
+	}
+	if XPyModule_AddIntConstant(tls, module, __ccgo_ts+367552, int64(MS_ISUID)) < 0 {
+		return -int32(1)
+	}
+	if XPyModule_AddIntConstant(tls, module, __ccgo_ts+367560, int64(MS_ISGID)) < 0 {
+		return -int32(1)
+	}
+	if XPyModule_AddIntConstant(tls, module, __ccgo_ts+367568, int64(MS_ISVTX)) < 0 {
+		return -int32(1)
+	}
+	if XPyModule_AddIntConstant(tls, module, __ccgo_ts+367576, int64(MS_ISGID)) < 0 {
+		return -int32(1)
+	}
+	if XPyModule_AddIntConstant(tls, module, __ccgo_ts+367584, int64(MS_IRUSR)) < 0 {
+		return -int32(1)
+	}
+	if XPyModule_AddIntConstant(tls, module, __ccgo_ts+367592, int64(MS_IWUSR)) < 0 {
+		return -int32(1)
+	}
+	if XPyModule_AddIntConstant(tls, module, __ccgo_ts+367601, int64(MS_IXUSR)) < 0 {
+		return -int32(1)
+	}
+	if XPyModule_AddIntConstant(tls, module, __ccgo_ts+367609, int64(MS_IRWXU)) < 0 {
+		return -int32(1)
+	}
+	if XPyModule_AddIntConstant(tls, module, __ccgo_ts+367617, int64(MS_IRUSR)) < 0 {
+		return -int32(1)
+	}
+	if XPyModule_AddIntConstant(tls, module, __ccgo_ts+367625, int64(MS_IWUSR)) < 0 {
+		return -int32(1)
+	}
+	if XPyModule_AddIntConstant(tls, module, __ccgo_ts+367633, int64(MS_IXUSR)) < 0 {
+		return -int32(1)
+	}
+	if XPyModule_AddIntConstant(tls, module, __ccgo_ts+367641, int64(MS_IRWXG)) < 0 {
+		return -int32(1)
+	}
+	if XPyModule_AddIntConstant(tls, module, __ccgo_ts+367649, int64(MS_IRGRP)) < 0 {
+		return -int32(1)
+	}
+	if XPyModule_AddIntConstant(tls, module, __ccgo_ts+367657, int64(MS_IWGRP)) < 0 {
+		return -int32(1)
+	}
+	if XPyModule_AddIntConstant(tls, module, __ccgo_ts+367665, int64(MS_IXGRP)) < 0 {
+		return -int32(1)
+	}
+	if XPyModule_AddIntConstant(tls, module, __ccgo_ts+367673, int64(MS_IRWXO)) < 0 {
+		return -int32(1)
+	}
+	if XPyModule_AddIntConstant(tls, module, __ccgo_ts+367681, int64(MS_IROTH)) < 0 {
+		return -int32(1)
+	}
+	if XPyModule_AddIntConstant(tls, module, __ccgo_ts+367689, int64(MS_IWOTH)) < 0 {
+		return -int32(1)
+	}
+	if XPyModule_AddIntConstant(tls, module, __ccgo_ts+367697, int64(MS_IXOTH)) < 0 {
+		return -int32(1)
+	}
+	if XPyModule_AddIntConstant(tls, module, __ccgo_ts+367705, int64(MUF_SETTABLE)) < 0 {
+		return -int32(1)
+	}
+	if XPyModule_AddIntConstant(tls, module, __ccgo_ts+367717, int64(MUF_NODUMP)) < 0 {
+		return -int32(1)
+	}
+	if XPyModule_AddIntConstant(tls, module, __ccgo_ts+367727, int64(MUF_IMMUTABLE)) < 0 {
+		return -int32(1)
+	}
+	if XPyModule_AddIntConstant(tls, module, __ccgo_ts+367740, int64(MUF_APPEND)) < 0 {
+		return -int32(1)
+	}
+	if XPyModule_AddIntConstant(tls, module, __ccgo_ts+367750, int64(MUF_OPAQUE)) < 0 {
+		return -int32(1)
+	}
+	if XPyModule_AddIntConstant(tls, module, __ccgo_ts+367760, int64(MUF_NOUNLINK)) < 0 {
+		return -int32(1)
+	}
+	if XPyModule_AddIntConstant(tls, module, __ccgo_ts+367772, int64(MUF_COMPRESSED)) < 0 {
+		return -int32(1)
+	}
+	if XPyModule_AddIntConstant(tls, module, __ccgo_ts+367786, int64(MUF_TRACKED)) < 0 {
+		return -int32(1)
+	}
+	if XPyModule_AddIntConstant(tls, module, __ccgo_ts+367797, int64(MUF_DATAVAULT)) < 0 {
+		return -int32(1)
+	}
+	if XPyModule_AddIntConstant(tls, module, __ccgo_ts+367810, int64(MUF_HIDDEN)) < 0 {
+		return -int32(1)
+	}
+	if XPyModule_AddIntConstant(tls, module, __ccgo_ts+367820, int64(MSF_SETTABLE)) < 0 {
+		return -int32(1)
+	}
+	if XPyModule_AddIntConstant(tls, module, __ccgo_ts+367832, int64(MSF_ARCHIVED)) < 0 {
+		return -int32(1)
+	}
+	if XPyModule_AddIntConstant(tls, module, __ccgo_ts+367844, int64(MSF_IMMUTABLE)) < 0 {
+		return -int32(1)
+	}
+	if XPyModule_AddIntConstant(tls, module, __ccgo_ts+367857, int64(MSF_APPEND)) < 0 {
+		return -int32(1)
+	}
+	if XPyModule_AddIntConstant(tls, module, __ccgo_ts+367867, int64(MSF_NOUNLINK)) < 0 {
+		return -int32(1)
+	}
+	if XPyModule_AddIntConstant(tls, module, __ccgo_ts+367879, int64(MSF_SNAPSHOT)) < 0 {
+		return -int32(1)
+	}
+	if XPyModule_AddIntConstant(tls, module, __ccgo_ts+367891, int64(MSF_FIRMLINK)) < 0 {
+		return -int32(1)
+	}
+	if XPyModule_AddIntConstant(tls, module, __ccgo_ts+367903, int64(MSF_DATALESS)) < 0 {
+		return -int32(1)
+	}
+	if XPyModule_AddIntConstant(tls, module, __ccgo_ts+367915, int64(MSF_SUPPORTED)) < 0 {
+		return -int32(1)
+	}
+	if XPyModule_AddIntConstant(tls, module, __ccgo_ts+367928, libc.Int64FromUint32(MSF_SYNTHETIC)) < 0 {
+		return -int32(1)
+	}
+	st_constants = [10]uintptr{
+		0: __ccgo_ts + 367941,
+		1: __ccgo_ts + 367949,
+		2: __ccgo_ts + 367956,
+		3: __ccgo_ts + 367963,
+		4: __ccgo_ts + 367972,
+		5: __ccgo_ts + 367979,
+		6: __ccgo_ts + 367986,
+		7: __ccgo_ts + 367994,
+		8: __ccgo_ts + 368003,
+		9: __ccgo_ts + 368012,
+	}
+	i = 0
+	for {
+		if !(i < libc.Int32FromUint64(libc.Uint64FromInt64(80)/libc.Uint64FromInt64(8))) {
+			break
+		}
+		if XPyModule_AddIntConstant(tls, module, st_constants[i], int64(i)) < 0 {
+			return -int32(1)
+		}
+		goto _1
+	_1:
+		;
+		i = i + 1
+	}
+	return 0
+}
+
+var _stat_slots = [4]TPyModuleDef_Slot{
+	0: {
+		Fslot: int32(MPy_mod_exec),
+	},
+	1: {
+		Fslot:  int32(MPy_mod_multiple_interpreters),
+		Fvalue: libc.UintptrFromInt32(2),
+	},
+	2: {
+		Fslot:  int32(MPy_mod_gil),
+		Fvalue: libc.UintptrFromInt32(1),
+	},
+	3: {},
+}
+
+func init() {
+	p := unsafe.Pointer(&_stat_slots)
+	*(*uintptr)(unsafe.Add(p, 8)) = __ccgo_fp(_stat_exec)
+}
+
+var _statmodule = TPyModuleDef{
+	Fm_base: TPyModuleDef_Base{
+		Fob_base: TPyObject{
+			F__ccgo0_0: *(*struct {
+				F__ccgo1_0 [0]struct {
+					Fob_refcnt   Tuint32_t
+					Fob_overflow Tuint16_t
+					Fob_flags    Tuint16_t
+				}
+				Fob_refcnt_full Tint64_t
+			})(unsafe.Pointer(&[1]uint64{0x50000c0000000})),
+		},
+	},
+	Fm_name:    __ccgo_ts + 167635,
+	Fm_doc:     uintptr(unsafe.Pointer(&_module_doc23)),
+	Fm_methods: uintptr(unsafe.Pointer(&_stat_methods)),
+	Fm_slots:   uintptr(unsafe.Pointer(&_stat_slots)),
+}
+
+func XPyInit__stat(tls *libc.TLS) (r uintptr) {
+	return XPyModuleDef_Init(tls, uintptr(unsafe.Pointer(&_statmodule)))
+}
+
+var _NO_LOCATION14 = T_Py_SourceLocation{
+	Flineno:         -int32(1),
+	Fend_lineno:     -int32(1),
+	Fcol_offset:     -int32(1),
+	Fend_col_offset: -int32(1),
+}
+
+var _NEXT_LOCATION14 = T_Py_SourceLocation{
+	Flineno:         -int32(2),
+	Fend_lineno:     -int32(2),
+	Fcol_offset:     -int32(2),
+	Fend_col_offset: -int32(2),
+}
+
+func __symtable_symtable(tls *libc.TLS, module uintptr, args uintptr, nargs TPy_ssize_t) (r uintptr) {
+	bp := tls.Alloc(16)
+	defer tls.Free(16)
+	var flags uint64
+	var return_value, source, startstr, v1, v5, v6 uintptr
+	var v10 Tuint32_t
+	var v3 int32
+	var _ uintptr
+	var _ TPy_ssize_t
+	_, _, _, _, _, _, _, _, _ = flags, return_value, source, startstr, v1, v10, v3, v5, v6
+	return_value = libc.UintptrFromInt32(0)
+	**(**uintptr)(__ccgo_up(bp)) = libc.UintptrFromInt32(0)
+	if !(libc.Bool(!false) && int64(libc.Int32FromInt32(3)) <= nargs && nargs <= int64(libc.Int32FromInt32(3)) || X_PyArg_CheckPositional(tls, __ccgo_ts+168822, nargs, int64(libc.Int32FromInt32(3)), int64(libc.Int32FromInt32(3))) != 0) {
+		goto exit
+	}
+	source = **(**uintptr)(__ccgo_up(args))
+	if !(XPyUnicode_FSDecoder(tls, **(**uintptr)(__ccgo_up(args + 1*8)), bp) != 0) {
+		goto exit
+	}
+	v1 = (*TPyObject)(unsafe.Pointer(**(**uintptr)(__ccgo_up(args + 2*8)))).Fob_type
+	goto _2
+_2:
+	flags = (*TPyTypeObject)(unsafe.Pointer(v1)).Ftp_flags
+	v3 = libc.BoolInt32(flags&(libc.Uint64FromUint64(1)<<libc.Int32FromInt32(28)) != uint64(0))
+	goto _4
+_4:
+	if !(v3 != 0) {
+		X_PyArg_BadArgument(tls, __ccgo_ts+168822, __ccgo_ts+76048, __ccgo_ts+15225, **(**uintptr)(__ccgo_up(args + 2*8)))
+		goto exit
+	}
+	startstr = XPyUnicode_AsUTF8AndSize(tls, **(**uintptr)(__ccgo_up(args + 2*8)), bp+8)
+	if startstr == libc.UintptrFromInt32(0) {
+		goto exit
+	}
+	if libc.Xstrlen(tls, startstr) != libc.Uint64FromInt64(**(**TPy_ssize_t)(__ccgo_up(bp + 8))) {
+		XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+15229)
+		goto exit
+	}
+	return_value = __symtable_symtable_impl(tls, module, source, **(**uintptr)(__ccgo_up(bp)), startstr)
+	goto exit
+exit:
+	;
+	v1 = **(**uintptr)(__ccgo_up(bp))
+	if v1 != libc.UintptrFromInt32(0) {
+		v5 = v1
+		v3 = libc.BoolInt32(libc.Int32FromUint32(*(*Tuint32_t)(unsafe.Pointer(v5))) < 0)
+		goto _8
+	_8:
+		if v3 != 0 {
+			goto _9
+		}
+		v6 = v5
+		*(*Tuint32_t)(unsafe.Pointer(v6)) = *(*Tuint32_t)(unsafe.Pointer(v6)) - 1
+		v10 = *(*Tuint32_t)(unsafe.Pointer(v6))
+		if v10 == libc.Uint32FromInt32(0) {
+			X_Py_Dealloc(tls, v5)
+		}
+	_9:
+	}
+	return return_value
+}
+
+func __symtable_symtable_impl(tls *libc.TLS, module uintptr, source uintptr, filename uintptr, startstr uintptr) (r uintptr) {
+	bp := tls.Alloc(16)
+	defer tls.Free(16)
+	/*[clinic end generated code: output=59eb0d5fc7285ac4 input=436ffff90d02e4f6]*/
+	var cur_refcnt, v6 Tuint32_t
+	var st, str, t, v1, v2, v7 uintptr
+	var start, v3 int32
+	var _ TPyCompilerFlags
+	var _ uintptr
+	_, _, _, _, _, _, _, _, _, _ = cur_refcnt, st, start, str, t, v1, v2, v3, v6, v7
+	**(**TPyCompilerFlags)(__ccgo_up(bp)) = TPyCompilerFlags{
+		Fcf_feature_version: int32(MPY_MINOR_VERSION),
+	}
+	**(**uintptr)(__ccgo_up(bp + 8)) = libc.UintptrFromInt32(0)
+	(**(**TPyCompilerFlags)(__ccgo_up(bp))).Fcf_flags = int32(MPyCF_SOURCE_IS_UTF8)
+	str = X_Py_SourceAsString(tls, source, __ccgo_ts+168822, __ccgo_ts+368021, bp, bp+8)
+	if str == libc.UintptrFromInt32(0) {
+		return libc.UintptrFromInt32(0)
+	}
+	if libc.Xstrcmp(tls, startstr, __ccgo_ts+1971) == 0 {
+		start = int32(MPy_file_input)
+	} else {
+		if libc.Xstrcmp(tls, startstr, __ccgo_ts+118243) == 0 {
+			start = int32(MPy_eval_input)
+		} else {
+			if libc.Xstrcmp(tls, startstr, __ccgo_ts+118819) == 0 {
+				start = int32(MPy_single_input)
+			} else {
+				XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+368037)
+				v1 = **(**uintptr)(__ccgo_up(bp + 8))
+				if v1 != libc.UintptrFromInt32(0) {
+					v2 = v1
+					v3 = libc.BoolInt32(libc.Int32FromUint32(*(*Tuint32_t)(unsafe.Pointer(v2))) < 0)
+					goto _4
+				_4:
+					if v3 != 0 {
+						goto _5
+					}
+					v7 = v2
+					*(*Tuint32_t)(unsafe.Pointer(v7)) = *(*Tuint32_t)(unsafe.Pointer(v7)) - 1
+					v6 = *(*Tuint32_t)(unsafe.Pointer(v7))
+					if v6 == libc.Uint32FromInt32(0) {
+						X_Py_Dealloc(tls, v2)
+					}
+				_5:
+				}
+				return libc.UintptrFromInt32(0)
+			}
+		}
+	}
+	st = X_Py_SymtableStringObjectFlags(tls, str, filename, start, bp)
+	v1 = **(**uintptr)(__ccgo_up(bp + 8))
+	if v1 != libc.UintptrFromInt32(0) {
+		v2 = v1
+		v3 = libc.BoolInt32(libc.Int32FromUint32(*(*Tuint32_t)(unsafe.Pointer(v2))) < 0)
+		goto _11
+	_11:
+		if v3 != 0 {
+			goto _12
+		}
+		v7 = v2
+		*(*Tuint32_t)(unsafe.Pointer(v7)) = *(*Tuint32_t)(unsafe.Pointer(v7)) - 1
+		v6 = *(*Tuint32_t)(unsafe.Pointer(v7))
+		if v6 == libc.Uint32FromInt32(0) {
+			X_Py_Dealloc(tls, v2)
+		}
+	_12:
+	}
+	if st == libc.UintptrFromInt32(0) {
+		return libc.UintptrFromInt32(0)
+	}
+	v1 = (*Tsymtable)(unsafe.Pointer(st)).Fst_top
+	v2 = v1
+	cur_refcnt = *(*Tuint32_t)(unsafe.Pointer(v2))
+	if uint64(cur_refcnt) >= libc.Uint64FromUint64(3)<<libc.Int32FromInt32(30) {
+		goto _17
+	}
+	*(*Tuint32_t)(unsafe.Pointer(v2)) = cur_refcnt + uint32(1)
+_17:
+	;
+	v7 = v1
+	goto _19
+_19:
+	t = v7
+	X_PySymtable_Free(tls, st)
+	return t
+}
+
+var _symtable_methods = [2]TPyMethodDef{
+	0: {
+		Fml_name:  __ccgo_ts + 168822,
+		Fml_flags: int32(MMETH_FASTCALL),
+		Fml_doc:   uintptr(unsafe.Pointer(&__symtable_symtable__doc__)),
+	},
+	1: {},
+}
+
+func init() {
+	p := unsafe.Pointer(&_symtable_methods)
+	*(*uintptr)(unsafe.Add(p, 8)) = __ccgo_fp(__symtable_symtable)
+}
+
+func _symtable_init_constants(tls *libc.TLS, m uintptr) (r int32) {
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+368091, int64(libc.Int32FromInt32(2)<<libc.Int32FromInt32(3))) < 0 {
+		return -int32(1)
+	}
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+368095, int64(libc.Int32FromInt32(MDEF_GLOBAL))) < 0 {
+		return -int32(1)
+	}
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+368106, int64(libc.Int32FromInt32(2)<<libc.Int32FromInt32(2))) < 0 {
+		return -int32(1)
+	}
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+368119, int64(libc.Int32FromInt32(MDEF_LOCAL))) < 0 {
+		return -int32(1)
+	}
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+368129, int64(libc.Int32FromInt32(2)<<libc.Int32FromInt32(1))) < 0 {
+		return -int32(1)
+	}
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+368139, int64(libc.Int32FromInt32(2)<<libc.Int32FromInt32(9))) < 0 {
+		return -int32(1)
+	}
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+368154, int64(libc.Int32FromInt32(2)<<libc.Int32FromInt32(5))) < 0 {
+		return -int32(1)
+	}
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+368169, int64(libc.Int32FromInt32(2)<<libc.Int32FromInt32(6))) < 0 {
+		return -int32(1)
+	}
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+368180, int64(libc.Int32FromInt32(MDEF_LOCAL)|libc.Int32FromInt32(2)<<libc.Int32FromInt32(1)|libc.Int32FromInt32(2)<<libc.Int32FromInt32(6))) < 0 {
+		return -int32(1)
+	}
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+368190, int64(libc.Int32FromInt32(2)<<libc.Int32FromInt32(7))) < 0 {
+		return -int32(1)
+	}
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+368200, int64(libc.Int32FromInt32(2)<<libc.Int32FromInt32(8))) < 0 {
+		return -int32(1)
+	}
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+368214, int64(libc.Int32FromInt32(2)<<libc.Int32FromInt32(10))) < 0 {
+		return -int32(1)
+	}
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+368228, int64(EFunctionBlock)) < 0 {
+		return -int32(1)
+	}
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+368242, int64(EClassBlock)) < 0 {
+		return -int32(1)
+	}
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+368253, int64(EModuleBlock)) < 0 {
+		return -int32(1)
+	}
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+368265, int64(EAnnotationBlock)) < 0 {
+		return -int32(1)
+	}
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+368281, int64(ETypeAliasBlock)) < 0 {
+		return -int32(1)
+	}
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+368297, int64(ETypeParametersBlock)) < 0 {
+		return -int32(1)
+	}
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+368318, int64(ETypeVariableBlock)) < 0 {
+		return -int32(1)
+	}
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+368337, int64(libc.Int32FromInt32(MLOCAL))) < 0 {
+		return -int32(1)
+	}
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+368343, int64(libc.Int32FromInt32(MGLOBAL_EXPLICIT))) < 0 {
+		return -int32(1)
+	}
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+368359, int64(libc.Int32FromInt32(MGLOBAL_IMPLICIT))) < 0 {
+		return -int32(1)
+	}
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+368375, int64(libc.Int32FromInt32(MFREE2))) < 0 {
+		return -int32(1)
+	}
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+368380, int64(libc.Int32FromInt32(MCELL))) < 0 {
+		return -int32(1)
+	}
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+368385, int64(MSCOPE_OFFSET)) < 0 {
+		return -int32(1)
+	}
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+368395, int64(libc.Int32FromInt32(MDEF_GLOBAL)|libc.Int32FromInt32(MDEF_LOCAL)|libc.Int32FromInt32(2)<<libc.Int32FromInt32(1)|libc.Int32FromInt32(2)<<libc.Int32FromInt32(2))) < 0 {
+		return -int32(1)
+	}
+	return 0
+}
+
+var _symtable_slots = [4]TPyModuleDef_Slot{
+	0: {
+		Fslot: int32(MPy_mod_exec),
+	},
+	1: {
+		Fslot:  int32(MPy_mod_multiple_interpreters),
+		Fvalue: libc.UintptrFromInt32(2),
+	},
+	2: {
+		Fslot:  int32(MPy_mod_gil),
+		Fvalue: libc.UintptrFromInt32(1),
+	},
+	3: {},
+}
+
+func init() {
+	p := unsafe.Pointer(&_symtable_slots)
+	*(*uintptr)(unsafe.Add(p, 8)) = __ccgo_fp(_symtable_init_constants)
+}
+
+var _symtablemodule = TPyModuleDef{
+	Fm_base: TPyModuleDef_Base{
+		Fob_base: TPyObject{
+			F__ccgo0_0: *(*struct {
+				F__ccgo1_0 [0]struct {
+					Fob_refcnt   Tuint32_t
+					Fob_overflow Tuint16_t
+					Fob_flags    Tuint16_t
+				}
+				Fob_refcnt_full Tint64_t
+			})(unsafe.Pointer(&[1]uint64{0x50000c0000000})),
+		},
+	},
+	Fm_name:    __ccgo_ts + 167684,
+	Fm_methods: uintptr(unsafe.Pointer(&_symtable_methods)),
+	Fm_slots:   uintptr(unsafe.Pointer(&_symtable_slots)),
+}
+
+func XPyInit__symtable(tls *libc.TLS) (r uintptr) {
+	return XPyModuleDef_Init(tls, uintptr(unsafe.Pointer(&_symtablemodule)))
+}
+
+const MDEFAULT_BUFFER_SIZE2 = 1024
+
+var _UUID_NULL6 = Tuuid_t{}
+
+func _pwd_getpwnam(tls *libc.TLS, module uintptr, arg uintptr) (r uintptr) {
+	bp := tls.Alloc(16)
+	defer tls.Free(16)
+	var flags uint64
+	var name, return_value, v1 uintptr
+	var v3 int32
+	_, _, _, _, _ = flags, name, return_value, v1, v3
+	return_value = libc.UintptrFromInt32(0)
+	v1 = (*TPyObject)(unsafe.Pointer(arg)).Fob_type
+	goto _2
+_2:
+	flags = XPyType_GetFlags(tls, v1)
+	v3 = libc.BoolInt32(flags&(libc.Uint64FromUint64(1)<<libc.Int32FromInt32(28)) != uint64(0))
+	goto _4
+_4:
+	if !(v3 != 0) {
+		XPyErr_Format(tls, XPyExc_TypeError, __ccgo_ts+368406, libc.VaList(bp+8, arg))
+		goto exit
+	}
+	name = arg
+	return_value = _pwd_getpwnam_impl(tls, module, name)
+	goto exit
+exit:
+	;
+	return return_value
+	return r
+}
+
+func _pwd_getpwall(tls *libc.TLS, module uintptr, _unused_ignored uintptr) (r uintptr) {
+	return _pwd_getpwall_impl(tls, module)
+}
+
+var _struct_pwd_type_fields = [8]TPyStructSequence_Field{
+	0: {
+		Fname: __ccgo_ts + 368446,
+		Fdoc:  __ccgo_ts + 368454,
+	},
+	1: {
+		Fname: __ccgo_ts + 368464,
+		Fdoc:  __ccgo_ts + 233790,
+	},
+	2: {
+		Fname: __ccgo_ts + 368474,
+		Fdoc:  __ccgo_ts + 368481,
+	},
+	3: {
+		Fname: __ccgo_ts + 368489,
+		Fdoc:  __ccgo_ts + 233806,
+	},
+	4: {
+		Fname: __ccgo_ts + 368496,
+		Fdoc:  __ccgo_ts + 368505,
+	},
+	5: {
+		Fname: __ccgo_ts + 368515,
+		Fdoc:  __ccgo_ts + 368522,
+	},
+	6: {
+		Fname: __ccgo_ts + 368537,
+		Fdoc:  __ccgo_ts + 368546,
+	},
+	7: {},
+}
+
+var _struct_pwd_type_desc = TPyStructSequence_Desc{
+	Fname:          __ccgo_ts + 368560,
+	Fdoc:           uintptr(unsafe.Pointer(&_struct_passwd__doc__)),
+	Ffields:        uintptr(unsafe.Pointer(&_struct_pwd_type_fields)),
+	Fn_in_sequence: int32(7),
+}
+
+type Tpwdmodulestate = struct {
+	FStructPwdType uintptr
+}
+
+func _get_pwd_state(tls *libc.TLS, module uintptr) (r uintptr) {
+	var state uintptr
+	_ = state
+	state = XPyModule_GetState(tls, module)
+	return state
+}
+
+func _mkpwent(tls *libc.TLS, module uintptr, p uintptr) (r uintptr) {
+	var item, item1, item2, item3, item4, item5, item6, v, v1, v2, v3 uintptr
+	var setIndex, v5 int32
+	_, _, _, _, _, _, _, _, _, _, _, _, _ = item, item1, item2, item3, item4, item5, item6, setIndex, v, v1, v2, v3, v5
+	v = XPyStructSequence_New(tls, (*Tpwdmodulestate)(unsafe.Pointer(_get_pwd_state(tls, module))).FStructPwdType)
+	if v == libc.UintptrFromInt32(0) {
+		return libc.UintptrFromInt32(0)
+	}
+	setIndex = 0
+	if (*Tpasswd)(unsafe.Pointer(p)).Fpw_name != 0 {
+		v1 = XPyUnicode_DecodeFSDefault(tls, (*Tpasswd)(unsafe.Pointer(p)).Fpw_name)
+	} else {
+		v2 = XPy_GetConstantBorrowed(tls, uint32(MPy_CONSTANT_NONE))
+		X_Py_IncRef(tls, v2)
+		v3 = v2
+		goto _4
+	_4:
+		v1 = v3
+	}
+	item = v1
+	if item == libc.UintptrFromInt32(0) {
+		goto error
+	}
+	v5 = setIndex
+	setIndex = setIndex + 1
+	XPyStructSequence_SetItem(tls, v, int64(v5), item)
+	if (*Tpasswd)(unsafe.Pointer(p)).Fpw_passwd != 0 {
+		v1 = XPyUnicode_DecodeFSDefault(tls, (*Tpasswd)(unsafe.Pointer(p)).Fpw_passwd)
+	} else {
+		v2 = XPy_GetConstantBorrowed(tls, uint32(MPy_CONSTANT_NONE))
+		X_Py_IncRef(tls, v2)
+		v3 = v2
+		goto _9
+	_9:
+		v1 = v3
+	}
+	item1 = v1
+	if item1 == libc.UintptrFromInt32(0) {
+		goto error
+	}
+	v5 = setIndex
+	setIndex = setIndex + 1
+	XPyStructSequence_SetItem(tls, v, int64(v5), item1)
+	item2 = X_PyLong_FromUid(tls, (*Tpasswd)(unsafe.Pointer(p)).Fpw_uid)
+	if item2 == libc.UintptrFromInt32(0) {
+		goto error
+	}
+	v5 = setIndex
+	setIndex = setIndex + 1
+	XPyStructSequence_SetItem(tls, v, int64(v5), item2)
+	item3 = X_PyLong_FromGid(tls, (*Tpasswd)(unsafe.Pointer(p)).Fpw_gid)
+	if item3 == libc.UintptrFromInt32(0) {
+		goto error
+	}
+	v5 = setIndex
+	setIndex = setIndex + 1
+	XPyStructSequence_SetItem(tls, v, int64(v5), item3)
+	if (*Tpasswd)(unsafe.Pointer(p)).Fpw_gecos != 0 {
+		v1 = XPyUnicode_DecodeFSDefault(tls, (*Tpasswd)(unsafe.Pointer(p)).Fpw_gecos)
+	} else {
+		v2 = XPy_GetConstantBorrowed(tls, uint32(MPy_CONSTANT_NONE))
+		X_Py_IncRef(tls, v2)
+		v3 = v2
+		goto _16
+	_16:
+		v1 = v3
+	}
+	item4 = v1
+	if item4 == libc.UintptrFromInt32(0) {
+		goto error
+	}
+	v5 = setIndex
+	setIndex = setIndex + 1
+	XPyStructSequence_SetItem(tls, v, int64(v5), item4)
+	if (*Tpasswd)(unsafe.Pointer(p)).Fpw_dir != 0 {
+		v1 = XPyUnicode_DecodeFSDefault(tls, (*Tpasswd)(unsafe.Pointer(p)).Fpw_dir)
+	} else {
+		v2 = XPy_GetConstantBorrowed(tls, uint32(MPy_CONSTANT_NONE))
+		X_Py_IncRef(tls, v2)
+		v3 = v2
+		goto _21
+	_21:
+		v1 = v3
+	}
+	item5 = v1
+	if item5 == libc.UintptrFromInt32(0) {
+		goto error
+	}
+	v5 = setIndex
+	setIndex = setIndex + 1
+	XPyStructSequence_SetItem(tls, v, int64(v5), item5)
+	if (*Tpasswd)(unsafe.Pointer(p)).Fpw_shell != 0 {
+		v1 = XPyUnicode_DecodeFSDefault(tls, (*Tpasswd)(unsafe.Pointer(p)).Fpw_shell)
+	} else {
+		v2 = XPy_GetConstantBorrowed(tls, uint32(MPy_CONSTANT_NONE))
+		X_Py_IncRef(tls, v2)
+		v3 = v2
+		goto _26
+	_26:
+		v1 = v3
+	}
+	item6 = v1
+	if item6 == libc.UintptrFromInt32(0) {
+		goto error
+	}
+	v5 = setIndex
+	setIndex = setIndex + 1
+	XPyStructSequence_SetItem(tls, v, int64(v5), item6)
+	return v
+	goto error
+error:
+	;
+	X_Py_DecRef(tls, v)
+	return libc.UintptrFromInt32(0)
+}
+
+func _pwd_getpwuid(tls *libc.TLS, module uintptr, uidobj uintptr) (r uintptr) {
+	bp := tls.Alloc(112)
+	defer tls.Free(112)
+	/*[clinic end generated code: output=c4ee1d4d429b86c4 input=ae64d507a1c6d3e8]*/
+	var _save, buf, buf2, retval, uid_obj uintptr
+	var bufsize TPy_ssize_t
+	var nomem, status int32
+	var _ uintptr
+	var _ Tpasswd
+	var _ Tuid_t
+	_, _, _, _, _, _, _, _ = _save, buf, buf2, bufsize, nomem, retval, status, uid_obj
+	retval = libc.UintptrFromInt32(0)
+	nomem = 0
+	buf = libc.UintptrFromInt32(0)
+	buf2 = libc.UintptrFromInt32(0)
+	if !(X_Py_Uid_Converter(tls, uidobj, bp) != 0) {
+		if XPyErr_ExceptionMatches(tls, XPyExc_OverflowError) != 0 {
+			XPyErr_Format(tls, XPyExc_KeyError, __ccgo_ts+368578, 0)
+		}
+		return libc.UintptrFromInt32(0)
+	}
+	_save = XPyEval_SaveThread(tls)
+	bufsize = _ccgo_sysconf(tls, int32(M_SC_GETPW_R_SIZE_MAX))
+	if bufsize == int64(-int32(1)) {
+		bufsize = int64(MDEFAULT_BUFFER_SIZE2)
+	}
+	for int32(1) != 0 {
+		buf2 = XPyMem_RawRealloc(tls, buf, libc.Uint64FromInt64(bufsize))
+		if buf2 == libc.UintptrFromInt32(0) {
+			**(**uintptr)(__ccgo_up(bp + 8)) = libc.UintptrFromInt32(0)
+			nomem = int32(1)
+			break
+		}
+		buf = buf2
+		status = _ccgo_getpwuid_r(tls, **(**Tuid_t)(__ccgo_up(bp)), bp+16, buf, libc.Uint64FromInt64(bufsize), bp+8)
+		if status != 0 {
+			**(**uintptr)(__ccgo_up(bp + 8)) = libc.UintptrFromInt32(0)
+		}
+		if **(**uintptr)(__ccgo_up(bp + 8)) != libc.UintptrFromInt32(0) || status != int32(MERANGE) {
+			break
+		}
+		if bufsize > libc.Int64FromInt64(0x7fffffffffffffff)>>libc.Int32FromInt32(1) {
+			nomem = int32(1)
+			break
+		}
+		bufsize = bufsize << int64(1)
+	}
+	XPyEval_RestoreThread(tls, _save)
+	if **(**uintptr)(__ccgo_up(bp + 8)) == libc.UintptrFromInt32(0) {
+		XPyMem_RawFree(tls, buf)
+		if nomem == int32(1) {
+			return XPyErr_NoMemory(tls)
+		}
+		uid_obj = X_PyLong_FromUid(tls, **(**Tuid_t)(__ccgo_up(bp)))
+		if uid_obj == libc.UintptrFromInt32(0) {
+			return libc.UintptrFromInt32(0)
+		}
+		XPyErr_Format(tls, XPyExc_KeyError, __ccgo_ts+368604, libc.VaList(bp+96, uid_obj))
+		X_Py_DecRef(tls, uid_obj)
+		return libc.UintptrFromInt32(0)
+	}
+	retval = _mkpwent(tls, module, **(**uintptr)(__ccgo_up(bp + 8)))
+	XPyMem_RawFree(tls, buf)
+	return retval
+}
+
+func _pwd_getpwnam_impl(tls *libc.TLS, module uintptr, name uintptr) (r uintptr) {
+	bp := tls.Alloc(112)
+	defer tls.Free(112)
+	/*[clinic end generated code: output=359ce1ddeb7a824f input=a6aeb5e3447fb9e0]*/
+	var _save, buf, buf2, bytes, retval, v1 uintptr
+	var bufsize TPy_ssize_t
+	var nomem, status int32
+	var _ uintptr
+	var _ uintptr
+	var _ Tpasswd
+	_, _, _, _, _, _, _, _, _ = _save, buf, buf2, bufsize, bytes, nomem, retval, status, v1
+	buf = libc.UintptrFromInt32(0)
+	buf2 = libc.UintptrFromInt32(0)
+	nomem = 0
+	retval = libc.UintptrFromInt32(0)
+	v1 = XPyUnicode_EncodeFSDefault(tls, name)
+	bytes = v1
+	if v1 == libc.UintptrFromInt32(0) {
+		return libc.UintptrFromInt32(0)
+	}
+
+	if XPyBytes_AsStringAndSize(tls, bytes, bp, libc.UintptrFromInt32(0)) == -int32(1) {
+		goto out
+	}
+	_save = XPyEval_SaveThread(tls)
+	bufsize = _ccgo_sysconf(tls, int32(M_SC_GETPW_R_SIZE_MAX))
+	if bufsize == int64(-int32(1)) {
+		bufsize = int64(MDEFAULT_BUFFER_SIZE2)
+	}
+	for int32(1) != 0 {
+		buf2 = XPyMem_RawRealloc(tls, buf, libc.Uint64FromInt64(bufsize))
+		if buf2 == libc.UintptrFromInt32(0) {
+			**(**uintptr)(__ccgo_up(bp + 8)) = libc.UintptrFromInt32(0)
+			nomem = int32(1)
+			break
+		}
+		buf = buf2
+		status = _ccgo_getpwnam_r(tls, **(**uintptr)(__ccgo_up(bp)), bp+16, buf, libc.Uint64FromInt64(bufsize), bp+8)
+		if status != 0 {
+			**(**uintptr)(__ccgo_up(bp + 8)) = libc.UintptrFromInt32(0)
+		}
+		if **(**uintptr)(__ccgo_up(bp + 8)) != libc.UintptrFromInt32(0) || status != int32(MERANGE) {
+			break
+		}
+		if bufsize > libc.Int64FromInt64(0x7fffffffffffffff)>>libc.Int32FromInt32(1) {
+			nomem = int32(1)
+			break
+		}
+		bufsize = bufsize << int64(1)
+	}
+	XPyEval_RestoreThread(tls, _save)
+	if **(**uintptr)(__ccgo_up(bp + 8)) == libc.UintptrFromInt32(0) {
+		if nomem == int32(1) {
+			XPyErr_NoMemory(tls)
+		} else {
+			XPyErr_Format(tls, XPyExc_KeyError, __ccgo_ts+368634, libc.VaList(bp+96, name))
+		}
+		goto out
+	}
+	retval = _mkpwent(tls, module, **(**uintptr)(__ccgo_up(bp + 8)))
+	goto out
+out:
+	;
+	XPyMem_RawFree(tls, buf)
+	X_Py_DecRef(tls, bytes)
+	return retval
+}
+
+func _pwd_getpwall_impl(tls *libc.TLS, module uintptr) (r uintptr) {
+	/*[clinic end generated code: output=4853d2f5a0afac8a input=d7ecebfd90219b85]*/
+	var d, p, v, v1, v2 uintptr
+	_, _, _, _, _ = d, p, v, v1, v2
+	v1 = XPyList_New(tls, 0)
+	d = v1
+	if v1 == libc.UintptrFromInt32(0) {
+		return libc.UintptrFromInt32(0)
+	}
+	_setpwent(tls)
+	for {
+		v1 = _getpwent(tls)
+		p = v1
+		if !(v1 != libc.UintptrFromInt32(0)) {
+			break
+		}
+		v = _mkpwent(tls, module, p)
+		if v == libc.UintptrFromInt32(0) || XPyList_Append(tls, d, v) != 0 {
+			v2 = v
+			if v2 != libc.UintptrFromInt32(0) {
+				X_Py_DecRef(tls, v2)
+			}
+			X_Py_DecRef(tls, d)
+			_ccgo_endpwent(tls)
+			return libc.UintptrFromInt32(0)
+		}
+		X_Py_DecRef(tls, v)
+	}
+	_ccgo_endpwent(tls)
+	return d
+}
+
+var _pwd_methods = [4]TPyMethodDef{
+	0: {
+		Fml_name:  __ccgo_ts + 368665,
+		Fml_flags: int32(MMETH_O),
+		Fml_doc:   uintptr(unsafe.Pointer(&_pwd_getpwuid__doc__)),
+	},
+	1: {
+		Fml_name:  __ccgo_ts + 368674,
+		Fml_flags: int32(MMETH_O),
+		Fml_doc:   uintptr(unsafe.Pointer(&_pwd_getpwnam__doc__)),
+	},
+	2: {
+		Fml_name:  __ccgo_ts + 368683,
+		Fml_flags: int32(MMETH_NOARGS),
+		Fml_doc:   uintptr(unsafe.Pointer(&_pwd_getpwall__doc__)),
+	},
+	3: {},
+}
+
+func init() {
+	p := unsafe.Pointer(&_pwd_methods)
+	*(*uintptr)(unsafe.Add(p, 8)) = __ccgo_fp(_pwd_getpwuid)
+	*(*uintptr)(unsafe.Add(p, 40)) = __ccgo_fp(_pwd_getpwnam)
+	*(*uintptr)(unsafe.Add(p, 72)) = __ccgo_fp(_pwd_getpwall)
+}
+
+func _pwdmodule_exec(tls *libc.TLS, module uintptr) (r int32) {
+	var state uintptr
+	_ = state
+	state = _get_pwd_state(tls, module)
+	(*Tpwdmodulestate)(unsafe.Pointer(state)).FStructPwdType = XPyStructSequence_NewType(tls, uintptr(unsafe.Pointer(&_struct_pwd_type_desc)))
+	if (*Tpwdmodulestate)(unsafe.Pointer(state)).FStructPwdType == libc.UintptrFromInt32(0) {
+		return -int32(1)
+	}
+	if XPyModule_AddType(tls, module, (*Tpwdmodulestate)(unsafe.Pointer(state)).FStructPwdType) < 0 {
+		return -int32(1)
+	}
+	return 0
+}
+
+var _pwdmodule_slots = [4]TPyModuleDef_Slot{
+	0: {
+		Fslot: int32(MPy_mod_exec),
+	},
+	1: {
+		Fslot:  int32(MPy_mod_multiple_interpreters),
+		Fvalue: libc.UintptrFromInt32(2),
+	},
+	2: {
+		Fslot:  int32(MPy_mod_gil),
+		Fvalue: libc.UintptrFromInt32(1),
+	},
+	3: {},
+}
+
+func init() {
+	p := unsafe.Pointer(&_pwdmodule_slots)
+	*(*uintptr)(unsafe.Add(p, 8)) = __ccgo_fp(_pwdmodule_exec)
+}
+
+func _pwdmodule_traverse(tls *libc.TLS, m uintptr, __ccgo_fp_visit Tvisitproc, arg uintptr) (r int32) {
+	var vret int32
+	_ = vret
+	if (*Tpwdmodulestate)(unsafe.Pointer(_get_pwd_state(tls, m))).FStructPwdType != 0 {
+		vret = (*(*func(*libc.TLS, uintptr, uintptr) int32)(unsafe.Pointer(&struct{ uintptr }{__ccgo_fp_visit})))(tls, (*Tpwdmodulestate)(unsafe.Pointer(_get_pwd_state(tls, m))).FStructPwdType, arg)
+		if vret != 0 {
+			return vret
+		}
+	}
+	return 0
+}
+
+func _pwdmodule_clear(tls *libc.TLS, m uintptr) (r int32) {
+	var _tmp_old_op, _tmp_op_ptr uintptr
+	_, _ = _tmp_old_op, _tmp_op_ptr
+	_tmp_op_ptr = _get_pwd_state(tls, m)
+	_tmp_old_op = **(**uintptr)(__ccgo_up(_tmp_op_ptr))
+	if _tmp_old_op != libc.UintptrFromInt32(0) {
+		**(**uintptr)(__ccgo_up(_tmp_op_ptr)) = libc.UintptrFromInt32(0)
+		X_Py_DecRef(tls, _tmp_old_op)
+	}
+	return 0
+}
+
+func _pwdmodule_free(tls *libc.TLS, m uintptr) {
+	_pwdmodule_clear(tls, m)
+}
+
+var _pwdmodule = TPyModuleDef{
+	Fm_base: TPyModuleDef_Base{
+		Fob_base: TPyObject{
+			F__ccgo0_0: *(*struct {
+				F__ccgo1_0 [0]struct {
+					Fob_refcnt   Tuint32_t
+					Fob_overflow Tuint16_t
+					Fob_flags    Tuint16_t
+				}
+				Fob_refcnt_full Tint64_t
+			})(unsafe.Pointer(&[1]uint64{0x50000c0000000})),
+		},
+	},
+	Fm_name:    __ccgo_ts + 168549,
+	Fm_doc:     uintptr(unsafe.Pointer(&_pwd__doc__)),
+	Fm_size:    int64(8),
+	Fm_methods: uintptr(unsafe.Pointer(&_pwd_methods)),
+	Fm_slots:   uintptr(unsafe.Pointer(&_pwdmodule_slots)),
+}
+
+func init() {
+	p := unsafe.Pointer(&_pwdmodule)
+	*(*uintptr)(unsafe.Add(p, 80)) = __ccgo_fp(_pwdmodule_traverse)
+	*(*uintptr)(unsafe.Add(p, 88)) = __ccgo_fp(_pwdmodule_clear)
+	*(*uintptr)(unsafe.Add(p, 96)) = __ccgo_fp(_pwdmodule_free)
+}
+
+func XPyInit_pwd(tls *libc.TLS) (r uintptr) {
+	return XPyModuleDef_Init(tls, uintptr(unsafe.Pointer(&_pwdmodule)))
+}
+
+const MEXEC_PREFIX = "/usr/local"
+
+const MEXE_SUFFIX = 0
+
+const MNSADDIMAGE_OPTION_MATCH_FILENAME_BY_INSTALLNAME = 8
+
+const MNSADDIMAGE_OPTION_NONE = 0
+
+const MNSADDIMAGE_OPTION_RETURN_ONLY_IF_LOADED = 4
+
+const MNSADDIMAGE_OPTION_RETURN_ON_ERROR = 1
+
+const MNSADDIMAGE_OPTION_WITH_SEARCHING = 2
+
+const MNSLINKMODULE_OPTION_BINDNOW = 1
+
+const MNSLINKMODULE_OPTION_DONT_CALL_MOD_INIT_ROUTINES = 8
+
+const MNSLINKMODULE_OPTION_NONE = 0
+
+const MNSLINKMODULE_OPTION_PRIVATE = 2
+
+const MNSLINKMODULE_OPTION_RETURN_ON_ERROR = 4
+
+const MNSLINKMODULE_OPTION_TRAILING_PHYS_NAME = 16
+
+const MNSLOOKUPSYMBOLINIMAGE_OPTION_BIND = 0
+
+const MNSLOOKUPSYMBOLINIMAGE_OPTION_BIND_FULLY = 2
+
+const MNSLOOKUPSYMBOLINIMAGE_OPTION_BIND_NOW = 1
+
+const MNSLOOKUPSYMBOLINIMAGE_OPTION_RETURN_ON_ERROR = 4
+
+const MNSUNLINKMODULE_OPTION_KEEP_MEMORY_MAPPED = 1
+
+const MNSUNLINKMODULE_OPTION_NONE = 0
+
+const MNSUNLINKMODULE_OPTION_RESET_LAZY_REFERENCES = 2
+
+const MPLATLIBDIR = "lib"
+
+const MPREFIX = "/usr/local"
+
+const MPYDEBUGEXT = 0
+
+const MPYTHONFRAMEWORK = ""
+
+const MPYTHONPATH = ""
+
+const MPYWINVER = 0
+
+const MVERSION = "3.14"
+
+const MVPATH = "/Users/tryanks/GolandProjects/cpython-go-testmods/tmp/darwin_arm64/cpython"
+
+type _DYLD_BOOL = int32
+
+const EFALSE = 0
+
+const ETRUE = 1
+
+type TNSObjectFileImageReturnCode = int32
+
+const ENSObjectFileImageFailure = 0
+
+const ENSObjectFileImageSuccess = 1
+
+const ENSObjectFileImageInappropriateFile = 2
+
+const ENSObjectFileImageArch = 3
+
+const ENSObjectFileImageFormat = 4
+
+const ENSObjectFileImageAccess = 5
+
+type TNSObjectFileImage = uintptr
+
+type TNSModule = uintptr
+
+type TNSSymbol = uintptr
+
+type TNSLinkEditErrors = int32
+
+const ENSLinkEditFileAccessError = 0
+
+const ENSLinkEditFileFormatError = 1
+
+const ENSLinkEditMachResourceError = 2
+
+const ENSLinkEditUnixResourceError = 3
+
+const ENSLinkEditOtherError = 4
+
+const ENSLinkEditWarningError = 5
+
+const ENSLinkEditMultiplyDefinedError = 6
+
+const ENSLinkEditUndefinedError = 7
+
+type TNSOtherErrorNumbers = int32
+
+const ENSOtherErrorRelocation = 0
+
+const ENSOtherErrorLazyBind = 1
+
+const ENSOtherErrorIndrLoop = 2
+
+const ENSOtherErrorLazyInit = 3
+
+const ENSOtherErrorInvalidArgs = 4
+
+type TNSLinkEditErrorHandlers = struct {
+	Fundefined uintptr
+	Fmultiple  uintptr
+	FlinkEdit  uintptr
+}
+
+func _getpath_abspath(tls *libc.TLS, _unused_self uintptr, args uintptr) (r1 uintptr) {
+	bp := tls.Alloc(48)
+	defer tls.Free(48)
+	var path, r uintptr
+	var _ uintptr
+	var _ TPy_ssize_t
+	var _ uintptr
+	_, _ = path, r
+	r = libc.UintptrFromInt32(0)
+	if !(XPyArg_ParseTuple(tls, args, __ccgo_ts+37069, libc.VaList(bp+32, bp)) != 0) {
+		return libc.UintptrFromInt32(0)
+	}
+	path = XPyUnicode_AsWideCharString(tls, **(**uintptr)(__ccgo_up(bp)), bp+8)
+	if path != 0 {
+		if X_Py_abspath(tls, X_Py_normpath(tls, path, int64(-int32(1))), bp+16) == 0 && **(**uintptr)(__ccgo_up(bp + 16)) != 0 {
+			r = XPyUnicode_FromWideChar(tls, **(**uintptr)(__ccgo_up(bp + 16)), int64(-int32(1)))
+			XPyMem_RawFree(tls, **(**uintptr)(__ccgo_up(bp + 16)))
+		} else {
+			XPyErr_SetString(tls, XPyExc_OSError, __ccgo_ts+368692)
+		}
+		XPyMem_Free(tls, path)
+	}
+	return r
+}
+
+func _getpath_basename(tls *libc.TLS, _unused_self uintptr, args uintptr) (r uintptr) {
+	bp := tls.Alloc(32)
+	defer tls.Free(32)
+	var cur_refcnt Tuint32_t
+	var end, pos, v1 TPy_ssize_t
+	var v3, v4, v6 uintptr
+	var _ uintptr
+	_, _, _, _, _, _, _ = cur_refcnt, end, pos, v1, v3, v4, v6
+	if !(XPyArg_ParseTuple(tls, args, __ccgo_ts+37069, libc.VaList(bp+16, bp)) != 0) {
+		return libc.UintptrFromInt32(0)
+	}
+	v1 = (*TPyASCIIObject)(unsafe.Pointer(**(**uintptr)(__ccgo_up(bp)))).Flength
+	goto _2
+_2:
+	end = v1
+	pos = XPyUnicode_FindChar(tls, **(**uintptr)(__ccgo_up(bp)), uint32('/'), 0, end, -int32(1))
+	if pos < 0 {
+		v3 = **(**uintptr)(__ccgo_up(bp))
+		v4 = v3
+		cur_refcnt = *(*Tuint32_t)(unsafe.Pointer(v4))
+		if uint64(cur_refcnt) >= libc.Uint64FromUint64(3)<<libc.Int32FromInt32(30) {
+			goto _5
+		}
+		*(*Tuint32_t)(unsafe.Pointer(v4)) = cur_refcnt + uint32(1)
+	_5:
+		;
+		v6 = v3
+		goto _7
+	_7:
+		return v6
+	}
+	return XPyUnicode_Substring(tls, **(**uintptr)(__ccgo_up(bp)), pos+int64(1), end)
+}
+
+func _getpath_dirname(tls *libc.TLS, _unused_self uintptr, args uintptr) (r uintptr) {
+	bp := tls.Alloc(32)
+	defer tls.Free(32)
+	var end, pos, v1 TPy_ssize_t
+	var _ uintptr
+	_, _, _ = end, pos, v1
+	if !(XPyArg_ParseTuple(tls, args, __ccgo_ts+37069, libc.VaList(bp+16, bp)) != 0) {
+		return libc.UintptrFromInt32(0)
+	}
+	v1 = (*TPyASCIIObject)(unsafe.Pointer(**(**uintptr)(__ccgo_up(bp)))).Flength
+	goto _2
+_2:
+	end = v1
+	pos = XPyUnicode_FindChar(tls, **(**uintptr)(__ccgo_up(bp)), uint32('/'), 0, end, -int32(1))
+	if pos < 0 {
+		return XPy_GetConstant(tls, uint32(MPy_CONSTANT_EMPTY_STR))
+	}
+	return XPyUnicode_Substring(tls, **(**uintptr)(__ccgo_up(bp)), 0, pos)
+}
+
+func _getpath_isabs(tls *libc.TLS, _unused_self uintptr, args uintptr) (r1 uintptr) {
+	bp := tls.Alloc(32)
+	defer tls.Free(32)
+	var cur_refcnt Tuint32_t
+	var path, r, v1, v2, v3, v4 uintptr
+	var _ uintptr
+	_, _, _, _, _, _, _ = cur_refcnt, path, r, v1, v2, v3, v4
+	r = libc.UintptrFromInt32(0)
+	if !(XPyArg_ParseTuple(tls, args, __ccgo_ts+37069, libc.VaList(bp+16, bp)) != 0) {
+		return libc.UintptrFromInt32(0)
+	}
+	path = XPyUnicode_AsWideCharString(tls, **(**uintptr)(__ccgo_up(bp)), libc.UintptrFromInt32(0))
+	if path != 0 {
+		if X_Py_isabs(tls, path) != 0 {
+			v1 = uintptr(unsafe.Pointer(&X_Py_TrueStruct))
+		} else {
+			v1 = uintptr(unsafe.Pointer(&X_Py_FalseStruct))
+		}
+		r = v1
+		XPyMem_Free(tls, path)
+	}
+	v1 = r
+	v2 = v1
+	if v2 != libc.UintptrFromInt32(0) {
+		v3 = v2
+		cur_refcnt = *(*Tuint32_t)(unsafe.Pointer(v3))
+		if uint64(cur_refcnt) >= libc.Uint64FromUint64(3)<<libc.Int32FromInt32(30) {
+			goto _5
+		}
+		*(*Tuint32_t)(unsafe.Pointer(v3)) = cur_refcnt + uint32(1)
+	_5:
+	}
+	v4 = v1
+	goto _7
+_7:
+	return v4
+}
+
+func _getpath_hassuffix(tls *libc.TLS, _unused_self uintptr, args uintptr) (r1 uintptr) {
+	bp := tls.Alloc(64)
+	defer tls.Free(64)
+	var cur_refcnt Tuint32_t
+	var path, r, suffix, v1, v2, v4 uintptr
+	var _ TPy_ssize_t
+	var _ uintptr
+	var _ TPy_ssize_t
+	var _ uintptr
+	_, _, _, _, _, _, _ = cur_refcnt, path, r, suffix, v1, v2, v4
+	r = libc.UintptrFromInt32(0)
+	if !(XPyArg_ParseTuple(tls, args, __ccgo_ts+368721, libc.VaList(bp+40, bp, bp+8)) != 0) {
+		return libc.UintptrFromInt32(0)
+	}
+	path = XPyUnicode_AsWideCharString(tls, **(**uintptr)(__ccgo_up(bp)), bp+16)
+	if path != 0 {
+		suffix = XPyUnicode_AsWideCharString(tls, **(**uintptr)(__ccgo_up(bp + 8)), bp+24)
+		if suffix != 0 {
+			if **(**TPy_ssize_t)(__ccgo_up(bp + 24)) > **(**TPy_ssize_t)(__ccgo_up(bp + 16)) || _wcscmp(tls, path+uintptr(**(**TPy_ssize_t)(__ccgo_up(bp + 16))-**(**TPy_ssize_t)(__ccgo_up(bp + 24)))*4, suffix) != 0 {
+				v1 = uintptr(unsafe.Pointer(&X_Py_FalseStruct))
+				v2 = v1
+				cur_refcnt = *(*Tuint32_t)(unsafe.Pointer(v2))
+				if uint64(cur_refcnt) >= libc.Uint64FromUint64(3)<<libc.Int32FromInt32(30) {
+					goto _3
+				}
+				*(*Tuint32_t)(unsafe.Pointer(v2)) = cur_refcnt + uint32(1)
+			_3:
+				;
+				v4 = v1
+				goto _5
+			_5:
+				r = v4
+			} else {
+				v1 = uintptr(unsafe.Pointer(&X_Py_TrueStruct))
+				v2 = v1
+				cur_refcnt = *(*Tuint32_t)(unsafe.Pointer(v2))
+				if uint64(cur_refcnt) >= libc.Uint64FromUint64(3)<<libc.Int32FromInt32(30) {
+					goto _8
+				}
+				*(*Tuint32_t)(unsafe.Pointer(v2)) = cur_refcnt + uint32(1)
+			_8:
+				;
+				v4 = v1
+				goto _10
+			_10:
+				r = v4
+			}
+			XPyMem_Free(tls, suffix)
+		}
+		XPyMem_Free(tls, path)
+	}
+	return r
+}
+
+func _getpath_isdir(tls *libc.TLS, _unused_self uintptr, args uintptr) (r1 uintptr) {
+	bp := tls.Alloc(176)
+	defer tls.Free(176)
+	var cur_refcnt Tuint32_t
+	var path, r, v1, v2, v3, v4 uintptr
+	var _ uintptr
+	var _ Tstat
+	_, _, _, _, _, _, _ = cur_refcnt, path, r, v1, v2, v3, v4
+	r = libc.UintptrFromInt32(0)
+	if !(XPyArg_ParseTuple(tls, args, __ccgo_ts+37069, libc.VaList(bp+160, bp)) != 0) {
+		return libc.UintptrFromInt32(0)
+	}
+	path = XPyUnicode_AsWideCharString(tls, **(**uintptr)(__ccgo_up(bp)), libc.UintptrFromInt32(0))
+	if path != 0 {
+		if X_Py_wstat(tls, path, bp+8) == 0 && libc.Int32FromUint16((**(**Tstat)(__ccgo_up(bp + 8))).Fst_mode)&int32(MS_IFMT) == int32(MS_IFDIR) {
+			v1 = uintptr(unsafe.Pointer(&X_Py_TrueStruct))
+		} else {
+			v1 = uintptr(unsafe.Pointer(&X_Py_FalseStruct))
+		}
+		r = v1
+		XPyMem_Free(tls, path)
+	}
+	v1 = r
+	v2 = v1
+	if v2 != libc.UintptrFromInt32(0) {
+		v3 = v2
+		cur_refcnt = *(*Tuint32_t)(unsafe.Pointer(v3))
+		if uint64(cur_refcnt) >= libc.Uint64FromUint64(3)<<libc.Int32FromInt32(30) {
+			goto _5
+		}
+		*(*Tuint32_t)(unsafe.Pointer(v3)) = cur_refcnt + uint32(1)
+	_5:
+	}
+	v4 = v1
+	goto _7
+_7:
+	return v4
+}
+
+func _getpath_isfile(tls *libc.TLS, _unused_self uintptr, args uintptr) (r1 uintptr) {
+	bp := tls.Alloc(176)
+	defer tls.Free(176)
+	var cur_refcnt Tuint32_t
+	var path, r, v1, v2, v3, v4 uintptr
+	var _ uintptr
+	var _ Tstat
+	_, _, _, _, _, _, _ = cur_refcnt, path, r, v1, v2, v3, v4
+	r = libc.UintptrFromInt32(0)
+	if !(XPyArg_ParseTuple(tls, args, __ccgo_ts+37069, libc.VaList(bp+160, bp)) != 0) {
+		return libc.UintptrFromInt32(0)
+	}
+	path = XPyUnicode_AsWideCharString(tls, **(**uintptr)(__ccgo_up(bp)), libc.UintptrFromInt32(0))
+	if path != 0 {
+		if X_Py_wstat(tls, path, bp+8) == 0 && libc.Int32FromUint16((**(**Tstat)(__ccgo_up(bp + 8))).Fst_mode)&int32(MS_IFMT) == int32(MS_IFREG) {
+			v1 = uintptr(unsafe.Pointer(&X_Py_TrueStruct))
+		} else {
+			v1 = uintptr(unsafe.Pointer(&X_Py_FalseStruct))
+		}
+		r = v1
+		XPyMem_Free(tls, path)
+	}
+	v1 = r
+	v2 = v1
+	if v2 != libc.UintptrFromInt32(0) {
+		v3 = v2
+		cur_refcnt = *(*Tuint32_t)(unsafe.Pointer(v3))
+		if uint64(cur_refcnt) >= libc.Uint64FromUint64(3)<<libc.Int32FromInt32(30) {
+			goto _5
+		}
+		*(*Tuint32_t)(unsafe.Pointer(v3)) = cur_refcnt + uint32(1)
+	_5:
+	}
+	v4 = v1
+	goto _7
+_7:
+	return v4
+}
+
+func _getpath_isxfile(tls *libc.TLS, _unused_self uintptr, args uintptr) (r1 uintptr) {
+	bp := tls.Alloc(176)
+	defer tls.Free(176)
+	var cur_refcnt Tuint32_t
+	var path, r, v1, v2, v3, v4 uintptr
+	var _ TPy_ssize_t
+	var _ uintptr
+	var _ Tstat
+	_, _, _, _, _, _, _ = cur_refcnt, path, r, v1, v2, v3, v4
+	r = libc.UintptrFromInt32(0)
+	if !(XPyArg_ParseTuple(tls, args, __ccgo_ts+37069, libc.VaList(bp+168, bp)) != 0) {
+		return libc.UintptrFromInt32(0)
+	}
+	path = XPyUnicode_AsWideCharString(tls, **(**uintptr)(__ccgo_up(bp)), bp+8)
+	if path != 0 {
+		if X_Py_wstat(tls, path, bp+16) == 0 && libc.Int32FromUint16((**(**Tstat)(__ccgo_up(bp + 16))).Fst_mode)&int32(MS_IFMT) == int32(MS_IFREG) && libc.Int32FromUint16((**(**Tstat)(__ccgo_up(bp + 16))).Fst_mode)&int32(0111) != 0 {
+			v1 = uintptr(unsafe.Pointer(&X_Py_TrueStruct))
+		} else {
+			v1 = uintptr(unsafe.Pointer(&X_Py_FalseStruct))
+		}
+		r = v1
+		XPyMem_Free(tls, path)
+	}
+	v1 = r
+	v2 = v1
+	if v2 != libc.UintptrFromInt32(0) {
+		v3 = v2
+		cur_refcnt = *(*Tuint32_t)(unsafe.Pointer(v3))
+		if uint64(cur_refcnt) >= libc.Uint64FromUint64(3)<<libc.Int32FromInt32(30) {
+			goto _5
+		}
+		*(*Tuint32_t)(unsafe.Pointer(v3)) = cur_refcnt + uint32(1)
+	_5:
+	}
+	v4 = v1
+	goto _7
+_7:
+	return v4
+}
+
+func _getpath_joinpath(tls *libc.TLS, _unused_self uintptr, args uintptr) (r1 uintptr) {
+	bp := tls.Alloc(16)
+	defer tls.Free(16)
+	var cchFinal, first, i, i1, i2, n, v5, v7 TPy_ssize_t
+	var final, parts, r, s, tuple, v1 uintptr
+	var flags uint64
+	var v3 int32
+	var _ TPy_ssize_t
+	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = cchFinal, final, first, flags, i, i1, i2, n, parts, r, s, tuple, v1, v3, v5, v7
+	v1 = (*TPyObject)(unsafe.Pointer(args)).Fob_type
+	goto _2
+_2:
+	flags = (*TPyTypeObject)(unsafe.Pointer(v1)).Ftp_flags
+	v3 = libc.BoolInt32(flags&(libc.Uint64FromUint64(1)<<libc.Int32FromInt32(26)) != uint64(0))
+	goto _4
+_4:
+	if !(v3 != 0) {
+		XPyErr_SetString(tls, XPyExc_TypeError, __ccgo_ts+368724)
+		return libc.UintptrFromInt32(0)
+	}
+	tuple = args
+	v7 = (*TPyVarObject)(unsafe.Pointer(tuple)).Fob_size
+	goto _8
+_8:
+	v5 = v7
+	goto _6
+_6:
+	n = v5
+	if n == 0 {
+		return XPy_GetConstant(tls, uint32(MPy_CONSTANT_EMPTY_STR))
+	}
+
+	parts = XPyMem_Malloc(tls, libc.Uint64FromInt64(n)*uint64(8))
+	if parts == libc.UintptrFromInt32(0) {
+		XPyErr_NoMemory(tls)
+		return libc.UintptrFromInt32(0)
+	}
+	libc.X__builtin___memset_chk(tls, parts, 0, libc.Uint64FromInt64(n)*uint64(8), ^t__predefined_size_t(0))
+	cchFinal = 0
+	first = 0
+	i = 0
+	for {
+		if !(i < n) {
+			break
+		}
+		s = **(**uintptr)(__ccgo_up(args + 32 + uintptr(i)*8))
+		if s == uintptr(unsafe.Pointer(&X_Py_NoneStruct)) {
+			**(**TPy_ssize_t)(__ccgo_up(bp)) = 0
+		} else {
+			v1 = (*TPyObject)(unsafe.Pointer(s)).Fob_type
+			goto _11
+		_11:
+			flags = (*TPyTypeObject)(unsafe.Pointer(v1)).Ftp_flags
+			v3 = libc.BoolInt32(flags&(libc.Uint64FromUint64(1)<<libc.Int32FromInt32(28)) != uint64(0))
+			goto _13
+		_13:
+			if v3 != 0 {
+				**(**uintptr)(__ccgo_up(parts + uintptr(i)*8)) = XPyUnicode_AsWideCharString(tls, s, bp)
+				if !(**(**uintptr)(__ccgo_up(parts + uintptr(i)*8)) != 0) {
+					cchFinal = int64(-int32(1))
+					break
+				}
+				if X_Py_isabs(tls, **(**uintptr)(__ccgo_up(parts + uintptr(i)*8))) != 0 {
+					first = i
+				}
+			} else {
+				XPyErr_SetString(tls, XPyExc_TypeError, __ccgo_ts+368752)
+				cchFinal = int64(-int32(1))
+				break
+			}
+		}
+		cchFinal = cchFinal + (**(**TPy_ssize_t)(__ccgo_up(bp)) + int64(1))
+		goto _9
+	_9:
+		;
+		i = i + 1
+	}
+	if cchFinal > 0 {
+		v1 = XPyMem_Malloc(tls, libc.Uint64FromInt64(cchFinal)*uint64(4))
+	} else {
+		v1 = libc.UintptrFromInt32(0)
+	}
+	final = v1
+	if !(final != 0) {
+		i1 = 0
+		for {
+			if !(i1 < n) {
+				break
+			}
+			XPyMem_Free(tls, **(**uintptr)(__ccgo_up(parts + uintptr(i1)*8)))
+			goto _15
+		_15:
+			;
+			i1 = i1 + 1
+		}
+		XPyMem_Free(tls, parts)
+		if cchFinal != 0 {
+			XPyErr_NoMemory(tls)
+			return libc.UintptrFromInt32(0)
+		}
+		return XPy_GetConstant(tls, uint32(MPy_CONSTANT_EMPTY_STR))
+	}
+	**(**Twchar_t)(__ccgo_up(final)) = int32('\000')
+
+	i2 = 0
+	for {
+		if !(i2 < n) {
+			break
+		}
+		if !(**(**uintptr)(__ccgo_up(parts + uintptr(i2)*8)) != 0) {
+			goto _16
+		}
+		if i2 >= first && final != 0 {
+			if !(**(**Twchar_t)(__ccgo_up(final)) != 0) {
+
+				_wcscpy(tls, final, **(**uintptr)(__ccgo_up(parts + uintptr(i2)*8)))
+			} else {
+				if X_Py_add_relfile(tls, final, **(**uintptr)(__ccgo_up(parts + uintptr(i2)*8)), libc.Uint64FromInt64(cchFinal)) < 0 {
+
+					XPyMem_Free(tls, final)
+					final = libc.UintptrFromInt32(0)
+				}
+			}
+		}
+		XPyMem_Free(tls, **(**uintptr)(__ccgo_up(parts + uintptr(i2)*8)))
+		goto _16
+	_16:
+		;
+		i2 = i2 + 1
+	}
+	XPyMem_Free(tls, parts)
+	if !(final != 0) {
+		XPyErr_SetString(tls, XPyExc_SystemError, __ccgo_ts+368800)
+		return libc.UintptrFromInt32(0)
+	}
+	r = XPyUnicode_FromWideChar(tls, X_Py_normpath(tls, final, int64(-int32(1))), int64(-int32(1)))
+	XPyMem_Free(tls, final)
+	return r
+}
+
+func _getpath_readlines(tls *libc.TLS, _unused_self uintptr, args uintptr) (r uintptr) {
+	bp := tls.Alloc(48)
+	defer tls.Free(48)
+	var MAX_FILE, cb Tsize_t
+	var _tmp_old_op, _tmp_old_op1, _tmp_op_ptr, _tmp_op_ptr1, buffer, fp, p1, p2, path, u, u1, wbuffer, v1, v6, v7 uintptr
+	var cb1 TPy_ssize_t
+	var v5 Tuint32_t
+	var v2 int32
+	var v20 int64
+	var _ Tsize_t
+	var _ uintptr
+	var _ uintptr
+	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = MAX_FILE, _tmp_old_op, _tmp_old_op1, _tmp_op_ptr, _tmp_op_ptr1, buffer, cb, cb1, fp, p1, p2, path, u, u1, wbuffer, v1, v2, v20, v5, v6, v7
+	**(**uintptr)(__ccgo_up(bp)) = libc.UintptrFromInt32(0)
+	if !(XPyArg_ParseTuple(tls, args, __ccgo_ts+37069, libc.VaList(bp+32, bp+8)) != 0) {
+		return libc.UintptrFromInt32(0)
+	}
+	path = XPyUnicode_AsWideCharString(tls, **(**uintptr)(__ccgo_up(bp + 8)), libc.UintptrFromInt32(0))
+	if !(path != 0) {
+		return libc.UintptrFromInt32(0)
+	}
+	fp = X_Py_wfopen(tls, path, __ccgo_ts+368821)
+	if !(fp != 0) {
+		XPyErr_SetFromErrno(tls, XPyExc_OSError)
+		XPyMem_Free(tls, path)
+		return libc.UintptrFromInt32(0)
+	}
+	XPyMem_Free(tls, path)
+	**(**uintptr)(__ccgo_up(bp)) = XPyList_New(tls, 0)
+	if !(**(**uintptr)(__ccgo_up(bp)) != 0) {
+		libc.Xfclose(tls, fp)
+		return libc.UintptrFromInt32(0)
+	}
+	MAX_FILE = libc.Uint64FromInt32(libc.Int32FromInt32(32) * libc.Int32FromInt32(1024))
+	buffer = XPyMem_Malloc(tls, MAX_FILE)
+	if !(buffer != 0) {
+		v1 = **(**uintptr)(__ccgo_up(bp))
+		v2 = libc.BoolInt32(libc.Int32FromUint32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
+		goto _3
+	_3:
+		if v2 != 0 {
+			goto _4
+		}
+		v6 = v1
+		*(*Tuint32_t)(unsafe.Pointer(v6)) = *(*Tuint32_t)(unsafe.Pointer(v6)) - 1
+		v5 = *(*Tuint32_t)(unsafe.Pointer(v6))
+		if v5 == libc.Uint32FromInt32(0) {
+			X_Py_Dealloc(tls, v1)
+		}
+	_4:
+		;
+		libc.Xfclose(tls, fp)
+		return libc.UintptrFromInt32(0)
+	}
+	cb = libc.Xfread(tls, buffer, uint64(1), MAX_FILE, fp)
+	libc.Xfclose(tls, fp)
+	if !(cb != 0) {
+		return **(**uintptr)(__ccgo_up(bp))
+	}
+	if cb >= MAX_FILE {
+		v1 = **(**uintptr)(__ccgo_up(bp))
+		v2 = libc.BoolInt32(libc.Int32FromUint32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
+		goto _9
+	_9:
+		if v2 != 0 {
+			goto _10
+		}
+		v6 = v1
+		*(*Tuint32_t)(unsafe.Pointer(v6)) = *(*Tuint32_t)(unsafe.Pointer(v6)) - 1
+		v5 = *(*Tuint32_t)(unsafe.Pointer(v6))
+		if v5 == libc.Uint32FromInt32(0) {
+			X_Py_Dealloc(tls, v1)
+		}
+	_10:
+		;
+		XPyErr_SetString(tls, XPyExc_MemoryError, __ccgo_ts+368833)
+		return libc.UintptrFromInt32(0)
+	}
+	**(**int8)(__ccgo_up(buffer + uintptr(cb))) = int8('\000')
+	wbuffer = X_Py_DecodeUTF8_surrogateescape(tls, buffer, libc.Int64FromUint64(cb), bp+16)
+	XPyMem_Free(tls, buffer)
+	if !(wbuffer != 0) {
+		v1 = **(**uintptr)(__ccgo_up(bp))
+		v2 = libc.BoolInt32(libc.Int32FromUint32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
+		goto _15
+	_15:
+		if v2 != 0 {
+			goto _16
+		}
+		v6 = v1
+		*(*Tuint32_t)(unsafe.Pointer(v6)) = *(*Tuint32_t)(unsafe.Pointer(v6)) - 1
+		v5 = *(*Tuint32_t)(unsafe.Pointer(v6))
+		if v5 == libc.Uint32FromInt32(0) {
+			X_Py_Dealloc(tls, v1)
+		}
+	_16:
+		;
+		XPyErr_NoMemory(tls)
+		return libc.UintptrFromInt32(0)
+	}
+	p1 = wbuffer
+	p2 = p1
+	for {
+		v1 = _ccgo_wcschr(tls, p1, int32('\n'))
+		p2 = v1
+		if !(v1 != libc.UintptrFromInt32(0)) {
+			break
+		}
+		cb1 = (int64(p2) - int64(p1)) / 4
+		for cb1 >= 0 && (**(**Twchar_t)(__ccgo_up(p1 + uintptr(cb1)*4)) == int32('\n') || **(**Twchar_t)(__ccgo_up(p1 + uintptr(cb1)*4)) == int32('\r')) {
+			cb1 = cb1 - 1
+		}
+		if cb1 >= 0 {
+			v20 = cb1 + int64(1)
+		} else {
+			v20 = 0
+		}
+		u = XPyUnicode_FromWideChar(tls, p1, v20)
+		if !(u != 0) || XPyList_Append(tls, **(**uintptr)(__ccgo_up(bp)), u) < 0 {
+			v1 = u
+			if v1 != libc.UintptrFromInt32(0) {
+				v6 = v1
+				v2 = libc.BoolInt32(libc.Int32FromUint32(*(*Tuint32_t)(unsafe.Pointer(v6))) < 0)
+				goto _24
+			_24:
+				if v2 != 0 {
+					goto _25
+				}
+				v7 = v6
+				*(*Tuint32_t)(unsafe.Pointer(v7)) = *(*Tuint32_t)(unsafe.Pointer(v7)) - 1
+				v5 = *(*Tuint32_t)(unsafe.Pointer(v7))
+				if v5 == libc.Uint32FromInt32(0) {
+					X_Py_Dealloc(tls, v6)
+				}
+			_25:
+			}
+			_tmp_op_ptr = bp
+			_tmp_old_op = **(**uintptr)(__ccgo_up(_tmp_op_ptr))
+			if _tmp_old_op != libc.UintptrFromInt32(0) {
+				**(**uintptr)(__ccgo_up(_tmp_op_ptr)) = libc.UintptrFromInt32(0)
+				v1 = _tmp_old_op
+				v2 = libc.BoolInt32(libc.Int32FromUint32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
+				goto _30
+			_30:
+				if v2 != 0 {
+					goto _31
+				}
+				v6 = v1
+				*(*Tuint32_t)(unsafe.Pointer(v6)) = *(*Tuint32_t)(unsafe.Pointer(v6)) - 1
+				v5 = *(*Tuint32_t)(unsafe.Pointer(v6))
+				if v5 == libc.Uint32FromInt32(0) {
+					X_Py_Dealloc(tls, v1)
+				}
+			_31:
+			}
+			break
+		}
+		v1 = u
+		v2 = libc.BoolInt32(libc.Int32FromUint32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
+		goto _36
+	_36:
+		if v2 != 0 {
+			goto _37
+		}
+		v6 = v1
+		*(*Tuint32_t)(unsafe.Pointer(v6)) = *(*Tuint32_t)(unsafe.Pointer(v6)) - 1
+		v5 = *(*Tuint32_t)(unsafe.Pointer(v6))
+		if v5 == libc.Uint32FromInt32(0) {
+			X_Py_Dealloc(tls, v1)
+		}
+	_37:
+		;
+		p1 = p2 + uintptr(1)*4
+	}
+	if **(**uintptr)(__ccgo_up(bp)) != 0 && p1 != 0 && **(**Twchar_t)(__ccgo_up(p1)) != 0 {
+		u1 = XPyUnicode_FromWideChar(tls, p1, int64(-int32(1)))
+		if !(u1 != 0) || XPyList_Append(tls, **(**uintptr)(__ccgo_up(bp)), u1) < 0 {
+			_tmp_op_ptr1 = bp
+			_tmp_old_op1 = **(**uintptr)(__ccgo_up(_tmp_op_ptr1))
+			if _tmp_old_op1 != libc.UintptrFromInt32(0) {
+				**(**uintptr)(__ccgo_up(_tmp_op_ptr1)) = libc.UintptrFromInt32(0)
+				v1 = _tmp_old_op1
+				v2 = libc.BoolInt32(libc.Int32FromUint32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
+				goto _42
+			_42:
+				if v2 != 0 {
+					goto _43
+				}
+				v6 = v1
+				*(*Tuint32_t)(unsafe.Pointer(v6)) = *(*Tuint32_t)(unsafe.Pointer(v6)) - 1
+				v5 = *(*Tuint32_t)(unsafe.Pointer(v6))
+				if v5 == libc.Uint32FromInt32(0) {
+					X_Py_Dealloc(tls, v1)
+				}
+			_43:
+			}
+		}
+		v1 = u1
+		if v1 != libc.UintptrFromInt32(0) {
+			v6 = v1
+			v2 = libc.BoolInt32(libc.Int32FromUint32(*(*Tuint32_t)(unsafe.Pointer(v6))) < 0)
+			goto _49
+		_49:
+			if v2 != 0 {
+				goto _50
+			}
+			v7 = v6
+			*(*Tuint32_t)(unsafe.Pointer(v7)) = *(*Tuint32_t)(unsafe.Pointer(v7)) - 1
+			v5 = *(*Tuint32_t)(unsafe.Pointer(v7))
+			if v5 == libc.Uint32FromInt32(0) {
+				X_Py_Dealloc(tls, v6)
+			}
+		_50:
+		}
+	}
+	XPyMem_RawFree(tls, wbuffer)
+	return **(**uintptr)(__ccgo_up(bp))
+}
+
+func _getpath_realpath(tls *libc.TLS, _unused_self uintptr, args uintptr) (r1 uintptr) {
+	bp := tls.Alloc(4128)
+	defer tls.Free(4128)
+	var cur_refcnt Tuint32_t
+	var linklen, nlink int32
+	var path, path2, r, s, v1, v2, v4 uintptr
+	var _ uintptr
+	var _ [1025]Twchar_t
+	_, _, _, _, _, _, _, _, _, _ = cur_refcnt, linklen, nlink, path, path2, r, s, v1, v2, v4
+	if !(XPyArg_ParseTuple(tls, args, __ccgo_ts+37069, libc.VaList(bp+4120, bp)) != 0) {
+		return libc.UintptrFromInt32(0)
+	}
+
+	r = libc.UintptrFromInt32(0)
+	nlink = 0
+	path = XPyUnicode_AsWideCharString(tls, **(**uintptr)(__ccgo_up(bp)), libc.UintptrFromInt32(0))
+	if !(path != 0) {
+		goto done
+	}
+	path2 = X_PyMem_RawWcsdup(tls, path)
+	XPyMem_Free(tls, path)
+	path = path2
+	for path != 0 {
+		linklen = X_Py_wreadlink(tls, path, bp+8, libc.Uint64FromInt64(4100)/libc.Uint64FromInt64(4))
+		if linklen == -int32(1) {
+			r = XPyUnicode_FromWideChar(tls, path, int64(-int32(1)))
+			break
+		}
+		if X_Py_isabs(tls, bp+8) != 0 {
+			XPyMem_RawFree(tls, path)
+			path = X_PyMem_RawWcsdup(tls, bp+8)
+		} else {
+			s = _wcsrchr(tls, path, int32('/'))
+			if s != 0 {
+				**(**Twchar_t)(__ccgo_up(s)) = int32('\000')
+			}
+			path2 = X_Py_join_relfile(tls, path, bp+8)
+			if path2 != 0 {
+				path2 = X_Py_normpath(tls, path2, int64(-int32(1)))
+			}
+			XPyMem_RawFree(tls, path)
+			path = path2
+		}
+		nlink = nlink + 1
+
+		if nlink >= int32(40) {
+			XPyErr_SetString(tls, XPyExc_OSError, __ccgo_ts+368889)
+			break
+		}
+	}
+	if !(path != 0) {
+		XPyErr_NoMemory(tls)
+	}
+	goto done
+done:
+	;
+	XPyMem_RawFree(tls, path)
+	return r
+	v1 = **(**uintptr)(__ccgo_up(bp))
+	v2 = v1
+	cur_refcnt = *(*Tuint32_t)(unsafe.Pointer(v2))
+	if uint64(cur_refcnt) >= libc.Uint64FromUint64(3)<<libc.Int32FromInt32(30) {
+		goto _3
+	}
+	*(*Tuint32_t)(unsafe.Pointer(v2)) = cur_refcnt + uint32(1)
+_3:
+	;
+	v4 = v1
+	goto _5
+_5:
+	return v4
+}
+
+var _getpath_methods = [12]TPyMethodDef{
+	0: {
+		Fml_name:  __ccgo_ts + 368930,
+		Fml_flags: int32(MMETH_VARARGS),
+	},
+	1: {
+		Fml_name:  __ccgo_ts + 368938,
+		Fml_flags: int32(MMETH_VARARGS),
+	},
+	2: {
+		Fml_name:  __ccgo_ts + 368947,
+		Fml_flags: int32(MMETH_VARARGS),
+	},
+	3: {
+		Fml_name:  __ccgo_ts + 368955,
+		Fml_flags: int32(MMETH_VARARGS),
+	},
+	4: {
+		Fml_name:  __ccgo_ts + 368965,
+		Fml_flags: int32(MMETH_VARARGS),
+	},
+	5: {
+		Fml_name:  __ccgo_ts + 368971,
+		Fml_flags: int32(MMETH_VARARGS),
+	},
+	6: {
+		Fml_name:  __ccgo_ts + 368977,
+		Fml_flags: int32(MMETH_VARARGS),
+	},
+	7: {
+		Fml_name:  __ccgo_ts + 368984,
+		Fml_flags: int32(MMETH_VARARGS),
+	},
+	8: {
+		Fml_name:  __ccgo_ts + 368992,
+		Fml_flags: int32(MMETH_VARARGS),
+	},
+	9: {
+		Fml_name:  __ccgo_ts + 230206,
+		Fml_flags: int32(MMETH_VARARGS),
+	},
+	10: {
+		Fml_name:  __ccgo_ts + 369001,
+		Fml_flags: int32(MMETH_VARARGS),
+	},
+	11: {},
+}
+
+func init() {
+	p := unsafe.Pointer(&_getpath_methods)
+	*(*uintptr)(unsafe.Add(p, 8)) = __ccgo_fp(_getpath_abspath)
+	*(*uintptr)(unsafe.Add(p, 40)) = __ccgo_fp(_getpath_basename)
+	*(*uintptr)(unsafe.Add(p, 72)) = __ccgo_fp(_getpath_dirname)
+	*(*uintptr)(unsafe.Add(p, 104)) = __ccgo_fp(_getpath_hassuffix)
+	*(*uintptr)(unsafe.Add(p, 136)) = __ccgo_fp(_getpath_isabs)
+	*(*uintptr)(unsafe.Add(p, 168)) = __ccgo_fp(_getpath_isdir)
+	*(*uintptr)(unsafe.Add(p, 200)) = __ccgo_fp(_getpath_isfile)
+	*(*uintptr)(unsafe.Add(p, 232)) = __ccgo_fp(_getpath_isxfile)
+	*(*uintptr)(unsafe.Add(p, 264)) = __ccgo_fp(_getpath_joinpath)
+	*(*uintptr)(unsafe.Add(p, 296)) = __ccgo_fp(_getpath_readlines)
+	*(*uintptr)(unsafe.Add(p, 328)) = __ccgo_fp(_getpath_realpath)
+}
+
+func _getpath_warn(tls *libc.TLS, _unused_self uintptr, args uintptr) (r uintptr) {
+	bp := tls.Alloc(32)
+	defer tls.Free(32)
+	var _ uintptr
+	if !(XPyArg_ParseTuple(tls, args, __ccgo_ts+37069, libc.VaList(bp+16, bp)) != 0) {
+		return libc.UintptrFromInt32(0)
+	}
+	_ccgo_fprintf(tls, libc.X__stderrp, __ccgo_ts+176663, libc.VaList(bp+16, XPyUnicode_AsUTF8(tls, **(**uintptr)(__ccgo_up(bp)))))
+	return uintptr(unsafe.Pointer(&X_Py_NoneStruct))
+}
+
+func _getpath_nowarn(tls *libc.TLS, _unused_self uintptr, args uintptr) (r uintptr) {
+	return uintptr(unsafe.Pointer(&X_Py_NoneStruct))
+}
+
+var _getpath_warn_method = TPyMethodDef{
+	Fml_name:  __ccgo_ts + 85572,
+	Fml_flags: int32(MMETH_VARARGS),
+}
+
+func init() {
+	p := unsafe.Pointer(&_getpath_warn_method)
+	*(*uintptr)(unsafe.Add(p, 8)) = __ccgo_fp(_getpath_warn)
+}
+
+var _getpath_nowarn_method = TPyMethodDef{
+	Fml_name:  __ccgo_ts + 85572,
+	Fml_flags: int32(MMETH_VARARGS),
+}
+
+func init() {
+	p := unsafe.Pointer(&_getpath_nowarn_method)
+	*(*uintptr)(unsafe.Add(p, 8)) = __ccgo_fp(_getpath_nowarn)
+}
+
+// C documentation
+//
+//	/* Add the helper functions to the dict */
+func _funcs_to_dict(tls *libc.TLS, dict uintptr, warnings int32) (r int32) {
+	var f, f1, m, m2, v2, v7 uintptr
+	var v6 Tuint32_t
+	var v3 int32
+	_, _, _, _, _, _, _, _ = f, f1, m, m2, v2, v3, v6, v7
+	m = uintptr(unsafe.Pointer(&_getpath_methods))
+	for {
+		if !((*TPyMethodDef)(unsafe.Pointer(m)).Fml_name != 0) {
+			break
+		}
+		f = XPyCMethod_New(tls, m, libc.UintptrFromInt32(0), libc.UintptrFromInt32(0), libc.UintptrFromInt32(0))
+		if !(f != 0) {
+			return 0
+		}
+		if XPyDict_SetItemString(tls, dict, (*TPyMethodDef)(unsafe.Pointer(m)).Fml_name, f) < 0 {
+			v2 = f
+			v3 = libc.BoolInt32(libc.Int32FromUint32(*(*Tuint32_t)(unsafe.Pointer(v2))) < 0)
+			goto _4
+		_4:
+			if v3 != 0 {
+				goto _5
+			}
+			v7 = v2
+			*(*Tuint32_t)(unsafe.Pointer(v7)) = *(*Tuint32_t)(unsafe.Pointer(v7)) - 1
+			v6 = *(*Tuint32_t)(unsafe.Pointer(v7))
+			if v6 == libc.Uint32FromInt32(0) {
+				X_Py_Dealloc(tls, v2)
+			}
+		_5:
+			;
+			return 0
+		}
+		v2 = f
+		v3 = libc.BoolInt32(libc.Int32FromUint32(*(*Tuint32_t)(unsafe.Pointer(v2))) < 0)
+		goto _10
+	_10:
+		if v3 != 0 {
+			goto _11
+		}
+		v7 = v2
+		*(*Tuint32_t)(unsafe.Pointer(v7)) = *(*Tuint32_t)(unsafe.Pointer(v7)) - 1
+		v6 = *(*Tuint32_t)(unsafe.Pointer(v7))
+		if v6 == libc.Uint32FromInt32(0) {
+			X_Py_Dealloc(tls, v2)
+		}
+	_11:
+		;
+		goto _1
+	_1:
+		;
+		m += 32
+	}
+	if warnings != 0 {
+		v2 = uintptr(unsafe.Pointer(&_getpath_warn_method))
+	} else {
+		v2 = uintptr(unsafe.Pointer(&_getpath_nowarn_method))
+	}
+	m2 = v2
+	f1 = XPyCMethod_New(tls, m2, libc.UintptrFromInt32(0), libc.UintptrFromInt32(0), libc.UintptrFromInt32(0))
+	if !(f1 != 0) {
+		return 0
+	}
+	if XPyDict_SetItemString(tls, dict, (*TPyMethodDef)(unsafe.Pointer(m2)).Fml_name, f1) < 0 {
+		v2 = f1
+		v3 = libc.BoolInt32(libc.Int32FromUint32(*(*Tuint32_t)(unsafe.Pointer(v2))) < 0)
+		goto _17
+	_17:
+		if v3 != 0 {
+			goto _18
+		}
+		v7 = v2
+		*(*Tuint32_t)(unsafe.Pointer(v7)) = *(*Tuint32_t)(unsafe.Pointer(v7)) - 1
+		v6 = *(*Tuint32_t)(unsafe.Pointer(v7))
+		if v6 == libc.Uint32FromInt32(0) {
+			X_Py_Dealloc(tls, v2)
+		}
+	_18:
+		;
+		return 0
+	}
+	v2 = f1
+	v3 = libc.BoolInt32(libc.Int32FromUint32(*(*Tuint32_t)(unsafe.Pointer(v2))) < 0)
+	goto _23
+_23:
+	if v3 != 0 {
+		goto _24
+	}
+	v7 = v2
+	*(*Tuint32_t)(unsafe.Pointer(v7)) = *(*Tuint32_t)(unsafe.Pointer(v7)) - 1
+	v6 = *(*Tuint32_t)(unsafe.Pointer(v7))
+	if v6 == libc.Uint32FromInt32(0) {
+		X_Py_Dealloc(tls, v2)
+	}
+_24:
+	;
+	return int32(1)
+}
+
+// C documentation
+//
+//	/* Add a wide-character string constant to the dict */
+func _wchar_to_dict(tls *libc.TLS, dict uintptr, key uintptr, s uintptr) (r1 int32) {
+	var cur_refcnt, v10 Tuint32_t
+	var r, v7 int32
+	var u, v1, v2, v4 uintptr
+	_, _, _, _, _, _, _, _ = cur_refcnt, r, u, v1, v10, v2, v4, v7
+	if s != 0 && **(**Twchar_t)(__ccgo_up(s)) != 0 {
+		u = XPyUnicode_FromWideChar(tls, s, int64(-int32(1)))
+		if !(u != 0) {
+			return 0
+		}
+	} else {
+		v1 = uintptr(unsafe.Pointer(&X_Py_NoneStruct))
+		v2 = v1
+		cur_refcnt = *(*Tuint32_t)(unsafe.Pointer(v2))
+		if uint64(cur_refcnt) >= libc.Uint64FromUint64(3)<<libc.Int32FromInt32(30) {
+			goto _3
+		}
+		*(*Tuint32_t)(unsafe.Pointer(v2)) = cur_refcnt + uint32(1)
+	_3:
+		;
+		v4 = v1
+		goto _5
+	_5:
+		u = v4
+	}
+	r = libc.BoolInt32(XPyDict_SetItemString(tls, dict, key, u) == 0)
+	v1 = u
+	v7 = libc.BoolInt32(libc.Int32FromUint32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
+	goto _8
+_8:
+	if v7 != 0 {
+		goto _9
+	}
+	v2 = v1
+	*(*Tuint32_t)(unsafe.Pointer(v2)) = *(*Tuint32_t)(unsafe.Pointer(v2)) - 1
+	v10 = *(*Tuint32_t)(unsafe.Pointer(v2))
+	if v10 == libc.Uint32FromInt32(0) {
+		X_Py_Dealloc(tls, v1)
+	}
+_9:
+	;
+	return r
+}
+
+// C documentation
+//
+//	/* Add a narrow string constant to the dict, using default locale decoding */
+func _decode_to_dict(tls *libc.TLS, dict uintptr, key uintptr, s uintptr) (r1 int32) {
+	bp := tls.Alloc(16)
+	defer tls.Free(16)
+	var cur_refcnt, v10 Tuint32_t
+	var r, v7 int32
+	var u, w, v1, v2, v4 uintptr
+	var _ Tsize_t
+	_, _, _, _, _, _, _, _, _ = cur_refcnt, r, u, w, v1, v10, v2, v4, v7
+	u = libc.UintptrFromInt32(0)
+	if s != 0 && **(**int8)(__ccgo_up(s)) != 0 {
+		w = XPy_DecodeLocale(tls, s, bp)
+		if w != 0 {
+			u = XPyUnicode_FromWideChar(tls, w, libc.Int64FromUint64(**(**Tsize_t)(__ccgo_up(bp))))
+			XPyMem_RawFree(tls, w)
+		}
+		if !(u != 0) {
+			return 0
+		}
+	} else {
+		v1 = uintptr(unsafe.Pointer(&X_Py_NoneStruct))
+		v2 = v1
+		cur_refcnt = *(*Tuint32_t)(unsafe.Pointer(v2))
+		if uint64(cur_refcnt) >= libc.Uint64FromUint64(3)<<libc.Int32FromInt32(30) {
+			goto _3
+		}
+		*(*Tuint32_t)(unsafe.Pointer(v2)) = cur_refcnt + uint32(1)
+	_3:
+		;
+		v4 = v1
+		goto _5
+	_5:
+		u = v4
+	}
+	r = libc.BoolInt32(XPyDict_SetItemString(tls, dict, key, u) == 0)
+	v1 = u
+	v7 = libc.BoolInt32(libc.Int32FromUint32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
+	goto _8
+_8:
+	if v7 != 0 {
+		goto _9
+	}
+	v2 = v1
+	*(*Tuint32_t)(unsafe.Pointer(v2)) = *(*Tuint32_t)(unsafe.Pointer(v2)) - 1
+	v10 = *(*Tuint32_t)(unsafe.Pointer(v2))
+	if v10 == libc.Uint32FromInt32(0) {
+		X_Py_Dealloc(tls, v1)
+	}
+_9:
+	;
+	return r
+}
+
+// C documentation
+//
+//	/* Add an environment variable to the dict, optionally clearing it afterwards */
+func _env_to_dict(tls *libc.TLS, dict uintptr, key uintptr, and_clear int32) (r1 int32) {
+	bp := tls.Alloc(16)
+	defer tls.Free(16)
+	var r, v2 int32
+	var u, v, w, v1, v6 uintptr
+	var v5 Tuint32_t
+	var _ Tsize_t
+	_, _, _, _, _, _, _, _ = r, u, v, w, v1, v2, v5, v6
+	u = libc.UintptrFromInt32(0)
+	r = 0
+	v = libc.Xgetenv(tls, key+4)
+	if v != 0 {
+		w = XPy_DecodeLocale(tls, v, bp)
+		if w != 0 {
+			u = XPyUnicode_FromWideChar(tls, w, libc.Int64FromUint64(**(**Tsize_t)(__ccgo_up(bp))))
+			if !(u != 0) {
+				XPyErr_Clear(tls)
+			}
+			XPyMem_RawFree(tls, w)
+		}
+	}
+	if u != 0 {
+		r = libc.BoolInt32(XPyDict_SetItemString(tls, dict, key, u) == 0)
+		v1 = u
+		v2 = libc.BoolInt32(libc.Int32FromUint32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
+		goto _3
+	_3:
+		if v2 != 0 {
+			goto _4
+		}
+		v6 = v1
+		*(*Tuint32_t)(unsafe.Pointer(v6)) = *(*Tuint32_t)(unsafe.Pointer(v6)) - 1
+		v5 = *(*Tuint32_t)(unsafe.Pointer(v6))
+		if v5 == libc.Uint32FromInt32(0) {
+			X_Py_Dealloc(tls, v1)
+		}
+	_4:
+	} else {
+		r = libc.BoolInt32(XPyDict_SetItemString(tls, dict, key, uintptr(unsafe.Pointer(&X_Py_NoneStruct))) == 0)
+	}
+	if r != 0 && and_clear != 0 {
+		_ccgo_unsetenv(tls, key+4)
+	}
+	return r
+}
+
+// C documentation
+//
+//	/* Add an integer constant to the dict */
+func _int_to_dict(tls *libc.TLS, dict uintptr, key uintptr, v int32) (r1 int32) {
+	var o, v1, v6 uintptr
+	var r, v2 int32
+	var v5 Tuint32_t
+	_, _, _, _, _, _ = o, r, v1, v2, v5, v6
+	o = XPyLong_FromLong(tls, int64(v))
+	if !(o != 0) {
+		return 0
+	}
+	r = libc.BoolInt32(XPyDict_SetItemString(tls, dict, key, o) == 0)
+	v1 = o
+	v2 = libc.BoolInt32(libc.Int32FromUint32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
+	goto _3
+_3:
+	if v2 != 0 {
+		goto _4
+	}
+	v6 = v1
+	*(*Tuint32_t)(unsafe.Pointer(v6)) = *(*Tuint32_t)(unsafe.Pointer(v6)) - 1
+	v5 = *(*Tuint32_t)(unsafe.Pointer(v6))
+	if v5 == libc.Uint32FromInt32(0) {
+		X_Py_Dealloc(tls, v1)
+	}
+_4:
+	;
+	return r
+}
+
+// C documentation
+//
+//	/* Add the current executable's path to the dict */
+func _progname_to_dict(tls *libc.TLS, dict uintptr, key uintptr) (r1 int32) {
+	bp := tls.Alloc(16)
+	defer tls.Free(16)
+	var path uintptr
+	var r int32
+	var _ Tuint32_t
+	_, _ = path, r
+	**(**Tuint32_t)(__ccgo_up(bp)) = uint32(256)
+	for **(**Tuint32_t)(__ccgo_up(bp)) != 0 {
+		path = XPyMem_RawMalloc(tls, uint64(**(**Tuint32_t)(__ccgo_up(bp))+libc.Uint32FromInt32(1))*uint64(1))
+		if !(path != 0) {
+			return 0
+		}
+		if __NSGetExecutablePath(tls, path, bp) != 0 {
+			XPyMem_RawFree(tls, path)
+			continue
+		}
+
+		if int32(**(**int8)(__ccgo_up(path))) == int32('/') {
+			r = _decode_to_dict(tls, dict, key, path)
+			XPyMem_RawFree(tls, path)
+			return r
+		}
+
+		XPyMem_RawFree(tls, path)
+		break
+	}
+	return libc.BoolInt32(XPyDict_SetItemString(tls, dict, key, uintptr(unsafe.Pointer(&X_Py_NoneStruct))) == 0)
+}
+
+// C documentation
+//
+//	/* Add the runtime library's path to the dict */
+func _library_to_dict(tls *libc.TLS, dict uintptr, key uintptr) (r int32) {
+
+	return libc.BoolInt32(XPyDict_SetItemString(tls, dict, key, uintptr(unsafe.Pointer(&X_Py_NoneStruct))) == 0)
+}
+
+func X_Py_Get_Getpath_CodeObject(tls *libc.TLS) (r uintptr) {
+	return XPyMarshal_ReadObjectFromString(tls, uintptr(unsafe.Pointer(&X_Py_M__getpath)), int64(14718))
+}
+
+// C documentation
+//
+//	/* Perform the actual path calculation.
+//
+//	   When compute_path_config is 0, this only reads any initialised path
+//	   config values into the PyConfig struct. For example, Py_SetHome() or
+//	   Py_SetPath(). The only error should be due to failed memory allocation.
+//
+//	   When compute_path_config is 1, full path calculation is performed.
+//	   The GIL must be held, and there may be filesystem access, side
+//	   effects, and potential unraisable errors that are reported directly
+//	   to stderr.
+//
+//	   Calling this function multiple times on the same PyConfig is only
+//	   safe because already-configured values are not recalculated. To
+//	   actually recalculate paths, you need a clean PyConfig.
+//	*/
+func X_PyConfig_InitPathConfig(tls *libc.TLS, config uintptr, compute_path_config int32) (r1 TPyStatus) {
+	var co, configDict, dict, r, v1, v3, v8 uintptr
+	var status TPyStatus
+	var v4 int32
+	var v7 Tuint32_t
+	var v31 bool
+	_, _, _, _, _, _, _, _, _, _, _ = co, configDict, dict, r, status, v1, v3, v31, v4, v7, v8
+	status = X_PyPathConfig_ReadGlobal(tls, config)
+	if status.F_type != int32(E_PyStatus_TYPE_OK) || !(compute_path_config != 0) {
+		return status
+	}
+	v1 = (*_ccgo_tls_tstate(tls))
+	goto _2
+_2:
+	if !(v1 != 0) {
+		return XPyStatus_Error(tls, __ccgo_ts+369010)
+	}
+	configDict = X_PyConfig_AsDict(tls, config)
+	if !(configDict != 0) {
+		XPyErr_Clear(tls)
+		return XPyStatus_NoMemory(tls)
+	}
+	dict = XPyDict_New(tls)
+	if !(dict != 0) {
+		XPyErr_Clear(tls)
+		v1 = configDict
+		v4 = libc.BoolInt32(libc.Int32FromUint32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
+		goto _5
+	_5:
+		if v4 != 0 {
+			goto _6
+		}
+		v3 = v1
+		*(*Tuint32_t)(unsafe.Pointer(v3)) = *(*Tuint32_t)(unsafe.Pointer(v3)) - 1
+		v7 = *(*Tuint32_t)(unsafe.Pointer(v3))
+		if v7 == libc.Uint32FromInt32(0) {
+			X_Py_Dealloc(tls, v1)
+		}
+	_6:
+		;
+		return XPyStatus_NoMemory(tls)
+	}
+	if XPyDict_SetItemString(tls, dict, __ccgo_ts+152891, configDict) < 0 {
+		XPyErr_Clear(tls)
+		v1 = configDict
+		v4 = libc.BoolInt32(libc.Int32FromUint32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
+		goto _11
+	_11:
+		if v4 != 0 {
+			goto _12
+		}
+		v3 = v1
+		*(*Tuint32_t)(unsafe.Pointer(v3)) = *(*Tuint32_t)(unsafe.Pointer(v3)) - 1
+		v7 = *(*Tuint32_t)(unsafe.Pointer(v3))
+		if v7 == libc.Uint32FromInt32(0) {
+			X_Py_Dealloc(tls, v1)
+		}
+	_12:
+		;
+		v1 = dict
+		v4 = libc.BoolInt32(libc.Int32FromUint32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
+		goto _17
+	_17:
+		if v4 != 0 {
+			goto _18
+		}
+		v3 = v1
+		*(*Tuint32_t)(unsafe.Pointer(v3)) = *(*Tuint32_t)(unsafe.Pointer(v3)) - 1
+		v7 = *(*Tuint32_t)(unsafe.Pointer(v3))
+		if v7 == libc.Uint32FromInt32(0) {
+			X_Py_Dealloc(tls, v1)
+		}
+	_18:
+		;
+		return XPyStatus_NoMemory(tls)
+	}
+
+	v1 = configDict
+	v4 = libc.BoolInt32(libc.Int32FromUint32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
+	goto _23
+_23:
+	if v4 != 0 {
+		goto _24
+	}
+	v3 = v1
+	*(*Tuint32_t)(unsafe.Pointer(v3)) = *(*Tuint32_t)(unsafe.Pointer(v3)) - 1
+	v7 = *(*Tuint32_t)(unsafe.Pointer(v3))
+	if v7 == libc.Uint32FromInt32(0) {
+		X_Py_Dealloc(tls, v1)
+	}
+_24:
+	;
+	co = X_Py_Get_Getpath_CodeObject(tls)
+	if v31 = !(co != 0); !v31 {
+		v1 = (*TPyObject)(unsafe.Pointer(co)).Fob_type
+		goto _30
+	_30:
+		v4 = libc.BoolInt32(v1 == uintptr(unsafe.Pointer(&XPyCode_Type)))
+		goto _28
+	_28:
+	}
+	if v31 || !(v4 != 0) {
+		XPyErr_Clear(tls)
+		v1 = co
+		if v1 != libc.UintptrFromInt32(0) {
+			v3 = v1
+			v4 = libc.BoolInt32(libc.Int32FromUint32(*(*Tuint32_t)(unsafe.Pointer(v3))) < 0)
+			goto _35
+		_35:
+			if v4 != 0 {
+				goto _36
+			}
+			v8 = v3
+			*(*Tuint32_t)(unsafe.Pointer(v8)) = *(*Tuint32_t)(unsafe.Pointer(v8)) - 1
+			v7 = *(*Tuint32_t)(unsafe.Pointer(v8))
+			if v7 == libc.Uint32FromInt32(0) {
+				X_Py_Dealloc(tls, v3)
+			}
+		_36:
+		}
+		v1 = dict
+		v4 = libc.BoolInt32(libc.Int32FromUint32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
+		goto _41
+	_41:
+		if v4 != 0 {
+			goto _42
+		}
+		v3 = v1
+		*(*Tuint32_t)(unsafe.Pointer(v3)) = *(*Tuint32_t)(unsafe.Pointer(v3)) - 1
+		v7 = *(*Tuint32_t)(unsafe.Pointer(v3))
+		if v7 == libc.Uint32FromInt32(0) {
+			X_Py_Dealloc(tls, v1)
+		}
+	_42:
+		;
+		return XPyStatus_Error(tls, __ccgo_ts+369058)
+	}
+	if !(_decode_to_dict(tls, dict, __ccgo_ts+369090, __ccgo_ts+143470) != 0) || !(_int_to_dict(tls, dict, __ccgo_ts+369098, 0) != 0) || !(_decode_to_dict(tls, dict, __ccgo_ts+369118, __ccgo_ts+369125) != 0) || !(_decode_to_dict(tls, dict, __ccgo_ts+369136, __ccgo_ts+369125) != 0) || !(_decode_to_dict(tls, dict, __ccgo_ts+150059, __ccgo_ts+2) != 0) || !(_decode_to_dict(tls, dict, __ccgo_ts+369148, __ccgo_ts+369154) != 0) || !(_decode_to_dict(tls, dict, __ccgo_ts+369229, __ccgo_ts+369240) != 0) || !(_decode_to_dict(tls, dict, __ccgo_ts+369244, libc.UintptrFromInt32(0)) != 0) || !(_int_to_dict(tls, dict, __ccgo_ts+369255, int32(MPY_MAJOR_VERSION)) != 0) || !(_int_to_dict(tls, dict, __ccgo_ts+369269, int32(MPY_MINOR_VERSION)) != 0) || !(_decode_to_dict(tls, dict, __ccgo_ts+369283, libc.UintptrFromInt32(0)) != 0) || !(_wchar_to_dict(tls, dict, __ccgo_ts+369292, libc.UintptrFromInt32(0)) != 0) || !(_env_to_dict(tls, dict, __ccgo_ts+369303, 0) != 0) || !(_env_to_dict(tls, dict, __ccgo_ts+369312, 0) != 0) || !(_env_to_dict(tls, dict, __ccgo_ts+369327, 0) != 0) || !(_env_to_dict(tls, dict, __ccgo_ts+369348, int32(1)) != 0) || !(_progname_to_dict(tls, dict, __ccgo_ts+369372) != 0) || !(_library_to_dict(tls, dict, __ccgo_ts+369388) != 0) || !(_wchar_to_dict(tls, dict, __ccgo_ts+369396, libc.UintptrFromInt32(0)) != 0) || !(_wchar_to_dict(tls, dict, __ccgo_ts+369411, X_PyPathConfig_GetGlobalModuleSearchPath(tls)) != 0) || !(_funcs_to_dict(tls, dict, (*TPyConfig)(unsafe.Pointer(config)).Fpathconfig_warnings) != 0) || !(_decode_to_dict(tls, dict, __ccgo_ts+369422, __ccgo_ts+2) != 0) || XPyDict_SetItemString(tls, dict, __ccgo_ts+169025, uintptr(unsafe.Pointer(&X_Py_NoneStruct))) < 0 || XPyDict_SetItemString(tls, dict, __ccgo_ts+41273, XPyEval_GetBuiltins(tls)) < 0 {
+		v1 = co
+		v4 = libc.BoolInt32(libc.Int32FromUint32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
+		goto _47
+	_47:
+		if v4 != 0 {
+			goto _48
+		}
+		v3 = v1
+		*(*Tuint32_t)(unsafe.Pointer(v3)) = *(*Tuint32_t)(unsafe.Pointer(v3)) - 1
+		v7 = *(*Tuint32_t)(unsafe.Pointer(v3))
+		if v7 == libc.Uint32FromInt32(0) {
+			X_Py_Dealloc(tls, v1)
+		}
+	_48:
+		;
+		v1 = dict
+		v4 = libc.BoolInt32(libc.Int32FromUint32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
+		goto _53
+	_53:
+		if v4 != 0 {
+			goto _54
+		}
+		v3 = v1
+		*(*Tuint32_t)(unsafe.Pointer(v3)) = *(*Tuint32_t)(unsafe.Pointer(v3)) - 1
+		v7 = *(*Tuint32_t)(unsafe.Pointer(v3))
+		if v7 == libc.Uint32FromInt32(0) {
+			X_Py_Dealloc(tls, v1)
+		}
+	_54:
+		;
+		XPyErr_FormatUnraisable(tls, __ccgo_ts+369433, 0)
+		return XPyStatus_Error(tls, __ccgo_ts+369475)
+	}
+	r = XPyEval_EvalCode(tls, co, dict, dict)
+	v1 = co
+	v4 = libc.BoolInt32(libc.Int32FromUint32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
+	goto _59
+_59:
+	if v4 != 0 {
+		goto _60
+	}
+	v3 = v1
+	*(*Tuint32_t)(unsafe.Pointer(v3)) = *(*Tuint32_t)(unsafe.Pointer(v3)) - 1
+	v7 = *(*Tuint32_t)(unsafe.Pointer(v3))
+	if v7 == libc.Uint32FromInt32(0) {
+		X_Py_Dealloc(tls, v1)
+	}
+_60:
+	;
+	if !(r != 0) {
+		v1 = dict
+		v4 = libc.BoolInt32(libc.Int32FromUint32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
+		goto _65
+	_65:
+		if v4 != 0 {
+			goto _66
+		}
+		v3 = v1
+		*(*Tuint32_t)(unsafe.Pointer(v3)) = *(*Tuint32_t)(unsafe.Pointer(v3)) - 1
+		v7 = *(*Tuint32_t)(unsafe.Pointer(v3))
+		if v7 == libc.Uint32FromInt32(0) {
+			X_Py_Dealloc(tls, v1)
+		}
+	_66:
+		;
+		XPyErr_FormatUnraisable(tls, __ccgo_ts+369507, 0)
+		return XPyStatus_Error(tls, __ccgo_ts+369547)
+	}
+	v1 = r
+	v4 = libc.BoolInt32(libc.Int32FromUint32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
+	goto _71
+_71:
+	if v4 != 0 {
+		goto _72
+	}
+	v3 = v1
+	*(*Tuint32_t)(unsafe.Pointer(v3)) = *(*Tuint32_t)(unsafe.Pointer(v3)) - 1
+	v7 = *(*Tuint32_t)(unsafe.Pointer(v3))
+	if v7 == libc.Uint32FromInt32(0) {
+		X_Py_Dealloc(tls, v1)
+	}
+_72:
+	;
+	if X_PyConfig_FromDict(tls, config, configDict) < 0 {
+		XPyErr_FormatUnraisable(tls, __ccgo_ts+369569, 0)
+		v1 = dict
+		v4 = libc.BoolInt32(libc.Int32FromUint32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
+		goto _77
+	_77:
+		if v4 != 0 {
+			goto _78
+		}
+		v3 = v1
+		*(*Tuint32_t)(unsafe.Pointer(v3)) = *(*Tuint32_t)(unsafe.Pointer(v3)) - 1
+		v7 = *(*Tuint32_t)(unsafe.Pointer(v3))
+		if v7 == libc.Uint32FromInt32(0) {
+			X_Py_Dealloc(tls, v1)
+		}
+	_78:
+		;
+		return XPyStatus_Error(tls, __ccgo_ts+369617)
+	}
+	v1 = dict
+	v4 = libc.BoolInt32(libc.Int32FromUint32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
+	goto _83
+_83:
+	if v4 != 0 {
+		goto _84
+	}
+	v3 = v1
+	*(*Tuint32_t)(unsafe.Pointer(v3)) = *(*Tuint32_t)(unsafe.Pointer(v3)) - 1
+	v7 = *(*Tuint32_t)(unsafe.Pointer(v3))
+	if v7 == libc.Uint32FromInt32(0) {
+		X_Py_Dealloc(tls, v1)
+	}
+_84:
+	;
+	return TPyStatus{}
+}
+
+var _bootstrap_modules = [4]T_frozen{
+	0: {
+		Fname: __ccgo_ts + 145666,
+		Fcode: uintptr(unsafe.Pointer(&X_Py_M__importlib__bootstrap)),
+		Fsize: libc.Int32FromInt64(58776),
+	},
+	1: {
+		Fname: __ccgo_ts + 167170,
+		Fcode: uintptr(unsafe.Pointer(&X_Py_M__importlib__bootstrap_external)),
+		Fsize: libc.Int32FromInt64(66972),
+	},
+	2: {
+		Fname: __ccgo_ts + 146795,
+		Fcode: uintptr(unsafe.Pointer(&X_Py_M__zipimport)),
+		Fsize: libc.Int32FromInt64(28192),
+	},
+	3: {},
+}
+
+var _stdlib_modules = [15]T_frozen{
+	0: {
+		Fname: __ccgo_ts + 167823,
+		Fcode: uintptr(unsafe.Pointer(&X_Py_M__abc)),
+		Fsize: libc.Int32FromInt64(7995),
+	},
+	1: {
+		Fname: __ccgo_ts + 167942,
+		Fcode: uintptr(unsafe.Pointer(&X_Py_M__codecs)),
+		Fsize: libc.Int32FromInt64(41846),
+	},
+	2: {
+		Fname: __ccgo_ts + 10551,
+		Fcode: uintptr(unsafe.Pointer(&X_Py_M__io)),
+		Fsize: libc.Int32FromInt64(6233),
+	},
+	3: {
+		Fname: __ccgo_ts + 167056,
+		Fcode: uintptr(unsafe.Pointer(&X_Py_M___collections_abc)),
+		Fsize: libc.Int32FromInt64(47896),
+	},
+	4: {
+		Fname: __ccgo_ts + 167594,
+		Fcode: uintptr(unsafe.Pointer(&X_Py_M___sitebuiltins)),
+		Fsize: libc.Int32FromInt64(4688),
+	},
+	5: {
+		Fname: __ccgo_ts + 168198,
+		Fcode: uintptr(unsafe.Pointer(&X_Py_M__genericpath)),
+		Fsize: libc.Int32FromInt64(7908),
+	},
+	6: {
+		Fname: __ccgo_ts + 168412,
+		Fcode: uintptr(unsafe.Pointer(&X_Py_M__ntpath)),
+		Fsize: libc.Int32FromInt64(29005),
+	},
+	7: {
+		Fname: __ccgo_ts + 168513,
+		Fcode: uintptr(unsafe.Pointer(&X_Py_M__posixpath)),
+		Fsize: libc.Int32FromInt64(19662),
+	},
+	8: {
+		Fname: __ccgo_ts + 168447,
+		Fcode: uintptr(unsafe.Pointer(&X_Py_M__os)),
+		Fsize: libc.Int32FromInt64(47216),
+	},
+	9: {
+		Fname: __ccgo_ts + 161175,
+		Fcode: uintptr(unsafe.Pointer(&X_Py_M__site)),
+		Fsize: libc.Int32FromInt64(32696),
+	},
+	10: {
+		Fname: __ccgo_ts + 168784,
+		Fcode: uintptr(unsafe.Pointer(&X_Py_M__stat)),
+		Fsize: libc.Int32FromInt64(5613),
+	},
+	11: {
+		Fname: __ccgo_ts + 369647,
+		Fcode: uintptr(unsafe.Pointer(&X_Py_M__importlib_util)),
+		Fsize: libc.Int32FromInt64(12186),
+	},
+	12: {
+		Fname: __ccgo_ts + 369662,
+		Fcode: uintptr(unsafe.Pointer(&X_Py_M__importlib_machinery)),
+		Fsize: libc.Int32FromInt64(2036),
+	},
+	13: {
+		Fname: __ccgo_ts + 135322,
+		Fcode: uintptr(unsafe.Pointer(&X_Py_M__runpy)),
+		Fsize: libc.Int32FromInt64(15022),
+	},
+	14: {},
+}
+
+var _test_modules = [12]T_frozen{
+	0: {
+		Fname: __ccgo_ts + 369682,
+		Fcode: uintptr(unsafe.Pointer(&X_Py_M____hello__)),
+		Fsize: libc.Int32FromInt64(935),
+	},
+	1: {
+		Fname: __ccgo_ts + 369692,
+		Fcode: uintptr(unsafe.Pointer(&X_Py_M____hello__)),
+		Fsize: libc.Int32FromInt64(935),
+	},
+	2: {
+		Fname:       __ccgo_ts + 369708,
+		Fcode:       uintptr(unsafe.Pointer(&X_Py_M____hello__)),
+		Fsize:       libc.Int32FromInt64(935),
+		Fis_package: int32(Mtrue),
+	},
+	3: {
+		Fname: __ccgo_ts + 369725,
+		Fcode: uintptr(unsafe.Pointer(&X_Py_M____hello__)),
+		Fsize: libc.Int32FromInt64(935),
+	},
+	4: {
+		Fname:       __ccgo_ts + 369747,
+		Fcode:       uintptr(unsafe.Pointer(&X_Py_M____phello__)),
+		Fsize:       libc.Int32FromInt64(340),
+		Fis_package: int32(Mtrue),
+	},
+	5: {
+		Fname: __ccgo_ts + 369758,
+		Fcode: uintptr(unsafe.Pointer(&X_Py_M____phello__)),
+		Fsize: libc.Int32FromInt64(340),
+	},
+	6: {
+		Fname:       __ccgo_ts + 369778,
+		Fcode:       uintptr(unsafe.Pointer(&X_Py_M____phello___ham)),
+		Fsize:       libc.Int32FromInt64(106),
+		Fis_package: int32(Mtrue),
+	},
+	7: {
+		Fname: __ccgo_ts + 369793,
+		Fcode: uintptr(unsafe.Pointer(&X_Py_M____phello___ham)),
+		Fsize: libc.Int32FromInt64(106),
+	},
+	8: {
+		Fname: __ccgo_ts + 369817,
+		Fcode: uintptr(unsafe.Pointer(&X_Py_M____phello___ham_eggs)),
+		Fsize: libc.Int32FromInt64(111),
+	},
+	9: {
+		Fname: __ccgo_ts + 369837,
+		Fcode: uintptr(unsafe.Pointer(&X_Py_M____phello___spam)),
+		Fsize: libc.Int32FromInt64(345),
+	},
+	10: {
+		Fname: __ccgo_ts + 369853,
+		Fcode: uintptr(unsafe.Pointer(&X_Py_M__frozen_only)),
+		Fsize: libc.Int32FromInt64(168),
+	},
+	11: {},
+}
+
+var _aliases = [9]T_module_alias{
+	0: {
+		Fname: __ccgo_ts + 145666,
+		Forig: __ccgo_ts + 369868,
+	},
+	1: {
+		Fname: __ccgo_ts + 167170,
+		Forig: __ccgo_ts + 369889,
+	},
+	2: {
+		Fname: __ccgo_ts + 369692,
+		Forig: __ccgo_ts + 369682,
+	},
+	3: {
+		Fname: __ccgo_ts + 369708,
+		Forig: __ccgo_ts + 369682,
+	},
+	4: {
+		Fname: __ccgo_ts + 369725,
+		Forig: __ccgo_ts + 369682,
+	},
+	5: {
+		Fname: __ccgo_ts + 369758,
+		Forig: __ccgo_ts + 369919,
+	},
+	6: {
+		Fname: __ccgo_ts + 369793,
+		Forig: __ccgo_ts + 369931,
+	},
+	7: {
+		Fname: __ccgo_ts + 369853,
+	},
+	8: {},
+}
+
+const MALIGNOF_MAX_ALIGN_T = 8
+
+const MDOUBLE_IS_LITTLE_ENDIAN_IEEE754 = 1
+
+const MSIZEOF_LONG = 8
+
+const MSIZEOF_LONG_DOUBLE = 8
+
+const MSIZEOF_PTHREAD_T = 8
+
+const MSIZEOF_SIZE_T = 8
+
+const MSIZEOF_TIME_T = 8
+
+const MSIZEOF_UINTPTR_T = 8
+
+const MSIZEOF_VOID_P = 8
+
+const MSIZEOF__BOOL = 1
+
+const EP1 = 0
+
+const EP2 = 1
+
+const EP3 = 2
+
+// C documentation
+//
+//	/*
+//	 * Knuth, TAOCP, Volume 2, 4.3.1:
+//	 *    w := sum of u (len m) and v (len n)
+//	 *    n > 0 and m >= n
+//	 * The calling function has to handle a possible final carry.
+//	 */
+func X_mpd_baseadd(tls *libc.TLS, w uintptr, u uintptr, v uintptr, m Tmpd_size_t, n Tmpd_size_t) (r Tmpd_uint_t) {
+	var carry, s Tmpd_uint_t
+	var i Tmpd_size_t
+	var v2 uint64
+	_, _, _, _ = carry, i, s, v2
+	carry = uint64(0)
+
+	i = uint64(0)
+	for {
+		if !(i < n) {
+			break
+		}
+		s = **(**Tmpd_uint_t)(__ccgo_up(u + uintptr(i)*8)) + (**(**Tmpd_uint_t)(__ccgo_up(v + uintptr(i)*8)) + carry)
+		carry = libc.Uint64FromInt32(libc.BoolInt32(s < **(**Tmpd_uint_t)(__ccgo_up(u + uintptr(i)*8))) | libc.BoolInt32(s >= uint64(10000000000000000000)))
+		if carry != 0 {
+			v2 = s - uint64(10000000000000000000)
+		} else {
+			v2 = s
+		}
+		**(**Tmpd_uint_t)(__ccgo_up(w + uintptr(i)*8)) = v2
+		goto _1
+	_1:
+		;
+		i = i + 1
+	}
+
+	for {
+		if !(carry != 0 && i < m) {
+			break
+		}
+		s = **(**Tmpd_uint_t)(__ccgo_up(u + uintptr(i)*8)) + carry
+		carry = libc.BoolUint64(s == libc.Uint64FromUint64(10000000000000000000))
+		if carry != 0 {
+			v2 = uint64(0)
+		} else {
+			v2 = s
+		}
+		**(**Tmpd_uint_t)(__ccgo_up(w + uintptr(i)*8)) = v2
+		goto _3
+	_3:
+		;
+		i = i + 1
+	}
+
+	for {
+		if !(i < m) {
+			break
+		}
+		**(**Tmpd_uint_t)(__ccgo_up(w + uintptr(i)*8)) = **(**Tmpd_uint_t)(__ccgo_up(u + uintptr(i)*8))
+		goto _5
+	_5:
+		;
+		i = i + 1
+	}
+	return carry
+}
+
+// C documentation
+//
+//	/*
+//	 * Add the contents of u to w. Carries are propagated further. The caller
+//	 * has to make sure that w is big enough.
+//	 */
+func X_mpd_baseaddto(tls *libc.TLS, w uintptr, u uintptr, n Tmpd_size_t) {
+	var carry, s Tmpd_uint_t
+	var i Tmpd_size_t
+	var v2 uint64
+	_, _, _, _ = carry, i, s, v2
+	carry = uint64(0)
+	if n == uint64(0) {
+		return
+	}
+
+	i = uint64(0)
+	for {
+		if !(i < n) {
+			break
+		}
+		s = **(**Tmpd_uint_t)(__ccgo_up(w + uintptr(i)*8)) + (**(**Tmpd_uint_t)(__ccgo_up(u + uintptr(i)*8)) + carry)
+		carry = libc.Uint64FromInt32(libc.BoolInt32(s < **(**Tmpd_uint_t)(__ccgo_up(w + uintptr(i)*8))) | libc.BoolInt32(s >= uint64(10000000000000000000)))
+		if carry != 0 {
+			v2 = s - uint64(10000000000000000000)
+		} else {
+			v2 = s
+		}
+		**(**Tmpd_uint_t)(__ccgo_up(w + uintptr(i)*8)) = v2
+		goto _1
+	_1:
+		;
+		i = i + 1
+	}
+
+	for {
+		if !(carry != 0) {
+			break
+		}
+		s = **(**Tmpd_uint_t)(__ccgo_up(w + uintptr(i)*8)) + carry
+		carry = libc.BoolUint64(s == libc.Uint64FromUint64(10000000000000000000))
+		if carry != 0 {
+			v2 = uint64(0)
+		} else {
+			v2 = s
+		}
+		**(**Tmpd_uint_t)(__ccgo_up(w + uintptr(i)*8)) = v2
+		goto _3
+	_3:
+		;
+		i = i + 1
+	}
+}
+
+// C documentation
+//
+//	/*
+//	 * Add v to w (len m). The calling function has to handle a possible
+//	 * final carry. Assumption: m > 0.
+//	 */
+func X_mpd_shortadd(tls *libc.TLS, w uintptr, m Tmpd_size_t, v Tmpd_uint_t) (r Tmpd_uint_t) {
+	var carry, s Tmpd_uint_t
+	var i Tmpd_size_t
+	var v1 uint64
+	_, _, _, _ = carry, i, s, v1
+
+	s = **(**Tmpd_uint_t)(__ccgo_up(w)) + v
+	carry = libc.Uint64FromInt32(libc.BoolInt32(s < v) | libc.BoolInt32(s >= uint64(10000000000000000000)))
+	if carry != 0 {
+		v1 = s - uint64(10000000000000000000)
+	} else {
+		v1 = s
+	}
+	**(**Tmpd_uint_t)(__ccgo_up(w)) = v1
+
+	i = uint64(1)
+	for {
+		if !(carry != 0 && i < m) {
+			break
+		}
+		s = **(**Tmpd_uint_t)(__ccgo_up(w + uintptr(i)*8)) + carry
+		carry = libc.BoolUint64(s == libc.Uint64FromUint64(10000000000000000000))
+		if carry != 0 {
+			v1 = uint64(0)
+		} else {
+			v1 = s
+		}
+		**(**Tmpd_uint_t)(__ccgo_up(w + uintptr(i)*8)) = v1
+		goto _2
+	_2:
+		;
+		i = i + 1
+	}
+	return carry
+}
+
+// C documentation
+//
+//	/* Increment u. The calling function has to handle a possible carry. */
+func X_mpd_baseincr(tls *libc.TLS, u uintptr, n Tmpd_size_t) (r Tmpd_uint_t) {
+	var carry, s Tmpd_uint_t
+	var i Tmpd_size_t
+	var v2 uint64
+	_, _, _, _ = carry, i, s, v2
+	carry = uint64(1)
+
+	i = uint64(0)
+	for {
+		if !(carry != 0 && i < n) {
+			break
+		}
+		s = **(**Tmpd_uint_t)(__ccgo_up(u + uintptr(i)*8)) + carry
+		carry = libc.BoolUint64(s == libc.Uint64FromUint64(10000000000000000000))
+		if carry != 0 {
+			v2 = uint64(0)
+		} else {
+			v2 = s
+		}
+		**(**Tmpd_uint_t)(__ccgo_up(u + uintptr(i)*8)) = v2
+		goto _1
+	_1:
+		;
+		i = i + 1
+	}
+	return carry
+}
+
+// C documentation
+//
+//	/*
+//	 * Knuth, TAOCP, Volume 2, 4.3.1:
+//	 *     w := difference of u (len m) and v (len n).
+//	 *     number in u >= number in v;
+//	 */
+func X_mpd_basesub(tls *libc.TLS, w uintptr, u uintptr, v uintptr, m Tmpd_size_t, n Tmpd_size_t) {
+	var borrow, d Tmpd_uint_t
+	var i Tmpd_size_t
+	var v2 uint64
+	_, _, _, _ = borrow, d, i, v2
+	borrow = uint64(0)
+
+	i = uint64(0)
+	for {
+		if !(i < n) {
+			break
+		}
+		d = **(**Tmpd_uint_t)(__ccgo_up(u + uintptr(i)*8)) - (**(**Tmpd_uint_t)(__ccgo_up(v + uintptr(i)*8)) + borrow)
+		borrow = libc.BoolUint64(**(**Tmpd_uint_t)(__ccgo_up(u + uintptr(i)*8)) < d)
+		if borrow != 0 {
+			v2 = d + uint64(10000000000000000000)
+		} else {
+			v2 = d
+		}
+		**(**Tmpd_uint_t)(__ccgo_up(w + uintptr(i)*8)) = v2
+		goto _1
+	_1:
+		;
+		i = i + 1
+	}
+
+	for {
+		if !(borrow != 0 && i < m) {
+			break
+		}
+		d = **(**Tmpd_uint_t)(__ccgo_up(u + uintptr(i)*8)) - borrow
+		borrow = libc.BoolUint64(**(**Tmpd_uint_t)(__ccgo_up(u + uintptr(i)*8)) == libc.Uint64FromInt32(0))
+		if borrow != 0 {
+			v2 = libc.Uint64FromUint64(10000000000000000000) - libc.Uint64FromInt32(1)
+		} else {
+			v2 = d
+		}
+		**(**Tmpd_uint_t)(__ccgo_up(w + uintptr(i)*8)) = v2
+		goto _3
+	_3:
+		;
+		i = i + 1
+	}
+
+	for {
+		if !(i < m) {
+			break
+		}
+		**(**Tmpd_uint_t)(__ccgo_up(w + uintptr(i)*8)) = **(**Tmpd_uint_t)(__ccgo_up(u + uintptr(i)*8))
+		goto _5
+	_5:
+		;
+		i = i + 1
+	}
+}
+
+// C documentation
+//
+//	/*
+//	 * Subtract the contents of u from w. w is larger than u. Borrows are
+//	 * propagated further, but eventually w can absorb the final borrow.
+//	 */
+func X_mpd_basesubfrom(tls *libc.TLS, w uintptr, u uintptr, n Tmpd_size_t) {
+	var borrow, d Tmpd_uint_t
+	var i Tmpd_size_t
+	var v2 uint64
+	_, _, _, _ = borrow, d, i, v2
+	borrow = uint64(0)
+	if n == uint64(0) {
+		return
+	}
+
+	i = uint64(0)
+	for {
+		if !(i < n) {
+			break
+		}
+		d = **(**Tmpd_uint_t)(__ccgo_up(w + uintptr(i)*8)) - (**(**Tmpd_uint_t)(__ccgo_up(u + uintptr(i)*8)) + borrow)
+		borrow = libc.BoolUint64(**(**Tmpd_uint_t)(__ccgo_up(w + uintptr(i)*8)) < d)
+		if borrow != 0 {
+			v2 = d + uint64(10000000000000000000)
+		} else {
+			v2 = d
+		}
+		**(**Tmpd_uint_t)(__ccgo_up(w + uintptr(i)*8)) = v2
+		goto _1
+	_1:
+		;
+		i = i + 1
+	}
+
+	for {
+		if !(borrow != 0) {
+			break
+		}
+		d = **(**Tmpd_uint_t)(__ccgo_up(w + uintptr(i)*8)) - borrow
+		borrow = libc.BoolUint64(**(**Tmpd_uint_t)(__ccgo_up(w + uintptr(i)*8)) == libc.Uint64FromInt32(0))
+		if borrow != 0 {
+			v2 = libc.Uint64FromUint64(10000000000000000000) - libc.Uint64FromInt32(1)
+		} else {
+			v2 = d
+		}
+		**(**Tmpd_uint_t)(__ccgo_up(w + uintptr(i)*8)) = v2
+		goto _3
+	_3:
+		;
+		i = i + 1
+	}
+}
+
+// C documentation
+//
+//	/* w := product of u (len n) and v (single word) */
+func X_mpd_shortmul(tls *libc.TLS, w1 uintptr, u uintptr, n Tmpd_size_t, v Tmpd_uint_t) {
+	bp := tls.Alloc(48)
+	defer tls.Free(48)
+	var ah, al, bh, bl, carry Tuint32_t
+	var hl Tuint64_t
+	var i Tmpd_size_t
+	var n1_neg, n_adj, t, v2, v3, v4, v5, v7, v8 Tmpd_uint_t
+	var w [4]Tuint32_t
+	var v6 uint64
+	var _ Tmpd_uint_t
+	var _ Tmpd_uint_t
+	var _ Tmpd_uint_t
+	var _ Tmpd_uint_t
+	var _ Tmpd_uint_t
+	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = ah, al, bh, bl, carry, hl, i, n1_neg, n_adj, t, w, v2, v3, v4, v5, v6, v7, v8
+	**(**Tmpd_uint_t)(__ccgo_up(bp + 32)) = uint64(0)
+	i = uint64(0)
+	for {
+		if !(i < n) {
+			break
+		}
+		v2 = **(**Tmpd_uint_t)(__ccgo_up(u + uintptr(i)*8))
+		v3 = v
+		ah = uint32(v2 >> libc.Int32FromInt32(32))
+		al = uint32(v2)
+		bh = uint32(v3 >> libc.Int32FromInt32(32))
+		bl = uint32(v3)
+		hl = uint64(al) * uint64(bl)
+		w[0] = uint32(hl)
+		carry = uint32(hl >> libc.Int32FromInt32(32))
+		hl = uint64(ah)*uint64(bl) + uint64(carry)
+		w[int32(1)] = uint32(hl)
+		w[int32(2)] = uint32(hl >> libc.Int32FromInt32(32))
+		hl = uint64(al)*uint64(bh) + uint64(w[int32(1)])
+		w[int32(1)] = uint32(hl)
+		carry = uint32(hl >> libc.Int32FromInt32(32))
+		hl = uint64(ah)*uint64(bh) + uint64(w[int32(2)]) + uint64(carry)
+		w[int32(2)] = uint32(hl)
+		w[int32(3)] = uint32(hl >> libc.Int32FromInt32(32))
+		**(**Tmpd_uint_t)(__ccgo_up(bp + 16)) = uint64(w[int32(3)])<<libc.Int32FromInt32(32) + uint64(w[int32(2)])
+		**(**Tmpd_uint_t)(__ccgo_up(bp + 24)) = uint64(w[int32(1)])<<libc.Int32FromInt32(32) + uint64(w[0])
+		**(**Tmpd_uint_t)(__ccgo_up(bp + 24)) = **(**Tmpd_uint_t)(__ccgo_up(bp + 32)) + **(**Tmpd_uint_t)(__ccgo_up(bp + 24))
+		if **(**Tmpd_uint_t)(__ccgo_up(bp + 24)) < **(**Tmpd_uint_t)(__ccgo_up(bp + 32)) {
+			**(**Tmpd_uint_t)(__ccgo_up(bp + 16)) = **(**Tmpd_uint_t)(__ccgo_up(bp + 16)) + 1
+		}
+		v2 = **(**Tmpd_uint_t)(__ccgo_up(bp + 16))
+		v3 = **(**Tmpd_uint_t)(__ccgo_up(bp + 24))
+		if v3&(libc.Uint64FromUint64(1)<<libc.Int32FromInt32(63)) != 0 {
+			v6 = uint64(18446744073709551615)
+		} else {
+			v6 = uint64(0)
+		}
+		n1_neg = v6
+		n_adj = v3 + n1_neg&uint64(10000000000000000000)
+		v4 = Xmprime_rdx
+		v5 = v2 - n1_neg
+		ah = uint32(v4 >> libc.Int32FromInt32(32))
+		al = uint32(v4)
+		bh = uint32(v5 >> libc.Int32FromInt32(32))
+		bl = uint32(v5)
+		hl = uint64(al) * uint64(bl)
+		w[0] = uint32(hl)
+		carry = uint32(hl >> libc.Int32FromInt32(32))
+		hl = uint64(ah)*uint64(bl) + uint64(carry)
+		w[int32(1)] = uint32(hl)
+		w[int32(2)] = uint32(hl >> libc.Int32FromInt32(32))
+		hl = uint64(al)*uint64(bh) + uint64(w[int32(1)])
+		w[int32(1)] = uint32(hl)
+		carry = uint32(hl >> libc.Int32FromInt32(32))
+		hl = uint64(ah)*uint64(bh) + uint64(w[int32(2)]) + uint64(carry)
+		w[int32(2)] = uint32(hl)
+		w[int32(3)] = uint32(hl >> libc.Int32FromInt32(32))
+		**(**Tmpd_uint_t)(__ccgo_up(bp)) = uint64(w[int32(3)])<<libc.Int32FromInt32(32) + uint64(w[int32(2)])
+		**(**Tmpd_uint_t)(__ccgo_up(bp + 8)) = uint64(w[int32(1)])<<libc.Int32FromInt32(32) + uint64(w[0])
+		**(**Tmpd_uint_t)(__ccgo_up(bp + 8)) = **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) + n_adj
+		if **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) < n_adj {
+			**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) + 1
+		}
+		t = **(**Tmpd_uint_t)(__ccgo_up(bp)) + v2
+		t = uint64(18446744073709551615) - t
+		v7 = t
+		v8 = uint64(10000000000000000000)
+		ah = uint32(v7 >> libc.Int32FromInt32(32))
+		al = uint32(v7)
+		bh = uint32(v8 >> libc.Int32FromInt32(32))
+		bl = uint32(v8)
+		hl = uint64(al) * uint64(bl)
+		w[0] = uint32(hl)
+		carry = uint32(hl >> libc.Int32FromInt32(32))
+		hl = uint64(ah)*uint64(bl) + uint64(carry)
+		w[int32(1)] = uint32(hl)
+		w[int32(2)] = uint32(hl >> libc.Int32FromInt32(32))
+		hl = uint64(al)*uint64(bh) + uint64(w[int32(1)])
+		w[int32(1)] = uint32(hl)
+		carry = uint32(hl >> libc.Int32FromInt32(32))
+		hl = uint64(ah)*uint64(bh) + uint64(w[int32(2)]) + uint64(carry)
+		w[int32(2)] = uint32(hl)
+		w[int32(3)] = uint32(hl >> libc.Int32FromInt32(32))
+		**(**Tmpd_uint_t)(__ccgo_up(bp)) = uint64(w[int32(3)])<<libc.Int32FromInt32(32) + uint64(w[int32(2)])
+		**(**Tmpd_uint_t)(__ccgo_up(bp + 8)) = uint64(w[int32(1)])<<libc.Int32FromInt32(32) + uint64(w[0])
+		**(**Tmpd_uint_t)(__ccgo_up(bp + 8)) = **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) + v3
+		if **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) < v3 {
+			**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) + 1
+		}
+		**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) + v2
+		**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) - uint64(10000000000000000000)
+		**(**Tmpd_uint_t)(__ccgo_up(bp + 32)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) - t
+		**(**Tmpd_uint_t)(__ccgo_up(w1 + uintptr(i)*8)) = **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) + uint64(10000000000000000000)&**(**Tmpd_uint_t)(__ccgo_up(bp))
+		goto _1
+	_1:
+		;
+		i = i + 1
+	}
+	**(**Tmpd_uint_t)(__ccgo_up(w1 + uintptr(i)*8)) = **(**Tmpd_uint_t)(__ccgo_up(bp + 32))
+}
+
+// C documentation
+//
+//	/*
+//	 * Knuth, TAOCP, Volume 2, 4.3.1:
+//	 *     w := product of u (len m) and v (len n)
+//	 *     w must be initialized to zero
+//	 */
+func X_mpd_basemul(tls *libc.TLS, w1 uintptr, u uintptr, v uintptr, m Tmpd_size_t, n Tmpd_size_t) {
+	bp := tls.Alloc(48)
+	defer tls.Free(48)
+	var ah, al, bh, bl, carry Tuint32_t
+	var hl Tuint64_t
+	var i, j Tmpd_size_t
+	var n1_neg, n_adj, t, v3, v4, v5, v6, v8, v9 Tmpd_uint_t
+	var w [4]Tuint32_t
+	var v7 uint64
+	var _ Tmpd_uint_t
+	var _ Tmpd_uint_t
+	var _ Tmpd_uint_t
+	var _ Tmpd_uint_t
+	var _ Tmpd_uint_t
+	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = ah, al, bh, bl, carry, hl, i, j, n1_neg, n_adj, t, w, v3, v4, v5, v6, v7, v8, v9
+	j = uint64(0)
+	for {
+		if !(j < n) {
+			break
+		}
+		**(**Tmpd_uint_t)(__ccgo_up(bp + 32)) = uint64(0)
+		i = uint64(0)
+		for {
+			if !(i < m) {
+				break
+			}
+			v3 = **(**Tmpd_uint_t)(__ccgo_up(u + uintptr(i)*8))
+			v4 = **(**Tmpd_uint_t)(__ccgo_up(v + uintptr(j)*8))
+			ah = uint32(v3 >> libc.Int32FromInt32(32))
+			al = uint32(v3)
+			bh = uint32(v4 >> libc.Int32FromInt32(32))
+			bl = uint32(v4)
+			hl = uint64(al) * uint64(bl)
+			w[0] = uint32(hl)
+			carry = uint32(hl >> libc.Int32FromInt32(32))
+			hl = uint64(ah)*uint64(bl) + uint64(carry)
+			w[int32(1)] = uint32(hl)
+			w[int32(2)] = uint32(hl >> libc.Int32FromInt32(32))
+			hl = uint64(al)*uint64(bh) + uint64(w[int32(1)])
+			w[int32(1)] = uint32(hl)
+			carry = uint32(hl >> libc.Int32FromInt32(32))
+			hl = uint64(ah)*uint64(bh) + uint64(w[int32(2)]) + uint64(carry)
+			w[int32(2)] = uint32(hl)
+			w[int32(3)] = uint32(hl >> libc.Int32FromInt32(32))
+			**(**Tmpd_uint_t)(__ccgo_up(bp + 16)) = uint64(w[int32(3)])<<libc.Int32FromInt32(32) + uint64(w[int32(2)])
+			**(**Tmpd_uint_t)(__ccgo_up(bp + 24)) = uint64(w[int32(1)])<<libc.Int32FromInt32(32) + uint64(w[0])
+			**(**Tmpd_uint_t)(__ccgo_up(bp + 24)) = **(**Tmpd_uint_t)(__ccgo_up(w1 + uintptr(i+j)*8)) + **(**Tmpd_uint_t)(__ccgo_up(bp + 24))
+			if **(**Tmpd_uint_t)(__ccgo_up(bp + 24)) < **(**Tmpd_uint_t)(__ccgo_up(w1 + uintptr(i+j)*8)) {
+				**(**Tmpd_uint_t)(__ccgo_up(bp + 16)) = **(**Tmpd_uint_t)(__ccgo_up(bp + 16)) + 1
+			}
+			**(**Tmpd_uint_t)(__ccgo_up(bp + 24)) = **(**Tmpd_uint_t)(__ccgo_up(bp + 32)) + **(**Tmpd_uint_t)(__ccgo_up(bp + 24))
+			if **(**Tmpd_uint_t)(__ccgo_up(bp + 24)) < **(**Tmpd_uint_t)(__ccgo_up(bp + 32)) {
+				**(**Tmpd_uint_t)(__ccgo_up(bp + 16)) = **(**Tmpd_uint_t)(__ccgo_up(bp + 16)) + 1
+			}
+			v3 = **(**Tmpd_uint_t)(__ccgo_up(bp + 16))
+			v4 = **(**Tmpd_uint_t)(__ccgo_up(bp + 24))
+			if v4&(libc.Uint64FromUint64(1)<<libc.Int32FromInt32(63)) != 0 {
+				v7 = uint64(18446744073709551615)
+			} else {
+				v7 = uint64(0)
+			}
+			n1_neg = v7
+			n_adj = v4 + n1_neg&uint64(10000000000000000000)
+			v5 = Xmprime_rdx
+			v6 = v3 - n1_neg
+			ah = uint32(v5 >> libc.Int32FromInt32(32))
+			al = uint32(v5)
+			bh = uint32(v6 >> libc.Int32FromInt32(32))
+			bl = uint32(v6)
+			hl = uint64(al) * uint64(bl)
+			w[0] = uint32(hl)
+			carry = uint32(hl >> libc.Int32FromInt32(32))
+			hl = uint64(ah)*uint64(bl) + uint64(carry)
+			w[int32(1)] = uint32(hl)
+			w[int32(2)] = uint32(hl >> libc.Int32FromInt32(32))
+			hl = uint64(al)*uint64(bh) + uint64(w[int32(1)])
+			w[int32(1)] = uint32(hl)
+			carry = uint32(hl >> libc.Int32FromInt32(32))
+			hl = uint64(ah)*uint64(bh) + uint64(w[int32(2)]) + uint64(carry)
+			w[int32(2)] = uint32(hl)
+			w[int32(3)] = uint32(hl >> libc.Int32FromInt32(32))
+			**(**Tmpd_uint_t)(__ccgo_up(bp)) = uint64(w[int32(3)])<<libc.Int32FromInt32(32) + uint64(w[int32(2)])
+			**(**Tmpd_uint_t)(__ccgo_up(bp + 8)) = uint64(w[int32(1)])<<libc.Int32FromInt32(32) + uint64(w[0])
+			**(**Tmpd_uint_t)(__ccgo_up(bp + 8)) = **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) + n_adj
+			if **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) < n_adj {
+				**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) + 1
+			}
+			t = **(**Tmpd_uint_t)(__ccgo_up(bp)) + v3
+			t = uint64(18446744073709551615) - t
+			v8 = t
+			v9 = uint64(10000000000000000000)
+			ah = uint32(v8 >> libc.Int32FromInt32(32))
+			al = uint32(v8)
+			bh = uint32(v9 >> libc.Int32FromInt32(32))
+			bl = uint32(v9)
+			hl = uint64(al) * uint64(bl)
+			w[0] = uint32(hl)
+			carry = uint32(hl >> libc.Int32FromInt32(32))
+			hl = uint64(ah)*uint64(bl) + uint64(carry)
+			w[int32(1)] = uint32(hl)
+			w[int32(2)] = uint32(hl >> libc.Int32FromInt32(32))
+			hl = uint64(al)*uint64(bh) + uint64(w[int32(1)])
+			w[int32(1)] = uint32(hl)
+			carry = uint32(hl >> libc.Int32FromInt32(32))
+			hl = uint64(ah)*uint64(bh) + uint64(w[int32(2)]) + uint64(carry)
+			w[int32(2)] = uint32(hl)
+			w[int32(3)] = uint32(hl >> libc.Int32FromInt32(32))
+			**(**Tmpd_uint_t)(__ccgo_up(bp)) = uint64(w[int32(3)])<<libc.Int32FromInt32(32) + uint64(w[int32(2)])
+			**(**Tmpd_uint_t)(__ccgo_up(bp + 8)) = uint64(w[int32(1)])<<libc.Int32FromInt32(32) + uint64(w[0])
+			**(**Tmpd_uint_t)(__ccgo_up(bp + 8)) = **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) + v4
+			if **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) < v4 {
+				**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) + 1
+			}
+			**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) + v3
+			**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) - uint64(10000000000000000000)
+			**(**Tmpd_uint_t)(__ccgo_up(bp + 32)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) - t
+			**(**Tmpd_uint_t)(__ccgo_up(w1 + uintptr(i+j)*8)) = **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) + uint64(10000000000000000000)&**(**Tmpd_uint_t)(__ccgo_up(bp))
+			goto _2
+		_2:
+			;
+			i = i + 1
+		}
+		**(**Tmpd_uint_t)(__ccgo_up(w1 + uintptr(j+m)*8)) = **(**Tmpd_uint_t)(__ccgo_up(bp + 32))
+		goto _1
+	_1:
+		;
+		j = j + 1
+	}
+}
+
+// C documentation
+//
+//	/*
+//	 * Knuth, TAOCP Volume 2, 4.3.1, exercise 16:
+//	 *     w := quotient of u (len n) divided by a single word v
+//	 */
+func X_mpd_shortdiv(tls *libc.TLS, w1 uintptr, u uintptr, n1 Tmpd_size_t, v1 Tmpd_uint_t) (r Tmpd_uint_t) {
+	bp := tls.Alloc(32)
+	defer tls.Free(32)
+	var ah, al, bh, bl, carry Tuint32_t
+	var b1, q0, q1, rhat, t, un0, un1, un10, un21, un32, vn0, vn1, v2, v3 Tmpd_uint_t
+	var hl, v6 Tuint64_t
+	var i Tmpd_size_t
+	var n, s, v7 int32
+	var w [4]Tuint32_t
+	var v9 uint64
+	var _ Tmpd_uint_t
+	var _ Tmpd_uint_t
+	var _ Tmpd_uint_t
+	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = ah, al, b1, bh, bl, carry, hl, i, n, q0, q1, rhat, s, t, un0, un1, un10, un21, un32, vn0, vn1, w, v2, v3, v6, v7, v9
+	**(**Tmpd_uint_t)(__ccgo_up(bp + 16)) = uint64(0)
+	i = n1 - uint64(1)
+	for {
+		if !(i != uint64(18446744073709551615)) {
+			break
+		}
+		v2 = **(**Tmpd_uint_t)(__ccgo_up(bp + 16))
+		v3 = uint64(10000000000000000000)
+		ah = uint32(v2 >> libc.Int32FromInt32(32))
+		al = uint32(v2)
+		bh = uint32(v3 >> libc.Int32FromInt32(32))
+		bl = uint32(v3)
+		hl = uint64(al) * uint64(bl)
+		w[0] = uint32(hl)
+		carry = uint32(hl >> libc.Int32FromInt32(32))
+		hl = uint64(ah)*uint64(bl) + uint64(carry)
+		w[int32(1)] = uint32(hl)
+		w[int32(2)] = uint32(hl >> libc.Int32FromInt32(32))
+		hl = uint64(al)*uint64(bh) + uint64(w[int32(1)])
+		w[int32(1)] = uint32(hl)
+		carry = uint32(hl >> libc.Int32FromInt32(32))
+		hl = uint64(ah)*uint64(bh) + uint64(w[int32(2)]) + uint64(carry)
+		w[int32(2)] = uint32(hl)
+		w[int32(3)] = uint32(hl >> libc.Int32FromInt32(32))
+		**(**Tmpd_uint_t)(__ccgo_up(bp)) = uint64(w[int32(3)])<<libc.Int32FromInt32(32) + uint64(w[int32(2)])
+		**(**Tmpd_uint_t)(__ccgo_up(bp + 8)) = uint64(w[int32(1)])<<libc.Int32FromInt32(32) + uint64(w[0])
+		**(**Tmpd_uint_t)(__ccgo_up(bp + 8)) = **(**Tmpd_uint_t)(__ccgo_up(u + uintptr(i)*8)) + **(**Tmpd_uint_t)(__ccgo_up(bp + 8))
+		if **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) < **(**Tmpd_uint_t)(__ccgo_up(u + uintptr(i)*8)) {
+			**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) + 1
+		}
+		v2 = **(**Tmpd_uint_t)(__ccgo_up(bp + 8))
+		v3 = v1
+		b1 = uint64(4294967296)
+		v6 = v3
+		if v6 == libc.Uint64FromInt32(0) {
+			v7 = int32(64)
+			goto _8
+		}
+		n = 0
+		if v6 <= libc.Uint64FromUint32(0x00000000FFFFFFFF) {
+			n = n + int32(32)
+			v6 = v6 << int32(32)
+		}
+		if v6 <= libc.Uint64FromInt64(0x0000FFFFFFFFFFFF) {
+			n = n + int32(16)
+			v6 = v6 << int32(16)
+		}
+		if v6 <= libc.Uint64FromInt64(0x00FFFFFFFFFFFFFF) {
+			n = n + int32(8)
+			v6 = v6 << int32(8)
+		}
+		if v6 <= libc.Uint64FromInt64(0x0FFFFFFFFFFFFFFF) {
+			n = n + int32(4)
+			v6 = v6 << int32(4)
+		}
+		if v6 <= libc.Uint64FromInt64(0x3FFFFFFFFFFFFFFF) {
+			n = n + int32(2)
+			v6 = v6 << int32(2)
+		}
+		if v6 <= libc.Uint64FromInt64(0x7FFFFFFFFFFFFFFF) {
+			n = n + int32(1)
+		}
+		v7 = n
+		goto _8
+	_8:
+		s = v7
+		v3 = v3 << s
+		vn1 = v3 >> int32(32)
+		vn0 = v3 & uint64(0xFFFFFFFF)
+		if s == 0 {
+			v9 = uint64(0)
+		} else {
+			v9 = v2 >> (int32(64) - s)
+		}
+		t = v9
+		un32 = **(**Tmpd_uint_t)(__ccgo_up(bp))<<s | t
+		un10 = v2 << s
+		un1 = un10 >> int32(32)
+		un0 = un10 & uint64(0xFFFFFFFF)
+		q1 = un32 / vn1
+		rhat = un32 - q1*vn1
+		goto again1__ccgo21
+	again1__ccgo21:
+		;
+		if q1 >= b1 || q1*vn0 > b1*rhat+un1 {
+			q1 = q1 - uint64(1)
+			rhat = rhat + vn1
+			if rhat < b1 {
+				goto again1__ccgo21
+			}
+		}
+		un21 = un32*b1 + un1 - q1*v3
+		q0 = un21 / vn1
+		rhat = un21 - q0*vn1
+		goto again2__ccgo21
+	again2__ccgo21:
+		;
+		if q0 >= b1 || q0*vn0 > b1*rhat+un0 {
+			q0 = q0 - uint64(1)
+			rhat = rhat + vn1
+			if rhat < b1 {
+				goto again2__ccgo21
+			}
+		}
+		**(**Tmpd_uint_t)(__ccgo_up(w1 + uintptr(i)*8)) = q1*b1 + q0
+		**(**Tmpd_uint_t)(__ccgo_up(bp + 16)) = (un21*b1 + un0 - q0*v3) >> s
+		goto _1
+	_1:
+		;
+		i = i - 1
+	}
+	return **(**Tmpd_uint_t)(__ccgo_up(bp + 16))
+}
+
+// C documentation
+//
+//	/*
+//	 * Knuth, TAOCP Volume 2, 4.3.1:
+//	 *     q, r := quotient and remainder of uconst (len nplusm)
+//	 *             divided by vconst (len n)
+//	 *     nplusm >= n
+//	 *
+//	 * If r is not NULL, r will contain the remainder. If r is NULL, the
+//	 * return value indicates if there is a remainder: 1 for true, 0 for
+//	 * false.  A return value of -1 indicates an error.
+//	 */
+func X_mpd_basedivmod(tls *libc.TLS, q1 uintptr, r1 uintptr, uconst uintptr, vconst uintptr, nplusm Tmpd_size_t, n Tmpd_size_t) (r int32) {
+	bp := tls.Alloc(1120)
+	defer tls.Free(1120)
+	var ah, al, bh, bl, carry Tuint32_t
+	var carry1, d, n1_neg, n_adj, qhat, rhat, t, x, v10, v111, v12, v14, v15, v16, v17, v9 Tmpd_uint_t
+	var hl Tuint64_t
+	var i, j, m, v11, v2, v3 Tmpd_size_t
+	var retval, v31 int32
+	var u1, v1, v5 uintptr
+	var w [4]Tuint32_t
+	var v13 uint64
+	var v29, v30 Tmpd_ssize_t
+	var _ Tmpd_uint_t
+	var _ Tmpd_uint_t
+	var _ Tmpd_uint_t
+	var _ Tmpd_uint_t
+	var _ Tmpd_uint_t
+	var _ Tmpd_uint_t
+	var _ [64]Tmpd_uint_t
+	var _ [64]Tmpd_uint_t
+	var _ [2]Tmpd_uint_t
+	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = ah, al, bh, bl, carry, carry1, d, hl, i, j, m, n1_neg, n_adj, qhat, retval, rhat, t, u1, v1, w, x, v11, v10, v111, v12, v13, v14, v15, v16, v17, v2, v29, v3, v30, v31, v5, v9
+	u1 = bp + 32
+	v1 = bp + 544
+	retval = 0
+	v11 = nplusm
+	v2 = n
+	if v2 > v11 {
+		_ccgo_fprintf(tls, libc.X__stderrp, __ccgo_ts+369947, libc.VaList(bp+1096, __ccgo_ts+369962, int32(606)))
+		_ccgo_fprintf(tls, libc.X__stderrp, __ccgo_ts+370075, 0)
+		libc.Xfputc(tls, int32('\n'), libc.X__stderrp)
+		libc.Xabort(tls)
+	}
+	v3 = v11 - v2
+	goto _4
+_4:
+	m = v3
+
+	d = uint64(10000000000000000000) / (**(**Tmpd_uint_t)(__ccgo_up(vconst + uintptr(n-uint64(1))*8)) + uint64(1))
+	if nplusm >= uint64(MMPD_MINALLOC_MAX) {
+		v5 = Xmpd_alloc(tls, nplusm+uint64(1), uint64(8))
+		u1 = v5
+		if v5 == libc.UintptrFromInt32(0) {
+			return -int32(1)
+		}
+	}
+	if n >= uint64(MMPD_MINALLOC_MAX) {
+		v5 = Xmpd_alloc(tls, n+uint64(1), uint64(8))
+		v1 = v5
+		if v5 == libc.UintptrFromInt32(0) {
+			(*(*func(*libc.TLS, uintptr))(unsafe.Pointer(&struct{ uintptr }{Xmpd_free})))(tls, u1)
+			return -int32(1)
+		}
+	}
+	X_mpd_shortmul(tls, u1, uconst, nplusm, d)
+	X_mpd_shortmul(tls, v1, vconst, n, d)
+
+	j = m
+	for {
+		if !(j != uint64(18446744073709551615)) {
+			break
+		}
+
+		rhat = X_mpd_shortdiv(tls, bp+1056, u1+uintptr(j)*8+uintptr(n)*8-uintptr(1)*8, uint64(2), **(**Tmpd_uint_t)(__ccgo_up(v1 + uintptr(n-uint64(1))*8)))
+		qhat = (**(**[2]Tmpd_uint_t)(__ccgo_up(bp + 1056)))[int32(1)]*uint64(10000000000000000000) + (**(**[2]Tmpd_uint_t)(__ccgo_up(bp + 1056)))[0]
+		for int32(1) != 0 {
+			if qhat < uint64(10000000000000000000) {
+				v5 = bp + 1056
+				v9 = qhat
+				v10 = **(**Tmpd_uint_t)(__ccgo_up(v1 + uintptr(n-uint64(2))*8))
+				ah = uint32(v9 >> libc.Int32FromInt32(32))
+				al = uint32(v9)
+				bh = uint32(v10 >> libc.Int32FromInt32(32))
+				bl = uint32(v10)
+				hl = uint64(al) * uint64(bl)
+				w[0] = uint32(hl)
+				carry = uint32(hl >> libc.Int32FromInt32(32))
+				hl = uint64(ah)*uint64(bl) + uint64(carry)
+				w[int32(1)] = uint32(hl)
+				w[int32(2)] = uint32(hl >> libc.Int32FromInt32(32))
+				hl = uint64(al)*uint64(bh) + uint64(w[int32(1)])
+				w[int32(1)] = uint32(hl)
+				carry = uint32(hl >> libc.Int32FromInt32(32))
+				hl = uint64(ah)*uint64(bh) + uint64(w[int32(2)]) + uint64(carry)
+				w[int32(2)] = uint32(hl)
+				w[int32(3)] = uint32(hl >> libc.Int32FromInt32(32))
+				**(**Tmpd_uint_t)(__ccgo_up(bp + 16)) = uint64(w[int32(3)])<<libc.Int32FromInt32(32) + uint64(w[int32(2)])
+				**(**Tmpd_uint_t)(__ccgo_up(bp + 24)) = uint64(w[int32(1)])<<libc.Int32FromInt32(32) + uint64(w[0])
+				v111 = **(**Tmpd_uint_t)(__ccgo_up(bp + 16))
+				v12 = **(**Tmpd_uint_t)(__ccgo_up(bp + 24))
+				if v12&(libc.Uint64FromUint64(1)<<libc.Int32FromInt32(63)) != 0 {
+					v13 = uint64(18446744073709551615)
+				} else {
+					v13 = uint64(0)
+				}
+				n1_neg = v13
+				n_adj = v12 + n1_neg&uint64(10000000000000000000)
+				v14 = Xmprime_rdx
+				v15 = v111 - n1_neg
+				ah = uint32(v14 >> libc.Int32FromInt32(32))
+				al = uint32(v14)
+				bh = uint32(v15 >> libc.Int32FromInt32(32))
+				bl = uint32(v15)
+				hl = uint64(al) * uint64(bl)
+				w[0] = uint32(hl)
+				carry = uint32(hl >> libc.Int32FromInt32(32))
+				hl = uint64(ah)*uint64(bl) + uint64(carry)
+				w[int32(1)] = uint32(hl)
+				w[int32(2)] = uint32(hl >> libc.Int32FromInt32(32))
+				hl = uint64(al)*uint64(bh) + uint64(w[int32(1)])
+				w[int32(1)] = uint32(hl)
+				carry = uint32(hl >> libc.Int32FromInt32(32))
+				hl = uint64(ah)*uint64(bh) + uint64(w[int32(2)]) + uint64(carry)
+				w[int32(2)] = uint32(hl)
+				w[int32(3)] = uint32(hl >> libc.Int32FromInt32(32))
+				**(**Tmpd_uint_t)(__ccgo_up(bp)) = uint64(w[int32(3)])<<libc.Int32FromInt32(32) + uint64(w[int32(2)])
+				**(**Tmpd_uint_t)(__ccgo_up(bp + 8)) = uint64(w[int32(1)])<<libc.Int32FromInt32(32) + uint64(w[0])
+				**(**Tmpd_uint_t)(__ccgo_up(bp + 8)) = **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) + n_adj
+				if **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) < n_adj {
+					**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) + 1
+				}
+				t = **(**Tmpd_uint_t)(__ccgo_up(bp)) + v111
+				t = uint64(18446744073709551615) - t
+				v16 = t
+				v17 = uint64(10000000000000000000)
+				ah = uint32(v16 >> libc.Int32FromInt32(32))
+				al = uint32(v16)
+				bh = uint32(v17 >> libc.Int32FromInt32(32))
+				bl = uint32(v17)
+				hl = uint64(al) * uint64(bl)
+				w[0] = uint32(hl)
+				carry = uint32(hl >> libc.Int32FromInt32(32))
+				hl = uint64(ah)*uint64(bl) + uint64(carry)
+				w[int32(1)] = uint32(hl)
+				w[int32(2)] = uint32(hl >> libc.Int32FromInt32(32))
+				hl = uint64(al)*uint64(bh) + uint64(w[int32(1)])
+				w[int32(1)] = uint32(hl)
+				carry = uint32(hl >> libc.Int32FromInt32(32))
+				hl = uint64(ah)*uint64(bh) + uint64(w[int32(2)]) + uint64(carry)
+				w[int32(2)] = uint32(hl)
+				w[int32(3)] = uint32(hl >> libc.Int32FromInt32(32))
+				**(**Tmpd_uint_t)(__ccgo_up(bp)) = uint64(w[int32(3)])<<libc.Int32FromInt32(32) + uint64(w[int32(2)])
+				**(**Tmpd_uint_t)(__ccgo_up(bp + 8)) = uint64(w[int32(1)])<<libc.Int32FromInt32(32) + uint64(w[0])
+				**(**Tmpd_uint_t)(__ccgo_up(bp + 8)) = **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) + v12
+				if **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) < v12 {
+					**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) + 1
+				}
+				**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) + v111
+				**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) - uint64(10000000000000000000)
+				**(**Tmpd_uint_t)(__ccgo_up(v5 + 1*8)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) - t
+				**(**Tmpd_uint_t)(__ccgo_up(v5)) = **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) + uint64(10000000000000000000)&**(**Tmpd_uint_t)(__ccgo_up(bp))
+				if (**(**[2]Tmpd_uint_t)(__ccgo_up(bp + 1056)))[int32(1)] <= rhat {
+					if (**(**[2]Tmpd_uint_t)(__ccgo_up(bp + 1056)))[int32(1)] != rhat || (**(**[2]Tmpd_uint_t)(__ccgo_up(bp + 1056)))[0] <= **(**Tmpd_uint_t)(__ccgo_up(u1 + uintptr(j+n-uint64(2))*8)) {
+						break
+					}
+				}
+			}
+			qhat = qhat - uint64(1)
+			rhat = rhat + **(**Tmpd_uint_t)(__ccgo_up(v1 + uintptr(n-uint64(1))*8))
+			if rhat < **(**Tmpd_uint_t)(__ccgo_up(v1 + uintptr(n-uint64(1))*8)) || rhat >= uint64(10000000000000000000) {
+				break
+			}
+		}
+
+		carry1 = uint64(0)
+		i = uint64(0)
+		for {
+			if !(i <= n) {
+				break
+			}
+			v9 = qhat
+			v10 = **(**Tmpd_uint_t)(__ccgo_up(v1 + uintptr(i)*8))
+			ah = uint32(v9 >> libc.Int32FromInt32(32))
+			al = uint32(v9)
+			bh = uint32(v10 >> libc.Int32FromInt32(32))
+			bl = uint32(v10)
+			hl = uint64(al) * uint64(bl)
+			w[0] = uint32(hl)
+			carry = uint32(hl >> libc.Int32FromInt32(32))
+			hl = uint64(ah)*uint64(bl) + uint64(carry)
+			w[int32(1)] = uint32(hl)
+			w[int32(2)] = uint32(hl >> libc.Int32FromInt32(32))
+			hl = uint64(al)*uint64(bh) + uint64(w[int32(1)])
+			w[int32(1)] = uint32(hl)
+			carry = uint32(hl >> libc.Int32FromInt32(32))
+			hl = uint64(ah)*uint64(bh) + uint64(w[int32(2)]) + uint64(carry)
+			w[int32(2)] = uint32(hl)
+			w[int32(3)] = uint32(hl >> libc.Int32FromInt32(32))
+			**(**Tmpd_uint_t)(__ccgo_up(bp + 1072)) = uint64(w[int32(3)])<<libc.Int32FromInt32(32) + uint64(w[int32(2)])
+			**(**Tmpd_uint_t)(__ccgo_up(bp + 1080)) = uint64(w[int32(1)])<<libc.Int32FromInt32(32) + uint64(w[0])
+			**(**Tmpd_uint_t)(__ccgo_up(bp + 1080)) = carry1 + **(**Tmpd_uint_t)(__ccgo_up(bp + 1080))
+			if **(**Tmpd_uint_t)(__ccgo_up(bp + 1080)) < carry1 {
+				**(**Tmpd_uint_t)(__ccgo_up(bp + 1072)) = **(**Tmpd_uint_t)(__ccgo_up(bp + 1072)) + 1
+			}
+			v9 = **(**Tmpd_uint_t)(__ccgo_up(bp + 1072))
+			v10 = **(**Tmpd_uint_t)(__ccgo_up(bp + 1080))
+			if v10&(libc.Uint64FromUint64(1)<<libc.Int32FromInt32(63)) != 0 {
+				v13 = uint64(18446744073709551615)
+			} else {
+				v13 = uint64(0)
+			}
+			n1_neg = v13
+			n_adj = v10 + n1_neg&uint64(10000000000000000000)
+			v111 = Xmprime_rdx
+			v12 = v9 - n1_neg
+			ah = uint32(v111 >> libc.Int32FromInt32(32))
+			al = uint32(v111)
+			bh = uint32(v12 >> libc.Int32FromInt32(32))
+			bl = uint32(v12)
+			hl = uint64(al) * uint64(bl)
+			w[0] = uint32(hl)
+			carry = uint32(hl >> libc.Int32FromInt32(32))
+			hl = uint64(ah)*uint64(bl) + uint64(carry)
+			w[int32(1)] = uint32(hl)
+			w[int32(2)] = uint32(hl >> libc.Int32FromInt32(32))
+			hl = uint64(al)*uint64(bh) + uint64(w[int32(1)])
+			w[int32(1)] = uint32(hl)
+			carry = uint32(hl >> libc.Int32FromInt32(32))
+			hl = uint64(ah)*uint64(bh) + uint64(w[int32(2)]) + uint64(carry)
+			w[int32(2)] = uint32(hl)
+			w[int32(3)] = uint32(hl >> libc.Int32FromInt32(32))
+			**(**Tmpd_uint_t)(__ccgo_up(bp)) = uint64(w[int32(3)])<<libc.Int32FromInt32(32) + uint64(w[int32(2)])
+			**(**Tmpd_uint_t)(__ccgo_up(bp + 8)) = uint64(w[int32(1)])<<libc.Int32FromInt32(32) + uint64(w[0])
+			**(**Tmpd_uint_t)(__ccgo_up(bp + 8)) = **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) + n_adj
+			if **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) < n_adj {
+				**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) + 1
+			}
+			t = **(**Tmpd_uint_t)(__ccgo_up(bp)) + v9
+			t = uint64(18446744073709551615) - t
+			v14 = t
+			v15 = uint64(10000000000000000000)
+			ah = uint32(v14 >> libc.Int32FromInt32(32))
+			al = uint32(v14)
+			bh = uint32(v15 >> libc.Int32FromInt32(32))
+			bl = uint32(v15)
+			hl = uint64(al) * uint64(bl)
+			w[0] = uint32(hl)
+			carry = uint32(hl >> libc.Int32FromInt32(32))
+			hl = uint64(ah)*uint64(bl) + uint64(carry)
+			w[int32(1)] = uint32(hl)
+			w[int32(2)] = uint32(hl >> libc.Int32FromInt32(32))
+			hl = uint64(al)*uint64(bh) + uint64(w[int32(1)])
+			w[int32(1)] = uint32(hl)
+			carry = uint32(hl >> libc.Int32FromInt32(32))
+			hl = uint64(ah)*uint64(bh) + uint64(w[int32(2)]) + uint64(carry)
+			w[int32(2)] = uint32(hl)
+			w[int32(3)] = uint32(hl >> libc.Int32FromInt32(32))
+			**(**Tmpd_uint_t)(__ccgo_up(bp)) = uint64(w[int32(3)])<<libc.Int32FromInt32(32) + uint64(w[int32(2)])
+			**(**Tmpd_uint_t)(__ccgo_up(bp + 8)) = uint64(w[int32(1)])<<libc.Int32FromInt32(32) + uint64(w[0])
+			**(**Tmpd_uint_t)(__ccgo_up(bp + 8)) = **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) + v10
+			if **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) < v10 {
+				**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) + 1
+			}
+			**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) + v9
+			**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) - uint64(10000000000000000000)
+			**(**Tmpd_uint_t)(__ccgo_up(bp + 1072)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) - t
+			**(**Tmpd_uint_t)(__ccgo_up(bp + 1080)) = **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) + uint64(10000000000000000000)&**(**Tmpd_uint_t)(__ccgo_up(bp))
+			x = **(**Tmpd_uint_t)(__ccgo_up(u1 + uintptr(i+j)*8)) - **(**Tmpd_uint_t)(__ccgo_up(bp + 1080))
+			carry1 = libc.BoolUint64(**(**Tmpd_uint_t)(__ccgo_up(u1 + uintptr(i+j)*8)) < x)
+			if carry1 != 0 {
+				v13 = x + uint64(10000000000000000000)
+			} else {
+				v13 = x
+			}
+			**(**Tmpd_uint_t)(__ccgo_up(u1 + uintptr(i+j)*8)) = v13
+			carry1 = carry1 + **(**Tmpd_uint_t)(__ccgo_up(bp + 1072))
+			goto _18
+		_18:
+			;
+			i = i + 1
+		}
+		**(**Tmpd_uint_t)(__ccgo_up(q1 + uintptr(j)*8)) = qhat
+
+		if carry1 != 0 {
+			**(**Tmpd_uint_t)(__ccgo_up(q1 + uintptr(j)*8)) -= uint64(1)
+
+			X_mpd_baseadd(tls, u1+uintptr(j)*8, u1+uintptr(j)*8, v1, n+uint64(1), n)
+		}
+		goto _7
+	_7:
+		;
+		j = j - 1
+	}
+
+	if r1 != libc.UintptrFromInt32(0) {
+		X_mpd_shortdiv(tls, r1, u1, n, d)
+
+		retval = 0
+	} else {
+		v29 = libc.Int64FromUint64(n)
+		for {
+			v29 = v29 - 1
+			v30 = v29
+			if !(v30 >= libc.Int64FromInt32(0)) {
+				break
+			}
+			if **(**Tmpd_uint_t)(__ccgo_up(u1 + uintptr(v29)*8)) != libc.Uint64FromInt32(0) {
+				v31 = 0
+				goto _32
+			}
+		}
+		v31 = int32(1)
+		goto _32
+	_32:
+		retval = libc.BoolInt32(!(v31 != 0))
+	}
+	if u1 != bp+32 {
+		(*(*func(*libc.TLS, uintptr))(unsafe.Pointer(&struct{ uintptr }{Xmpd_free})))(tls, u1)
+	}
+	if v1 != bp+544 {
+		(*(*func(*libc.TLS, uintptr))(unsafe.Pointer(&struct{ uintptr }{Xmpd_free})))(tls, v1)
+	}
+	return retval
+}
+
+// C documentation
+//
+//	/*
+//	 * Left shift of src by 'shift' digits; src may equal dest.
+//	 *
+//	 *  dest := area of n mpd_uint_t with space for srcdigits+shift digits.
+//	 *  src  := coefficient with length m.
+//	 *
+//	 * The case splits in the function are non-obvious. The following
+//	 * equations might help:
+//	 *
+//	 *  Let msdigits denote the number of digits in the most significant
+//	 *  word of src. Then 1 <= msdigits <= rdigits.
+//	 *
+//	 *   1) shift = q * rdigits + r
+//	 *   2) srcdigits = qsrc * rdigits + msdigits
+//	 *   3) destdigits = shift + srcdigits
+//	 *                 = q * rdigits + r + qsrc * rdigits + msdigits
+//	 *                 = q * rdigits + (qsrc * rdigits + (r + msdigits))
+//	 *
+//	 *  The result has q zero words, followed by the coefficient that
+//	 *  is left-shifted by r. The case r == 0 is trivial. For r > 0, it
+//	 *  is important to keep in mind that we always read m source words,
+//	 *  but write m+1 destination words if r + msdigits > rdigits, m words
+//	 *  otherwise.
+//	 */
+func X_mpd_baseshiftl(tls *libc.TLS, dest uintptr, src uintptr, n Tmpd_size_t, m Tmpd_size_t, shift Tmpd_size_t) {
+	bp := tls.Alloc(48)
+	defer tls.Free(48)
+	var ph, v2, v3 Tmpd_uint_t
+	var v1, v5 uintptr
+	var v4 Tmpd_size_t
+	var _ Tmpd_uint_t
+	var _ Tmpd_uint_t
+	var _ Tmpd_uint_t
+	var _ Tmpd_uint_t
+	var _ Tmpd_uint_t
+	_, _, _, _, _, _ = ph, v1, v2, v3, v4, v5
+	v1 = bp + 24
+	v2 = shift
+	v3 = uint64(MMPD_RDIGITS)
+	**(**Tmpd_uint_t)(__ccgo_up(v1)) = v2 / v3
+	**(**Tmpd_uint_t)(__ccgo_up(bp + 32)) = v2 - **(**Tmpd_uint_t)(__ccgo_up(v1))*v3
+	if **(**Tmpd_uint_t)(__ccgo_up(bp + 32)) != uint64(0) {
+		ph = Xmpd_pow10[**(**Tmpd_uint_t)(__ccgo_up(bp + 32))]
+		m = m - 1
+		n = n - 1
+		v4 = m
+		m = m - 1
+		v1 = bp + 16
+		v5 = bp + 8
+		v2 = **(**Tmpd_uint_t)(__ccgo_up(src + uintptr(v4)*8))
+		v3 = uint64(MMPD_RDIGITS) - **(**Tmpd_uint_t)(__ccgo_up(bp + 32))
+		if v3 <= libc.Uint64FromInt32(9) {
+			if v3 <= libc.Uint64FromInt32(4) {
+				switch v3 {
+				case uint64(0):
+					**(**Tmpd_uint_t)(__ccgo_up(v1)) = v2
+					**(**Tmpd_uint_t)(__ccgo_up(v5)) = uint64(0)
+				case uint64(1):
+					**(**Tmpd_uint_t)(__ccgo_up(v1)) = v2 / uint64(10)
+					**(**Tmpd_uint_t)(__ccgo_up(v5)) = v2 - **(**Tmpd_uint_t)(__ccgo_up(v1))*uint64(10)
+				case uint64(2):
+					**(**Tmpd_uint_t)(__ccgo_up(v1)) = v2 / uint64(100)
+					**(**Tmpd_uint_t)(__ccgo_up(v5)) = v2 - **(**Tmpd_uint_t)(__ccgo_up(v1))*uint64(100)
+				case uint64(3):
+					**(**Tmpd_uint_t)(__ccgo_up(v1)) = v2 / uint64(1000)
+					**(**Tmpd_uint_t)(__ccgo_up(v5)) = v2 - **(**Tmpd_uint_t)(__ccgo_up(v1))*uint64(1000)
+				case uint64(4):
+					**(**Tmpd_uint_t)(__ccgo_up(v1)) = v2 / uint64(10000)
+					**(**Tmpd_uint_t)(__ccgo_up(v5)) = v2 - **(**Tmpd_uint_t)(__ccgo_up(v1))*uint64(10000)
+					break
+				}
+			} else {
+				switch v3 {
+				case uint64(5):
+					**(**Tmpd_uint_t)(__ccgo_up(v1)) = v2 / uint64(100000)
+					**(**Tmpd_uint_t)(__ccgo_up(v5)) = v2 - **(**Tmpd_uint_t)(__ccgo_up(v1))*uint64(100000)
+				case uint64(6):
+					**(**Tmpd_uint_t)(__ccgo_up(v1)) = v2 / uint64(1000000)
+					**(**Tmpd_uint_t)(__ccgo_up(v5)) = v2 - **(**Tmpd_uint_t)(__ccgo_up(v1))*uint64(1000000)
+				case uint64(7):
+					**(**Tmpd_uint_t)(__ccgo_up(v1)) = v2 / uint64(10000000)
+					**(**Tmpd_uint_t)(__ccgo_up(v5)) = v2 - **(**Tmpd_uint_t)(__ccgo_up(v1))*uint64(10000000)
+				case uint64(8):
+					**(**Tmpd_uint_t)(__ccgo_up(v1)) = v2 / uint64(100000000)
+					**(**Tmpd_uint_t)(__ccgo_up(v5)) = v2 - **(**Tmpd_uint_t)(__ccgo_up(v1))*uint64(100000000)
+				case uint64(9):
+					**(**Tmpd_uint_t)(__ccgo_up(v1)) = v2 / uint64(1000000000)
+					**(**Tmpd_uint_t)(__ccgo_up(v5)) = v2 - **(**Tmpd_uint_t)(__ccgo_up(v1))*uint64(1000000000)
+					break
+				}
+			}
+		} else {
+			if v3 <= libc.Uint64FromInt32(14) {
+				switch v3 {
+				case uint64(10):
+					**(**Tmpd_uint_t)(__ccgo_up(v1)) = v2 / uint64(10000000000)
+					**(**Tmpd_uint_t)(__ccgo_up(v5)) = v2 - **(**Tmpd_uint_t)(__ccgo_up(v1))*uint64(10000000000)
+				case uint64(11):
+					**(**Tmpd_uint_t)(__ccgo_up(v1)) = v2 / uint64(100000000000)
+					**(**Tmpd_uint_t)(__ccgo_up(v5)) = v2 - **(**Tmpd_uint_t)(__ccgo_up(v1))*uint64(100000000000)
+				case uint64(12):
+					**(**Tmpd_uint_t)(__ccgo_up(v1)) = v2 / uint64(1000000000000)
+					**(**Tmpd_uint_t)(__ccgo_up(v5)) = v2 - **(**Tmpd_uint_t)(__ccgo_up(v1))*uint64(1000000000000)
+				case uint64(13):
+					**(**Tmpd_uint_t)(__ccgo_up(v1)) = v2 / uint64(10000000000000)
+					**(**Tmpd_uint_t)(__ccgo_up(v5)) = v2 - **(**Tmpd_uint_t)(__ccgo_up(v1))*uint64(10000000000000)
+				case uint64(14):
+					**(**Tmpd_uint_t)(__ccgo_up(v1)) = v2 / uint64(100000000000000)
+					**(**Tmpd_uint_t)(__ccgo_up(v5)) = v2 - **(**Tmpd_uint_t)(__ccgo_up(v1))*uint64(100000000000000)
+					break
+				}
+			} else {
+				switch v3 {
+				case uint64(15):
+					**(**Tmpd_uint_t)(__ccgo_up(v1)) = v2 / uint64(1000000000000000)
+					**(**Tmpd_uint_t)(__ccgo_up(v5)) = v2 - **(**Tmpd_uint_t)(__ccgo_up(v1))*uint64(1000000000000000)
+				case uint64(16):
+					**(**Tmpd_uint_t)(__ccgo_up(v1)) = v2 / uint64(10000000000000000)
+					**(**Tmpd_uint_t)(__ccgo_up(v5)) = v2 - **(**Tmpd_uint_t)(__ccgo_up(v1))*uint64(10000000000000000)
+				case uint64(17):
+					**(**Tmpd_uint_t)(__ccgo_up(v1)) = v2 / uint64(100000000000000000)
+					**(**Tmpd_uint_t)(__ccgo_up(v5)) = v2 - **(**Tmpd_uint_t)(__ccgo_up(v1))*uint64(100000000000000000)
+				case uint64(18):
+					**(**Tmpd_uint_t)(__ccgo_up(v1)) = v2 / uint64(1000000000000000000)
+					**(**Tmpd_uint_t)(__ccgo_up(v5)) = v2 - **(**Tmpd_uint_t)(__ccgo_up(v1))*uint64(1000000000000000000)
+				case uint64(19):
+					**(**Tmpd_uint_t)(__ccgo_up(v1)) = v2 / uint64(10000000000000000000)
+					**(**Tmpd_uint_t)(__ccgo_up(v5)) = v2 - **(**Tmpd_uint_t)(__ccgo_up(v1))*uint64(10000000000000000000)
+					break
+				}
+			}
+		}
+		if **(**Tmpd_uint_t)(__ccgo_up(bp + 16)) != uint64(0) {
+			v4 = n
+			n = n - 1
+			**(**Tmpd_uint_t)(__ccgo_up(dest + uintptr(v4)*8)) = **(**Tmpd_uint_t)(__ccgo_up(bp + 16))
+		}
+
+		for {
+			if !(m != uint64(18446744073709551615)) {
+				break
+			}
+			v1 = bp + 16
+			v5 = bp
+			v2 = **(**Tmpd_uint_t)(__ccgo_up(src + uintptr(m)*8))
+			v3 = uint64(MMPD_RDIGITS) - **(**Tmpd_uint_t)(__ccgo_up(bp + 32))
+			if v3 <= libc.Uint64FromInt32(9) {
+				if v3 <= libc.Uint64FromInt32(4) {
+					switch v3 {
+					case uint64(0):
+						**(**Tmpd_uint_t)(__ccgo_up(v1)) = v2
+						**(**Tmpd_uint_t)(__ccgo_up(v5)) = uint64(0)
+					case uint64(1):
+						**(**Tmpd_uint_t)(__ccgo_up(v1)) = v2 / uint64(10)
+						**(**Tmpd_uint_t)(__ccgo_up(v5)) = v2 - **(**Tmpd_uint_t)(__ccgo_up(v1))*uint64(10)
+					case uint64(2):
+						**(**Tmpd_uint_t)(__ccgo_up(v1)) = v2 / uint64(100)
+						**(**Tmpd_uint_t)(__ccgo_up(v5)) = v2 - **(**Tmpd_uint_t)(__ccgo_up(v1))*uint64(100)
+					case uint64(3):
+						**(**Tmpd_uint_t)(__ccgo_up(v1)) = v2 / uint64(1000)
+						**(**Tmpd_uint_t)(__ccgo_up(v5)) = v2 - **(**Tmpd_uint_t)(__ccgo_up(v1))*uint64(1000)
+					case uint64(4):
+						**(**Tmpd_uint_t)(__ccgo_up(v1)) = v2 / uint64(10000)
+						**(**Tmpd_uint_t)(__ccgo_up(v5)) = v2 - **(**Tmpd_uint_t)(__ccgo_up(v1))*uint64(10000)
+						break
+					}
+				} else {
+					switch v3 {
+					case uint64(5):
+						**(**Tmpd_uint_t)(__ccgo_up(v1)) = v2 / uint64(100000)
+						**(**Tmpd_uint_t)(__ccgo_up(v5)) = v2 - **(**Tmpd_uint_t)(__ccgo_up(v1))*uint64(100000)
+					case uint64(6):
+						**(**Tmpd_uint_t)(__ccgo_up(v1)) = v2 / uint64(1000000)
+						**(**Tmpd_uint_t)(__ccgo_up(v5)) = v2 - **(**Tmpd_uint_t)(__ccgo_up(v1))*uint64(1000000)
+					case uint64(7):
+						**(**Tmpd_uint_t)(__ccgo_up(v1)) = v2 / uint64(10000000)
+						**(**Tmpd_uint_t)(__ccgo_up(v5)) = v2 - **(**Tmpd_uint_t)(__ccgo_up(v1))*uint64(10000000)
+					case uint64(8):
+						**(**Tmpd_uint_t)(__ccgo_up(v1)) = v2 / uint64(100000000)
+						**(**Tmpd_uint_t)(__ccgo_up(v5)) = v2 - **(**Tmpd_uint_t)(__ccgo_up(v1))*uint64(100000000)
+					case uint64(9):
+						**(**Tmpd_uint_t)(__ccgo_up(v1)) = v2 / uint64(1000000000)
+						**(**Tmpd_uint_t)(__ccgo_up(v5)) = v2 - **(**Tmpd_uint_t)(__ccgo_up(v1))*uint64(1000000000)
+						break
+					}
+				}
+			} else {
+				if v3 <= libc.Uint64FromInt32(14) {
+					switch v3 {
+					case uint64(10):
+						**(**Tmpd_uint_t)(__ccgo_up(v1)) = v2 / uint64(10000000000)
+						**(**Tmpd_uint_t)(__ccgo_up(v5)) = v2 - **(**Tmpd_uint_t)(__ccgo_up(v1))*uint64(10000000000)
+					case uint64(11):
+						**(**Tmpd_uint_t)(__ccgo_up(v1)) = v2 / uint64(100000000000)
+						**(**Tmpd_uint_t)(__ccgo_up(v5)) = v2 - **(**Tmpd_uint_t)(__ccgo_up(v1))*uint64(100000000000)
+					case uint64(12):
+						**(**Tmpd_uint_t)(__ccgo_up(v1)) = v2 / uint64(1000000000000)
+						**(**Tmpd_uint_t)(__ccgo_up(v5)) = v2 - **(**Tmpd_uint_t)(__ccgo_up(v1))*uint64(1000000000000)
+					case uint64(13):
+						**(**Tmpd_uint_t)(__ccgo_up(v1)) = v2 / uint64(10000000000000)
+						**(**Tmpd_uint_t)(__ccgo_up(v5)) = v2 - **(**Tmpd_uint_t)(__ccgo_up(v1))*uint64(10000000000000)
+					case uint64(14):
+						**(**Tmpd_uint_t)(__ccgo_up(v1)) = v2 / uint64(100000000000000)
+						**(**Tmpd_uint_t)(__ccgo_up(v5)) = v2 - **(**Tmpd_uint_t)(__ccgo_up(v1))*uint64(100000000000000)
+						break
+					}
+				} else {
+					switch v3 {
+					case uint64(15):
+						**(**Tmpd_uint_t)(__ccgo_up(v1)) = v2 / uint64(1000000000000000)
+						**(**Tmpd_uint_t)(__ccgo_up(v5)) = v2 - **(**Tmpd_uint_t)(__ccgo_up(v1))*uint64(1000000000000000)
+					case uint64(16):
+						**(**Tmpd_uint_t)(__ccgo_up(v1)) = v2 / uint64(10000000000000000)
+						**(**Tmpd_uint_t)(__ccgo_up(v5)) = v2 - **(**Tmpd_uint_t)(__ccgo_up(v1))*uint64(10000000000000000)
+					case uint64(17):
+						**(**Tmpd_uint_t)(__ccgo_up(v1)) = v2 / uint64(100000000000000000)
+						**(**Tmpd_uint_t)(__ccgo_up(v5)) = v2 - **(**Tmpd_uint_t)(__ccgo_up(v1))*uint64(100000000000000000)
+					case uint64(18):
+						**(**Tmpd_uint_t)(__ccgo_up(v1)) = v2 / uint64(1000000000000000000)
+						**(**Tmpd_uint_t)(__ccgo_up(v5)) = v2 - **(**Tmpd_uint_t)(__ccgo_up(v1))*uint64(1000000000000000000)
+					case uint64(19):
+						**(**Tmpd_uint_t)(__ccgo_up(v1)) = v2 / uint64(10000000000000000000)
+						**(**Tmpd_uint_t)(__ccgo_up(v5)) = v2 - **(**Tmpd_uint_t)(__ccgo_up(v1))*uint64(10000000000000000000)
+						break
+					}
+				}
+			}
+			**(**Tmpd_uint_t)(__ccgo_up(dest + uintptr(n)*8)) = ph***(**Tmpd_uint_t)(__ccgo_up(bp + 8)) + **(**Tmpd_uint_t)(__ccgo_up(bp + 16))
+			**(**Tmpd_uint_t)(__ccgo_up(bp + 8)) = **(**Tmpd_uint_t)(__ccgo_up(bp))
+			goto _10
+		_10:
+			;
+			m = m - 1
+			n = n - 1
+		}
+
+		**(**Tmpd_uint_t)(__ccgo_up(dest + uintptr(**(**Tmpd_uint_t)(__ccgo_up(bp + 24)))*8)) = ph * **(**Tmpd_uint_t)(__ccgo_up(bp + 8))
+	} else {
+		for {
+			m = m - 1
+			v4 = m
+			if !(v4 != uint64(18446744073709551615)) {
+				break
+			}
+			**(**Tmpd_uint_t)(__ccgo_up(dest + uintptr(m+**(**Tmpd_uint_t)(__ccgo_up(bp + 24)))*8)) = **(**Tmpd_uint_t)(__ccgo_up(src + uintptr(m)*8))
+		}
+	}
+	Xmpd_uint_zero(tls, dest, uint64(**(**Tmpd_uint_t)(__ccgo_up(bp + 24))))
+}
+
+// C documentation
+//
+//	/*
+//	 * Right shift of src by 'shift' digits; src may equal dest.
+//	 * Assumption: srcdigits-shift > 0.
+//	 *
+//	 *  dest := area with space for srcdigits-shift digits.
+//	 *  src  := coefficient with length 'slen'.
+//	 *
+//	 * The case splits in the function rely on the following equations:
+//	 *
+//	 *  Let msdigits denote the number of digits in the most significant
+//	 *  word of src. Then 1 <= msdigits <= rdigits.
+//	 *
+//	 *  1) shift = q * rdigits + r
+//	 *  2) srcdigits = qsrc * rdigits + msdigits
+//	 *  3) destdigits = srcdigits - shift
+//	 *                = qsrc * rdigits + msdigits - (q * rdigits + r)
+//	 *                = (qsrc - q) * rdigits + msdigits - r
+//	 *
+//	 * Since destdigits > 0 and 1 <= msdigits <= rdigits:
+//	 *
+//	 *  4) qsrc >= q
+//	 *  5) qsrc == q  ==>  msdigits > r
+//	 *
+//	 * The result has slen-q words if msdigits > r, slen-q-1 words otherwise.
+//	 */
+func X_mpd_baseshiftr(tls *libc.TLS, dest uintptr, src uintptr, slen Tmpd_size_t, shift Tmpd_size_t) (r Tmpd_uint_t) {
+	bp := tls.Alloc(64)
+	defer tls.Free(64)
+	var i, j Tmpd_size_t
+	var ph, v2, v3 Tmpd_uint_t
+	var v1, v5 uintptr
+	var v13, v14 Tmpd_ssize_t
+	var v15 int32
+	var v31 uint64
+	var _ Tmpd_uint_t
+	var _ Tmpd_uint_t
+	var _ Tmpd_uint_t
+	var _ Tmpd_uint_t
+	var _ Tmpd_uint_t
+	var _ Tmpd_uint_t
+	var _ Tmpd_uint_t
+	_, _, _, _, _, _, _, _, _, _, _ = i, j, ph, v1, v13, v14, v15, v2, v3, v31, v5
+	v1 = bp + 40
+	v2 = shift
+	v3 = uint64(MMPD_RDIGITS)
+	**(**Tmpd_uint_t)(__ccgo_up(v1)) = v2 / v3
+	**(**Tmpd_uint_t)(__ccgo_up(bp + 48)) = v2 - **(**Tmpd_uint_t)(__ccgo_up(v1))*v3
+	v2 = libc.Uint64FromInt32(0)
+	**(**Tmpd_uint_t)(__ccgo_up(bp + 32)) = v2
+	**(**Tmpd_uint_t)(__ccgo_up(bp + 24)) = v2
+	if **(**Tmpd_uint_t)(__ccgo_up(bp + 48)) != uint64(0) {
+		ph = Xmpd_pow10[uint64(MMPD_RDIGITS)-**(**Tmpd_uint_t)(__ccgo_up(bp + 48))]
+		v1 = bp + 16
+		v5 = bp + 32
+		v2 = **(**Tmpd_uint_t)(__ccgo_up(src + uintptr(**(**Tmpd_uint_t)(__ccgo_up(bp + 40)))*8))
+		v3 = **(**Tmpd_uint_t)(__ccgo_up(bp + 48))
+		if v3 <= libc.Uint64FromInt32(9) {
+			if v3 <= libc.Uint64FromInt32(4) {
+				switch v3 {
+				case uint64(0):
+					**(**Tmpd_uint_t)(__ccgo_up(v1)) = v2
+					**(**Tmpd_uint_t)(__ccgo_up(v5)) = uint64(0)
+				case uint64(1):
+					**(**Tmpd_uint_t)(__ccgo_up(v1)) = v2 / uint64(10)
+					**(**Tmpd_uint_t)(__ccgo_up(v5)) = v2 - **(**Tmpd_uint_t)(__ccgo_up(v1))*uint64(10)
+				case uint64(2):
+					**(**Tmpd_uint_t)(__ccgo_up(v1)) = v2 / uint64(100)
+					**(**Tmpd_uint_t)(__ccgo_up(v5)) = v2 - **(**Tmpd_uint_t)(__ccgo_up(v1))*uint64(100)
+				case uint64(3):
+					**(**Tmpd_uint_t)(__ccgo_up(v1)) = v2 / uint64(1000)
+					**(**Tmpd_uint_t)(__ccgo_up(v5)) = v2 - **(**Tmpd_uint_t)(__ccgo_up(v1))*uint64(1000)
+				case uint64(4):
+					**(**Tmpd_uint_t)(__ccgo_up(v1)) = v2 / uint64(10000)
+					**(**Tmpd_uint_t)(__ccgo_up(v5)) = v2 - **(**Tmpd_uint_t)(__ccgo_up(v1))*uint64(10000)
+					break
+				}
+			} else {
+				switch v3 {
+				case uint64(5):
+					**(**Tmpd_uint_t)(__ccgo_up(v1)) = v2 / uint64(100000)
+					**(**Tmpd_uint_t)(__ccgo_up(v5)) = v2 - **(**Tmpd_uint_t)(__ccgo_up(v1))*uint64(100000)
+				case uint64(6):
+					**(**Tmpd_uint_t)(__ccgo_up(v1)) = v2 / uint64(1000000)
+					**(**Tmpd_uint_t)(__ccgo_up(v5)) = v2 - **(**Tmpd_uint_t)(__ccgo_up(v1))*uint64(1000000)
+				case uint64(7):
+					**(**Tmpd_uint_t)(__ccgo_up(v1)) = v2 / uint64(10000000)
+					**(**Tmpd_uint_t)(__ccgo_up(v5)) = v2 - **(**Tmpd_uint_t)(__ccgo_up(v1))*uint64(10000000)
+				case uint64(8):
+					**(**Tmpd_uint_t)(__ccgo_up(v1)) = v2 / uint64(100000000)
+					**(**Tmpd_uint_t)(__ccgo_up(v5)) = v2 - **(**Tmpd_uint_t)(__ccgo_up(v1))*uint64(100000000)
+				case uint64(9):
+					**(**Tmpd_uint_t)(__ccgo_up(v1)) = v2 / uint64(1000000000)
+					**(**Tmpd_uint_t)(__ccgo_up(v5)) = v2 - **(**Tmpd_uint_t)(__ccgo_up(v1))*uint64(1000000000)
+					break
+				}
+			}
+		} else {
+			if v3 <= libc.Uint64FromInt32(14) {
+				switch v3 {
+				case uint64(10):
+					**(**Tmpd_uint_t)(__ccgo_up(v1)) = v2 / uint64(10000000000)
+					**(**Tmpd_uint_t)(__ccgo_up(v5)) = v2 - **(**Tmpd_uint_t)(__ccgo_up(v1))*uint64(10000000000)
+				case uint64(11):
+					**(**Tmpd_uint_t)(__ccgo_up(v1)) = v2 / uint64(100000000000)
+					**(**Tmpd_uint_t)(__ccgo_up(v5)) = v2 - **(**Tmpd_uint_t)(__ccgo_up(v1))*uint64(100000000000)
+				case uint64(12):
+					**(**Tmpd_uint_t)(__ccgo_up(v1)) = v2 / uint64(1000000000000)
+					**(**Tmpd_uint_t)(__ccgo_up(v5)) = v2 - **(**Tmpd_uint_t)(__ccgo_up(v1))*uint64(1000000000000)
+				case uint64(13):
+					**(**Tmpd_uint_t)(__ccgo_up(v1)) = v2 / uint64(10000000000000)
+					**(**Tmpd_uint_t)(__ccgo_up(v5)) = v2 - **(**Tmpd_uint_t)(__ccgo_up(v1))*uint64(10000000000000)
+				case uint64(14):
+					**(**Tmpd_uint_t)(__ccgo_up(v1)) = v2 / uint64(100000000000000)
+					**(**Tmpd_uint_t)(__ccgo_up(v5)) = v2 - **(**Tmpd_uint_t)(__ccgo_up(v1))*uint64(100000000000000)
+					break
+				}
+			} else {
+				switch v3 {
+				case uint64(15):
+					**(**Tmpd_uint_t)(__ccgo_up(v1)) = v2 / uint64(1000000000000000)
+					**(**Tmpd_uint_t)(__ccgo_up(v5)) = v2 - **(**Tmpd_uint_t)(__ccgo_up(v1))*uint64(1000000000000000)
+				case uint64(16):
+					**(**Tmpd_uint_t)(__ccgo_up(v1)) = v2 / uint64(10000000000000000)
+					**(**Tmpd_uint_t)(__ccgo_up(v5)) = v2 - **(**Tmpd_uint_t)(__ccgo_up(v1))*uint64(10000000000000000)
+				case uint64(17):
+					**(**Tmpd_uint_t)(__ccgo_up(v1)) = v2 / uint64(100000000000000000)
+					**(**Tmpd_uint_t)(__ccgo_up(v5)) = v2 - **(**Tmpd_uint_t)(__ccgo_up(v1))*uint64(100000000000000000)
+				case uint64(18):
+					**(**Tmpd_uint_t)(__ccgo_up(v1)) = v2 / uint64(1000000000000000000)
+					**(**Tmpd_uint_t)(__ccgo_up(v5)) = v2 - **(**Tmpd_uint_t)(__ccgo_up(v1))*uint64(1000000000000000000)
+				case uint64(19):
+					**(**Tmpd_uint_t)(__ccgo_up(v1)) = v2 / uint64(10000000000000000000)
+					**(**Tmpd_uint_t)(__ccgo_up(v5)) = v2 - **(**Tmpd_uint_t)(__ccgo_up(v1))*uint64(10000000000000000000)
+					break
+				}
+			}
+		}
+		v1 = bp + 24
+		v5 = bp + 32
+		v2 = **(**Tmpd_uint_t)(__ccgo_up(bp + 32))
+		v3 = **(**Tmpd_uint_t)(__ccgo_up(bp + 48)) - uint64(1)
+		if v3 <= libc.Uint64FromInt32(9) {
+			if v3 <= libc.Uint64FromInt32(4) {
+				switch v3 {
+				case uint64(0):
+					**(**Tmpd_uint_t)(__ccgo_up(v1)) = v2
+					**(**Tmpd_uint_t)(__ccgo_up(v5)) = uint64(0)
+				case uint64(1):
+					**(**Tmpd_uint_t)(__ccgo_up(v1)) = v2 / uint64(10)
+					**(**Tmpd_uint_t)(__ccgo_up(v5)) = v2 - **(**Tmpd_uint_t)(__ccgo_up(v1))*uint64(10)
+				case uint64(2):
+					**(**Tmpd_uint_t)(__ccgo_up(v1)) = v2 / uint64(100)
+					**(**Tmpd_uint_t)(__ccgo_up(v5)) = v2 - **(**Tmpd_uint_t)(__ccgo_up(v1))*uint64(100)
+				case uint64(3):
+					**(**Tmpd_uint_t)(__ccgo_up(v1)) = v2 / uint64(1000)
+					**(**Tmpd_uint_t)(__ccgo_up(v5)) = v2 - **(**Tmpd_uint_t)(__ccgo_up(v1))*uint64(1000)
+				case uint64(4):
+					**(**Tmpd_uint_t)(__ccgo_up(v1)) = v2 / uint64(10000)
+					**(**Tmpd_uint_t)(__ccgo_up(v5)) = v2 - **(**Tmpd_uint_t)(__ccgo_up(v1))*uint64(10000)
+					break
+				}
+			} else {
+				switch v3 {
+				case uint64(5):
+					**(**Tmpd_uint_t)(__ccgo_up(v1)) = v2 / uint64(100000)
+					**(**Tmpd_uint_t)(__ccgo_up(v5)) = v2 - **(**Tmpd_uint_t)(__ccgo_up(v1))*uint64(100000)
+				case uint64(6):
+					**(**Tmpd_uint_t)(__ccgo_up(v1)) = v2 / uint64(1000000)
+					**(**Tmpd_uint_t)(__ccgo_up(v5)) = v2 - **(**Tmpd_uint_t)(__ccgo_up(v1))*uint64(1000000)
+				case uint64(7):
+					**(**Tmpd_uint_t)(__ccgo_up(v1)) = v2 / uint64(10000000)
+					**(**Tmpd_uint_t)(__ccgo_up(v5)) = v2 - **(**Tmpd_uint_t)(__ccgo_up(v1))*uint64(10000000)
+				case uint64(8):
+					**(**Tmpd_uint_t)(__ccgo_up(v1)) = v2 / uint64(100000000)
+					**(**Tmpd_uint_t)(__ccgo_up(v5)) = v2 - **(**Tmpd_uint_t)(__ccgo_up(v1))*uint64(100000000)
+				case uint64(9):
+					**(**Tmpd_uint_t)(__ccgo_up(v1)) = v2 / uint64(1000000000)
+					**(**Tmpd_uint_t)(__ccgo_up(v5)) = v2 - **(**Tmpd_uint_t)(__ccgo_up(v1))*uint64(1000000000)
+					break
+				}
+			}
+		} else {
+			if v3 <= libc.Uint64FromInt32(14) {
+				switch v3 {
+				case uint64(10):
+					**(**Tmpd_uint_t)(__ccgo_up(v1)) = v2 / uint64(10000000000)
+					**(**Tmpd_uint_t)(__ccgo_up(v5)) = v2 - **(**Tmpd_uint_t)(__ccgo_up(v1))*uint64(10000000000)
+				case uint64(11):
+					**(**Tmpd_uint_t)(__ccgo_up(v1)) = v2 / uint64(100000000000)
+					**(**Tmpd_uint_t)(__ccgo_up(v5)) = v2 - **(**Tmpd_uint_t)(__ccgo_up(v1))*uint64(100000000000)
+				case uint64(12):
+					**(**Tmpd_uint_t)(__ccgo_up(v1)) = v2 / uint64(1000000000000)
+					**(**Tmpd_uint_t)(__ccgo_up(v5)) = v2 - **(**Tmpd_uint_t)(__ccgo_up(v1))*uint64(1000000000000)
+				case uint64(13):
+					**(**Tmpd_uint_t)(__ccgo_up(v1)) = v2 / uint64(10000000000000)
+					**(**Tmpd_uint_t)(__ccgo_up(v5)) = v2 - **(**Tmpd_uint_t)(__ccgo_up(v1))*uint64(10000000000000)
+				case uint64(14):
+					**(**Tmpd_uint_t)(__ccgo_up(v1)) = v2 / uint64(100000000000000)
+					**(**Tmpd_uint_t)(__ccgo_up(v5)) = v2 - **(**Tmpd_uint_t)(__ccgo_up(v1))*uint64(100000000000000)
+					break
+				}
+			} else {
+				switch v3 {
+				case uint64(15):
+					**(**Tmpd_uint_t)(__ccgo_up(v1)) = v2 / uint64(1000000000000000)
+					**(**Tmpd_uint_t)(__ccgo_up(v5)) = v2 - **(**Tmpd_uint_t)(__ccgo_up(v1))*uint64(1000000000000000)
+				case uint64(16):
+					**(**Tmpd_uint_t)(__ccgo_up(v1)) = v2 / uint64(10000000000000000)
+					**(**Tmpd_uint_t)(__ccgo_up(v5)) = v2 - **(**Tmpd_uint_t)(__ccgo_up(v1))*uint64(10000000000000000)
+				case uint64(17):
+					**(**Tmpd_uint_t)(__ccgo_up(v1)) = v2 / uint64(100000000000000000)
+					**(**Tmpd_uint_t)(__ccgo_up(v5)) = v2 - **(**Tmpd_uint_t)(__ccgo_up(v1))*uint64(100000000000000000)
+				case uint64(18):
+					**(**Tmpd_uint_t)(__ccgo_up(v1)) = v2 / uint64(1000000000000000000)
+					**(**Tmpd_uint_t)(__ccgo_up(v5)) = v2 - **(**Tmpd_uint_t)(__ccgo_up(v1))*uint64(1000000000000000000)
+				case uint64(19):
+					**(**Tmpd_uint_t)(__ccgo_up(v1)) = v2 / uint64(10000000000000000000)
+					**(**Tmpd_uint_t)(__ccgo_up(v5)) = v2 - **(**Tmpd_uint_t)(__ccgo_up(v1))*uint64(10000000000000000000)
+					break
+				}
+			}
+		}
+		if **(**Tmpd_uint_t)(__ccgo_up(bp + 32)) == uint64(0) && **(**Tmpd_uint_t)(__ccgo_up(bp + 40)) > uint64(0) {
+			v13 = libc.Int64FromUint64(**(**Tmpd_uint_t)(__ccgo_up(bp + 40)))
+			for {
+				v13 = v13 - 1
+				v14 = v13
+				if !(v14 >= libc.Int64FromInt32(0)) {
+					break
+				}
+				if **(**Tmpd_uint_t)(__ccgo_up(src + uintptr(v13)*8)) != libc.Uint64FromInt32(0) {
+					v15 = 0
+					goto _16
+				}
+			}
+			v15 = int32(1)
+			goto _16
+		_16:
+			**(**Tmpd_uint_t)(__ccgo_up(bp + 32)) = libc.BoolUint64(!(v15 != 0))
+		}
+
+		j = uint64(0)
+		i = uint64(**(**Tmpd_uint_t)(__ccgo_up(bp + 40)) + libc.Uint64FromInt32(1))
+		for {
+			if !(i < slen) {
+				break
+			}
+			v1 = bp + 8
+			v5 = bp
+			v2 = **(**Tmpd_uint_t)(__ccgo_up(src + uintptr(i)*8))
+			v3 = **(**Tmpd_uint_t)(__ccgo_up(bp + 48))
+			if v3 <= libc.Uint64FromInt32(9) {
+				if v3 <= libc.Uint64FromInt32(4) {
+					switch v3 {
+					case uint64(0):
+						**(**Tmpd_uint_t)(__ccgo_up(v1)) = v2
+						**(**Tmpd_uint_t)(__ccgo_up(v5)) = uint64(0)
+					case uint64(1):
+						**(**Tmpd_uint_t)(__ccgo_up(v1)) = v2 / uint64(10)
+						**(**Tmpd_uint_t)(__ccgo_up(v5)) = v2 - **(**Tmpd_uint_t)(__ccgo_up(v1))*uint64(10)
+					case uint64(2):
+						**(**Tmpd_uint_t)(__ccgo_up(v1)) = v2 / uint64(100)
+						**(**Tmpd_uint_t)(__ccgo_up(v5)) = v2 - **(**Tmpd_uint_t)(__ccgo_up(v1))*uint64(100)
+					case uint64(3):
+						**(**Tmpd_uint_t)(__ccgo_up(v1)) = v2 / uint64(1000)
+						**(**Tmpd_uint_t)(__ccgo_up(v5)) = v2 - **(**Tmpd_uint_t)(__ccgo_up(v1))*uint64(1000)
+					case uint64(4):
+						**(**Tmpd_uint_t)(__ccgo_up(v1)) = v2 / uint64(10000)
+						**(**Tmpd_uint_t)(__ccgo_up(v5)) = v2 - **(**Tmpd_uint_t)(__ccgo_up(v1))*uint64(10000)
+						break
+					}
+				} else {
+					switch v3 {
+					case uint64(5):
+						**(**Tmpd_uint_t)(__ccgo_up(v1)) = v2 / uint64(100000)
+						**(**Tmpd_uint_t)(__ccgo_up(v5)) = v2 - **(**Tmpd_uint_t)(__ccgo_up(v1))*uint64(100000)
+					case uint64(6):
+						**(**Tmpd_uint_t)(__ccgo_up(v1)) = v2 / uint64(1000000)
+						**(**Tmpd_uint_t)(__ccgo_up(v5)) = v2 - **(**Tmpd_uint_t)(__ccgo_up(v1))*uint64(1000000)
+					case uint64(7):
+						**(**Tmpd_uint_t)(__ccgo_up(v1)) = v2 / uint64(10000000)
+						**(**Tmpd_uint_t)(__ccgo_up(v5)) = v2 - **(**Tmpd_uint_t)(__ccgo_up(v1))*uint64(10000000)
+					case uint64(8):
+						**(**Tmpd_uint_t)(__ccgo_up(v1)) = v2 / uint64(100000000)
+						**(**Tmpd_uint_t)(__ccgo_up(v5)) = v2 - **(**Tmpd_uint_t)(__ccgo_up(v1))*uint64(100000000)
+					case uint64(9):
+						**(**Tmpd_uint_t)(__ccgo_up(v1)) = v2 / uint64(1000000000)
+						**(**Tmpd_uint_t)(__ccgo_up(v5)) = v2 - **(**Tmpd_uint_t)(__ccgo_up(v1))*uint64(1000000000)
+						break
+					}
+				}
+			} else {
+				if v3 <= libc.Uint64FromInt32(14) {
+					switch v3 {
+					case uint64(10):
+						**(**Tmpd_uint_t)(__ccgo_up(v1)) = v2 / uint64(10000000000)
+						**(**Tmpd_uint_t)(__ccgo_up(v5)) = v2 - **(**Tmpd_uint_t)(__ccgo_up(v1))*uint64(10000000000)
+					case uint64(11):
+						**(**Tmpd_uint_t)(__ccgo_up(v1)) = v2 / uint64(100000000000)
+						**(**Tmpd_uint_t)(__ccgo_up(v5)) = v2 - **(**Tmpd_uint_t)(__ccgo_up(v1))*uint64(100000000000)
+					case uint64(12):
+						**(**Tmpd_uint_t)(__ccgo_up(v1)) = v2 / uint64(1000000000000)
+						**(**Tmpd_uint_t)(__ccgo_up(v5)) = v2 - **(**Tmpd_uint_t)(__ccgo_up(v1))*uint64(1000000000000)
+					case uint64(13):
+						**(**Tmpd_uint_t)(__ccgo_up(v1)) = v2 / uint64(10000000000000)
+						**(**Tmpd_uint_t)(__ccgo_up(v5)) = v2 - **(**Tmpd_uint_t)(__ccgo_up(v1))*uint64(10000000000000)
+					case uint64(14):
+						**(**Tmpd_uint_t)(__ccgo_up(v1)) = v2 / uint64(100000000000000)
+						**(**Tmpd_uint_t)(__ccgo_up(v5)) = v2 - **(**Tmpd_uint_t)(__ccgo_up(v1))*uint64(100000000000000)
+						break
+					}
+				} else {
+					switch v3 {
+					case uint64(15):
+						**(**Tmpd_uint_t)(__ccgo_up(v1)) = v2 / uint64(1000000000000000)
+						**(**Tmpd_uint_t)(__ccgo_up(v5)) = v2 - **(**Tmpd_uint_t)(__ccgo_up(v1))*uint64(1000000000000000)
+					case uint64(16):
+						**(**Tmpd_uint_t)(__ccgo_up(v1)) = v2 / uint64(10000000000000000)
+						**(**Tmpd_uint_t)(__ccgo_up(v5)) = v2 - **(**Tmpd_uint_t)(__ccgo_up(v1))*uint64(10000000000000000)
+					case uint64(17):
+						**(**Tmpd_uint_t)(__ccgo_up(v1)) = v2 / uint64(100000000000000000)
+						**(**Tmpd_uint_t)(__ccgo_up(v5)) = v2 - **(**Tmpd_uint_t)(__ccgo_up(v1))*uint64(100000000000000000)
+					case uint64(18):
+						**(**Tmpd_uint_t)(__ccgo_up(v1)) = v2 / uint64(1000000000000000000)
+						**(**Tmpd_uint_t)(__ccgo_up(v5)) = v2 - **(**Tmpd_uint_t)(__ccgo_up(v1))*uint64(1000000000000000000)
+					case uint64(19):
+						**(**Tmpd_uint_t)(__ccgo_up(v1)) = v2 / uint64(10000000000000000000)
+						**(**Tmpd_uint_t)(__ccgo_up(v5)) = v2 - **(**Tmpd_uint_t)(__ccgo_up(v1))*uint64(10000000000000000000)
+						break
+					}
+				}
+			}
+			**(**Tmpd_uint_t)(__ccgo_up(dest + uintptr(j)*8)) = ph***(**Tmpd_uint_t)(__ccgo_up(bp)) + **(**Tmpd_uint_t)(__ccgo_up(bp + 16))
+			**(**Tmpd_uint_t)(__ccgo_up(bp + 16)) = **(**Tmpd_uint_t)(__ccgo_up(bp + 8))
+			goto _17
+		_17:
+			;
+			i = i + 1
+			j = j + 1
+		}
+
+		if **(**Tmpd_uint_t)(__ccgo_up(bp + 16)) != uint64(0) {
+			**(**Tmpd_uint_t)(__ccgo_up(dest + uintptr(j)*8)) = **(**Tmpd_uint_t)(__ccgo_up(bp + 16))
+		}
+	} else {
+		if **(**Tmpd_uint_t)(__ccgo_up(bp + 40)) > uint64(0) {
+			v1 = bp + 24
+			v5 = bp + 32
+			v2 = **(**Tmpd_uint_t)(__ccgo_up(src + uintptr(**(**Tmpd_uint_t)(__ccgo_up(bp + 40))-uint64(1))*8))
+			v3 = libc.Uint64FromInt32(libc.Int32FromInt32(MMPD_RDIGITS) - libc.Int32FromInt32(1))
+			if v3 <= libc.Uint64FromInt32(9) {
+				if v3 <= libc.Uint64FromInt32(4) {
+					switch v3 {
+					case uint64(0):
+						**(**Tmpd_uint_t)(__ccgo_up(v1)) = v2
+						**(**Tmpd_uint_t)(__ccgo_up(v5)) = uint64(0)
+					case uint64(1):
+						**(**Tmpd_uint_t)(__ccgo_up(v1)) = v2 / uint64(10)
+						**(**Tmpd_uint_t)(__ccgo_up(v5)) = v2 - **(**Tmpd_uint_t)(__ccgo_up(v1))*uint64(10)
+					case uint64(2):
+						**(**Tmpd_uint_t)(__ccgo_up(v1)) = v2 / uint64(100)
+						**(**Tmpd_uint_t)(__ccgo_up(v5)) = v2 - **(**Tmpd_uint_t)(__ccgo_up(v1))*uint64(100)
+					case uint64(3):
+						**(**Tmpd_uint_t)(__ccgo_up(v1)) = v2 / uint64(1000)
+						**(**Tmpd_uint_t)(__ccgo_up(v5)) = v2 - **(**Tmpd_uint_t)(__ccgo_up(v1))*uint64(1000)
+					case uint64(4):
+						**(**Tmpd_uint_t)(__ccgo_up(v1)) = v2 / uint64(10000)
+						**(**Tmpd_uint_t)(__ccgo_up(v5)) = v2 - **(**Tmpd_uint_t)(__ccgo_up(v1))*uint64(10000)
+						break
+					}
+				} else {
+					switch v3 {
+					case uint64(5):
+						**(**Tmpd_uint_t)(__ccgo_up(v1)) = v2 / uint64(100000)
+						**(**Tmpd_uint_t)(__ccgo_up(v5)) = v2 - **(**Tmpd_uint_t)(__ccgo_up(v1))*uint64(100000)
+					case uint64(6):
+						**(**Tmpd_uint_t)(__ccgo_up(v1)) = v2 / uint64(1000000)
+						**(**Tmpd_uint_t)(__ccgo_up(v5)) = v2 - **(**Tmpd_uint_t)(__ccgo_up(v1))*uint64(1000000)
+					case uint64(7):
+						**(**Tmpd_uint_t)(__ccgo_up(v1)) = v2 / uint64(10000000)
+						**(**Tmpd_uint_t)(__ccgo_up(v5)) = v2 - **(**Tmpd_uint_t)(__ccgo_up(v1))*uint64(10000000)
+					case uint64(8):
+						**(**Tmpd_uint_t)(__ccgo_up(v1)) = v2 / uint64(100000000)
+						**(**Tmpd_uint_t)(__ccgo_up(v5)) = v2 - **(**Tmpd_uint_t)(__ccgo_up(v1))*uint64(100000000)
+					case uint64(9):
+						**(**Tmpd_uint_t)(__ccgo_up(v1)) = v2 / uint64(1000000000)
+						**(**Tmpd_uint_t)(__ccgo_up(v5)) = v2 - **(**Tmpd_uint_t)(__ccgo_up(v1))*uint64(1000000000)
+						break
+					}
+				}
+			} else {
+				if v3 <= libc.Uint64FromInt32(14) {
+					switch v3 {
+					case uint64(10):
+						**(**Tmpd_uint_t)(__ccgo_up(v1)) = v2 / uint64(10000000000)
+						**(**Tmpd_uint_t)(__ccgo_up(v5)) = v2 - **(**Tmpd_uint_t)(__ccgo_up(v1))*uint64(10000000000)
+					case uint64(11):
+						**(**Tmpd_uint_t)(__ccgo_up(v1)) = v2 / uint64(100000000000)
+						**(**Tmpd_uint_t)(__ccgo_up(v5)) = v2 - **(**Tmpd_uint_t)(__ccgo_up(v1))*uint64(100000000000)
+					case uint64(12):
+						**(**Tmpd_uint_t)(__ccgo_up(v1)) = v2 / uint64(1000000000000)
+						**(**Tmpd_uint_t)(__ccgo_up(v5)) = v2 - **(**Tmpd_uint_t)(__ccgo_up(v1))*uint64(1000000000000)
+					case uint64(13):
+						**(**Tmpd_uint_t)(__ccgo_up(v1)) = v2 / uint64(10000000000000)
+						**(**Tmpd_uint_t)(__ccgo_up(v5)) = v2 - **(**Tmpd_uint_t)(__ccgo_up(v1))*uint64(10000000000000)
+					case uint64(14):
+						**(**Tmpd_uint_t)(__ccgo_up(v1)) = v2 / uint64(100000000000000)
+						**(**Tmpd_uint_t)(__ccgo_up(v5)) = v2 - **(**Tmpd_uint_t)(__ccgo_up(v1))*uint64(100000000000000)
+						break
+					}
+				} else {
+					switch v3 {
+					case uint64(15):
+						**(**Tmpd_uint_t)(__ccgo_up(v1)) = v2 / uint64(1000000000000000)
+						**(**Tmpd_uint_t)(__ccgo_up(v5)) = v2 - **(**Tmpd_uint_t)(__ccgo_up(v1))*uint64(1000000000000000)
+					case uint64(16):
+						**(**Tmpd_uint_t)(__ccgo_up(v1)) = v2 / uint64(10000000000000000)
+						**(**Tmpd_uint_t)(__ccgo_up(v5)) = v2 - **(**Tmpd_uint_t)(__ccgo_up(v1))*uint64(10000000000000000)
+					case uint64(17):
+						**(**Tmpd_uint_t)(__ccgo_up(v1)) = v2 / uint64(100000000000000000)
+						**(**Tmpd_uint_t)(__ccgo_up(v5)) = v2 - **(**Tmpd_uint_t)(__ccgo_up(v1))*uint64(100000000000000000)
+					case uint64(18):
+						**(**Tmpd_uint_t)(__ccgo_up(v1)) = v2 / uint64(1000000000000000000)
+						**(**Tmpd_uint_t)(__ccgo_up(v5)) = v2 - **(**Tmpd_uint_t)(__ccgo_up(v1))*uint64(1000000000000000000)
+					case uint64(19):
+						**(**Tmpd_uint_t)(__ccgo_up(v1)) = v2 / uint64(10000000000000000000)
+						**(**Tmpd_uint_t)(__ccgo_up(v5)) = v2 - **(**Tmpd_uint_t)(__ccgo_up(v1))*uint64(10000000000000000000)
+						break
+					}
+				}
+			}
+
+			if **(**Tmpd_uint_t)(__ccgo_up(bp + 32)) == uint64(0) {
+				v13 = libc.Int64FromUint64(**(**Tmpd_uint_t)(__ccgo_up(bp + 40)) - uint64(1))
+				for {
+					v13 = v13 - 1
+					v14 = v13
+					if !(v14 >= libc.Int64FromInt32(0)) {
+						break
+					}
+					if **(**Tmpd_uint_t)(__ccgo_up(src + uintptr(v13)*8)) != libc.Uint64FromInt32(0) {
+						v15 = 0
+						goto _29
+					}
+				}
+				v15 = int32(1)
+				goto _29
+			_29:
+				**(**Tmpd_uint_t)(__ccgo_up(bp + 32)) = libc.BoolUint64(!(v15 != 0))
+			}
+		}
+		j = uint64(0)
+		for {
+			if !(j < slen-**(**Tmpd_uint_t)(__ccgo_up(bp + 40))) {
+				break
+			}
+			**(**Tmpd_uint_t)(__ccgo_up(dest + uintptr(j)*8)) = **(**Tmpd_uint_t)(__ccgo_up(src + uintptr(**(**Tmpd_uint_t)(__ccgo_up(bp + 40))+j)*8))
+			goto _30
+		_30:
+			;
+			j = j + 1
+		}
+	}
+
+	if **(**Tmpd_uint_t)(__ccgo_up(bp + 24)) == uint64(0) || **(**Tmpd_uint_t)(__ccgo_up(bp + 24)) == uint64(5) {
+		v31 = **(**Tmpd_uint_t)(__ccgo_up(bp + 24)) + libc.BoolUint64(!!(**(**Tmpd_uint_t)(__ccgo_up(bp + 32)) != 0))
+	} else {
+		v31 = **(**Tmpd_uint_t)(__ccgo_up(bp + 24))
+	}
+	return v31
+}
+
+// C documentation
+//
+//	/*
+//	 * Add v to w (len m). The calling function has to handle a possible
+//	 * final carry. Assumption: m > 0.
+//	 */
+func X_mpd_shortadd_b(tls *libc.TLS, w uintptr, m Tmpd_size_t, v Tmpd_uint_t, b Tmpd_uint_t) (r Tmpd_uint_t) {
+	var carry, s Tmpd_uint_t
+	var i Tmpd_size_t
+	var v1 uint64
+	_, _, _, _ = carry, i, s, v1
+
+	s = **(**Tmpd_uint_t)(__ccgo_up(w)) + v
+	carry = libc.Uint64FromInt32(libc.BoolInt32(s < v) | libc.BoolInt32(s >= b))
+	if carry != 0 {
+		v1 = s - b
+	} else {
+		v1 = s
+	}
+	**(**Tmpd_uint_t)(__ccgo_up(w)) = v1
+
+	i = uint64(1)
+	for {
+		if !(carry != 0 && i < m) {
+			break
+		}
+		s = **(**Tmpd_uint_t)(__ccgo_up(w + uintptr(i)*8)) + carry
+		carry = libc.BoolUint64(s == b)
+		if carry != 0 {
+			v1 = uint64(0)
+		} else {
+			v1 = s
+		}
+		**(**Tmpd_uint_t)(__ccgo_up(w + uintptr(i)*8)) = v1
+		goto _2
+	_2:
+		;
+		i = i + 1
+	}
+	return carry
+}
+
+// C documentation
+//
+//	/* w := product of u (len n) and v (single word). Return carry. */
+func X_mpd_shortmul_c(tls *libc.TLS, w1 uintptr, u uintptr, n Tmpd_size_t, v Tmpd_uint_t) (r Tmpd_uint_t) {
+	bp := tls.Alloc(48)
+	defer tls.Free(48)
+	var ah, al, bh, bl, carry Tuint32_t
+	var hl Tuint64_t
+	var i Tmpd_size_t
+	var n1_neg, n_adj, t, v2, v3, v4, v5, v7, v8 Tmpd_uint_t
+	var w [4]Tuint32_t
+	var v6 uint64
+	var _ Tmpd_uint_t
+	var _ Tmpd_uint_t
+	var _ Tmpd_uint_t
+	var _ Tmpd_uint_t
+	var _ Tmpd_uint_t
+	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = ah, al, bh, bl, carry, hl, i, n1_neg, n_adj, t, w, v2, v3, v4, v5, v6, v7, v8
+	**(**Tmpd_uint_t)(__ccgo_up(bp + 32)) = uint64(0)
+	i = uint64(0)
+	for {
+		if !(i < n) {
+			break
+		}
+		v2 = **(**Tmpd_uint_t)(__ccgo_up(u + uintptr(i)*8))
+		v3 = v
+		ah = uint32(v2 >> libc.Int32FromInt32(32))
+		al = uint32(v2)
+		bh = uint32(v3 >> libc.Int32FromInt32(32))
+		bl = uint32(v3)
+		hl = uint64(al) * uint64(bl)
+		w[0] = uint32(hl)
+		carry = uint32(hl >> libc.Int32FromInt32(32))
+		hl = uint64(ah)*uint64(bl) + uint64(carry)
+		w[int32(1)] = uint32(hl)
+		w[int32(2)] = uint32(hl >> libc.Int32FromInt32(32))
+		hl = uint64(al)*uint64(bh) + uint64(w[int32(1)])
+		w[int32(1)] = uint32(hl)
+		carry = uint32(hl >> libc.Int32FromInt32(32))
+		hl = uint64(ah)*uint64(bh) + uint64(w[int32(2)]) + uint64(carry)
+		w[int32(2)] = uint32(hl)
+		w[int32(3)] = uint32(hl >> libc.Int32FromInt32(32))
+		**(**Tmpd_uint_t)(__ccgo_up(bp + 16)) = uint64(w[int32(3)])<<libc.Int32FromInt32(32) + uint64(w[int32(2)])
+		**(**Tmpd_uint_t)(__ccgo_up(bp + 24)) = uint64(w[int32(1)])<<libc.Int32FromInt32(32) + uint64(w[0])
+		**(**Tmpd_uint_t)(__ccgo_up(bp + 24)) = **(**Tmpd_uint_t)(__ccgo_up(bp + 32)) + **(**Tmpd_uint_t)(__ccgo_up(bp + 24))
+		if **(**Tmpd_uint_t)(__ccgo_up(bp + 24)) < **(**Tmpd_uint_t)(__ccgo_up(bp + 32)) {
+			**(**Tmpd_uint_t)(__ccgo_up(bp + 16)) = **(**Tmpd_uint_t)(__ccgo_up(bp + 16)) + 1
+		}
+		v2 = **(**Tmpd_uint_t)(__ccgo_up(bp + 16))
+		v3 = **(**Tmpd_uint_t)(__ccgo_up(bp + 24))
+		if v3&(libc.Uint64FromUint64(1)<<libc.Int32FromInt32(63)) != 0 {
+			v6 = uint64(18446744073709551615)
+		} else {
+			v6 = uint64(0)
+		}
+		n1_neg = v6
+		n_adj = v3 + n1_neg&uint64(10000000000000000000)
+		v4 = Xmprime_rdx
+		v5 = v2 - n1_neg
+		ah = uint32(v4 >> libc.Int32FromInt32(32))
+		al = uint32(v4)
+		bh = uint32(v5 >> libc.Int32FromInt32(32))
+		bl = uint32(v5)
+		hl = uint64(al) * uint64(bl)
+		w[0] = uint32(hl)
+		carry = uint32(hl >> libc.Int32FromInt32(32))
+		hl = uint64(ah)*uint64(bl) + uint64(carry)
+		w[int32(1)] = uint32(hl)
+		w[int32(2)] = uint32(hl >> libc.Int32FromInt32(32))
+		hl = uint64(al)*uint64(bh) + uint64(w[int32(1)])
+		w[int32(1)] = uint32(hl)
+		carry = uint32(hl >> libc.Int32FromInt32(32))
+		hl = uint64(ah)*uint64(bh) + uint64(w[int32(2)]) + uint64(carry)
+		w[int32(2)] = uint32(hl)
+		w[int32(3)] = uint32(hl >> libc.Int32FromInt32(32))
+		**(**Tmpd_uint_t)(__ccgo_up(bp)) = uint64(w[int32(3)])<<libc.Int32FromInt32(32) + uint64(w[int32(2)])
+		**(**Tmpd_uint_t)(__ccgo_up(bp + 8)) = uint64(w[int32(1)])<<libc.Int32FromInt32(32) + uint64(w[0])
+		**(**Tmpd_uint_t)(__ccgo_up(bp + 8)) = **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) + n_adj
+		if **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) < n_adj {
+			**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) + 1
+		}
+		t = **(**Tmpd_uint_t)(__ccgo_up(bp)) + v2
+		t = uint64(18446744073709551615) - t
+		v7 = t
+		v8 = uint64(10000000000000000000)
+		ah = uint32(v7 >> libc.Int32FromInt32(32))
+		al = uint32(v7)
+		bh = uint32(v8 >> libc.Int32FromInt32(32))
+		bl = uint32(v8)
+		hl = uint64(al) * uint64(bl)
+		w[0] = uint32(hl)
+		carry = uint32(hl >> libc.Int32FromInt32(32))
+		hl = uint64(ah)*uint64(bl) + uint64(carry)
+		w[int32(1)] = uint32(hl)
+		w[int32(2)] = uint32(hl >> libc.Int32FromInt32(32))
+		hl = uint64(al)*uint64(bh) + uint64(w[int32(1)])
+		w[int32(1)] = uint32(hl)
+		carry = uint32(hl >> libc.Int32FromInt32(32))
+		hl = uint64(ah)*uint64(bh) + uint64(w[int32(2)]) + uint64(carry)
+		w[int32(2)] = uint32(hl)
+		w[int32(3)] = uint32(hl >> libc.Int32FromInt32(32))
+		**(**Tmpd_uint_t)(__ccgo_up(bp)) = uint64(w[int32(3)])<<libc.Int32FromInt32(32) + uint64(w[int32(2)])
+		**(**Tmpd_uint_t)(__ccgo_up(bp + 8)) = uint64(w[int32(1)])<<libc.Int32FromInt32(32) + uint64(w[0])
+		**(**Tmpd_uint_t)(__ccgo_up(bp + 8)) = **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) + v3
+		if **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) < v3 {
+			**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) + 1
+		}
+		**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) + v2
+		**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) - uint64(10000000000000000000)
+		**(**Tmpd_uint_t)(__ccgo_up(bp + 32)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) - t
+		**(**Tmpd_uint_t)(__ccgo_up(w1 + uintptr(i)*8)) = **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) + uint64(10000000000000000000)&**(**Tmpd_uint_t)(__ccgo_up(bp))
+		goto _1
+	_1:
+		;
+		i = i + 1
+	}
+	return **(**Tmpd_uint_t)(__ccgo_up(bp + 32))
+}
+
+// C documentation
+//
+//	/* w := product of u (len n) and v (single word) */
+func X_mpd_shortmul_b(tls *libc.TLS, w1 uintptr, u uintptr, n1 Tmpd_size_t, v1 Tmpd_uint_t, b2 Tmpd_uint_t) (r Tmpd_uint_t) {
+	bp := tls.Alloc(32)
+	defer tls.Free(32)
+	var ah, al, bh, bl, carry Tuint32_t
+	var b1, q0, q1, rhat, t, un0, un1, un10, un21, un32, vn0, vn1, v2, v3 Tmpd_uint_t
+	var hl, v6 Tuint64_t
+	var i Tmpd_size_t
+	var n, s, v7 int32
+	var w [4]Tuint32_t
+	var v9 uint64
+	var _ Tmpd_uint_t
+	var _ Tmpd_uint_t
+	var _ Tmpd_uint_t
+	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = ah, al, b1, bh, bl, carry, hl, i, n, q0, q1, rhat, s, t, un0, un1, un10, un21, un32, vn0, vn1, w, v2, v3, v6, v7, v9
+	**(**Tmpd_uint_t)(__ccgo_up(bp + 16)) = uint64(0)
+	i = uint64(0)
+	for {
+		if !(i < n1) {
+			break
+		}
+		v2 = **(**Tmpd_uint_t)(__ccgo_up(u + uintptr(i)*8))
+		v3 = v1
+		ah = uint32(v2 >> libc.Int32FromInt32(32))
+		al = uint32(v2)
+		bh = uint32(v3 >> libc.Int32FromInt32(32))
+		bl = uint32(v3)
+		hl = uint64(al) * uint64(bl)
+		w[0] = uint32(hl)
+		carry = uint32(hl >> libc.Int32FromInt32(32))
+		hl = uint64(ah)*uint64(bl) + uint64(carry)
+		w[int32(1)] = uint32(hl)
+		w[int32(2)] = uint32(hl >> libc.Int32FromInt32(32))
+		hl = uint64(al)*uint64(bh) + uint64(w[int32(1)])
+		w[int32(1)] = uint32(hl)
+		carry = uint32(hl >> libc.Int32FromInt32(32))
+		hl = uint64(ah)*uint64(bh) + uint64(w[int32(2)]) + uint64(carry)
+		w[int32(2)] = uint32(hl)
+		w[int32(3)] = uint32(hl >> libc.Int32FromInt32(32))
+		**(**Tmpd_uint_t)(__ccgo_up(bp)) = uint64(w[int32(3)])<<libc.Int32FromInt32(32) + uint64(w[int32(2)])
+		**(**Tmpd_uint_t)(__ccgo_up(bp + 8)) = uint64(w[int32(1)])<<libc.Int32FromInt32(32) + uint64(w[0])
+		**(**Tmpd_uint_t)(__ccgo_up(bp + 8)) = **(**Tmpd_uint_t)(__ccgo_up(bp + 16)) + **(**Tmpd_uint_t)(__ccgo_up(bp + 8))
+		if **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) < **(**Tmpd_uint_t)(__ccgo_up(bp + 16)) {
+			**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) + 1
+		}
+		v2 = **(**Tmpd_uint_t)(__ccgo_up(bp + 8))
+		v3 = b2
+		b1 = uint64(4294967296)
+		v6 = v3
+		if v6 == libc.Uint64FromInt32(0) {
+			v7 = int32(64)
+			goto _8
+		}
+		n = 0
+		if v6 <= libc.Uint64FromUint32(0x00000000FFFFFFFF) {
+			n = n + int32(32)
+			v6 = v6 << int32(32)
+		}
+		if v6 <= libc.Uint64FromInt64(0x0000FFFFFFFFFFFF) {
+			n = n + int32(16)
+			v6 = v6 << int32(16)
+		}
+		if v6 <= libc.Uint64FromInt64(0x00FFFFFFFFFFFFFF) {
+			n = n + int32(8)
+			v6 = v6 << int32(8)
+		}
+		if v6 <= libc.Uint64FromInt64(0x0FFFFFFFFFFFFFFF) {
+			n = n + int32(4)
+			v6 = v6 << int32(4)
+		}
+		if v6 <= libc.Uint64FromInt64(0x3FFFFFFFFFFFFFFF) {
+			n = n + int32(2)
+			v6 = v6 << int32(2)
+		}
+		if v6 <= libc.Uint64FromInt64(0x7FFFFFFFFFFFFFFF) {
+			n = n + int32(1)
+		}
+		v7 = n
+		goto _8
+	_8:
+		s = v7
+		v3 = v3 << s
+		vn1 = v3 >> int32(32)
+		vn0 = v3 & uint64(0xFFFFFFFF)
+		if s == 0 {
+			v9 = uint64(0)
+		} else {
+			v9 = v2 >> (int32(64) - s)
+		}
+		t = v9
+		un32 = **(**Tmpd_uint_t)(__ccgo_up(bp))<<s | t
+		un10 = v2 << s
+		un1 = un10 >> int32(32)
+		un0 = un10 & uint64(0xFFFFFFFF)
+		q1 = un32 / vn1
+		rhat = un32 - q1*vn1
+		goto again1__ccgo77
+	again1__ccgo77:
+		;
+		if q1 >= b1 || q1*vn0 > b1*rhat+un1 {
+			q1 = q1 - uint64(1)
+			rhat = rhat + vn1
+			if rhat < b1 {
+				goto again1__ccgo77
+			}
+		}
+		un21 = un32*b1 + un1 - q1*v3
+		q0 = un21 / vn1
+		rhat = un21 - q0*vn1
+		goto again2__ccgo77
+	again2__ccgo77:
+		;
+		if q0 >= b1 || q0*vn0 > b1*rhat+un0 {
+			q0 = q0 - uint64(1)
+			rhat = rhat + vn1
+			if rhat < b1 {
+				goto again2__ccgo77
+			}
+		}
+		**(**Tmpd_uint_t)(__ccgo_up(bp + 16)) = q1*b1 + q0
+		**(**Tmpd_uint_t)(__ccgo_up(w1 + uintptr(i)*8)) = (un21*b1 + un0 - q0*v3) >> s
+		goto _1
+	_1:
+		;
+		i = i + 1
+	}
+	return **(**Tmpd_uint_t)(__ccgo_up(bp + 16))
+}
+
+// C documentation
+//
+//	/*
+//	 * Knuth, TAOCP Volume 2, 4.3.1, exercise 16:
+//	 *     w := quotient of u (len n) divided by a single word v
+//	 */
+func X_mpd_shortdiv_b(tls *libc.TLS, w1 uintptr, u uintptr, n1 Tmpd_size_t, v1 Tmpd_uint_t, b2 Tmpd_uint_t) (r Tmpd_uint_t) {
+	bp := tls.Alloc(32)
+	defer tls.Free(32)
+	var ah, al, bh, bl, carry Tuint32_t
+	var b1, q0, q1, rhat, t, un0, un1, un10, un21, un32, vn0, vn1, v2, v3 Tmpd_uint_t
+	var hl, v6 Tuint64_t
+	var i Tmpd_size_t
+	var n, s, v7 int32
+	var w [4]Tuint32_t
+	var v9 uint64
+	var _ Tmpd_uint_t
+	var _ Tmpd_uint_t
+	var _ Tmpd_uint_t
+	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = ah, al, b1, bh, bl, carry, hl, i, n, q0, q1, rhat, s, t, un0, un1, un10, un21, un32, vn0, vn1, w, v2, v3, v6, v7, v9
+	**(**Tmpd_uint_t)(__ccgo_up(bp + 16)) = uint64(0)
+	i = n1 - uint64(1)
+	for {
+		if !(i != uint64(18446744073709551615)) {
+			break
+		}
+		v2 = **(**Tmpd_uint_t)(__ccgo_up(bp + 16))
+		v3 = b2
+		ah = uint32(v2 >> libc.Int32FromInt32(32))
+		al = uint32(v2)
+		bh = uint32(v3 >> libc.Int32FromInt32(32))
+		bl = uint32(v3)
+		hl = uint64(al) * uint64(bl)
+		w[0] = uint32(hl)
+		carry = uint32(hl >> libc.Int32FromInt32(32))
+		hl = uint64(ah)*uint64(bl) + uint64(carry)
+		w[int32(1)] = uint32(hl)
+		w[int32(2)] = uint32(hl >> libc.Int32FromInt32(32))
+		hl = uint64(al)*uint64(bh) + uint64(w[int32(1)])
+		w[int32(1)] = uint32(hl)
+		carry = uint32(hl >> libc.Int32FromInt32(32))
+		hl = uint64(ah)*uint64(bh) + uint64(w[int32(2)]) + uint64(carry)
+		w[int32(2)] = uint32(hl)
+		w[int32(3)] = uint32(hl >> libc.Int32FromInt32(32))
+		**(**Tmpd_uint_t)(__ccgo_up(bp)) = uint64(w[int32(3)])<<libc.Int32FromInt32(32) + uint64(w[int32(2)])
+		**(**Tmpd_uint_t)(__ccgo_up(bp + 8)) = uint64(w[int32(1)])<<libc.Int32FromInt32(32) + uint64(w[0])
+		**(**Tmpd_uint_t)(__ccgo_up(bp + 8)) = **(**Tmpd_uint_t)(__ccgo_up(u + uintptr(i)*8)) + **(**Tmpd_uint_t)(__ccgo_up(bp + 8))
+		if **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) < **(**Tmpd_uint_t)(__ccgo_up(u + uintptr(i)*8)) {
+			**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) + 1
+		}
+		v2 = **(**Tmpd_uint_t)(__ccgo_up(bp + 8))
+		v3 = v1
+		b1 = uint64(4294967296)
+		v6 = v3
+		if v6 == libc.Uint64FromInt32(0) {
+			v7 = int32(64)
+			goto _8
+		}
+		n = 0
+		if v6 <= libc.Uint64FromUint32(0x00000000FFFFFFFF) {
+			n = n + int32(32)
+			v6 = v6 << int32(32)
+		}
+		if v6 <= libc.Uint64FromInt64(0x0000FFFFFFFFFFFF) {
+			n = n + int32(16)
+			v6 = v6 << int32(16)
+		}
+		if v6 <= libc.Uint64FromInt64(0x00FFFFFFFFFFFFFF) {
+			n = n + int32(8)
+			v6 = v6 << int32(8)
+		}
+		if v6 <= libc.Uint64FromInt64(0x0FFFFFFFFFFFFFFF) {
+			n = n + int32(4)
+			v6 = v6 << int32(4)
+		}
+		if v6 <= libc.Uint64FromInt64(0x3FFFFFFFFFFFFFFF) {
+			n = n + int32(2)
+			v6 = v6 << int32(2)
+		}
+		if v6 <= libc.Uint64FromInt64(0x7FFFFFFFFFFFFFFF) {
+			n = n + int32(1)
+		}
+		v7 = n
+		goto _8
+	_8:
+		s = v7
+		v3 = v3 << s
+		vn1 = v3 >> int32(32)
+		vn0 = v3 & uint64(0xFFFFFFFF)
+		if s == 0 {
+			v9 = uint64(0)
+		} else {
+			v9 = v2 >> (int32(64) - s)
+		}
+		t = v9
+		un32 = **(**Tmpd_uint_t)(__ccgo_up(bp))<<s | t
+		un10 = v2 << s
+		un1 = un10 >> int32(32)
+		un0 = un10 & uint64(0xFFFFFFFF)
+		q1 = un32 / vn1
+		rhat = un32 - q1*vn1
+		goto again1__ccgo83
+	again1__ccgo83:
+		;
+		if q1 >= b1 || q1*vn0 > b1*rhat+un1 {
+			q1 = q1 - uint64(1)
+			rhat = rhat + vn1
+			if rhat < b1 {
+				goto again1__ccgo83
+			}
+		}
+		un21 = un32*b1 + un1 - q1*v3
+		q0 = un21 / vn1
+		rhat = un21 - q0*vn1
+		goto again2__ccgo83
+	again2__ccgo83:
+		;
+		if q0 >= b1 || q0*vn0 > b1*rhat+un0 {
+			q0 = q0 - uint64(1)
+			rhat = rhat + vn1
+			if rhat < b1 {
+				goto again2__ccgo83
+			}
+		}
+		**(**Tmpd_uint_t)(__ccgo_up(w1 + uintptr(i)*8)) = q1*b1 + q0
+		**(**Tmpd_uint_t)(__ccgo_up(bp + 16)) = (un21*b1 + un0 - q0*v3) >> s
+		goto _1
+	_1:
+		;
+		i = i - 1
+	}
+	return **(**Tmpd_uint_t)(__ccgo_up(bp + 16))
+}
+
+func Xmpd_dflt_traphandler(tls *libc.TLS, ctx uintptr) {
+	_ = ctx
+	_ccgo_raise(tls, int32(MSIGFPE))
+}
+
+func init() {
+	p := unsafe.Pointer(&Xmpd_traphandler)
+	*(*uintptr)(unsafe.Add(p, 0)) = __ccgo_fp(Xmpd_dflt_traphandler)
+}
+
+// C documentation
+//
+//	/* Set guaranteed minimum number of coefficient words. The function may
+//	   be used once at program start. Setting MPD_MINALLOC to out-of-bounds
+//	   values is a catastrophic error, so in that case the function exits rather
+//	   than relying on the user to check a return value. */
+func Xmpd_setminalloc(tls *libc.TLS, n Tmpd_ssize_t) {
+	bp := tls.Alloc(32)
+	defer tls.Free(32)
+	if _minalloc_is_set1 != 0 {
+		_ccgo_fprintf(tls, libc.X__stderrp, __ccgo_ts+370261, libc.VaList(bp+8, __ccgo_ts+370278, int32(56)))
+		_ccgo_fprintf(tls, libc.X__stderrp, __ccgo_ts+370389, 0)
+		libc.Xfputc(tls, int32('\n'), libc.X__stderrp)
+		return
+	}
+	if n < int64(MMPD_MINALLOC_MIN) || n > int64(MMPD_MINALLOC_MAX) {
+		_ccgo_fprintf(tls, libc.X__stderrp, __ccgo_ts+369947, libc.VaList(bp+8, __ccgo_ts+370278, int32(61)))
+		_ccgo_fprintf(tls, libc.X__stderrp, __ccgo_ts+370458, 0)
+		libc.Xfputc(tls, int32('\n'), libc.X__stderrp)
+		libc.Xabort(tls)
+	}
+	XMPD_MINALLOC = n
+	_minalloc_is_set1 = int32(1)
+}
+
+var _minalloc_is_set1 int32
+
+func Xmpd_init(tls *libc.TLS, ctx uintptr, prec Tmpd_ssize_t) {
+	var ideal_minalloc Tmpd_ssize_t
+	_ = ideal_minalloc
+	Xmpd_defaultcontext(tls, ctx)
+	if !(Xmpd_qsetprec(tls, ctx, prec) != 0) {
+		Xmpd_addstatus_raise(tls, ctx, uint32(0x00000080))
+		return
+	}
+	ideal_minalloc = int64(2) * ((prec + int64(MMPD_RDIGITS) - int64(1)) / int64(MMPD_RDIGITS))
+	if ideal_minalloc < int64(MMPD_MINALLOC_MIN) {
+		ideal_minalloc = int64(MMPD_MINALLOC_MIN)
+	}
+	if ideal_minalloc > int64(MMPD_MINALLOC_MAX) {
+		ideal_minalloc = int64(MMPD_MINALLOC_MAX)
+	}
+	Xmpd_setminalloc(tls, ideal_minalloc)
+}
+
+func Xmpd_maxcontext(tls *libc.TLS, ctx uintptr) {
+	(*Tmpd_context_t)(unsafe.Pointer(ctx)).Fprec = int64(999999999999999999)
+	(*Tmpd_context_t)(unsafe.Pointer(ctx)).Femax = int64(999999999999999999)
+	(*Tmpd_context_t)(unsafe.Pointer(ctx)).Femin = -libc.Int64FromInt64(999999999999999999)
+	(*Tmpd_context_t)(unsafe.Pointer(ctx)).Fround = int32(EMPD_ROUND_HALF_EVEN)
+	(*Tmpd_context_t)(unsafe.Pointer(ctx)).Ftraps = libc.Uint32FromUint32(0x00000002) | libc.Uint32FromUint32(0x00000008) | libc.Uint32FromUint32(0x00000010) | libc.Uint32FromUint32(0x00000020) | libc.Uint32FromUint32(0x00000080) | libc.Uint32FromUint32(0x00000100) | libc.Uint32FromUint32(0x00000200) | libc.Uint32FromUint32(0x00000004) | libc.Uint32FromUint32(0x00000800) | libc.Uint32FromUint32(0x00004000)
+	(*Tmpd_context_t)(unsafe.Pointer(ctx)).Fstatus = uint32(0)
+	(*Tmpd_context_t)(unsafe.Pointer(ctx)).Fnewtrap = uint32(0)
+	(*Tmpd_context_t)(unsafe.Pointer(ctx)).Fclamp = 0
+	(*Tmpd_context_t)(unsafe.Pointer(ctx)).Fallcr = int32(1)
+}
+
+func Xmpd_defaultcontext(tls *libc.TLS, ctx uintptr) {
+	(*Tmpd_context_t)(unsafe.Pointer(ctx)).Fprec = int64(libc.Int32FromInt32(2) * libc.Int32FromInt32(MMPD_RDIGITS))
+	(*Tmpd_context_t)(unsafe.Pointer(ctx)).Femax = int64(999999999999999999)
+	(*Tmpd_context_t)(unsafe.Pointer(ctx)).Femin = -libc.Int64FromInt64(999999999999999999)
+	(*Tmpd_context_t)(unsafe.Pointer(ctx)).Fround = int32(EMPD_ROUND_HALF_UP)
+	(*Tmpd_context_t)(unsafe.Pointer(ctx)).Ftraps = libc.Uint32FromUint32(0x00000002) | libc.Uint32FromUint32(0x00000008) | libc.Uint32FromUint32(0x00000010) | libc.Uint32FromUint32(0x00000020) | libc.Uint32FromUint32(0x00000080) | libc.Uint32FromUint32(0x00000100) | libc.Uint32FromUint32(0x00000200) | libc.Uint32FromUint32(0x00000004) | libc.Uint32FromUint32(0x00000800) | libc.Uint32FromUint32(0x00004000)
+	(*Tmpd_context_t)(unsafe.Pointer(ctx)).Fstatus = uint32(0)
+	(*Tmpd_context_t)(unsafe.Pointer(ctx)).Fnewtrap = uint32(0)
+	(*Tmpd_context_t)(unsafe.Pointer(ctx)).Fclamp = 0
+	(*Tmpd_context_t)(unsafe.Pointer(ctx)).Fallcr = int32(1)
+}
+
+func Xmpd_basiccontext(tls *libc.TLS, ctx uintptr) {
+	(*Tmpd_context_t)(unsafe.Pointer(ctx)).Fprec = int64(9)
+	(*Tmpd_context_t)(unsafe.Pointer(ctx)).Femax = int64(999999999999999999)
+	(*Tmpd_context_t)(unsafe.Pointer(ctx)).Femin = -libc.Int64FromInt64(999999999999999999)
+	(*Tmpd_context_t)(unsafe.Pointer(ctx)).Fround = int32(EMPD_ROUND_HALF_UP)
+	(*Tmpd_context_t)(unsafe.Pointer(ctx)).Ftraps = libc.Uint32FromUint32(0x00000002) | libc.Uint32FromUint32(0x00000008) | libc.Uint32FromUint32(0x00000010) | libc.Uint32FromUint32(0x00000020) | libc.Uint32FromUint32(0x00000080) | libc.Uint32FromUint32(0x00000100) | libc.Uint32FromUint32(0x00000200) | libc.Uint32FromUint32(0x00000004) | libc.Uint32FromUint32(0x00000800) | libc.Uint32FromUint32(0x00004000) | libc.Uint32FromUint32(0x00000001)
+	(*Tmpd_context_t)(unsafe.Pointer(ctx)).Fstatus = uint32(0)
+	(*Tmpd_context_t)(unsafe.Pointer(ctx)).Fnewtrap = uint32(0)
+	(*Tmpd_context_t)(unsafe.Pointer(ctx)).Fclamp = 0
+	(*Tmpd_context_t)(unsafe.Pointer(ctx)).Fallcr = int32(1)
+}
+
+func Xmpd_ieee_context(tls *libc.TLS, ctx uintptr, bits int32) (r int32) {
+	if bits <= 0 || bits > int32(MMPD_IEEE_CONTEXT_MAX_BITS) || bits%int32(32) != 0 {
+		return -int32(1)
+	}
+	(*Tmpd_context_t)(unsafe.Pointer(ctx)).Fprec = int64(int32(9)*(bits/int32(32)) - int32(2))
+	(*Tmpd_context_t)(unsafe.Pointer(ctx)).Femax = int64(3) * (libc.Int64FromInt32(1) << (bits/libc.Int32FromInt32(16) + libc.Int32FromInt32(3)))
+	(*Tmpd_context_t)(unsafe.Pointer(ctx)).Femin = int64(1) - (*Tmpd_context_t)(unsafe.Pointer(ctx)).Femax
+	(*Tmpd_context_t)(unsafe.Pointer(ctx)).Fround = int32(EMPD_ROUND_HALF_EVEN)
+	(*Tmpd_context_t)(unsafe.Pointer(ctx)).Ftraps = uint32(0)
+	(*Tmpd_context_t)(unsafe.Pointer(ctx)).Fstatus = uint32(0)
+	(*Tmpd_context_t)(unsafe.Pointer(ctx)).Fnewtrap = uint32(0)
+	(*Tmpd_context_t)(unsafe.Pointer(ctx)).Fclamp = int32(1)
+	(*Tmpd_context_t)(unsafe.Pointer(ctx)).Fallcr = int32(1)
+	return 0
+}
+
+func Xmpd_getprec(tls *libc.TLS, ctx uintptr) (r Tmpd_ssize_t) {
+	return (*Tmpd_context_t)(unsafe.Pointer(ctx)).Fprec
+}
+
+func Xmpd_getemax(tls *libc.TLS, ctx uintptr) (r Tmpd_ssize_t) {
+	return (*Tmpd_context_t)(unsafe.Pointer(ctx)).Femax
+}
+
+func Xmpd_getemin(tls *libc.TLS, ctx uintptr) (r Tmpd_ssize_t) {
+	return (*Tmpd_context_t)(unsafe.Pointer(ctx)).Femin
+}
+
+func Xmpd_getround(tls *libc.TLS, ctx uintptr) (r int32) {
+	return (*Tmpd_context_t)(unsafe.Pointer(ctx)).Fround
+}
+
+func Xmpd_gettraps(tls *libc.TLS, ctx uintptr) (r Tuint32_t) {
+	return (*Tmpd_context_t)(unsafe.Pointer(ctx)).Ftraps
+}
+
+func Xmpd_getstatus(tls *libc.TLS, ctx uintptr) (r Tuint32_t) {
+	return (*Tmpd_context_t)(unsafe.Pointer(ctx)).Fstatus
+}
+
+func Xmpd_getclamp(tls *libc.TLS, ctx uintptr) (r int32) {
+	return (*Tmpd_context_t)(unsafe.Pointer(ctx)).Fclamp
+}
+
+func Xmpd_getcr(tls *libc.TLS, ctx uintptr) (r int32) {
+	return (*Tmpd_context_t)(unsafe.Pointer(ctx)).Fallcr
+}
+
+func Xmpd_qsetprec(tls *libc.TLS, ctx uintptr, prec Tmpd_ssize_t) (r int32) {
+	if prec <= 0 || prec > int64(999999999999999999) {
+		return 0
+	}
+	(*Tmpd_context_t)(unsafe.Pointer(ctx)).Fprec = prec
+	return int32(1)
+}
+
+func Xmpd_qsetemax(tls *libc.TLS, ctx uintptr, emax Tmpd_ssize_t) (r int32) {
+	if emax < 0 || emax > int64(999999999999999999) {
+		return 0
+	}
+	(*Tmpd_context_t)(unsafe.Pointer(ctx)).Femax = emax
+	return int32(1)
+}
+
+func Xmpd_qsetemin(tls *libc.TLS, ctx uintptr, emin Tmpd_ssize_t) (r int32) {
+	if emin > 0 || emin < -int64(999999999999999999) {
+		return 0
+	}
+	(*Tmpd_context_t)(unsafe.Pointer(ctx)).Femin = emin
+	return int32(1)
+}
+
+func Xmpd_qsetround(tls *libc.TLS, ctx uintptr, round int32) (r int32) {
+	if !(0 <= round && round < int32(EMPD_ROUND_GUARD)) {
+		return 0
+	}
+	(*Tmpd_context_t)(unsafe.Pointer(ctx)).Fround = round
+	return int32(1)
+}
+
+func Xmpd_qsettraps(tls *libc.TLS, ctx uintptr, flags Tuint32_t) (r int32) {
+	if flags > libc.Uint32FromUint32(0x00008000)-libc.Uint32FromUint32(1) {
+		return 0
+	}
+	(*Tmpd_context_t)(unsafe.Pointer(ctx)).Ftraps = flags
+	return int32(1)
+}
+
+func Xmpd_qsetstatus(tls *libc.TLS, ctx uintptr, flags Tuint32_t) (r int32) {
+	if flags > libc.Uint32FromUint32(0x00008000)-libc.Uint32FromUint32(1) {
+		return 0
+	}
+	(*Tmpd_context_t)(unsafe.Pointer(ctx)).Fstatus = flags
+	return int32(1)
+}
+
+func Xmpd_qsetclamp(tls *libc.TLS, ctx uintptr, c int32) (r int32) {
+	if c != 0 && c != int32(1) {
+		return 0
+	}
+	(*Tmpd_context_t)(unsafe.Pointer(ctx)).Fclamp = c
+	return int32(1)
+}
+
+func Xmpd_qsetcr(tls *libc.TLS, ctx uintptr, c int32) (r int32) {
+	if c != 0 && c != int32(1) {
+		return 0
+	}
+	(*Tmpd_context_t)(unsafe.Pointer(ctx)).Fallcr = c
+	return int32(1)
+}
+
+func Xmpd_addstatus_raise(tls *libc.TLS, ctx uintptr, flags Tuint32_t) {
+	**(**Tuint32_t)(__ccgo_up(ctx + 28)) |= flags
+	if flags&(*Tmpd_context_t)(unsafe.Pointer(ctx)).Ftraps != 0 {
+		(*Tmpd_context_t)(unsafe.Pointer(ctx)).Fnewtrap = flags & (*Tmpd_context_t)(unsafe.Pointer(ctx)).Ftraps
+		(*(*func(*libc.TLS, uintptr))(unsafe.Pointer(&struct{ uintptr }{Xmpd_traphandler})))(tls, ctx)
+	}
+}
+
+const MSIX_STEP_THRESHOLD = 4096
+
+type Tfnt_params = struct {
+	Fmodnum  int32
+	Fmodulus Tmpd_uint_t
+	Fkernel  Tmpd_uint_t
+}
+
+// C documentation
+//
+//	/* Convolute the data in c1 and c2. Result is in c1. */
+func Xfnt_convolute(tls *libc.TLS, c1 uintptr, c2 uintptr, n1 Tmpd_size_t, modnum1 int32) (r1 int32) {
+	bp := tls.Alloc(80)
+	defer tls.Free(80)
+	var ah, al, bh, bl, carry Tuint32_t
+	var fnt, inv_fnt, v42, v43 uintptr
+	var hl Tuint64_t
+	var i, v38 Tmpd_size_t
+	var n_inv, r, x, y, y0, y1, v1, v12, v13, v14, v16, v17, v18, v2, v20, v21, v22, v23, v24, v25, v28, v29, v3, v30, v32, v33, v34, v36, v4, v5, v6, v7, v8, v9 Tmpd_uint_t
+	var w [4]Tuint32_t
+	var v11, v15, v19, v27, v31, v35 uint64
+	var v39 int32
+	var _ Tmpd_uint_t
+	var _ Tmpd_uint_t
+	var _ Tmpd_uint_t
+	var _ Tmpd_uint_t
+	var _ Tmpd_uint_t
+	var _ Tmpd_uint_t
+	var _ Tmpd_uint_t
+	var _ Tmpd_uint_t
+	var _ Tmpd_uint_t
+	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = ah, al, bh, bl, carry, fnt, hl, i, inv_fnt, n_inv, r, w, x, y, y0, y1, v1, v11, v12, v13, v14, v15, v16, v17, v18, v19, v2, v20, v21, v22, v23, v24, v25, v27, v28, v29, v3, v30, v31, v32, v33, v34, v35, v36, v38, v39, v4, v42, v43, v5, v6, v7, v8, v9
+	**(**Tmpd_uint_t)(__ccgo_up(bp + 16)) = Xmpd_moduli[modnum1]
+	v1 = n1
+	v2 = **(**Tmpd_uint_t)(__ccgo_up(bp + 16)) - libc.Uint64FromInt32(2)
+	v3 = **(**Tmpd_uint_t)(__ccgo_up(bp + 16))
+	r = uint64(1)
+	for v2 > libc.Uint64FromInt32(0) {
+		if v2&libc.Uint64FromInt32(1) != 0 {
+			v4 = v3
+			v5 = r
+			v6 = v1
+			ah = uint32(v5 >> libc.Int32FromInt32(32))
+			al = uint32(v5)
+			bh = uint32(v6 >> libc.Int32FromInt32(32))
+			bl = uint32(v6)
+			hl = uint64(al) * uint64(bl)
+			w[0] = uint32(hl)
+			carry = uint32(hl >> libc.Int32FromInt32(32))
+			hl = uint64(ah)*uint64(bl) + uint64(carry)
+			w[int32(1)] = uint32(hl)
+			w[int32(2)] = uint32(hl >> libc.Int32FromInt32(32))
+			hl = uint64(al)*uint64(bh) + uint64(w[int32(1)])
+			w[int32(1)] = uint32(hl)
+			carry = uint32(hl >> libc.Int32FromInt32(32))
+			hl = uint64(ah)*uint64(bh) + uint64(w[int32(2)]) + uint64(carry)
+			w[int32(2)] = uint32(hl)
+			w[int32(3)] = uint32(hl >> libc.Int32FromInt32(32))
+			**(**Tmpd_uint_t)(__ccgo_up(bp)) = uint64(w[int32(3)])<<libc.Int32FromInt32(32) + uint64(w[int32(2)])
+			**(**Tmpd_uint_t)(__ccgo_up(bp + 8)) = uint64(w[int32(1)])<<libc.Int32FromInt32(32) + uint64(w[0])
+			if v4&(libc.Uint64FromUint64(1)<<libc.Int32FromInt32(32)) != 0 {
+				v7 = **(**Tmpd_uint_t)(__ccgo_up(bp))
+				y = v7
+				x = v7
+				**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) >> uint64(32)
+				x = **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) - x
+				if x > **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) {
+					**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) - 1
+				}
+				y = y << uint64(32)
+				**(**Tmpd_uint_t)(__ccgo_up(bp + 8)) = y + x
+				if **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) < y {
+					**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) + 1
+				}
+				v8 = **(**Tmpd_uint_t)(__ccgo_up(bp))
+				y = v8
+				x = v8
+				**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) >> uint64(32)
+				x = **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) - x
+				if x > **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) {
+					**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) - 1
+				}
+				y = y << uint64(32)
+				**(**Tmpd_uint_t)(__ccgo_up(bp + 8)) = y + x
+				if **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) < y {
+					**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) + 1
+				}
+				if **(**Tmpd_uint_t)(__ccgo_up(bp)) != 0 || **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) >= v4 {
+					v11 = **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) - v4
+				} else {
+					v11 = **(**Tmpd_uint_t)(__ccgo_up(bp + 8))
+				}
+				v9 = v11
+				goto _10
+			} else {
+				if v4&(libc.Uint64FromUint64(1)<<libc.Int32FromInt32(34)) != 0 {
+					v12 = **(**Tmpd_uint_t)(__ccgo_up(bp))
+					y = v12
+					x = v12
+					**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) >> uint64(30)
+					x = **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) - x
+					if x > **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) {
+						**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) - 1
+					}
+					y = y << uint64(34)
+					**(**Tmpd_uint_t)(__ccgo_up(bp + 8)) = y + x
+					if **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) < y {
+						**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) + 1
+					}
+					v13 = **(**Tmpd_uint_t)(__ccgo_up(bp))
+					y = v13
+					x = v13
+					**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) >> uint64(30)
+					x = **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) - x
+					if x > **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) {
+						**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) - 1
+					}
+					y = y << uint64(34)
+					**(**Tmpd_uint_t)(__ccgo_up(bp + 8)) = y + x
+					if **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) < y {
+						**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) + 1
+					}
+					v14 = **(**Tmpd_uint_t)(__ccgo_up(bp))
+					y = v14
+					x = v14
+					**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) >> uint64(30)
+					x = **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) - x
+					if x > **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) {
+						**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) - 1
+					}
+					y = y << uint64(34)
+					**(**Tmpd_uint_t)(__ccgo_up(bp + 8)) = y + x
+					if **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) < y {
+						**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) + 1
+					}
+					if **(**Tmpd_uint_t)(__ccgo_up(bp)) != 0 || **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) >= v4 {
+						v15 = **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) - v4
+					} else {
+						v15 = **(**Tmpd_uint_t)(__ccgo_up(bp + 8))
+					}
+					v9 = v15
+					goto _10
+				} else {
+					v16 = **(**Tmpd_uint_t)(__ccgo_up(bp))
+					y = v16
+					x = v16
+					**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) >> uint64(24)
+					x = **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) - x
+					if x > **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) {
+						**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) - 1
+					}
+					y = y << uint64(40)
+					**(**Tmpd_uint_t)(__ccgo_up(bp + 8)) = y + x
+					if **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) < y {
+						**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) + 1
+					}
+					v17 = **(**Tmpd_uint_t)(__ccgo_up(bp))
+					y = v17
+					x = v17
+					**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) >> uint64(24)
+					x = **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) - x
+					if x > **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) {
+						**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) - 1
+					}
+					y = y << uint64(40)
+					**(**Tmpd_uint_t)(__ccgo_up(bp + 8)) = y + x
+					if **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) < y {
+						**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) + 1
+					}
+					v18 = **(**Tmpd_uint_t)(__ccgo_up(bp))
+					y = v18
+					x = v18
+					**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) >> uint64(24)
+					x = **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) - x
+					if x > **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) {
+						**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) - 1
+					}
+					y = y << uint64(40)
+					**(**Tmpd_uint_t)(__ccgo_up(bp + 8)) = y + x
+					if **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) < y {
+						**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) + 1
+					}
+					if **(**Tmpd_uint_t)(__ccgo_up(bp)) != 0 || **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) >= v4 {
+						v19 = **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) - v4
+					} else {
+						v19 = **(**Tmpd_uint_t)(__ccgo_up(bp + 8))
+					}
+					v9 = v19
+					goto _10
+				}
+			}
+		_10:
+			r = v9
+		}
+		v20 = v3
+		v21 = v1
+		v22 = v1
+		ah = uint32(v21 >> libc.Int32FromInt32(32))
+		al = uint32(v21)
+		bh = uint32(v22 >> libc.Int32FromInt32(32))
+		bl = uint32(v22)
+		hl = uint64(al) * uint64(bl)
+		w[0] = uint32(hl)
+		carry = uint32(hl >> libc.Int32FromInt32(32))
+		hl = uint64(ah)*uint64(bl) + uint64(carry)
+		w[int32(1)] = uint32(hl)
+		w[int32(2)] = uint32(hl >> libc.Int32FromInt32(32))
+		hl = uint64(al)*uint64(bh) + uint64(w[int32(1)])
+		w[int32(1)] = uint32(hl)
+		carry = uint32(hl >> libc.Int32FromInt32(32))
+		hl = uint64(ah)*uint64(bh) + uint64(w[int32(2)]) + uint64(carry)
+		w[int32(2)] = uint32(hl)
+		w[int32(3)] = uint32(hl >> libc.Int32FromInt32(32))
+		**(**Tmpd_uint_t)(__ccgo_up(bp)) = uint64(w[int32(3)])<<libc.Int32FromInt32(32) + uint64(w[int32(2)])
+		**(**Tmpd_uint_t)(__ccgo_up(bp + 8)) = uint64(w[int32(1)])<<libc.Int32FromInt32(32) + uint64(w[0])
+		if v20&(libc.Uint64FromUint64(1)<<libc.Int32FromInt32(32)) != 0 {
+			v23 = **(**Tmpd_uint_t)(__ccgo_up(bp))
+			y = v23
+			x = v23
+			**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) >> uint64(32)
+			x = **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) - x
+			if x > **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) {
+				**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) - 1
+			}
+			y = y << uint64(32)
+			**(**Tmpd_uint_t)(__ccgo_up(bp + 8)) = y + x
+			if **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) < y {
+				**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) + 1
+			}
+			v24 = **(**Tmpd_uint_t)(__ccgo_up(bp))
+			y = v24
+			x = v24
+			**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) >> uint64(32)
+			x = **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) - x
+			if x > **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) {
+				**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) - 1
+			}
+			y = y << uint64(32)
+			**(**Tmpd_uint_t)(__ccgo_up(bp + 8)) = y + x
+			if **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) < y {
+				**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) + 1
+			}
+			if **(**Tmpd_uint_t)(__ccgo_up(bp)) != 0 || **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) >= v20 {
+				v27 = **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) - v20
+			} else {
+				v27 = **(**Tmpd_uint_t)(__ccgo_up(bp + 8))
+			}
+			v25 = v27
+			goto _26
+		} else {
+			if v20&(libc.Uint64FromUint64(1)<<libc.Int32FromInt32(34)) != 0 {
+				v28 = **(**Tmpd_uint_t)(__ccgo_up(bp))
+				y = v28
+				x = v28
+				**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) >> uint64(30)
+				x = **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) - x
+				if x > **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) {
+					**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) - 1
+				}
+				y = y << uint64(34)
+				**(**Tmpd_uint_t)(__ccgo_up(bp + 8)) = y + x
+				if **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) < y {
+					**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) + 1
+				}
+				v29 = **(**Tmpd_uint_t)(__ccgo_up(bp))
+				y = v29
+				x = v29
+				**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) >> uint64(30)
+				x = **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) - x
+				if x > **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) {
+					**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) - 1
+				}
+				y = y << uint64(34)
+				**(**Tmpd_uint_t)(__ccgo_up(bp + 8)) = y + x
+				if **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) < y {
+					**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) + 1
+				}
+				v30 = **(**Tmpd_uint_t)(__ccgo_up(bp))
+				y = v30
+				x = v30
+				**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) >> uint64(30)
+				x = **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) - x
+				if x > **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) {
+					**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) - 1
+				}
+				y = y << uint64(34)
+				**(**Tmpd_uint_t)(__ccgo_up(bp + 8)) = y + x
+				if **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) < y {
+					**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) + 1
+				}
+				if **(**Tmpd_uint_t)(__ccgo_up(bp)) != 0 || **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) >= v20 {
+					v31 = **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) - v20
+				} else {
+					v31 = **(**Tmpd_uint_t)(__ccgo_up(bp + 8))
+				}
+				v25 = v31
+				goto _26
+			} else {
+				v32 = **(**Tmpd_uint_t)(__ccgo_up(bp))
+				y = v32
+				x = v32
+				**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) >> uint64(24)
+				x = **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) - x
+				if x > **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) {
+					**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) - 1
+				}
+				y = y << uint64(40)
+				**(**Tmpd_uint_t)(__ccgo_up(bp + 8)) = y + x
+				if **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) < y {
+					**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) + 1
+				}
+				v33 = **(**Tmpd_uint_t)(__ccgo_up(bp))
+				y = v33
+				x = v33
+				**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) >> uint64(24)
+				x = **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) - x
+				if x > **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) {
+					**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) - 1
+				}
+				y = y << uint64(40)
+				**(**Tmpd_uint_t)(__ccgo_up(bp + 8)) = y + x
+				if **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) < y {
+					**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) + 1
+				}
+				v34 = **(**Tmpd_uint_t)(__ccgo_up(bp))
+				y = v34
+				x = v34
+				**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) >> uint64(24)
+				x = **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) - x
+				if x > **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) {
+					**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) - 1
+				}
+				y = y << uint64(40)
+				**(**Tmpd_uint_t)(__ccgo_up(bp + 8)) = y + x
+				if **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) < y {
+					**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) + 1
+				}
+				if **(**Tmpd_uint_t)(__ccgo_up(bp)) != 0 || **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) >= v20 {
+					v35 = **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) - v20
+				} else {
+					v35 = **(**Tmpd_uint_t)(__ccgo_up(bp + 8))
+				}
+				v25 = v35
+				goto _26
+			}
+		}
+	_26:
+		v1 = v25
+		v2 = v2 >> uint64(1)
+	}
+	v36 = r
+	goto _37
+_37:
+	n_inv = v36
+	v38 = n1
+	v39 = libc.BoolInt32(v38 != uint64(0) && v38&(v38-uint64(1)) == uint64(0))
+	goto _40
+_40:
+	if v39 != 0 {
+		if n1 > uint64(MSIX_STEP_THRESHOLD) {
+			fnt = __ccgo_fp(Xsix_step_fnt)
+			inv_fnt = __ccgo_fp(Xinv_six_step_fnt)
+		} else {
+			fnt = __ccgo_fp(Xstd_fnt)
+			inv_fnt = __ccgo_fp(Xstd_inv_fnt)
+		}
+	} else {
+		fnt = __ccgo_fp(Xfour_step_fnt)
+		inv_fnt = __ccgo_fp(Xinv_four_step_fnt)
+	}
+	if !((*(*func(*libc.TLS, uintptr, Tmpd_size_t, int32) int32)(unsafe.Pointer(&struct{ uintptr }{fnt})))(tls, c1, n1, modnum1) != 0) {
+		return 0
+	}
+	if !((*(*func(*libc.TLS, uintptr, Tmpd_size_t, int32) int32)(unsafe.Pointer(&struct{ uintptr }{fnt})))(tls, c2, n1, modnum1) != 0) {
+		return 0
+	}
+	i = uint64(0)
+	for {
+		if !(i < n1-uint64(1)) {
+			break
+		}
+		**(**Tmpd_uint_t)(__ccgo_up(bp + 24)) = **(**Tmpd_uint_t)(__ccgo_up(c1 + uintptr(i)*8))
+		y0 = **(**Tmpd_uint_t)(__ccgo_up(c2 + uintptr(i)*8))
+		**(**Tmpd_uint_t)(__ccgo_up(bp + 32)) = **(**Tmpd_uint_t)(__ccgo_up(c1 + uintptr(i+uint64(1))*8))
+		y1 = **(**Tmpd_uint_t)(__ccgo_up(c2 + uintptr(i+uint64(1))*8))
+		v42 = bp + 24
+		v43 = bp + 32
+		v1 = **(**Tmpd_uint_t)(__ccgo_up(bp + 16))
+		v2 = v1
+		v3 = **(**Tmpd_uint_t)(__ccgo_up(v42))
+		v4 = y0
+		ah = uint32(v3 >> libc.Int32FromInt32(32))
+		al = uint32(v3)
+		bh = uint32(v4 >> libc.Int32FromInt32(32))
+		bl = uint32(v4)
+		hl = uint64(al) * uint64(bl)
+		w[0] = uint32(hl)
+		carry = uint32(hl >> libc.Int32FromInt32(32))
+		hl = uint64(ah)*uint64(bl) + uint64(carry)
+		w[int32(1)] = uint32(hl)
+		w[int32(2)] = uint32(hl >> libc.Int32FromInt32(32))
+		hl = uint64(al)*uint64(bh) + uint64(w[int32(1)])
+		w[int32(1)] = uint32(hl)
+		carry = uint32(hl >> libc.Int32FromInt32(32))
+		hl = uint64(ah)*uint64(bh) + uint64(w[int32(2)]) + uint64(carry)
+		w[int32(2)] = uint32(hl)
+		w[int32(3)] = uint32(hl >> libc.Int32FromInt32(32))
+		**(**Tmpd_uint_t)(__ccgo_up(bp)) = uint64(w[int32(3)])<<libc.Int32FromInt32(32) + uint64(w[int32(2)])
+		**(**Tmpd_uint_t)(__ccgo_up(bp + 8)) = uint64(w[int32(1)])<<libc.Int32FromInt32(32) + uint64(w[0])
+		if v2&(libc.Uint64FromUint64(1)<<libc.Int32FromInt32(32)) != 0 {
+			v5 = **(**Tmpd_uint_t)(__ccgo_up(bp))
+			y = v5
+			x = v5
+			**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) >> uint64(32)
+			x = **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) - x
+			if x > **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) {
+				**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) - 1
+			}
+			y = y << uint64(32)
+			**(**Tmpd_uint_t)(__ccgo_up(bp + 8)) = y + x
+			if **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) < y {
+				**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) + 1
+			}
+			v6 = **(**Tmpd_uint_t)(__ccgo_up(bp))
+			y = v6
+			x = v6
+			**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) >> uint64(32)
+			x = **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) - x
+			if x > **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) {
+				**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) - 1
+			}
+			y = y << uint64(32)
+			**(**Tmpd_uint_t)(__ccgo_up(bp + 8)) = y + x
+			if **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) < y {
+				**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) + 1
+			}
+			if **(**Tmpd_uint_t)(__ccgo_up(bp)) != 0 || **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) >= v2 {
+				v11 = **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) - v2
+			} else {
+				v11 = **(**Tmpd_uint_t)(__ccgo_up(bp + 8))
+			}
+			v7 = v11
+			goto _51
+		} else {
+			if v2&(libc.Uint64FromUint64(1)<<libc.Int32FromInt32(34)) != 0 {
+				v8 = **(**Tmpd_uint_t)(__ccgo_up(bp))
+				y = v8
+				x = v8
+				**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) >> uint64(30)
+				x = **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) - x
+				if x > **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) {
+					**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) - 1
+				}
+				y = y << uint64(34)
+				**(**Tmpd_uint_t)(__ccgo_up(bp + 8)) = y + x
+				if **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) < y {
+					**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) + 1
+				}
+				v9 = **(**Tmpd_uint_t)(__ccgo_up(bp))
+				y = v9
+				x = v9
+				**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) >> uint64(30)
+				x = **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) - x
+				if x > **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) {
+					**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) - 1
+				}
+				y = y << uint64(34)
+				**(**Tmpd_uint_t)(__ccgo_up(bp + 8)) = y + x
+				if **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) < y {
+					**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) + 1
+				}
+				v12 = **(**Tmpd_uint_t)(__ccgo_up(bp))
+				y = v12
+				x = v12
+				**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) >> uint64(30)
+				x = **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) - x
+				if x > **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) {
+					**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) - 1
+				}
+				y = y << uint64(34)
+				**(**Tmpd_uint_t)(__ccgo_up(bp + 8)) = y + x
+				if **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) < y {
+					**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) + 1
+				}
+				if **(**Tmpd_uint_t)(__ccgo_up(bp)) != 0 || **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) >= v2 {
+					v15 = **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) - v2
+				} else {
+					v15 = **(**Tmpd_uint_t)(__ccgo_up(bp + 8))
+				}
+				v7 = v15
+				goto _51
+			} else {
+				v13 = **(**Tmpd_uint_t)(__ccgo_up(bp))
+				y = v13
+				x = v13
+				**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) >> uint64(24)
+				x = **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) - x
+				if x > **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) {
+					**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) - 1
+				}
+				y = y << uint64(40)
+				**(**Tmpd_uint_t)(__ccgo_up(bp + 8)) = y + x
+				if **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) < y {
+					**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) + 1
+				}
+				v14 = **(**Tmpd_uint_t)(__ccgo_up(bp))
+				y = v14
+				x = v14
+				**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) >> uint64(24)
+				x = **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) - x
+				if x > **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) {
+					**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) - 1
+				}
+				y = y << uint64(40)
+				**(**Tmpd_uint_t)(__ccgo_up(bp + 8)) = y + x
+				if **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) < y {
+					**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) + 1
+				}
+				v16 = **(**Tmpd_uint_t)(__ccgo_up(bp))
+				y = v16
+				x = v16
+				**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) >> uint64(24)
+				x = **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) - x
+				if x > **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) {
+					**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) - 1
+				}
+				y = y << uint64(40)
+				**(**Tmpd_uint_t)(__ccgo_up(bp + 8)) = y + x
+				if **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) < y {
+					**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) + 1
+				}
+				if **(**Tmpd_uint_t)(__ccgo_up(bp)) != 0 || **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) >= v2 {
+					v19 = **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) - v2
+				} else {
+					v19 = **(**Tmpd_uint_t)(__ccgo_up(bp + 8))
+				}
+				v7 = v19
+				goto _51
+			}
+		}
+	_51:
+		**(**Tmpd_uint_t)(__ccgo_up(v42)) = v7
+		v17 = v1
+		v18 = **(**Tmpd_uint_t)(__ccgo_up(v43))
+		v20 = y1
+		ah = uint32(v18 >> libc.Int32FromInt32(32))
+		al = uint32(v18)
+		bh = uint32(v20 >> libc.Int32FromInt32(32))
+		bl = uint32(v20)
+		hl = uint64(al) * uint64(bl)
+		w[0] = uint32(hl)
+		carry = uint32(hl >> libc.Int32FromInt32(32))
+		hl = uint64(ah)*uint64(bl) + uint64(carry)
+		w[int32(1)] = uint32(hl)
+		w[int32(2)] = uint32(hl >> libc.Int32FromInt32(32))
+		hl = uint64(al)*uint64(bh) + uint64(w[int32(1)])
+		w[int32(1)] = uint32(hl)
+		carry = uint32(hl >> libc.Int32FromInt32(32))
+		hl = uint64(ah)*uint64(bh) + uint64(w[int32(2)]) + uint64(carry)
+		w[int32(2)] = uint32(hl)
+		w[int32(3)] = uint32(hl >> libc.Int32FromInt32(32))
+		**(**Tmpd_uint_t)(__ccgo_up(bp)) = uint64(w[int32(3)])<<libc.Int32FromInt32(32) + uint64(w[int32(2)])
+		**(**Tmpd_uint_t)(__ccgo_up(bp + 8)) = uint64(w[int32(1)])<<libc.Int32FromInt32(32) + uint64(w[0])
+		if v17&(libc.Uint64FromUint64(1)<<libc.Int32FromInt32(32)) != 0 {
+			v21 = **(**Tmpd_uint_t)(__ccgo_up(bp))
+			y = v21
+			x = v21
+			**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) >> uint64(32)
+			x = **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) - x
+			if x > **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) {
+				**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) - 1
+			}
+			y = y << uint64(32)
+			**(**Tmpd_uint_t)(__ccgo_up(bp + 8)) = y + x
+			if **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) < y {
+				**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) + 1
+			}
+			v22 = **(**Tmpd_uint_t)(__ccgo_up(bp))
+			y = v22
+			x = v22
+			**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) >> uint64(32)
+			x = **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) - x
+			if x > **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) {
+				**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) - 1
+			}
+			y = y << uint64(32)
+			**(**Tmpd_uint_t)(__ccgo_up(bp + 8)) = y + x
+			if **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) < y {
+				**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) + 1
+			}
+			if **(**Tmpd_uint_t)(__ccgo_up(bp)) != 0 || **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) >= v17 {
+				v27 = **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) - v17
+			} else {
+				v27 = **(**Tmpd_uint_t)(__ccgo_up(bp + 8))
+			}
+			v23 = v27
+			goto _67
+		} else {
+			if v17&(libc.Uint64FromUint64(1)<<libc.Int32FromInt32(34)) != 0 {
+				v24 = **(**Tmpd_uint_t)(__ccgo_up(bp))
+				y = v24
+				x = v24
+				**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) >> uint64(30)
+				x = **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) - x
+				if x > **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) {
+					**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) - 1
+				}
+				y = y << uint64(34)
+				**(**Tmpd_uint_t)(__ccgo_up(bp + 8)) = y + x
+				if **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) < y {
+					**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) + 1
+				}
+				v25 = **(**Tmpd_uint_t)(__ccgo_up(bp))
+				y = v25
+				x = v25
+				**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) >> uint64(30)
+				x = **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) - x
+				if x > **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) {
+					**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) - 1
+				}
+				y = y << uint64(34)
+				**(**Tmpd_uint_t)(__ccgo_up(bp + 8)) = y + x
+				if **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) < y {
+					**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) + 1
+				}
+				v28 = **(**Tmpd_uint_t)(__ccgo_up(bp))
+				y = v28
+				x = v28
+				**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) >> uint64(30)
+				x = **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) - x
+				if x > **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) {
+					**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) - 1
+				}
+				y = y << uint64(34)
+				**(**Tmpd_uint_t)(__ccgo_up(bp + 8)) = y + x
+				if **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) < y {
+					**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) + 1
+				}
+				if **(**Tmpd_uint_t)(__ccgo_up(bp)) != 0 || **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) >= v17 {
+					v31 = **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) - v17
+				} else {
+					v31 = **(**Tmpd_uint_t)(__ccgo_up(bp + 8))
+				}
+				v23 = v31
+				goto _67
+			} else {
+				v29 = **(**Tmpd_uint_t)(__ccgo_up(bp))
+				y = v29
+				x = v29
+				**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) >> uint64(24)
+				x = **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) - x
+				if x > **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) {
+					**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) - 1
+				}
+				y = y << uint64(40)
+				**(**Tmpd_uint_t)(__ccgo_up(bp + 8)) = y + x
+				if **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) < y {
+					**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) + 1
+				}
+				v30 = **(**Tmpd_uint_t)(__ccgo_up(bp))
+				y = v30
+				x = v30
+				**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) >> uint64(24)
+				x = **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) - x
+				if x > **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) {
+					**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) - 1
+				}
+				y = y << uint64(40)
+				**(**Tmpd_uint_t)(__ccgo_up(bp + 8)) = y + x
+				if **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) < y {
+					**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) + 1
+				}
+				v32 = **(**Tmpd_uint_t)(__ccgo_up(bp))
+				y = v32
+				x = v32
+				**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) >> uint64(24)
+				x = **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) - x
+				if x > **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) {
+					**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) - 1
+				}
+				y = y << uint64(40)
+				**(**Tmpd_uint_t)(__ccgo_up(bp + 8)) = y + x
+				if **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) < y {
+					**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) + 1
+				}
+				if **(**Tmpd_uint_t)(__ccgo_up(bp)) != 0 || **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) >= v17 {
+					v35 = **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) - v17
+				} else {
+					v35 = **(**Tmpd_uint_t)(__ccgo_up(bp + 8))
+				}
+				v23 = v35
+				goto _67
+			}
+		}
+	_67:
+		**(**Tmpd_uint_t)(__ccgo_up(v43)) = v23
+		**(**Tmpd_uint_t)(__ccgo_up(c1 + uintptr(i)*8)) = **(**Tmpd_uint_t)(__ccgo_up(bp + 24))
+		**(**Tmpd_uint_t)(__ccgo_up(c1 + uintptr(i+uint64(1))*8)) = **(**Tmpd_uint_t)(__ccgo_up(bp + 32))
+		goto _41
+	_41:
+		;
+		i = i + uint64(2)
+	}
+	if !((*(*func(*libc.TLS, uintptr, Tmpd_size_t, int32) int32)(unsafe.Pointer(&struct{ uintptr }{inv_fnt})))(tls, c1, n1, modnum1) != 0) {
+		return 0
+	}
+	i = uint64(0)
+	for {
+		if !(i < n1-uint64(3)) {
+			break
+		}
+		**(**Tmpd_uint_t)(__ccgo_up(bp + 40)) = **(**Tmpd_uint_t)(__ccgo_up(c1 + uintptr(i)*8))
+		**(**Tmpd_uint_t)(__ccgo_up(bp + 48)) = **(**Tmpd_uint_t)(__ccgo_up(c1 + uintptr(i+uint64(1))*8))
+		**(**Tmpd_uint_t)(__ccgo_up(bp + 56)) = **(**Tmpd_uint_t)(__ccgo_up(c1 + uintptr(i+uint64(2))*8))
+		**(**Tmpd_uint_t)(__ccgo_up(bp + 64)) = **(**Tmpd_uint_t)(__ccgo_up(c1 + uintptr(i+uint64(3))*8))
+		v42 = bp + 40
+		v43 = bp + 48
+		v1 = n_inv
+		v2 = **(**Tmpd_uint_t)(__ccgo_up(bp + 16))
+		v3 = v2
+		v4 = **(**Tmpd_uint_t)(__ccgo_up(v42))
+		v5 = v1
+		ah = uint32(v4 >> libc.Int32FromInt32(32))
+		al = uint32(v4)
+		bh = uint32(v5 >> libc.Int32FromInt32(32))
+		bl = uint32(v5)
+		hl = uint64(al) * uint64(bl)
+		w[0] = uint32(hl)
+		carry = uint32(hl >> libc.Int32FromInt32(32))
+		hl = uint64(ah)*uint64(bl) + uint64(carry)
+		w[int32(1)] = uint32(hl)
+		w[int32(2)] = uint32(hl >> libc.Int32FromInt32(32))
+		hl = uint64(al)*uint64(bh) + uint64(w[int32(1)])
+		w[int32(1)] = uint32(hl)
+		carry = uint32(hl >> libc.Int32FromInt32(32))
+		hl = uint64(ah)*uint64(bh) + uint64(w[int32(2)]) + uint64(carry)
+		w[int32(2)] = uint32(hl)
+		w[int32(3)] = uint32(hl >> libc.Int32FromInt32(32))
+		**(**Tmpd_uint_t)(__ccgo_up(bp)) = uint64(w[int32(3)])<<libc.Int32FromInt32(32) + uint64(w[int32(2)])
+		**(**Tmpd_uint_t)(__ccgo_up(bp + 8)) = uint64(w[int32(1)])<<libc.Int32FromInt32(32) + uint64(w[0])
+		if v3&(libc.Uint64FromUint64(1)<<libc.Int32FromInt32(32)) != 0 {
+			v6 = **(**Tmpd_uint_t)(__ccgo_up(bp))
+			y = v6
+			x = v6
+			**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) >> uint64(32)
+			x = **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) - x
+			if x > **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) {
+				**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) - 1
+			}
+			y = y << uint64(32)
+			**(**Tmpd_uint_t)(__ccgo_up(bp + 8)) = y + x
+			if **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) < y {
+				**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) + 1
+			}
+			v7 = **(**Tmpd_uint_t)(__ccgo_up(bp))
+			y = v7
+			x = v7
+			**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) >> uint64(32)
+			x = **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) - x
+			if x > **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) {
+				**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) - 1
+			}
+			y = y << uint64(32)
+			**(**Tmpd_uint_t)(__ccgo_up(bp + 8)) = y + x
+			if **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) < y {
+				**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) + 1
+			}
+			if **(**Tmpd_uint_t)(__ccgo_up(bp)) != 0 || **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) >= v3 {
+				v11 = **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) - v3
+			} else {
+				v11 = **(**Tmpd_uint_t)(__ccgo_up(bp + 8))
+			}
+			v8 = v11
+			goto _88
+		} else {
+			if v3&(libc.Uint64FromUint64(1)<<libc.Int32FromInt32(34)) != 0 {
+				v9 = **(**Tmpd_uint_t)(__ccgo_up(bp))
+				y = v9
+				x = v9
+				**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) >> uint64(30)
+				x = **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) - x
+				if x > **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) {
+					**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) - 1
+				}
+				y = y << uint64(34)
+				**(**Tmpd_uint_t)(__ccgo_up(bp + 8)) = y + x
+				if **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) < y {
+					**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) + 1
+				}
+				v12 = **(**Tmpd_uint_t)(__ccgo_up(bp))
+				y = v12
+				x = v12
+				**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) >> uint64(30)
+				x = **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) - x
+				if x > **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) {
+					**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) - 1
+				}
+				y = y << uint64(34)
+				**(**Tmpd_uint_t)(__ccgo_up(bp + 8)) = y + x
+				if **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) < y {
+					**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) + 1
+				}
+				v13 = **(**Tmpd_uint_t)(__ccgo_up(bp))
+				y = v13
+				x = v13
+				**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) >> uint64(30)
+				x = **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) - x
+				if x > **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) {
+					**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) - 1
+				}
+				y = y << uint64(34)
+				**(**Tmpd_uint_t)(__ccgo_up(bp + 8)) = y + x
+				if **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) < y {
+					**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) + 1
+				}
+				if **(**Tmpd_uint_t)(__ccgo_up(bp)) != 0 || **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) >= v3 {
+					v15 = **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) - v3
+				} else {
+					v15 = **(**Tmpd_uint_t)(__ccgo_up(bp + 8))
+				}
+				v8 = v15
+				goto _88
+			} else {
+				v14 = **(**Tmpd_uint_t)(__ccgo_up(bp))
+				y = v14
+				x = v14
+				**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) >> uint64(24)
+				x = **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) - x
+				if x > **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) {
+					**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) - 1
+				}
+				y = y << uint64(40)
+				**(**Tmpd_uint_t)(__ccgo_up(bp + 8)) = y + x
+				if **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) < y {
+					**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) + 1
+				}
+				v16 = **(**Tmpd_uint_t)(__ccgo_up(bp))
+				y = v16
+				x = v16
+				**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) >> uint64(24)
+				x = **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) - x
+				if x > **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) {
+					**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) - 1
+				}
+				y = y << uint64(40)
+				**(**Tmpd_uint_t)(__ccgo_up(bp + 8)) = y + x
+				if **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) < y {
+					**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) + 1
+				}
+				v17 = **(**Tmpd_uint_t)(__ccgo_up(bp))
+				y = v17
+				x = v17
+				**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) >> uint64(24)
+				x = **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) - x
+				if x > **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) {
+					**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) - 1
+				}
+				y = y << uint64(40)
+				**(**Tmpd_uint_t)(__ccgo_up(bp + 8)) = y + x
+				if **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) < y {
+					**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) + 1
+				}
+				if **(**Tmpd_uint_t)(__ccgo_up(bp)) != 0 || **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) >= v3 {
+					v19 = **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) - v3
+				} else {
+					v19 = **(**Tmpd_uint_t)(__ccgo_up(bp + 8))
+				}
+				v8 = v19
+				goto _88
+			}
+		}
+	_88:
+		**(**Tmpd_uint_t)(__ccgo_up(v42)) = v8
+		v18 = v2
+		v20 = **(**Tmpd_uint_t)(__ccgo_up(v43))
+		v21 = v1
+		ah = uint32(v20 >> libc.Int32FromInt32(32))
+		al = uint32(v20)
+		bh = uint32(v21 >> libc.Int32FromInt32(32))
+		bl = uint32(v21)
+		hl = uint64(al) * uint64(bl)
+		w[0] = uint32(hl)
+		carry = uint32(hl >> libc.Int32FromInt32(32))
+		hl = uint64(ah)*uint64(bl) + uint64(carry)
+		w[int32(1)] = uint32(hl)
+		w[int32(2)] = uint32(hl >> libc.Int32FromInt32(32))
+		hl = uint64(al)*uint64(bh) + uint64(w[int32(1)])
+		w[int32(1)] = uint32(hl)
+		carry = uint32(hl >> libc.Int32FromInt32(32))
+		hl = uint64(ah)*uint64(bh) + uint64(w[int32(2)]) + uint64(carry)
+		w[int32(2)] = uint32(hl)
+		w[int32(3)] = uint32(hl >> libc.Int32FromInt32(32))
+		**(**Tmpd_uint_t)(__ccgo_up(bp)) = uint64(w[int32(3)])<<libc.Int32FromInt32(32) + uint64(w[int32(2)])
+		**(**Tmpd_uint_t)(__ccgo_up(bp + 8)) = uint64(w[int32(1)])<<libc.Int32FromInt32(32) + uint64(w[0])
+		if v18&(libc.Uint64FromUint64(1)<<libc.Int32FromInt32(32)) != 0 {
+			v22 = **(**Tmpd_uint_t)(__ccgo_up(bp))
+			y = v22
+			x = v22
+			**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) >> uint64(32)
+			x = **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) - x
+			if x > **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) {
+				**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) - 1
+			}
+			y = y << uint64(32)
+			**(**Tmpd_uint_t)(__ccgo_up(bp + 8)) = y + x
+			if **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) < y {
+				**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) + 1
+			}
+			v23 = **(**Tmpd_uint_t)(__ccgo_up(bp))
+			y = v23
+			x = v23
+			**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) >> uint64(32)
+			x = **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) - x
+			if x > **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) {
+				**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) - 1
+			}
+			y = y << uint64(32)
+			**(**Tmpd_uint_t)(__ccgo_up(bp + 8)) = y + x
+			if **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) < y {
+				**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) + 1
+			}
+			if **(**Tmpd_uint_t)(__ccgo_up(bp)) != 0 || **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) >= v18 {
+				v27 = **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) - v18
+			} else {
+				v27 = **(**Tmpd_uint_t)(__ccgo_up(bp + 8))
+			}
+			v24 = v27
+			goto _104
+		} else {
+			if v18&(libc.Uint64FromUint64(1)<<libc.Int32FromInt32(34)) != 0 {
+				v25 = **(**Tmpd_uint_t)(__ccgo_up(bp))
+				y = v25
+				x = v25
+				**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) >> uint64(30)
+				x = **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) - x
+				if x > **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) {
+					**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) - 1
+				}
+				y = y << uint64(34)
+				**(**Tmpd_uint_t)(__ccgo_up(bp + 8)) = y + x
+				if **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) < y {
+					**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) + 1
+				}
+				v28 = **(**Tmpd_uint_t)(__ccgo_up(bp))
+				y = v28
+				x = v28
+				**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) >> uint64(30)
+				x = **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) - x
+				if x > **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) {
+					**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) - 1
+				}
+				y = y << uint64(34)
+				**(**Tmpd_uint_t)(__ccgo_up(bp + 8)) = y + x
+				if **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) < y {
+					**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) + 1
+				}
+				v29 = **(**Tmpd_uint_t)(__ccgo_up(bp))
+				y = v29
+				x = v29
+				**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) >> uint64(30)
+				x = **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) - x
+				if x > **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) {
+					**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) - 1
+				}
+				y = y << uint64(34)
+				**(**Tmpd_uint_t)(__ccgo_up(bp + 8)) = y + x
+				if **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) < y {
+					**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) + 1
+				}
+				if **(**Tmpd_uint_t)(__ccgo_up(bp)) != 0 || **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) >= v18 {
+					v31 = **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) - v18
+				} else {
+					v31 = **(**Tmpd_uint_t)(__ccgo_up(bp + 8))
+				}
+				v24 = v31
+				goto _104
+			} else {
+				v30 = **(**Tmpd_uint_t)(__ccgo_up(bp))
+				y = v30
+				x = v30
+				**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) >> uint64(24)
+				x = **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) - x
+				if x > **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) {
+					**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) - 1
+				}
+				y = y << uint64(40)
+				**(**Tmpd_uint_t)(__ccgo_up(bp + 8)) = y + x
+				if **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) < y {
+					**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) + 1
+				}
+				v32 = **(**Tmpd_uint_t)(__ccgo_up(bp))
+				y = v32
+				x = v32
+				**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) >> uint64(24)
+				x = **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) - x
+				if x > **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) {
+					**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) - 1
+				}
+				y = y << uint64(40)
+				**(**Tmpd_uint_t)(__ccgo_up(bp + 8)) = y + x
+				if **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) < y {
+					**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) + 1
+				}
+				v33 = **(**Tmpd_uint_t)(__ccgo_up(bp))
+				y = v33
+				x = v33
+				**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) >> uint64(24)
+				x = **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) - x
+				if x > **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) {
+					**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) - 1
+				}
+				y = y << uint64(40)
+				**(**Tmpd_uint_t)(__ccgo_up(bp + 8)) = y + x
+				if **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) < y {
+					**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) + 1
+				}
+				if **(**Tmpd_uint_t)(__ccgo_up(bp)) != 0 || **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) >= v18 {
+					v35 = **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) - v18
+				} else {
+					v35 = **(**Tmpd_uint_t)(__ccgo_up(bp + 8))
+				}
+				v24 = v35
+				goto _104
+			}
+		}
+	_104:
+		**(**Tmpd_uint_t)(__ccgo_up(v43)) = v24
+		v42 = bp + 56
+		v43 = bp + 64
+		v1 = n_inv
+		v2 = **(**Tmpd_uint_t)(__ccgo_up(bp + 16))
+		v3 = v2
+		v4 = **(**Tmpd_uint_t)(__ccgo_up(v42))
+		v5 = v1
+		ah = uint32(v4 >> libc.Int32FromInt32(32))
+		al = uint32(v4)
+		bh = uint32(v5 >> libc.Int32FromInt32(32))
+		bl = uint32(v5)
+		hl = uint64(al) * uint64(bl)
+		w[0] = uint32(hl)
+		carry = uint32(hl >> libc.Int32FromInt32(32))
+		hl = uint64(ah)*uint64(bl) + uint64(carry)
+		w[int32(1)] = uint32(hl)
+		w[int32(2)] = uint32(hl >> libc.Int32FromInt32(32))
+		hl = uint64(al)*uint64(bh) + uint64(w[int32(1)])
+		w[int32(1)] = uint32(hl)
+		carry = uint32(hl >> libc.Int32FromInt32(32))
+		hl = uint64(ah)*uint64(bh) + uint64(w[int32(2)]) + uint64(carry)
+		w[int32(2)] = uint32(hl)
+		w[int32(3)] = uint32(hl >> libc.Int32FromInt32(32))
+		**(**Tmpd_uint_t)(__ccgo_up(bp)) = uint64(w[int32(3)])<<libc.Int32FromInt32(32) + uint64(w[int32(2)])
+		**(**Tmpd_uint_t)(__ccgo_up(bp + 8)) = uint64(w[int32(1)])<<libc.Int32FromInt32(32) + uint64(w[0])
+		if v3&(libc.Uint64FromUint64(1)<<libc.Int32FromInt32(32)) != 0 {
+			v6 = **(**Tmpd_uint_t)(__ccgo_up(bp))
+			y = v6
+			x = v6
+			**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) >> uint64(32)
+			x = **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) - x
+			if x > **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) {
+				**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) - 1
+			}
+			y = y << uint64(32)
+			**(**Tmpd_uint_t)(__ccgo_up(bp + 8)) = y + x
+			if **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) < y {
+				**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) + 1
+			}
+			v7 = **(**Tmpd_uint_t)(__ccgo_up(bp))
+			y = v7
+			x = v7
+			**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) >> uint64(32)
+			x = **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) - x
+			if x > **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) {
+				**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) - 1
+			}
+			y = y << uint64(32)
+			**(**Tmpd_uint_t)(__ccgo_up(bp + 8)) = y + x
+			if **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) < y {
+				**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) + 1
+			}
+			if **(**Tmpd_uint_t)(__ccgo_up(bp)) != 0 || **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) >= v3 {
+				v11 = **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) - v3
+			} else {
+				v11 = **(**Tmpd_uint_t)(__ccgo_up(bp + 8))
+			}
+			v8 = v11
+			goto _124
+		} else {
+			if v3&(libc.Uint64FromUint64(1)<<libc.Int32FromInt32(34)) != 0 {
+				v9 = **(**Tmpd_uint_t)(__ccgo_up(bp))
+				y = v9
+				x = v9
+				**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) >> uint64(30)
+				x = **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) - x
+				if x > **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) {
+					**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) - 1
+				}
+				y = y << uint64(34)
+				**(**Tmpd_uint_t)(__ccgo_up(bp + 8)) = y + x
+				if **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) < y {
+					**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) + 1
+				}
+				v12 = **(**Tmpd_uint_t)(__ccgo_up(bp))
+				y = v12
+				x = v12
+				**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) >> uint64(30)
+				x = **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) - x
+				if x > **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) {
+					**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) - 1
+				}
+				y = y << uint64(34)
+				**(**Tmpd_uint_t)(__ccgo_up(bp + 8)) = y + x
+				if **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) < y {
+					**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) + 1
+				}
+				v13 = **(**Tmpd_uint_t)(__ccgo_up(bp))
+				y = v13
+				x = v13
+				**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) >> uint64(30)
+				x = **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) - x
+				if x > **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) {
+					**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) - 1
+				}
+				y = y << uint64(34)
+				**(**Tmpd_uint_t)(__ccgo_up(bp + 8)) = y + x
+				if **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) < y {
+					**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) + 1
+				}
+				if **(**Tmpd_uint_t)(__ccgo_up(bp)) != 0 || **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) >= v3 {
+					v15 = **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) - v3
+				} else {
+					v15 = **(**Tmpd_uint_t)(__ccgo_up(bp + 8))
+				}
+				v8 = v15
+				goto _124
+			} else {
+				v14 = **(**Tmpd_uint_t)(__ccgo_up(bp))
+				y = v14
+				x = v14
+				**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) >> uint64(24)
+				x = **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) - x
+				if x > **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) {
+					**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) - 1
+				}
+				y = y << uint64(40)
+				**(**Tmpd_uint_t)(__ccgo_up(bp + 8)) = y + x
+				if **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) < y {
+					**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) + 1
+				}
+				v16 = **(**Tmpd_uint_t)(__ccgo_up(bp))
+				y = v16
+				x = v16
+				**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) >> uint64(24)
+				x = **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) - x
+				if x > **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) {
+					**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) - 1
+				}
+				y = y << uint64(40)
+				**(**Tmpd_uint_t)(__ccgo_up(bp + 8)) = y + x
+				if **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) < y {
+					**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) + 1
+				}
+				v17 = **(**Tmpd_uint_t)(__ccgo_up(bp))
+				y = v17
+				x = v17
+				**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) >> uint64(24)
+				x = **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) - x
+				if x > **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) {
+					**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) - 1
+				}
+				y = y << uint64(40)
+				**(**Tmpd_uint_t)(__ccgo_up(bp + 8)) = y + x
+				if **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) < y {
+					**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) + 1
+				}
+				if **(**Tmpd_uint_t)(__ccgo_up(bp)) != 0 || **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) >= v3 {
+					v19 = **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) - v3
+				} else {
+					v19 = **(**Tmpd_uint_t)(__ccgo_up(bp + 8))
+				}
+				v8 = v19
+				goto _124
+			}
+		}
+	_124:
+		**(**Tmpd_uint_t)(__ccgo_up(v42)) = v8
+		v18 = v2
+		v20 = **(**Tmpd_uint_t)(__ccgo_up(v43))
+		v21 = v1
+		ah = uint32(v20 >> libc.Int32FromInt32(32))
+		al = uint32(v20)
+		bh = uint32(v21 >> libc.Int32FromInt32(32))
+		bl = uint32(v21)
+		hl = uint64(al) * uint64(bl)
+		w[0] = uint32(hl)
+		carry = uint32(hl >> libc.Int32FromInt32(32))
+		hl = uint64(ah)*uint64(bl) + uint64(carry)
+		w[int32(1)] = uint32(hl)
+		w[int32(2)] = uint32(hl >> libc.Int32FromInt32(32))
+		hl = uint64(al)*uint64(bh) + uint64(w[int32(1)])
+		w[int32(1)] = uint32(hl)
+		carry = uint32(hl >> libc.Int32FromInt32(32))
+		hl = uint64(ah)*uint64(bh) + uint64(w[int32(2)]) + uint64(carry)
+		w[int32(2)] = uint32(hl)
+		w[int32(3)] = uint32(hl >> libc.Int32FromInt32(32))
+		**(**Tmpd_uint_t)(__ccgo_up(bp)) = uint64(w[int32(3)])<<libc.Int32FromInt32(32) + uint64(w[int32(2)])
+		**(**Tmpd_uint_t)(__ccgo_up(bp + 8)) = uint64(w[int32(1)])<<libc.Int32FromInt32(32) + uint64(w[0])
+		if v18&(libc.Uint64FromUint64(1)<<libc.Int32FromInt32(32)) != 0 {
+			v22 = **(**Tmpd_uint_t)(__ccgo_up(bp))
+			y = v22
+			x = v22
+			**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) >> uint64(32)
+			x = **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) - x
+			if x > **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) {
+				**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) - 1
+			}
+			y = y << uint64(32)
+			**(**Tmpd_uint_t)(__ccgo_up(bp + 8)) = y + x
+			if **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) < y {
+				**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) + 1
+			}
+			v23 = **(**Tmpd_uint_t)(__ccgo_up(bp))
+			y = v23
+			x = v23
+			**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) >> uint64(32)
+			x = **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) - x
+			if x > **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) {
+				**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) - 1
+			}
+			y = y << uint64(32)
+			**(**Tmpd_uint_t)(__ccgo_up(bp + 8)) = y + x
+			if **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) < y {
+				**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) + 1
+			}
+			if **(**Tmpd_uint_t)(__ccgo_up(bp)) != 0 || **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) >= v18 {
+				v27 = **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) - v18
+			} else {
+				v27 = **(**Tmpd_uint_t)(__ccgo_up(bp + 8))
+			}
+			v24 = v27
+			goto _140
+		} else {
+			if v18&(libc.Uint64FromUint64(1)<<libc.Int32FromInt32(34)) != 0 {
+				v25 = **(**Tmpd_uint_t)(__ccgo_up(bp))
+				y = v25
+				x = v25
+				**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) >> uint64(30)
+				x = **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) - x
+				if x > **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) {
+					**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) - 1
+				}
+				y = y << uint64(34)
+				**(**Tmpd_uint_t)(__ccgo_up(bp + 8)) = y + x
+				if **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) < y {
+					**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) + 1
+				}
+				v28 = **(**Tmpd_uint_t)(__ccgo_up(bp))
+				y = v28
+				x = v28
+				**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) >> uint64(30)
+				x = **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) - x
+				if x > **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) {
+					**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) - 1
+				}
+				y = y << uint64(34)
+				**(**Tmpd_uint_t)(__ccgo_up(bp + 8)) = y + x
+				if **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) < y {
+					**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) + 1
+				}
+				v29 = **(**Tmpd_uint_t)(__ccgo_up(bp))
+				y = v29
+				x = v29
+				**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) >> uint64(30)
+				x = **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) - x
+				if x > **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) {
+					**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) - 1
+				}
+				y = y << uint64(34)
+				**(**Tmpd_uint_t)(__ccgo_up(bp + 8)) = y + x
+				if **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) < y {
+					**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) + 1
+				}
+				if **(**Tmpd_uint_t)(__ccgo_up(bp)) != 0 || **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) >= v18 {
+					v31 = **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) - v18
+				} else {
+					v31 = **(**Tmpd_uint_t)(__ccgo_up(bp + 8))
+				}
+				v24 = v31
+				goto _140
+			} else {
+				v30 = **(**Tmpd_uint_t)(__ccgo_up(bp))
+				y = v30
+				x = v30
+				**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) >> uint64(24)
+				x = **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) - x
+				if x > **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) {
+					**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) - 1
+				}
+				y = y << uint64(40)
+				**(**Tmpd_uint_t)(__ccgo_up(bp + 8)) = y + x
+				if **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) < y {
+					**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) + 1
+				}
+				v32 = **(**Tmpd_uint_t)(__ccgo_up(bp))
+				y = v32
+				x = v32
+				**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) >> uint64(24)
+				x = **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) - x
+				if x > **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) {
+					**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) - 1
+				}
+				y = y << uint64(40)
+				**(**Tmpd_uint_t)(__ccgo_up(bp + 8)) = y + x
+				if **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) < y {
+					**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) + 1
+				}
+				v33 = **(**Tmpd_uint_t)(__ccgo_up(bp))
+				y = v33
+				x = v33
+				**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) >> uint64(24)
+				x = **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) - x
+				if x > **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) {
+					**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) - 1
+				}
+				y = y << uint64(40)
+				**(**Tmpd_uint_t)(__ccgo_up(bp + 8)) = y + x
+				if **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) < y {
+					**(**Tmpd_uint_t)(__ccgo_up(bp)) = **(**Tmpd_uint_t)(__ccgo_up(bp)) + 1
+				}
+				if **(**Tmpd_uint_t)(__ccgo_up(bp)) != 0 || **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) >= v18 {
+					v35 = **(**Tmpd_uint_t)(__ccgo_up(bp + 8)) - v18
+				} else {
+					v35 = **(**Tmpd_uint_t)(__ccgo_up(bp + 8))
+				}
+				v24 = v35
+				goto _140
+			}
+		}
+	_140:
+		**(**Tmpd_uint_t)(__ccgo_up(v43)) = v24
+		**(**Tmpd_uint_t)(__ccgo_up(c1 + uintptr(i)*8)) = **(**Tmpd_uint_t)(__ccgo_up(bp + 40))
+		**(**Tmpd_uint_t)(__ccgo_up(c1 + uintptr(i+uint64(1))*8)) = **(**Tmpd_uint_t)(__ccgo_up(bp + 48))
+		**(**Tmpd_uint_t)(__ccgo_up(c1 + uintptr(i+uint64(2))*8)) = **(**Tmpd_uint_t)(__ccgo_up(bp + 56))
+		**(**Tmpd_uint_t)(__ccgo_up(c1 + uintptr(i+uint64(3))*8)) = **(**Tmpd_uint_t)(__ccgo_up(bp + 64))
+		goto _77
+	_77:
+		;
+		i = i + uint64(4)
+	}
+	return int32(1)
+}
+
 // C documentation
 //
 //	/* Autoconvolute the data in c1. Result is in c1. */
@@ -6600,7 +19108,7 @@ func Xmpd_qset_string(tls *libc.TLS, dec uintptr, s uintptr, ctx uintptr, status
 			s = s + 1
 		}
 	}
-	if __mpd_strneq(tls, s, __ccgo_ts+170077, __ccgo_ts+175055, uint64(3)) != 0 {
+	if __mpd_strneq(tls, s, __ccgo_ts+170249, __ccgo_ts+175231, uint64(3)) != 0 {
 		s = s + uintptr(3)
 		Xmpd_setspecial(tls, dec, sign, libc.Uint8FromInt32(4))
 		if int32(**(**int8)(__ccgo_up(s))) == int32('\000') {
@@ -6622,7 +19130,7 @@ func Xmpd_qset_string(tls *libc.TLS, dec uintptr, s uintptr, ctx uintptr, status
 			goto conversion_error
 		}
 	} else {
-		if __mpd_strneq(tls, s, __ccgo_ts+299728, __ccgo_ts+299733, uint64(4)) != 0 {
+		if __mpd_strneq(tls, s, __ccgo_ts+370489, __ccgo_ts+370494, uint64(4)) != 0 {
 			s = s + uintptr(4)
 			Xmpd_setspecial(tls, dec, sign, libc.Uint8FromInt32(8))
 			if int32(**(**int8)(__ccgo_up(s))) == int32('\000') {
@@ -6643,9 +19151,9 @@ func Xmpd_qset_string(tls *libc.TLS, dec uintptr, s uintptr, ctx uintptr, status
 				goto conversion_error
 			}
 		} else {
-			if __mpd_strneq(tls, s, __ccgo_ts+170024, __ccgo_ts+175051, uint64(3)) != 0 {
+			if __mpd_strneq(tls, s, __ccgo_ts+170196, __ccgo_ts+175227, uint64(3)) != 0 {
 				s = s + uintptr(3)
-				if int32(**(**int8)(__ccgo_up(s))) == int32('\000') || __mpd_strneq(tls, s, __ccgo_ts+174920, __ccgo_ts+299738, uint64(6)) != 0 {
+				if int32(**(**int8)(__ccgo_up(s))) == int32('\000') || __mpd_strneq(tls, s, __ccgo_ts+175096, __ccgo_ts+370499, uint64(6)) != 0 {
 
 					Xmpd_setspecial(tls, dec, sign, libc.Uint8FromInt32(2))
 					return
@@ -7098,10 +19606,10 @@ func __mpd_to_string(tls *libc.TLS, result uintptr, dec uintptr, flags int32, dp
 		}
 		if Xmpd_isnan(tls, dec) != 0 {
 			if Xmpd_isqnan(tls, dec) != 0 {
-				libc.X__builtin___strcpy_chk(tls, cp, __ccgo_ts+175233, ^t__predefined_size_t(0))
+				libc.X__builtin___strcpy_chk(tls, cp, __ccgo_ts+175413, ^t__predefined_size_t(0))
 				cp = cp + uintptr(3)
 			} else {
-				libc.X__builtin___strcpy_chk(tls, cp, __ccgo_ts+215077, ^t__predefined_size_t(0))
+				libc.X__builtin___strcpy_chk(tls, cp, __ccgo_ts+215376, ^t__predefined_size_t(0))
 				cp = cp + uintptr(4)
 			}
 			if (*Tmpd_t)(unsafe.Pointer(dec)).Flen1 > 0 {
@@ -7109,7 +19617,7 @@ func __mpd_to_string(tls *libc.TLS, result uintptr, dec uintptr, flags int32, dp
 			}
 		} else {
 			if Xmpd_isinfinite(tls, dec) != 0 {
-				libc.X__builtin___strcpy_chk(tls, cp, __ccgo_ts+175224, ^t__predefined_size_t(0))
+				libc.X__builtin___strcpy_chk(tls, cp, __ccgo_ts+175404, ^t__predefined_size_t(0))
 				cp = cp + uintptr(8)
 			} else {
 				libc.Xabort(tls)
@@ -7538,9 +20046,9 @@ _8:
 	}
 
 	if int32(**(**int8)(__ccgo_up(**(**uintptr)(__ccgo_up(bp))))) == int32(',') {
-		(*Tmpd_spec_t)(unsafe.Pointer(spec)).Fdot = __ccgo_ts + 117920
-		(*Tmpd_spec_t)(unsafe.Pointer(spec)).Fsep = __ccgo_ts + 117712
-		(*Tmpd_spec_t)(unsafe.Pointer(spec)).Fgrouping = __ccgo_ts + 299744
+		(*Tmpd_spec_t)(unsafe.Pointer(spec)).Fdot = __ccgo_ts + 118072
+		(*Tmpd_spec_t)(unsafe.Pointer(spec)).Fsep = __ccgo_ts + 117864
+		(*Tmpd_spec_t)(unsafe.Pointer(spec)).Fgrouping = __ccgo_ts + 370505
 		**(**uintptr)(__ccgo_up(bp)) = **(**uintptr)(__ccgo_up(bp)) + 1
 	}
 
@@ -8151,39 +20659,39 @@ func Xmpd_qformat(tls *libc.TLS, dec uintptr, fmt uintptr, ctx uintptr, status u
 }
 
 var _mpd_flag_string = [15]uintptr{
-	0:  __ccgo_ts + 213387,
-	1:  __ccgo_ts + 299747,
-	2:  __ccgo_ts + 299765,
-	3:  __ccgo_ts + 299782,
-	4:  __ccgo_ts + 299802,
-	5:  __ccgo_ts + 299821,
-	6:  __ccgo_ts + 213339,
-	7:  __ccgo_ts + 299831,
-	8:  __ccgo_ts + 299847,
-	9:  __ccgo_ts + 299865,
-	10: __ccgo_ts + 299878,
-	11: __ccgo_ts + 213257,
-	12: __ccgo_ts + 213363,
-	13: __ccgo_ts + 213311,
-	14: __ccgo_ts + 213283,
+	0:  __ccgo_ts + 213686,
+	1:  __ccgo_ts + 370508,
+	2:  __ccgo_ts + 370526,
+	3:  __ccgo_ts + 370543,
+	4:  __ccgo_ts + 370563,
+	5:  __ccgo_ts + 370582,
+	6:  __ccgo_ts + 213638,
+	7:  __ccgo_ts + 370592,
+	8:  __ccgo_ts + 370608,
+	9:  __ccgo_ts + 370626,
+	10: __ccgo_ts + 370639,
+	11: __ccgo_ts + 213556,
+	12: __ccgo_ts + 213662,
+	13: __ccgo_ts + 213610,
+	14: __ccgo_ts + 213582,
 }
 
 var _mpd_signal_string = [15]uintptr{
-	0:  __ccgo_ts + 213387,
-	1:  __ccgo_ts + 299894,
-	2:  __ccgo_ts + 299765,
-	3:  __ccgo_ts + 299894,
-	4:  __ccgo_ts + 299894,
-	5:  __ccgo_ts + 299894,
-	6:  __ccgo_ts + 213339,
-	7:  __ccgo_ts + 299894,
-	8:  __ccgo_ts + 299894,
-	9:  __ccgo_ts + 299894,
-	10: __ccgo_ts + 299878,
-	11: __ccgo_ts + 213257,
-	12: __ccgo_ts + 213363,
-	13: __ccgo_ts + 213311,
-	14: __ccgo_ts + 213283,
+	0:  __ccgo_ts + 213686,
+	1:  __ccgo_ts + 370655,
+	2:  __ccgo_ts + 370526,
+	3:  __ccgo_ts + 370655,
+	4:  __ccgo_ts + 370655,
+	5:  __ccgo_ts + 370655,
+	6:  __ccgo_ts + 213638,
+	7:  __ccgo_ts + 370655,
+	8:  __ccgo_ts + 370655,
+	9:  __ccgo_ts + 370655,
+	10: __ccgo_ts + 370639,
+	11: __ccgo_ts + 213556,
+	12: __ccgo_ts + 213662,
+	13: __ccgo_ts + 213610,
+	14: __ccgo_ts + 213582,
 }
 
 // C documentation
@@ -8203,7 +20711,7 @@ func Xmpd_snprint_flags(tls *libc.TLS, dest uintptr, nmemb int32, flags Tuint32_
 			break
 		}
 		if flags&(uint32(1)<<j) != 0 {
-			n = _ccgo___builtin___snprintf_chk(tls, cp, libc.Uint64FromInt32(nmemb), 0, ^t__predefined_size_t(0), __ccgo_ts+299917, libc.VaList(bp+8, _mpd_flag_string[j]))
+			n = _ccgo___builtin___snprintf_chk(tls, cp, libc.Uint64FromInt32(nmemb), 0, ^t__predefined_size_t(0), __ccgo_ts+370678, libc.VaList(bp+8, _mpd_flag_string[j]))
 			if n < 0 || n >= nmemb {
 				return -int32(1)
 			}
@@ -8245,7 +20753,7 @@ func Xmpd_lsnprint_flags(tls *libc.TLS, dest uintptr, nmemb int32, flags Tuint32
 			break
 		}
 		if flags&(uint32(1)<<j) != 0 {
-			n = _ccgo___builtin___snprintf_chk(tls, cp, libc.Uint64FromInt32(nmemb), 0, ^t__predefined_size_t(0), __ccgo_ts+299921, libc.VaList(bp+8, **(**uintptr)(__ccgo_up(flag_string + uintptr(j)*8))))
+			n = _ccgo___builtin___snprintf_chk(tls, cp, libc.Uint64FromInt32(nmemb), 0, ^t__predefined_size_t(0), __ccgo_ts+370682, libc.VaList(bp+8, **(**uintptr)(__ccgo_up(flag_string + uintptr(j)*8))))
 			if n < 0 || n >= nmemb {
 				return -int32(1)
 			}
@@ -8299,7 +20807,7 @@ func Xmpd_lsnprint_signals(tls *libc.TLS, dest uintptr, nmemb int32, flags Tuint
 				}
 				ieee_invalid_done = int32(1)
 			}
-			n = _ccgo___builtin___snprintf_chk(tls, cp, libc.Uint64FromInt32(nmemb), 0, ^t__predefined_size_t(0), __ccgo_ts+299921, libc.VaList(bp+8, **(**uintptr)(__ccgo_up(signal_string + uintptr(j)*8))))
+			n = _ccgo___builtin___snprintf_chk(tls, cp, libc.Uint64FromInt32(nmemb), 0, ^t__predefined_size_t(0), __ccgo_ts+370682, libc.VaList(bp+8, **(**uintptr)(__ccgo_up(signal_string + uintptr(j)*8))))
 			if n < 0 || n >= nmemb {
 				return -int32(1)
 			}
@@ -8332,10 +20840,10 @@ func Xmpd_fprint(tls *libc.TLS, file uintptr, dec uintptr) {
 	_ = decstring
 	decstring = Xmpd_to_sci(tls, dec, int32(1))
 	if decstring != libc.UintptrFromInt32(0) {
-		_ccgo_fprintf(tls, file, __ccgo_ts+176372, libc.VaList(bp+8, decstring))
+		_ccgo_fprintf(tls, file, __ccgo_ts+176663, libc.VaList(bp+8, decstring))
 		(*(*func(*libc.TLS, uintptr))(unsafe.Pointer(&struct{ uintptr }{Xmpd_free})))(tls, decstring)
 	} else {
-		libc.Xfputs(tls, __ccgo_ts+299926, file)
+		libc.Xfputs(tls, __ccgo_ts+370687, file)
 	}
 }
 
@@ -8346,10 +20854,10 @@ func Xmpd_print(tls *libc.TLS, dec uintptr) {
 	_ = decstring
 	decstring = Xmpd_to_sci(tls, dec, int32(1))
 	if decstring != libc.UintptrFromInt32(0) {
-		_ccgo_printf(tls, __ccgo_ts+176372, libc.VaList(bp+8, decstring))
+		_ccgo_printf(tls, __ccgo_ts+176663, libc.VaList(bp+8, decstring))
 		(*(*func(*libc.TLS, uintptr))(unsafe.Pointer(&struct{ uintptr }{Xmpd_free})))(tls, decstring)
 	} else {
-		libc.Xfputs(tls, __ccgo_ts+299926, libc.X__stderrp)
+		libc.Xfputs(tls, __ccgo_ts+370687, libc.X__stderrp)
 	}
 }
 
@@ -8889,7 +21397,7 @@ var _zero = Tmpd_t{
 }
 
 func Xmpd_version(tls *libc.TLS) (r uintptr) {
-	return __ccgo_ts + 299952
+	return __ccgo_ts + 370713
 }
 
 // C documentation
@@ -11961,36 +24469,36 @@ invalid_operation:
 func Xmpd_class(tls *libc.TLS, a uintptr, ctx uintptr) (r uintptr) {
 	if Xmpd_isnan(tls, a) != 0 {
 		if Xmpd_isqnan(tls, a) != 0 {
-			return __ccgo_ts + 175233
+			return __ccgo_ts + 175413
 		} else {
-			return __ccgo_ts + 215077
+			return __ccgo_ts + 215376
 		}
 	} else {
 		if Xmpd_ispositive(tls, a) != 0 {
 			if Xmpd_isinfinite(tls, a) != 0 {
-				return __ccgo_ts + 299958
+				return __ccgo_ts + 370719
 			} else {
 				if Xmpd_iszero(tls, a) != 0 {
-					return __ccgo_ts + 299968
+					return __ccgo_ts + 370729
 				} else {
 					if Xmpd_isnormal(tls, a, ctx) != 0 {
-						return __ccgo_ts + 299974
+						return __ccgo_ts + 370735
 					} else {
-						return __ccgo_ts + 299982
+						return __ccgo_ts + 370743
 					}
 				}
 			}
 		} else {
 			if Xmpd_isinfinite(tls, a) != 0 {
-				return __ccgo_ts + 185601
+				return __ccgo_ts + 185900
 			} else {
 				if Xmpd_iszero(tls, a) != 0 {
-					return __ccgo_ts + 299993
+					return __ccgo_ts + 370754
 				} else {
 					if Xmpd_isnormal(tls, a, ctx) != 0 {
-						return __ccgo_ts + 299999
+						return __ccgo_ts + 370760
 					} else {
-						return __ccgo_ts + 300007
+						return __ccgo_ts + 370768
 					}
 				}
 			}
@@ -14574,8 +27082,8 @@ func __kmul_resultsize(tls *libc.TLS, la Tmpd_size_t, lb Tmpd_size_t) (r Tmpd_si
 	v1 = la
 	v2 = lb
 	if v1 > libc.Uint64FromUint64(18446744073709551615)-v2 {
-		_ccgo_fprintf(tls, libc.X__stderrp, __ccgo_ts+299194, libc.VaList(bp+24, __ccgo_ts+299209, int32(597)))
-		_ccgo_fprintf(tls, libc.X__stderrp, __ccgo_ts+300018, 0)
+		_ccgo_fprintf(tls, libc.X__stderrp, __ccgo_ts+369947, libc.VaList(bp+24, __ccgo_ts+369962, int32(597)))
+		_ccgo_fprintf(tls, libc.X__stderrp, __ccgo_ts+370779, 0)
 		libc.Xfputc(tls, int32('\n'), libc.X__stderrp)
 		libc.Xabort(tls)
 	}
@@ -14586,8 +27094,8 @@ _4:
 	v1 = n
 	v2 = uint64(1)
 	if v1 > libc.Uint64FromUint64(18446744073709551615)-v2 {
-		_ccgo_fprintf(tls, libc.X__stderrp, __ccgo_ts+299194, libc.VaList(bp+24, __ccgo_ts+299209, int32(597)))
-		_ccgo_fprintf(tls, libc.X__stderrp, __ccgo_ts+300018, 0)
+		_ccgo_fprintf(tls, libc.X__stderrp, __ccgo_ts+369947, libc.VaList(bp+24, __ccgo_ts+369962, int32(597)))
+		_ccgo_fprintf(tls, libc.X__stderrp, __ccgo_ts+370779, 0)
 		libc.Xfputc(tls, int32('\n'), libc.X__stderrp)
 		libc.Xabort(tls)
 	}
@@ -14617,8 +27125,8 @@ _8:
 	**(**Tmpd_uint_t)(__ccgo_up(bp)) = uint64(w[int32(3)])<<libc.Int32FromInt32(32) + uint64(w[int32(2)])
 	**(**Tmpd_uint_t)(__ccgo_up(bp + 8)) = uint64(w[int32(1)])<<libc.Int32FromInt32(32) + uint64(w[0])
 	if **(**Tmpd_uint_t)(__ccgo_up(bp)) != 0 {
-		_ccgo_fprintf(tls, libc.X__stderrp, __ccgo_ts+299194, libc.VaList(bp+24, __ccgo_ts+299209, int32(622)))
-		_ccgo_fprintf(tls, libc.X__stderrp, __ccgo_ts+300060, 0)
+		_ccgo_fprintf(tls, libc.X__stderrp, __ccgo_ts+369947, libc.VaList(bp+24, __ccgo_ts+369962, int32(622)))
+		_ccgo_fprintf(tls, libc.X__stderrp, __ccgo_ts+370821, 0)
 		libc.Xfputc(tls, int32('\n'), libc.X__stderrp)
 		libc.Xabort(tls)
 	}
@@ -14673,8 +27181,8 @@ func __kmul_worksize(tls *libc.TLS, n Tmpd_size_t, lim Tmpd_size_t) (r Tmpd_size
 	**(**Tmpd_uint_t)(__ccgo_up(bp)) = uint64(w[int32(3)])<<libc.Int32FromInt32(32) + uint64(w[int32(2)])
 	**(**Tmpd_uint_t)(__ccgo_up(bp + 8)) = uint64(w[int32(1)])<<libc.Int32FromInt32(32) + uint64(w[0])
 	if **(**Tmpd_uint_t)(__ccgo_up(bp)) != 0 {
-		_ccgo_fprintf(tls, libc.X__stderrp, __ccgo_ts+299194, libc.VaList(bp+24, __ccgo_ts+299209, int32(622)))
-		_ccgo_fprintf(tls, libc.X__stderrp, __ccgo_ts+300060, 0)
+		_ccgo_fprintf(tls, libc.X__stderrp, __ccgo_ts+369947, libc.VaList(bp+24, __ccgo_ts+369962, int32(622)))
+		_ccgo_fprintf(tls, libc.X__stderrp, __ccgo_ts+370821, 0)
 		libc.Xfputc(tls, int32('\n'), libc.X__stderrp)
 		libc.Xabort(tls)
 	}
@@ -14684,8 +27192,8 @@ _4:
 	v5 = v3
 	v6 = __kmul_worksize(tls, m, lim)
 	if v5 > libc.Uint64FromUint64(18446744073709551615)-v6 {
-		_ccgo_fprintf(tls, libc.X__stderrp, __ccgo_ts+299194, libc.VaList(bp+24, __ccgo_ts+299209, int32(597)))
-		_ccgo_fprintf(tls, libc.X__stderrp, __ccgo_ts+300018, 0)
+		_ccgo_fprintf(tls, libc.X__stderrp, __ccgo_ts+369947, libc.VaList(bp+24, __ccgo_ts+369962, int32(597)))
+		_ccgo_fprintf(tls, libc.X__stderrp, __ccgo_ts+370779, 0)
 		libc.Xfputc(tls, int32('\n'), libc.X__stderrp)
 		libc.Xabort(tls)
 	}
@@ -14894,8 +27402,8 @@ func __mpd_fntmul(tls *libc.TLS, u uintptr, v uintptr, ulen Tmpd_size_t, vlen Tm
 	v1 = ulen
 	v2 = vlen
 	if v1 > libc.Uint64FromUint64(18446744073709551615)-v2 {
-		_ccgo_fprintf(tls, libc.X__stderrp, __ccgo_ts+299194, libc.VaList(bp+8, __ccgo_ts+299209, int32(597)))
-		_ccgo_fprintf(tls, libc.X__stderrp, __ccgo_ts+300018, 0)
+		_ccgo_fprintf(tls, libc.X__stderrp, __ccgo_ts+369947, libc.VaList(bp+8, __ccgo_ts+369962, int32(597)))
+		_ccgo_fprintf(tls, libc.X__stderrp, __ccgo_ts+370779, 0)
 		libc.Xfputc(tls, int32('\n'), libc.X__stderrp)
 		libc.Xabort(tls)
 	}
@@ -17334,8 +29842,8 @@ func __mpd_base_ndivmod(tls *libc.TLS, q uintptr, r uintptr, a uintptr, b uintpt
 			goto nanresult
 		}
 		if k > int32(2) {
-			_ccgo_fprintf(tls, libc.X__stderrp, __ccgo_ts+299504, libc.VaList(bp+152, __ccgo_ts+300102, int32(7624)))
-			_ccgo_fprintf(tls, libc.X__stderrp, __ccgo_ts+300211, 0)
+			_ccgo_fprintf(tls, libc.X__stderrp, __ccgo_ts+370261, libc.VaList(bp+152, __ccgo_ts+370863, int32(7624)))
+			_ccgo_fprintf(tls, libc.X__stderrp, __ccgo_ts+370976, 0)
 			libc.Xfputc(tls, int32('\n'), libc.X__stderrp)
 			**(**Tuint32_t)(__ccgo_up(status)) |= uint32(0x00000100)
 			goto nanresult
@@ -22827,8 +35335,8 @@ func Xtranspose_pow2(tls *libc.TLS, matrix uintptr, rows Tmpd_size_t, cols Tmpd_
 	**(**Tmpd_uint_t)(__ccgo_up(bp)) = uint64(w[int32(3)])<<libc.Int32FromInt32(32) + uint64(w[int32(2)])
 	**(**Tmpd_uint_t)(__ccgo_up(bp + 8)) = uint64(w[int32(1)])<<libc.Int32FromInt32(32) + uint64(w[0])
 	if **(**Tmpd_uint_t)(__ccgo_up(bp)) != 0 {
-		_ccgo_fprintf(tls, libc.X__stderrp, __ccgo_ts+299194, libc.VaList(bp+24, __ccgo_ts+299209, int32(622)))
-		_ccgo_fprintf(tls, libc.X__stderrp, __ccgo_ts+300060, 0)
+		_ccgo_fprintf(tls, libc.X__stderrp, __ccgo_ts+369947, libc.VaList(bp+24, __ccgo_ts+369962, int32(622)))
+		_ccgo_fprintf(tls, libc.X__stderrp, __ccgo_ts+370821, 0)
 		libc.Xfputc(tls, int32('\n'), libc.X__stderrp)
 		libc.Xabort(tls)
 	}
@@ -22860,8 +35368,8 @@ _4:
 		**(**Tmpd_uint_t)(__ccgo_up(bp)) = uint64(w[int32(3)])<<libc.Int32FromInt32(32) + uint64(w[int32(2)])
 		**(**Tmpd_uint_t)(__ccgo_up(bp + 8)) = uint64(w[int32(1)])<<libc.Int32FromInt32(32) + uint64(w[0])
 		if **(**Tmpd_uint_t)(__ccgo_up(bp)) != 0 {
-			_ccgo_fprintf(tls, libc.X__stderrp, __ccgo_ts+299194, libc.VaList(bp+24, __ccgo_ts+299209, int32(622)))
-			_ccgo_fprintf(tls, libc.X__stderrp, __ccgo_ts+300060, 0)
+			_ccgo_fprintf(tls, libc.X__stderrp, __ccgo_ts+369947, libc.VaList(bp+24, __ccgo_ts+369962, int32(622)))
+			_ccgo_fprintf(tls, libc.X__stderrp, __ccgo_ts+370821, 0)
 			libc.Xfputc(tls, int32('\n'), libc.X__stderrp)
 			libc.Xabort(tls)
 		}
@@ -22896,8 +35404,8 @@ _4:
 			**(**Tmpd_uint_t)(__ccgo_up(bp)) = uint64(w[int32(3)])<<libc.Int32FromInt32(32) + uint64(w[int32(2)])
 			**(**Tmpd_uint_t)(__ccgo_up(bp + 8)) = uint64(w[int32(1)])<<libc.Int32FromInt32(32) + uint64(w[0])
 			if **(**Tmpd_uint_t)(__ccgo_up(bp)) != 0 {
-				_ccgo_fprintf(tls, libc.X__stderrp, __ccgo_ts+299194, libc.VaList(bp+24, __ccgo_ts+299209, int32(622)))
-				_ccgo_fprintf(tls, libc.X__stderrp, __ccgo_ts+300060, 0)
+				_ccgo_fprintf(tls, libc.X__stderrp, __ccgo_ts+369947, libc.VaList(bp+24, __ccgo_ts+369962, int32(622)))
+				_ccgo_fprintf(tls, libc.X__stderrp, __ccgo_ts+370821, 0)
 				libc.Xfputc(tls, int32('\n'), libc.X__stderrp)
 				libc.Xabort(tls)
 			}
@@ -23504,7 +36012,7 @@ func _sip24_valid(tls *libc.TLS) (r int32) {
 	var _ [64]uint8
 	var _ Tsipkey
 	_ = i
-	_sip_tokey(tls, bp+64, __ccgo_ts+300272)
+	_sip_tokey(tls, bp+64, __ccgo_ts+371037)
 	i = uint64(0)
 	for {
 		if !(i < uint64(64)) {
@@ -24666,7 +37174,7 @@ func _expat_heap_stat(tls *libc.TLS, rootParser TXML_Parser, operator int8, absD
 	_ = amplification
 
 	amplification = float32(newTotal) / float32((*TXML_ParserStruct)(unsafe.Pointer(rootParser)).Fm_accounting.FcountBytesDirect)
-	_ccgo_fprintf(tls, libc.X__stderrp, __ccgo_ts+300289, libc.VaList(bp+8, rootParser, (*TXML_ParserStruct)(unsafe.Pointer(rootParser)).Fm_accounting.FcountBytesDirect, int32(operator), absDiff, newTotal, peakTotal, float64(amplification), sourceLine))
+	_ccgo_fprintf(tls, libc.X__stderrp, __ccgo_ts+371054, libc.VaList(bp+8, rootParser, (*TXML_ParserStruct)(unsafe.Pointer(rootParser)).Fm_accounting.FcountBytesDirect, int32(operator), absDiff, newTotal, peakTotal, float64(amplification), sourceLine))
 }
 
 func _expat_heap_increase_tolerable(tls *libc.TLS, rootParser TXML_Parser, increase TXmlBigCount, sourceLine int32) (r uint8) {
@@ -24890,8 +37398,8 @@ func _ENTROPY_DEBUG(tls *libc.TLS, label uintptr, _entropy_128 Tsipkey) (r Tsipk
 	bp := tls.Alloc(48)
 	defer tls.Free(48)
 	*(*Tsipkey)(unsafe.Pointer(bp)) = _entropy_128
-	if _getDebugLevel(tls, __ccgo_ts+300409, uint64(0)) >= uint64(1) {
-		_ccgo_fprintf(tls, libc.X__stderrp, __ccgo_ts+300429, libc.VaList(bp+24, label, **(**Tuint64_t)(__ccgo_up(bp)), **(**Tuint64_t)(__ccgo_up(bp + 1*8))))
+	if _getDebugLevel(tls, __ccgo_ts+371174, uint64(0)) >= uint64(1) {
+		_ccgo_fprintf(tls, libc.X__stderrp, __ccgo_ts+371194, libc.VaList(bp+24, label, **(**Tuint64_t)(__ccgo_up(bp)), **(**Tuint64_t)(__ccgo_up(bp + 1*8))))
 	}
 	return **(**Tsipkey)(__ccgo_up(bp))
 }
@@ -24908,10 +37416,10 @@ func _generate_hash_secret_salt(tls *libc.TLS) (r Tsipkey) {
 
 	if uint64(8) == uint64(4) {
 		**(**Tuint64_t)(__ccgo_up(bp + 1*8)) *= uint64(2147483647)
-		return _ENTROPY_DEBUG(tls, __ccgo_ts+300487, **(**Tsipkey)(__ccgo_up(bp)))
+		return _ENTROPY_DEBUG(tls, __ccgo_ts+371252, **(**Tsipkey)(__ccgo_up(bp)))
 	} else {
 		**(**Tuint64_t)(__ccgo_up(bp + 1*8)) *= uint64(2305843009213693951)
-		return _ENTROPY_DEBUG(tls, __ccgo_ts+300499, **(**Tsipkey)(__ccgo_up(bp)))
+		return _ENTROPY_DEBUG(tls, __ccgo_ts+371264, **(**Tsipkey)(__ccgo_up(bp)))
 	}
 	return r
 }
@@ -25073,7 +37581,7 @@ func _parserCreate(tls *libc.TLS, encodingName uintptr, memsuite uintptr, nameSe
 
 	libc.X__builtin___memset_chk(tls, parser+1032, 0, uint64(40), ^t__predefined_size_t(0))
 	if parentParser == libc.UintptrFromInt32(0) {
-		(*TXML_ParserStruct)(unsafe.Pointer(parser)).Fm_alloc_tracker.FdebugLevel = _getDebugLevel(tls, __ccgo_ts+300511, 0)
+		(*TXML_ParserStruct)(unsafe.Pointer(parser)).Fm_alloc_tracker.FdebugLevel = _getDebugLevel(tls, __ccgo_ts+371276, 0)
 		(*TXML_ParserStruct)(unsafe.Pointer(parser)).Fm_alloc_tracker.FmaximumAmplificationFactor = libc.Float32FromFloat32(100)
 		(*TXML_ParserStruct)(unsafe.Pointer(parser)).Fm_alloc_tracker.FactivationThresholdBytes = uint64(MEXPAT_ALLOC_TRACKER_ACTIVATION_THRESHOLD_DEFAULT)
 
@@ -25231,11 +37739,11 @@ func _parserInit(tls *libc.TLS, parser TXML_Parser, encodingName uintptr) {
 	**(**Tuint64_t)(__ccgo_up(parser + 968 + 1*8)) = uint64(0)
 	(*TXML_ParserStruct)(unsafe.Pointer(parser)).Fm_hash_secret_salt_set = libc.Uint8FromInt32(0)
 	libc.X__builtin___memset_chk(tls, parser+992, 0, uint64(40), ^t__predefined_size_t(0))
-	(*TXML_ParserStruct)(unsafe.Pointer(parser)).Fm_accounting.FdebugLevel = _getDebugLevel(tls, __ccgo_ts+300530, 0)
+	(*TXML_ParserStruct)(unsafe.Pointer(parser)).Fm_accounting.FdebugLevel = _getDebugLevel(tls, __ccgo_ts+371295, 0)
 	(*TXML_ParserStruct)(unsafe.Pointer(parser)).Fm_accounting.FmaximumAmplificationFactor = libc.Float32FromFloat32(100)
 	(*TXML_ParserStruct)(unsafe.Pointer(parser)).Fm_accounting.FactivationThresholdBytes = uint64(MEXPAT_BILLION_LAUGHS_ATTACK_PROTECTION_ACTIVATION_THRESHOLD_DEFAULT)
 	libc.X__builtin___memset_chk(tls, parser+1072, 0, uint64(24), ^t__predefined_size_t(0))
-	(*TXML_ParserStruct)(unsafe.Pointer(parser)).Fm_entity_stats.FdebugLevel = _getDebugLevel(tls, __ccgo_ts+300553, 0)
+	(*TXML_ParserStruct)(unsafe.Pointer(parser)).Fm_entity_stats.FdebugLevel = _getDebugLevel(tls, __ccgo_ts+371318, 0)
 }
 
 // C documentation
@@ -25969,9 +38477,9 @@ func XPyExpat_XML_SetHashSalt(tls *libc.TLS, parser TXML_Parser, hash_salt uint6
 	if hash_salt != uint64(0) {
 		(*TXML_ParserStruct)(unsafe.Pointer(rootParser)).Fm_hash_secret_salt_set = libc.Uint8FromInt32(1)
 		if uint64(8) == uint64(4) {
-			_ENTROPY_DEBUG(tls, __ccgo_ts+300572, (*TXML_ParserStruct)(unsafe.Pointer(rootParser)).Fm_hash_secret_salt_128)
+			_ENTROPY_DEBUG(tls, __ccgo_ts+371337, (*TXML_ParserStruct)(unsafe.Pointer(rootParser)).Fm_hash_secret_salt_128)
 		} else {
-			_ENTROPY_DEBUG(tls, __ccgo_ts+300584, (*TXML_ParserStruct)(unsafe.Pointer(rootParser)).Fm_hash_secret_salt_128)
+			_ENTROPY_DEBUG(tls, __ccgo_ts+371349, (*TXML_ParserStruct)(unsafe.Pointer(rootParser)).Fm_hash_secret_salt_128)
 		}
 	}
 	return int32(1)
@@ -25993,7 +38501,7 @@ func XXML_SetHashSalt16Bytes(tls *libc.TLS, parser TXML_Parser, entropy uintptr)
 	}
 	_sip_tokey(tls, rootParser+968, entropy)
 	(*TXML_ParserStruct)(unsafe.Pointer(rootParser)).Fm_hash_secret_salt_set = libc.Uint8FromInt32(1)
-	_ENTROPY_DEBUG(tls, __ccgo_ts+300596, (*TXML_ParserStruct)(unsafe.Pointer(rootParser)).Fm_hash_secret_salt_128)
+	_ENTROPY_DEBUG(tls, __ccgo_ts+371361, (*TXML_ParserStruct)(unsafe.Pointer(rootParser)).Fm_hash_secret_salt_128)
 	return libc.Uint8FromInt32(1)
 }
 
@@ -26440,114 +38948,114 @@ func XPyExpat_XML_ErrorString(tls *libc.TLS, code _XML_Error) (r uintptr) {
 	case int32(EXML_ERROR_NONE):
 		return libc.UintptrFromInt32(0)
 	case int32(EXML_ERROR_NO_MEMORY):
-		return __ccgo_ts + 158155
+		return __ccgo_ts + 158327
 	case int32(EXML_ERROR_SYNTAX):
-		return __ccgo_ts + 223481
+		return __ccgo_ts + 223788
 	case int32(EXML_ERROR_NO_ELEMENTS):
-		return __ccgo_ts + 223516
+		return __ccgo_ts + 223823
 	case int32(EXML_ERROR_INVALID_TOKEN):
-		return __ccgo_ts + 223557
+		return __ccgo_ts + 223864
 	case int32(EXML_ERROR_UNCLOSED_TOKEN):
-		return __ccgo_ts + 223614
+		return __ccgo_ts + 223921
 	case int32(EXML_ERROR_PARTIAL_CHAR):
-		return __ccgo_ts + 223652
+		return __ccgo_ts + 223959
 	case int32(EXML_ERROR_TAG_MISMATCH):
-		return __ccgo_ts + 223693
+		return __ccgo_ts + 224000
 	case int32(EXML_ERROR_DUPLICATE_ATTRIBUTE):
-		return __ccgo_ts + 223738
+		return __ccgo_ts + 224045
 	case int32(EXML_ERROR_JUNK_AFTER_DOC_ELEMENT):
-		return __ccgo_ts + 223791
+		return __ccgo_ts + 224098
 	case int32(EXML_ERROR_PARAM_ENTITY_REF):
-		return __ccgo_ts + 223846
+		return __ccgo_ts + 224153
 	case int32(EXML_ERROR_UNDEFINED_ENTITY):
-		return __ccgo_ts + 223908
+		return __ccgo_ts + 224215
 	case int32(EXML_ERROR_RECURSIVE_ENTITY_REF):
-		return __ccgo_ts + 223956
+		return __ccgo_ts + 224263
 	case int32(EXML_ERROR_ASYNC_ENTITY):
-		return __ccgo_ts + 224006
+		return __ccgo_ts + 224313
 	case int32(EXML_ERROR_BAD_CHAR_REF):
-		return __ccgo_ts + 224049
+		return __ccgo_ts + 224356
 	case int32(EXML_ERROR_BINARY_ENTITY_REF):
-		return __ccgo_ts + 224115
+		return __ccgo_ts + 224422
 	case int32(EXML_ERROR_ATTRIBUTE_EXTERNAL_ENTITY_REF):
-		return __ccgo_ts + 224182
+		return __ccgo_ts + 224489
 	case int32(EXML_ERROR_MISPLACED_XML_PI):
-		return __ccgo_ts + 224251
+		return __ccgo_ts + 224558
 	case int32(EXML_ERROR_UNKNOWN_ENCODING):
-		return __ccgo_ts + 224325
+		return __ccgo_ts + 224632
 	case int32(EXML_ERROR_INCORRECT_ENCODING):
-		return __ccgo_ts + 224371
+		return __ccgo_ts + 224678
 	case int32(EXML_ERROR_UNCLOSED_CDATA_SECTION):
-		return __ccgo_ts + 224455
+		return __ccgo_ts + 224762
 	case int32(EXML_ERROR_EXTERNAL_ENTITY_HANDLING):
-		return __ccgo_ts + 224513
+		return __ccgo_ts + 224820
 	case int32(EXML_ERROR_NOT_STANDALONE):
-		return __ccgo_ts + 224584
+		return __ccgo_ts + 224891
 	case int32(EXML_ERROR_UNEXPECTED_STATE):
-		return __ccgo_ts + 224638
+		return __ccgo_ts + 224945
 	case int32(EXML_ERROR_ENTITY_DECLARED_IN_PE):
-		return __ccgo_ts + 224721
+		return __ccgo_ts + 225028
 	case int32(EXML_ERROR_FEATURE_REQUIRES_XML_DTD):
-		return __ccgo_ts + 224792
+		return __ccgo_ts + 225099
 	case int32(EXML_ERROR_CANT_CHANGE_FEATURE_ONCE_PARSING):
-		return __ccgo_ts + 224887
+		return __ccgo_ts + 225194
 
 		fallthrough
 	case int32(EXML_ERROR_UNBOUND_PREFIX):
-		return __ccgo_ts + 224957
+		return __ccgo_ts + 225264
 
 		fallthrough
 	case int32(EXML_ERROR_UNDECLARING_PREFIX):
-		return __ccgo_ts + 225001
+		return __ccgo_ts + 225308
 	case int32(EXML_ERROR_INCOMPLETE_PE):
-		return __ccgo_ts + 225051
+		return __ccgo_ts + 225358
 	case int32(EXML_ERROR_XML_DECL):
-		return __ccgo_ts + 225108
+		return __ccgo_ts + 225415
 	case int32(EXML_ERROR_TEXT_DECL):
-		return __ccgo_ts + 225160
+		return __ccgo_ts + 225467
 	case int32(EXML_ERROR_PUBLICID):
-		return __ccgo_ts + 225212
+		return __ccgo_ts + 225519
 	case int32(EXML_ERROR_SUSPENDED):
-		return __ccgo_ts + 225266
+		return __ccgo_ts + 225573
 	case int32(EXML_ERROR_NOT_SUSPENDED):
-		return __ccgo_ts + 225307
+		return __ccgo_ts + 225614
 	case int32(EXML_ERROR_ABORTED):
-		return __ccgo_ts + 225346
+		return __ccgo_ts + 225653
 	case int32(EXML_ERROR_FINISHED):
-		return __ccgo_ts + 225381
+		return __ccgo_ts + 225688
 	case int32(EXML_ERROR_SUSPEND_PE):
-		return __ccgo_ts + 225419
+		return __ccgo_ts + 225726
 
 		fallthrough
 	case int32(EXML_ERROR_RESERVED_PREFIX_XML):
-		return __ccgo_ts + 225493
+		return __ccgo_ts + 225800
 	case int32(EXML_ERROR_RESERVED_PREFIX_XMLNS):
-		return __ccgo_ts + 225605
+		return __ccgo_ts + 225912
 	case int32(EXML_ERROR_RESERVED_NAMESPACE_URI):
-		return __ccgo_ts + 225697
+		return __ccgo_ts + 226004
 
 		fallthrough
 	case int32(EXML_ERROR_INVALID_ARGUMENT):
-		return __ccgo_ts + 225788
+		return __ccgo_ts + 226095
 
 		fallthrough
 	case int32(EXML_ERROR_NO_BUFFER):
-		return __ccgo_ts + 225825
+		return __ccgo_ts + 226132
 
 		fallthrough
 	case int32(EXML_ERROR_AMPLIFICATION_LIMIT_BREACH):
-		return __ccgo_ts + 225924
+		return __ccgo_ts + 226231
 
 		fallthrough
 	case int32(EXML_ERROR_NOT_STARTED):
-		return __ccgo_ts + 226015
+		return __ccgo_ts + 226322
 	}
 	return libc.UintptrFromInt32(0)
 }
 
 func XPyExpat_XML_ExpatVersion(tls *libc.TLS) (r uintptr) {
 
-	return __ccgo_ts + 300609
+	return __ccgo_ts + 371374
 }
 
 func XPyExpat_XML_ExpatVersionInfo(tls *libc.TLS) (r TXML_Expat_Version) {
@@ -26566,49 +39074,49 @@ func XPyExpat_XML_GetFeatureList(tls *libc.TLS) (r uintptr) {
 var _features = [11]TXML_Feature{
 	0: {
 		Ffeature: int32(EXML_FEATURE_SIZEOF_XML_CHAR),
-		Fname:    __ccgo_ts + 300621,
+		Fname:    __ccgo_ts + 371386,
 		Fvalue:   int64(1),
 	},
 	1: {
 		Ffeature: int32(EXML_FEATURE_SIZEOF_XML_LCHAR),
-		Fname:    __ccgo_ts + 300638,
+		Fname:    __ccgo_ts + 371403,
 		Fvalue:   int64(1),
 	},
 	2: {
 		Ffeature: int32(EXML_FEATURE_DTD),
-		Fname:    __ccgo_ts + 300656,
+		Fname:    __ccgo_ts + 371421,
 	},
 	3: {
 		Ffeature: int32(EXML_FEATURE_CONTEXT_BYTES),
-		Fname:    __ccgo_ts + 300664,
+		Fname:    __ccgo_ts + 371429,
 		Fvalue:   int64(MXML_CONTEXT_BYTES),
 	},
 	4: {
 		Ffeature: int32(EXML_FEATURE_NS),
-		Fname:    __ccgo_ts + 300682,
+		Fname:    __ccgo_ts + 371447,
 	},
 	5: {
 		Ffeature: int32(EXML_FEATURE_BILLION_LAUGHS_ATTACK_PROTECTION_MAXIMUM_AMPLIFICATION_DEFAULT),
-		Fname:    __ccgo_ts + 300689,
+		Fname:    __ccgo_ts + 371454,
 		Fvalue:   libc.Int64FromFloat32(100),
 	},
 	6: {
 		Ffeature: int32(EXML_FEATURE_BILLION_LAUGHS_ATTACK_PROTECTION_ACTIVATION_THRESHOLD_DEFAULT),
-		Fname:    __ccgo_ts + 300706,
+		Fname:    __ccgo_ts + 371471,
 		Fvalue:   int64(MEXPAT_BILLION_LAUGHS_ATTACK_PROTECTION_ACTIVATION_THRESHOLD_DEFAULT),
 	},
 	7: {
 		Ffeature: int32(EXML_FEATURE_GE),
-		Fname:    __ccgo_ts + 300725,
+		Fname:    __ccgo_ts + 371490,
 	},
 	8: {
 		Ffeature: int32(EXML_FEATURE_ALLOC_TRACKER_MAXIMUM_AMPLIFICATION_DEFAULT),
-		Fname:    __ccgo_ts + 300732,
+		Fname:    __ccgo_ts + 371497,
 		Fvalue:   libc.Int64FromFloat32(100),
 	},
 	9: {
 		Ffeature: int32(EXML_FEATURE_ALLOC_TRACKER_ACTIVATION_THRESHOLD_DEFAULT),
-		Fname:    __ccgo_ts + 300747,
+		Fname:    __ccgo_ts + 371512,
 		Fvalue:   libc.Int64FromInt32(MEXPAT_ALLOC_TRACKER_ACTIVATION_THRESHOLD_DEFAULT),
 	},
 	10: {},
@@ -32406,11 +44914,11 @@ func _accountingReportStats(tls *libc.TLS, originParser TXML_Parser, epilog uint
 		return
 	}
 	amplificationFactor = _accountingGetCurrentAmplification(tls, rootParser)
-	_ccgo_fprintf(tls, libc.X__stderrp, __ccgo_ts+300764, libc.VaList(bp+8, rootParser, (*TXML_ParserStruct)(unsafe.Pointer(rootParser)).Fm_accounting.FcountBytesDirect, (*TXML_ParserStruct)(unsafe.Pointer(rootParser)).Fm_accounting.FcountBytesIndirect, float64(amplificationFactor), epilog))
+	_ccgo_fprintf(tls, libc.X__stderrp, __ccgo_ts+371529, libc.VaList(bp+8, rootParser, (*TXML_ParserStruct)(unsafe.Pointer(rootParser)).Fm_accounting.FcountBytesDirect, (*TXML_ParserStruct)(unsafe.Pointer(rootParser)).Fm_accounting.FcountBytesIndirect, float64(amplificationFactor), epilog))
 }
 
 func _accountingOnAbort(tls *libc.TLS, originParser TXML_Parser) {
-	_accountingReportStats(tls, originParser, __ccgo_ts+300841)
+	_accountingReportStats(tls, originParser, __ccgo_ts+371606)
 }
 
 func _accountingReportDiff(tls *libc.TLS, rootParser TXML_Parser, levelsAwayFromRootParser uint32, before uintptr, after uintptr, bytesMore Tptrdiff_t, source_line int32, account _XML_Account) {
@@ -32422,11 +44930,11 @@ func _accountingReportDiff(tls *libc.TLS, rootParser TXML_Parser, levelsAwayFrom
 	var _ [5]int8
 	_, _, _, _ = contextLength, ellipsisLength, walker, v1
 	if account == int32(EXML_ACCOUNT_DIRECT) {
-		v1 = __ccgo_ts + 300852
+		v1 = __ccgo_ts + 371617
 	} else {
-		v1 = __ccgo_ts + 300856
+		v1 = __ccgo_ts + 371621
 	}
-	_ccgo_fprintf(tls, libc.X__stderrp, __ccgo_ts+300860, libc.VaList(bp+16, bytesMore, v1, levelsAwayFromRootParser, source_line, int32(10), __ccgo_ts+2))
+	_ccgo_fprintf(tls, libc.X__stderrp, __ccgo_ts+371625, libc.VaList(bp+16, bytesMore, v1, levelsAwayFromRootParser, source_line, int32(10), __ccgo_ts+2))
 	**(**[5]int8)(__ccgo_up(bp)) = [5]int8{'[', '.', '.', ']'}
 	ellipsisLength = libc.Uint64FromInt64(5) - libc.Uint64FromInt32(1)
 	contextLength = uint32(10)
@@ -32437,7 +44945,7 @@ func _accountingReportDiff(tls *libc.TLS, rootParser TXML_Parser, levelsAwayFrom
 			if !(walker < after) {
 				break
 			}
-			_ccgo_fprintf(tls, libc.X__stderrp, __ccgo_ts+10930, libc.VaList(bp+16, XPyExpat_unsignedCharToPrintable(tls, libc.Uint8FromInt8(**(**int8)(__ccgo_up(walker))))))
+			_ccgo_fprintf(tls, libc.X__stderrp, __ccgo_ts+10934, libc.VaList(bp+16, XPyExpat_unsignedCharToPrintable(tls, libc.Uint8FromInt8(**(**int8)(__ccgo_up(walker))))))
 			goto _2
 		_2:
 			;
@@ -32448,7 +44956,7 @@ func _accountingReportDiff(tls *libc.TLS, rootParser TXML_Parser, levelsAwayFrom
 			if !(walker < before+uintptr(contextLength)) {
 				break
 			}
-			_ccgo_fprintf(tls, libc.X__stderrp, __ccgo_ts+10930, libc.VaList(bp+16, XPyExpat_unsignedCharToPrintable(tls, libc.Uint8FromInt8(**(**int8)(__ccgo_up(walker))))))
+			_ccgo_fprintf(tls, libc.X__stderrp, __ccgo_ts+10934, libc.VaList(bp+16, XPyExpat_unsignedCharToPrintable(tls, libc.Uint8FromInt8(**(**int8)(__ccgo_up(walker))))))
 			goto _3
 		_3:
 			;
@@ -32460,14 +44968,14 @@ func _accountingReportDiff(tls *libc.TLS, rootParser TXML_Parser, levelsAwayFrom
 			if !(walker < after) {
 				break
 			}
-			_ccgo_fprintf(tls, libc.X__stderrp, __ccgo_ts+10930, libc.VaList(bp+16, XPyExpat_unsignedCharToPrintable(tls, libc.Uint8FromInt8(**(**int8)(__ccgo_up(walker))))))
+			_ccgo_fprintf(tls, libc.X__stderrp, __ccgo_ts+10934, libc.VaList(bp+16, XPyExpat_unsignedCharToPrintable(tls, libc.Uint8FromInt8(**(**int8)(__ccgo_up(walker))))))
 			goto _4
 		_4:
 			;
 			walker = walker + 1
 		}
 	}
-	_ccgo_fprintf(tls, libc.X__stderrp, __ccgo_ts+300901, 0)
+	_ccgo_fprintf(tls, libc.X__stderrp, __ccgo_ts+371666, 0)
 }
 
 func _accountingDiffTolerated(tls *libc.TLS, originParser TXML_Parser, tok int32, before uintptr, after uintptr, source_line int32, account _XML_Account) (r TXML_Bool) {
@@ -32550,7 +45058,7 @@ func _entityTrackingReportStats(tls *libc.TLS, rootParser TXML_Parser, entity ui
 	candidateIndentDepth = libc.Int32FromUint32((*TXML_ParserStruct)(unsafe.Pointer(rootParser)).Fm_entity_stats.FcurrentDepth) - int32(1)
 	limitingNeeded = libc.BoolUint8(limitingWanted != 0 && candidateIndentDepth > maxLimitedDepth)
 	if limitingNeeded != 0 {
-		v1 = __ccgo_ts + 300904
+		v1 = __ccgo_ts + 371669
 	} else {
 		v1 = __ccgo_ts + 2
 	}
@@ -32562,11 +45070,11 @@ func _entityTrackingReportStats(tls *libc.TLS, rootParser TXML_Parser, entity ui
 	}
 	indentDepth = v2
 	if (*TENTITY)(unsafe.Pointer(entity)).Fis_param != 0 {
-		v3 = __ccgo_ts + 12023
+		v3 = __ccgo_ts + 12031
 	} else {
-		v3 = __ccgo_ts + 11943
+		v3 = __ccgo_ts + 11951
 	}
-	_ccgo_fprintf(tls, libc.X__stderrp, __ccgo_ts+300911, libc.VaList(bp+8, rootParser, (*TXML_ParserStruct)(unsafe.Pointer(rootParser)).Fm_entity_stats.FcountEverOpened, (*TXML_ParserStruct)(unsafe.Pointer(rootParser)).Fm_entity_stats.FcurrentDepth, (*TXML_ParserStruct)(unsafe.Pointer(rootParser)).Fm_entity_stats.FmaximumDepthSeen, indentDepth*int32(2), __ccgo_ts+2, ellipisOrEmpty, v3, entityName, action, (*TENTITY)(unsafe.Pointer(entity)).FtextLen, sourceLine))
+	_ccgo_fprintf(tls, libc.X__stderrp, __ccgo_ts+371676, libc.VaList(bp+8, rootParser, (*TXML_ParserStruct)(unsafe.Pointer(rootParser)).Fm_entity_stats.FcountEverOpened, (*TXML_ParserStruct)(unsafe.Pointer(rootParser)).Fm_entity_stats.FcurrentDepth, (*TXML_ParserStruct)(unsafe.Pointer(rootParser)).Fm_entity_stats.FmaximumDepthSeen, indentDepth*int32(2), __ccgo_ts+2, ellipisOrEmpty, v3, entityName, action, (*TENTITY)(unsafe.Pointer(entity)).FtextLen, sourceLine))
 }
 
 func _entityTrackingOnOpen(tls *libc.TLS, originParser TXML_Parser, entity uintptr, sourceLine int32) {
@@ -32578,14 +45086,14 @@ func _entityTrackingOnOpen(tls *libc.TLS, originParser TXML_Parser, entity uintp
 	if (*TXML_ParserStruct)(unsafe.Pointer(rootParser)).Fm_entity_stats.FcurrentDepth > (*TXML_ParserStruct)(unsafe.Pointer(rootParser)).Fm_entity_stats.FmaximumDepthSeen {
 		(*TXML_ParserStruct)(unsafe.Pointer(rootParser)).Fm_entity_stats.FmaximumDepthSeen = (*TXML_ParserStruct)(unsafe.Pointer(rootParser)).Fm_entity_stats.FmaximumDepthSeen + 1
 	}
-	_entityTrackingReportStats(tls, rootParser, entity, __ccgo_ts+300998, sourceLine)
+	_entityTrackingReportStats(tls, rootParser, entity, __ccgo_ts+371763, sourceLine)
 }
 
 func _entityTrackingOnClose(tls *libc.TLS, originParser TXML_Parser, entity uintptr, sourceLine int32) {
 	var rootParser TXML_Parser
 	_ = rootParser
 	rootParser = _getRootParserOf(tls, originParser, libc.UintptrFromInt32(0))
-	_entityTrackingReportStats(tls, rootParser, entity, __ccgo_ts+301004, sourceLine)
+	_entityTrackingReportStats(tls, rootParser, entity, __ccgo_ts+371769, sourceLine)
 	(*TXML_ParserStruct)(unsafe.Pointer(rootParser)).Fm_entity_stats.FcurrentDepth = (*TXML_ParserStruct)(unsafe.Pointer(rootParser)).Fm_entity_stats.FcurrentDepth - 1
 }
 
@@ -32608,522 +45116,522 @@ func _getRootParserOf(tls *libc.TLS, parser TXML_Parser, outLevelDiff uintptr) (
 func XPyExpat_unsignedCharToPrintable(tls *libc.TLS, c uint8) (r uintptr) {
 	switch libc.Int32FromUint8(c) {
 	case 0:
-		return __ccgo_ts + 301010
+		return __ccgo_ts + 371775
 	case int32(1):
-		return __ccgo_ts + 301013
+		return __ccgo_ts + 371778
 	case int32(2):
-		return __ccgo_ts + 301017
+		return __ccgo_ts + 371782
 	case int32(3):
-		return __ccgo_ts + 301021
+		return __ccgo_ts + 371786
 	case int32(4):
-		return __ccgo_ts + 301025
+		return __ccgo_ts + 371790
 	case int32(5):
-		return __ccgo_ts + 301029
+		return __ccgo_ts + 371794
 	case int32(6):
-		return __ccgo_ts + 301033
+		return __ccgo_ts + 371798
 	case int32(7):
-		return __ccgo_ts + 301037
+		return __ccgo_ts + 371802
 	case int32(8):
-		return __ccgo_ts + 301041
+		return __ccgo_ts + 371806
 	case int32(9):
-		return __ccgo_ts + 301045
+		return __ccgo_ts + 371810
 	case int32(10):
-		return __ccgo_ts + 301048
+		return __ccgo_ts + 371813
 	case int32(11):
-		return __ccgo_ts + 301051
+		return __ccgo_ts + 371816
 	case int32(12):
-		return __ccgo_ts + 301055
+		return __ccgo_ts + 371820
 	case int32(13):
-		return __ccgo_ts + 301059
+		return __ccgo_ts + 371824
 	case int32(14):
-		return __ccgo_ts + 301062
+		return __ccgo_ts + 371827
 	case int32(15):
-		return __ccgo_ts + 301066
+		return __ccgo_ts + 371831
 	case int32(16):
-		return __ccgo_ts + 301070
+		return __ccgo_ts + 371835
 	case int32(17):
-		return __ccgo_ts + 301075
+		return __ccgo_ts + 371840
 	case int32(18):
-		return __ccgo_ts + 301080
+		return __ccgo_ts + 371845
 	case int32(19):
-		return __ccgo_ts + 301085
+		return __ccgo_ts + 371850
 	case int32(20):
-		return __ccgo_ts + 301090
+		return __ccgo_ts + 371855
 	case int32(21):
-		return __ccgo_ts + 301095
+		return __ccgo_ts + 371860
 	case int32(22):
-		return __ccgo_ts + 301100
+		return __ccgo_ts + 371865
 	case int32(23):
-		return __ccgo_ts + 301105
+		return __ccgo_ts + 371870
 	case int32(24):
-		return __ccgo_ts + 301110
+		return __ccgo_ts + 371875
 	case int32(25):
-		return __ccgo_ts + 301115
+		return __ccgo_ts + 371880
 	case int32(26):
-		return __ccgo_ts + 301120
+		return __ccgo_ts + 371885
 	case int32(27):
-		return __ccgo_ts + 301125
+		return __ccgo_ts + 371890
 	case int32(28):
-		return __ccgo_ts + 301130
+		return __ccgo_ts + 371895
 	case int32(29):
-		return __ccgo_ts + 301135
+		return __ccgo_ts + 371900
 	case int32(30):
-		return __ccgo_ts + 301140
+		return __ccgo_ts + 371905
 	case int32(31):
-		return __ccgo_ts + 301145
+		return __ccgo_ts + 371910
 	case int32(32):
-		return __ccgo_ts + 54622
+		return __ccgo_ts + 54686
 	case int32(33):
-		return __ccgo_ts + 301150
+		return __ccgo_ts + 371915
 	case int32(34):
-		return __ccgo_ts + 301152
+		return __ccgo_ts + 371917
 	case int32(35):
-		return __ccgo_ts + 301155
+		return __ccgo_ts + 371920
 	case int32(36):
-		return __ccgo_ts + 301157
+		return __ccgo_ts + 371922
 	case int32(37):
-		return __ccgo_ts + 12023
+		return __ccgo_ts + 12031
 	case int32(38):
-		return __ccgo_ts + 11943
+		return __ccgo_ts + 11951
 	case int32(39):
-		return __ccgo_ts + 152736
+		return __ccgo_ts + 152908
 	case int32(40):
 		return __ccgo_ts + 6926
 	case int32(41):
-		return __ccgo_ts + 15959
+		return __ccgo_ts + 15967
 	case int32(42):
 		return __ccgo_ts + 1827
 	case int32(43):
-		return __ccgo_ts + 11962
+		return __ccgo_ts + 11970
 	case int32(44):
-		return __ccgo_ts + 117712
+		return __ccgo_ts + 117864
 	case int32(45):
-		return __ccgo_ts + 11951
+		return __ccgo_ts + 11959
 	case int32(46):
-		return __ccgo_ts + 117920
+		return __ccgo_ts + 118072
 	case int32(47):
-		return __ccgo_ts + 12021
+		return __ccgo_ts + 12029
 	case int32(48):
-		return __ccgo_ts + 158428
+		return __ccgo_ts + 158600
 	case int32(49):
-		return __ccgo_ts + 158426
+		return __ccgo_ts + 158598
 	case int32(50):
-		return __ccgo_ts + 301159
+		return __ccgo_ts + 371924
 	case int32(51):
-		return __ccgo_ts + 301161
+		return __ccgo_ts + 371926
 	case int32(52):
-		return __ccgo_ts + 301163
+		return __ccgo_ts + 371928
 	case int32(53):
-		return __ccgo_ts + 301165
+		return __ccgo_ts + 371930
 	case int32(54):
-		return __ccgo_ts + 301167
+		return __ccgo_ts + 371932
 	case int32(55):
-		return __ccgo_ts + 301169
+		return __ccgo_ts + 371934
 	case int32(56):
-		return __ccgo_ts + 301171
+		return __ccgo_ts + 371936
 	case int32(57):
-		return __ccgo_ts + 301173
+		return __ccgo_ts + 371938
 	case int32(58):
 		return __ccgo_ts
 	case int32(59):
-		return __ccgo_ts + 301175
+		return __ccgo_ts + 371940
 	case int32(60):
-		return __ccgo_ts + 55639
+		return __ccgo_ts + 55707
 	case int32(61):
-		return __ccgo_ts + 301177
+		return __ccgo_ts + 371942
 	case int32(62):
-		return __ccgo_ts + 55647
+		return __ccgo_ts + 55715
 	case int32(63):
-		return __ccgo_ts + 21443
+		return __ccgo_ts + 21467
 	case int32(64):
-		return __ccgo_ts + 12016
+		return __ccgo_ts + 12024
 	case int32(65):
-		return __ccgo_ts + 51264
+		return __ccgo_ts + 51316
 	case int32(66):
-		return __ccgo_ts + 11681
+		return __ccgo_ts + 11689
 	case int32(67):
-		return __ccgo_ts + 51266
+		return __ccgo_ts + 51318
 	case int32(68):
-		return __ccgo_ts + 232221
+		return __ccgo_ts + 232528
 	case int32(69):
-		return __ccgo_ts + 175059
+		return __ccgo_ts + 175235
 	case int32(70):
-		return __ccgo_ts + 51262
+		return __ccgo_ts + 51314
 	case int32(71):
-		return __ccgo_ts + 232210
+		return __ccgo_ts + 232517
 	case int32(72):
-		return __ccgo_ts + 50070
+		return __ccgo_ts + 50122
 	case int32(73):
-		return __ccgo_ts + 50078
+		return __ccgo_ts + 50130
 	case int32(74):
-		return __ccgo_ts + 232276
+		return __ccgo_ts + 232583
 	case int32(75):
-		return __ccgo_ts + 232297
+		return __ccgo_ts + 232604
 	case int32(76):
-		return __ccgo_ts + 50088
+		return __ccgo_ts + 50140
 	case int32(77):
-		return __ccgo_ts + 232239
+		return __ccgo_ts + 232546
 	case int32(78):
-		return __ccgo_ts + 50108
+		return __ccgo_ts + 50160
 	case int32(79):
-		return __ccgo_ts + 42179
+		return __ccgo_ts + 42215
 	case int32(80):
-		return __ccgo_ts + 50131
+		return __ccgo_ts + 50183
 	case int32(81):
-		return __ccgo_ts + 50098
+		return __ccgo_ts + 50150
 	case int32(82):
-		return __ccgo_ts + 230832
+		return __ccgo_ts + 231226
 	case int32(83):
-		return __ccgo_ts + 230871
+		return __ccgo_ts + 231265
 	case int32(84):
-		return __ccgo_ts + 232305
+		return __ccgo_ts + 232612
 	case int32(85):
-		return __ccgo_ts + 37037
+		return __ccgo_ts + 37069
 	case int32(86):
-		return __ccgo_ts + 301179
+		return __ccgo_ts + 371944
 	case int32(87):
-		return __ccgo_ts + 230892
+		return __ccgo_ts + 231286
 	case int32(88):
-		return __ccgo_ts + 301181
+		return __ccgo_ts + 371946
 	case int32(89):
-		return __ccgo_ts + 301183
+		return __ccgo_ts + 284922
 	case int32(90):
-		return __ccgo_ts + 301185
+		return __ccgo_ts + 371948
 	case int32(91):
-		return __ccgo_ts + 301187
+		return __ccgo_ts + 371950
 	case int32(92):
-		return __ccgo_ts + 301189
+		return __ccgo_ts + 371952
 	case int32(93):
-		return __ccgo_ts + 301192
+		return __ccgo_ts + 371955
 	case int32(94):
-		return __ccgo_ts + 11941
+		return __ccgo_ts + 11949
 	case int32(95):
 		return __ccgo_ts + 3009
 	case int32(96):
-		return __ccgo_ts + 301194
+		return __ccgo_ts + 371957
 	case int32(97):
-		return __ccgo_ts + 170812
+		return __ccgo_ts + 170984
 	case int32(98):
-		return __ccgo_ts + 50057
+		return __ccgo_ts + 50109
 	case int32(99):
-		return __ccgo_ts + 50052
+		return __ccgo_ts + 50104
 	case int32(100):
-		return __ccgo_ts + 50118
+		return __ccgo_ts + 50170
 	case int32(101):
-		return __ccgo_ts + 50123
+		return __ccgo_ts + 50175
 	case int32(102):
-		return __ccgo_ts + 50113
+		return __ccgo_ts + 50165
 	case int32(103):
-		return __ccgo_ts + 301196
+		return __ccgo_ts + 324425
 	case int32(104):
-		return __ccgo_ts + 50065
+		return __ccgo_ts + 50117
 	case int32(105):
-		return __ccgo_ts + 36745
+		return __ccgo_ts + 36777
 	case int32(106):
-		return __ccgo_ts + 301198
+		return __ccgo_ts + 371959
 	case int32(107):
-		return __ccgo_ts + 301200
+		return __ccgo_ts + 284920
 	case int32(108):
-		return __ccgo_ts + 50083
+		return __ccgo_ts + 50135
 	case int32(109):
-		return __ccgo_ts + 301202
+		return __ccgo_ts + 371961
 	case int32(110):
-		return __ccgo_ts + 50103
+		return __ccgo_ts + 50155
 	case int32(111):
-		return __ccgo_ts + 301204
+		return __ccgo_ts + 371963
 	case int32(112):
-		return __ccgo_ts + 265559
+		return __ccgo_ts + 270758
 	case int32(113):
-		return __ccgo_ts + 50093
+		return __ccgo_ts + 50145
 	case int32(114):
-		return __ccgo_ts + 9111
+		return __ccgo_ts + 9115
 	case int32(115):
-		return __ccgo_ts + 28296
+		return __ccgo_ts + 28324
 	case int32(116):
-		return __ccgo_ts + 117867
+		return __ccgo_ts + 118019
 	case int32(117):
 		return __ccgo_ts + 2775
 	case int32(118):
-		return __ccgo_ts + 301206
+		return __ccgo_ts + 371965
 	case int32(119):
-		return __ccgo_ts + 37115
+		return __ccgo_ts + 37147
 	case int32(120):
-		return __ccgo_ts + 183103
+		return __ccgo_ts + 183398
 	case int32(121):
-		return __ccgo_ts + 301208
+		return __ccgo_ts + 256953
 	case int32(122):
-		return __ccgo_ts + 301210
+		return __ccgo_ts + 284924
 	case int32(123):
-		return __ccgo_ts + 117869
+		return __ccgo_ts + 118021
 	case int32(124):
-		return __ccgo_ts + 11939
+		return __ccgo_ts + 11947
 	case int32(125):
-		return __ccgo_ts + 117915
+		return __ccgo_ts + 118067
 	case int32(126):
-		return __ccgo_ts + 117655
+		return __ccgo_ts + 117807
 	case int32(127):
-		return __ccgo_ts + 301212
+		return __ccgo_ts + 371967
 	case int32(128):
-		return __ccgo_ts + 301217
+		return __ccgo_ts + 371972
 	case int32(129):
-		return __ccgo_ts + 301222
+		return __ccgo_ts + 371977
 	case int32(130):
-		return __ccgo_ts + 301227
+		return __ccgo_ts + 371982
 	case int32(131):
-		return __ccgo_ts + 301232
+		return __ccgo_ts + 371987
 	case int32(132):
-		return __ccgo_ts + 301237
+		return __ccgo_ts + 371992
 	case int32(133):
-		return __ccgo_ts + 301242
+		return __ccgo_ts + 371997
 	case int32(134):
-		return __ccgo_ts + 301247
+		return __ccgo_ts + 372002
 	case int32(135):
-		return __ccgo_ts + 301252
+		return __ccgo_ts + 372007
 	case int32(136):
-		return __ccgo_ts + 301257
+		return __ccgo_ts + 372012
 	case int32(137):
-		return __ccgo_ts + 301262
+		return __ccgo_ts + 372017
 	case int32(138):
-		return __ccgo_ts + 301267
+		return __ccgo_ts + 372022
 	case int32(139):
-		return __ccgo_ts + 301272
+		return __ccgo_ts + 372027
 	case int32(140):
-		return __ccgo_ts + 301277
+		return __ccgo_ts + 372032
 	case int32(141):
-		return __ccgo_ts + 301282
+		return __ccgo_ts + 372037
 	case int32(142):
-		return __ccgo_ts + 301287
+		return __ccgo_ts + 372042
 	case int32(143):
-		return __ccgo_ts + 301292
+		return __ccgo_ts + 372047
 	case int32(144):
-		return __ccgo_ts + 301297
+		return __ccgo_ts + 372052
 	case int32(145):
-		return __ccgo_ts + 301302
+		return __ccgo_ts + 372057
 	case int32(146):
-		return __ccgo_ts + 301307
+		return __ccgo_ts + 372062
 	case int32(147):
-		return __ccgo_ts + 301312
+		return __ccgo_ts + 372067
 	case int32(148):
-		return __ccgo_ts + 301317
+		return __ccgo_ts + 372072
 	case int32(149):
-		return __ccgo_ts + 301322
+		return __ccgo_ts + 372077
 	case int32(150):
-		return __ccgo_ts + 301327
+		return __ccgo_ts + 372082
 	case int32(151):
-		return __ccgo_ts + 301332
+		return __ccgo_ts + 372087
 	case int32(152):
-		return __ccgo_ts + 301337
+		return __ccgo_ts + 372092
 	case int32(153):
-		return __ccgo_ts + 301342
+		return __ccgo_ts + 372097
 	case int32(154):
-		return __ccgo_ts + 301347
+		return __ccgo_ts + 372102
 	case int32(155):
-		return __ccgo_ts + 301352
+		return __ccgo_ts + 372107
 	case int32(156):
-		return __ccgo_ts + 301357
+		return __ccgo_ts + 372112
 	case int32(157):
-		return __ccgo_ts + 301362
+		return __ccgo_ts + 372117
 	case int32(158):
-		return __ccgo_ts + 301367
+		return __ccgo_ts + 372122
 	case int32(159):
-		return __ccgo_ts + 301372
+		return __ccgo_ts + 372127
 	case int32(160):
-		return __ccgo_ts + 301377
+		return __ccgo_ts + 372132
 	case int32(161):
-		return __ccgo_ts + 301382
+		return __ccgo_ts + 372137
 	case int32(162):
-		return __ccgo_ts + 301387
+		return __ccgo_ts + 372142
 	case int32(163):
-		return __ccgo_ts + 301392
+		return __ccgo_ts + 372147
 	case int32(164):
-		return __ccgo_ts + 301397
+		return __ccgo_ts + 372152
 	case int32(165):
-		return __ccgo_ts + 301402
+		return __ccgo_ts + 372157
 	case int32(166):
-		return __ccgo_ts + 301407
+		return __ccgo_ts + 372162
 	case int32(167):
-		return __ccgo_ts + 301412
+		return __ccgo_ts + 372167
 	case int32(168):
-		return __ccgo_ts + 301417
+		return __ccgo_ts + 372172
 	case int32(169):
-		return __ccgo_ts + 301422
+		return __ccgo_ts + 372177
 	case int32(170):
-		return __ccgo_ts + 301427
+		return __ccgo_ts + 372182
 	case int32(171):
-		return __ccgo_ts + 301432
+		return __ccgo_ts + 372187
 	case int32(172):
-		return __ccgo_ts + 301437
+		return __ccgo_ts + 372192
 	case int32(173):
-		return __ccgo_ts + 301442
+		return __ccgo_ts + 372197
 	case int32(174):
-		return __ccgo_ts + 301447
+		return __ccgo_ts + 372202
 	case int32(175):
-		return __ccgo_ts + 301452
+		return __ccgo_ts + 372207
 	case int32(176):
-		return __ccgo_ts + 301457
+		return __ccgo_ts + 372212
 	case int32(177):
-		return __ccgo_ts + 301462
+		return __ccgo_ts + 372217
 	case int32(178):
-		return __ccgo_ts + 301467
+		return __ccgo_ts + 372222
 	case int32(179):
-		return __ccgo_ts + 301472
+		return __ccgo_ts + 372227
 	case int32(180):
-		return __ccgo_ts + 301477
+		return __ccgo_ts + 372232
 	case int32(181):
-		return __ccgo_ts + 301482
+		return __ccgo_ts + 372237
 	case int32(182):
-		return __ccgo_ts + 301487
+		return __ccgo_ts + 372242
 	case int32(183):
-		return __ccgo_ts + 301492
+		return __ccgo_ts + 372247
 	case int32(184):
-		return __ccgo_ts + 301497
+		return __ccgo_ts + 372252
 	case int32(185):
-		return __ccgo_ts + 301502
+		return __ccgo_ts + 372257
 	case int32(186):
-		return __ccgo_ts + 301507
+		return __ccgo_ts + 372262
 	case int32(187):
-		return __ccgo_ts + 301512
+		return __ccgo_ts + 372267
 	case int32(188):
-		return __ccgo_ts + 301517
+		return __ccgo_ts + 372272
 	case int32(189):
-		return __ccgo_ts + 301522
+		return __ccgo_ts + 372277
 	case int32(190):
-		return __ccgo_ts + 301527
+		return __ccgo_ts + 372282
 	case int32(191):
-		return __ccgo_ts + 301532
+		return __ccgo_ts + 372287
 	case int32(192):
-		return __ccgo_ts + 301537
+		return __ccgo_ts + 372292
 	case int32(193):
-		return __ccgo_ts + 301542
+		return __ccgo_ts + 372297
 	case int32(194):
-		return __ccgo_ts + 301547
+		return __ccgo_ts + 372302
 	case int32(195):
-		return __ccgo_ts + 301552
+		return __ccgo_ts + 372307
 	case int32(196):
-		return __ccgo_ts + 301557
+		return __ccgo_ts + 372312
 	case int32(197):
-		return __ccgo_ts + 301562
+		return __ccgo_ts + 372317
 	case int32(198):
-		return __ccgo_ts + 301567
+		return __ccgo_ts + 372322
 	case int32(199):
-		return __ccgo_ts + 301572
+		return __ccgo_ts + 372327
 	case int32(200):
-		return __ccgo_ts + 301577
+		return __ccgo_ts + 372332
 	case int32(201):
-		return __ccgo_ts + 301582
+		return __ccgo_ts + 372337
 	case int32(202):
-		return __ccgo_ts + 301587
+		return __ccgo_ts + 372342
 	case int32(203):
-		return __ccgo_ts + 301592
+		return __ccgo_ts + 372347
 	case int32(204):
-		return __ccgo_ts + 301597
+		return __ccgo_ts + 372352
 	case int32(205):
-		return __ccgo_ts + 301602
+		return __ccgo_ts + 372357
 	case int32(206):
-		return __ccgo_ts + 301607
+		return __ccgo_ts + 372362
 	case int32(207):
-		return __ccgo_ts + 301612
+		return __ccgo_ts + 372367
 	case int32(208):
-		return __ccgo_ts + 301617
+		return __ccgo_ts + 372372
 	case int32(209):
-		return __ccgo_ts + 301622
+		return __ccgo_ts + 372377
 	case int32(210):
-		return __ccgo_ts + 301627
+		return __ccgo_ts + 372382
 	case int32(211):
-		return __ccgo_ts + 301632
+		return __ccgo_ts + 372387
 	case int32(212):
-		return __ccgo_ts + 301637
+		return __ccgo_ts + 372392
 	case int32(213):
-		return __ccgo_ts + 301642
+		return __ccgo_ts + 372397
 	case int32(214):
-		return __ccgo_ts + 301647
+		return __ccgo_ts + 372402
 	case int32(215):
-		return __ccgo_ts + 301652
+		return __ccgo_ts + 372407
 	case int32(216):
-		return __ccgo_ts + 301657
+		return __ccgo_ts + 372412
 	case int32(217):
-		return __ccgo_ts + 301662
+		return __ccgo_ts + 372417
 	case int32(218):
-		return __ccgo_ts + 301667
+		return __ccgo_ts + 372422
 	case int32(219):
-		return __ccgo_ts + 301672
+		return __ccgo_ts + 372427
 	case int32(220):
-		return __ccgo_ts + 301677
+		return __ccgo_ts + 372432
 	case int32(221):
-		return __ccgo_ts + 301682
+		return __ccgo_ts + 372437
 	case int32(222):
-		return __ccgo_ts + 301687
+		return __ccgo_ts + 372442
 	case int32(223):
-		return __ccgo_ts + 301692
+		return __ccgo_ts + 372447
 	case int32(224):
-		return __ccgo_ts + 301697
+		return __ccgo_ts + 372452
 	case int32(225):
-		return __ccgo_ts + 301702
+		return __ccgo_ts + 372457
 	case int32(226):
-		return __ccgo_ts + 301707
+		return __ccgo_ts + 372462
 	case int32(227):
-		return __ccgo_ts + 301712
+		return __ccgo_ts + 372467
 	case int32(228):
-		return __ccgo_ts + 301717
+		return __ccgo_ts + 372472
 	case int32(229):
-		return __ccgo_ts + 301722
+		return __ccgo_ts + 372477
 	case int32(230):
-		return __ccgo_ts + 301727
+		return __ccgo_ts + 372482
 	case int32(231):
-		return __ccgo_ts + 301732
+		return __ccgo_ts + 372487
 	case int32(232):
-		return __ccgo_ts + 301737
+		return __ccgo_ts + 372492
 	case int32(233):
-		return __ccgo_ts + 301742
+		return __ccgo_ts + 372497
 	case int32(234):
-		return __ccgo_ts + 301747
+		return __ccgo_ts + 372502
 	case int32(235):
-		return __ccgo_ts + 301752
+		return __ccgo_ts + 372507
 	case int32(236):
-		return __ccgo_ts + 301757
+		return __ccgo_ts + 372512
 	case int32(237):
-		return __ccgo_ts + 301762
+		return __ccgo_ts + 372517
 	case int32(238):
-		return __ccgo_ts + 301767
+		return __ccgo_ts + 372522
 	case int32(239):
-		return __ccgo_ts + 301772
+		return __ccgo_ts + 372527
 	case int32(240):
-		return __ccgo_ts + 301777
+		return __ccgo_ts + 372532
 	case int32(241):
-		return __ccgo_ts + 301782
+		return __ccgo_ts + 372537
 	case int32(242):
-		return __ccgo_ts + 301787
+		return __ccgo_ts + 372542
 	case int32(243):
-		return __ccgo_ts + 301792
+		return __ccgo_ts + 372547
 	case int32(244):
-		return __ccgo_ts + 301797
+		return __ccgo_ts + 372552
 	case int32(245):
-		return __ccgo_ts + 301802
+		return __ccgo_ts + 372557
 	case int32(246):
-		return __ccgo_ts + 301807
+		return __ccgo_ts + 372562
 	case int32(247):
-		return __ccgo_ts + 301812
+		return __ccgo_ts + 372567
 	case int32(248):
-		return __ccgo_ts + 301817
+		return __ccgo_ts + 372572
 	case int32(249):
-		return __ccgo_ts + 301822
+		return __ccgo_ts + 372577
 	case int32(250):
-		return __ccgo_ts + 301827
+		return __ccgo_ts + 372582
 	case int32(251):
-		return __ccgo_ts + 301832
+		return __ccgo_ts + 372587
 	case int32(252):
-		return __ccgo_ts + 301837
+		return __ccgo_ts + 372592
 	case int32(253):
-		return __ccgo_ts + 301842
+		return __ccgo_ts + 372597
 	case int32(254):
-		return __ccgo_ts + 301847
+		return __ccgo_ts + 372602
 	case int32(255):
-		return __ccgo_ts + 301852
+		return __ccgo_ts + 372607
 
 		fallthrough
 	default:
 
-		return __ccgo_ts + 301857
+		return __ccgo_ts + 372612
 	}
 
 	return r
@@ -52467,7 +64975,7 @@ func _alg_of_impl(tls *libc.TLS, i THacl_Agile_Hash_impl) (r TSpec_Hash_Definiti
 	case int32(MHacl_Agile_Hash_Blake2B_256):
 		return uint8(MSpec_Hash_Definitions_Blake2B)
 	default:
-		_ccgo_fprintf(tls, libc.X__stderrp, __ccgo_ts+301867, libc.VaList(bp+8, __ccgo_ts+301902, int32(109)))
+		_ccgo_fprintf(tls, libc.X__stderrp, __ccgo_ts+372622, libc.VaList(bp+8, __ccgo_ts+372657, int32(109)))
 		libc.Xexit(tls, libc.Int32FromUint32(253))
 	}
 	return r
@@ -52518,7 +65026,7 @@ func _impl_of_state_s(tls *libc.TLS, s THacl_Agile_Hash_state_s) (r THacl_Agile_
 	if libc.Int32FromUint8(s.Ftag) == int32(MHacl_Agile_Hash_Blake2B_256_a) {
 		return uint8(MHacl_Agile_Hash_Blake2B_256)
 	}
-	_ccgo_fprintf(tls, libc.X__stderrp, __ccgo_ts+302009, libc.VaList(bp+8, __ccgo_ts+301902, int32(175), __ccgo_ts+302036))
+	_ccgo_fprintf(tls, libc.X__stderrp, __ccgo_ts+372768, libc.VaList(bp+8, __ccgo_ts+372657, int32(175), __ccgo_ts+372795))
 	libc.Xexit(tls, libc.Int32FromUint32(255))
 	return r
 }
@@ -52896,7 +65404,7 @@ func _malloc_(tls *libc.TLS, a THacl_Agile_Hash_impl) (r uintptr) {
 		}
 		return st10
 	case int32(MHacl_Agile_Hash_Blake2S_128):
-		_ccgo_fprintf(tls, libc.X__stderrp, __ccgo_ts+302009, libc.VaList(bp+8, __ccgo_ts+301902, int32(505), __ccgo_ts+302087))
+		_ccgo_fprintf(tls, libc.X__stderrp, __ccgo_ts+372768, libc.VaList(bp+8, __ccgo_ts+372657, int32(505), __ccgo_ts+372846))
 		libc.Xexit(tls, libc.Int32FromUint32(255))
 	case int32(MHacl_Agile_Hash_Blake2B_32):
 		s11 = libc.Xcalloc(tls, uint64(16), uint64(8))
@@ -52932,10 +65440,10 @@ func _malloc_(tls *libc.TLS, a THacl_Agile_Hash_impl) (r uintptr) {
 		}
 		return st11
 	case int32(MHacl_Agile_Hash_Blake2B_256):
-		_ccgo_fprintf(tls, libc.X__stderrp, __ccgo_ts+302009, libc.VaList(bp+8, __ccgo_ts+301902, int32(568), __ccgo_ts+302087))
+		_ccgo_fprintf(tls, libc.X__stderrp, __ccgo_ts+372768, libc.VaList(bp+8, __ccgo_ts+372657, int32(568), __ccgo_ts+372846))
 		libc.Xexit(tls, libc.Int32FromUint32(255))
 	default:
-		_ccgo_fprintf(tls, libc.X__stderrp, __ccgo_ts+301867, libc.VaList(bp+8, __ccgo_ts+301902, int32(576)))
+		_ccgo_fprintf(tls, libc.X__stderrp, __ccgo_ts+372622, libc.VaList(bp+8, __ccgo_ts+372657, int32(576)))
 		libc.Xexit(tls, libc.Int32FromUint32(253))
 	}
 	return r
@@ -53018,7 +65526,7 @@ func _init(tls *libc.TLS, s uintptr) {
 		_ = p113
 		return
 	}
-	_ccgo_fprintf(tls, libc.X__stderrp, __ccgo_ts+302009, libc.VaList(bp+8, __ccgo_ts+301902, int32(681), __ccgo_ts+302036))
+	_ccgo_fprintf(tls, libc.X__stderrp, __ccgo_ts+372768, libc.VaList(bp+8, __ccgo_ts+372657, int32(681), __ccgo_ts+372795))
 	libc.Xexit(tls, libc.Int32FromUint32(255))
 }
 
@@ -53122,7 +65630,7 @@ func _update_multi(tls *libc.TLS, s uintptr, prevlen Tuint64_t, blocks uintptr, 
 		_ = p113
 		return
 	}
-	_ccgo_fprintf(tls, libc.X__stderrp, __ccgo_ts+302009, libc.VaList(bp+200, __ccgo_ts+301902, int32(810), __ccgo_ts+302036))
+	_ccgo_fprintf(tls, libc.X__stderrp, __ccgo_ts+372768, libc.VaList(bp+200, __ccgo_ts+372657, int32(810), __ccgo_ts+372795))
 	libc.Xexit(tls, libc.Int32FromUint32(255))
 }
 
@@ -53264,7 +65772,7 @@ func _update_last(tls *libc.TLS, s uintptr, prev_len Tuint64_t, last uintptr, la
 		_ = p113
 		return
 	}
-	_ccgo_fprintf(tls, libc.X__stderrp, __ccgo_ts+302009, libc.VaList(bp+200, __ccgo_ts+301902, int32(934), __ccgo_ts+302036))
+	_ccgo_fprintf(tls, libc.X__stderrp, __ccgo_ts+372768, libc.VaList(bp+200, __ccgo_ts+372657, int32(934), __ccgo_ts+372795))
 	libc.Xexit(tls, libc.Int32FromUint32(255))
 }
 
@@ -53427,7 +65935,7 @@ func _finish(tls *libc.TLS, s uintptr, dst uintptr) {
 		_ = p113
 		return
 	}
-	_ccgo_fprintf(tls, libc.X__stderrp, __ccgo_ts+302009, libc.VaList(bp+2064, __ccgo_ts+301902, int32(1070), __ccgo_ts+302036))
+	_ccgo_fprintf(tls, libc.X__stderrp, __ccgo_ts+372768, libc.VaList(bp+2064, __ccgo_ts+372657, int32(1070), __ccgo_ts+372795))
 	libc.Xexit(tls, libc.Int32FromUint32(255))
 }
 
@@ -53494,7 +66002,7 @@ func _free_(tls *libc.TLS, s uintptr) {
 															p113 = *(*uintptr)(unsafe.Add(unsafe.Pointer(&scrut), 8))
 															libc.Xfree(tls, p113)
 														} else {
-															_ccgo_fprintf(tls, libc.X__stderrp, __ccgo_ts+302009, libc.VaList(bp+8, __ccgo_ts+301902, int32(1152), __ccgo_ts+302036))
+															_ccgo_fprintf(tls, libc.X__stderrp, __ccgo_ts+372768, libc.VaList(bp+8, __ccgo_ts+372657, int32(1152), __ccgo_ts+372795))
 															libc.Xexit(tls, libc.Int32FromUint32(255))
 														}
 													}
@@ -53526,7 +66034,7 @@ func _copy(tls *libc.TLS, s_src uintptr, s_dst uintptr) {
 		if libc.Int32FromUint8(x1.Ftag) == MHacl_Agile_Hash_MD5_a {
 			p_dst = x1.F__ccgo1_8.Fcase_MD5_a
 		} else {
-			_ccgo_printf(tls, __ccgo_ts+302009, libc.VaList(bp+8, __ccgo_ts+301902, int32(1173), __ccgo_ts+302036))
+			_ccgo_printf(tls, __ccgo_ts+372768, libc.VaList(bp+8, __ccgo_ts+372657, int32(1173), __ccgo_ts+372795))
 			libc.Xexit(tls, int32(255))
 			p_dst = **(**uintptr)(__ccgo_up(libc.Xmalloc(tls, uint64(8))))
 		}
@@ -53539,7 +66047,7 @@ func _copy(tls *libc.TLS, s_src uintptr, s_dst uintptr) {
 		if libc.Int32FromUint8(x11.Ftag) == int32(MHacl_Agile_Hash_SHA1_a) {
 			p_dst1 = *(*uintptr)(unsafe.Add(unsafe.Pointer(&x11), 8))
 		} else {
-			_ccgo_printf(tls, __ccgo_ts+302009, libc.VaList(bp+8, __ccgo_ts+301902, int32(1189), __ccgo_ts+302036))
+			_ccgo_printf(tls, __ccgo_ts+372768, libc.VaList(bp+8, __ccgo_ts+372657, int32(1189), __ccgo_ts+372795))
 			libc.Xexit(tls, int32(255))
 			p_dst1 = **(**uintptr)(__ccgo_up(libc.Xmalloc(tls, uint64(8))))
 		}
@@ -53552,7 +66060,7 @@ func _copy(tls *libc.TLS, s_src uintptr, s_dst uintptr) {
 		if libc.Int32FromUint8(x12.Ftag) == int32(MHacl_Agile_Hash_SHA2_224_a) {
 			p_dst2 = *(*uintptr)(unsafe.Add(unsafe.Pointer(&x12), 8))
 		} else {
-			_ccgo_printf(tls, __ccgo_ts+302009, libc.VaList(bp+8, __ccgo_ts+301902, int32(1205), __ccgo_ts+302036))
+			_ccgo_printf(tls, __ccgo_ts+372768, libc.VaList(bp+8, __ccgo_ts+372657, int32(1205), __ccgo_ts+372795))
 			libc.Xexit(tls, int32(255))
 			p_dst2 = **(**uintptr)(__ccgo_up(libc.Xmalloc(tls, uint64(8))))
 		}
@@ -53565,7 +66073,7 @@ func _copy(tls *libc.TLS, s_src uintptr, s_dst uintptr) {
 		if libc.Int32FromUint8(x13.Ftag) == int32(MHacl_Agile_Hash_SHA2_256_a) {
 			p_dst3 = *(*uintptr)(unsafe.Add(unsafe.Pointer(&x13), 8))
 		} else {
-			_ccgo_printf(tls, __ccgo_ts+302009, libc.VaList(bp+8, __ccgo_ts+301902, int32(1221), __ccgo_ts+302036))
+			_ccgo_printf(tls, __ccgo_ts+372768, libc.VaList(bp+8, __ccgo_ts+372657, int32(1221), __ccgo_ts+372795))
 			libc.Xexit(tls, int32(255))
 			p_dst3 = **(**uintptr)(__ccgo_up(libc.Xmalloc(tls, uint64(8))))
 		}
@@ -53578,7 +66086,7 @@ func _copy(tls *libc.TLS, s_src uintptr, s_dst uintptr) {
 		if libc.Int32FromUint8(x14.Ftag) == int32(MHacl_Agile_Hash_SHA2_384_a) {
 			p_dst4 = *(*uintptr)(unsafe.Add(unsafe.Pointer(&x14), 8))
 		} else {
-			_ccgo_printf(tls, __ccgo_ts+302009, libc.VaList(bp+8, __ccgo_ts+301902, int32(1237), __ccgo_ts+302036))
+			_ccgo_printf(tls, __ccgo_ts+372768, libc.VaList(bp+8, __ccgo_ts+372657, int32(1237), __ccgo_ts+372795))
 			libc.Xexit(tls, int32(255))
 			p_dst4 = **(**uintptr)(__ccgo_up(libc.Xmalloc(tls, uint64(8))))
 		}
@@ -53591,7 +66099,7 @@ func _copy(tls *libc.TLS, s_src uintptr, s_dst uintptr) {
 		if libc.Int32FromUint8(x15.Ftag) == int32(MHacl_Agile_Hash_SHA2_512_a) {
 			p_dst5 = *(*uintptr)(unsafe.Add(unsafe.Pointer(&x15), 8))
 		} else {
-			_ccgo_printf(tls, __ccgo_ts+302009, libc.VaList(bp+8, __ccgo_ts+301902, int32(1253), __ccgo_ts+302036))
+			_ccgo_printf(tls, __ccgo_ts+372768, libc.VaList(bp+8, __ccgo_ts+372657, int32(1253), __ccgo_ts+372795))
 			libc.Xexit(tls, int32(255))
 			p_dst5 = **(**uintptr)(__ccgo_up(libc.Xmalloc(tls, uint64(8))))
 		}
@@ -53604,7 +66112,7 @@ func _copy(tls *libc.TLS, s_src uintptr, s_dst uintptr) {
 		if libc.Int32FromUint8(x16.Ftag) == int32(MHacl_Agile_Hash_SHA3_224_a) {
 			p_dst6 = *(*uintptr)(unsafe.Add(unsafe.Pointer(&x16), 8))
 		} else {
-			_ccgo_printf(tls, __ccgo_ts+302009, libc.VaList(bp+8, __ccgo_ts+301902, int32(1269), __ccgo_ts+302036))
+			_ccgo_printf(tls, __ccgo_ts+372768, libc.VaList(bp+8, __ccgo_ts+372657, int32(1269), __ccgo_ts+372795))
 			libc.Xexit(tls, int32(255))
 			p_dst6 = **(**uintptr)(__ccgo_up(libc.Xmalloc(tls, uint64(8))))
 		}
@@ -53617,7 +66125,7 @@ func _copy(tls *libc.TLS, s_src uintptr, s_dst uintptr) {
 		if libc.Int32FromUint8(x17.Ftag) == int32(MHacl_Agile_Hash_SHA3_256_a) {
 			p_dst7 = *(*uintptr)(unsafe.Add(unsafe.Pointer(&x17), 8))
 		} else {
-			_ccgo_printf(tls, __ccgo_ts+302009, libc.VaList(bp+8, __ccgo_ts+301902, int32(1285), __ccgo_ts+302036))
+			_ccgo_printf(tls, __ccgo_ts+372768, libc.VaList(bp+8, __ccgo_ts+372657, int32(1285), __ccgo_ts+372795))
 			libc.Xexit(tls, int32(255))
 			p_dst7 = **(**uintptr)(__ccgo_up(libc.Xmalloc(tls, uint64(8))))
 		}
@@ -53630,7 +66138,7 @@ func _copy(tls *libc.TLS, s_src uintptr, s_dst uintptr) {
 		if libc.Int32FromUint8(x18.Ftag) == int32(MHacl_Agile_Hash_SHA3_384_a) {
 			p_dst8 = *(*uintptr)(unsafe.Add(unsafe.Pointer(&x18), 8))
 		} else {
-			_ccgo_printf(tls, __ccgo_ts+302009, libc.VaList(bp+8, __ccgo_ts+301902, int32(1301), __ccgo_ts+302036))
+			_ccgo_printf(tls, __ccgo_ts+372768, libc.VaList(bp+8, __ccgo_ts+372657, int32(1301), __ccgo_ts+372795))
 			libc.Xexit(tls, int32(255))
 			p_dst8 = **(**uintptr)(__ccgo_up(libc.Xmalloc(tls, uint64(8))))
 		}
@@ -53643,7 +66151,7 @@ func _copy(tls *libc.TLS, s_src uintptr, s_dst uintptr) {
 		if libc.Int32FromUint8(x19.Ftag) == int32(MHacl_Agile_Hash_SHA3_512_a) {
 			p_dst9 = *(*uintptr)(unsafe.Add(unsafe.Pointer(&x19), 8))
 		} else {
-			_ccgo_printf(tls, __ccgo_ts+302009, libc.VaList(bp+8, __ccgo_ts+301902, int32(1317), __ccgo_ts+302036))
+			_ccgo_printf(tls, __ccgo_ts+372768, libc.VaList(bp+8, __ccgo_ts+372657, int32(1317), __ccgo_ts+372795))
 			libc.Xexit(tls, int32(255))
 			p_dst9 = **(**uintptr)(__ccgo_up(libc.Xmalloc(tls, uint64(8))))
 		}
@@ -53656,7 +66164,7 @@ func _copy(tls *libc.TLS, s_src uintptr, s_dst uintptr) {
 		if libc.Int32FromUint8(x110.Ftag) == int32(MHacl_Agile_Hash_Blake2S_a) {
 			p_dst10 = *(*uintptr)(unsafe.Add(unsafe.Pointer(&x110), 8))
 		} else {
-			_ccgo_printf(tls, __ccgo_ts+302009, libc.VaList(bp+8, __ccgo_ts+301902, int32(1333), __ccgo_ts+302036))
+			_ccgo_printf(tls, __ccgo_ts+372768, libc.VaList(bp+8, __ccgo_ts+372657, int32(1333), __ccgo_ts+372795))
 			libc.Xexit(tls, int32(255))
 			p_dst10 = **(**uintptr)(__ccgo_up(libc.Xmalloc(tls, uint64(8))))
 		}
@@ -53674,7 +66182,7 @@ func _copy(tls *libc.TLS, s_src uintptr, s_dst uintptr) {
 		if libc.Int32FromUint8(x111.Ftag) == int32(MHacl_Agile_Hash_Blake2B_a) {
 			p_dst11 = *(*uintptr)(unsafe.Add(unsafe.Pointer(&x111), 8))
 		} else {
-			_ccgo_printf(tls, __ccgo_ts+302009, libc.VaList(bp+8, __ccgo_ts+301902, int32(1372), __ccgo_ts+302036))
+			_ccgo_printf(tls, __ccgo_ts+372768, libc.VaList(bp+8, __ccgo_ts+372657, int32(1372), __ccgo_ts+372795))
 			libc.Xexit(tls, int32(255))
 			p_dst11 = **(**uintptr)(__ccgo_up(libc.Xmalloc(tls, uint64(8))))
 		}
@@ -53686,7 +66194,7 @@ func _copy(tls *libc.TLS, s_src uintptr, s_dst uintptr) {
 		_ = p_src13
 		return
 	}
-	_ccgo_fprintf(tls, libc.X__stderrp, __ccgo_ts+302009, libc.VaList(bp+8, __ccgo_ts+301902, int32(1402), __ccgo_ts+302036))
+	_ccgo_fprintf(tls, libc.X__stderrp, __ccgo_ts+372768, libc.VaList(bp+8, __ccgo_ts+372657, int32(1402), __ccgo_ts+372795))
 	libc.Xexit(tls, libc.Int32FromUint32(255))
 }
 
@@ -53721,7 +66229,7 @@ func _hash1(tls *libc.TLS, i THacl_Agile_Hash_impl, dst uintptr, input uintptr, 
 		X_Py_LibHacl_Hacl_Hash_Blake2b_hash_with_key(tls, dst, uint32(64), input, input_len, libc.UintptrFromInt32(0), 0)
 	case int32(MHacl_Agile_Hash_Blake2B_256):
 	default:
-		_ccgo_fprintf(tls, libc.X__stderrp, __ccgo_ts+301867, libc.VaList(bp+8, __ccgo_ts+301902, int32(1487)))
+		_ccgo_fprintf(tls, libc.X__stderrp, __ccgo_ts+372622, libc.VaList(bp+8, __ccgo_ts+372657, int32(1487)))
 		libc.Xexit(tls, libc.Int32FromUint32(253))
 	}
 }
@@ -53755,7 +66263,7 @@ func _hash_len(tls *libc.TLS, a TSpec_Hash_Definitions_hash_alg) (r Tuint32_t) {
 	case int32(MSpec_Hash_Definitions_SHA3_512):
 		return uint32(64)
 	default:
-		_ccgo_fprintf(tls, libc.X__stderrp, __ccgo_ts+301867, libc.VaList(bp+8, __ccgo_ts+301902, int32(1547)))
+		_ccgo_fprintf(tls, libc.X__stderrp, __ccgo_ts+372622, libc.VaList(bp+8, __ccgo_ts+372657, int32(1547)))
 		libc.Xexit(tls, libc.Int32FromUint32(253))
 	}
 	return r
@@ -53794,7 +66302,7 @@ func _block_len(tls *libc.TLS, a TSpec_Hash_Definitions_hash_alg) (r Tuint32_t) 
 	case int32(MSpec_Hash_Definitions_Blake2B):
 		return uint32(128)
 	default:
-		_ccgo_fprintf(tls, libc.X__stderrp, __ccgo_ts+301867, libc.VaList(bp+8, __ccgo_ts+301902, int32(1615)))
+		_ccgo_fprintf(tls, libc.X__stderrp, __ccgo_ts+372622, libc.VaList(bp+8, __ccgo_ts+372657, int32(1615)))
 		libc.Xexit(tls, libc.Int32FromUint32(253))
 	}
 	return r
@@ -53833,7 +66341,7 @@ func _max_input_len64(tls *libc.TLS, a TSpec_Hash_Definitions_hash_alg) (r Tuint
 	case int32(MSpec_Hash_Definitions_Shake256):
 		return uint64(18446744073709551615)
 	default:
-		_ccgo_fprintf(tls, libc.X__stderrp, __ccgo_ts+301867, libc.VaList(bp+8, __ccgo_ts+301902, int32(1683)))
+		_ccgo_fprintf(tls, libc.X__stderrp, __ccgo_ts+372622, libc.VaList(bp+8, __ccgo_ts+372657, int32(1683)))
 		libc.Xexit(tls, libc.Int32FromUint32(253))
 	}
 	return r
@@ -53987,7 +66495,7 @@ func _malloc_internal(tls *libc.TLS, i THacl_Streaming_HMAC_Definitions_index, k
 	var s THacl_Streaming_HMAC_agile_state
 	_, _, _, _, _, _, _, _, _, _, _ = block_state, block_state1, buf, buf1, k_, p, s, s11, s110, s21, s211
 	if uint64(_block_len(tls, _alg_of_impl(tls, _dfst__Hacl_Agile_Hash_impl_uint32_t(tls, i)))) > libc.Uint64FromUint64(18446744073709551615)/libc.Uint64FromInt64(1) {
-		_ccgo_printf(tls, __ccgo_ts+302163, libc.VaList(bp+8, __ccgo_ts+301902, int32(1825)))
+		_ccgo_printf(tls, __ccgo_ts+372922, libc.VaList(bp+8, __ccgo_ts+372657, int32(1825)))
 		libc.Xexit(tls, int32(253))
 	}
 	buf = libc.Xcalloc(tls, uint64(_block_len(tls, _alg_of_impl(tls, _dfst__Hacl_Agile_Hash_impl_uint32_t(tls, i)))), uint64(1))
@@ -54045,11 +66553,11 @@ func _malloc_internal(tls *libc.TLS, i THacl_Streaming_HMAC_Definitions_index, k
 			_init0(tls, key, buf1, block_state1)
 			return p
 		default:
-			_ccgo_fprintf(tls, libc.X__stderrp, __ccgo_ts+301867, libc.VaList(bp+8, __ccgo_ts+301902, int32(1918)))
+			_ccgo_fprintf(tls, libc.X__stderrp, __ccgo_ts+372622, libc.VaList(bp+8, __ccgo_ts+372657, int32(1918)))
 			libc.Xexit(tls, libc.Int32FromUint32(253))
 		}
 	}
-	_ccgo_fprintf(tls, libc.X__stderrp, __ccgo_ts+302009, libc.VaList(bp+8, __ccgo_ts+301902, int32(1925), __ccgo_ts+302036))
+	_ccgo_fprintf(tls, libc.X__stderrp, __ccgo_ts+372768, libc.VaList(bp+8, __ccgo_ts+372657, int32(1925), __ccgo_ts+372795))
 	libc.Xexit(tls, libc.Int32FromUint32(255))
 	return r
 }
@@ -54353,7 +66861,7 @@ func X_Py_LibHacl_Hacl_Streaming_HMAC_digest(tls *libc.TLS, state uintptr, outpu
 		_free_(tls, s210)
 		return uint8(MHacl_Streaming_Types_Success)
 	}
-	_ccgo_fprintf(tls, libc.X__stderrp, __ccgo_ts+302009, libc.VaList(bp+8, __ccgo_ts+301902, int32(2389), __ccgo_ts+302036))
+	_ccgo_fprintf(tls, libc.X__stderrp, __ccgo_ts+372768, libc.VaList(bp+8, __ccgo_ts+372657, int32(2389), __ccgo_ts+372795))
 	libc.Xexit(tls, libc.Int32FromUint32(255))
 	return r1
 }
@@ -54396,7 +66904,7 @@ func X_Py_LibHacl_Hacl_Streaming_HMAC_copy(tls *libc.TLS, state uintptr) (r uint
 	total_len0 = scrut0.Ftotal_len
 	i1 = X_Py_LibHacl_Hacl_Streaming_HMAC_index_of_state(tls, block_state0)
 	if uint64(_block_len(tls, _alg_of_impl(tls, _dfst__Hacl_Agile_Hash_impl_uint32_t(tls, i1)))) > libc.Uint64FromUint64(18446744073709551615)/libc.Uint64FromInt64(1) {
-		_ccgo_printf(tls, __ccgo_ts+302163, libc.VaList(bp+8, __ccgo_ts+301902, int32(2418)))
+		_ccgo_printf(tls, __ccgo_ts+372922, libc.VaList(bp+8, __ccgo_ts+372657, int32(2418)))
 		libc.Xexit(tls, int32(253))
 	}
 	buf = libc.Xcalloc(tls, uint64(_block_len(tls, _alg_of_impl(tls, _dfst__Hacl_Agile_Hash_impl_uint32_t(tls, i1)))), uint64(1))
@@ -54463,11 +66971,11 @@ func X_Py_LibHacl_Hacl_Streaming_HMAC_copy(tls *libc.TLS, state uintptr) (r uint
 			}
 			return p
 		default:
-			_ccgo_fprintf(tls, libc.X__stderrp, __ccgo_ts+301867, libc.VaList(bp+8, __ccgo_ts+301902, int32(2515)))
+			_ccgo_fprintf(tls, libc.X__stderrp, __ccgo_ts+372622, libc.VaList(bp+8, __ccgo_ts+372657, int32(2515)))
 			libc.Xexit(tls, libc.Int32FromUint32(253))
 		}
 	}
-	_ccgo_fprintf(tls, libc.X__stderrp, __ccgo_ts+302009, libc.VaList(bp+8, __ccgo_ts+301902, int32(2522), __ccgo_ts+302036))
+	_ccgo_fprintf(tls, libc.X__stderrp, __ccgo_ts+372768, libc.VaList(bp+8, __ccgo_ts+372657, int32(2522), __ccgo_ts+372795))
 	libc.Xexit(tls, libc.Int32FromUint32(255))
 	return r
 }
@@ -55702,11 +68210,11 @@ func X_Py_LibHacl_Hacl_Hash_MD5_malloc(tls *libc.TLS) (r uintptr) {
 			X_Py_LibHacl_Hacl_Hash_MD5_init(tls, block_state1)
 			return p
 		default:
-			_ccgo_fprintf(tls, libc.X__stderrp, __ccgo_ts+301867, libc.VaList(bp+8, __ccgo_ts+302233, int32(1094)))
+			_ccgo_fprintf(tls, libc.X__stderrp, __ccgo_ts+372622, libc.VaList(bp+8, __ccgo_ts+372992, int32(1094)))
 			libc.Xexit(tls, libc.Int32FromUint32(253))
 		}
 	}
-	_ccgo_fprintf(tls, libc.X__stderrp, __ccgo_ts+302009, libc.VaList(bp+8, __ccgo_ts+302233, int32(1101), __ccgo_ts+302036))
+	_ccgo_fprintf(tls, libc.X__stderrp, __ccgo_ts+372768, libc.VaList(bp+8, __ccgo_ts+372992, int32(1101), __ccgo_ts+372795))
 	libc.Xexit(tls, libc.Int32FromUint32(255))
 	return r
 }
@@ -55954,11 +68462,11 @@ func X_Py_LibHacl_Hacl_Hash_MD5_copy(tls *libc.TLS, state uintptr) (r uintptr) {
 			}
 			return p
 		default:
-			_ccgo_fprintf(tls, libc.X__stderrp, __ccgo_ts+301867, libc.VaList(bp+8, __ccgo_ts+302233, int32(1389)))
+			_ccgo_fprintf(tls, libc.X__stderrp, __ccgo_ts+372622, libc.VaList(bp+8, __ccgo_ts+372992, int32(1389)))
 			libc.Xexit(tls, libc.Int32FromUint32(253))
 		}
 	}
-	_ccgo_fprintf(tls, libc.X__stderrp, __ccgo_ts+302009, libc.VaList(bp+8, __ccgo_ts+302233, int32(1396), __ccgo_ts+302036))
+	_ccgo_fprintf(tls, libc.X__stderrp, __ccgo_ts+372768, libc.VaList(bp+8, __ccgo_ts+372992, int32(1396), __ccgo_ts+372795))
 	libc.Xexit(tls, libc.Int32FromUint32(255))
 	return r
 }
@@ -56456,11 +68964,11 @@ func X_Py_LibHacl_Hacl_Hash_SHA1_malloc(tls *libc.TLS) (r uintptr) {
 			X_Py_LibHacl_Hacl_Hash_SHA1_init(tls, block_state1)
 			return p
 		default:
-			_ccgo_fprintf(tls, libc.X__stderrp, __ccgo_ts+301867, libc.VaList(bp+8, __ccgo_ts+302334, int32(256)))
+			_ccgo_fprintf(tls, libc.X__stderrp, __ccgo_ts+372622, libc.VaList(bp+8, __ccgo_ts+373097, int32(256)))
 			libc.Xexit(tls, libc.Int32FromUint32(253))
 		}
 	}
-	_ccgo_fprintf(tls, libc.X__stderrp, __ccgo_ts+302009, libc.VaList(bp+8, __ccgo_ts+302334, int32(263), __ccgo_ts+302036))
+	_ccgo_fprintf(tls, libc.X__stderrp, __ccgo_ts+372768, libc.VaList(bp+8, __ccgo_ts+373097, int32(263), __ccgo_ts+372795))
 	libc.Xexit(tls, libc.Int32FromUint32(255))
 	return r
 }
@@ -56708,11 +69216,11 @@ func X_Py_LibHacl_Hacl_Hash_SHA1_copy(tls *libc.TLS, state uintptr) (r uintptr) 
 			}
 			return p
 		default:
-			_ccgo_fprintf(tls, libc.X__stderrp, __ccgo_ts+301867, libc.VaList(bp+8, __ccgo_ts+302334, int32(551)))
+			_ccgo_fprintf(tls, libc.X__stderrp, __ccgo_ts+372622, libc.VaList(bp+8, __ccgo_ts+373097, int32(551)))
 			libc.Xexit(tls, libc.Int32FromUint32(253))
 		}
 	}
-	_ccgo_fprintf(tls, libc.X__stderrp, __ccgo_ts+302009, libc.VaList(bp+8, __ccgo_ts+302334, int32(558), __ccgo_ts+302036))
+	_ccgo_fprintf(tls, libc.X__stderrp, __ccgo_ts+372768, libc.VaList(bp+8, __ccgo_ts+373097, int32(558), __ccgo_ts+372795))
 	libc.Xexit(tls, libc.Int32FromUint32(255))
 	return r
 }
@@ -64836,11 +77344,11 @@ func X_Py_LibHacl_Hacl_Hash_SHA2_malloc_256(tls *libc.TLS) (r uintptr) {
 			X_Py_LibHacl_Hacl_Hash_SHA2_sha256_init(tls, block_state1)
 			return p
 		default:
-			_ccgo_fprintf(tls, libc.X__stderrp, __ccgo_ts+301867, libc.VaList(bp+8, __ccgo_ts+302436, int32(502)))
+			_ccgo_fprintf(tls, libc.X__stderrp, __ccgo_ts+372622, libc.VaList(bp+8, __ccgo_ts+373203, int32(502)))
 			libc.Xexit(tls, libc.Int32FromUint32(253))
 		}
 	}
-	_ccgo_fprintf(tls, libc.X__stderrp, __ccgo_ts+302009, libc.VaList(bp+8, __ccgo_ts+302436, int32(509), __ccgo_ts+302036))
+	_ccgo_fprintf(tls, libc.X__stderrp, __ccgo_ts+372768, libc.VaList(bp+8, __ccgo_ts+373203, int32(509), __ccgo_ts+372795))
 	libc.Xexit(tls, libc.Int32FromUint32(255))
 	return r
 }
@@ -64908,11 +77416,11 @@ func X_Py_LibHacl_Hacl_Hash_SHA2_copy_256(tls *libc.TLS, state uintptr) (r uintp
 			}
 			return p
 		default:
-			_ccgo_fprintf(tls, libc.X__stderrp, __ccgo_ts+301867, libc.VaList(bp+8, __ccgo_ts+302436, int32(578)))
+			_ccgo_fprintf(tls, libc.X__stderrp, __ccgo_ts+372622, libc.VaList(bp+8, __ccgo_ts+373203, int32(578)))
 			libc.Xexit(tls, libc.Int32FromUint32(253))
 		}
 	}
-	_ccgo_fprintf(tls, libc.X__stderrp, __ccgo_ts+302009, libc.VaList(bp+8, __ccgo_ts+302436, int32(585), __ccgo_ts+302036))
+	_ccgo_fprintf(tls, libc.X__stderrp, __ccgo_ts+372768, libc.VaList(bp+8, __ccgo_ts+373203, int32(585), __ccgo_ts+372795))
 	libc.Xexit(tls, libc.Int32FromUint32(255))
 	return r
 }
@@ -65209,11 +77717,11 @@ func X_Py_LibHacl_Hacl_Hash_SHA2_malloc_224(tls *libc.TLS) (r uintptr) {
 			X_Py_LibHacl_Hacl_Hash_SHA2_sha224_init(tls, block_state1)
 			return p
 		default:
-			_ccgo_fprintf(tls, libc.X__stderrp, __ccgo_ts+301867, libc.VaList(bp+8, __ccgo_ts+302436, int32(916)))
+			_ccgo_fprintf(tls, libc.X__stderrp, __ccgo_ts+372622, libc.VaList(bp+8, __ccgo_ts+373203, int32(916)))
 			libc.Xexit(tls, libc.Int32FromUint32(253))
 		}
 	}
-	_ccgo_fprintf(tls, libc.X__stderrp, __ccgo_ts+302009, libc.VaList(bp+8, __ccgo_ts+302436, int32(923), __ccgo_ts+302036))
+	_ccgo_fprintf(tls, libc.X__stderrp, __ccgo_ts+372768, libc.VaList(bp+8, __ccgo_ts+373203, int32(923), __ccgo_ts+372795))
 	libc.Xexit(tls, libc.Int32FromUint32(255))
 	return r
 }
@@ -65358,11 +77866,11 @@ func X_Py_LibHacl_Hacl_Hash_SHA2_malloc_512(tls *libc.TLS) (r uintptr) {
 			X_Py_LibHacl_Hacl_Hash_SHA2_sha512_init(tls, block_state1)
 			return p
 		default:
-			_ccgo_fprintf(tls, libc.X__stderrp, __ccgo_ts+301867, libc.VaList(bp+8, __ccgo_ts+302436, int32(1067)))
+			_ccgo_fprintf(tls, libc.X__stderrp, __ccgo_ts+372622, libc.VaList(bp+8, __ccgo_ts+373203, int32(1067)))
 			libc.Xexit(tls, libc.Int32FromUint32(253))
 		}
 	}
-	_ccgo_fprintf(tls, libc.X__stderrp, __ccgo_ts+302009, libc.VaList(bp+8, __ccgo_ts+302436, int32(1074), __ccgo_ts+302036))
+	_ccgo_fprintf(tls, libc.X__stderrp, __ccgo_ts+372768, libc.VaList(bp+8, __ccgo_ts+373203, int32(1074), __ccgo_ts+372795))
 	libc.Xexit(tls, libc.Int32FromUint32(255))
 	return r
 }
@@ -65430,11 +77938,11 @@ func X_Py_LibHacl_Hacl_Hash_SHA2_copy_512(tls *libc.TLS, state uintptr) (r uintp
 			}
 			return p
 		default:
-			_ccgo_fprintf(tls, libc.X__stderrp, __ccgo_ts+301867, libc.VaList(bp+8, __ccgo_ts+302436, int32(1143)))
+			_ccgo_fprintf(tls, libc.X__stderrp, __ccgo_ts+372622, libc.VaList(bp+8, __ccgo_ts+373203, int32(1143)))
 			libc.Xexit(tls, libc.Int32FromUint32(253))
 		}
 	}
-	_ccgo_fprintf(tls, libc.X__stderrp, __ccgo_ts+302009, libc.VaList(bp+8, __ccgo_ts+302436, int32(1150), __ccgo_ts+302036))
+	_ccgo_fprintf(tls, libc.X__stderrp, __ccgo_ts+372768, libc.VaList(bp+8, __ccgo_ts+373203, int32(1150), __ccgo_ts+372795))
 	libc.Xexit(tls, libc.Int32FromUint32(255))
 	return r
 }
@@ -65757,11 +78265,11 @@ func X_Py_LibHacl_Hacl_Hash_SHA2_malloc_384(tls *libc.TLS) (r uintptr) {
 			X_Py_LibHacl_Hacl_Hash_SHA2_sha384_init(tls, block_state1)
 			return p
 		default:
-			_ccgo_fprintf(tls, libc.X__stderrp, __ccgo_ts+301867, libc.VaList(bp+8, __ccgo_ts+302436, int32(1482)))
+			_ccgo_fprintf(tls, libc.X__stderrp, __ccgo_ts+372622, libc.VaList(bp+8, __ccgo_ts+373203, int32(1482)))
 			libc.Xexit(tls, libc.Int32FromUint32(253))
 		}
 	}
-	_ccgo_fprintf(tls, libc.X__stderrp, __ccgo_ts+302009, libc.VaList(bp+8, __ccgo_ts+302436, int32(1489), __ccgo_ts+302036))
+	_ccgo_fprintf(tls, libc.X__stderrp, __ccgo_ts+372768, libc.VaList(bp+8, __ccgo_ts+373203, int32(1489), __ccgo_ts+372795))
 	libc.Xexit(tls, libc.Int32FromUint32(255))
 	return r
 }
@@ -66431,7 +78939,7 @@ func _block_len1(tls *libc.TLS, a TSpec_Hash_Definitions_hash_alg) (r Tuint32_t)
 	case int32(MSpec_Hash_Definitions_Shake256):
 		return uint32(136)
 	default:
-		_ccgo_fprintf(tls, libc.X__stderrp, __ccgo_ts+301867, libc.VaList(bp+8, __ccgo_ts+302538, int32(206)))
+		_ccgo_fprintf(tls, libc.X__stderrp, __ccgo_ts+372622, libc.VaList(bp+8, __ccgo_ts+373309, int32(206)))
 		libc.Xexit(tls, libc.Int32FromUint32(253))
 	}
 	return r
@@ -66450,7 +78958,7 @@ func _hash_len1(tls *libc.TLS, a TSpec_Hash_Definitions_hash_alg) (r Tuint32_t) 
 	case int32(MSpec_Hash_Definitions_SHA3_512):
 		return uint32(64)
 	default:
-		_ccgo_fprintf(tls, libc.X__stderrp, __ccgo_ts+301867, libc.VaList(bp+8, __ccgo_ts+302538, int32(234)))
+		_ccgo_fprintf(tls, libc.X__stderrp, __ccgo_ts+372622, libc.VaList(bp+8, __ccgo_ts+373309, int32(234)))
 		libc.Xexit(tls, libc.Int32FromUint32(253))
 	}
 	return r
@@ -67684,7 +80192,7 @@ func X_Py_LibHacl_Hacl_Hash_SHA3_malloc(tls *libc.TLS, a TSpec_Hash_Definitions_
 	var s0 THacl_Hash_SHA3_state_t
 	_, _, _, _, _, _, _, _, _, _, _ = a1, block_state, block_state1, buf, buf1, k_, p, s, s0, s1, s11
 	if uint64(_block_len1(tls, a)) > libc.Uint64FromUint64(18446744073709551615)/libc.Uint64FromInt64(1) {
-		_ccgo_printf(tls, __ccgo_ts+302163, libc.VaList(bp+8, __ccgo_ts+302538, int32(647)))
+		_ccgo_printf(tls, __ccgo_ts+372922, libc.VaList(bp+8, __ccgo_ts+373309, int32(647)))
 		libc.Xexit(tls, int32(253))
 	}
 	buf = libc.Xcalloc(tls, uint64(_block_len1(tls, a)), uint64(1))
@@ -67734,11 +80242,11 @@ func X_Py_LibHacl_Hacl_Hash_SHA3_malloc(tls *libc.TLS, a TSpec_Hash_Definitions_
 			X_Py_LibHacl_Hacl_Hash_SHA3_init_(tls, a1, s11)
 			return p
 		default:
-			_ccgo_fprintf(tls, libc.X__stderrp, __ccgo_ts+301867, libc.VaList(bp+8, __ccgo_ts+302538, int32(710)))
+			_ccgo_fprintf(tls, libc.X__stderrp, __ccgo_ts+372622, libc.VaList(bp+8, __ccgo_ts+373309, int32(710)))
 			libc.Xexit(tls, libc.Int32FromUint32(253))
 		}
 	}
-	_ccgo_fprintf(tls, libc.X__stderrp, __ccgo_ts+302009, libc.VaList(bp+8, __ccgo_ts+302538, int32(717), __ccgo_ts+302036))
+	_ccgo_fprintf(tls, libc.X__stderrp, __ccgo_ts+372768, libc.VaList(bp+8, __ccgo_ts+373309, int32(717), __ccgo_ts+372795))
 	libc.Xexit(tls, libc.Int32FromUint32(255))
 	return r
 }
@@ -67775,7 +80283,7 @@ func X_Py_LibHacl_Hacl_Hash_SHA3_copy(tls *libc.TLS, state uintptr) (r uintptr) 
 	total_len0 = scrut0.Ftotal_len
 	i = block_state0.Ffst
 	if uint64(_block_len1(tls, i)) > libc.Uint64FromUint64(18446744073709551615)/libc.Uint64FromInt64(1) {
-		_ccgo_printf(tls, __ccgo_ts+302163, libc.VaList(bp+8, __ccgo_ts+302538, int32(740)))
+		_ccgo_printf(tls, __ccgo_ts+372922, libc.VaList(bp+8, __ccgo_ts+373309, int32(740)))
 		libc.Xexit(tls, int32(253))
 	}
 	buf = libc.Xcalloc(tls, uint64(_block_len1(tls, i)), uint64(1))
@@ -67830,11 +80338,11 @@ func X_Py_LibHacl_Hacl_Hash_SHA3_copy(tls *libc.TLS, state uintptr) (r uintptr) 
 			}
 			return p
 		default:
-			_ccgo_fprintf(tls, libc.X__stderrp, __ccgo_ts+301867, libc.VaList(bp+8, __ccgo_ts+302538, int32(804)))
+			_ccgo_fprintf(tls, libc.X__stderrp, __ccgo_ts+372622, libc.VaList(bp+8, __ccgo_ts+373309, int32(804)))
 			libc.Xexit(tls, libc.Int32FromUint32(253))
 		}
 	}
-	_ccgo_fprintf(tls, libc.X__stderrp, __ccgo_ts+302009, libc.VaList(bp+8, __ccgo_ts+302538, int32(811), __ccgo_ts+302036))
+	_ccgo_fprintf(tls, libc.X__stderrp, __ccgo_ts+372768, libc.VaList(bp+8, __ccgo_ts+373309, int32(811), __ccgo_ts+372795))
 	libc.Xexit(tls, libc.Int32FromUint32(255))
 	return r
 }
@@ -71620,8869 +84128,4 @@ _65:
 		i12 = i12 + 1
 	}
 	libc.X__builtin___memcpy_chk(tls, rb+uintptr(64)-uintptr(remOut), bp+1496, uint64(remOut)*uint64(1), ^t__predefined_size_t(0))
-}
-
-// C documentation
-//
-//	/**
-//	Allocate state buffer of 200-bytes
-//	*/
-func X_Py_LibHacl_Hacl_Hash_SHA3_state_malloc(tls *libc.TLS) (r uintptr) {
-	var buf uintptr
-	_ = buf
-	buf = libc.Xcalloc(tls, uint64(25), uint64(8))
-	return buf
-}
-
-// C documentation
-//
-//	/**
-//	Free state buffer
-//	*/
-func X_Py_LibHacl_Hacl_Hash_SHA3_state_free(tls *libc.TLS, s uintptr) {
-	libc.Xfree(tls, s)
-}
-
-// C documentation
-//
-//	/**
-//	Absorb number of input blocks and write the output state
-//
-//	  This function is intended to receive a hash state and input buffer.
-//	  It processes an input of multiple of 168-bytes (SHAKE128 block size),
-//	  any additional bytes of final partial block are ignored.
-//
-//	  The argument `state` (IN/OUT) points to hash state, i.e., uint64_t[25]
-//	  The argument `input` (IN) points to `inputByteLen` bytes of valid memory,
-//	  i.e., uint8_t[inputByteLen]
-//	*/
-func X_Py_LibHacl_Hacl_Hash_SHA3_shake128_absorb_nblocks(tls *libc.TLS, state uintptr, input uintptr, inputByteLen Tuint32_t) {
-	bp := tls.Alloc(256)
-	defer tls.Free(256)
-	var b0, b_, bl0 uintptr
-	var i Tuint32_t
-	var _ [256]Tuint8_t
-	_, _, _, _ = b0, b_, bl0, i
-	i = 0
-	for {
-		if !(i < inputByteLen/uint32(168)) {
-			break
-		}
-		**(**[256]Tuint8_t)(__ccgo_up(bp)) = [256]Tuint8_t{}
-		b_ = bp
-		b0 = input
-		bl0 = b_
-		libc.X__builtin___memcpy_chk(tls, bl0, b0+uintptr(i*uint32(168)), libc.Uint64FromUint32(168)*libc.Uint64FromInt64(1), ^t__predefined_size_t(0))
-		X_Py_LibHacl_Hacl_Hash_SHA3_absorb_inner_32(tls, uint32(168), b_, state)
-		goto _1
-	_1:
-		;
-		i = i + 1
-	}
-}
-
-// C documentation
-//
-//	/**
-//	Absorb a final partial block of input and write the output state
-//
-//	  This function is intended to receive a hash state and input buffer.
-//	  It processes a sequence of bytes at end of input buffer that is less
-//	  than 168-bytes (SHAKE128 block size),
-//	  any bytes of full blocks at start of input buffer are ignored.
-//
-//	  The argument `state` (IN/OUT) points to hash state, i.e., uint64_t[25]
-//	  The argument `input` (IN) points to `inputByteLen` bytes of valid memory,
-//	  i.e., uint8_t[inputByteLen]
-//
-//	  Note: Full size of input buffer must be passed to `inputByteLen` including
-//	  the number of full-block bytes at start of input buffer that are ignored
-//	*/
-func X_Py_LibHacl_Hacl_Hash_SHA3_shake128_absorb_final(tls *libc.TLS, state uintptr, input uintptr, inputByteLen Tuint32_t) {
-	bp := tls.Alloc(528)
-	defer tls.Free(528)
-	var b0, b00, b01, b1, b3, b_, bl0 uintptr
-	var i, rem Tuint32_t
-	var u, u0, u1, u10, u11, u12, u13, u14, u15, u16, u17, u18, u19, u2, u20, u21, u22, u23, u24, u25, u26, u27, u28, u29, u3, u30, u4, u5, u6, u7, u8, u9, v1 Tuint64_t
-	var ws [32]Tuint64_t
-	var _ [256]Tuint8_t
-	var _ [256]Tuint8_t
-	var _ Tuint64_t
-	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = b0, b00, b01, b1, b3, b_, bl0, i, rem, u, u0, u1, u10, u11, u12, u13, u14, u15, u16, u17, u18, u19, u2, u20, u21, u22, u23, u24, u25, u26, u27, u28, u29, u3, u30, u4, u5, u6, u7, u8, u9, ws, v1
-	**(**[256]Tuint8_t)(__ccgo_up(bp + 8)) = [256]Tuint8_t{}
-	b_ = bp + 8
-	rem = inputByteLen % uint32(168)
-	b00 = input
-	bl0 = b_
-	libc.X__builtin___memcpy_chk(tls, bl0, b00+uintptr(inputByteLen)-uintptr(rem), uint64(rem)*uint64(1), ^t__predefined_size_t(0))
-	b01 = b_
-	**(**Tuint8_t)(__ccgo_up(b01 + uintptr(inputByteLen%uint32(168)))) = uint8(0x1F)
-	ws = [32]Tuint64_t{}
-	b1 = b_
-	libc.X__builtin___memcpy_chk(tls, bp, b1, uint64(8), ^t__predefined_size_t(0))
-	v1 = **(**Tuint64_t)(__ccgo_up(bp))
-	goto _2
-_2:
-	u = v1
-	ws[0] = u
-	libc.X__builtin___memcpy_chk(tls, bp, b1+uintptr(8), uint64(8), ^t__predefined_size_t(0))
-	v1 = **(**Tuint64_t)(__ccgo_up(bp))
-	goto _4
-_4:
-	u0 = v1
-	ws[uint32(1)] = u0
-	libc.X__builtin___memcpy_chk(tls, bp, b1+uintptr(16), uint64(8), ^t__predefined_size_t(0))
-	v1 = **(**Tuint64_t)(__ccgo_up(bp))
-	goto _6
-_6:
-	u1 = v1
-	ws[uint32(2)] = u1
-	libc.X__builtin___memcpy_chk(tls, bp, b1+uintptr(24), uint64(8), ^t__predefined_size_t(0))
-	v1 = **(**Tuint64_t)(__ccgo_up(bp))
-	goto _8
-_8:
-	u2 = v1
-	ws[uint32(3)] = u2
-	libc.X__builtin___memcpy_chk(tls, bp, b1+uintptr(32), uint64(8), ^t__predefined_size_t(0))
-	v1 = **(**Tuint64_t)(__ccgo_up(bp))
-	goto _10
-_10:
-	u3 = v1
-	ws[uint32(4)] = u3
-	libc.X__builtin___memcpy_chk(tls, bp, b1+uintptr(40), uint64(8), ^t__predefined_size_t(0))
-	v1 = **(**Tuint64_t)(__ccgo_up(bp))
-	goto _12
-_12:
-	u4 = v1
-	ws[uint32(5)] = u4
-	libc.X__builtin___memcpy_chk(tls, bp, b1+uintptr(48), uint64(8), ^t__predefined_size_t(0))
-	v1 = **(**Tuint64_t)(__ccgo_up(bp))
-	goto _14
-_14:
-	u5 = v1
-	ws[uint32(6)] = u5
-	libc.X__builtin___memcpy_chk(tls, bp, b1+uintptr(56), uint64(8), ^t__predefined_size_t(0))
-	v1 = **(**Tuint64_t)(__ccgo_up(bp))
-	goto _16
-_16:
-	u6 = v1
-	ws[uint32(7)] = u6
-	libc.X__builtin___memcpy_chk(tls, bp, b1+uintptr(64), uint64(8), ^t__predefined_size_t(0))
-	v1 = **(**Tuint64_t)(__ccgo_up(bp))
-	goto _18
-_18:
-	u7 = v1
-	ws[uint32(8)] = u7
-	libc.X__builtin___memcpy_chk(tls, bp, b1+uintptr(72), uint64(8), ^t__predefined_size_t(0))
-	v1 = **(**Tuint64_t)(__ccgo_up(bp))
-	goto _20
-_20:
-	u8 = v1
-	ws[uint32(9)] = u8
-	libc.X__builtin___memcpy_chk(tls, bp, b1+uintptr(80), uint64(8), ^t__predefined_size_t(0))
-	v1 = **(**Tuint64_t)(__ccgo_up(bp))
-	goto _22
-_22:
-	u9 = v1
-	ws[uint32(10)] = u9
-	libc.X__builtin___memcpy_chk(tls, bp, b1+uintptr(88), uint64(8), ^t__predefined_size_t(0))
-	v1 = **(**Tuint64_t)(__ccgo_up(bp))
-	goto _24
-_24:
-	u10 = v1
-	ws[uint32(11)] = u10
-	libc.X__builtin___memcpy_chk(tls, bp, b1+uintptr(96), uint64(8), ^t__predefined_size_t(0))
-	v1 = **(**Tuint64_t)(__ccgo_up(bp))
-	goto _26
-_26:
-	u11 = v1
-	ws[uint32(12)] = u11
-	libc.X__builtin___memcpy_chk(tls, bp, b1+uintptr(104), uint64(8), ^t__predefined_size_t(0))
-	v1 = **(**Tuint64_t)(__ccgo_up(bp))
-	goto _28
-_28:
-	u12 = v1
-	ws[uint32(13)] = u12
-	libc.X__builtin___memcpy_chk(tls, bp, b1+uintptr(112), uint64(8), ^t__predefined_size_t(0))
-	v1 = **(**Tuint64_t)(__ccgo_up(bp))
-	goto _30
-_30:
-	u13 = v1
-	ws[uint32(14)] = u13
-	libc.X__builtin___memcpy_chk(tls, bp, b1+uintptr(120), uint64(8), ^t__predefined_size_t(0))
-	v1 = **(**Tuint64_t)(__ccgo_up(bp))
-	goto _32
-_32:
-	u14 = v1
-	ws[uint32(15)] = u14
-	libc.X__builtin___memcpy_chk(tls, bp, b1+uintptr(128), uint64(8), ^t__predefined_size_t(0))
-	v1 = **(**Tuint64_t)(__ccgo_up(bp))
-	goto _34
-_34:
-	u15 = v1
-	ws[uint32(16)] = u15
-	libc.X__builtin___memcpy_chk(tls, bp, b1+uintptr(136), uint64(8), ^t__predefined_size_t(0))
-	v1 = **(**Tuint64_t)(__ccgo_up(bp))
-	goto _36
-_36:
-	u16 = v1
-	ws[uint32(17)] = u16
-	libc.X__builtin___memcpy_chk(tls, bp, b1+uintptr(144), uint64(8), ^t__predefined_size_t(0))
-	v1 = **(**Tuint64_t)(__ccgo_up(bp))
-	goto _38
-_38:
-	u17 = v1
-	ws[uint32(18)] = u17
-	libc.X__builtin___memcpy_chk(tls, bp, b1+uintptr(152), uint64(8), ^t__predefined_size_t(0))
-	v1 = **(**Tuint64_t)(__ccgo_up(bp))
-	goto _40
-_40:
-	u18 = v1
-	ws[uint32(19)] = u18
-	libc.X__builtin___memcpy_chk(tls, bp, b1+uintptr(160), uint64(8), ^t__predefined_size_t(0))
-	v1 = **(**Tuint64_t)(__ccgo_up(bp))
-	goto _42
-_42:
-	u19 = v1
-	ws[uint32(20)] = u19
-	libc.X__builtin___memcpy_chk(tls, bp, b1+uintptr(168), uint64(8), ^t__predefined_size_t(0))
-	v1 = **(**Tuint64_t)(__ccgo_up(bp))
-	goto _44
-_44:
-	u20 = v1
-	ws[uint32(21)] = u20
-	libc.X__builtin___memcpy_chk(tls, bp, b1+uintptr(176), uint64(8), ^t__predefined_size_t(0))
-	v1 = **(**Tuint64_t)(__ccgo_up(bp))
-	goto _46
-_46:
-	u21 = v1
-	ws[uint32(22)] = u21
-	libc.X__builtin___memcpy_chk(tls, bp, b1+uintptr(184), uint64(8), ^t__predefined_size_t(0))
-	v1 = **(**Tuint64_t)(__ccgo_up(bp))
-	goto _48
-_48:
-	u22 = v1
-	ws[uint32(23)] = u22
-	libc.X__builtin___memcpy_chk(tls, bp, b1+uintptr(192), uint64(8), ^t__predefined_size_t(0))
-	v1 = **(**Tuint64_t)(__ccgo_up(bp))
-	goto _50
-_50:
-	u23 = v1
-	ws[uint32(24)] = u23
-	libc.X__builtin___memcpy_chk(tls, bp, b1+uintptr(200), uint64(8), ^t__predefined_size_t(0))
-	v1 = **(**Tuint64_t)(__ccgo_up(bp))
-	goto _52
-_52:
-	u24 = v1
-	ws[uint32(25)] = u24
-	libc.X__builtin___memcpy_chk(tls, bp, b1+uintptr(208), uint64(8), ^t__predefined_size_t(0))
-	v1 = **(**Tuint64_t)(__ccgo_up(bp))
-	goto _54
-_54:
-	u25 = v1
-	ws[uint32(26)] = u25
-	libc.X__builtin___memcpy_chk(tls, bp, b1+uintptr(216), uint64(8), ^t__predefined_size_t(0))
-	v1 = **(**Tuint64_t)(__ccgo_up(bp))
-	goto _56
-_56:
-	u26 = v1
-	ws[uint32(27)] = u26
-	libc.X__builtin___memcpy_chk(tls, bp, b1+uintptr(224), uint64(8), ^t__predefined_size_t(0))
-	v1 = **(**Tuint64_t)(__ccgo_up(bp))
-	goto _58
-_58:
-	u27 = v1
-	ws[uint32(28)] = u27
-	libc.X__builtin___memcpy_chk(tls, bp, b1+uintptr(232), uint64(8), ^t__predefined_size_t(0))
-	v1 = **(**Tuint64_t)(__ccgo_up(bp))
-	goto _60
-_60:
-	u28 = v1
-	ws[uint32(29)] = u28
-	libc.X__builtin___memcpy_chk(tls, bp, b1+uintptr(240), uint64(8), ^t__predefined_size_t(0))
-	v1 = **(**Tuint64_t)(__ccgo_up(bp))
-	goto _62
-_62:
-	u29 = v1
-	ws[uint32(30)] = u29
-	libc.X__builtin___memcpy_chk(tls, bp, b1+uintptr(248), uint64(8), ^t__predefined_size_t(0))
-	v1 = **(**Tuint64_t)(__ccgo_up(bp))
-	goto _64
-_64:
-	u30 = v1
-	ws[uint32(31)] = u30
-	i = 0
-	for {
-		if !(i < uint32(25)) {
-			break
-		}
-		**(**Tuint64_t)(__ccgo_up(state + uintptr(i)*8)) = **(**Tuint64_t)(__ccgo_up(state + uintptr(i)*8)) ^ ws[i]
-		goto _65
-	_65:
-		;
-		i = i + 1
-	}
-	**(**[256]Tuint8_t)(__ccgo_up(bp + 264)) = [256]Tuint8_t{}
-	b3 = bp + 264
-	b0 = b3
-	**(**Tuint8_t)(__ccgo_up(b0 + 167)) = uint8(0x80)
-	X_Py_LibHacl_Hacl_Hash_SHA3_absorb_inner_32(tls, uint32(168), b3, state)
-}
-
-// C documentation
-//
-//	/**
-//	Squeeze a hash state to output buffer
-//
-//	  This function is intended to receive a hash state and output buffer.
-//	  It produces an output of multiple of 168-bytes (SHAKE128 block size),
-//	  any additional bytes of final partial block are ignored.
-//
-//	  The argument `state` (IN) points to hash state, i.e., uint64_t[25]
-//	  The argument `output` (OUT) points to `outputByteLen` bytes of valid memory,
-//	  i.e., uint8_t[outputByteLen]
-//	*/
-func X_Py_LibHacl_Hacl_Hash_SHA3_shake128_squeeze_nblocks(tls *libc.TLS, state uintptr, output uintptr, outputByteLen Tuint32_t) {
-	bp := tls.Alloc(528)
-	defer tls.Free(528)
-	var _C [5]Tuint64_t
-	var _D, _D1, _D2, _D3, _D4, c, current, temp, uu____0, uu____01, uu____02, uu____03, uu____04, uu____1, v0, v01, v02, v03, v04, v1, v11, v12, v13, v14, v2, v21, v22, v23, v24, v3, v31, v32, v33, v34, v4, v41, v42, v43, v44, x, v45 Tuint64_t
-	var _Y, i0, i1, i11, i2, i21, i3, i4, i5, i6, i7, i8, i9, r Tuint32_t
-	var b0, v35 uintptr
-	var _ [256]Tuint8_t
-	var _ [32]Tuint64_t
-	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = _C, _D, _D1, _D2, _D3, _D4, _Y, b0, c, current, i0, i1, i11, i2, i21, i3, i4, i5, i6, i7, i8, i9, r, temp, uu____0, uu____01, uu____02, uu____03, uu____04, uu____1, v0, v01, v02, v03, v04, v1, v11, v12, v13, v14, v2, v21, v22, v23, v24, v3, v31, v32, v33, v34, v4, v41, v42, v43, v44, x, v35, v45
-	i0 = 0
-	for {
-		if !(i0 < outputByteLen/uint32(168)) {
-			break
-		}
-		**(**[256]Tuint8_t)(__ccgo_up(bp + 8)) = [256]Tuint8_t{}
-		**(**[32]Tuint64_t)(__ccgo_up(bp + 264)) = [32]Tuint64_t{}
-		libc.X__builtin___memcpy_chk(tls, bp+264, state, libc.Uint64FromUint32(25)*libc.Uint64FromInt64(8), ^t__predefined_size_t(0))
-		i1 = 0
-		for {
-			if !(i1 < uint32(32)) {
-				break
-			}
-			v35 = bp + 8 + uintptr(i1*uint32(8))
-			v45 = (**(**[32]Tuint64_t)(__ccgo_up(bp + 264)))[i1]
-			*(*Tuint64_t)(unsafe.Pointer(bp)) = v45
-			libc.X__builtin___memcpy_chk(tls, v35, bp, uint64(8), ^t__predefined_size_t(0))
-			goto _2
-		_2:
-			;
-			i1 = i1 + 1
-		}
-		b0 = output
-		libc.X__builtin___memcpy_chk(tls, b0+uintptr(i0*uint32(168)), bp+8, libc.Uint64FromUint32(168)*libc.Uint64FromInt64(1), ^t__predefined_size_t(0))
-		i11 = 0
-		for {
-			if !(i11 < uint32(24)) {
-				break
-			}
-			_C = [5]Tuint64_t{}
-			i2 = 0
-			_C[i2] = **(**Tuint64_t)(__ccgo_up(state + uintptr(i2+0)*8)) ^ (**(**Tuint64_t)(__ccgo_up(state + uintptr(i2+uint32(5))*8)) ^ (**(**Tuint64_t)(__ccgo_up(state + uintptr(i2+uint32(10))*8)) ^ (**(**Tuint64_t)(__ccgo_up(state + uintptr(i2+uint32(15))*8)) ^ **(**Tuint64_t)(__ccgo_up(state + uintptr(i2+uint32(20))*8)))))
-			i2 = i2 + uint32(1)
-			_ = i2
-			_C[i2] = **(**Tuint64_t)(__ccgo_up(state + uintptr(i2+0)*8)) ^ (**(**Tuint64_t)(__ccgo_up(state + uintptr(i2+uint32(5))*8)) ^ (**(**Tuint64_t)(__ccgo_up(state + uintptr(i2+uint32(10))*8)) ^ (**(**Tuint64_t)(__ccgo_up(state + uintptr(i2+uint32(15))*8)) ^ **(**Tuint64_t)(__ccgo_up(state + uintptr(i2+uint32(20))*8)))))
-			i2 = i2 + uint32(1)
-			_ = i2
-			_C[i2] = **(**Tuint64_t)(__ccgo_up(state + uintptr(i2+0)*8)) ^ (**(**Tuint64_t)(__ccgo_up(state + uintptr(i2+uint32(5))*8)) ^ (**(**Tuint64_t)(__ccgo_up(state + uintptr(i2+uint32(10))*8)) ^ (**(**Tuint64_t)(__ccgo_up(state + uintptr(i2+uint32(15))*8)) ^ **(**Tuint64_t)(__ccgo_up(state + uintptr(i2+uint32(20))*8)))))
-			i2 = i2 + uint32(1)
-			_ = i2
-			_C[i2] = **(**Tuint64_t)(__ccgo_up(state + uintptr(i2+0)*8)) ^ (**(**Tuint64_t)(__ccgo_up(state + uintptr(i2+uint32(5))*8)) ^ (**(**Tuint64_t)(__ccgo_up(state + uintptr(i2+uint32(10))*8)) ^ (**(**Tuint64_t)(__ccgo_up(state + uintptr(i2+uint32(15))*8)) ^ **(**Tuint64_t)(__ccgo_up(state + uintptr(i2+uint32(20))*8)))))
-			i2 = i2 + uint32(1)
-			_ = i2
-			_C[i2] = **(**Tuint64_t)(__ccgo_up(state + uintptr(i2+0)*8)) ^ (**(**Tuint64_t)(__ccgo_up(state + uintptr(i2+uint32(5))*8)) ^ (**(**Tuint64_t)(__ccgo_up(state + uintptr(i2+uint32(10))*8)) ^ (**(**Tuint64_t)(__ccgo_up(state + uintptr(i2+uint32(15))*8)) ^ **(**Tuint64_t)(__ccgo_up(state + uintptr(i2+uint32(20))*8)))))
-			i2 = i2 + uint32(1)
-			_ = i2
-			i21 = 0
-			uu____0 = _C[(i21+uint32(1))%uint32(5)]
-			_D = _C[(i21+uint32(4))%uint32(5)] ^ (uu____0<<uint32(1) | uu____0>>uint32(63))
-			i3 = 0
-			**(**Tuint64_t)(__ccgo_up(state + uintptr(i21+uint32(5)*i3)*8)) = **(**Tuint64_t)(__ccgo_up(state + uintptr(i21+uint32(5)*i3)*8)) ^ _D
-			i3 = i3 + uint32(1)
-			_ = i3
-			**(**Tuint64_t)(__ccgo_up(state + uintptr(i21+uint32(5)*i3)*8)) = **(**Tuint64_t)(__ccgo_up(state + uintptr(i21+uint32(5)*i3)*8)) ^ _D
-			i3 = i3 + uint32(1)
-			_ = i3
-			**(**Tuint64_t)(__ccgo_up(state + uintptr(i21+uint32(5)*i3)*8)) = **(**Tuint64_t)(__ccgo_up(state + uintptr(i21+uint32(5)*i3)*8)) ^ _D
-			i3 = i3 + uint32(1)
-			_ = i3
-			**(**Tuint64_t)(__ccgo_up(state + uintptr(i21+uint32(5)*i3)*8)) = **(**Tuint64_t)(__ccgo_up(state + uintptr(i21+uint32(5)*i3)*8)) ^ _D
-			i3 = i3 + uint32(1)
-			_ = i3
-			**(**Tuint64_t)(__ccgo_up(state + uintptr(i21+uint32(5)*i3)*8)) = **(**Tuint64_t)(__ccgo_up(state + uintptr(i21+uint32(5)*i3)*8)) ^ _D
-			i3 = i3 + uint32(1)
-			_ = i3
-			i21 = i21 + uint32(1)
-			_ = i21
-			uu____01 = _C[(i21+uint32(1))%uint32(5)]
-			_D1 = _C[(i21+uint32(4))%uint32(5)] ^ (uu____01<<uint32(1) | uu____01>>uint32(63))
-			i4 = 0
-			**(**Tuint64_t)(__ccgo_up(state + uintptr(i21+uint32(5)*i4)*8)) = **(**Tuint64_t)(__ccgo_up(state + uintptr(i21+uint32(5)*i4)*8)) ^ _D1
-			i4 = i4 + uint32(1)
-			_ = i4
-			**(**Tuint64_t)(__ccgo_up(state + uintptr(i21+uint32(5)*i4)*8)) = **(**Tuint64_t)(__ccgo_up(state + uintptr(i21+uint32(5)*i4)*8)) ^ _D1
-			i4 = i4 + uint32(1)
-			_ = i4
-			**(**Tuint64_t)(__ccgo_up(state + uintptr(i21+uint32(5)*i4)*8)) = **(**Tuint64_t)(__ccgo_up(state + uintptr(i21+uint32(5)*i4)*8)) ^ _D1
-			i4 = i4 + uint32(1)
-			_ = i4
-			**(**Tuint64_t)(__ccgo_up(state + uintptr(i21+uint32(5)*i4)*8)) = **(**Tuint64_t)(__ccgo_up(state + uintptr(i21+uint32(5)*i4)*8)) ^ _D1
-			i4 = i4 + uint32(1)
-			_ = i4
-			**(**Tuint64_t)(__ccgo_up(state + uintptr(i21+uint32(5)*i4)*8)) = **(**Tuint64_t)(__ccgo_up(state + uintptr(i21+uint32(5)*i4)*8)) ^ _D1
-			i4 = i4 + uint32(1)
-			_ = i4
-			i21 = i21 + uint32(1)
-			_ = i21
-			uu____02 = _C[(i21+uint32(1))%uint32(5)]
-			_D2 = _C[(i21+uint32(4))%uint32(5)] ^ (uu____02<<uint32(1) | uu____02>>uint32(63))
-			i5 = 0
-			**(**Tuint64_t)(__ccgo_up(state + uintptr(i21+uint32(5)*i5)*8)) = **(**Tuint64_t)(__ccgo_up(state + uintptr(i21+uint32(5)*i5)*8)) ^ _D2
-			i5 = i5 + uint32(1)
-			_ = i5
-			**(**Tuint64_t)(__ccgo_up(state + uintptr(i21+uint32(5)*i5)*8)) = **(**Tuint64_t)(__ccgo_up(state + uintptr(i21+uint32(5)*i5)*8)) ^ _D2
-			i5 = i5 + uint32(1)
-			_ = i5
-			**(**Tuint64_t)(__ccgo_up(state + uintptr(i21+uint32(5)*i5)*8)) = **(**Tuint64_t)(__ccgo_up(state + uintptr(i21+uint32(5)*i5)*8)) ^ _D2
-			i5 = i5 + uint32(1)
-			_ = i5
-			**(**Tuint64_t)(__ccgo_up(state + uintptr(i21+uint32(5)*i5)*8)) = **(**Tuint64_t)(__ccgo_up(state + uintptr(i21+uint32(5)*i5)*8)) ^ _D2
-			i5 = i5 + uint32(1)
-			_ = i5
-			**(**Tuint64_t)(__ccgo_up(state + uintptr(i21+uint32(5)*i5)*8)) = **(**Tuint64_t)(__ccgo_up(state + uintptr(i21+uint32(5)*i5)*8)) ^ _D2
-			i5 = i5 + uint32(1)
-			_ = i5
-			i21 = i21 + uint32(1)
-			_ = i21
-			uu____03 = _C[(i21+uint32(1))%uint32(5)]
-			_D3 = _C[(i21+uint32(4))%uint32(5)] ^ (uu____03<<uint32(1) | uu____03>>uint32(63))
-			i6 = 0
-			**(**Tuint64_t)(__ccgo_up(state + uintptr(i21+uint32(5)*i6)*8)) = **(**Tuint64_t)(__ccgo_up(state + uintptr(i21+uint32(5)*i6)*8)) ^ _D3
-			i6 = i6 + uint32(1)
-			_ = i6
-			**(**Tuint64_t)(__ccgo_up(state + uintptr(i21+uint32(5)*i6)*8)) = **(**Tuint64_t)(__ccgo_up(state + uintptr(i21+uint32(5)*i6)*8)) ^ _D3
-			i6 = i6 + uint32(1)
-			_ = i6
-			**(**Tuint64_t)(__ccgo_up(state + uintptr(i21+uint32(5)*i6)*8)) = **(**Tuint64_t)(__ccgo_up(state + uintptr(i21+uint32(5)*i6)*8)) ^ _D3
-			i6 = i6 + uint32(1)
-			_ = i6
-			**(**Tuint64_t)(__ccgo_up(state + uintptr(i21+uint32(5)*i6)*8)) = **(**Tuint64_t)(__ccgo_up(state + uintptr(i21+uint32(5)*i6)*8)) ^ _D3
-			i6 = i6 + uint32(1)
-			_ = i6
-			**(**Tuint64_t)(__ccgo_up(state + uintptr(i21+uint32(5)*i6)*8)) = **(**Tuint64_t)(__ccgo_up(state + uintptr(i21+uint32(5)*i6)*8)) ^ _D3
-			i6 = i6 + uint32(1)
-			_ = i6
-			i21 = i21 + uint32(1)
-			_ = i21
-			uu____04 = _C[(i21+uint32(1))%uint32(5)]
-			_D4 = _C[(i21+uint32(4))%uint32(5)] ^ (uu____04<<uint32(1) | uu____04>>uint32(63))
-			i7 = 0
-			**(**Tuint64_t)(__ccgo_up(state + uintptr(i21+uint32(5)*i7)*8)) = **(**Tuint64_t)(__ccgo_up(state + uintptr(i21+uint32(5)*i7)*8)) ^ _D4
-			i7 = i7 + uint32(1)
-			_ = i7
-			**(**Tuint64_t)(__ccgo_up(state + uintptr(i21+uint32(5)*i7)*8)) = **(**Tuint64_t)(__ccgo_up(state + uintptr(i21+uint32(5)*i7)*8)) ^ _D4
-			i7 = i7 + uint32(1)
-			_ = i7
-			**(**Tuint64_t)(__ccgo_up(state + uintptr(i21+uint32(5)*i7)*8)) = **(**Tuint64_t)(__ccgo_up(state + uintptr(i21+uint32(5)*i7)*8)) ^ _D4
-			i7 = i7 + uint32(1)
-			_ = i7
-			**(**Tuint64_t)(__ccgo_up(state + uintptr(i21+uint32(5)*i7)*8)) = **(**Tuint64_t)(__ccgo_up(state + uintptr(i21+uint32(5)*i7)*8)) ^ _D4
-			i7 = i7 + uint32(1)
-			_ = i7
-			**(**Tuint64_t)(__ccgo_up(state + uintptr(i21+uint32(5)*i7)*8)) = **(**Tuint64_t)(__ccgo_up(state + uintptr(i21+uint32(5)*i7)*8)) ^ _D4
-			i7 = i7 + uint32(1)
-			_ = i7
-			i21 = i21 + uint32(1)
-			_ = i21
-			x = **(**Tuint64_t)(__ccgo_up(state + 1*8))
-			current = x
-			i8 = 0
-			for {
-				if !(i8 < uint32(24)) {
-					break
-				}
-				_Y = X_Py_LibHacl_Hacl_Hash_SHA3_keccak_piln[i8]
-				r = X_Py_LibHacl_Hacl_Hash_SHA3_keccak_rotc[i8]
-				temp = **(**Tuint64_t)(__ccgo_up(state + uintptr(_Y)*8))
-				uu____1 = current
-				**(**Tuint64_t)(__ccgo_up(state + uintptr(_Y)*8)) = uu____1<<r | uu____1>>(uint32(64)-r)
-				current = temp
-				goto _6
-			_6:
-				;
-				i8 = i8 + 1
-			}
-			i9 = 0
-			v0 = **(**Tuint64_t)(__ccgo_up(state + uintptr(0+uint32(5)*i9)*8)) ^ ^**(**Tuint64_t)(__ccgo_up(state + uintptr(uint32(1)+uint32(5)*i9)*8))&**(**Tuint64_t)(__ccgo_up(state + uintptr(uint32(2)+uint32(5)*i9)*8))
-			v1 = **(**Tuint64_t)(__ccgo_up(state + uintptr(uint32(1)+uint32(5)*i9)*8)) ^ ^**(**Tuint64_t)(__ccgo_up(state + uintptr(uint32(2)+uint32(5)*i9)*8))&**(**Tuint64_t)(__ccgo_up(state + uintptr(uint32(3)+uint32(5)*i9)*8))
-			v2 = **(**Tuint64_t)(__ccgo_up(state + uintptr(uint32(2)+uint32(5)*i9)*8)) ^ ^**(**Tuint64_t)(__ccgo_up(state + uintptr(uint32(3)+uint32(5)*i9)*8))&**(**Tuint64_t)(__ccgo_up(state + uintptr(uint32(4)+uint32(5)*i9)*8))
-			v3 = **(**Tuint64_t)(__ccgo_up(state + uintptr(uint32(3)+uint32(5)*i9)*8)) ^ ^**(**Tuint64_t)(__ccgo_up(state + uintptr(uint32(4)+uint32(5)*i9)*8))&**(**Tuint64_t)(__ccgo_up(state + uintptr(0+uint32(5)*i9)*8))
-			v4 = **(**Tuint64_t)(__ccgo_up(state + uintptr(uint32(4)+uint32(5)*i9)*8)) ^ ^**(**Tuint64_t)(__ccgo_up(state + uintptr(0+uint32(5)*i9)*8))&**(**Tuint64_t)(__ccgo_up(state + uintptr(uint32(1)+uint32(5)*i9)*8))
-			**(**Tuint64_t)(__ccgo_up(state + uintptr(0+uint32(5)*i9)*8)) = v0
-			**(**Tuint64_t)(__ccgo_up(state + uintptr(uint32(1)+uint32(5)*i9)*8)) = v1
-			**(**Tuint64_t)(__ccgo_up(state + uintptr(uint32(2)+uint32(5)*i9)*8)) = v2
-			**(**Tuint64_t)(__ccgo_up(state + uintptr(uint32(3)+uint32(5)*i9)*8)) = v3
-			**(**Tuint64_t)(__ccgo_up(state + uintptr(uint32(4)+uint32(5)*i9)*8)) = v4
-			i9 = i9 + uint32(1)
-			_ = i9
-			v01 = **(**Tuint64_t)(__ccgo_up(state + uintptr(0+uint32(5)*i9)*8)) ^ ^**(**Tuint64_t)(__ccgo_up(state + uintptr(uint32(1)+uint32(5)*i9)*8))&**(**Tuint64_t)(__ccgo_up(state + uintptr(uint32(2)+uint32(5)*i9)*8))
-			v11 = **(**Tuint64_t)(__ccgo_up(state + uintptr(uint32(1)+uint32(5)*i9)*8)) ^ ^**(**Tuint64_t)(__ccgo_up(state + uintptr(uint32(2)+uint32(5)*i9)*8))&**(**Tuint64_t)(__ccgo_up(state + uintptr(uint32(3)+uint32(5)*i9)*8))
-			v21 = **(**Tuint64_t)(__ccgo_up(state + uintptr(uint32(2)+uint32(5)*i9)*8)) ^ ^**(**Tuint64_t)(__ccgo_up(state + uintptr(uint32(3)+uint32(5)*i9)*8))&**(**Tuint64_t)(__ccgo_up(state + uintptr(uint32(4)+uint32(5)*i9)*8))
-			v31 = **(**Tuint64_t)(__ccgo_up(state + uintptr(uint32(3)+uint32(5)*i9)*8)) ^ ^**(**Tuint64_t)(__ccgo_up(state + uintptr(uint32(4)+uint32(5)*i9)*8))&**(**Tuint64_t)(__ccgo_up(state + uintptr(0+uint32(5)*i9)*8))
-			v41 = **(**Tuint64_t)(__ccgo_up(state + uintptr(uint32(4)+uint32(5)*i9)*8)) ^ ^**(**Tuint64_t)(__ccgo_up(state + uintptr(0+uint32(5)*i9)*8))&**(**Tuint64_t)(__ccgo_up(state + uintptr(uint32(1)+uint32(5)*i9)*8))
-			**(**Tuint64_t)(__ccgo_up(state + uintptr(0+uint32(5)*i9)*8)) = v01
-			**(**Tuint64_t)(__ccgo_up(state + uintptr(uint32(1)+uint32(5)*i9)*8)) = v11
-			**(**Tuint64_t)(__ccgo_up(state + uintptr(uint32(2)+uint32(5)*i9)*8)) = v21
-			**(**Tuint64_t)(__ccgo_up(state + uintptr(uint32(3)+uint32(5)*i9)*8)) = v31
-			**(**Tuint64_t)(__ccgo_up(state + uintptr(uint32(4)+uint32(5)*i9)*8)) = v41
-			i9 = i9 + uint32(1)
-			_ = i9
-			v02 = **(**Tuint64_t)(__ccgo_up(state + uintptr(0+uint32(5)*i9)*8)) ^ ^**(**Tuint64_t)(__ccgo_up(state + uintptr(uint32(1)+uint32(5)*i9)*8))&**(**Tuint64_t)(__ccgo_up(state + uintptr(uint32(2)+uint32(5)*i9)*8))
-			v12 = **(**Tuint64_t)(__ccgo_up(state + uintptr(uint32(1)+uint32(5)*i9)*8)) ^ ^**(**Tuint64_t)(__ccgo_up(state + uintptr(uint32(2)+uint32(5)*i9)*8))&**(**Tuint64_t)(__ccgo_up(state + uintptr(uint32(3)+uint32(5)*i9)*8))
-			v22 = **(**Tuint64_t)(__ccgo_up(state + uintptr(uint32(2)+uint32(5)*i9)*8)) ^ ^**(**Tuint64_t)(__ccgo_up(state + uintptr(uint32(3)+uint32(5)*i9)*8))&**(**Tuint64_t)(__ccgo_up(state + uintptr(uint32(4)+uint32(5)*i9)*8))
-			v32 = **(**Tuint64_t)(__ccgo_up(state + uintptr(uint32(3)+uint32(5)*i9)*8)) ^ ^**(**Tuint64_t)(__ccgo_up(state + uintptr(uint32(4)+uint32(5)*i9)*8))&**(**Tuint64_t)(__ccgo_up(state + uintptr(0+uint32(5)*i9)*8))
-			v42 = **(**Tuint64_t)(__ccgo_up(state + uintptr(uint32(4)+uint32(5)*i9)*8)) ^ ^**(**Tuint64_t)(__ccgo_up(state + uintptr(0+uint32(5)*i9)*8))&**(**Tuint64_t)(__ccgo_up(state + uintptr(uint32(1)+uint32(5)*i9)*8))
-			**(**Tuint64_t)(__ccgo_up(state + uintptr(0+uint32(5)*i9)*8)) = v02
-			**(**Tuint64_t)(__ccgo_up(state + uintptr(uint32(1)+uint32(5)*i9)*8)) = v12
-			**(**Tuint64_t)(__ccgo_up(state + uintptr(uint32(2)+uint32(5)*i9)*8)) = v22
-			**(**Tuint64_t)(__ccgo_up(state + uintptr(uint32(3)+uint32(5)*i9)*8)) = v32
-			**(**Tuint64_t)(__ccgo_up(state + uintptr(uint32(4)+uint32(5)*i9)*8)) = v42
-			i9 = i9 + uint32(1)
-			_ = i9
-			v03 = **(**Tuint64_t)(__ccgo_up(state + uintptr(0+uint32(5)*i9)*8)) ^ ^**(**Tuint64_t)(__ccgo_up(state + uintptr(uint32(1)+uint32(5)*i9)*8))&**(**Tuint64_t)(__ccgo_up(state + uintptr(uint32(2)+uint32(5)*i9)*8))
-			v13 = **(**Tuint64_t)(__ccgo_up(state + uintptr(uint32(1)+uint32(5)*i9)*8)) ^ ^**(**Tuint64_t)(__ccgo_up(state + uintptr(uint32(2)+uint32(5)*i9)*8))&**(**Tuint64_t)(__ccgo_up(state + uintptr(uint32(3)+uint32(5)*i9)*8))
-			v23 = **(**Tuint64_t)(__ccgo_up(state + uintptr(uint32(2)+uint32(5)*i9)*8)) ^ ^**(**Tuint64_t)(__ccgo_up(state + uintptr(uint32(3)+uint32(5)*i9)*8))&**(**Tuint64_t)(__ccgo_up(state + uintptr(uint32(4)+uint32(5)*i9)*8))
-			v33 = **(**Tuint64_t)(__ccgo_up(state + uintptr(uint32(3)+uint32(5)*i9)*8)) ^ ^**(**Tuint64_t)(__ccgo_up(state + uintptr(uint32(4)+uint32(5)*i9)*8))&**(**Tuint64_t)(__ccgo_up(state + uintptr(0+uint32(5)*i9)*8))
-			v43 = **(**Tuint64_t)(__ccgo_up(state + uintptr(uint32(4)+uint32(5)*i9)*8)) ^ ^**(**Tuint64_t)(__ccgo_up(state + uintptr(0+uint32(5)*i9)*8))&**(**Tuint64_t)(__ccgo_up(state + uintptr(uint32(1)+uint32(5)*i9)*8))
-			**(**Tuint64_t)(__ccgo_up(state + uintptr(0+uint32(5)*i9)*8)) = v03
-			**(**Tuint64_t)(__ccgo_up(state + uintptr(uint32(1)+uint32(5)*i9)*8)) = v13
-			**(**Tuint64_t)(__ccgo_up(state + uintptr(uint32(2)+uint32(5)*i9)*8)) = v23
-			**(**Tuint64_t)(__ccgo_up(state + uintptr(uint32(3)+uint32(5)*i9)*8)) = v33
-			**(**Tuint64_t)(__ccgo_up(state + uintptr(uint32(4)+uint32(5)*i9)*8)) = v43
-			i9 = i9 + uint32(1)
-			_ = i9
-			v04 = **(**Tuint64_t)(__ccgo_up(state + uintptr(0+uint32(5)*i9)*8)) ^ ^**(**Tuint64_t)(__ccgo_up(state + uintptr(uint32(1)+uint32(5)*i9)*8))&**(**Tuint64_t)(__ccgo_up(state + uintptr(uint32(2)+uint32(5)*i9)*8))
-			v14 = **(**Tuint64_t)(__ccgo_up(state + uintptr(uint32(1)+uint32(5)*i9)*8)) ^ ^**(**Tuint64_t)(__ccgo_up(state + uintptr(uint32(2)+uint32(5)*i9)*8))&**(**Tuint64_t)(__ccgo_up(state + uintptr(uint32(3)+uint32(5)*i9)*8))
-			v24 = **(**Tuint64_t)(__ccgo_up(state + uintptr(uint32(2)+uint32(5)*i9)*8)) ^ ^**(**Tuint64_t)(__ccgo_up(state + uintptr(uint32(3)+uint32(5)*i9)*8))&**(**Tuint64_t)(__ccgo_up(state + uintptr(uint32(4)+uint32(5)*i9)*8))
-			v34 = **(**Tuint64_t)(__ccgo_up(state + uintptr(uint32(3)+uint32(5)*i9)*8)) ^ ^**(**Tuint64_t)(__ccgo_up(state + uintptr(uint32(4)+uint32(5)*i9)*8))&**(**Tuint64_t)(__ccgo_up(state + uintptr(0+uint32(5)*i9)*8))
-			v44 = **(**Tuint64_t)(__ccgo_up(state + uintptr(uint32(4)+uint32(5)*i9)*8)) ^ ^**(**Tuint64_t)(__ccgo_up(state + uintptr(0+uint32(5)*i9)*8))&**(**Tuint64_t)(__ccgo_up(state + uintptr(uint32(1)+uint32(5)*i9)*8))
-			**(**Tuint64_t)(__ccgo_up(state + uintptr(0+uint32(5)*i9)*8)) = v04
-			**(**Tuint64_t)(__ccgo_up(state + uintptr(uint32(1)+uint32(5)*i9)*8)) = v14
-			**(**Tuint64_t)(__ccgo_up(state + uintptr(uint32(2)+uint32(5)*i9)*8)) = v24
-			**(**Tuint64_t)(__ccgo_up(state + uintptr(uint32(3)+uint32(5)*i9)*8)) = v34
-			**(**Tuint64_t)(__ccgo_up(state + uintptr(uint32(4)+uint32(5)*i9)*8)) = v44
-			i9 = i9 + uint32(1)
-			_ = i9
-			c = X_Py_LibHacl_Hacl_Hash_SHA3_keccak_rndc[i11]
-			**(**Tuint64_t)(__ccgo_up(state)) = **(**Tuint64_t)(__ccgo_up(state)) ^ c
-			goto _5
-		_5:
-			;
-			i11 = i11 + 1
-		}
-		goto _1
-	_1:
-		;
-		i0 = i0 + 1
-	}
-}
-
-func _FStar_UInt64_eq_mask12(tls *libc.TLS, a Tuint64_t, b Tuint64_t) (r Tuint64_t) {
-	var minus_x, x, Xor_minus_x, xnx Tuint64_t
-	_, _, _, _ = minus_x, x, Xor_minus_x, xnx
-	x = a ^ b
-	minus_x = ^x + uint64(1)
-	Xor_minus_x = x | minus_x
-	xnx = Xor_minus_x >> uint32(63)
-	return xnx - uint64(1)
-}
-
-func _FStar_UInt64_gte_mask12(tls *libc.TLS, a Tuint64_t, b Tuint64_t) (r Tuint64_t) {
-	var q, x, Xsub_y, Xsub_y_xor_y, Xxor_q, Xxor_q_, Xxor_y, y Tuint64_t
-	_, _, _, _, _, _, _, _ = q, x, Xsub_y, Xsub_y_xor_y, Xxor_q, Xxor_q_, Xxor_y, y
-	x = a
-	y = b
-	Xxor_y = x ^ y
-	Xsub_y = x - y
-	Xsub_y_xor_y = Xsub_y ^ y
-	q = Xxor_y | Xsub_y_xor_y
-	Xxor_q = x ^ q
-	Xxor_q_ = Xxor_q >> uint32(63)
-	return Xxor_q_ - uint64(1)
-}
-
-func _FStar_UInt32_eq_mask12(tls *libc.TLS, a Tuint32_t, b Tuint32_t) (r Tuint32_t) {
-	var minus_x, x, Xor_minus_x, xnx Tuint32_t
-	_, _, _, _ = minus_x, x, Xor_minus_x, xnx
-	x = a ^ b
-	minus_x = ^x + uint32(1)
-	Xor_minus_x = x | minus_x
-	xnx = Xor_minus_x >> uint32(31)
-	return xnx - uint32(1)
-}
-
-func _FStar_UInt32_gte_mask12(tls *libc.TLS, a Tuint32_t, b Tuint32_t) (r Tuint32_t) {
-	var q, x, Xsub_y, Xsub_y_xor_y, Xxor_q, Xxor_q_, Xxor_y, y Tuint32_t
-	_, _, _, _, _, _, _, _ = q, x, Xsub_y, Xsub_y_xor_y, Xxor_q, Xxor_q_, Xxor_y, y
-	x = a
-	y = b
-	Xxor_y = x ^ y
-	Xsub_y = x - y
-	Xsub_y_xor_y = Xsub_y ^ y
-	q = Xxor_y | Xsub_y_xor_y
-	Xxor_q = x ^ q
-	Xxor_q_ = Xxor_q >> uint32(31)
-	return Xxor_q_ - uint32(1)
-}
-
-func _FStar_UInt16_eq_mask12(tls *libc.TLS, a Tuint16_t, b Tuint16_t) (r Tuint16_t) {
-	var minus_x, x, Xor_minus_x, xnx Tuint16_t
-	_, _, _, _ = minus_x, x, Xor_minus_x, xnx
-	x = uint16(uint32(a) ^ uint32(b))
-	minus_x = uint16(libc.Uint32FromInt32(^libc.Int32FromUint16(x)) + uint32(1))
-	Xor_minus_x = uint16(uint32(x) | uint32(minus_x))
-	xnx = uint16(uint32(Xor_minus_x) >> uint32(15))
-	return uint16(uint32(xnx) - uint32(1))
-}
-
-func _FStar_UInt16_gte_mask12(tls *libc.TLS, a Tuint16_t, b Tuint16_t) (r Tuint16_t) {
-	var q, x, Xsub_y, Xsub_y_xor_y, Xxor_q, Xxor_q_, Xxor_y, y Tuint16_t
-	_, _, _, _, _, _, _, _ = q, x, Xsub_y, Xsub_y_xor_y, Xxor_q, Xxor_q_, Xxor_y, y
-	x = a
-	y = b
-	Xxor_y = uint16(uint32(x) ^ uint32(y))
-	Xsub_y = uint16(uint32(x) - uint32(y))
-	Xsub_y_xor_y = uint16(uint32(Xsub_y) ^ uint32(y))
-	q = uint16(uint32(Xxor_y) | uint32(Xsub_y_xor_y))
-	Xxor_q = uint16(uint32(x) ^ uint32(q))
-	Xxor_q_ = uint16(uint32(Xxor_q) >> uint32(15))
-	return uint16(uint32(Xxor_q_) - uint32(1))
-}
-
-func _FStar_UInt8_eq_mask12(tls *libc.TLS, a Tuint8_t, b Tuint8_t) (r Tuint8_t) {
-	var minus_x, x, Xor_minus_x, xnx Tuint8_t
-	_, _, _, _ = minus_x, x, Xor_minus_x, xnx
-	x = uint8(uint32(a) ^ uint32(b))
-	minus_x = uint8(libc.Uint32FromInt32(^libc.Int32FromUint8(x)) + uint32(1))
-	Xor_minus_x = uint8(uint32(x) | uint32(minus_x))
-	xnx = uint8(uint32(Xor_minus_x) >> uint32(7))
-	return uint8(uint32(xnx) - uint32(1))
-}
-
-func _FStar_UInt8_gte_mask12(tls *libc.TLS, a Tuint8_t, b Tuint8_t) (r Tuint8_t) {
-	var q, x, Xsub_y, Xsub_y_xor_y, Xxor_q, Xxor_q_, Xxor_y, y Tuint8_t
-	_, _, _, _, _, _, _, _ = q, x, Xsub_y, Xsub_y_xor_y, Xxor_q, Xxor_q_, Xxor_y, y
-	x = a
-	y = b
-	Xxor_y = uint8(uint32(x) ^ uint32(y))
-	Xsub_y = uint8(uint32(x) - uint32(y))
-	Xsub_y_xor_y = uint8(uint32(Xsub_y) ^ uint32(y))
-	q = uint8(uint32(Xxor_y) | uint32(Xsub_y_xor_y))
-	Xxor_q = uint8(uint32(x) ^ uint32(q))
-	Xxor_q_ = uint8(uint32(Xxor_q) >> uint32(7))
-	return uint8(uint32(Xxor_q_) - uint32(1))
-}
-
-var _FStar_UInt128_u32_6412 = uint32(64)
-
-var _FStar_UInt128_u32_3212 = uint32(32)
-
-var _Hacl_Hash_Blake2b_ivTable_S = [8]Tuint32_t{
-	0: uint32(0x6A09E667),
-	1: uint32(0xBB67AE85),
-	2: uint32(0x3C6EF372),
-	3: uint32(0xA54FF53A),
-	4: uint32(0x510E527F),
-	5: uint32(0x9B05688C),
-	6: uint32(0x1F83D9AB),
-	7: uint32(0x5BE0CD19),
-}
-
-func _update_block(tls *libc.TLS, wv uintptr, hash uintptr, flag uint8, last_node uint8, totlen Tuint64_t, d uintptr) {
-	bp := tls.Alloc(720)
-	defer tls.Free(720)
-	var a, a0, a01, a02, a03, a04, a05, a06, a07, a08, a09, a1, a2, a3, a4, a5, a6, a7, a8, a9, b0, b01, b02, b03, b04, b05, b06, b07, b08, b09, b1, b10, b2, b3, b4, b5, b6, b7, b8, b9, c, c0, c01, c02, c03, c04, c05, c06, c07, c08, c09, c1, c2, c3, c4, c5, c6, c7, c8, c9, d1, d10, d101, d102, d103, d104, d105, d106, d107, d108, d109, d11, d12, d13, d14, d15, d16, d17, d18, d19, i, i0, i1, i10, i100, i101, i102, i103, i104, i105, i106, i107, i108, i109, i11, i110, i111, i112, i113, i114, i115, i116, i117, i118, i119, i12, i120, i121, i122, i123, i124, i125, i126, i127, i128, i129, i13, i130, i131, i132, i133, i134, i135, i136, i137, i138, i139, i14, i140, i141, i142, i143, i144, i145, i146, i147, i148, i149, i15, i150, i151, i152, i153, i154, i155, i156, i157, i158, i159, i16, i160, i161, i162, i163, i164, i165, i166, i167, i168, i169, i17, i170, i171, i172, i173, i174, i175, i176, i177, i178, i179, i18, i180, i181, i182, i183, i184, i185, i186, i187, i188, i189, i19, i190, i191, i192, i193, i194, i195, i196, i197, i198, i199, i2, i20, i200, i201, i202, i203, i204, i205, i206, i207, i208, i209, i21, i210, i211, i212, i213, i214, i215, i216, i217, i218, i219, i22, i220, i221, i222, i223, i224, i225, i226, i227, i228, i229, i23, i230, i231, i232, i233, i234, i235, i236, i237, i238, i239, i24, i240, i241, i242, i243, i244, i245, i246, i247, i248, i249, i25, i250, i251, i252, i253, i254, i255, i256, i257, i258, i259, i26, i260, i261, i262, i263, i264, i265, i266, i267, i268, i269, i27, i270, i271, i272, i273, i274, i275, i276, i277, i278, i279, i28, i280, i281, i282, i283, i284, i285, i29, i3, i30, i31, i32, i33, i34, i35, i36, i37, i38, i39, i4, i40, i41, i42, i43, i44, i45, i46, i47, i48, i49, i5, i50, i51, i52, i53, i54, i55, i56, i57, i58, i59, i6, i60, i61, i62, i63, i64, i65, i66, i67, i68, i69, i7, i70, i71, i72, i73, i74, i75, i76, i77, i78, i79, i8, i80, i81, i82, i83, i84, i85, i86, i87, i88, i89, i9, i90, i91, i92, i93, i94, i95, i96, i97, i98, i99, r, r1, r10, r11, r12, r13, r14, r15, r2, r3, r4, r5, r6, r7, r8, r9, s0, s01, s02, s03, s04, s05, s06, s07, s08, s09, s1, s10, s101, s102, s103, s104, s105, s106, s107, s108, s109, s11, s111, s1110, s112, s113, s114, s115, s116, s117, s118, s119, s12, s121, s1210, s122, s123, s124, s125, s126, s127, s128, s129, s13, s131, s1310, s132, s133, s134, s135, s136, s137, s138, s139, s14, s141, s1410, s142, s143, s144, s145, s146, s147, s148, s149, s15, s151, s1510, s152, s153, s154, s155, s156, s157, s158, s159, s16, s17, s18, s19, s2, s21, s22, s23, s24, s25, s26, s27, s28, s29, s3, s31, s32, s33, s34, s35, s36, s37, s38, s39, s4, s41, s42, s43, s44, s45, s46, s47, s48, s49, s5, s51, s52, s53, s54, s55, s56, s57, s58, s59, s6, s61, s62, s63, s64, s65, s66, s67, s68, s69, s7, s71, s72, s73, s74, s75, s76, s77, s78, s79, s8, s81, s82, s83, s84, s85, s86, s87, s88, s89, s9, s91, s92, s93, s94, s95, s96, s97, s98, s99, start_idx, start_idx1, start_idx2, start_idx3, start_idx4, start_idx5, start_idx6, start_idx7, start_idx8, start_idx9, u, u1, u10, u11, u12, u13, u14, u15, u2, u3, u4, u5, u6, u7, u8, u9, uu____0, uu____01, uu____02, uu____03, uu____04, uu____05, uu____06, uu____07, uu____08, uu____09, uu____1, uu____10, uu____101, uu____102, uu____103, uu____104, uu____105, uu____106, uu____107, uu____108, uu____109, uu____11, uu____111, uu____1110, uu____112, uu____113, uu____114, uu____115, uu____116, uu____117, uu____118, uu____119, uu____12, uu____13, uu____14, uu____15, uu____16, uu____17, uu____18, uu____19, uu____2, uu____21, uu____22, uu____23, uu____24, uu____25, uu____26, uu____27, uu____28, uu____29, uu____3, uu____31, uu____32, uu____33, uu____34, uu____35, uu____36, uu____37, uu____38, uu____39, uu____4, uu____41, uu____42, uu____43, uu____44, uu____45, uu____46, uu____47, uu____48, uu____49, uu____5, uu____51, uu____52, uu____53, uu____54, uu____55, uu____56, uu____57, uu____58, uu____59, uu____6, uu____61, uu____62, uu____63, uu____64, uu____65, uu____66, uu____67, uu____68, uu____69, uu____7, uu____71, uu____72, uu____73, uu____74, uu____75, uu____76, uu____77, uu____78, uu____79, uu____8, uu____81, uu____82, uu____83, uu____84, uu____85, uu____86, uu____87, uu____88, uu____89, uu____9, uu____91, uu____92, uu____93, uu____94, uu____95, uu____96, uu____97, uu____98, uu____99, wv_14, wv_15, x0, x00, x001, x002, x003, x004, x005, x006, x007, x008, x009, x01, x011, x0110, x012, x013, x014, x015, x016, x017, x018, x019, x02, x021, x0210, x022, x023, x024, x025, x026, x027, x028, x029, x03, x031, x0310, x032, x033, x034, x035, x036, x037, x038, x039, x04, x041, x0410, x042, x043, x044, x045, x046, x047, x048, x049, x05, x06, x07, x08, x09, x1, x10, x101, x1010, x10100, x10101, x10102, x10103, x10104, x10105, x10106, x10107, x10108, x10109, x1011, x10110, x10111, x10112, x10113, x10114, x10115, x10116, x10117, x10118, x10119, x1012, x10120, x10121, x10122, x10123, x10124, x10125, x10126, x10127, x10128, x10129, x1013, x10130, x10131, x10132, x10133, x10134, x10135, x10136, x10137, x10138, x10139, x1014, x10140, x10141, x10142, x10143, x10144, x10145, x10146, x10147, x10148, x10149, x1015, x10150, x10151, x10152, x10153, x10154, x10155, x10156, x10157, x10158, x10159, x1016, x10160, x10161, x10162, x10163, x10164, x10165, x10166, x10167, x10168, x10169, x1017, x10170, x1018, x1019, x102, x1020, x1021, x1022, x1023, x1024, x1025, x1026, x1027, x1028, x1029, x103, x1030, x1031, x1032, x1033, x1034, x1035, x1036, x1037, x1038, x1039, x104, x1040, x1041, x1042, x1043, x1044, x1045, x1046, x1047, x1048, x1049, x105, x1050, x1051, x1052, x1053, x1054, x1055, x1056, x1057, x1058, x1059, x106, x1060, x1061, x1062, x1063, x1064, x1065, x1066, x1067, x1068, x1069, x107, x1070, x1071, x1072, x1073, x1074, x1075, x1076, x1077, x1078, x1079, x108, x1080, x1081, x1082, x1083, x1084, x1085, x1086, x1087, x1088, x1089, x109, x1090, x1091, x1092, x1093, x1094, x1095, x1096, x1097, x1098, x1099, x11, x110, x1100, x11000, x11001, x11002, x11003, x11004, x11005, x11006, x11007, x11008, x11009, x1101, x11010, x11011, x11012, x11013, x11014, x11015, x11016, x11017, x11018, x11019, x1102, x11020, x11021, x11022, x11023, x11024, x11025, x11026, x11027, x11028, x11029, x1103, x11030, x11031, x11032, x11033, x11034, x11035, x11036, x11037, x11038, x11039, x1104, x11040, x11041, x11042, x11043, x11044, x11045, x11046, x11047, x11048, x11049, x1105, x11050, x11051, x11052, x11053, x11054, x11055, x11056, x11057, x11058, x11059, x1106, x11060, x11061, x11062, x11063, x11064, x11065, x11066, x11067, x11068, x11069, x1107, x11070, x11071, x11072, x11073, x11074, x11075, x11076, x11077, x11078, x11079, x1108, x11080, x11081, x11082, x11083, x11084, x11085, x11086, x11087, x11088, x11089, x1109, x11090, x11091, x11092, x11093, x11094, x11095, x11096, x11097, x11098, x11099, x111, x1110, x11100, x11101, x11102, x11103, x11104, x11105, x11106, x11107, x11108, x11109, x1111, x11110, x11111, x11112, x11113, x11114, x11115, x11116, x11117, x11118, x11119, x1112, x11120, x11121, x11122, x11123, x11124, x11125, x11126, x11127, x11128, x11129, x1113, x11130, x11131, x11132, x11133, x11134, x11135, x11136, x11137, x11138, x11139, x1114, x11140, x11141, x11142, x11143, x11144, x11145, x11146, x11147, x11148, x11149, x1115, x1116, x1117, x1118, x1119, x112, x1120, x1121, x1122, x1123, x1124, x1125, x1126, x1127, x1128, x1129, x113, x1130, x1131, x1132, x1133, x1134, x1135, x1136, x1137, x1138, x1139, x114, x1140, x1141, x1142, x1143, x1144, x1145, x1146, x1147, x1148, x1149, x115, x1150, x1151, x1152, x1153, x1154, x1155, x1156, x1157, x1158, x1159, x116, x1160, x1161, x1162, x1163, x1164, x1165, x1166, x1167, x1168, x1169, x117, x1170, x1171, x1172, x1173, x1174, x1175, x1176, x1177, x1178, x1179, x118, x1180, x1181, x1182, x1183, x1184, x1185, x1186, x1187, x1188, x1189, x119, x1190, x1191, x1192, x1193, x1194, x1195, x1196, x1197, x1198, x1199, x12, x120, x1200, x1201, x1202, x1203, x1204, x1205, x1206, x1207, x1208, x1209, x121, x1210, x12100, x12101, x12102, x12103, x12104, x12105, x12106, x12107, x12108, x12109, x1211, x1212, x1213, x1214, x1215, x1216, x1217, x1218, x1219, x122, x1220, x1221, x1222, x1223, x1224, x1225, x1226, x1227, x1228, x1229, x123, x1230, x1231, x1232, x1233, x1234, x1235, x1236, x1237, x1238, x1239, x124, x1240, x1241, x1242, x1243, x1244, x1245, x1246, x1247, x1248, x1249, x125, x1250, x1251, x1252, x1253, x1254, x1255, x1256, x1257, x1258, x1259, x126, x1260, x1261, x1262, x1263, x1264, x1265, x1266, x1267, x1268, x1269, x127, x1270, x1271, x1272, x1273, x1274, x1275, x1276, x1277, x1278, x1279, x128, x1280, x1281, x1282, x1283, x1284, x1285, x1286, x1287, x1288, x1289, x129, x1290, x1291, x1292, x1293, x1294, x1295, x1296, x1297, x1298, x1299, x13, x130, x1300, x1301, x1302, x1303, x1304, x1305, x1306, x1307, x1308, x1309, x131, x1310, x13100, x13101, x13102, x13103, x13104, x13105, x13106, x13107, x13108, x13109, x1311, x13110, x13111, x13112, x13113, x13114, x13115, x13116, x13117, x13118, x13119, x1312, x13120, x13121, x13122, x13123, x13124, x13125, x13126, x13127, x13128, x13129, x1313, x13130, x13131, x13132, x13133, x13134, x13135, x13136, x13137, x13138, x13139, x1314, x13140, x13141, x13142, x13143, x13144, x13145, x13146, x13147, x13148, x13149, x1315, x13150, x13151, x13152, x13153, x13154, x13155, x13156, x13157, x13158, x13159, x1316, x13160, x13161, x13162, x13163, x13164, x13165, x13166, x13167, x13168, x13169, x1317, x13170, x13171, x13172, x13173, x13174, x13175, x13176, x13177, x13178, x13179, x1318, x13180, x13181, x13182, x13183, x13184, x13185, x13186, x13187, x13188, x13189, x1319, x13190, x13191, x13192, x13193, x13194, x13195, x13196, x13197, x13198, x13199, x132, x1320, x13200, x13201, x13202, x13203, x13204, x13205, x13206, x13207, x13208, x13209, x1321, x13210, x13211, x13212, x13213, x13214, x13215, x13216, x13217, x13218, x13219, x1322, x13220, x13221, x13222, x13223, x13224, x13225, x13226, x13227, x13228, x13229, x1323, x13230, x13231, x13232, x13233, x13234, x13235, x13236, x13237, x13238, x13239, x1324, x13240, x13241, x13242, x13243, x13244, x13245, x13246, x13247, x13248, x13249, x1325, x13250, x13251, x13252, x13253, x13254, x13255, x13256, x13257, x13258, x13259, x1326, x13260, x13261, x13262, x13263, x13264, x13265, x13266, x13267, x13268, x13269, x1327, x1328, x1329, x133, x1330, x1331, x1332, x1333, x1334, x1335, x1336, x1337, x1338, x1339, x134, x1340, x1341, x1342, x1343, x1344, x1345, x1346, x1347, x1348, x1349, x135, x1350, x1351, x1352, x1353, x1354, x1355, x1356, x1357, x1358, x1359, x136, x1360, x1361, x1362, x1363, x1364, x1365, x1366, x1367, x1368, x1369, x137, x1370, x1371, x1372, x1373, x1374, x1375, x1376, x1377, x1378, x1379, x138, x1380, x1381, x1382, x1383, x1384, x1385, x1386, x1387, x1388, x1389, x139, x1390, x1391, x1392, x1393, x1394, x1395, x1396, x1397, x1398, x1399, x14, x140, x1400, x1401, x1402, x1403, x1404, x1405, x1406, x1407, x1408, x1409, x141, x1410, x14100, x14101, x14102, x14103, x14104, x14105, x14106, x14107, x14108, x14109, x1411, x1412, x1413, x1414, x1415, x1416, x1417, x1418, x1419, x142, x1420, x1421, x1422, x1423, x1424, x1425, x1426, x1427, x1428, x1429, x143, x1430, x1431, x1432, x1433, x1434, x1435, x1436, x1437, x1438, x1439, x144, x1440, x1441, x1442, x1443, x1444, x1445, x1446, x1447, x1448, x1449, x145, x1450, x1451, x1452, x1453, x1454, x1455, x1456, x1457, x1458, x1459, x146, x1460, x1461, x1462, x1463, x1464, x1465, x1466, x1467, x1468, x1469, x147, x1470, x1471, x1472, x1473, x1474, x1475, x1476, x1477, x1478, x1479, x148, x1480, x1481, x1482, x1483, x1484, x1485, x1486, x1487, x1488, x1489, x149, x1490, x1491, x1492, x1493, x1494, x1495, x1496, x1497, x1498, x1499, x15, x150, x1500, x1501, x1502, x1503, x1504, x1505, x1506, x1507, x1508, x1509, x151, x1510, x1511, x1512, x1513, x1514, x1515, x1516, x1517, x1518, x1519, x152, x1520, x1521, x1522, x1523, x1524, x1525, x1526, x1527, x1528, x1529, x153, x1530, x1531, x1532, x1533, x1534, x1535, x1536, x1537, x1538, x1539, x154, x1540, x1541, x1542, x1543, x1544, x1545, x1546, x1547, x1548, x1549, x155, x1550, x1551, x1552, x1553, x1554, x1555, x1556, x1557, x1558, x1559, x156, x1560, x1561, x1562, x1563, x1564, x1565, x1566, x1567, x1568, x1569, x157, x1570, x1571, x1572, x1573, x1574, x1575, x1576, x1577, x1578, x1579, x158, x1580, x1581, x1582, x1583, x1584, x1585, x1586, x1587, x1588, x1589, x159, x1590, x1591, x1592, x1593, x1594, x1595, x1596, x1597, x1598, x1599, x16, x160, x1600, x1601, x1602, x1603, x1604, x1605, x1606, x1607, x1608, x1609, x161, x1610, x1611, x1612, x1613, x1614, x1615, x1616, x1617, x1618, x1619, x162, x1620, x1621, x1622, x1623, x1624, x1625, x1626, x1627, x1628, x1629, x163, x1630, x1631, x1632, x1633, x1634, x1635, x1636, x1637, x1638, x1639, x164, x1640, x1641, x1642, x1643, x1644, x1645, x1646, x1647, x1648, x1649, x165, x1650, x1651, x1652, x1653, x1654, x1655, x1656, x1657, x1658, x1659, x166, x1660, x1661, x1662, x1663, x1664, x1665, x1666, x1667, x1668, x1669, x167, x1670, x1671, x1672, x1673, x1674, x1675, x1676, x1677, x1678, x1679, x168, x1680, x1681, x1682, x1683, x1684, x1685, x1686, x1687, x1688, x1689, x169, x1690, x1691, x1692, x1693, x1694, x1695, x1696, x1697, x1698, x1699, x17, x170, x1700, x1701, x1702, x1703, x1704, x1705, x1706, x1707, x1708, x1709, x171, x1710, x1711, x1712, x1713, x1714, x1715, x1716, x1717, x1718, x1719, x172, x1720, x1721, x1722, x1723, x1724, x1725, x1726, x1727, x1728, x1729, x173, x1730, x1731, x1732, x1733, x1734, x1735, x1736, x1737, x1738, x1739, x174, x1740, x1741, x1742, x1743, x1744, x1745, x1746, x1747, x1748, x1749, x175, x1750, x1751, x1752, x1753, x1754, x1755, x1756, x1757, x1758, x1759, x176, x1760, x1761, x1762, x1763, x1764, x1765, x1766, x1767, x1768, x1769, x177, x1770, x1771, x1772, x1773, x1774, x1775, x1776, x1777, x1778, x1779, x178, x1780, x1781, x1782, x1783, x1784, x1785, x1786, x1787, x1788, x1789, x179, x1790, x1791, x1792, x1793, x1794, x1795, x1796, x1797, x1798, x1799, x18, x180, x1800, x1801, x1802, x1803, x1804, x1805, x1806, x1807, x1808, x1809, x181, x1810, x1811, x1812, x1813, x1814, x1815, x1816, x1817, x1818, x1819, x182, x1820, x1821, x1822, x1823, x1824, x1825, x1826, x1827, x1828, x1829, x183, x1830, x1831, x1832, x1833, x1834, x1835, x1836, x1837, x1838, x1839, x184, x1840, x1841, x1842, x1843, x1844, x1845, x1846, x1847, x1848, x1849, x185, x1850, x1851, x1852, x1853, x1854, x1855, x1856, x1857, x1858, x1859, x186, x1860, x1861, x1862, x1863, x1864, x1865, x1866, x1867, x1868, x1869, x187, x1870, x1871, x1872, x1873, x1874, x1875, x1876, x1877, x1878, x1879, x188, x1880, x1881, x1882, x1883, x1884, x1885, x1886, x1887, x1888, x1889, x189, x1890, x1891, x1892, x1893, x1894, x1895, x1896, x1897, x1898, x1899, x19, x190, x1900, x1901, x1902, x1903, x1904, x1905, x1906, x1907, x1908, x1909, x191, x1910, x1911, x1912, x1913, x1914, x1915, x1916, x1917, x1918, x1919, x192, x1920, x1921, x1922, x1923, x1924, x1925, x1926, x1927, x1928, x1929, x193, x1930, x1931, x1932, x1933, x1934, x1935, x1936, x1937, x1938, x1939, x194, x1940, x1941, x1942, x1943, x1944, x1945, x1946, x1947, x1948, x1949, x195, x1950, x1951, x1952, x1953, x1954, x1955, x1956, x1957, x1958, x1959, x196, x1960, x1961, x1962, x1963, x1964, x1965, x1966, x1967, x1968, x1969, x197, x1970, x1971, x1972, x1973, x1974, x1975, x1976, x1977, x1978, x1979, x198, x1980, x1981, x1982, x1983, x1984, x1985, x1986, x1987, x1988, x1989, x199, x1990, x1991, x1992, x1993, x1994, x1995, x1996, x1997, x1998, x1999, x2, x20, x201, x2010, x202, x203, x204, x205, x206, x207, x208, x209, x210, x211, x2110, x2111, x2112, x2113, x2114, x2115, x2116, x2117, x2118, x2119, x212, x213, x214, x215, x216, x217, x218, x219, x221, x2210, x222, x223, x224, x225, x226, x227, x228, x229, x231, x2310, x232, x233, x234, x235, x236, x237, x238, x239, x241, x2410, x242, x243, x244, x245, x246, x247, x248, x249, x3, x301, x3010, x302, x303, x304, x305, x306, x307, x308, x309, x31, x310, x311, x3110, x3111, x3112, x3113, x3114, x3115, x3116, x3117, x3118, x3119, x312, x313, x314, x315, x316, x317, x318, x319, x32, x321, x3210, x322, x323, x324, x325, x326, x327, x328, x329, x33, x331, x3310, x332, x333, x334, x335, x336, x337, x338, x339, x34, x341, x3410, x342, x343, x344, x345, x346, x347, x348, x349, x35, x36, x37, x38, x39, x4, x40, x41, x42, x43, x44, x45, x46, x5, x6, x7, x8, x9, v1 Tuint32_t
-	var bj, bj1, bj10, bj11, bj12, bj13, bj14, bj15, bj2, bj3, bj4, bj5, bj6, bj7, bj8, bj9, os, os1, os10, os100, os1000, os1001, os1002, os1003, os1004, os1005, os1006, os1007, os1008, os1009, os101, os1010, os1011, os1012, os1013, os1014, os1015, os1016, os1017, os1018, os1019, os102, os1020, os1021, os1022, os1023, os1024, os1025, os1026, os1027, os1028, os1029, os103, os1030, os1031, os1032, os1033, os1034, os1035, os1036, os1037, os1038, os1039, os104, os1040, os1041, os1042, os1043, os1044, os1045, os1046, os1047, os1048, os1049, os105, os1050, os1051, os1052, os1053, os1054, os1055, os1056, os1057, os1058, os1059, os106, os1060, os1061, os1062, os1063, os1064, os1065, os1066, os1067, os1068, os1069, os107, os1070, os1071, os1072, os1073, os1074, os1075, os1076, os1077, os1078, os1079, os108, os1080, os1081, os1082, os1083, os1084, os1085, os1086, os1087, os1088, os1089, os109, os1090, os1091, os1092, os1093, os1094, os1095, os1096, os1097, os1098, os1099, os11, os110, os1100, os1101, os1102, os1103, os1104, os1105, os1106, os1107, os1108, os1109, os111, os1110, os1111, os1112, os1113, os1114, os1115, os1116, os1117, os1118, os1119, os112, os1120, os1121, os1122, os1123, os1124, os1125, os1126, os1127, os1128, os1129, os113, os1130, os1131, os1132, os1133, os1134, os1135, os1136, os1137, os1138, os1139, os114, os1140, os1141, os1142, os1143, os1144, os1145, os1146, os1147, os1148, os1149, os115, os1150, os1151, os1152, os1153, os1154, os1155, os116, os117, os118, os119, os12, os120, os121, os122, os123, os124, os125, os126, os127, os128, os129, os13, os130, os131, os132, os133, os134, os135, os136, os137, os138, os139, os14, os140, os141, os142, os143, os144, os145, os146, os147, os148, os149, os15, os150, os151, os152, os153, os154, os155, os156, os157, os158, os159, os16, os160, os161, os162, os163, os164, os165, os166, os167, os168, os169, os17, os170, os171, os172, os173, os174, os175, os176, os177, os178, os179, os18, os180, os181, os182, os183, os184, os185, os186, os187, os188, os189, os19, os190, os191, os192, os193, os194, os195, os196, os197, os198, os199, os2, os20, os200, os201, os202, os203, os204, os205, os206, os207, os208, os209, os21, os210, os211, os212, os213, os214, os215, os216, os217, os218, os219, os22, os220, os221, os222, os223, os224, os225, os226, os227, os228, os229, os23, os230, os231, os232, os233, os234, os235, os236, os237, os238, os239, os24, os240, os241, os242, os243, os244, os245, os246, os247, os248, os249, os25, os250, os251, os252, os253, os254, os255, os256, os257, os258, os259, os26, os260, os261, os262, os263, os264, os265, os266, os267, os268, os269, os27, os270, os271, os272, os273, os274, os275, os276, os277, os278, os279, os28, os280, os281, os282, os283, os284, os285, os286, os287, os288, os289, os29, os290, os291, os292, os293, os294, os295, os296, os297, os298, os299, os3, os30, os300, os301, os302, os303, os304, os305, os306, os307, os308, os309, os31, os310, os311, os312, os313, os314, os315, os316, os317, os318, os319, os32, os320, os321, os322, os323, os324, os325, os326, os327, os328, os329, os33, os330, os331, os332, os333, os334, os335, os336, os337, os338, os339, os34, os340, os341, os342, os343, os344, os345, os346, os347, os348, os349, os35, os350, os351, os352, os353, os354, os355, os356, os357, os358, os359, os36, os360, os361, os362, os363, os364, os365, os366, os367, os368, os369, os37, os370, os371, os372, os373, os374, os375, os376, os377, os378, os379, os38, os380, os381, os382, os383, os384, os385, os386, os387, os388, os389, os39, os390, os391, os392, os393, os394, os395, os396, os397, os398, os399, os4, os40, os400, os401, os402, os403, os404, os405, os406, os407, os408, os409, os41, os410, os411, os412, os413, os414, os415, os416, os417, os418, os419, os42, os420, os421, os422, os423, os424, os425, os426, os427, os428, os429, os43, os430, os431, os432, os433, os434, os435, os436, os437, os438, os439, os44, os440, os441, os442, os443, os444, os445, os446, os447, os448, os449, os45, os450, os451, os452, os453, os454, os455, os456, os457, os458, os459, os46, os460, os461, os462, os463, os464, os465, os466, os467, os468, os469, os47, os470, os471, os472, os473, os474, os475, os476, os477, os478, os479, os48, os480, os481, os482, os483, os484, os485, os486, os487, os488, os489, os49, os490, os491, os492, os493, os494, os495, os496, os497, os498, os499, os5, os50, os500, os501, os502, os503, os504, os505, os506, os507, os508, os509, os51, os510, os511, os512, os513, os514, os515, os516, os517, os518, os519, os52, os520, os521, os522, os523, os524, os525, os526, os527, os528, os529, os53, os530, os531, os532, os533, os534, os535, os536, os537, os538, os539, os54, os540, os541, os542, os543, os544, os545, os546, os547, os548, os549, os55, os550, os551, os552, os553, os554, os555, os556, os557, os558, os559, os56, os560, os561, os562, os563, os564, os565, os566, os567, os568, os569, os57, os570, os571, os572, os573, os574, os575, os576, os577, os578, os579, os58, os580, os581, os582, os583, os584, os585, os586, os587, os588, os589, os59, os590, os591, os592, os593, os594, os595, os596, os597, os598, os599, os6, os60, os600, os601, os602, os603, os604, os605, os606, os607, os608, os609, os61, os610, os611, os612, os613, os614, os615, os616, os617, os618, os619, os62, os620, os621, os622, os623, os624, os625, os626, os627, os628, os629, os63, os630, os631, os632, os633, os634, os635, os636, os637, os638, os639, os64, os640, os641, os642, os643, os644, os645, os646, os647, os648, os649, os65, os650, os651, os652, os653, os654, os655, os656, os657, os658, os659, os66, os660, os661, os662, os663, os664, os665, os666, os667, os668, os669, os67, os670, os671, os672, os673, os674, os675, os676, os677, os678, os679, os68, os680, os681, os682, os683, os684, os685, os686, os687, os688, os689, os69, os690, os691, os692, os693, os694, os695, os696, os697, os698, os699, os7, os70, os700, os701, os702, os703, os704, os705, os706, os707, os708, os709, os71, os710, os711, os712, os713, os714, os715, os716, os717, os718, os719, os72, os720, os721, os722, os723, os724, os725, os726, os727, os728, os729, os73, os730, os731, os732, os733, os734, os735, os736, os737, os738, os739, os74, os740, os741, os742, os743, os744, os745, os746, os747, os748, os749, os75, os750, os751, os752, os753, os754, os755, os756, os757, os758, os759, os76, os760, os761, os762, os763, os764, os765, os766, os767, os768, os769, os77, os770, os771, os772, os773, os774, os775, os776, os777, os778, os779, os78, os780, os781, os782, os783, os784, os785, os786, os787, os788, os789, os79, os790, os791, os792, os793, os794, os795, os796, os797, os798, os799, os8, os80, os800, os801, os802, os803, os804, os805, os806, os807, os808, os809, os81, os810, os811, os812, os813, os814, os815, os816, os817, os818, os819, os82, os820, os821, os822, os823, os824, os825, os826, os827, os828, os829, os83, os830, os831, os832, os833, os834, os835, os836, os837, os838, os839, os84, os840, os841, os842, os843, os844, os845, os846, os847, os848, os849, os85, os850, os851, os852, os853, os854, os855, os856, os857, os858, os859, os86, os860, os861, os862, os863, os864, os865, os866, os867, os868, os869, os87, os870, os871, os872, os873, os874, os875, os876, os877, os878, os879, os88, os880, os881, os882, os883, os884, os885, os886, os887, os888, os889, os89, os890, os891, os892, os893, os894, os895, os896, os897, os898, os899, os9, os90, os900, os901, os902, os903, os904, os905, os906, os907, os908, os909, os91, os910, os911, os912, os913, os914, os915, os916, os917, os918, os919, os92, os920, os921, os922, os923, os924, os925, os926, os927, os928, os929, os93, os930, os931, os932, os933, os934, os935, os936, os937, os938, os939, os94, os940, os941, os942, os943, os944, os945, os946, os947, os948, os949, os95, os950, os951, os952, os953, os954, os955, os956, os957, os958, os959, os96, os960, os961, os962, os963, os964, os965, os966, os967, os968, os969, os97, os970, os971, os972, os973, os974, os975, os976, os977, os978, os979, os98, os980, os981, os982, os983, os984, os985, os986, os987, os988, os989, os99, os990, os991, os992, os993, os994, os995, os996, os997, os998, os999, r0, r01, r010, r02, r03, r04, r05, r06, r07, r08, r09, r101, r1010, r102, r103, r104, r105, r106, r107, r108, r109, r110, r1101, r11010, r1102, r1103, r1104, r1105, r1106, r1107, r1108, r1109, r111, r1110, r1111, r11110, r11111, r11112, r11113, r11114, r11115, r11116, r1112, r1113, r1114, r1115, r1116, r1117, r1118, r1119, r112, r1121, r11210, r1122, r1123, r1124, r1125, r1126, r1127, r1128, r1129, r113, r1131, r11310, r1132, r1133, r1134, r1135, r1136, r1137, r1138, r1139, r114, r1141, r11410, r1142, r1143, r1144, r1145, r1146, r1147, r1148, r1149, r115, r1151, r11510, r1152, r1153, r1154, r1155, r1156, r1157, r1158, r1159, r116, r117, r118, r119, r121, r1210, r122, r123, r124, r125, r126, r127, r128, r129, r131, r1310, r132, r133, r134, r135, r136, r137, r138, r139, r141, r1410, r142, r143, r144, r145, r146, r147, r148, r149, r151, r1510, r152, r153, r154, r155, r156, r157, r158, r159, r16, r161, r1610, r162, r163, r164, r165, r166, r167, r168, r169, r17, r171, r1710, r172, r173, r174, r175, r176, r177, r178, r179, r18, r181, r1810, r182, r183, r184, r185, r186, r187, r188, r189, r19, r191, r1910, r192, r193, r194, r195, r196, r197, r198, r199, r20, r201, r202, r203, r204, r205, r206, r207, r208, r209, r21, r210, r211, r2110, r2111, r212, r213, r214, r215, r216, r217, r218, r219, r22, r23, r24, r25, r26, r27, r28, r29, r30, r301, r302, r303, r304, r305, r306, r307, r308, r309, r31, r310, r311, r3110, r3111, r312, r313, r314, r315, r316, r317, r318, r319, r32, r33, r34, r35, r36, r37, r38, r39, s010, s110, w, w1, w2, w3, w4, w5, w6, w7, w8, w9, wv3, wv_a, wv_a0, wv_a01, wv_a02, wv_a03, wv_a04, wv_a05, wv_a06, wv_a07, wv_a08, wv_a09, wv_a1, wv_a10, wv_a101, wv_a102, wv_a103, wv_a104, wv_a105, wv_a106, wv_a107, wv_a108, wv_a109, wv_a11, wv_a110, wv_a111, wv_a1110, wv_a112, wv_a113, wv_a114, wv_a115, wv_a116, wv_a117, wv_a118, wv_a119, wv_a12, wv_a121, wv_a1210, wv_a122, wv_a123, wv_a124, wv_a125, wv_a126, wv_a127, wv_a128, wv_a129, wv_a13, wv_a131, wv_a1310, wv_a132, wv_a133, wv_a134, wv_a135, wv_a136, wv_a137, wv_a138, wv_a139, wv_a14, wv_a141, wv_a1410, wv_a142, wv_a143, wv_a144, wv_a145, wv_a146, wv_a147, wv_a148, wv_a149, wv_a15, wv_a16, wv_a17, wv_a18, wv_a19, wv_a2, wv_a21, wv_a210, wv_a22, wv_a23, wv_a24, wv_a25, wv_a26, wv_a27, wv_a28, wv_a29, wv_a3, wv_a31, wv_a310, wv_a32, wv_a33, wv_a34, wv_a35, wv_a36, wv_a37, wv_a38, wv_a39, wv_a4, wv_a41, wv_a410, wv_a42, wv_a43, wv_a44, wv_a45, wv_a46, wv_a47, wv_a48, wv_a49, wv_a5, wv_a51, wv_a510, wv_a52, wv_a53, wv_a54, wv_a55, wv_a56, wv_a57, wv_a58, wv_a59, wv_a6, wv_a61, wv_a610, wv_a62, wv_a63, wv_a64, wv_a65, wv_a66, wv_a67, wv_a68, wv_a69, wv_a7, wv_a71, wv_a710, wv_a72, wv_a73, wv_a74, wv_a75, wv_a76, wv_a77, wv_a78, wv_a79, wv_a8, wv_a81, wv_a810, wv_a82, wv_a83, wv_a84, wv_a85, wv_a86, wv_a87, wv_a88, wv_a89, wv_a9, wv_a91, wv_a910, wv_a92, wv_a93, wv_a94, wv_a95, wv_a96, wv_a97, wv_a98, wv_a99, wv_b, wv_b0, wv_b01, wv_b02, wv_b03, wv_b04, wv_b05, wv_b06, wv_b07, wv_b08, wv_b09, wv_b1, wv_b10, wv_b101, wv_b102, wv_b103, wv_b104, wv_b105, wv_b106, wv_b107, wv_b108, wv_b109, wv_b11, wv_b110, wv_b111, wv_b1110, wv_b112, wv_b113, wv_b114, wv_b115, wv_b116, wv_b117, wv_b118, wv_b119, wv_b12, wv_b121, wv_b1210, wv_b122, wv_b123, wv_b124, wv_b125, wv_b126, wv_b127, wv_b128, wv_b129, wv_b13, wv_b131, wv_b1310, wv_b132, wv_b133, wv_b134, wv_b135, wv_b136, wv_b137, wv_b138, wv_b139, wv_b14, wv_b141, wv_b1410, wv_b142, wv_b143, wv_b144, wv_b145, wv_b146, wv_b147, wv_b148, wv_b149, wv_b15, wv_b16, wv_b17, wv_b18, wv_b19, wv_b2, wv_b21, wv_b210, wv_b22, wv_b23, wv_b24, wv_b25, wv_b26, wv_b27, wv_b28, wv_b29, wv_b3, wv_b31, wv_b310, wv_b32, wv_b33, wv_b34, wv_b35, wv_b36, wv_b37, wv_b38, wv_b39, wv_b4, wv_b41, wv_b410, wv_b42, wv_b43, wv_b44, wv_b45, wv_b46, wv_b47, wv_b48, wv_b49, wv_b5, wv_b51, wv_b510, wv_b52, wv_b53, wv_b54, wv_b55, wv_b56, wv_b57, wv_b58, wv_b59, wv_b6, wv_b61, wv_b610, wv_b62, wv_b63, wv_b64, wv_b65, wv_b66, wv_b67, wv_b68, wv_b69, wv_b7, wv_b71, wv_b710, wv_b72, wv_b73, wv_b74, wv_b75, wv_b76, wv_b77, wv_b78, wv_b79, wv_b8, wv_b81, wv_b810, wv_b82, wv_b83, wv_b84, wv_b85, wv_b86, wv_b87, wv_b88, wv_b89, wv_b9, wv_b91, wv_b910, wv_b92, wv_b93, wv_b94, wv_b95, wv_b96, wv_b97, wv_b98, wv_b99, x21, x22, x23, x24, x25, x26, x27, x28, x29, x30, y, y1, y2, y3, y4, y5, y6, y7, y8, y9, z, z1, z2, z3, z4, z5, z6, z7, z8, z9 uintptr
-	var mask [4]Tuint32_t
-	var _ [16]Tuint32_t
-	var _ [16]Tuint32_t
-	var _ [16]Tuint32_t
-	var _ [16]Tuint32_t
-	var _ [16]Tuint32_t
-	var _ [16]Tuint32_t
-	var _ [16]Tuint32_t
-	var _ [16]Tuint32_t
-	var _ [16]Tuint32_t
-	var _ [16]Tuint32_t
-	var _ [16]Tuint32_t
-	var _ Tuint32_t
-	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = a, a0, a01, a02, a03, a04, a05, a06, a07, a08, a09, a1, a2, a3, a4, a5, a6, a7, a8, a9, b0, b01, b02, b03, b04, b05, b06, b07, b08, b09, b1, b10, b2, b3, b4, b5, b6, b7, b8, b9, bj, bj1, bj10, bj11, bj12, bj13, bj14, bj15, bj2, bj3, bj4, bj5, bj6, bj7, bj8, bj9, c, c0, c01, c02, c03, c04, c05, c06, c07, c08, c09, c1, c2, c3, c4, c5, c6, c7, c8, c9, d1, d10, d101, d102, d103, d104, d105, d106, d107, d108, d109, d11, d12, d13, d14, d15, d16, d17, d18, d19, i, i0, i1, i10, i100, i101, i102, i103, i104, i105, i106, i107, i108, i109, i11, i110, i111, i112, i113, i114, i115, i116, i117, i118, i119, i12, i120, i121, i122, i123, i124, i125, i126, i127, i128, i129, i13, i130, i131, i132, i133, i134, i135, i136, i137, i138, i139, i14, i140, i141, i142, i143, i144, i145, i146, i147, i148, i149, i15, i150, i151, i152, i153, i154, i155, i156, i157, i158, i159, i16, i160, i161, i162, i163, i164, i165, i166, i167, i168, i169, i17, i170, i171, i172, i173, i174, i175, i176, i177, i178, i179, i18, i180, i181, i182, i183, i184, i185, i186, i187, i188, i189, i19, i190, i191, i192, i193, i194, i195, i196, i197, i198, i199, i2, i20, i200, i201, i202, i203, i204, i205, i206, i207, i208, i209, i21, i210, i211, i212, i213, i214, i215, i216, i217, i218, i219, i22, i220, i221, i222, i223, i224, i225, i226, i227, i228, i229, i23, i230, i231, i232, i233, i234, i235, i236, i237, i238, i239, i24, i240, i241, i242, i243, i244, i245, i246, i247, i248, i249, i25, i250, i251, i252, i253, i254, i255, i256, i257, i258, i259, i26, i260, i261, i262, i263, i264, i265, i266, i267, i268, i269, i27, i270, i271, i272, i273, i274, i275, i276, i277, i278, i279, i28, i280, i281, i282, i283, i284, i285, i29, i3, i30, i31, i32, i33, i34, i35, i36, i37, i38, i39, i4, i40, i41, i42, i43, i44, i45, i46, i47, i48, i49, i5, i50, i51, i52, i53, i54, i55, i56, i57, i58, i59, i6, i60, i61, i62, i63, i64, i65, i66, i67, i68, i69, i7, i70, i71, i72, i73, i74, i75, i76, i77, i78, i79, i8, i80, i81, i82, i83, i84, i85, i86, i87, i88, i89, i9, i90, i91, i92, i93, i94, i95, i96, i97, i98, i99, mask, os, os1, os10, os100, os1000, os1001, os1002, os1003, os1004, os1005, os1006, os1007, os1008, os1009, os101, os1010, os1011, os1012, os1013, os1014, os1015, os1016, os1017, os1018, os1019, os102, os1020, os1021, os1022, os1023, os1024, os1025, os1026, os1027, os1028, os1029, os103, os1030, os1031, os1032, os1033, os1034, os1035, os1036, os1037, os1038, os1039, os104, os1040, os1041, os1042, os1043, os1044, os1045, os1046, os1047, os1048, os1049, os105, os1050, os1051, os1052, os1053, os1054, os1055, os1056, os1057, os1058, os1059, os106, os1060, os1061, os1062, os1063, os1064, os1065, os1066, os1067, os1068, os1069, os107, os1070, os1071, os1072, os1073, os1074, os1075, os1076, os1077, os1078, os1079, os108, os1080, os1081, os1082, os1083, os1084, os1085, os1086, os1087, os1088, os1089, os109, os1090, os1091, os1092, os1093, os1094, os1095, os1096, os1097, os1098, os1099, os11, os110, os1100, os1101, os1102, os1103, os1104, os1105, os1106, os1107, os1108, os1109, os111, os1110, os1111, os1112, os1113, os1114, os1115, os1116, os1117, os1118, os1119, os112, os1120, os1121, os1122, os1123, os1124, os1125, os1126, os1127, os1128, os1129, os113, os1130, os1131, os1132, os1133, os1134, os1135, os1136, os1137, os1138, os1139, os114, os1140, os1141, os1142, os1143, os1144, os1145, os1146, os1147, os1148, os1149, os115, os1150, os1151, os1152, os1153, os1154, os1155, os116, os117, os118, os119, os12, os120, os121, os122, os123, os124, os125, os126, os127, os128, os129, os13, os130, os131, os132, os133, os134, os135, os136, os137, os138, os139, os14, os140, os141, os142, os143, os144, os145, os146, os147, os148, os149, os15, os150, os151, os152, os153, os154, os155, os156, os157, os158, os159, os16, os160, os161, os162, os163, os164, os165, os166, os167, os168, os169, os17, os170, os171, os172, os173, os174, os175, os176, os177, os178, os179, os18, os180, os181, os182, os183, os184, os185, os186, os187, os188, os189, os19, os190, os191, os192, os193, os194, os195, os196, os197, os198, os199, os2, os20, os200, os201, os202, os203, os204, os205, os206, os207, os208, os209, os21, os210, os211, os212, os213, os214, os215, os216, os217, os218, os219, os22, os220, os221, os222, os223, os224, os225, os226, os227, os228, os229, os23, os230, os231, os232, os233, os234, os235, os236, os237, os238, os239, os24, os240, os241, os242, os243, os244, os245, os246, os247, os248, os249, os25, os250, os251, os252, os253, os254, os255, os256, os257, os258, os259, os26, os260, os261, os262, os263, os264, os265, os266, os267, os268, os269, os27, os270, os271, os272, os273, os274, os275, os276, os277, os278, os279, os28, os280, os281, os282, os283, os284, os285, os286, os287, os288, os289, os29, os290, os291, os292, os293, os294, os295, os296, os297, os298, os299, os3, os30, os300, os301, os302, os303, os304, os305, os306, os307, os308, os309, os31, os310, os311, os312, os313, os314, os315, os316, os317, os318, os319, os32, os320, os321, os322, os323, os324, os325, os326, os327, os328, os329, os33, os330, os331, os332, os333, os334, os335, os336, os337, os338, os339, os34, os340, os341, os342, os343, os344, os345, os346, os347, os348, os349, os35, os350, os351, os352, os353, os354, os355, os356, os357, os358, os359, os36, os360, os361, os362, os363, os364, os365, os366, os367, os368, os369, os37, os370, os371, os372, os373, os374, os375, os376, os377, os378, os379, os38, os380, os381, os382, os383, os384, os385, os386, os387, os388, os389, os39, os390, os391, os392, os393, os394, os395, os396, os397, os398, os399, os4, os40, os400, os401, os402, os403, os404, os405, os406, os407, os408, os409, os41, os410, os411, os412, os413, os414, os415, os416, os417, os418, os419, os42, os420, os421, os422, os423, os424, os425, os426, os427, os428, os429, os43, os430, os431, os432, os433, os434, os435, os436, os437, os438, os439, os44, os440, os441, os442, os443, os444, os445, os446, os447, os448, os449, os45, os450, os451, os452, os453, os454, os455, os456, os457, os458, os459, os46, os460, os461, os462, os463, os464, os465, os466, os467, os468, os469, os47, os470, os471, os472, os473, os474, os475, os476, os477, os478, os479, os48, os480, os481, os482, os483, os484, os485, os486, os487, os488, os489, os49, os490, os491, os492, os493, os494, os495, os496, os497, os498, os499, os5, os50, os500, os501, os502, os503, os504, os505, os506, os507, os508, os509, os51, os510, os511, os512, os513, os514, os515, os516, os517, os518, os519, os52, os520, os521, os522, os523, os524, os525, os526, os527, os528, os529, os53, os530, os531, os532, os533, os534, os535, os536, os537, os538, os539, os54, os540, os541, os542, os543, os544, os545, os546, os547, os548, os549, os55, os550, os551, os552, os553, os554, os555, os556, os557, os558, os559, os56, os560, os561, os562, os563, os564, os565, os566, os567, os568, os569, os57, os570, os571, os572, os573, os574, os575, os576, os577, os578, os579, os58, os580, os581, os582, os583, os584, os585, os586, os587, os588, os589, os59, os590, os591, os592, os593, os594, os595, os596, os597, os598, os599, os6, os60, os600, os601, os602, os603, os604, os605, os606, os607, os608, os609, os61, os610, os611, os612, os613, os614, os615, os616, os617, os618, os619, os62, os620, os621, os622, os623, os624, os625, os626, os627, os628, os629, os63, os630, os631, os632, os633, os634, os635, os636, os637, os638, os639, os64, os640, os641, os642, os643, os644, os645, os646, os647, os648, os649, os65, os650, os651, os652, os653, os654, os655, os656, os657, os658, os659, os66, os660, os661, os662, os663, os664, os665, os666, os667, os668, os669, os67, os670, os671, os672, os673, os674, os675, os676, os677, os678, os679, os68, os680, os681, os682, os683, os684, os685, os686, os687, os688, os689, os69, os690, os691, os692, os693, os694, os695, os696, os697, os698, os699, os7, os70, os700, os701, os702, os703, os704, os705, os706, os707, os708, os709, os71, os710, os711, os712, os713, os714, os715, os716, os717, os718, os719, os72, os720, os721, os722, os723, os724, os725, os726, os727, os728, os729, os73, os730, os731, os732, os733, os734, os735, os736, os737, os738, os739, os74, os740, os741, os742, os743, os744, os745, os746, os747, os748, os749, os75, os750, os751, os752, os753, os754, os755, os756, os757, os758, os759, os76, os760, os761, os762, os763, os764, os765, os766, os767, os768, os769, os77, os770, os771, os772, os773, os774, os775, os776, os777, os778, os779, os78, os780, os781, os782, os783, os784, os785, os786, os787, os788, os789, os79, os790, os791, os792, os793, os794, os795, os796, os797, os798, os799, os8, os80, os800, os801, os802, os803, os804, os805, os806, os807, os808, os809, os81, os810, os811, os812, os813, os814, os815, os816, os817, os818, os819, os82, os820, os821, os822, os823, os824, os825, os826, os827, os828, os829, os83, os830, os831, os832, os833, os834, os835, os836, os837, os838, os839, os84, os840, os841, os842, os843, os844, os845, os846, os847, os848, os849, os85, os850, os851, os852, os853, os854, os855, os856, os857, os858, os859, os86, os860, os861, os862, os863, os864, os865, os866, os867, os868, os869, os87, os870, os871, os872, os873, os874, os875, os876, os877, os878, os879, os88, os880, os881, os882, os883, os884, os885, os886, os887, os888, os889, os89, os890, os891, os892, os893, os894, os895, os896, os897, os898, os899, os9, os90, os900, os901, os902, os903, os904, os905, os906, os907, os908, os909, os91, os910, os911, os912, os913, os914, os915, os916, os917, os918, os919, os92, os920, os921, os922, os923, os924, os925, os926, os927, os928, os929, os93, os930, os931, os932, os933, os934, os935, os936, os937, os938, os939, os94, os940, os941, os942, os943, os944, os945, os946, os947, os948, os949, os95, os950, os951, os952, os953, os954, os955, os956, os957, os958, os959, os96, os960, os961, os962, os963, os964, os965, os966, os967, os968, os969, os97, os970, os971, os972, os973, os974, os975, os976, os977, os978, os979, os98, os980, os981, os982, os983, os984, os985, os986, os987, os988, os989, os99, os990, os991, os992, os993, os994, os995, os996, os997, os998, os999, r, r0, r01, r010, r02, r03, r04, r05, r06, r07, r08, r09, r1, r10, r101, r1010, r102, r103, r104, r105, r106, r107, r108, r109, r11, r110, r1101, r11010, r1102, r1103, r1104, r1105, r1106, r1107, r1108, r1109, r111, r1110, r1111, r11110, r11111, r11112, r11113, r11114, r11115, r11116, r1112, r1113, r1114, r1115, r1116, r1117, r1118, r1119, r112, r1121, r11210, r1122, r1123, r1124, r1125, r1126, r1127, r1128, r1129, r113, r1131, r11310, r1132, r1133, r1134, r1135, r1136, r1137, r1138, r1139, r114, r1141, r11410, r1142, r1143, r1144, r1145, r1146, r1147, r1148, r1149, r115, r1151, r11510, r1152, r1153, r1154, r1155, r1156, r1157, r1158, r1159, r116, r117, r118, r119, r12, r121, r1210, r122, r123, r124, r125, r126, r127, r128, r129, r13, r131, r1310, r132, r133, r134, r135, r136, r137, r138, r139, r14, r141, r1410, r142, r143, r144, r145, r146, r147, r148, r149, r15, r151, r1510, r152, r153, r154, r155, r156, r157, r158, r159, r16, r161, r1610, r162, r163, r164, r165, r166, r167, r168, r169, r17, r171, r1710, r172, r173, r174, r175, r176, r177, r178, r179, r18, r181, r1810, r182, r183, r184, r185, r186, r187, r188, r189, r19, r191, r1910, r192, r193, r194, r195, r196, r197, r198, r199, r2, r20, r201, r202, r203, r204, r205, r206, r207, r208, r209, r21, r210, r211, r2110, r2111, r212, r213, r214, r215, r216, r217, r218, r219, r22, r23, r24, r25, r26, r27, r28, r29, r3, r30, r301, r302, r303, r304, r305, r306, r307, r308, r309, r31, r310, r311, r3110, r3111, r312, r313, r314, r315, r316, r317, r318, r319, r32, r33, r34, r35, r36, r37, r38, r39, r4, r5, r6, r7, r8, r9, s0, s01, s010, s02, s03, s04, s05, s06, s07, s08, s09, s1, s10, s101, s102, s103, s104, s105, s106, s107, s108, s109, s11, s110, s111, s1110, s112, s113, s114, s115, s116, s117, s118, s119, s12, s121, s1210, s122, s123, s124, s125, s126, s127, s128, s129, s13, s131, s1310, s132, s133, s134, s135, s136, s137, s138, s139, s14, s141, s1410, s142, s143, s144, s145, s146, s147, s148, s149, s15, s151, s1510, s152, s153, s154, s155, s156, s157, s158, s159, s16, s17, s18, s19, s2, s21, s22, s23, s24, s25, s26, s27, s28, s29, s3, s31, s32, s33, s34, s35, s36, s37, s38, s39, s4, s41, s42, s43, s44, s45, s46, s47, s48, s49, s5, s51, s52, s53, s54, s55, s56, s57, s58, s59, s6, s61, s62, s63, s64, s65, s66, s67, s68, s69, s7, s71, s72, s73, s74, s75, s76, s77, s78, s79, s8, s81, s82, s83, s84, s85, s86, s87, s88, s89, s9, s91, s92, s93, s94, s95, s96, s97, s98, s99, start_idx, start_idx1, start_idx2, start_idx3, start_idx4, start_idx5, start_idx6, start_idx7, start_idx8, start_idx9, u, u1, u10, u11, u12, u13, u14, u15, u2, u3, u4, u5, u6, u7, u8, u9, uu____0, uu____01, uu____02, uu____03, uu____04, uu____05, uu____06, uu____07, uu____08, uu____09, uu____1, uu____10, uu____101, uu____102, uu____103, uu____104, uu____105, uu____106, uu____107, uu____108, uu____109, uu____11, uu____111, uu____1110, uu____112, uu____113, uu____114, uu____115, uu____116, uu____117, uu____118, uu____119, uu____12, uu____13, uu____14, uu____15, uu____16, uu____17, uu____18, uu____19, uu____2, uu____21, uu____22, uu____23, uu____24, uu____25, uu____26, uu____27, uu____28, uu____29, uu____3, uu____31, uu____32, uu____33, uu____34, uu____35, uu____36, uu____37, uu____38, uu____39, uu____4, uu____41, uu____42, uu____43, uu____44, uu____45, uu____46, uu____47, uu____48, uu____49, uu____5, uu____51, uu____52, uu____53, uu____54, uu____55, uu____56, uu____57, uu____58, uu____59, uu____6, uu____61, uu____62, uu____63, uu____64, uu____65, uu____66, uu____67, uu____68, uu____69, uu____7, uu____71, uu____72, uu____73, uu____74, uu____75, uu____76, uu____77, uu____78, uu____79, uu____8, uu____81, uu____82, uu____83, uu____84, uu____85, uu____86, uu____87, uu____88, uu____89, uu____9, uu____91, uu____92, uu____93, uu____94, uu____95, uu____96, uu____97, uu____98, uu____99, w, w1, w2, w3, w4, w5, w6, w7, w8, w9, wv3, wv_14, wv_15, wv_a, wv_a0, wv_a01, wv_a02, wv_a03, wv_a04, wv_a05, wv_a06, wv_a07, wv_a08, wv_a09, wv_a1, wv_a10, wv_a101, wv_a102, wv_a103, wv_a104, wv_a105, wv_a106, wv_a107, wv_a108, wv_a109, wv_a11, wv_a110, wv_a111, wv_a1110, wv_a112, wv_a113, wv_a114, wv_a115, wv_a116, wv_a117, wv_a118, wv_a119, wv_a12, wv_a121, wv_a1210, wv_a122, wv_a123, wv_a124, wv_a125, wv_a126, wv_a127, wv_a128, wv_a129, wv_a13, wv_a131, wv_a1310, wv_a132, wv_a133, wv_a134, wv_a135, wv_a136, wv_a137, wv_a138, wv_a139, wv_a14, wv_a141, wv_a1410, wv_a142, wv_a143, wv_a144, wv_a145, wv_a146, wv_a147, wv_a148, wv_a149, wv_a15, wv_a16, wv_a17, wv_a18, wv_a19, wv_a2, wv_a21, wv_a210, wv_a22, wv_a23, wv_a24, wv_a25, wv_a26, wv_a27, wv_a28, wv_a29, wv_a3, wv_a31, wv_a310, wv_a32, wv_a33, wv_a34, wv_a35, wv_a36, wv_a37, wv_a38, wv_a39, wv_a4, wv_a41, wv_a410, wv_a42, wv_a43, wv_a44, wv_a45, wv_a46, wv_a47, wv_a48, wv_a49, wv_a5, wv_a51, wv_a510, wv_a52, wv_a53, wv_a54, wv_a55, wv_a56, wv_a57, wv_a58, wv_a59, wv_a6, wv_a61, wv_a610, wv_a62, wv_a63, wv_a64, wv_a65, wv_a66, wv_a67, wv_a68, wv_a69, wv_a7, wv_a71, wv_a710, wv_a72, wv_a73, wv_a74, wv_a75, wv_a76, wv_a77, wv_a78, wv_a79, wv_a8, wv_a81, wv_a810, wv_a82, wv_a83, wv_a84, wv_a85, wv_a86, wv_a87, wv_a88, wv_a89, wv_a9, wv_a91, wv_a910, wv_a92, wv_a93, wv_a94, wv_a95, wv_a96, wv_a97, wv_a98, wv_a99, wv_b, wv_b0, wv_b01, wv_b02, wv_b03, wv_b04, wv_b05, wv_b06, wv_b07, wv_b08, wv_b09, wv_b1, wv_b10, wv_b101, wv_b102, wv_b103, wv_b104, wv_b105, wv_b106, wv_b107, wv_b108, wv_b109, wv_b11, wv_b110, wv_b111, wv_b1110, wv_b112, wv_b113, wv_b114, wv_b115, wv_b116, wv_b117, wv_b118, wv_b119, wv_b12, wv_b121, wv_b1210, wv_b122, wv_b123, wv_b124, wv_b125, wv_b126, wv_b127, wv_b128, wv_b129, wv_b13, wv_b131, wv_b1310, wv_b132, wv_b133, wv_b134, wv_b135, wv_b136, wv_b137, wv_b138, wv_b139, wv_b14, wv_b141, wv_b1410, wv_b142, wv_b143, wv_b144, wv_b145, wv_b146, wv_b147, wv_b148, wv_b149, wv_b15, wv_b16, wv_b17, wv_b18, wv_b19, wv_b2, wv_b21, wv_b210, wv_b22, wv_b23, wv_b24, wv_b25, wv_b26, wv_b27, wv_b28, wv_b29, wv_b3, wv_b31, wv_b310, wv_b32, wv_b33, wv_b34, wv_b35, wv_b36, wv_b37, wv_b38, wv_b39, wv_b4, wv_b41, wv_b410, wv_b42, wv_b43, wv_b44, wv_b45, wv_b46, wv_b47, wv_b48, wv_b49, wv_b5, wv_b51, wv_b510, wv_b52, wv_b53, wv_b54, wv_b55, wv_b56, wv_b57, wv_b58, wv_b59, wv_b6, wv_b61, wv_b610, wv_b62, wv_b63, wv_b64, wv_b65, wv_b66, wv_b67, wv_b68, wv_b69, wv_b7, wv_b71, wv_b710, wv_b72, wv_b73, wv_b74, wv_b75, wv_b76, wv_b77, wv_b78, wv_b79, wv_b8, wv_b81, wv_b810, wv_b82, wv_b83, wv_b84, wv_b85, wv_b86, wv_b87, wv_b88, wv_b89, wv_b9, wv_b91, wv_b910, wv_b92, wv_b93, wv_b94, wv_b95, wv_b96, wv_b97, wv_b98, wv_b99, x0, x00, x001, x002, x003, x004, x005, x006, x007, x008, x009, x01, x011, x0110, x012, x013, x014, x015, x016, x017, x018, x019, x02, x021, x0210, x022, x023, x024, x025, x026, x027, x028, x029, x03, x031, x0310, x032, x033, x034, x035, x036, x037, x038, x039, x04, x041, x0410, x042, x043, x044, x045, x046, x047, x048, x049, x05, x06, x07, x08, x09, x1, x10, x101, x1010, x10100, x10101, x10102, x10103, x10104, x10105, x10106, x10107, x10108, x10109, x1011, x10110, x10111, x10112, x10113, x10114, x10115, x10116, x10117, x10118, x10119, x1012, x10120, x10121, x10122, x10123, x10124, x10125, x10126, x10127, x10128, x10129, x1013, x10130, x10131, x10132, x10133, x10134, x10135, x10136, x10137, x10138, x10139, x1014, x10140, x10141, x10142, x10143, x10144, x10145, x10146, x10147, x10148, x10149, x1015, x10150, x10151, x10152, x10153, x10154, x10155, x10156, x10157, x10158, x10159, x1016, x10160, x10161, x10162, x10163, x10164, x10165, x10166, x10167, x10168, x10169, x1017, x10170, x1018, x1019, x102, x1020, x1021, x1022, x1023, x1024, x1025, x1026, x1027, x1028, x1029, x103, x1030, x1031, x1032, x1033, x1034, x1035, x1036, x1037, x1038, x1039, x104, x1040, x1041, x1042, x1043, x1044, x1045, x1046, x1047, x1048, x1049, x105, x1050, x1051, x1052, x1053, x1054, x1055, x1056, x1057, x1058, x1059, x106, x1060, x1061, x1062, x1063, x1064, x1065, x1066, x1067, x1068, x1069, x107, x1070, x1071, x1072, x1073, x1074, x1075, x1076, x1077, x1078, x1079, x108, x1080, x1081, x1082, x1083, x1084, x1085, x1086, x1087, x1088, x1089, x109, x1090, x1091, x1092, x1093, x1094, x1095, x1096, x1097, x1098, x1099, x11, x110, x1100, x11000, x11001, x11002, x11003, x11004, x11005, x11006, x11007, x11008, x11009, x1101, x11010, x11011, x11012, x11013, x11014, x11015, x11016, x11017, x11018, x11019, x1102, x11020, x11021, x11022, x11023, x11024, x11025, x11026, x11027, x11028, x11029, x1103, x11030, x11031, x11032, x11033, x11034, x11035, x11036, x11037, x11038, x11039, x1104, x11040, x11041, x11042, x11043, x11044, x11045, x11046, x11047, x11048, x11049, x1105, x11050, x11051, x11052, x11053, x11054, x11055, x11056, x11057, x11058, x11059, x1106, x11060, x11061, x11062, x11063, x11064, x11065, x11066, x11067, x11068, x11069, x1107, x11070, x11071, x11072, x11073, x11074, x11075, x11076, x11077, x11078, x11079, x1108, x11080, x11081, x11082, x11083, x11084, x11085, x11086, x11087, x11088, x11089, x1109, x11090, x11091, x11092, x11093, x11094, x11095, x11096, x11097, x11098, x11099, x111, x1110, x11100, x11101, x11102, x11103, x11104, x11105, x11106, x11107, x11108, x11109, x1111, x11110, x11111, x11112, x11113, x11114, x11115, x11116, x11117, x11118, x11119, x1112, x11120, x11121, x11122, x11123, x11124, x11125, x11126, x11127, x11128, x11129, x1113, x11130, x11131, x11132, x11133, x11134, x11135, x11136, x11137, x11138, x11139, x1114, x11140, x11141, x11142, x11143, x11144, x11145, x11146, x11147, x11148, x11149, x1115, x1116, x1117, x1118, x1119, x112, x1120, x1121, x1122, x1123, x1124, x1125, x1126, x1127, x1128, x1129, x113, x1130, x1131, x1132, x1133, x1134, x1135, x1136, x1137, x1138, x1139, x114, x1140, x1141, x1142, x1143, x1144, x1145, x1146, x1147, x1148, x1149, x115, x1150, x1151, x1152, x1153, x1154, x1155, x1156, x1157, x1158, x1159, x116, x1160, x1161, x1162, x1163, x1164, x1165, x1166, x1167, x1168, x1169, x117, x1170, x1171, x1172, x1173, x1174, x1175, x1176, x1177, x1178, x1179, x118, x1180, x1181, x1182, x1183, x1184, x1185, x1186, x1187, x1188, x1189, x119, x1190, x1191, x1192, x1193, x1194, x1195, x1196, x1197, x1198, x1199, x12, x120, x1200, x1201, x1202, x1203, x1204, x1205, x1206, x1207, x1208, x1209, x121, x1210, x12100, x12101, x12102, x12103, x12104, x12105, x12106, x12107, x12108, x12109, x1211, x1212, x1213, x1214, x1215, x1216, x1217, x1218, x1219, x122, x1220, x1221, x1222, x1223, x1224, x1225, x1226, x1227, x1228, x1229, x123, x1230, x1231, x1232, x1233, x1234, x1235, x1236, x1237, x1238, x1239, x124, x1240, x1241, x1242, x1243, x1244, x1245, x1246, x1247, x1248, x1249, x125, x1250, x1251, x1252, x1253, x1254, x1255, x1256, x1257, x1258, x1259, x126, x1260, x1261, x1262, x1263, x1264, x1265, x1266, x1267, x1268, x1269, x127, x1270, x1271, x1272, x1273, x1274, x1275, x1276, x1277, x1278, x1279, x128, x1280, x1281, x1282, x1283, x1284, x1285, x1286, x1287, x1288, x1289, x129, x1290, x1291, x1292, x1293, x1294, x1295, x1296, x1297, x1298, x1299, x13, x130, x1300, x1301, x1302, x1303, x1304, x1305, x1306, x1307, x1308, x1309, x131, x1310, x13100, x13101, x13102, x13103, x13104, x13105, x13106, x13107, x13108, x13109, x1311, x13110, x13111, x13112, x13113, x13114, x13115, x13116, x13117, x13118, x13119, x1312, x13120, x13121, x13122, x13123, x13124, x13125, x13126, x13127, x13128, x13129, x1313, x13130, x13131, x13132, x13133, x13134, x13135, x13136, x13137, x13138, x13139, x1314, x13140, x13141, x13142, x13143, x13144, x13145, x13146, x13147, x13148, x13149, x1315, x13150, x13151, x13152, x13153, x13154, x13155, x13156, x13157, x13158, x13159, x1316, x13160, x13161, x13162, x13163, x13164, x13165, x13166, x13167, x13168, x13169, x1317, x13170, x13171, x13172, x13173, x13174, x13175, x13176, x13177, x13178, x13179, x1318, x13180, x13181, x13182, x13183, x13184, x13185, x13186, x13187, x13188, x13189, x1319, x13190, x13191, x13192, x13193, x13194, x13195, x13196, x13197, x13198, x13199, x132, x1320, x13200, x13201, x13202, x13203, x13204, x13205, x13206, x13207, x13208, x13209, x1321, x13210, x13211, x13212, x13213, x13214, x13215, x13216, x13217, x13218, x13219, x1322, x13220, x13221, x13222, x13223, x13224, x13225, x13226, x13227, x13228, x13229, x1323, x13230, x13231, x13232, x13233, x13234, x13235, x13236, x13237, x13238, x13239, x1324, x13240, x13241, x13242, x13243, x13244, x13245, x13246, x13247, x13248, x13249, x1325, x13250, x13251, x13252, x13253, x13254, x13255, x13256, x13257, x13258, x13259, x1326, x13260, x13261, x13262, x13263, x13264, x13265, x13266, x13267, x13268, x13269, x1327, x1328, x1329, x133, x1330, x1331, x1332, x1333, x1334, x1335, x1336, x1337, x1338, x1339, x134, x1340, x1341, x1342, x1343, x1344, x1345, x1346, x1347, x1348, x1349, x135, x1350, x1351, x1352, x1353, x1354, x1355, x1356, x1357, x1358, x1359, x136, x1360, x1361, x1362, x1363, x1364, x1365, x1366, x1367, x1368, x1369, x137, x1370, x1371, x1372, x1373, x1374, x1375, x1376, x1377, x1378, x1379, x138, x1380, x1381, x1382, x1383, x1384, x1385, x1386, x1387, x1388, x1389, x139, x1390, x1391, x1392, x1393, x1394, x1395, x1396, x1397, x1398, x1399, x14, x140, x1400, x1401, x1402, x1403, x1404, x1405, x1406, x1407, x1408, x1409, x141, x1410, x14100, x14101, x14102, x14103, x14104, x14105, x14106, x14107, x14108, x14109, x1411, x1412, x1413, x1414, x1415, x1416, x1417, x1418, x1419, x142, x1420, x1421, x1422, x1423, x1424, x1425, x1426, x1427, x1428, x1429, x143, x1430, x1431, x1432, x1433, x1434, x1435, x1436, x1437, x1438, x1439, x144, x1440, x1441, x1442, x1443, x1444, x1445, x1446, x1447, x1448, x1449, x145, x1450, x1451, x1452, x1453, x1454, x1455, x1456, x1457, x1458, x1459, x146, x1460, x1461, x1462, x1463, x1464, x1465, x1466, x1467, x1468, x1469, x147, x1470, x1471, x1472, x1473, x1474, x1475, x1476, x1477, x1478, x1479, x148, x1480, x1481, x1482, x1483, x1484, x1485, x1486, x1487, x1488, x1489, x149, x1490, x1491, x1492, x1493, x1494, x1495, x1496, x1497, x1498, x1499, x15, x150, x1500, x1501, x1502, x1503, x1504, x1505, x1506, x1507, x1508, x1509, x151, x1510, x1511, x1512, x1513, x1514, x1515, x1516, x1517, x1518, x1519, x152, x1520, x1521, x1522, x1523, x1524, x1525, x1526, x1527, x1528, x1529, x153, x1530, x1531, x1532, x1533, x1534, x1535, x1536, x1537, x1538, x1539, x154, x1540, x1541, x1542, x1543, x1544, x1545, x1546, x1547, x1548, x1549, x155, x1550, x1551, x1552, x1553, x1554, x1555, x1556, x1557, x1558, x1559, x156, x1560, x1561, x1562, x1563, x1564, x1565, x1566, x1567, x1568, x1569, x157, x1570, x1571, x1572, x1573, x1574, x1575, x1576, x1577, x1578, x1579, x158, x1580, x1581, x1582, x1583, x1584, x1585, x1586, x1587, x1588, x1589, x159, x1590, x1591, x1592, x1593, x1594, x1595, x1596, x1597, x1598, x1599, x16, x160, x1600, x1601, x1602, x1603, x1604, x1605, x1606, x1607, x1608, x1609, x161, x1610, x1611, x1612, x1613, x1614, x1615, x1616, x1617, x1618, x1619, x162, x1620, x1621, x1622, x1623, x1624, x1625, x1626, x1627, x1628, x1629, x163, x1630, x1631, x1632, x1633, x1634, x1635, x1636, x1637, x1638, x1639, x164, x1640, x1641, x1642, x1643, x1644, x1645, x1646, x1647, x1648, x1649, x165, x1650, x1651, x1652, x1653, x1654, x1655, x1656, x1657, x1658, x1659, x166, x1660, x1661, x1662, x1663, x1664, x1665, x1666, x1667, x1668, x1669, x167, x1670, x1671, x1672, x1673, x1674, x1675, x1676, x1677, x1678, x1679, x168, x1680, x1681, x1682, x1683, x1684, x1685, x1686, x1687, x1688, x1689, x169, x1690, x1691, x1692, x1693, x1694, x1695, x1696, x1697, x1698, x1699, x17, x170, x1700, x1701, x1702, x1703, x1704, x1705, x1706, x1707, x1708, x1709, x171, x1710, x1711, x1712, x1713, x1714, x1715, x1716, x1717, x1718, x1719, x172, x1720, x1721, x1722, x1723, x1724, x1725, x1726, x1727, x1728, x1729, x173, x1730, x1731, x1732, x1733, x1734, x1735, x1736, x1737, x1738, x1739, x174, x1740, x1741, x1742, x1743, x1744, x1745, x1746, x1747, x1748, x1749, x175, x1750, x1751, x1752, x1753, x1754, x1755, x1756, x1757, x1758, x1759, x176, x1760, x1761, x1762, x1763, x1764, x1765, x1766, x1767, x1768, x1769, x177, x1770, x1771, x1772, x1773, x1774, x1775, x1776, x1777, x1778, x1779, x178, x1780, x1781, x1782, x1783, x1784, x1785, x1786, x1787, x1788, x1789, x179, x1790, x1791, x1792, x1793, x1794, x1795, x1796, x1797, x1798, x1799, x18, x180, x1800, x1801, x1802, x1803, x1804, x1805, x1806, x1807, x1808, x1809, x181, x1810, x1811, x1812, x1813, x1814, x1815, x1816, x1817, x1818, x1819, x182, x1820, x1821, x1822, x1823, x1824, x1825, x1826, x1827, x1828, x1829, x183, x1830, x1831, x1832, x1833, x1834, x1835, x1836, x1837, x1838, x1839, x184, x1840, x1841, x1842, x1843, x1844, x1845, x1846, x1847, x1848, x1849, x185, x1850, x1851, x1852, x1853, x1854, x1855, x1856, x1857, x1858, x1859, x186, x1860, x1861, x1862, x1863, x1864, x1865, x1866, x1867, x1868, x1869, x187, x1870, x1871, x1872, x1873, x1874, x1875, x1876, x1877, x1878, x1879, x188, x1880, x1881, x1882, x1883, x1884, x1885, x1886, x1887, x1888, x1889, x189, x1890, x1891, x1892, x1893, x1894, x1895, x1896, x1897, x1898, x1899, x19, x190, x1900, x1901, x1902, x1903, x1904, x1905, x1906, x1907, x1908, x1909, x191, x1910, x1911, x1912, x1913, x1914, x1915, x1916, x1917, x1918, x1919, x192, x1920, x1921, x1922, x1923, x1924, x1925, x1926, x1927, x1928, x1929, x193, x1930, x1931, x1932, x1933, x1934, x1935, x1936, x1937, x1938, x1939, x194, x1940, x1941, x1942, x1943, x1944, x1945, x1946, x1947, x1948, x1949, x195, x1950, x1951, x1952, x1953, x1954, x1955, x1956, x1957, x1958, x1959, x196, x1960, x1961, x1962, x1963, x1964, x1965, x1966, x1967, x1968, x1969, x197, x1970, x1971, x1972, x1973, x1974, x1975, x1976, x1977, x1978, x1979, x198, x1980, x1981, x1982, x1983, x1984, x1985, x1986, x1987, x1988, x1989, x199, x1990, x1991, x1992, x1993, x1994, x1995, x1996, x1997, x1998, x1999, x2, x20, x201, x2010, x202, x203, x204, x205, x206, x207, x208, x209, x21, x210, x211, x2110, x2111, x2112, x2113, x2114, x2115, x2116, x2117, x2118, x2119, x212, x213, x214, x215, x216, x217, x218, x219, x22, x221, x2210, x222, x223, x224, x225, x226, x227, x228, x229, x23, x231, x2310, x232, x233, x234, x235, x236, x237, x238, x239, x24, x241, x2410, x242, x243, x244, x245, x246, x247, x248, x249, x25, x26, x27, x28, x29, x3, x30, x301, x3010, x302, x303, x304, x305, x306, x307, x308, x309, x31, x310, x311, x3110, x3111, x3112, x3113, x3114, x3115, x3116, x3117, x3118, x3119, x312, x313, x314, x315, x316, x317, x318, x319, x32, x321, x3210, x322, x323, x324, x325, x326, x327, x328, x329, x33, x331, x3310, x332, x333, x334, x335, x336, x337, x338, x339, x34, x341, x3410, x342, x343, x344, x345, x346, x347, x348, x349, x35, x36, x37, x38, x39, x4, x40, x41, x42, x43, x44, x45, x46, x5, x6, x7, x8, x9, y, y1, y2, y3, y4, y5, y6, y7, y8, y9, z, z1, z2, z3, z4, z5, z6, z7, z8, z9, v1
-	**(**[16]Tuint32_t)(__ccgo_up(bp + 4)) = [16]Tuint32_t{}
-	i = 0
-	os = bp + 4
-	bj = d + uintptr(i*uint32(4))
-	libc.X__builtin___memcpy_chk(tls, bp, bj, uint64(4), ^t__predefined_size_t(0))
-	v1 = **(**Tuint32_t)(__ccgo_up(bp))
-	goto _2
-_2:
-	u = v1
-	r = u
-	x1 = r
-	**(**Tuint32_t)(__ccgo_up(os + uintptr(i)*4)) = x1
-	i = i + uint32(1)
-	_ = i
-	os1 = bp + 4
-	bj1 = d + uintptr(i*uint32(4))
-	libc.X__builtin___memcpy_chk(tls, bp, bj1, uint64(4), ^t__predefined_size_t(0))
-	v1 = **(**Tuint32_t)(__ccgo_up(bp))
-	goto _4
-_4:
-	u1 = v1
-	r1 = u1
-	x2 = r1
-	**(**Tuint32_t)(__ccgo_up(os1 + uintptr(i)*4)) = x2
-	i = i + uint32(1)
-	_ = i
-	os2 = bp + 4
-	bj2 = d + uintptr(i*uint32(4))
-	libc.X__builtin___memcpy_chk(tls, bp, bj2, uint64(4), ^t__predefined_size_t(0))
-	v1 = **(**Tuint32_t)(__ccgo_up(bp))
-	goto _6
-_6:
-	u2 = v1
-	r2 = u2
-	x3 = r2
-	**(**Tuint32_t)(__ccgo_up(os2 + uintptr(i)*4)) = x3
-	i = i + uint32(1)
-	_ = i
-	os3 = bp + 4
-	bj3 = d + uintptr(i*uint32(4))
-	libc.X__builtin___memcpy_chk(tls, bp, bj3, uint64(4), ^t__predefined_size_t(0))
-	v1 = **(**Tuint32_t)(__ccgo_up(bp))
-	goto _8
-_8:
-	u3 = v1
-	r3 = u3
-	x4 = r3
-	**(**Tuint32_t)(__ccgo_up(os3 + uintptr(i)*4)) = x4
-	i = i + uint32(1)
-	_ = i
-	os4 = bp + 4
-	bj4 = d + uintptr(i*uint32(4))
-	libc.X__builtin___memcpy_chk(tls, bp, bj4, uint64(4), ^t__predefined_size_t(0))
-	v1 = **(**Tuint32_t)(__ccgo_up(bp))
-	goto _10
-_10:
-	u4 = v1
-	r4 = u4
-	x5 = r4
-	**(**Tuint32_t)(__ccgo_up(os4 + uintptr(i)*4)) = x5
-	i = i + uint32(1)
-	_ = i
-	os5 = bp + 4
-	bj5 = d + uintptr(i*uint32(4))
-	libc.X__builtin___memcpy_chk(tls, bp, bj5, uint64(4), ^t__predefined_size_t(0))
-	v1 = **(**Tuint32_t)(__ccgo_up(bp))
-	goto _12
-_12:
-	u5 = v1
-	r5 = u5
-	x6 = r5
-	**(**Tuint32_t)(__ccgo_up(os5 + uintptr(i)*4)) = x6
-	i = i + uint32(1)
-	_ = i
-	os6 = bp + 4
-	bj6 = d + uintptr(i*uint32(4))
-	libc.X__builtin___memcpy_chk(tls, bp, bj6, uint64(4), ^t__predefined_size_t(0))
-	v1 = **(**Tuint32_t)(__ccgo_up(bp))
-	goto _14
-_14:
-	u6 = v1
-	r6 = u6
-	x7 = r6
-	**(**Tuint32_t)(__ccgo_up(os6 + uintptr(i)*4)) = x7
-	i = i + uint32(1)
-	_ = i
-	os7 = bp + 4
-	bj7 = d + uintptr(i*uint32(4))
-	libc.X__builtin___memcpy_chk(tls, bp, bj7, uint64(4), ^t__predefined_size_t(0))
-	v1 = **(**Tuint32_t)(__ccgo_up(bp))
-	goto _16
-_16:
-	u7 = v1
-	r7 = u7
-	x8 = r7
-	**(**Tuint32_t)(__ccgo_up(os7 + uintptr(i)*4)) = x8
-	i = i + uint32(1)
-	_ = i
-	os8 = bp + 4
-	bj8 = d + uintptr(i*uint32(4))
-	libc.X__builtin___memcpy_chk(tls, bp, bj8, uint64(4), ^t__predefined_size_t(0))
-	v1 = **(**Tuint32_t)(__ccgo_up(bp))
-	goto _18
-_18:
-	u8 = v1
-	r8 = u8
-	x9 = r8
-	**(**Tuint32_t)(__ccgo_up(os8 + uintptr(i)*4)) = x9
-	i = i + uint32(1)
-	_ = i
-	os9 = bp + 4
-	bj9 = d + uintptr(i*uint32(4))
-	libc.X__builtin___memcpy_chk(tls, bp, bj9, uint64(4), ^t__predefined_size_t(0))
-	v1 = **(**Tuint32_t)(__ccgo_up(bp))
-	goto _20
-_20:
-	u9 = v1
-	r9 = u9
-	x10 = r9
-	**(**Tuint32_t)(__ccgo_up(os9 + uintptr(i)*4)) = x10
-	i = i + uint32(1)
-	_ = i
-	os10 = bp + 4
-	bj10 = d + uintptr(i*uint32(4))
-	libc.X__builtin___memcpy_chk(tls, bp, bj10, uint64(4), ^t__predefined_size_t(0))
-	v1 = **(**Tuint32_t)(__ccgo_up(bp))
-	goto _22
-_22:
-	u10 = v1
-	r10 = u10
-	x11 = r10
-	**(**Tuint32_t)(__ccgo_up(os10 + uintptr(i)*4)) = x11
-	i = i + uint32(1)
-	_ = i
-	os11 = bp + 4
-	bj11 = d + uintptr(i*uint32(4))
-	libc.X__builtin___memcpy_chk(tls, bp, bj11, uint64(4), ^t__predefined_size_t(0))
-	v1 = **(**Tuint32_t)(__ccgo_up(bp))
-	goto _24
-_24:
-	u11 = v1
-	r11 = u11
-	x12 = r11
-	**(**Tuint32_t)(__ccgo_up(os11 + uintptr(i)*4)) = x12
-	i = i + uint32(1)
-	_ = i
-	os12 = bp + 4
-	bj12 = d + uintptr(i*uint32(4))
-	libc.X__builtin___memcpy_chk(tls, bp, bj12, uint64(4), ^t__predefined_size_t(0))
-	v1 = **(**Tuint32_t)(__ccgo_up(bp))
-	goto _26
-_26:
-	u12 = v1
-	r12 = u12
-	x13 = r12
-	**(**Tuint32_t)(__ccgo_up(os12 + uintptr(i)*4)) = x13
-	i = i + uint32(1)
-	_ = i
-	os13 = bp + 4
-	bj13 = d + uintptr(i*uint32(4))
-	libc.X__builtin___memcpy_chk(tls, bp, bj13, uint64(4), ^t__predefined_size_t(0))
-	v1 = **(**Tuint32_t)(__ccgo_up(bp))
-	goto _28
-_28:
-	u13 = v1
-	r13 = u13
-	x14 = r13
-	**(**Tuint32_t)(__ccgo_up(os13 + uintptr(i)*4)) = x14
-	i = i + uint32(1)
-	_ = i
-	os14 = bp + 4
-	bj14 = d + uintptr(i*uint32(4))
-	libc.X__builtin___memcpy_chk(tls, bp, bj14, uint64(4), ^t__predefined_size_t(0))
-	v1 = **(**Tuint32_t)(__ccgo_up(bp))
-	goto _30
-_30:
-	u14 = v1
-	r14 = u14
-	x15 = r14
-	**(**Tuint32_t)(__ccgo_up(os14 + uintptr(i)*4)) = x15
-	i = i + uint32(1)
-	_ = i
-	os15 = bp + 4
-	bj15 = d + uintptr(i*uint32(4))
-	libc.X__builtin___memcpy_chk(tls, bp, bj15, uint64(4), ^t__predefined_size_t(0))
-	v1 = **(**Tuint32_t)(__ccgo_up(bp))
-	goto _32
-_32:
-	u15 = v1
-	r15 = u15
-	x16 = r15
-	**(**Tuint32_t)(__ccgo_up(os15 + uintptr(i)*4)) = x16
-	i = i + uint32(1)
-	_ = i
-	mask = [4]Tuint32_t{}
-	if flag != 0 {
-		wv_14 = uint32(0xFFFFFFFF)
-	} else {
-		wv_14 = 0
-	}
-	if last_node != 0 {
-		wv_15 = uint32(0xFFFFFFFF)
-	} else {
-		wv_15 = 0
-	}
-	mask[0] = uint32(totlen)
-	mask[uint32(1)] = uint32(totlen >> libc.Uint32FromUint32(32))
-	mask[uint32(2)] = wv_14
-	mask[uint32(3)] = wv_15
-	libc.X__builtin___memcpy_chk(tls, wv, hash, libc.Uint64FromUint32(16)*libc.Uint64FromInt64(4), ^t__predefined_size_t(0))
-	wv3 = wv + uintptr(12)*4
-	i1 = 0
-	os16 = wv3
-	x17 = **(**Tuint32_t)(__ccgo_up(wv3 + uintptr(i1)*4)) ^ mask[i1]
-	**(**Tuint32_t)(__ccgo_up(os16 + uintptr(i1)*4)) = x17
-	i1 = i1 + uint32(1)
-	_ = i1
-	os17 = wv3
-	x18 = **(**Tuint32_t)(__ccgo_up(wv3 + uintptr(i1)*4)) ^ mask[i1]
-	**(**Tuint32_t)(__ccgo_up(os17 + uintptr(i1)*4)) = x18
-	i1 = i1 + uint32(1)
-	_ = i1
-	os18 = wv3
-	x19 = **(**Tuint32_t)(__ccgo_up(wv3 + uintptr(i1)*4)) ^ mask[i1]
-	**(**Tuint32_t)(__ccgo_up(os18 + uintptr(i1)*4)) = x19
-	i1 = i1 + uint32(1)
-	_ = i1
-	os19 = wv3
-	x20 = **(**Tuint32_t)(__ccgo_up(wv3 + uintptr(i1)*4)) ^ mask[i1]
-	**(**Tuint32_t)(__ccgo_up(os19 + uintptr(i1)*4)) = x20
-	i1 = i1 + uint32(1)
-	_ = i1
-	i0 = 0
-	start_idx = i0 % uint32(10) * uint32(16)
-	**(**[16]Tuint32_t)(__ccgo_up(bp + 68)) = [16]Tuint32_t{}
-	r0 = bp + 68
-	r16 = bp + 68 + uintptr(4)*4
-	r20 = bp + 68 + uintptr(8)*4
-	r30 = bp + 68 + uintptr(12)*4
-	s0 = _Hacl_Hash_Blake2b_sigmaTable[start_idx+0]
-	s1 = _Hacl_Hash_Blake2b_sigmaTable[start_idx+uint32(1)]
-	s2 = _Hacl_Hash_Blake2b_sigmaTable[start_idx+uint32(2)]
-	s3 = _Hacl_Hash_Blake2b_sigmaTable[start_idx+uint32(3)]
-	s4 = _Hacl_Hash_Blake2b_sigmaTable[start_idx+uint32(4)]
-	s5 = _Hacl_Hash_Blake2b_sigmaTable[start_idx+uint32(5)]
-	s6 = _Hacl_Hash_Blake2b_sigmaTable[start_idx+uint32(6)]
-	s7 = _Hacl_Hash_Blake2b_sigmaTable[start_idx+uint32(7)]
-	s8 = _Hacl_Hash_Blake2b_sigmaTable[start_idx+uint32(8)]
-	s9 = _Hacl_Hash_Blake2b_sigmaTable[start_idx+uint32(9)]
-	s10 = _Hacl_Hash_Blake2b_sigmaTable[start_idx+uint32(10)]
-	s111 = _Hacl_Hash_Blake2b_sigmaTable[start_idx+uint32(11)]
-	s121 = _Hacl_Hash_Blake2b_sigmaTable[start_idx+uint32(12)]
-	s131 = _Hacl_Hash_Blake2b_sigmaTable[start_idx+uint32(13)]
-	s141 = _Hacl_Hash_Blake2b_sigmaTable[start_idx+uint32(14)]
-	s151 = _Hacl_Hash_Blake2b_sigmaTable[start_idx+uint32(15)]
-	uu____0 = (**(**[16]Tuint32_t)(__ccgo_up(bp + 4)))[s2]
-	uu____1 = (**(**[16]Tuint32_t)(__ccgo_up(bp + 4)))[s4]
-	uu____2 = (**(**[16]Tuint32_t)(__ccgo_up(bp + 4)))[s6]
-	**(**Tuint32_t)(__ccgo_up(r0)) = (**(**[16]Tuint32_t)(__ccgo_up(bp + 4)))[s0]
-	**(**Tuint32_t)(__ccgo_up(r0 + 1*4)) = uu____0
-	**(**Tuint32_t)(__ccgo_up(r0 + 2*4)) = uu____1
-	**(**Tuint32_t)(__ccgo_up(r0 + 3*4)) = uu____2
-	uu____3 = (**(**[16]Tuint32_t)(__ccgo_up(bp + 4)))[s3]
-	uu____4 = (**(**[16]Tuint32_t)(__ccgo_up(bp + 4)))[s5]
-	uu____5 = (**(**[16]Tuint32_t)(__ccgo_up(bp + 4)))[s7]
-	**(**Tuint32_t)(__ccgo_up(r16)) = (**(**[16]Tuint32_t)(__ccgo_up(bp + 4)))[s1]
-	**(**Tuint32_t)(__ccgo_up(r16 + 1*4)) = uu____3
-	**(**Tuint32_t)(__ccgo_up(r16 + 2*4)) = uu____4
-	**(**Tuint32_t)(__ccgo_up(r16 + 3*4)) = uu____5
-	uu____6 = (**(**[16]Tuint32_t)(__ccgo_up(bp + 4)))[s10]
-	uu____7 = (**(**[16]Tuint32_t)(__ccgo_up(bp + 4)))[s121]
-	uu____8 = (**(**[16]Tuint32_t)(__ccgo_up(bp + 4)))[s141]
-	**(**Tuint32_t)(__ccgo_up(r20)) = (**(**[16]Tuint32_t)(__ccgo_up(bp + 4)))[s8]
-	**(**Tuint32_t)(__ccgo_up(r20 + 1*4)) = uu____6
-	**(**Tuint32_t)(__ccgo_up(r20 + 2*4)) = uu____7
-	**(**Tuint32_t)(__ccgo_up(r20 + 3*4)) = uu____8
-	uu____9 = (**(**[16]Tuint32_t)(__ccgo_up(bp + 4)))[s111]
-	uu____10 = (**(**[16]Tuint32_t)(__ccgo_up(bp + 4)))[s131]
-	uu____111 = (**(**[16]Tuint32_t)(__ccgo_up(bp + 4)))[s151]
-	**(**Tuint32_t)(__ccgo_up(r30)) = (**(**[16]Tuint32_t)(__ccgo_up(bp + 4)))[s9]
-	**(**Tuint32_t)(__ccgo_up(r30 + 1*4)) = uu____9
-	**(**Tuint32_t)(__ccgo_up(r30 + 2*4)) = uu____10
-	**(**Tuint32_t)(__ccgo_up(r30 + 3*4)) = uu____111
-	x21 = bp + 68
-	y = bp + 68 + uintptr(4)*4
-	z = bp + 68 + uintptr(8)*4
-	w = bp + 68 + uintptr(12)*4
-	a = 0
-	b0 = uint32(1)
-	c0 = uint32(2)
-	d10 = uint32(3)
-	wv_a0 = wv + uintptr(a*uint32(4))*4
-	wv_b0 = wv + uintptr(b0*uint32(4))*4
-	i2 = 0
-	os20 = wv_a0
-	x110 = **(**Tuint32_t)(__ccgo_up(wv_a0 + uintptr(i2)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b0 + uintptr(i2)*4))
-	**(**Tuint32_t)(__ccgo_up(os20 + uintptr(i2)*4)) = x110
-	i2 = i2 + uint32(1)
-	_ = i2
-	os21 = wv_a0
-	x111 = **(**Tuint32_t)(__ccgo_up(wv_a0 + uintptr(i2)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b0 + uintptr(i2)*4))
-	**(**Tuint32_t)(__ccgo_up(os21 + uintptr(i2)*4)) = x111
-	i2 = i2 + uint32(1)
-	_ = i2
-	os22 = wv_a0
-	x112 = **(**Tuint32_t)(__ccgo_up(wv_a0 + uintptr(i2)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b0 + uintptr(i2)*4))
-	**(**Tuint32_t)(__ccgo_up(os22 + uintptr(i2)*4)) = x112
-	i2 = i2 + uint32(1)
-	_ = i2
-	os23 = wv_a0
-	x113 = **(**Tuint32_t)(__ccgo_up(wv_a0 + uintptr(i2)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b0 + uintptr(i2)*4))
-	**(**Tuint32_t)(__ccgo_up(os23 + uintptr(i2)*4)) = x113
-	i2 = i2 + uint32(1)
-	_ = i2
-	i3 = 0
-	os24 = wv_a0
-	x114 = **(**Tuint32_t)(__ccgo_up(wv_a0 + uintptr(i3)*4)) + **(**Tuint32_t)(__ccgo_up(x21 + uintptr(i3)*4))
-	**(**Tuint32_t)(__ccgo_up(os24 + uintptr(i3)*4)) = x114
-	i3 = i3 + uint32(1)
-	_ = i3
-	os25 = wv_a0
-	x115 = **(**Tuint32_t)(__ccgo_up(wv_a0 + uintptr(i3)*4)) + **(**Tuint32_t)(__ccgo_up(x21 + uintptr(i3)*4))
-	**(**Tuint32_t)(__ccgo_up(os25 + uintptr(i3)*4)) = x115
-	i3 = i3 + uint32(1)
-	_ = i3
-	os26 = wv_a0
-	x116 = **(**Tuint32_t)(__ccgo_up(wv_a0 + uintptr(i3)*4)) + **(**Tuint32_t)(__ccgo_up(x21 + uintptr(i3)*4))
-	**(**Tuint32_t)(__ccgo_up(os26 + uintptr(i3)*4)) = x116
-	i3 = i3 + uint32(1)
-	_ = i3
-	os27 = wv_a0
-	x117 = **(**Tuint32_t)(__ccgo_up(wv_a0 + uintptr(i3)*4)) + **(**Tuint32_t)(__ccgo_up(x21 + uintptr(i3)*4))
-	**(**Tuint32_t)(__ccgo_up(os27 + uintptr(i3)*4)) = x117
-	i3 = i3 + uint32(1)
-	_ = i3
-	wv_a11 = wv + uintptr(d10*uint32(4))*4
-	wv_b11 = wv + uintptr(a*uint32(4))*4
-	i4 = 0
-	os28 = wv_a11
-	x118 = **(**Tuint32_t)(__ccgo_up(wv_a11 + uintptr(i4)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b11 + uintptr(i4)*4))
-	**(**Tuint32_t)(__ccgo_up(os28 + uintptr(i4)*4)) = x118
-	i4 = i4 + uint32(1)
-	_ = i4
-	os29 = wv_a11
-	x119 = **(**Tuint32_t)(__ccgo_up(wv_a11 + uintptr(i4)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b11 + uintptr(i4)*4))
-	**(**Tuint32_t)(__ccgo_up(os29 + uintptr(i4)*4)) = x119
-	i4 = i4 + uint32(1)
-	_ = i4
-	os30 = wv_a11
-	x120 = **(**Tuint32_t)(__ccgo_up(wv_a11 + uintptr(i4)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b11 + uintptr(i4)*4))
-	**(**Tuint32_t)(__ccgo_up(os30 + uintptr(i4)*4)) = x120
-	i4 = i4 + uint32(1)
-	_ = i4
-	os31 = wv_a11
-	x121 = **(**Tuint32_t)(__ccgo_up(wv_a11 + uintptr(i4)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b11 + uintptr(i4)*4))
-	**(**Tuint32_t)(__ccgo_up(os31 + uintptr(i4)*4)) = x121
-	i4 = i4 + uint32(1)
-	_ = i4
-	r101 = wv_a11
-	i5 = 0
-	os32 = r101
-	x122 = **(**Tuint32_t)(__ccgo_up(r101 + uintptr(i5)*4))
-	x101 = x122>>uint32(16) | x122<<uint32(16)
-	**(**Tuint32_t)(__ccgo_up(os32 + uintptr(i5)*4)) = x101
-	i5 = i5 + uint32(1)
-	_ = i5
-	os33 = r101
-	x123 = **(**Tuint32_t)(__ccgo_up(r101 + uintptr(i5)*4))
-	x102 = x123>>uint32(16) | x123<<uint32(16)
-	**(**Tuint32_t)(__ccgo_up(os33 + uintptr(i5)*4)) = x102
-	i5 = i5 + uint32(1)
-	_ = i5
-	os34 = r101
-	x124 = **(**Tuint32_t)(__ccgo_up(r101 + uintptr(i5)*4))
-	x103 = x124>>uint32(16) | x124<<uint32(16)
-	**(**Tuint32_t)(__ccgo_up(os34 + uintptr(i5)*4)) = x103
-	i5 = i5 + uint32(1)
-	_ = i5
-	os35 = r101
-	x125 = **(**Tuint32_t)(__ccgo_up(r101 + uintptr(i5)*4))
-	x104 = x125>>uint32(16) | x125<<uint32(16)
-	**(**Tuint32_t)(__ccgo_up(os35 + uintptr(i5)*4)) = x104
-	i5 = i5 + uint32(1)
-	_ = i5
-	wv_a21 = wv + uintptr(c0*uint32(4))*4
-	wv_b21 = wv + uintptr(d10*uint32(4))*4
-	i6 = 0
-	os36 = wv_a21
-	x126 = **(**Tuint32_t)(__ccgo_up(wv_a21 + uintptr(i6)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b21 + uintptr(i6)*4))
-	**(**Tuint32_t)(__ccgo_up(os36 + uintptr(i6)*4)) = x126
-	i6 = i6 + uint32(1)
-	_ = i6
-	os37 = wv_a21
-	x127 = **(**Tuint32_t)(__ccgo_up(wv_a21 + uintptr(i6)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b21 + uintptr(i6)*4))
-	**(**Tuint32_t)(__ccgo_up(os37 + uintptr(i6)*4)) = x127
-	i6 = i6 + uint32(1)
-	_ = i6
-	os38 = wv_a21
-	x128 = **(**Tuint32_t)(__ccgo_up(wv_a21 + uintptr(i6)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b21 + uintptr(i6)*4))
-	**(**Tuint32_t)(__ccgo_up(os38 + uintptr(i6)*4)) = x128
-	i6 = i6 + uint32(1)
-	_ = i6
-	os39 = wv_a21
-	x129 = **(**Tuint32_t)(__ccgo_up(wv_a21 + uintptr(i6)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b21 + uintptr(i6)*4))
-	**(**Tuint32_t)(__ccgo_up(os39 + uintptr(i6)*4)) = x129
-	i6 = i6 + uint32(1)
-	_ = i6
-	wv_a31 = wv + uintptr(b0*uint32(4))*4
-	wv_b31 = wv + uintptr(c0*uint32(4))*4
-	i7 = 0
-	os40 = wv_a31
-	x130 = **(**Tuint32_t)(__ccgo_up(wv_a31 + uintptr(i7)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b31 + uintptr(i7)*4))
-	**(**Tuint32_t)(__ccgo_up(os40 + uintptr(i7)*4)) = x130
-	i7 = i7 + uint32(1)
-	_ = i7
-	os41 = wv_a31
-	x131 = **(**Tuint32_t)(__ccgo_up(wv_a31 + uintptr(i7)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b31 + uintptr(i7)*4))
-	**(**Tuint32_t)(__ccgo_up(os41 + uintptr(i7)*4)) = x131
-	i7 = i7 + uint32(1)
-	_ = i7
-	os42 = wv_a31
-	x132 = **(**Tuint32_t)(__ccgo_up(wv_a31 + uintptr(i7)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b31 + uintptr(i7)*4))
-	**(**Tuint32_t)(__ccgo_up(os42 + uintptr(i7)*4)) = x132
-	i7 = i7 + uint32(1)
-	_ = i7
-	os43 = wv_a31
-	x133 = **(**Tuint32_t)(__ccgo_up(wv_a31 + uintptr(i7)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b31 + uintptr(i7)*4))
-	**(**Tuint32_t)(__ccgo_up(os43 + uintptr(i7)*4)) = x133
-	i7 = i7 + uint32(1)
-	_ = i7
-	r121 = wv_a31
-	i8 = 0
-	os44 = r121
-	x134 = **(**Tuint32_t)(__ccgo_up(r121 + uintptr(i8)*4))
-	x105 = x134>>uint32(12) | x134<<uint32(20)
-	**(**Tuint32_t)(__ccgo_up(os44 + uintptr(i8)*4)) = x105
-	i8 = i8 + uint32(1)
-	_ = i8
-	os45 = r121
-	x135 = **(**Tuint32_t)(__ccgo_up(r121 + uintptr(i8)*4))
-	x106 = x135>>uint32(12) | x135<<uint32(20)
-	**(**Tuint32_t)(__ccgo_up(os45 + uintptr(i8)*4)) = x106
-	i8 = i8 + uint32(1)
-	_ = i8
-	os46 = r121
-	x136 = **(**Tuint32_t)(__ccgo_up(r121 + uintptr(i8)*4))
-	x107 = x136>>uint32(12) | x136<<uint32(20)
-	**(**Tuint32_t)(__ccgo_up(os46 + uintptr(i8)*4)) = x107
-	i8 = i8 + uint32(1)
-	_ = i8
-	os47 = r121
-	x137 = **(**Tuint32_t)(__ccgo_up(r121 + uintptr(i8)*4))
-	x108 = x137>>uint32(12) | x137<<uint32(20)
-	**(**Tuint32_t)(__ccgo_up(os47 + uintptr(i8)*4)) = x108
-	i8 = i8 + uint32(1)
-	_ = i8
-	wv_a41 = wv + uintptr(a*uint32(4))*4
-	wv_b41 = wv + uintptr(b0*uint32(4))*4
-	i9 = 0
-	os48 = wv_a41
-	x138 = **(**Tuint32_t)(__ccgo_up(wv_a41 + uintptr(i9)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b41 + uintptr(i9)*4))
-	**(**Tuint32_t)(__ccgo_up(os48 + uintptr(i9)*4)) = x138
-	i9 = i9 + uint32(1)
-	_ = i9
-	os49 = wv_a41
-	x139 = **(**Tuint32_t)(__ccgo_up(wv_a41 + uintptr(i9)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b41 + uintptr(i9)*4))
-	**(**Tuint32_t)(__ccgo_up(os49 + uintptr(i9)*4)) = x139
-	i9 = i9 + uint32(1)
-	_ = i9
-	os50 = wv_a41
-	x140 = **(**Tuint32_t)(__ccgo_up(wv_a41 + uintptr(i9)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b41 + uintptr(i9)*4))
-	**(**Tuint32_t)(__ccgo_up(os50 + uintptr(i9)*4)) = x140
-	i9 = i9 + uint32(1)
-	_ = i9
-	os51 = wv_a41
-	x141 = **(**Tuint32_t)(__ccgo_up(wv_a41 + uintptr(i9)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b41 + uintptr(i9)*4))
-	**(**Tuint32_t)(__ccgo_up(os51 + uintptr(i9)*4)) = x141
-	i9 = i9 + uint32(1)
-	_ = i9
-	i10 = 0
-	os52 = wv_a41
-	x142 = **(**Tuint32_t)(__ccgo_up(wv_a41 + uintptr(i10)*4)) + **(**Tuint32_t)(__ccgo_up(y + uintptr(i10)*4))
-	**(**Tuint32_t)(__ccgo_up(os52 + uintptr(i10)*4)) = x142
-	i10 = i10 + uint32(1)
-	_ = i10
-	os53 = wv_a41
-	x143 = **(**Tuint32_t)(__ccgo_up(wv_a41 + uintptr(i10)*4)) + **(**Tuint32_t)(__ccgo_up(y + uintptr(i10)*4))
-	**(**Tuint32_t)(__ccgo_up(os53 + uintptr(i10)*4)) = x143
-	i10 = i10 + uint32(1)
-	_ = i10
-	os54 = wv_a41
-	x144 = **(**Tuint32_t)(__ccgo_up(wv_a41 + uintptr(i10)*4)) + **(**Tuint32_t)(__ccgo_up(y + uintptr(i10)*4))
-	**(**Tuint32_t)(__ccgo_up(os54 + uintptr(i10)*4)) = x144
-	i10 = i10 + uint32(1)
-	_ = i10
-	os55 = wv_a41
-	x145 = **(**Tuint32_t)(__ccgo_up(wv_a41 + uintptr(i10)*4)) + **(**Tuint32_t)(__ccgo_up(y + uintptr(i10)*4))
-	**(**Tuint32_t)(__ccgo_up(os55 + uintptr(i10)*4)) = x145
-	i10 = i10 + uint32(1)
-	_ = i10
-	wv_a51 = wv + uintptr(d10*uint32(4))*4
-	wv_b51 = wv + uintptr(a*uint32(4))*4
-	i11 = 0
-	os56 = wv_a51
-	x146 = **(**Tuint32_t)(__ccgo_up(wv_a51 + uintptr(i11)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b51 + uintptr(i11)*4))
-	**(**Tuint32_t)(__ccgo_up(os56 + uintptr(i11)*4)) = x146
-	i11 = i11 + uint32(1)
-	_ = i11
-	os57 = wv_a51
-	x147 = **(**Tuint32_t)(__ccgo_up(wv_a51 + uintptr(i11)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b51 + uintptr(i11)*4))
-	**(**Tuint32_t)(__ccgo_up(os57 + uintptr(i11)*4)) = x147
-	i11 = i11 + uint32(1)
-	_ = i11
-	os58 = wv_a51
-	x148 = **(**Tuint32_t)(__ccgo_up(wv_a51 + uintptr(i11)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b51 + uintptr(i11)*4))
-	**(**Tuint32_t)(__ccgo_up(os58 + uintptr(i11)*4)) = x148
-	i11 = i11 + uint32(1)
-	_ = i11
-	os59 = wv_a51
-	x149 = **(**Tuint32_t)(__ccgo_up(wv_a51 + uintptr(i11)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b51 + uintptr(i11)*4))
-	**(**Tuint32_t)(__ccgo_up(os59 + uintptr(i11)*4)) = x149
-	i11 = i11 + uint32(1)
-	_ = i11
-	r131 = wv_a51
-	i12 = 0
-	os60 = r131
-	x150 = **(**Tuint32_t)(__ccgo_up(r131 + uintptr(i12)*4))
-	x109 = x150>>uint32(8) | x150<<uint32(24)
-	**(**Tuint32_t)(__ccgo_up(os60 + uintptr(i12)*4)) = x109
-	i12 = i12 + uint32(1)
-	_ = i12
-	os61 = r131
-	x151 = **(**Tuint32_t)(__ccgo_up(r131 + uintptr(i12)*4))
-	x1010 = x151>>uint32(8) | x151<<uint32(24)
-	**(**Tuint32_t)(__ccgo_up(os61 + uintptr(i12)*4)) = x1010
-	i12 = i12 + uint32(1)
-	_ = i12
-	os62 = r131
-	x152 = **(**Tuint32_t)(__ccgo_up(r131 + uintptr(i12)*4))
-	x1011 = x152>>uint32(8) | x152<<uint32(24)
-	**(**Tuint32_t)(__ccgo_up(os62 + uintptr(i12)*4)) = x1011
-	i12 = i12 + uint32(1)
-	_ = i12
-	os63 = r131
-	x153 = **(**Tuint32_t)(__ccgo_up(r131 + uintptr(i12)*4))
-	x1012 = x153>>uint32(8) | x153<<uint32(24)
-	**(**Tuint32_t)(__ccgo_up(os63 + uintptr(i12)*4)) = x1012
-	i12 = i12 + uint32(1)
-	_ = i12
-	wv_a61 = wv + uintptr(c0*uint32(4))*4
-	wv_b61 = wv + uintptr(d10*uint32(4))*4
-	i13 = 0
-	os64 = wv_a61
-	x154 = **(**Tuint32_t)(__ccgo_up(wv_a61 + uintptr(i13)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b61 + uintptr(i13)*4))
-	**(**Tuint32_t)(__ccgo_up(os64 + uintptr(i13)*4)) = x154
-	i13 = i13 + uint32(1)
-	_ = i13
-	os65 = wv_a61
-	x155 = **(**Tuint32_t)(__ccgo_up(wv_a61 + uintptr(i13)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b61 + uintptr(i13)*4))
-	**(**Tuint32_t)(__ccgo_up(os65 + uintptr(i13)*4)) = x155
-	i13 = i13 + uint32(1)
-	_ = i13
-	os66 = wv_a61
-	x156 = **(**Tuint32_t)(__ccgo_up(wv_a61 + uintptr(i13)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b61 + uintptr(i13)*4))
-	**(**Tuint32_t)(__ccgo_up(os66 + uintptr(i13)*4)) = x156
-	i13 = i13 + uint32(1)
-	_ = i13
-	os67 = wv_a61
-	x157 = **(**Tuint32_t)(__ccgo_up(wv_a61 + uintptr(i13)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b61 + uintptr(i13)*4))
-	**(**Tuint32_t)(__ccgo_up(os67 + uintptr(i13)*4)) = x157
-	i13 = i13 + uint32(1)
-	_ = i13
-	wv_a71 = wv + uintptr(b0*uint32(4))*4
-	wv_b71 = wv + uintptr(c0*uint32(4))*4
-	i14 = 0
-	os68 = wv_a71
-	x158 = **(**Tuint32_t)(__ccgo_up(wv_a71 + uintptr(i14)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b71 + uintptr(i14)*4))
-	**(**Tuint32_t)(__ccgo_up(os68 + uintptr(i14)*4)) = x158
-	i14 = i14 + uint32(1)
-	_ = i14
-	os69 = wv_a71
-	x159 = **(**Tuint32_t)(__ccgo_up(wv_a71 + uintptr(i14)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b71 + uintptr(i14)*4))
-	**(**Tuint32_t)(__ccgo_up(os69 + uintptr(i14)*4)) = x159
-	i14 = i14 + uint32(1)
-	_ = i14
-	os70 = wv_a71
-	x160 = **(**Tuint32_t)(__ccgo_up(wv_a71 + uintptr(i14)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b71 + uintptr(i14)*4))
-	**(**Tuint32_t)(__ccgo_up(os70 + uintptr(i14)*4)) = x160
-	i14 = i14 + uint32(1)
-	_ = i14
-	os71 = wv_a71
-	x161 = **(**Tuint32_t)(__ccgo_up(wv_a71 + uintptr(i14)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b71 + uintptr(i14)*4))
-	**(**Tuint32_t)(__ccgo_up(os71 + uintptr(i14)*4)) = x161
-	i14 = i14 + uint32(1)
-	_ = i14
-	r141 = wv_a71
-	i15 = 0
-	os72 = r141
-	x162 = **(**Tuint32_t)(__ccgo_up(r141 + uintptr(i15)*4))
-	x1013 = x162>>uint32(7) | x162<<uint32(25)
-	**(**Tuint32_t)(__ccgo_up(os72 + uintptr(i15)*4)) = x1013
-	i15 = i15 + uint32(1)
-	_ = i15
-	os73 = r141
-	x163 = **(**Tuint32_t)(__ccgo_up(r141 + uintptr(i15)*4))
-	x1014 = x163>>uint32(7) | x163<<uint32(25)
-	**(**Tuint32_t)(__ccgo_up(os73 + uintptr(i15)*4)) = x1014
-	i15 = i15 + uint32(1)
-	_ = i15
-	os74 = r141
-	x164 = **(**Tuint32_t)(__ccgo_up(r141 + uintptr(i15)*4))
-	x1015 = x164>>uint32(7) | x164<<uint32(25)
-	**(**Tuint32_t)(__ccgo_up(os74 + uintptr(i15)*4)) = x1015
-	i15 = i15 + uint32(1)
-	_ = i15
-	os75 = r141
-	x165 = **(**Tuint32_t)(__ccgo_up(r141 + uintptr(i15)*4))
-	x1016 = x165>>uint32(7) | x165<<uint32(25)
-	**(**Tuint32_t)(__ccgo_up(os75 + uintptr(i15)*4)) = x1016
-	i15 = i15 + uint32(1)
-	_ = i15
-	r151 = wv + uintptr(4)*4
-	r212 = wv + uintptr(8)*4
-	r312 = wv + uintptr(12)*4
-	r1101 = r151
-	x00 = **(**Tuint32_t)(__ccgo_up(r1101 + 1*4))
-	x1017 = **(**Tuint32_t)(__ccgo_up(r1101 + 2*4))
-	x201 = **(**Tuint32_t)(__ccgo_up(r1101 + 3*4))
-	x301 = **(**Tuint32_t)(__ccgo_up(r1101))
-	**(**Tuint32_t)(__ccgo_up(r1101)) = x00
-	**(**Tuint32_t)(__ccgo_up(r1101 + 1*4)) = x1017
-	**(**Tuint32_t)(__ccgo_up(r1101 + 2*4)) = x201
-	**(**Tuint32_t)(__ccgo_up(r1101 + 3*4)) = x301
-	r1117 = r212
-	x011 = **(**Tuint32_t)(__ccgo_up(r1117 + 2*4))
-	x11140 = **(**Tuint32_t)(__ccgo_up(r1117 + 3*4))
-	x2110 = **(**Tuint32_t)(__ccgo_up(r1117))
-	x3110 = **(**Tuint32_t)(__ccgo_up(r1117 + 1*4))
-	**(**Tuint32_t)(__ccgo_up(r1117)) = x011
-	**(**Tuint32_t)(__ccgo_up(r1117 + 1*4)) = x11140
-	**(**Tuint32_t)(__ccgo_up(r1117 + 2*4)) = x2110
-	**(**Tuint32_t)(__ccgo_up(r1117 + 3*4)) = x3110
-	r1121 = r312
-	x021 = **(**Tuint32_t)(__ccgo_up(r1121 + 3*4))
-	x12100 = **(**Tuint32_t)(__ccgo_up(r1121))
-	x221 = **(**Tuint32_t)(__ccgo_up(r1121 + 1*4))
-	x321 = **(**Tuint32_t)(__ccgo_up(r1121 + 2*4))
-	**(**Tuint32_t)(__ccgo_up(r1121)) = x021
-	**(**Tuint32_t)(__ccgo_up(r1121 + 1*4)) = x12100
-	**(**Tuint32_t)(__ccgo_up(r1121 + 2*4)) = x221
-	**(**Tuint32_t)(__ccgo_up(r1121 + 3*4)) = x321
-	a0 = 0
-	b1 = uint32(1)
-	c = uint32(2)
-	d1 = uint32(3)
-	wv_a = wv + uintptr(a0*uint32(4))*4
-	wv_b81 = wv + uintptr(b1*uint32(4))*4
-	i16 = 0
-	os76 = wv_a
-	x166 = **(**Tuint32_t)(__ccgo_up(wv_a + uintptr(i16)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b81 + uintptr(i16)*4))
-	**(**Tuint32_t)(__ccgo_up(os76 + uintptr(i16)*4)) = x166
-	i16 = i16 + uint32(1)
-	_ = i16
-	os77 = wv_a
-	x167 = **(**Tuint32_t)(__ccgo_up(wv_a + uintptr(i16)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b81 + uintptr(i16)*4))
-	**(**Tuint32_t)(__ccgo_up(os77 + uintptr(i16)*4)) = x167
-	i16 = i16 + uint32(1)
-	_ = i16
-	os78 = wv_a
-	x168 = **(**Tuint32_t)(__ccgo_up(wv_a + uintptr(i16)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b81 + uintptr(i16)*4))
-	**(**Tuint32_t)(__ccgo_up(os78 + uintptr(i16)*4)) = x168
-	i16 = i16 + uint32(1)
-	_ = i16
-	os79 = wv_a
-	x169 = **(**Tuint32_t)(__ccgo_up(wv_a + uintptr(i16)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b81 + uintptr(i16)*4))
-	**(**Tuint32_t)(__ccgo_up(os79 + uintptr(i16)*4)) = x169
-	i16 = i16 + uint32(1)
-	_ = i16
-	i17 = 0
-	os80 = wv_a
-	x170 = **(**Tuint32_t)(__ccgo_up(wv_a + uintptr(i17)*4)) + **(**Tuint32_t)(__ccgo_up(z + uintptr(i17)*4))
-	**(**Tuint32_t)(__ccgo_up(os80 + uintptr(i17)*4)) = x170
-	i17 = i17 + uint32(1)
-	_ = i17
-	os81 = wv_a
-	x171 = **(**Tuint32_t)(__ccgo_up(wv_a + uintptr(i17)*4)) + **(**Tuint32_t)(__ccgo_up(z + uintptr(i17)*4))
-	**(**Tuint32_t)(__ccgo_up(os81 + uintptr(i17)*4)) = x171
-	i17 = i17 + uint32(1)
-	_ = i17
-	os82 = wv_a
-	x172 = **(**Tuint32_t)(__ccgo_up(wv_a + uintptr(i17)*4)) + **(**Tuint32_t)(__ccgo_up(z + uintptr(i17)*4))
-	**(**Tuint32_t)(__ccgo_up(os82 + uintptr(i17)*4)) = x172
-	i17 = i17 + uint32(1)
-	_ = i17
-	os83 = wv_a
-	x173 = **(**Tuint32_t)(__ccgo_up(wv_a + uintptr(i17)*4)) + **(**Tuint32_t)(__ccgo_up(z + uintptr(i17)*4))
-	**(**Tuint32_t)(__ccgo_up(os83 + uintptr(i17)*4)) = x173
-	i17 = i17 + uint32(1)
-	_ = i17
-	wv_a81 = wv + uintptr(d1*uint32(4))*4
-	wv_b91 = wv + uintptr(a0*uint32(4))*4
-	i18 = 0
-	os84 = wv_a81
-	x174 = **(**Tuint32_t)(__ccgo_up(wv_a81 + uintptr(i18)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b91 + uintptr(i18)*4))
-	**(**Tuint32_t)(__ccgo_up(os84 + uintptr(i18)*4)) = x174
-	i18 = i18 + uint32(1)
-	_ = i18
-	os85 = wv_a81
-	x175 = **(**Tuint32_t)(__ccgo_up(wv_a81 + uintptr(i18)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b91 + uintptr(i18)*4))
-	**(**Tuint32_t)(__ccgo_up(os85 + uintptr(i18)*4)) = x175
-	i18 = i18 + uint32(1)
-	_ = i18
-	os86 = wv_a81
-	x176 = **(**Tuint32_t)(__ccgo_up(wv_a81 + uintptr(i18)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b91 + uintptr(i18)*4))
-	**(**Tuint32_t)(__ccgo_up(os86 + uintptr(i18)*4)) = x176
-	i18 = i18 + uint32(1)
-	_ = i18
-	os87 = wv_a81
-	x177 = **(**Tuint32_t)(__ccgo_up(wv_a81 + uintptr(i18)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b91 + uintptr(i18)*4))
-	**(**Tuint32_t)(__ccgo_up(os87 + uintptr(i18)*4)) = x177
-	i18 = i18 + uint32(1)
-	_ = i18
-	r161 = wv_a81
-	i19 = 0
-	os88 = r161
-	x178 = **(**Tuint32_t)(__ccgo_up(r161 + uintptr(i19)*4))
-	x13100 = x178>>uint32(16) | x178<<uint32(16)
-	**(**Tuint32_t)(__ccgo_up(os88 + uintptr(i19)*4)) = x13100
-	i19 = i19 + uint32(1)
-	_ = i19
-	os89 = r161
-	x179 = **(**Tuint32_t)(__ccgo_up(r161 + uintptr(i19)*4))
-	x13101 = x179>>uint32(16) | x179<<uint32(16)
-	**(**Tuint32_t)(__ccgo_up(os89 + uintptr(i19)*4)) = x13101
-	i19 = i19 + uint32(1)
-	_ = i19
-	os90 = r161
-	x180 = **(**Tuint32_t)(__ccgo_up(r161 + uintptr(i19)*4))
-	x13102 = x180>>uint32(16) | x180<<uint32(16)
-	**(**Tuint32_t)(__ccgo_up(os90 + uintptr(i19)*4)) = x13102
-	i19 = i19 + uint32(1)
-	_ = i19
-	os91 = r161
-	x181 = **(**Tuint32_t)(__ccgo_up(r161 + uintptr(i19)*4))
-	x13103 = x181>>uint32(16) | x181<<uint32(16)
-	**(**Tuint32_t)(__ccgo_up(os91 + uintptr(i19)*4)) = x13103
-	i19 = i19 + uint32(1)
-	_ = i19
-	wv_a91 = wv + uintptr(c*uint32(4))*4
-	wv_b10 = wv + uintptr(d1*uint32(4))*4
-	i20 = 0
-	os92 = wv_a91
-	x182 = **(**Tuint32_t)(__ccgo_up(wv_a91 + uintptr(i20)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b10 + uintptr(i20)*4))
-	**(**Tuint32_t)(__ccgo_up(os92 + uintptr(i20)*4)) = x182
-	i20 = i20 + uint32(1)
-	_ = i20
-	os93 = wv_a91
-	x183 = **(**Tuint32_t)(__ccgo_up(wv_a91 + uintptr(i20)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b10 + uintptr(i20)*4))
-	**(**Tuint32_t)(__ccgo_up(os93 + uintptr(i20)*4)) = x183
-	i20 = i20 + uint32(1)
-	_ = i20
-	os94 = wv_a91
-	x184 = **(**Tuint32_t)(__ccgo_up(wv_a91 + uintptr(i20)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b10 + uintptr(i20)*4))
-	**(**Tuint32_t)(__ccgo_up(os94 + uintptr(i20)*4)) = x184
-	i20 = i20 + uint32(1)
-	_ = i20
-	os95 = wv_a91
-	x185 = **(**Tuint32_t)(__ccgo_up(wv_a91 + uintptr(i20)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b10 + uintptr(i20)*4))
-	**(**Tuint32_t)(__ccgo_up(os95 + uintptr(i20)*4)) = x185
-	i20 = i20 + uint32(1)
-	_ = i20
-	wv_a10 = wv + uintptr(b1*uint32(4))*4
-	wv_b111 = wv + uintptr(c*uint32(4))*4
-	i21 = 0
-	os96 = wv_a10
-	x186 = **(**Tuint32_t)(__ccgo_up(wv_a10 + uintptr(i21)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b111 + uintptr(i21)*4))
-	**(**Tuint32_t)(__ccgo_up(os96 + uintptr(i21)*4)) = x186
-	i21 = i21 + uint32(1)
-	_ = i21
-	os97 = wv_a10
-	x187 = **(**Tuint32_t)(__ccgo_up(wv_a10 + uintptr(i21)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b111 + uintptr(i21)*4))
-	**(**Tuint32_t)(__ccgo_up(os97 + uintptr(i21)*4)) = x187
-	i21 = i21 + uint32(1)
-	_ = i21
-	os98 = wv_a10
-	x188 = **(**Tuint32_t)(__ccgo_up(wv_a10 + uintptr(i21)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b111 + uintptr(i21)*4))
-	**(**Tuint32_t)(__ccgo_up(os98 + uintptr(i21)*4)) = x188
-	i21 = i21 + uint32(1)
-	_ = i21
-	os99 = wv_a10
-	x189 = **(**Tuint32_t)(__ccgo_up(wv_a10 + uintptr(i21)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b111 + uintptr(i21)*4))
-	**(**Tuint32_t)(__ccgo_up(os99 + uintptr(i21)*4)) = x189
-	i21 = i21 + uint32(1)
-	_ = i21
-	r171 = wv_a10
-	i22 = 0
-	os100 = r171
-	x190 = **(**Tuint32_t)(__ccgo_up(r171 + uintptr(i22)*4))
-	x13104 = x190>>uint32(12) | x190<<uint32(20)
-	**(**Tuint32_t)(__ccgo_up(os100 + uintptr(i22)*4)) = x13104
-	i22 = i22 + uint32(1)
-	_ = i22
-	os101 = r171
-	x191 = **(**Tuint32_t)(__ccgo_up(r171 + uintptr(i22)*4))
-	x13105 = x191>>uint32(12) | x191<<uint32(20)
-	**(**Tuint32_t)(__ccgo_up(os101 + uintptr(i22)*4)) = x13105
-	i22 = i22 + uint32(1)
-	_ = i22
-	os102 = r171
-	x192 = **(**Tuint32_t)(__ccgo_up(r171 + uintptr(i22)*4))
-	x13106 = x192>>uint32(12) | x192<<uint32(20)
-	**(**Tuint32_t)(__ccgo_up(os102 + uintptr(i22)*4)) = x13106
-	i22 = i22 + uint32(1)
-	_ = i22
-	os103 = r171
-	x193 = **(**Tuint32_t)(__ccgo_up(r171 + uintptr(i22)*4))
-	x13107 = x193>>uint32(12) | x193<<uint32(20)
-	**(**Tuint32_t)(__ccgo_up(os103 + uintptr(i22)*4)) = x13107
-	i22 = i22 + uint32(1)
-	_ = i22
-	wv_a111 = wv + uintptr(a0*uint32(4))*4
-	wv_b121 = wv + uintptr(b1*uint32(4))*4
-	i23 = 0
-	os104 = wv_a111
-	x194 = **(**Tuint32_t)(__ccgo_up(wv_a111 + uintptr(i23)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b121 + uintptr(i23)*4))
-	**(**Tuint32_t)(__ccgo_up(os104 + uintptr(i23)*4)) = x194
-	i23 = i23 + uint32(1)
-	_ = i23
-	os105 = wv_a111
-	x195 = **(**Tuint32_t)(__ccgo_up(wv_a111 + uintptr(i23)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b121 + uintptr(i23)*4))
-	**(**Tuint32_t)(__ccgo_up(os105 + uintptr(i23)*4)) = x195
-	i23 = i23 + uint32(1)
-	_ = i23
-	os106 = wv_a111
-	x196 = **(**Tuint32_t)(__ccgo_up(wv_a111 + uintptr(i23)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b121 + uintptr(i23)*4))
-	**(**Tuint32_t)(__ccgo_up(os106 + uintptr(i23)*4)) = x196
-	i23 = i23 + uint32(1)
-	_ = i23
-	os107 = wv_a111
-	x197 = **(**Tuint32_t)(__ccgo_up(wv_a111 + uintptr(i23)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b121 + uintptr(i23)*4))
-	**(**Tuint32_t)(__ccgo_up(os107 + uintptr(i23)*4)) = x197
-	i23 = i23 + uint32(1)
-	_ = i23
-	i24 = 0
-	os108 = wv_a111
-	x198 = **(**Tuint32_t)(__ccgo_up(wv_a111 + uintptr(i24)*4)) + **(**Tuint32_t)(__ccgo_up(w + uintptr(i24)*4))
-	**(**Tuint32_t)(__ccgo_up(os108 + uintptr(i24)*4)) = x198
-	i24 = i24 + uint32(1)
-	_ = i24
-	os109 = wv_a111
-	x199 = **(**Tuint32_t)(__ccgo_up(wv_a111 + uintptr(i24)*4)) + **(**Tuint32_t)(__ccgo_up(w + uintptr(i24)*4))
-	**(**Tuint32_t)(__ccgo_up(os109 + uintptr(i24)*4)) = x199
-	i24 = i24 + uint32(1)
-	_ = i24
-	os110 = wv_a111
-	x1100 = **(**Tuint32_t)(__ccgo_up(wv_a111 + uintptr(i24)*4)) + **(**Tuint32_t)(__ccgo_up(w + uintptr(i24)*4))
-	**(**Tuint32_t)(__ccgo_up(os110 + uintptr(i24)*4)) = x1100
-	i24 = i24 + uint32(1)
-	_ = i24
-	os111 = wv_a111
-	x1101 = **(**Tuint32_t)(__ccgo_up(wv_a111 + uintptr(i24)*4)) + **(**Tuint32_t)(__ccgo_up(w + uintptr(i24)*4))
-	**(**Tuint32_t)(__ccgo_up(os111 + uintptr(i24)*4)) = x1101
-	i24 = i24 + uint32(1)
-	_ = i24
-	wv_a121 = wv + uintptr(d1*uint32(4))*4
-	wv_b131 = wv + uintptr(a0*uint32(4))*4
-	i25 = 0
-	os112 = wv_a121
-	x1102 = **(**Tuint32_t)(__ccgo_up(wv_a121 + uintptr(i25)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b131 + uintptr(i25)*4))
-	**(**Tuint32_t)(__ccgo_up(os112 + uintptr(i25)*4)) = x1102
-	i25 = i25 + uint32(1)
-	_ = i25
-	os113 = wv_a121
-	x1103 = **(**Tuint32_t)(__ccgo_up(wv_a121 + uintptr(i25)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b131 + uintptr(i25)*4))
-	**(**Tuint32_t)(__ccgo_up(os113 + uintptr(i25)*4)) = x1103
-	i25 = i25 + uint32(1)
-	_ = i25
-	os114 = wv_a121
-	x1104 = **(**Tuint32_t)(__ccgo_up(wv_a121 + uintptr(i25)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b131 + uintptr(i25)*4))
-	**(**Tuint32_t)(__ccgo_up(os114 + uintptr(i25)*4)) = x1104
-	i25 = i25 + uint32(1)
-	_ = i25
-	os115 = wv_a121
-	x1105 = **(**Tuint32_t)(__ccgo_up(wv_a121 + uintptr(i25)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b131 + uintptr(i25)*4))
-	**(**Tuint32_t)(__ccgo_up(os115 + uintptr(i25)*4)) = x1105
-	i25 = i25 + uint32(1)
-	_ = i25
-	r181 = wv_a121
-	i26 = 0
-	os116 = r181
-	x1106 = **(**Tuint32_t)(__ccgo_up(r181 + uintptr(i26)*4))
-	x13108 = x1106>>uint32(8) | x1106<<uint32(24)
-	**(**Tuint32_t)(__ccgo_up(os116 + uintptr(i26)*4)) = x13108
-	i26 = i26 + uint32(1)
-	_ = i26
-	os117 = r181
-	x1107 = **(**Tuint32_t)(__ccgo_up(r181 + uintptr(i26)*4))
-	x13109 = x1107>>uint32(8) | x1107<<uint32(24)
-	**(**Tuint32_t)(__ccgo_up(os117 + uintptr(i26)*4)) = x13109
-	i26 = i26 + uint32(1)
-	_ = i26
-	os118 = r181
-	x1108 = **(**Tuint32_t)(__ccgo_up(r181 + uintptr(i26)*4))
-	x13110 = x1108>>uint32(8) | x1108<<uint32(24)
-	**(**Tuint32_t)(__ccgo_up(os118 + uintptr(i26)*4)) = x13110
-	i26 = i26 + uint32(1)
-	_ = i26
-	os119 = r181
-	x1109 = **(**Tuint32_t)(__ccgo_up(r181 + uintptr(i26)*4))
-	x13111 = x1109>>uint32(8) | x1109<<uint32(24)
-	**(**Tuint32_t)(__ccgo_up(os119 + uintptr(i26)*4)) = x13111
-	i26 = i26 + uint32(1)
-	_ = i26
-	wv_a131 = wv + uintptr(c*uint32(4))*4
-	wv_b141 = wv + uintptr(d1*uint32(4))*4
-	i27 = 0
-	os120 = wv_a131
-	x1110 = **(**Tuint32_t)(__ccgo_up(wv_a131 + uintptr(i27)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b141 + uintptr(i27)*4))
-	**(**Tuint32_t)(__ccgo_up(os120 + uintptr(i27)*4)) = x1110
-	i27 = i27 + uint32(1)
-	_ = i27
-	os121 = wv_a131
-	x1111 = **(**Tuint32_t)(__ccgo_up(wv_a131 + uintptr(i27)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b141 + uintptr(i27)*4))
-	**(**Tuint32_t)(__ccgo_up(os121 + uintptr(i27)*4)) = x1111
-	i27 = i27 + uint32(1)
-	_ = i27
-	os122 = wv_a131
-	x1112 = **(**Tuint32_t)(__ccgo_up(wv_a131 + uintptr(i27)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b141 + uintptr(i27)*4))
-	**(**Tuint32_t)(__ccgo_up(os122 + uintptr(i27)*4)) = x1112
-	i27 = i27 + uint32(1)
-	_ = i27
-	os123 = wv_a131
-	x1113 = **(**Tuint32_t)(__ccgo_up(wv_a131 + uintptr(i27)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b141 + uintptr(i27)*4))
-	**(**Tuint32_t)(__ccgo_up(os123 + uintptr(i27)*4)) = x1113
-	i27 = i27 + uint32(1)
-	_ = i27
-	wv_a141 = wv + uintptr(b1*uint32(4))*4
-	wv_b = wv + uintptr(c*uint32(4))*4
-	i28 = 0
-	os124 = wv_a141
-	x1114 = **(**Tuint32_t)(__ccgo_up(wv_a141 + uintptr(i28)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b + uintptr(i28)*4))
-	**(**Tuint32_t)(__ccgo_up(os124 + uintptr(i28)*4)) = x1114
-	i28 = i28 + uint32(1)
-	_ = i28
-	os125 = wv_a141
-	x1115 = **(**Tuint32_t)(__ccgo_up(wv_a141 + uintptr(i28)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b + uintptr(i28)*4))
-	**(**Tuint32_t)(__ccgo_up(os125 + uintptr(i28)*4)) = x1115
-	i28 = i28 + uint32(1)
-	_ = i28
-	os126 = wv_a141
-	x1116 = **(**Tuint32_t)(__ccgo_up(wv_a141 + uintptr(i28)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b + uintptr(i28)*4))
-	**(**Tuint32_t)(__ccgo_up(os126 + uintptr(i28)*4)) = x1116
-	i28 = i28 + uint32(1)
-	_ = i28
-	os127 = wv_a141
-	x1117 = **(**Tuint32_t)(__ccgo_up(wv_a141 + uintptr(i28)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b + uintptr(i28)*4))
-	**(**Tuint32_t)(__ccgo_up(os127 + uintptr(i28)*4)) = x1117
-	i28 = i28 + uint32(1)
-	_ = i28
-	r191 = wv_a141
-	i29 = 0
-	os128 = r191
-	x1118 = **(**Tuint32_t)(__ccgo_up(r191 + uintptr(i29)*4))
-	x13112 = x1118>>uint32(7) | x1118<<uint32(25)
-	**(**Tuint32_t)(__ccgo_up(os128 + uintptr(i29)*4)) = x13112
-	i29 = i29 + uint32(1)
-	_ = i29
-	os129 = r191
-	x1119 = **(**Tuint32_t)(__ccgo_up(r191 + uintptr(i29)*4))
-	x13113 = x1119>>uint32(7) | x1119<<uint32(25)
-	**(**Tuint32_t)(__ccgo_up(os129 + uintptr(i29)*4)) = x13113
-	i29 = i29 + uint32(1)
-	_ = i29
-	os130 = r191
-	x1120 = **(**Tuint32_t)(__ccgo_up(r191 + uintptr(i29)*4))
-	x13114 = x1120>>uint32(7) | x1120<<uint32(25)
-	**(**Tuint32_t)(__ccgo_up(os130 + uintptr(i29)*4)) = x13114
-	i29 = i29 + uint32(1)
-	_ = i29
-	os131 = r191
-	x1121 = **(**Tuint32_t)(__ccgo_up(r191 + uintptr(i29)*4))
-	x13115 = x1121>>uint32(7) | x1121<<uint32(25)
-	**(**Tuint32_t)(__ccgo_up(os131 + uintptr(i29)*4)) = x13115
-	i29 = i29 + uint32(1)
-	_ = i29
-	r1131 = wv + uintptr(4)*4
-	r21 = wv + uintptr(8)*4
-	r31 = wv + uintptr(12)*4
-	r117 = r1131
-	x031 = **(**Tuint32_t)(__ccgo_up(r117 + 3*4))
-	x13116 = **(**Tuint32_t)(__ccgo_up(r117))
-	x231 = **(**Tuint32_t)(__ccgo_up(r117 + 1*4))
-	x331 = **(**Tuint32_t)(__ccgo_up(r117 + 2*4))
-	**(**Tuint32_t)(__ccgo_up(r117)) = x031
-	**(**Tuint32_t)(__ccgo_up(r117 + 1*4)) = x13116
-	**(**Tuint32_t)(__ccgo_up(r117 + 2*4)) = x231
-	**(**Tuint32_t)(__ccgo_up(r117 + 3*4)) = x331
-	r1141 = r21
-	x041 = **(**Tuint32_t)(__ccgo_up(r1141 + 2*4))
-	x14100 = **(**Tuint32_t)(__ccgo_up(r1141 + 3*4))
-	x241 = **(**Tuint32_t)(__ccgo_up(r1141))
-	x341 = **(**Tuint32_t)(__ccgo_up(r1141 + 1*4))
-	**(**Tuint32_t)(__ccgo_up(r1141)) = x041
-	**(**Tuint32_t)(__ccgo_up(r1141 + 1*4)) = x14100
-	**(**Tuint32_t)(__ccgo_up(r1141 + 2*4)) = x241
-	**(**Tuint32_t)(__ccgo_up(r1141 + 3*4)) = x341
-	r1151 = r31
-	x0 = **(**Tuint32_t)(__ccgo_up(r1151 + 1*4))
-	x1122 = **(**Tuint32_t)(__ccgo_up(r1151 + 2*4))
-	x210 = **(**Tuint32_t)(__ccgo_up(r1151 + 3*4))
-	x310 = **(**Tuint32_t)(__ccgo_up(r1151))
-	**(**Tuint32_t)(__ccgo_up(r1151)) = x0
-	**(**Tuint32_t)(__ccgo_up(r1151 + 1*4)) = x1122
-	**(**Tuint32_t)(__ccgo_up(r1151 + 2*4)) = x210
-	**(**Tuint32_t)(__ccgo_up(r1151 + 3*4)) = x310
-	i0 = i0 + uint32(1)
-	_ = i0
-	start_idx1 = i0 % uint32(10) * uint32(16)
-	**(**[16]Tuint32_t)(__ccgo_up(bp + 132)) = [16]Tuint32_t{}
-	r01 = bp + 132
-	r17 = bp + 132 + uintptr(4)*4
-	r201 = bp + 132 + uintptr(8)*4
-	r301 = bp + 132 + uintptr(12)*4
-	s01 = _Hacl_Hash_Blake2b_sigmaTable[start_idx1+0]
-	s11 = _Hacl_Hash_Blake2b_sigmaTable[start_idx1+uint32(1)]
-	s21 = _Hacl_Hash_Blake2b_sigmaTable[start_idx1+uint32(2)]
-	s31 = _Hacl_Hash_Blake2b_sigmaTable[start_idx1+uint32(3)]
-	s41 = _Hacl_Hash_Blake2b_sigmaTable[start_idx1+uint32(4)]
-	s51 = _Hacl_Hash_Blake2b_sigmaTable[start_idx1+uint32(5)]
-	s61 = _Hacl_Hash_Blake2b_sigmaTable[start_idx1+uint32(6)]
-	s71 = _Hacl_Hash_Blake2b_sigmaTable[start_idx1+uint32(7)]
-	s81 = _Hacl_Hash_Blake2b_sigmaTable[start_idx1+uint32(8)]
-	s91 = _Hacl_Hash_Blake2b_sigmaTable[start_idx1+uint32(9)]
-	s101 = _Hacl_Hash_Blake2b_sigmaTable[start_idx1+uint32(10)]
-	s112 = _Hacl_Hash_Blake2b_sigmaTable[start_idx1+uint32(11)]
-	s122 = _Hacl_Hash_Blake2b_sigmaTable[start_idx1+uint32(12)]
-	s132 = _Hacl_Hash_Blake2b_sigmaTable[start_idx1+uint32(13)]
-	s142 = _Hacl_Hash_Blake2b_sigmaTable[start_idx1+uint32(14)]
-	s152 = _Hacl_Hash_Blake2b_sigmaTable[start_idx1+uint32(15)]
-	uu____01 = (**(**[16]Tuint32_t)(__ccgo_up(bp + 4)))[s21]
-	uu____11 = (**(**[16]Tuint32_t)(__ccgo_up(bp + 4)))[s41]
-	uu____21 = (**(**[16]Tuint32_t)(__ccgo_up(bp + 4)))[s61]
-	**(**Tuint32_t)(__ccgo_up(r01)) = (**(**[16]Tuint32_t)(__ccgo_up(bp + 4)))[s01]
-	**(**Tuint32_t)(__ccgo_up(r01 + 1*4)) = uu____01
-	**(**Tuint32_t)(__ccgo_up(r01 + 2*4)) = uu____11
-	**(**Tuint32_t)(__ccgo_up(r01 + 3*4)) = uu____21
-	uu____31 = (**(**[16]Tuint32_t)(__ccgo_up(bp + 4)))[s31]
-	uu____41 = (**(**[16]Tuint32_t)(__ccgo_up(bp + 4)))[s51]
-	uu____51 = (**(**[16]Tuint32_t)(__ccgo_up(bp + 4)))[s71]
-	**(**Tuint32_t)(__ccgo_up(r17)) = (**(**[16]Tuint32_t)(__ccgo_up(bp + 4)))[s11]
-	**(**Tuint32_t)(__ccgo_up(r17 + 1*4)) = uu____31
-	**(**Tuint32_t)(__ccgo_up(r17 + 2*4)) = uu____41
-	**(**Tuint32_t)(__ccgo_up(r17 + 3*4)) = uu____51
-	uu____61 = (**(**[16]Tuint32_t)(__ccgo_up(bp + 4)))[s101]
-	uu____71 = (**(**[16]Tuint32_t)(__ccgo_up(bp + 4)))[s122]
-	uu____81 = (**(**[16]Tuint32_t)(__ccgo_up(bp + 4)))[s142]
-	**(**Tuint32_t)(__ccgo_up(r201)) = (**(**[16]Tuint32_t)(__ccgo_up(bp + 4)))[s81]
-	**(**Tuint32_t)(__ccgo_up(r201 + 1*4)) = uu____61
-	**(**Tuint32_t)(__ccgo_up(r201 + 2*4)) = uu____71
-	**(**Tuint32_t)(__ccgo_up(r201 + 3*4)) = uu____81
-	uu____91 = (**(**[16]Tuint32_t)(__ccgo_up(bp + 4)))[s112]
-	uu____101 = (**(**[16]Tuint32_t)(__ccgo_up(bp + 4)))[s132]
-	uu____112 = (**(**[16]Tuint32_t)(__ccgo_up(bp + 4)))[s152]
-	**(**Tuint32_t)(__ccgo_up(r301)) = (**(**[16]Tuint32_t)(__ccgo_up(bp + 4)))[s91]
-	**(**Tuint32_t)(__ccgo_up(r301 + 1*4)) = uu____91
-	**(**Tuint32_t)(__ccgo_up(r301 + 2*4)) = uu____101
-	**(**Tuint32_t)(__ccgo_up(r301 + 3*4)) = uu____112
-	x22 = bp + 132
-	y1 = bp + 132 + uintptr(4)*4
-	z1 = bp + 132 + uintptr(8)*4
-	w1 = bp + 132 + uintptr(12)*4
-	a1 = 0
-	b01 = uint32(1)
-	c01 = uint32(2)
-	d101 = uint32(3)
-	wv_a01 = wv + uintptr(a1*uint32(4))*4
-	wv_b01 = wv + uintptr(b01*uint32(4))*4
-	i30 = 0
-	os132 = wv_a01
-	x1123 = **(**Tuint32_t)(__ccgo_up(wv_a01 + uintptr(i30)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b01 + uintptr(i30)*4))
-	**(**Tuint32_t)(__ccgo_up(os132 + uintptr(i30)*4)) = x1123
-	i30 = i30 + uint32(1)
-	_ = i30
-	os133 = wv_a01
-	x1124 = **(**Tuint32_t)(__ccgo_up(wv_a01 + uintptr(i30)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b01 + uintptr(i30)*4))
-	**(**Tuint32_t)(__ccgo_up(os133 + uintptr(i30)*4)) = x1124
-	i30 = i30 + uint32(1)
-	_ = i30
-	os134 = wv_a01
-	x1125 = **(**Tuint32_t)(__ccgo_up(wv_a01 + uintptr(i30)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b01 + uintptr(i30)*4))
-	**(**Tuint32_t)(__ccgo_up(os134 + uintptr(i30)*4)) = x1125
-	i30 = i30 + uint32(1)
-	_ = i30
-	os135 = wv_a01
-	x1126 = **(**Tuint32_t)(__ccgo_up(wv_a01 + uintptr(i30)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b01 + uintptr(i30)*4))
-	**(**Tuint32_t)(__ccgo_up(os135 + uintptr(i30)*4)) = x1126
-	i30 = i30 + uint32(1)
-	_ = i30
-	i31 = 0
-	os136 = wv_a01
-	x1127 = **(**Tuint32_t)(__ccgo_up(wv_a01 + uintptr(i31)*4)) + **(**Tuint32_t)(__ccgo_up(x22 + uintptr(i31)*4))
-	**(**Tuint32_t)(__ccgo_up(os136 + uintptr(i31)*4)) = x1127
-	i31 = i31 + uint32(1)
-	_ = i31
-	os137 = wv_a01
-	x1128 = **(**Tuint32_t)(__ccgo_up(wv_a01 + uintptr(i31)*4)) + **(**Tuint32_t)(__ccgo_up(x22 + uintptr(i31)*4))
-	**(**Tuint32_t)(__ccgo_up(os137 + uintptr(i31)*4)) = x1128
-	i31 = i31 + uint32(1)
-	_ = i31
-	os138 = wv_a01
-	x1129 = **(**Tuint32_t)(__ccgo_up(wv_a01 + uintptr(i31)*4)) + **(**Tuint32_t)(__ccgo_up(x22 + uintptr(i31)*4))
-	**(**Tuint32_t)(__ccgo_up(os138 + uintptr(i31)*4)) = x1129
-	i31 = i31 + uint32(1)
-	_ = i31
-	os139 = wv_a01
-	x1130 = **(**Tuint32_t)(__ccgo_up(wv_a01 + uintptr(i31)*4)) + **(**Tuint32_t)(__ccgo_up(x22 + uintptr(i31)*4))
-	**(**Tuint32_t)(__ccgo_up(os139 + uintptr(i31)*4)) = x1130
-	i31 = i31 + uint32(1)
-	_ = i31
-	wv_a12 = wv + uintptr(d101*uint32(4))*4
-	wv_b12 = wv + uintptr(a1*uint32(4))*4
-	i32 = 0
-	os140 = wv_a12
-	x1131 = **(**Tuint32_t)(__ccgo_up(wv_a12 + uintptr(i32)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b12 + uintptr(i32)*4))
-	**(**Tuint32_t)(__ccgo_up(os140 + uintptr(i32)*4)) = x1131
-	i32 = i32 + uint32(1)
-	_ = i32
-	os141 = wv_a12
-	x1132 = **(**Tuint32_t)(__ccgo_up(wv_a12 + uintptr(i32)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b12 + uintptr(i32)*4))
-	**(**Tuint32_t)(__ccgo_up(os141 + uintptr(i32)*4)) = x1132
-	i32 = i32 + uint32(1)
-	_ = i32
-	os142 = wv_a12
-	x1133 = **(**Tuint32_t)(__ccgo_up(wv_a12 + uintptr(i32)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b12 + uintptr(i32)*4))
-	**(**Tuint32_t)(__ccgo_up(os142 + uintptr(i32)*4)) = x1133
-	i32 = i32 + uint32(1)
-	_ = i32
-	os143 = wv_a12
-	x1134 = **(**Tuint32_t)(__ccgo_up(wv_a12 + uintptr(i32)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b12 + uintptr(i32)*4))
-	**(**Tuint32_t)(__ccgo_up(os143 + uintptr(i32)*4)) = x1134
-	i32 = i32 + uint32(1)
-	_ = i32
-	r102 = wv_a12
-	i33 = 0
-	os144 = r102
-	x1135 = **(**Tuint32_t)(__ccgo_up(r102 + uintptr(i33)*4))
-	x1018 = x1135>>uint32(16) | x1135<<uint32(16)
-	**(**Tuint32_t)(__ccgo_up(os144 + uintptr(i33)*4)) = x1018
-	i33 = i33 + uint32(1)
-	_ = i33
-	os145 = r102
-	x1136 = **(**Tuint32_t)(__ccgo_up(r102 + uintptr(i33)*4))
-	x1019 = x1136>>uint32(16) | x1136<<uint32(16)
-	**(**Tuint32_t)(__ccgo_up(os145 + uintptr(i33)*4)) = x1019
-	i33 = i33 + uint32(1)
-	_ = i33
-	os146 = r102
-	x1137 = **(**Tuint32_t)(__ccgo_up(r102 + uintptr(i33)*4))
-	x1020 = x1137>>uint32(16) | x1137<<uint32(16)
-	**(**Tuint32_t)(__ccgo_up(os146 + uintptr(i33)*4)) = x1020
-	i33 = i33 + uint32(1)
-	_ = i33
-	os147 = r102
-	x1138 = **(**Tuint32_t)(__ccgo_up(r102 + uintptr(i33)*4))
-	x1021 = x1138>>uint32(16) | x1138<<uint32(16)
-	**(**Tuint32_t)(__ccgo_up(os147 + uintptr(i33)*4)) = x1021
-	i33 = i33 + uint32(1)
-	_ = i33
-	wv_a22 = wv + uintptr(c01*uint32(4))*4
-	wv_b22 = wv + uintptr(d101*uint32(4))*4
-	i34 = 0
-	os148 = wv_a22
-	x1139 = **(**Tuint32_t)(__ccgo_up(wv_a22 + uintptr(i34)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b22 + uintptr(i34)*4))
-	**(**Tuint32_t)(__ccgo_up(os148 + uintptr(i34)*4)) = x1139
-	i34 = i34 + uint32(1)
-	_ = i34
-	os149 = wv_a22
-	x1140 = **(**Tuint32_t)(__ccgo_up(wv_a22 + uintptr(i34)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b22 + uintptr(i34)*4))
-	**(**Tuint32_t)(__ccgo_up(os149 + uintptr(i34)*4)) = x1140
-	i34 = i34 + uint32(1)
-	_ = i34
-	os150 = wv_a22
-	x1141 = **(**Tuint32_t)(__ccgo_up(wv_a22 + uintptr(i34)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b22 + uintptr(i34)*4))
-	**(**Tuint32_t)(__ccgo_up(os150 + uintptr(i34)*4)) = x1141
-	i34 = i34 + uint32(1)
-	_ = i34
-	os151 = wv_a22
-	x1142 = **(**Tuint32_t)(__ccgo_up(wv_a22 + uintptr(i34)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b22 + uintptr(i34)*4))
-	**(**Tuint32_t)(__ccgo_up(os151 + uintptr(i34)*4)) = x1142
-	i34 = i34 + uint32(1)
-	_ = i34
-	wv_a32 = wv + uintptr(b01*uint32(4))*4
-	wv_b32 = wv + uintptr(c01*uint32(4))*4
-	i35 = 0
-	os152 = wv_a32
-	x1143 = **(**Tuint32_t)(__ccgo_up(wv_a32 + uintptr(i35)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b32 + uintptr(i35)*4))
-	**(**Tuint32_t)(__ccgo_up(os152 + uintptr(i35)*4)) = x1143
-	i35 = i35 + uint32(1)
-	_ = i35
-	os153 = wv_a32
-	x1144 = **(**Tuint32_t)(__ccgo_up(wv_a32 + uintptr(i35)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b32 + uintptr(i35)*4))
-	**(**Tuint32_t)(__ccgo_up(os153 + uintptr(i35)*4)) = x1144
-	i35 = i35 + uint32(1)
-	_ = i35
-	os154 = wv_a32
-	x1145 = **(**Tuint32_t)(__ccgo_up(wv_a32 + uintptr(i35)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b32 + uintptr(i35)*4))
-	**(**Tuint32_t)(__ccgo_up(os154 + uintptr(i35)*4)) = x1145
-	i35 = i35 + uint32(1)
-	_ = i35
-	os155 = wv_a32
-	x1146 = **(**Tuint32_t)(__ccgo_up(wv_a32 + uintptr(i35)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b32 + uintptr(i35)*4))
-	**(**Tuint32_t)(__ccgo_up(os155 + uintptr(i35)*4)) = x1146
-	i35 = i35 + uint32(1)
-	_ = i35
-	r122 = wv_a32
-	i36 = 0
-	os156 = r122
-	x1147 = **(**Tuint32_t)(__ccgo_up(r122 + uintptr(i36)*4))
-	x1022 = x1147>>uint32(12) | x1147<<uint32(20)
-	**(**Tuint32_t)(__ccgo_up(os156 + uintptr(i36)*4)) = x1022
-	i36 = i36 + uint32(1)
-	_ = i36
-	os157 = r122
-	x1148 = **(**Tuint32_t)(__ccgo_up(r122 + uintptr(i36)*4))
-	x1023 = x1148>>uint32(12) | x1148<<uint32(20)
-	**(**Tuint32_t)(__ccgo_up(os157 + uintptr(i36)*4)) = x1023
-	i36 = i36 + uint32(1)
-	_ = i36
-	os158 = r122
-	x1149 = **(**Tuint32_t)(__ccgo_up(r122 + uintptr(i36)*4))
-	x1024 = x1149>>uint32(12) | x1149<<uint32(20)
-	**(**Tuint32_t)(__ccgo_up(os158 + uintptr(i36)*4)) = x1024
-	i36 = i36 + uint32(1)
-	_ = i36
-	os159 = r122
-	x1150 = **(**Tuint32_t)(__ccgo_up(r122 + uintptr(i36)*4))
-	x1025 = x1150>>uint32(12) | x1150<<uint32(20)
-	**(**Tuint32_t)(__ccgo_up(os159 + uintptr(i36)*4)) = x1025
-	i36 = i36 + uint32(1)
-	_ = i36
-	wv_a42 = wv + uintptr(a1*uint32(4))*4
-	wv_b42 = wv + uintptr(b01*uint32(4))*4
-	i37 = 0
-	os160 = wv_a42
-	x1151 = **(**Tuint32_t)(__ccgo_up(wv_a42 + uintptr(i37)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b42 + uintptr(i37)*4))
-	**(**Tuint32_t)(__ccgo_up(os160 + uintptr(i37)*4)) = x1151
-	i37 = i37 + uint32(1)
-	_ = i37
-	os161 = wv_a42
-	x1152 = **(**Tuint32_t)(__ccgo_up(wv_a42 + uintptr(i37)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b42 + uintptr(i37)*4))
-	**(**Tuint32_t)(__ccgo_up(os161 + uintptr(i37)*4)) = x1152
-	i37 = i37 + uint32(1)
-	_ = i37
-	os162 = wv_a42
-	x1153 = **(**Tuint32_t)(__ccgo_up(wv_a42 + uintptr(i37)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b42 + uintptr(i37)*4))
-	**(**Tuint32_t)(__ccgo_up(os162 + uintptr(i37)*4)) = x1153
-	i37 = i37 + uint32(1)
-	_ = i37
-	os163 = wv_a42
-	x1154 = **(**Tuint32_t)(__ccgo_up(wv_a42 + uintptr(i37)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b42 + uintptr(i37)*4))
-	**(**Tuint32_t)(__ccgo_up(os163 + uintptr(i37)*4)) = x1154
-	i37 = i37 + uint32(1)
-	_ = i37
-	i38 = 0
-	os164 = wv_a42
-	x1155 = **(**Tuint32_t)(__ccgo_up(wv_a42 + uintptr(i38)*4)) + **(**Tuint32_t)(__ccgo_up(y1 + uintptr(i38)*4))
-	**(**Tuint32_t)(__ccgo_up(os164 + uintptr(i38)*4)) = x1155
-	i38 = i38 + uint32(1)
-	_ = i38
-	os165 = wv_a42
-	x1156 = **(**Tuint32_t)(__ccgo_up(wv_a42 + uintptr(i38)*4)) + **(**Tuint32_t)(__ccgo_up(y1 + uintptr(i38)*4))
-	**(**Tuint32_t)(__ccgo_up(os165 + uintptr(i38)*4)) = x1156
-	i38 = i38 + uint32(1)
-	_ = i38
-	os166 = wv_a42
-	x1157 = **(**Tuint32_t)(__ccgo_up(wv_a42 + uintptr(i38)*4)) + **(**Tuint32_t)(__ccgo_up(y1 + uintptr(i38)*4))
-	**(**Tuint32_t)(__ccgo_up(os166 + uintptr(i38)*4)) = x1157
-	i38 = i38 + uint32(1)
-	_ = i38
-	os167 = wv_a42
-	x1158 = **(**Tuint32_t)(__ccgo_up(wv_a42 + uintptr(i38)*4)) + **(**Tuint32_t)(__ccgo_up(y1 + uintptr(i38)*4))
-	**(**Tuint32_t)(__ccgo_up(os167 + uintptr(i38)*4)) = x1158
-	i38 = i38 + uint32(1)
-	_ = i38
-	wv_a52 = wv + uintptr(d101*uint32(4))*4
-	wv_b52 = wv + uintptr(a1*uint32(4))*4
-	i39 = 0
-	os168 = wv_a52
-	x1159 = **(**Tuint32_t)(__ccgo_up(wv_a52 + uintptr(i39)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b52 + uintptr(i39)*4))
-	**(**Tuint32_t)(__ccgo_up(os168 + uintptr(i39)*4)) = x1159
-	i39 = i39 + uint32(1)
-	_ = i39
-	os169 = wv_a52
-	x1160 = **(**Tuint32_t)(__ccgo_up(wv_a52 + uintptr(i39)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b52 + uintptr(i39)*4))
-	**(**Tuint32_t)(__ccgo_up(os169 + uintptr(i39)*4)) = x1160
-	i39 = i39 + uint32(1)
-	_ = i39
-	os170 = wv_a52
-	x1161 = **(**Tuint32_t)(__ccgo_up(wv_a52 + uintptr(i39)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b52 + uintptr(i39)*4))
-	**(**Tuint32_t)(__ccgo_up(os170 + uintptr(i39)*4)) = x1161
-	i39 = i39 + uint32(1)
-	_ = i39
-	os171 = wv_a52
-	x1162 = **(**Tuint32_t)(__ccgo_up(wv_a52 + uintptr(i39)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b52 + uintptr(i39)*4))
-	**(**Tuint32_t)(__ccgo_up(os171 + uintptr(i39)*4)) = x1162
-	i39 = i39 + uint32(1)
-	_ = i39
-	r132 = wv_a52
-	i40 = 0
-	os172 = r132
-	x1163 = **(**Tuint32_t)(__ccgo_up(r132 + uintptr(i40)*4))
-	x1026 = x1163>>uint32(8) | x1163<<uint32(24)
-	**(**Tuint32_t)(__ccgo_up(os172 + uintptr(i40)*4)) = x1026
-	i40 = i40 + uint32(1)
-	_ = i40
-	os173 = r132
-	x1164 = **(**Tuint32_t)(__ccgo_up(r132 + uintptr(i40)*4))
-	x1027 = x1164>>uint32(8) | x1164<<uint32(24)
-	**(**Tuint32_t)(__ccgo_up(os173 + uintptr(i40)*4)) = x1027
-	i40 = i40 + uint32(1)
-	_ = i40
-	os174 = r132
-	x1165 = **(**Tuint32_t)(__ccgo_up(r132 + uintptr(i40)*4))
-	x1028 = x1165>>uint32(8) | x1165<<uint32(24)
-	**(**Tuint32_t)(__ccgo_up(os174 + uintptr(i40)*4)) = x1028
-	i40 = i40 + uint32(1)
-	_ = i40
-	os175 = r132
-	x1166 = **(**Tuint32_t)(__ccgo_up(r132 + uintptr(i40)*4))
-	x1029 = x1166>>uint32(8) | x1166<<uint32(24)
-	**(**Tuint32_t)(__ccgo_up(os175 + uintptr(i40)*4)) = x1029
-	i40 = i40 + uint32(1)
-	_ = i40
-	wv_a62 = wv + uintptr(c01*uint32(4))*4
-	wv_b62 = wv + uintptr(d101*uint32(4))*4
-	i41 = 0
-	os176 = wv_a62
-	x1167 = **(**Tuint32_t)(__ccgo_up(wv_a62 + uintptr(i41)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b62 + uintptr(i41)*4))
-	**(**Tuint32_t)(__ccgo_up(os176 + uintptr(i41)*4)) = x1167
-	i41 = i41 + uint32(1)
-	_ = i41
-	os177 = wv_a62
-	x1168 = **(**Tuint32_t)(__ccgo_up(wv_a62 + uintptr(i41)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b62 + uintptr(i41)*4))
-	**(**Tuint32_t)(__ccgo_up(os177 + uintptr(i41)*4)) = x1168
-	i41 = i41 + uint32(1)
-	_ = i41
-	os178 = wv_a62
-	x1169 = **(**Tuint32_t)(__ccgo_up(wv_a62 + uintptr(i41)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b62 + uintptr(i41)*4))
-	**(**Tuint32_t)(__ccgo_up(os178 + uintptr(i41)*4)) = x1169
-	i41 = i41 + uint32(1)
-	_ = i41
-	os179 = wv_a62
-	x1170 = **(**Tuint32_t)(__ccgo_up(wv_a62 + uintptr(i41)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b62 + uintptr(i41)*4))
-	**(**Tuint32_t)(__ccgo_up(os179 + uintptr(i41)*4)) = x1170
-	i41 = i41 + uint32(1)
-	_ = i41
-	wv_a72 = wv + uintptr(b01*uint32(4))*4
-	wv_b72 = wv + uintptr(c01*uint32(4))*4
-	i42 = 0
-	os180 = wv_a72
-	x1171 = **(**Tuint32_t)(__ccgo_up(wv_a72 + uintptr(i42)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b72 + uintptr(i42)*4))
-	**(**Tuint32_t)(__ccgo_up(os180 + uintptr(i42)*4)) = x1171
-	i42 = i42 + uint32(1)
-	_ = i42
-	os181 = wv_a72
-	x1172 = **(**Tuint32_t)(__ccgo_up(wv_a72 + uintptr(i42)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b72 + uintptr(i42)*4))
-	**(**Tuint32_t)(__ccgo_up(os181 + uintptr(i42)*4)) = x1172
-	i42 = i42 + uint32(1)
-	_ = i42
-	os182 = wv_a72
-	x1173 = **(**Tuint32_t)(__ccgo_up(wv_a72 + uintptr(i42)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b72 + uintptr(i42)*4))
-	**(**Tuint32_t)(__ccgo_up(os182 + uintptr(i42)*4)) = x1173
-	i42 = i42 + uint32(1)
-	_ = i42
-	os183 = wv_a72
-	x1174 = **(**Tuint32_t)(__ccgo_up(wv_a72 + uintptr(i42)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b72 + uintptr(i42)*4))
-	**(**Tuint32_t)(__ccgo_up(os183 + uintptr(i42)*4)) = x1174
-	i42 = i42 + uint32(1)
-	_ = i42
-	r142 = wv_a72
-	i43 = 0
-	os184 = r142
-	x1175 = **(**Tuint32_t)(__ccgo_up(r142 + uintptr(i43)*4))
-	x1030 = x1175>>uint32(7) | x1175<<uint32(25)
-	**(**Tuint32_t)(__ccgo_up(os184 + uintptr(i43)*4)) = x1030
-	i43 = i43 + uint32(1)
-	_ = i43
-	os185 = r142
-	x1176 = **(**Tuint32_t)(__ccgo_up(r142 + uintptr(i43)*4))
-	x1031 = x1176>>uint32(7) | x1176<<uint32(25)
-	**(**Tuint32_t)(__ccgo_up(os185 + uintptr(i43)*4)) = x1031
-	i43 = i43 + uint32(1)
-	_ = i43
-	os186 = r142
-	x1177 = **(**Tuint32_t)(__ccgo_up(r142 + uintptr(i43)*4))
-	x1032 = x1177>>uint32(7) | x1177<<uint32(25)
-	**(**Tuint32_t)(__ccgo_up(os186 + uintptr(i43)*4)) = x1032
-	i43 = i43 + uint32(1)
-	_ = i43
-	os187 = r142
-	x1178 = **(**Tuint32_t)(__ccgo_up(r142 + uintptr(i43)*4))
-	x1033 = x1178>>uint32(7) | x1178<<uint32(25)
-	**(**Tuint32_t)(__ccgo_up(os187 + uintptr(i43)*4)) = x1033
-	i43 = i43 + uint32(1)
-	_ = i43
-	r152 = wv + uintptr(4)*4
-	r213 = wv + uintptr(8)*4
-	r313 = wv + uintptr(12)*4
-	r1102 = r152
-	x001 = **(**Tuint32_t)(__ccgo_up(r1102 + 1*4))
-	x1034 = **(**Tuint32_t)(__ccgo_up(r1102 + 2*4))
-	x202 = **(**Tuint32_t)(__ccgo_up(r1102 + 3*4))
-	x302 = **(**Tuint32_t)(__ccgo_up(r1102))
-	**(**Tuint32_t)(__ccgo_up(r1102)) = x001
-	**(**Tuint32_t)(__ccgo_up(r1102 + 1*4)) = x1034
-	**(**Tuint32_t)(__ccgo_up(r1102 + 2*4)) = x202
-	**(**Tuint32_t)(__ccgo_up(r1102 + 3*4)) = x302
-	r1118 = r213
-	x012 = **(**Tuint32_t)(__ccgo_up(r1118 + 2*4))
-	x11141 = **(**Tuint32_t)(__ccgo_up(r1118 + 3*4))
-	x2111 = **(**Tuint32_t)(__ccgo_up(r1118))
-	x3111 = **(**Tuint32_t)(__ccgo_up(r1118 + 1*4))
-	**(**Tuint32_t)(__ccgo_up(r1118)) = x012
-	**(**Tuint32_t)(__ccgo_up(r1118 + 1*4)) = x11141
-	**(**Tuint32_t)(__ccgo_up(r1118 + 2*4)) = x2111
-	**(**Tuint32_t)(__ccgo_up(r1118 + 3*4)) = x3111
-	r1122 = r313
-	x022 = **(**Tuint32_t)(__ccgo_up(r1122 + 3*4))
-	x12101 = **(**Tuint32_t)(__ccgo_up(r1122))
-	x222 = **(**Tuint32_t)(__ccgo_up(r1122 + 1*4))
-	x322 = **(**Tuint32_t)(__ccgo_up(r1122 + 2*4))
-	**(**Tuint32_t)(__ccgo_up(r1122)) = x022
-	**(**Tuint32_t)(__ccgo_up(r1122 + 1*4)) = x12101
-	**(**Tuint32_t)(__ccgo_up(r1122 + 2*4)) = x222
-	**(**Tuint32_t)(__ccgo_up(r1122 + 3*4)) = x322
-	a01 = 0
-	b2 = uint32(1)
-	c1 = uint32(2)
-	d11 = uint32(3)
-	wv_a1 = wv + uintptr(a01*uint32(4))*4
-	wv_b82 = wv + uintptr(b2*uint32(4))*4
-	i44 = 0
-	os188 = wv_a1
-	x1179 = **(**Tuint32_t)(__ccgo_up(wv_a1 + uintptr(i44)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b82 + uintptr(i44)*4))
-	**(**Tuint32_t)(__ccgo_up(os188 + uintptr(i44)*4)) = x1179
-	i44 = i44 + uint32(1)
-	_ = i44
-	os189 = wv_a1
-	x1180 = **(**Tuint32_t)(__ccgo_up(wv_a1 + uintptr(i44)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b82 + uintptr(i44)*4))
-	**(**Tuint32_t)(__ccgo_up(os189 + uintptr(i44)*4)) = x1180
-	i44 = i44 + uint32(1)
-	_ = i44
-	os190 = wv_a1
-	x1181 = **(**Tuint32_t)(__ccgo_up(wv_a1 + uintptr(i44)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b82 + uintptr(i44)*4))
-	**(**Tuint32_t)(__ccgo_up(os190 + uintptr(i44)*4)) = x1181
-	i44 = i44 + uint32(1)
-	_ = i44
-	os191 = wv_a1
-	x1182 = **(**Tuint32_t)(__ccgo_up(wv_a1 + uintptr(i44)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b82 + uintptr(i44)*4))
-	**(**Tuint32_t)(__ccgo_up(os191 + uintptr(i44)*4)) = x1182
-	i44 = i44 + uint32(1)
-	_ = i44
-	i45 = 0
-	os192 = wv_a1
-	x1183 = **(**Tuint32_t)(__ccgo_up(wv_a1 + uintptr(i45)*4)) + **(**Tuint32_t)(__ccgo_up(z1 + uintptr(i45)*4))
-	**(**Tuint32_t)(__ccgo_up(os192 + uintptr(i45)*4)) = x1183
-	i45 = i45 + uint32(1)
-	_ = i45
-	os193 = wv_a1
-	x1184 = **(**Tuint32_t)(__ccgo_up(wv_a1 + uintptr(i45)*4)) + **(**Tuint32_t)(__ccgo_up(z1 + uintptr(i45)*4))
-	**(**Tuint32_t)(__ccgo_up(os193 + uintptr(i45)*4)) = x1184
-	i45 = i45 + uint32(1)
-	_ = i45
-	os194 = wv_a1
-	x1185 = **(**Tuint32_t)(__ccgo_up(wv_a1 + uintptr(i45)*4)) + **(**Tuint32_t)(__ccgo_up(z1 + uintptr(i45)*4))
-	**(**Tuint32_t)(__ccgo_up(os194 + uintptr(i45)*4)) = x1185
-	i45 = i45 + uint32(1)
-	_ = i45
-	os195 = wv_a1
-	x1186 = **(**Tuint32_t)(__ccgo_up(wv_a1 + uintptr(i45)*4)) + **(**Tuint32_t)(__ccgo_up(z1 + uintptr(i45)*4))
-	**(**Tuint32_t)(__ccgo_up(os195 + uintptr(i45)*4)) = x1186
-	i45 = i45 + uint32(1)
-	_ = i45
-	wv_a82 = wv + uintptr(d11*uint32(4))*4
-	wv_b92 = wv + uintptr(a01*uint32(4))*4
-	i46 = 0
-	os196 = wv_a82
-	x1187 = **(**Tuint32_t)(__ccgo_up(wv_a82 + uintptr(i46)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b92 + uintptr(i46)*4))
-	**(**Tuint32_t)(__ccgo_up(os196 + uintptr(i46)*4)) = x1187
-	i46 = i46 + uint32(1)
-	_ = i46
-	os197 = wv_a82
-	x1188 = **(**Tuint32_t)(__ccgo_up(wv_a82 + uintptr(i46)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b92 + uintptr(i46)*4))
-	**(**Tuint32_t)(__ccgo_up(os197 + uintptr(i46)*4)) = x1188
-	i46 = i46 + uint32(1)
-	_ = i46
-	os198 = wv_a82
-	x1189 = **(**Tuint32_t)(__ccgo_up(wv_a82 + uintptr(i46)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b92 + uintptr(i46)*4))
-	**(**Tuint32_t)(__ccgo_up(os198 + uintptr(i46)*4)) = x1189
-	i46 = i46 + uint32(1)
-	_ = i46
-	os199 = wv_a82
-	x1190 = **(**Tuint32_t)(__ccgo_up(wv_a82 + uintptr(i46)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b92 + uintptr(i46)*4))
-	**(**Tuint32_t)(__ccgo_up(os199 + uintptr(i46)*4)) = x1190
-	i46 = i46 + uint32(1)
-	_ = i46
-	r162 = wv_a82
-	i47 = 0
-	os200 = r162
-	x1191 = **(**Tuint32_t)(__ccgo_up(r162 + uintptr(i47)*4))
-	x13117 = x1191>>uint32(16) | x1191<<uint32(16)
-	**(**Tuint32_t)(__ccgo_up(os200 + uintptr(i47)*4)) = x13117
-	i47 = i47 + uint32(1)
-	_ = i47
-	os201 = r162
-	x1192 = **(**Tuint32_t)(__ccgo_up(r162 + uintptr(i47)*4))
-	x13118 = x1192>>uint32(16) | x1192<<uint32(16)
-	**(**Tuint32_t)(__ccgo_up(os201 + uintptr(i47)*4)) = x13118
-	i47 = i47 + uint32(1)
-	_ = i47
-	os202 = r162
-	x1193 = **(**Tuint32_t)(__ccgo_up(r162 + uintptr(i47)*4))
-	x13119 = x1193>>uint32(16) | x1193<<uint32(16)
-	**(**Tuint32_t)(__ccgo_up(os202 + uintptr(i47)*4)) = x13119
-	i47 = i47 + uint32(1)
-	_ = i47
-	os203 = r162
-	x1194 = **(**Tuint32_t)(__ccgo_up(r162 + uintptr(i47)*4))
-	x13120 = x1194>>uint32(16) | x1194<<uint32(16)
-	**(**Tuint32_t)(__ccgo_up(os203 + uintptr(i47)*4)) = x13120
-	i47 = i47 + uint32(1)
-	_ = i47
-	wv_a92 = wv + uintptr(c1*uint32(4))*4
-	wv_b101 = wv + uintptr(d11*uint32(4))*4
-	i48 = 0
-	os204 = wv_a92
-	x1195 = **(**Tuint32_t)(__ccgo_up(wv_a92 + uintptr(i48)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b101 + uintptr(i48)*4))
-	**(**Tuint32_t)(__ccgo_up(os204 + uintptr(i48)*4)) = x1195
-	i48 = i48 + uint32(1)
-	_ = i48
-	os205 = wv_a92
-	x1196 = **(**Tuint32_t)(__ccgo_up(wv_a92 + uintptr(i48)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b101 + uintptr(i48)*4))
-	**(**Tuint32_t)(__ccgo_up(os205 + uintptr(i48)*4)) = x1196
-	i48 = i48 + uint32(1)
-	_ = i48
-	os206 = wv_a92
-	x1197 = **(**Tuint32_t)(__ccgo_up(wv_a92 + uintptr(i48)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b101 + uintptr(i48)*4))
-	**(**Tuint32_t)(__ccgo_up(os206 + uintptr(i48)*4)) = x1197
-	i48 = i48 + uint32(1)
-	_ = i48
-	os207 = wv_a92
-	x1198 = **(**Tuint32_t)(__ccgo_up(wv_a92 + uintptr(i48)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b101 + uintptr(i48)*4))
-	**(**Tuint32_t)(__ccgo_up(os207 + uintptr(i48)*4)) = x1198
-	i48 = i48 + uint32(1)
-	_ = i48
-	wv_a101 = wv + uintptr(b2*uint32(4))*4
-	wv_b112 = wv + uintptr(c1*uint32(4))*4
-	i49 = 0
-	os208 = wv_a101
-	x1199 = **(**Tuint32_t)(__ccgo_up(wv_a101 + uintptr(i49)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b112 + uintptr(i49)*4))
-	**(**Tuint32_t)(__ccgo_up(os208 + uintptr(i49)*4)) = x1199
-	i49 = i49 + uint32(1)
-	_ = i49
-	os209 = wv_a101
-	x1200 = **(**Tuint32_t)(__ccgo_up(wv_a101 + uintptr(i49)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b112 + uintptr(i49)*4))
-	**(**Tuint32_t)(__ccgo_up(os209 + uintptr(i49)*4)) = x1200
-	i49 = i49 + uint32(1)
-	_ = i49
-	os210 = wv_a101
-	x1201 = **(**Tuint32_t)(__ccgo_up(wv_a101 + uintptr(i49)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b112 + uintptr(i49)*4))
-	**(**Tuint32_t)(__ccgo_up(os210 + uintptr(i49)*4)) = x1201
-	i49 = i49 + uint32(1)
-	_ = i49
-	os211 = wv_a101
-	x1202 = **(**Tuint32_t)(__ccgo_up(wv_a101 + uintptr(i49)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b112 + uintptr(i49)*4))
-	**(**Tuint32_t)(__ccgo_up(os211 + uintptr(i49)*4)) = x1202
-	i49 = i49 + uint32(1)
-	_ = i49
-	r172 = wv_a101
-	i50 = 0
-	os212 = r172
-	x1203 = **(**Tuint32_t)(__ccgo_up(r172 + uintptr(i50)*4))
-	x13121 = x1203>>uint32(12) | x1203<<uint32(20)
-	**(**Tuint32_t)(__ccgo_up(os212 + uintptr(i50)*4)) = x13121
-	i50 = i50 + uint32(1)
-	_ = i50
-	os213 = r172
-	x1204 = **(**Tuint32_t)(__ccgo_up(r172 + uintptr(i50)*4))
-	x13122 = x1204>>uint32(12) | x1204<<uint32(20)
-	**(**Tuint32_t)(__ccgo_up(os213 + uintptr(i50)*4)) = x13122
-	i50 = i50 + uint32(1)
-	_ = i50
-	os214 = r172
-	x1205 = **(**Tuint32_t)(__ccgo_up(r172 + uintptr(i50)*4))
-	x13123 = x1205>>uint32(12) | x1205<<uint32(20)
-	**(**Tuint32_t)(__ccgo_up(os214 + uintptr(i50)*4)) = x13123
-	i50 = i50 + uint32(1)
-	_ = i50
-	os215 = r172
-	x1206 = **(**Tuint32_t)(__ccgo_up(r172 + uintptr(i50)*4))
-	x13124 = x1206>>uint32(12) | x1206<<uint32(20)
-	**(**Tuint32_t)(__ccgo_up(os215 + uintptr(i50)*4)) = x13124
-	i50 = i50 + uint32(1)
-	_ = i50
-	wv_a112 = wv + uintptr(a01*uint32(4))*4
-	wv_b122 = wv + uintptr(b2*uint32(4))*4
-	i51 = 0
-	os216 = wv_a112
-	x1207 = **(**Tuint32_t)(__ccgo_up(wv_a112 + uintptr(i51)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b122 + uintptr(i51)*4))
-	**(**Tuint32_t)(__ccgo_up(os216 + uintptr(i51)*4)) = x1207
-	i51 = i51 + uint32(1)
-	_ = i51
-	os217 = wv_a112
-	x1208 = **(**Tuint32_t)(__ccgo_up(wv_a112 + uintptr(i51)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b122 + uintptr(i51)*4))
-	**(**Tuint32_t)(__ccgo_up(os217 + uintptr(i51)*4)) = x1208
-	i51 = i51 + uint32(1)
-	_ = i51
-	os218 = wv_a112
-	x1209 = **(**Tuint32_t)(__ccgo_up(wv_a112 + uintptr(i51)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b122 + uintptr(i51)*4))
-	**(**Tuint32_t)(__ccgo_up(os218 + uintptr(i51)*4)) = x1209
-	i51 = i51 + uint32(1)
-	_ = i51
-	os219 = wv_a112
-	x1210 = **(**Tuint32_t)(__ccgo_up(wv_a112 + uintptr(i51)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b122 + uintptr(i51)*4))
-	**(**Tuint32_t)(__ccgo_up(os219 + uintptr(i51)*4)) = x1210
-	i51 = i51 + uint32(1)
-	_ = i51
-	i52 = 0
-	os220 = wv_a112
-	x1211 = **(**Tuint32_t)(__ccgo_up(wv_a112 + uintptr(i52)*4)) + **(**Tuint32_t)(__ccgo_up(w1 + uintptr(i52)*4))
-	**(**Tuint32_t)(__ccgo_up(os220 + uintptr(i52)*4)) = x1211
-	i52 = i52 + uint32(1)
-	_ = i52
-	os221 = wv_a112
-	x1212 = **(**Tuint32_t)(__ccgo_up(wv_a112 + uintptr(i52)*4)) + **(**Tuint32_t)(__ccgo_up(w1 + uintptr(i52)*4))
-	**(**Tuint32_t)(__ccgo_up(os221 + uintptr(i52)*4)) = x1212
-	i52 = i52 + uint32(1)
-	_ = i52
-	os222 = wv_a112
-	x1213 = **(**Tuint32_t)(__ccgo_up(wv_a112 + uintptr(i52)*4)) + **(**Tuint32_t)(__ccgo_up(w1 + uintptr(i52)*4))
-	**(**Tuint32_t)(__ccgo_up(os222 + uintptr(i52)*4)) = x1213
-	i52 = i52 + uint32(1)
-	_ = i52
-	os223 = wv_a112
-	x1214 = **(**Tuint32_t)(__ccgo_up(wv_a112 + uintptr(i52)*4)) + **(**Tuint32_t)(__ccgo_up(w1 + uintptr(i52)*4))
-	**(**Tuint32_t)(__ccgo_up(os223 + uintptr(i52)*4)) = x1214
-	i52 = i52 + uint32(1)
-	_ = i52
-	wv_a122 = wv + uintptr(d11*uint32(4))*4
-	wv_b132 = wv + uintptr(a01*uint32(4))*4
-	i53 = 0
-	os224 = wv_a122
-	x1215 = **(**Tuint32_t)(__ccgo_up(wv_a122 + uintptr(i53)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b132 + uintptr(i53)*4))
-	**(**Tuint32_t)(__ccgo_up(os224 + uintptr(i53)*4)) = x1215
-	i53 = i53 + uint32(1)
-	_ = i53
-	os225 = wv_a122
-	x1216 = **(**Tuint32_t)(__ccgo_up(wv_a122 + uintptr(i53)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b132 + uintptr(i53)*4))
-	**(**Tuint32_t)(__ccgo_up(os225 + uintptr(i53)*4)) = x1216
-	i53 = i53 + uint32(1)
-	_ = i53
-	os226 = wv_a122
-	x1217 = **(**Tuint32_t)(__ccgo_up(wv_a122 + uintptr(i53)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b132 + uintptr(i53)*4))
-	**(**Tuint32_t)(__ccgo_up(os226 + uintptr(i53)*4)) = x1217
-	i53 = i53 + uint32(1)
-	_ = i53
-	os227 = wv_a122
-	x1218 = **(**Tuint32_t)(__ccgo_up(wv_a122 + uintptr(i53)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b132 + uintptr(i53)*4))
-	**(**Tuint32_t)(__ccgo_up(os227 + uintptr(i53)*4)) = x1218
-	i53 = i53 + uint32(1)
-	_ = i53
-	r182 = wv_a122
-	i54 = 0
-	os228 = r182
-	x1219 = **(**Tuint32_t)(__ccgo_up(r182 + uintptr(i54)*4))
-	x13125 = x1219>>uint32(8) | x1219<<uint32(24)
-	**(**Tuint32_t)(__ccgo_up(os228 + uintptr(i54)*4)) = x13125
-	i54 = i54 + uint32(1)
-	_ = i54
-	os229 = r182
-	x1220 = **(**Tuint32_t)(__ccgo_up(r182 + uintptr(i54)*4))
-	x13126 = x1220>>uint32(8) | x1220<<uint32(24)
-	**(**Tuint32_t)(__ccgo_up(os229 + uintptr(i54)*4)) = x13126
-	i54 = i54 + uint32(1)
-	_ = i54
-	os230 = r182
-	x1221 = **(**Tuint32_t)(__ccgo_up(r182 + uintptr(i54)*4))
-	x13127 = x1221>>uint32(8) | x1221<<uint32(24)
-	**(**Tuint32_t)(__ccgo_up(os230 + uintptr(i54)*4)) = x13127
-	i54 = i54 + uint32(1)
-	_ = i54
-	os231 = r182
-	x1222 = **(**Tuint32_t)(__ccgo_up(r182 + uintptr(i54)*4))
-	x13128 = x1222>>uint32(8) | x1222<<uint32(24)
-	**(**Tuint32_t)(__ccgo_up(os231 + uintptr(i54)*4)) = x13128
-	i54 = i54 + uint32(1)
-	_ = i54
-	wv_a132 = wv + uintptr(c1*uint32(4))*4
-	wv_b142 = wv + uintptr(d11*uint32(4))*4
-	i55 = 0
-	os232 = wv_a132
-	x1223 = **(**Tuint32_t)(__ccgo_up(wv_a132 + uintptr(i55)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b142 + uintptr(i55)*4))
-	**(**Tuint32_t)(__ccgo_up(os232 + uintptr(i55)*4)) = x1223
-	i55 = i55 + uint32(1)
-	_ = i55
-	os233 = wv_a132
-	x1224 = **(**Tuint32_t)(__ccgo_up(wv_a132 + uintptr(i55)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b142 + uintptr(i55)*4))
-	**(**Tuint32_t)(__ccgo_up(os233 + uintptr(i55)*4)) = x1224
-	i55 = i55 + uint32(1)
-	_ = i55
-	os234 = wv_a132
-	x1225 = **(**Tuint32_t)(__ccgo_up(wv_a132 + uintptr(i55)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b142 + uintptr(i55)*4))
-	**(**Tuint32_t)(__ccgo_up(os234 + uintptr(i55)*4)) = x1225
-	i55 = i55 + uint32(1)
-	_ = i55
-	os235 = wv_a132
-	x1226 = **(**Tuint32_t)(__ccgo_up(wv_a132 + uintptr(i55)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b142 + uintptr(i55)*4))
-	**(**Tuint32_t)(__ccgo_up(os235 + uintptr(i55)*4)) = x1226
-	i55 = i55 + uint32(1)
-	_ = i55
-	wv_a142 = wv + uintptr(b2*uint32(4))*4
-	wv_b1 = wv + uintptr(c1*uint32(4))*4
-	i56 = 0
-	os236 = wv_a142
-	x1227 = **(**Tuint32_t)(__ccgo_up(wv_a142 + uintptr(i56)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b1 + uintptr(i56)*4))
-	**(**Tuint32_t)(__ccgo_up(os236 + uintptr(i56)*4)) = x1227
-	i56 = i56 + uint32(1)
-	_ = i56
-	os237 = wv_a142
-	x1228 = **(**Tuint32_t)(__ccgo_up(wv_a142 + uintptr(i56)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b1 + uintptr(i56)*4))
-	**(**Tuint32_t)(__ccgo_up(os237 + uintptr(i56)*4)) = x1228
-	i56 = i56 + uint32(1)
-	_ = i56
-	os238 = wv_a142
-	x1229 = **(**Tuint32_t)(__ccgo_up(wv_a142 + uintptr(i56)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b1 + uintptr(i56)*4))
-	**(**Tuint32_t)(__ccgo_up(os238 + uintptr(i56)*4)) = x1229
-	i56 = i56 + uint32(1)
-	_ = i56
-	os239 = wv_a142
-	x1230 = **(**Tuint32_t)(__ccgo_up(wv_a142 + uintptr(i56)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b1 + uintptr(i56)*4))
-	**(**Tuint32_t)(__ccgo_up(os239 + uintptr(i56)*4)) = x1230
-	i56 = i56 + uint32(1)
-	_ = i56
-	r192 = wv_a142
-	i57 = 0
-	os240 = r192
-	x1231 = **(**Tuint32_t)(__ccgo_up(r192 + uintptr(i57)*4))
-	x13129 = x1231>>uint32(7) | x1231<<uint32(25)
-	**(**Tuint32_t)(__ccgo_up(os240 + uintptr(i57)*4)) = x13129
-	i57 = i57 + uint32(1)
-	_ = i57
-	os241 = r192
-	x1232 = **(**Tuint32_t)(__ccgo_up(r192 + uintptr(i57)*4))
-	x13130 = x1232>>uint32(7) | x1232<<uint32(25)
-	**(**Tuint32_t)(__ccgo_up(os241 + uintptr(i57)*4)) = x13130
-	i57 = i57 + uint32(1)
-	_ = i57
-	os242 = r192
-	x1233 = **(**Tuint32_t)(__ccgo_up(r192 + uintptr(i57)*4))
-	x13131 = x1233>>uint32(7) | x1233<<uint32(25)
-	**(**Tuint32_t)(__ccgo_up(os242 + uintptr(i57)*4)) = x13131
-	i57 = i57 + uint32(1)
-	_ = i57
-	os243 = r192
-	x1234 = **(**Tuint32_t)(__ccgo_up(r192 + uintptr(i57)*4))
-	x13132 = x1234>>uint32(7) | x1234<<uint32(25)
-	**(**Tuint32_t)(__ccgo_up(os243 + uintptr(i57)*4)) = x13132
-	i57 = i57 + uint32(1)
-	_ = i57
-	r1132 = wv + uintptr(4)*4
-	r22 = wv + uintptr(8)*4
-	r32 = wv + uintptr(12)*4
-	r118 = r1132
-	x032 = **(**Tuint32_t)(__ccgo_up(r118 + 3*4))
-	x13133 = **(**Tuint32_t)(__ccgo_up(r118))
-	x232 = **(**Tuint32_t)(__ccgo_up(r118 + 1*4))
-	x332 = **(**Tuint32_t)(__ccgo_up(r118 + 2*4))
-	**(**Tuint32_t)(__ccgo_up(r118)) = x032
-	**(**Tuint32_t)(__ccgo_up(r118 + 1*4)) = x13133
-	**(**Tuint32_t)(__ccgo_up(r118 + 2*4)) = x232
-	**(**Tuint32_t)(__ccgo_up(r118 + 3*4)) = x332
-	r1142 = r22
-	x042 = **(**Tuint32_t)(__ccgo_up(r1142 + 2*4))
-	x14101 = **(**Tuint32_t)(__ccgo_up(r1142 + 3*4))
-	x242 = **(**Tuint32_t)(__ccgo_up(r1142))
-	x342 = **(**Tuint32_t)(__ccgo_up(r1142 + 1*4))
-	**(**Tuint32_t)(__ccgo_up(r1142)) = x042
-	**(**Tuint32_t)(__ccgo_up(r1142 + 1*4)) = x14101
-	**(**Tuint32_t)(__ccgo_up(r1142 + 2*4)) = x242
-	**(**Tuint32_t)(__ccgo_up(r1142 + 3*4)) = x342
-	r1152 = r32
-	x01 = **(**Tuint32_t)(__ccgo_up(r1152 + 1*4))
-	x1235 = **(**Tuint32_t)(__ccgo_up(r1152 + 2*4))
-	x211 = **(**Tuint32_t)(__ccgo_up(r1152 + 3*4))
-	x311 = **(**Tuint32_t)(__ccgo_up(r1152))
-	**(**Tuint32_t)(__ccgo_up(r1152)) = x01
-	**(**Tuint32_t)(__ccgo_up(r1152 + 1*4)) = x1235
-	**(**Tuint32_t)(__ccgo_up(r1152 + 2*4)) = x211
-	**(**Tuint32_t)(__ccgo_up(r1152 + 3*4)) = x311
-	i0 = i0 + uint32(1)
-	_ = i0
-	start_idx2 = i0 % uint32(10) * uint32(16)
-	**(**[16]Tuint32_t)(__ccgo_up(bp + 196)) = [16]Tuint32_t{}
-	r02 = bp + 196
-	r18 = bp + 196 + uintptr(4)*4
-	r202 = bp + 196 + uintptr(8)*4
-	r302 = bp + 196 + uintptr(12)*4
-	s02 = _Hacl_Hash_Blake2b_sigmaTable[start_idx2+0]
-	s12 = _Hacl_Hash_Blake2b_sigmaTable[start_idx2+uint32(1)]
-	s22 = _Hacl_Hash_Blake2b_sigmaTable[start_idx2+uint32(2)]
-	s32 = _Hacl_Hash_Blake2b_sigmaTable[start_idx2+uint32(3)]
-	s42 = _Hacl_Hash_Blake2b_sigmaTable[start_idx2+uint32(4)]
-	s52 = _Hacl_Hash_Blake2b_sigmaTable[start_idx2+uint32(5)]
-	s62 = _Hacl_Hash_Blake2b_sigmaTable[start_idx2+uint32(6)]
-	s72 = _Hacl_Hash_Blake2b_sigmaTable[start_idx2+uint32(7)]
-	s82 = _Hacl_Hash_Blake2b_sigmaTable[start_idx2+uint32(8)]
-	s92 = _Hacl_Hash_Blake2b_sigmaTable[start_idx2+uint32(9)]
-	s102 = _Hacl_Hash_Blake2b_sigmaTable[start_idx2+uint32(10)]
-	s113 = _Hacl_Hash_Blake2b_sigmaTable[start_idx2+uint32(11)]
-	s123 = _Hacl_Hash_Blake2b_sigmaTable[start_idx2+uint32(12)]
-	s133 = _Hacl_Hash_Blake2b_sigmaTable[start_idx2+uint32(13)]
-	s143 = _Hacl_Hash_Blake2b_sigmaTable[start_idx2+uint32(14)]
-	s153 = _Hacl_Hash_Blake2b_sigmaTable[start_idx2+uint32(15)]
-	uu____02 = (**(**[16]Tuint32_t)(__ccgo_up(bp + 4)))[s22]
-	uu____12 = (**(**[16]Tuint32_t)(__ccgo_up(bp + 4)))[s42]
-	uu____22 = (**(**[16]Tuint32_t)(__ccgo_up(bp + 4)))[s62]
-	**(**Tuint32_t)(__ccgo_up(r02)) = (**(**[16]Tuint32_t)(__ccgo_up(bp + 4)))[s02]
-	**(**Tuint32_t)(__ccgo_up(r02 + 1*4)) = uu____02
-	**(**Tuint32_t)(__ccgo_up(r02 + 2*4)) = uu____12
-	**(**Tuint32_t)(__ccgo_up(r02 + 3*4)) = uu____22
-	uu____32 = (**(**[16]Tuint32_t)(__ccgo_up(bp + 4)))[s32]
-	uu____42 = (**(**[16]Tuint32_t)(__ccgo_up(bp + 4)))[s52]
-	uu____52 = (**(**[16]Tuint32_t)(__ccgo_up(bp + 4)))[s72]
-	**(**Tuint32_t)(__ccgo_up(r18)) = (**(**[16]Tuint32_t)(__ccgo_up(bp + 4)))[s12]
-	**(**Tuint32_t)(__ccgo_up(r18 + 1*4)) = uu____32
-	**(**Tuint32_t)(__ccgo_up(r18 + 2*4)) = uu____42
-	**(**Tuint32_t)(__ccgo_up(r18 + 3*4)) = uu____52
-	uu____62 = (**(**[16]Tuint32_t)(__ccgo_up(bp + 4)))[s102]
-	uu____72 = (**(**[16]Tuint32_t)(__ccgo_up(bp + 4)))[s123]
-	uu____82 = (**(**[16]Tuint32_t)(__ccgo_up(bp + 4)))[s143]
-	**(**Tuint32_t)(__ccgo_up(r202)) = (**(**[16]Tuint32_t)(__ccgo_up(bp + 4)))[s82]
-	**(**Tuint32_t)(__ccgo_up(r202 + 1*4)) = uu____62
-	**(**Tuint32_t)(__ccgo_up(r202 + 2*4)) = uu____72
-	**(**Tuint32_t)(__ccgo_up(r202 + 3*4)) = uu____82
-	uu____92 = (**(**[16]Tuint32_t)(__ccgo_up(bp + 4)))[s113]
-	uu____102 = (**(**[16]Tuint32_t)(__ccgo_up(bp + 4)))[s133]
-	uu____113 = (**(**[16]Tuint32_t)(__ccgo_up(bp + 4)))[s153]
-	**(**Tuint32_t)(__ccgo_up(r302)) = (**(**[16]Tuint32_t)(__ccgo_up(bp + 4)))[s92]
-	**(**Tuint32_t)(__ccgo_up(r302 + 1*4)) = uu____92
-	**(**Tuint32_t)(__ccgo_up(r302 + 2*4)) = uu____102
-	**(**Tuint32_t)(__ccgo_up(r302 + 3*4)) = uu____113
-	x23 = bp + 196
-	y2 = bp + 196 + uintptr(4)*4
-	z2 = bp + 196 + uintptr(8)*4
-	w2 = bp + 196 + uintptr(12)*4
-	a2 = 0
-	b02 = uint32(1)
-	c02 = uint32(2)
-	d102 = uint32(3)
-	wv_a02 = wv + uintptr(a2*uint32(4))*4
-	wv_b02 = wv + uintptr(b02*uint32(4))*4
-	i58 = 0
-	os244 = wv_a02
-	x1236 = **(**Tuint32_t)(__ccgo_up(wv_a02 + uintptr(i58)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b02 + uintptr(i58)*4))
-	**(**Tuint32_t)(__ccgo_up(os244 + uintptr(i58)*4)) = x1236
-	i58 = i58 + uint32(1)
-	_ = i58
-	os245 = wv_a02
-	x1237 = **(**Tuint32_t)(__ccgo_up(wv_a02 + uintptr(i58)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b02 + uintptr(i58)*4))
-	**(**Tuint32_t)(__ccgo_up(os245 + uintptr(i58)*4)) = x1237
-	i58 = i58 + uint32(1)
-	_ = i58
-	os246 = wv_a02
-	x1238 = **(**Tuint32_t)(__ccgo_up(wv_a02 + uintptr(i58)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b02 + uintptr(i58)*4))
-	**(**Tuint32_t)(__ccgo_up(os246 + uintptr(i58)*4)) = x1238
-	i58 = i58 + uint32(1)
-	_ = i58
-	os247 = wv_a02
-	x1239 = **(**Tuint32_t)(__ccgo_up(wv_a02 + uintptr(i58)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b02 + uintptr(i58)*4))
-	**(**Tuint32_t)(__ccgo_up(os247 + uintptr(i58)*4)) = x1239
-	i58 = i58 + uint32(1)
-	_ = i58
-	i59 = 0
-	os248 = wv_a02
-	x1240 = **(**Tuint32_t)(__ccgo_up(wv_a02 + uintptr(i59)*4)) + **(**Tuint32_t)(__ccgo_up(x23 + uintptr(i59)*4))
-	**(**Tuint32_t)(__ccgo_up(os248 + uintptr(i59)*4)) = x1240
-	i59 = i59 + uint32(1)
-	_ = i59
-	os249 = wv_a02
-	x1241 = **(**Tuint32_t)(__ccgo_up(wv_a02 + uintptr(i59)*4)) + **(**Tuint32_t)(__ccgo_up(x23 + uintptr(i59)*4))
-	**(**Tuint32_t)(__ccgo_up(os249 + uintptr(i59)*4)) = x1241
-	i59 = i59 + uint32(1)
-	_ = i59
-	os250 = wv_a02
-	x1242 = **(**Tuint32_t)(__ccgo_up(wv_a02 + uintptr(i59)*4)) + **(**Tuint32_t)(__ccgo_up(x23 + uintptr(i59)*4))
-	**(**Tuint32_t)(__ccgo_up(os250 + uintptr(i59)*4)) = x1242
-	i59 = i59 + uint32(1)
-	_ = i59
-	os251 = wv_a02
-	x1243 = **(**Tuint32_t)(__ccgo_up(wv_a02 + uintptr(i59)*4)) + **(**Tuint32_t)(__ccgo_up(x23 + uintptr(i59)*4))
-	**(**Tuint32_t)(__ccgo_up(os251 + uintptr(i59)*4)) = x1243
-	i59 = i59 + uint32(1)
-	_ = i59
-	wv_a13 = wv + uintptr(d102*uint32(4))*4
-	wv_b13 = wv + uintptr(a2*uint32(4))*4
-	i60 = 0
-	os252 = wv_a13
-	x1244 = **(**Tuint32_t)(__ccgo_up(wv_a13 + uintptr(i60)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b13 + uintptr(i60)*4))
-	**(**Tuint32_t)(__ccgo_up(os252 + uintptr(i60)*4)) = x1244
-	i60 = i60 + uint32(1)
-	_ = i60
-	os253 = wv_a13
-	x1245 = **(**Tuint32_t)(__ccgo_up(wv_a13 + uintptr(i60)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b13 + uintptr(i60)*4))
-	**(**Tuint32_t)(__ccgo_up(os253 + uintptr(i60)*4)) = x1245
-	i60 = i60 + uint32(1)
-	_ = i60
-	os254 = wv_a13
-	x1246 = **(**Tuint32_t)(__ccgo_up(wv_a13 + uintptr(i60)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b13 + uintptr(i60)*4))
-	**(**Tuint32_t)(__ccgo_up(os254 + uintptr(i60)*4)) = x1246
-	i60 = i60 + uint32(1)
-	_ = i60
-	os255 = wv_a13
-	x1247 = **(**Tuint32_t)(__ccgo_up(wv_a13 + uintptr(i60)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b13 + uintptr(i60)*4))
-	**(**Tuint32_t)(__ccgo_up(os255 + uintptr(i60)*4)) = x1247
-	i60 = i60 + uint32(1)
-	_ = i60
-	r103 = wv_a13
-	i61 = 0
-	os256 = r103
-	x1248 = **(**Tuint32_t)(__ccgo_up(r103 + uintptr(i61)*4))
-	x1035 = x1248>>uint32(16) | x1248<<uint32(16)
-	**(**Tuint32_t)(__ccgo_up(os256 + uintptr(i61)*4)) = x1035
-	i61 = i61 + uint32(1)
-	_ = i61
-	os257 = r103
-	x1249 = **(**Tuint32_t)(__ccgo_up(r103 + uintptr(i61)*4))
-	x1036 = x1249>>uint32(16) | x1249<<uint32(16)
-	**(**Tuint32_t)(__ccgo_up(os257 + uintptr(i61)*4)) = x1036
-	i61 = i61 + uint32(1)
-	_ = i61
-	os258 = r103
-	x1250 = **(**Tuint32_t)(__ccgo_up(r103 + uintptr(i61)*4))
-	x1037 = x1250>>uint32(16) | x1250<<uint32(16)
-	**(**Tuint32_t)(__ccgo_up(os258 + uintptr(i61)*4)) = x1037
-	i61 = i61 + uint32(1)
-	_ = i61
-	os259 = r103
-	x1251 = **(**Tuint32_t)(__ccgo_up(r103 + uintptr(i61)*4))
-	x1038 = x1251>>uint32(16) | x1251<<uint32(16)
-	**(**Tuint32_t)(__ccgo_up(os259 + uintptr(i61)*4)) = x1038
-	i61 = i61 + uint32(1)
-	_ = i61
-	wv_a23 = wv + uintptr(c02*uint32(4))*4
-	wv_b23 = wv + uintptr(d102*uint32(4))*4
-	i62 = 0
-	os260 = wv_a23
-	x1252 = **(**Tuint32_t)(__ccgo_up(wv_a23 + uintptr(i62)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b23 + uintptr(i62)*4))
-	**(**Tuint32_t)(__ccgo_up(os260 + uintptr(i62)*4)) = x1252
-	i62 = i62 + uint32(1)
-	_ = i62
-	os261 = wv_a23
-	x1253 = **(**Tuint32_t)(__ccgo_up(wv_a23 + uintptr(i62)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b23 + uintptr(i62)*4))
-	**(**Tuint32_t)(__ccgo_up(os261 + uintptr(i62)*4)) = x1253
-	i62 = i62 + uint32(1)
-	_ = i62
-	os262 = wv_a23
-	x1254 = **(**Tuint32_t)(__ccgo_up(wv_a23 + uintptr(i62)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b23 + uintptr(i62)*4))
-	**(**Tuint32_t)(__ccgo_up(os262 + uintptr(i62)*4)) = x1254
-	i62 = i62 + uint32(1)
-	_ = i62
-	os263 = wv_a23
-	x1255 = **(**Tuint32_t)(__ccgo_up(wv_a23 + uintptr(i62)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b23 + uintptr(i62)*4))
-	**(**Tuint32_t)(__ccgo_up(os263 + uintptr(i62)*4)) = x1255
-	i62 = i62 + uint32(1)
-	_ = i62
-	wv_a33 = wv + uintptr(b02*uint32(4))*4
-	wv_b33 = wv + uintptr(c02*uint32(4))*4
-	i63 = 0
-	os264 = wv_a33
-	x1256 = **(**Tuint32_t)(__ccgo_up(wv_a33 + uintptr(i63)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b33 + uintptr(i63)*4))
-	**(**Tuint32_t)(__ccgo_up(os264 + uintptr(i63)*4)) = x1256
-	i63 = i63 + uint32(1)
-	_ = i63
-	os265 = wv_a33
-	x1257 = **(**Tuint32_t)(__ccgo_up(wv_a33 + uintptr(i63)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b33 + uintptr(i63)*4))
-	**(**Tuint32_t)(__ccgo_up(os265 + uintptr(i63)*4)) = x1257
-	i63 = i63 + uint32(1)
-	_ = i63
-	os266 = wv_a33
-	x1258 = **(**Tuint32_t)(__ccgo_up(wv_a33 + uintptr(i63)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b33 + uintptr(i63)*4))
-	**(**Tuint32_t)(__ccgo_up(os266 + uintptr(i63)*4)) = x1258
-	i63 = i63 + uint32(1)
-	_ = i63
-	os267 = wv_a33
-	x1259 = **(**Tuint32_t)(__ccgo_up(wv_a33 + uintptr(i63)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b33 + uintptr(i63)*4))
-	**(**Tuint32_t)(__ccgo_up(os267 + uintptr(i63)*4)) = x1259
-	i63 = i63 + uint32(1)
-	_ = i63
-	r123 = wv_a33
-	i64 = 0
-	os268 = r123
-	x1260 = **(**Tuint32_t)(__ccgo_up(r123 + uintptr(i64)*4))
-	x1039 = x1260>>uint32(12) | x1260<<uint32(20)
-	**(**Tuint32_t)(__ccgo_up(os268 + uintptr(i64)*4)) = x1039
-	i64 = i64 + uint32(1)
-	_ = i64
-	os269 = r123
-	x1261 = **(**Tuint32_t)(__ccgo_up(r123 + uintptr(i64)*4))
-	x1040 = x1261>>uint32(12) | x1261<<uint32(20)
-	**(**Tuint32_t)(__ccgo_up(os269 + uintptr(i64)*4)) = x1040
-	i64 = i64 + uint32(1)
-	_ = i64
-	os270 = r123
-	x1262 = **(**Tuint32_t)(__ccgo_up(r123 + uintptr(i64)*4))
-	x1041 = x1262>>uint32(12) | x1262<<uint32(20)
-	**(**Tuint32_t)(__ccgo_up(os270 + uintptr(i64)*4)) = x1041
-	i64 = i64 + uint32(1)
-	_ = i64
-	os271 = r123
-	x1263 = **(**Tuint32_t)(__ccgo_up(r123 + uintptr(i64)*4))
-	x1042 = x1263>>uint32(12) | x1263<<uint32(20)
-	**(**Tuint32_t)(__ccgo_up(os271 + uintptr(i64)*4)) = x1042
-	i64 = i64 + uint32(1)
-	_ = i64
-	wv_a43 = wv + uintptr(a2*uint32(4))*4
-	wv_b43 = wv + uintptr(b02*uint32(4))*4
-	i65 = 0
-	os272 = wv_a43
-	x1264 = **(**Tuint32_t)(__ccgo_up(wv_a43 + uintptr(i65)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b43 + uintptr(i65)*4))
-	**(**Tuint32_t)(__ccgo_up(os272 + uintptr(i65)*4)) = x1264
-	i65 = i65 + uint32(1)
-	_ = i65
-	os273 = wv_a43
-	x1265 = **(**Tuint32_t)(__ccgo_up(wv_a43 + uintptr(i65)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b43 + uintptr(i65)*4))
-	**(**Tuint32_t)(__ccgo_up(os273 + uintptr(i65)*4)) = x1265
-	i65 = i65 + uint32(1)
-	_ = i65
-	os274 = wv_a43
-	x1266 = **(**Tuint32_t)(__ccgo_up(wv_a43 + uintptr(i65)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b43 + uintptr(i65)*4))
-	**(**Tuint32_t)(__ccgo_up(os274 + uintptr(i65)*4)) = x1266
-	i65 = i65 + uint32(1)
-	_ = i65
-	os275 = wv_a43
-	x1267 = **(**Tuint32_t)(__ccgo_up(wv_a43 + uintptr(i65)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b43 + uintptr(i65)*4))
-	**(**Tuint32_t)(__ccgo_up(os275 + uintptr(i65)*4)) = x1267
-	i65 = i65 + uint32(1)
-	_ = i65
-	i66 = 0
-	os276 = wv_a43
-	x1268 = **(**Tuint32_t)(__ccgo_up(wv_a43 + uintptr(i66)*4)) + **(**Tuint32_t)(__ccgo_up(y2 + uintptr(i66)*4))
-	**(**Tuint32_t)(__ccgo_up(os276 + uintptr(i66)*4)) = x1268
-	i66 = i66 + uint32(1)
-	_ = i66
-	os277 = wv_a43
-	x1269 = **(**Tuint32_t)(__ccgo_up(wv_a43 + uintptr(i66)*4)) + **(**Tuint32_t)(__ccgo_up(y2 + uintptr(i66)*4))
-	**(**Tuint32_t)(__ccgo_up(os277 + uintptr(i66)*4)) = x1269
-	i66 = i66 + uint32(1)
-	_ = i66
-	os278 = wv_a43
-	x1270 = **(**Tuint32_t)(__ccgo_up(wv_a43 + uintptr(i66)*4)) + **(**Tuint32_t)(__ccgo_up(y2 + uintptr(i66)*4))
-	**(**Tuint32_t)(__ccgo_up(os278 + uintptr(i66)*4)) = x1270
-	i66 = i66 + uint32(1)
-	_ = i66
-	os279 = wv_a43
-	x1271 = **(**Tuint32_t)(__ccgo_up(wv_a43 + uintptr(i66)*4)) + **(**Tuint32_t)(__ccgo_up(y2 + uintptr(i66)*4))
-	**(**Tuint32_t)(__ccgo_up(os279 + uintptr(i66)*4)) = x1271
-	i66 = i66 + uint32(1)
-	_ = i66
-	wv_a53 = wv + uintptr(d102*uint32(4))*4
-	wv_b53 = wv + uintptr(a2*uint32(4))*4
-	i67 = 0
-	os280 = wv_a53
-	x1272 = **(**Tuint32_t)(__ccgo_up(wv_a53 + uintptr(i67)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b53 + uintptr(i67)*4))
-	**(**Tuint32_t)(__ccgo_up(os280 + uintptr(i67)*4)) = x1272
-	i67 = i67 + uint32(1)
-	_ = i67
-	os281 = wv_a53
-	x1273 = **(**Tuint32_t)(__ccgo_up(wv_a53 + uintptr(i67)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b53 + uintptr(i67)*4))
-	**(**Tuint32_t)(__ccgo_up(os281 + uintptr(i67)*4)) = x1273
-	i67 = i67 + uint32(1)
-	_ = i67
-	os282 = wv_a53
-	x1274 = **(**Tuint32_t)(__ccgo_up(wv_a53 + uintptr(i67)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b53 + uintptr(i67)*4))
-	**(**Tuint32_t)(__ccgo_up(os282 + uintptr(i67)*4)) = x1274
-	i67 = i67 + uint32(1)
-	_ = i67
-	os283 = wv_a53
-	x1275 = **(**Tuint32_t)(__ccgo_up(wv_a53 + uintptr(i67)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b53 + uintptr(i67)*4))
-	**(**Tuint32_t)(__ccgo_up(os283 + uintptr(i67)*4)) = x1275
-	i67 = i67 + uint32(1)
-	_ = i67
-	r133 = wv_a53
-	i68 = 0
-	os284 = r133
-	x1276 = **(**Tuint32_t)(__ccgo_up(r133 + uintptr(i68)*4))
-	x1043 = x1276>>uint32(8) | x1276<<uint32(24)
-	**(**Tuint32_t)(__ccgo_up(os284 + uintptr(i68)*4)) = x1043
-	i68 = i68 + uint32(1)
-	_ = i68
-	os285 = r133
-	x1277 = **(**Tuint32_t)(__ccgo_up(r133 + uintptr(i68)*4))
-	x1044 = x1277>>uint32(8) | x1277<<uint32(24)
-	**(**Tuint32_t)(__ccgo_up(os285 + uintptr(i68)*4)) = x1044
-	i68 = i68 + uint32(1)
-	_ = i68
-	os286 = r133
-	x1278 = **(**Tuint32_t)(__ccgo_up(r133 + uintptr(i68)*4))
-	x1045 = x1278>>uint32(8) | x1278<<uint32(24)
-	**(**Tuint32_t)(__ccgo_up(os286 + uintptr(i68)*4)) = x1045
-	i68 = i68 + uint32(1)
-	_ = i68
-	os287 = r133
-	x1279 = **(**Tuint32_t)(__ccgo_up(r133 + uintptr(i68)*4))
-	x1046 = x1279>>uint32(8) | x1279<<uint32(24)
-	**(**Tuint32_t)(__ccgo_up(os287 + uintptr(i68)*4)) = x1046
-	i68 = i68 + uint32(1)
-	_ = i68
-	wv_a63 = wv + uintptr(c02*uint32(4))*4
-	wv_b63 = wv + uintptr(d102*uint32(4))*4
-	i69 = 0
-	os288 = wv_a63
-	x1280 = **(**Tuint32_t)(__ccgo_up(wv_a63 + uintptr(i69)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b63 + uintptr(i69)*4))
-	**(**Tuint32_t)(__ccgo_up(os288 + uintptr(i69)*4)) = x1280
-	i69 = i69 + uint32(1)
-	_ = i69
-	os289 = wv_a63
-	x1281 = **(**Tuint32_t)(__ccgo_up(wv_a63 + uintptr(i69)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b63 + uintptr(i69)*4))
-	**(**Tuint32_t)(__ccgo_up(os289 + uintptr(i69)*4)) = x1281
-	i69 = i69 + uint32(1)
-	_ = i69
-	os290 = wv_a63
-	x1282 = **(**Tuint32_t)(__ccgo_up(wv_a63 + uintptr(i69)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b63 + uintptr(i69)*4))
-	**(**Tuint32_t)(__ccgo_up(os290 + uintptr(i69)*4)) = x1282
-	i69 = i69 + uint32(1)
-	_ = i69
-	os291 = wv_a63
-	x1283 = **(**Tuint32_t)(__ccgo_up(wv_a63 + uintptr(i69)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b63 + uintptr(i69)*4))
-	**(**Tuint32_t)(__ccgo_up(os291 + uintptr(i69)*4)) = x1283
-	i69 = i69 + uint32(1)
-	_ = i69
-	wv_a73 = wv + uintptr(b02*uint32(4))*4
-	wv_b73 = wv + uintptr(c02*uint32(4))*4
-	i70 = 0
-	os292 = wv_a73
-	x1284 = **(**Tuint32_t)(__ccgo_up(wv_a73 + uintptr(i70)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b73 + uintptr(i70)*4))
-	**(**Tuint32_t)(__ccgo_up(os292 + uintptr(i70)*4)) = x1284
-	i70 = i70 + uint32(1)
-	_ = i70
-	os293 = wv_a73
-	x1285 = **(**Tuint32_t)(__ccgo_up(wv_a73 + uintptr(i70)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b73 + uintptr(i70)*4))
-	**(**Tuint32_t)(__ccgo_up(os293 + uintptr(i70)*4)) = x1285
-	i70 = i70 + uint32(1)
-	_ = i70
-	os294 = wv_a73
-	x1286 = **(**Tuint32_t)(__ccgo_up(wv_a73 + uintptr(i70)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b73 + uintptr(i70)*4))
-	**(**Tuint32_t)(__ccgo_up(os294 + uintptr(i70)*4)) = x1286
-	i70 = i70 + uint32(1)
-	_ = i70
-	os295 = wv_a73
-	x1287 = **(**Tuint32_t)(__ccgo_up(wv_a73 + uintptr(i70)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b73 + uintptr(i70)*4))
-	**(**Tuint32_t)(__ccgo_up(os295 + uintptr(i70)*4)) = x1287
-	i70 = i70 + uint32(1)
-	_ = i70
-	r143 = wv_a73
-	i71 = 0
-	os296 = r143
-	x1288 = **(**Tuint32_t)(__ccgo_up(r143 + uintptr(i71)*4))
-	x1047 = x1288>>uint32(7) | x1288<<uint32(25)
-	**(**Tuint32_t)(__ccgo_up(os296 + uintptr(i71)*4)) = x1047
-	i71 = i71 + uint32(1)
-	_ = i71
-	os297 = r143
-	x1289 = **(**Tuint32_t)(__ccgo_up(r143 + uintptr(i71)*4))
-	x1048 = x1289>>uint32(7) | x1289<<uint32(25)
-	**(**Tuint32_t)(__ccgo_up(os297 + uintptr(i71)*4)) = x1048
-	i71 = i71 + uint32(1)
-	_ = i71
-	os298 = r143
-	x1290 = **(**Tuint32_t)(__ccgo_up(r143 + uintptr(i71)*4))
-	x1049 = x1290>>uint32(7) | x1290<<uint32(25)
-	**(**Tuint32_t)(__ccgo_up(os298 + uintptr(i71)*4)) = x1049
-	i71 = i71 + uint32(1)
-	_ = i71
-	os299 = r143
-	x1291 = **(**Tuint32_t)(__ccgo_up(r143 + uintptr(i71)*4))
-	x1050 = x1291>>uint32(7) | x1291<<uint32(25)
-	**(**Tuint32_t)(__ccgo_up(os299 + uintptr(i71)*4)) = x1050
-	i71 = i71 + uint32(1)
-	_ = i71
-	r153 = wv + uintptr(4)*4
-	r214 = wv + uintptr(8)*4
-	r314 = wv + uintptr(12)*4
-	r1103 = r153
-	x002 = **(**Tuint32_t)(__ccgo_up(r1103 + 1*4))
-	x1051 = **(**Tuint32_t)(__ccgo_up(r1103 + 2*4))
-	x203 = **(**Tuint32_t)(__ccgo_up(r1103 + 3*4))
-	x303 = **(**Tuint32_t)(__ccgo_up(r1103))
-	**(**Tuint32_t)(__ccgo_up(r1103)) = x002
-	**(**Tuint32_t)(__ccgo_up(r1103 + 1*4)) = x1051
-	**(**Tuint32_t)(__ccgo_up(r1103 + 2*4)) = x203
-	**(**Tuint32_t)(__ccgo_up(r1103 + 3*4)) = x303
-	r1119 = r214
-	x013 = **(**Tuint32_t)(__ccgo_up(r1119 + 2*4))
-	x11142 = **(**Tuint32_t)(__ccgo_up(r1119 + 3*4))
-	x2112 = **(**Tuint32_t)(__ccgo_up(r1119))
-	x3112 = **(**Tuint32_t)(__ccgo_up(r1119 + 1*4))
-	**(**Tuint32_t)(__ccgo_up(r1119)) = x013
-	**(**Tuint32_t)(__ccgo_up(r1119 + 1*4)) = x11142
-	**(**Tuint32_t)(__ccgo_up(r1119 + 2*4)) = x2112
-	**(**Tuint32_t)(__ccgo_up(r1119 + 3*4)) = x3112
-	r1123 = r314
-	x023 = **(**Tuint32_t)(__ccgo_up(r1123 + 3*4))
-	x12102 = **(**Tuint32_t)(__ccgo_up(r1123))
-	x223 = **(**Tuint32_t)(__ccgo_up(r1123 + 1*4))
-	x323 = **(**Tuint32_t)(__ccgo_up(r1123 + 2*4))
-	**(**Tuint32_t)(__ccgo_up(r1123)) = x023
-	**(**Tuint32_t)(__ccgo_up(r1123 + 1*4)) = x12102
-	**(**Tuint32_t)(__ccgo_up(r1123 + 2*4)) = x223
-	**(**Tuint32_t)(__ccgo_up(r1123 + 3*4)) = x323
-	a02 = 0
-	b3 = uint32(1)
-	c2 = uint32(2)
-	d12 = uint32(3)
-	wv_a2 = wv + uintptr(a02*uint32(4))*4
-	wv_b83 = wv + uintptr(b3*uint32(4))*4
-	i72 = 0
-	os300 = wv_a2
-	x1292 = **(**Tuint32_t)(__ccgo_up(wv_a2 + uintptr(i72)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b83 + uintptr(i72)*4))
-	**(**Tuint32_t)(__ccgo_up(os300 + uintptr(i72)*4)) = x1292
-	i72 = i72 + uint32(1)
-	_ = i72
-	os301 = wv_a2
-	x1293 = **(**Tuint32_t)(__ccgo_up(wv_a2 + uintptr(i72)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b83 + uintptr(i72)*4))
-	**(**Tuint32_t)(__ccgo_up(os301 + uintptr(i72)*4)) = x1293
-	i72 = i72 + uint32(1)
-	_ = i72
-	os302 = wv_a2
-	x1294 = **(**Tuint32_t)(__ccgo_up(wv_a2 + uintptr(i72)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b83 + uintptr(i72)*4))
-	**(**Tuint32_t)(__ccgo_up(os302 + uintptr(i72)*4)) = x1294
-	i72 = i72 + uint32(1)
-	_ = i72
-	os303 = wv_a2
-	x1295 = **(**Tuint32_t)(__ccgo_up(wv_a2 + uintptr(i72)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b83 + uintptr(i72)*4))
-	**(**Tuint32_t)(__ccgo_up(os303 + uintptr(i72)*4)) = x1295
-	i72 = i72 + uint32(1)
-	_ = i72
-	i73 = 0
-	os304 = wv_a2
-	x1296 = **(**Tuint32_t)(__ccgo_up(wv_a2 + uintptr(i73)*4)) + **(**Tuint32_t)(__ccgo_up(z2 + uintptr(i73)*4))
-	**(**Tuint32_t)(__ccgo_up(os304 + uintptr(i73)*4)) = x1296
-	i73 = i73 + uint32(1)
-	_ = i73
-	os305 = wv_a2
-	x1297 = **(**Tuint32_t)(__ccgo_up(wv_a2 + uintptr(i73)*4)) + **(**Tuint32_t)(__ccgo_up(z2 + uintptr(i73)*4))
-	**(**Tuint32_t)(__ccgo_up(os305 + uintptr(i73)*4)) = x1297
-	i73 = i73 + uint32(1)
-	_ = i73
-	os306 = wv_a2
-	x1298 = **(**Tuint32_t)(__ccgo_up(wv_a2 + uintptr(i73)*4)) + **(**Tuint32_t)(__ccgo_up(z2 + uintptr(i73)*4))
-	**(**Tuint32_t)(__ccgo_up(os306 + uintptr(i73)*4)) = x1298
-	i73 = i73 + uint32(1)
-	_ = i73
-	os307 = wv_a2
-	x1299 = **(**Tuint32_t)(__ccgo_up(wv_a2 + uintptr(i73)*4)) + **(**Tuint32_t)(__ccgo_up(z2 + uintptr(i73)*4))
-	**(**Tuint32_t)(__ccgo_up(os307 + uintptr(i73)*4)) = x1299
-	i73 = i73 + uint32(1)
-	_ = i73
-	wv_a83 = wv + uintptr(d12*uint32(4))*4
-	wv_b93 = wv + uintptr(a02*uint32(4))*4
-	i74 = 0
-	os308 = wv_a83
-	x1300 = **(**Tuint32_t)(__ccgo_up(wv_a83 + uintptr(i74)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b93 + uintptr(i74)*4))
-	**(**Tuint32_t)(__ccgo_up(os308 + uintptr(i74)*4)) = x1300
-	i74 = i74 + uint32(1)
-	_ = i74
-	os309 = wv_a83
-	x1301 = **(**Tuint32_t)(__ccgo_up(wv_a83 + uintptr(i74)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b93 + uintptr(i74)*4))
-	**(**Tuint32_t)(__ccgo_up(os309 + uintptr(i74)*4)) = x1301
-	i74 = i74 + uint32(1)
-	_ = i74
-	os310 = wv_a83
-	x1302 = **(**Tuint32_t)(__ccgo_up(wv_a83 + uintptr(i74)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b93 + uintptr(i74)*4))
-	**(**Tuint32_t)(__ccgo_up(os310 + uintptr(i74)*4)) = x1302
-	i74 = i74 + uint32(1)
-	_ = i74
-	os311 = wv_a83
-	x1303 = **(**Tuint32_t)(__ccgo_up(wv_a83 + uintptr(i74)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b93 + uintptr(i74)*4))
-	**(**Tuint32_t)(__ccgo_up(os311 + uintptr(i74)*4)) = x1303
-	i74 = i74 + uint32(1)
-	_ = i74
-	r163 = wv_a83
-	i75 = 0
-	os312 = r163
-	x1304 = **(**Tuint32_t)(__ccgo_up(r163 + uintptr(i75)*4))
-	x13134 = x1304>>uint32(16) | x1304<<uint32(16)
-	**(**Tuint32_t)(__ccgo_up(os312 + uintptr(i75)*4)) = x13134
-	i75 = i75 + uint32(1)
-	_ = i75
-	os313 = r163
-	x1305 = **(**Tuint32_t)(__ccgo_up(r163 + uintptr(i75)*4))
-	x13135 = x1305>>uint32(16) | x1305<<uint32(16)
-	**(**Tuint32_t)(__ccgo_up(os313 + uintptr(i75)*4)) = x13135
-	i75 = i75 + uint32(1)
-	_ = i75
-	os314 = r163
-	x1306 = **(**Tuint32_t)(__ccgo_up(r163 + uintptr(i75)*4))
-	x13136 = x1306>>uint32(16) | x1306<<uint32(16)
-	**(**Tuint32_t)(__ccgo_up(os314 + uintptr(i75)*4)) = x13136
-	i75 = i75 + uint32(1)
-	_ = i75
-	os315 = r163
-	x1307 = **(**Tuint32_t)(__ccgo_up(r163 + uintptr(i75)*4))
-	x13137 = x1307>>uint32(16) | x1307<<uint32(16)
-	**(**Tuint32_t)(__ccgo_up(os315 + uintptr(i75)*4)) = x13137
-	i75 = i75 + uint32(1)
-	_ = i75
-	wv_a93 = wv + uintptr(c2*uint32(4))*4
-	wv_b102 = wv + uintptr(d12*uint32(4))*4
-	i76 = 0
-	os316 = wv_a93
-	x1308 = **(**Tuint32_t)(__ccgo_up(wv_a93 + uintptr(i76)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b102 + uintptr(i76)*4))
-	**(**Tuint32_t)(__ccgo_up(os316 + uintptr(i76)*4)) = x1308
-	i76 = i76 + uint32(1)
-	_ = i76
-	os317 = wv_a93
-	x1309 = **(**Tuint32_t)(__ccgo_up(wv_a93 + uintptr(i76)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b102 + uintptr(i76)*4))
-	**(**Tuint32_t)(__ccgo_up(os317 + uintptr(i76)*4)) = x1309
-	i76 = i76 + uint32(1)
-	_ = i76
-	os318 = wv_a93
-	x1310 = **(**Tuint32_t)(__ccgo_up(wv_a93 + uintptr(i76)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b102 + uintptr(i76)*4))
-	**(**Tuint32_t)(__ccgo_up(os318 + uintptr(i76)*4)) = x1310
-	i76 = i76 + uint32(1)
-	_ = i76
-	os319 = wv_a93
-	x1311 = **(**Tuint32_t)(__ccgo_up(wv_a93 + uintptr(i76)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b102 + uintptr(i76)*4))
-	**(**Tuint32_t)(__ccgo_up(os319 + uintptr(i76)*4)) = x1311
-	i76 = i76 + uint32(1)
-	_ = i76
-	wv_a102 = wv + uintptr(b3*uint32(4))*4
-	wv_b113 = wv + uintptr(c2*uint32(4))*4
-	i77 = 0
-	os320 = wv_a102
-	x1312 = **(**Tuint32_t)(__ccgo_up(wv_a102 + uintptr(i77)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b113 + uintptr(i77)*4))
-	**(**Tuint32_t)(__ccgo_up(os320 + uintptr(i77)*4)) = x1312
-	i77 = i77 + uint32(1)
-	_ = i77
-	os321 = wv_a102
-	x1313 = **(**Tuint32_t)(__ccgo_up(wv_a102 + uintptr(i77)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b113 + uintptr(i77)*4))
-	**(**Tuint32_t)(__ccgo_up(os321 + uintptr(i77)*4)) = x1313
-	i77 = i77 + uint32(1)
-	_ = i77
-	os322 = wv_a102
-	x1314 = **(**Tuint32_t)(__ccgo_up(wv_a102 + uintptr(i77)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b113 + uintptr(i77)*4))
-	**(**Tuint32_t)(__ccgo_up(os322 + uintptr(i77)*4)) = x1314
-	i77 = i77 + uint32(1)
-	_ = i77
-	os323 = wv_a102
-	x1315 = **(**Tuint32_t)(__ccgo_up(wv_a102 + uintptr(i77)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b113 + uintptr(i77)*4))
-	**(**Tuint32_t)(__ccgo_up(os323 + uintptr(i77)*4)) = x1315
-	i77 = i77 + uint32(1)
-	_ = i77
-	r173 = wv_a102
-	i78 = 0
-	os324 = r173
-	x1316 = **(**Tuint32_t)(__ccgo_up(r173 + uintptr(i78)*4))
-	x13138 = x1316>>uint32(12) | x1316<<uint32(20)
-	**(**Tuint32_t)(__ccgo_up(os324 + uintptr(i78)*4)) = x13138
-	i78 = i78 + uint32(1)
-	_ = i78
-	os325 = r173
-	x1317 = **(**Tuint32_t)(__ccgo_up(r173 + uintptr(i78)*4))
-	x13139 = x1317>>uint32(12) | x1317<<uint32(20)
-	**(**Tuint32_t)(__ccgo_up(os325 + uintptr(i78)*4)) = x13139
-	i78 = i78 + uint32(1)
-	_ = i78
-	os326 = r173
-	x1318 = **(**Tuint32_t)(__ccgo_up(r173 + uintptr(i78)*4))
-	x13140 = x1318>>uint32(12) | x1318<<uint32(20)
-	**(**Tuint32_t)(__ccgo_up(os326 + uintptr(i78)*4)) = x13140
-	i78 = i78 + uint32(1)
-	_ = i78
-	os327 = r173
-	x1319 = **(**Tuint32_t)(__ccgo_up(r173 + uintptr(i78)*4))
-	x13141 = x1319>>uint32(12) | x1319<<uint32(20)
-	**(**Tuint32_t)(__ccgo_up(os327 + uintptr(i78)*4)) = x13141
-	i78 = i78 + uint32(1)
-	_ = i78
-	wv_a113 = wv + uintptr(a02*uint32(4))*4
-	wv_b123 = wv + uintptr(b3*uint32(4))*4
-	i79 = 0
-	os328 = wv_a113
-	x1320 = **(**Tuint32_t)(__ccgo_up(wv_a113 + uintptr(i79)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b123 + uintptr(i79)*4))
-	**(**Tuint32_t)(__ccgo_up(os328 + uintptr(i79)*4)) = x1320
-	i79 = i79 + uint32(1)
-	_ = i79
-	os329 = wv_a113
-	x1321 = **(**Tuint32_t)(__ccgo_up(wv_a113 + uintptr(i79)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b123 + uintptr(i79)*4))
-	**(**Tuint32_t)(__ccgo_up(os329 + uintptr(i79)*4)) = x1321
-	i79 = i79 + uint32(1)
-	_ = i79
-	os330 = wv_a113
-	x1322 = **(**Tuint32_t)(__ccgo_up(wv_a113 + uintptr(i79)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b123 + uintptr(i79)*4))
-	**(**Tuint32_t)(__ccgo_up(os330 + uintptr(i79)*4)) = x1322
-	i79 = i79 + uint32(1)
-	_ = i79
-	os331 = wv_a113
-	x1323 = **(**Tuint32_t)(__ccgo_up(wv_a113 + uintptr(i79)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b123 + uintptr(i79)*4))
-	**(**Tuint32_t)(__ccgo_up(os331 + uintptr(i79)*4)) = x1323
-	i79 = i79 + uint32(1)
-	_ = i79
-	i80 = 0
-	os332 = wv_a113
-	x1324 = **(**Tuint32_t)(__ccgo_up(wv_a113 + uintptr(i80)*4)) + **(**Tuint32_t)(__ccgo_up(w2 + uintptr(i80)*4))
-	**(**Tuint32_t)(__ccgo_up(os332 + uintptr(i80)*4)) = x1324
-	i80 = i80 + uint32(1)
-	_ = i80
-	os333 = wv_a113
-	x1325 = **(**Tuint32_t)(__ccgo_up(wv_a113 + uintptr(i80)*4)) + **(**Tuint32_t)(__ccgo_up(w2 + uintptr(i80)*4))
-	**(**Tuint32_t)(__ccgo_up(os333 + uintptr(i80)*4)) = x1325
-	i80 = i80 + uint32(1)
-	_ = i80
-	os334 = wv_a113
-	x1326 = **(**Tuint32_t)(__ccgo_up(wv_a113 + uintptr(i80)*4)) + **(**Tuint32_t)(__ccgo_up(w2 + uintptr(i80)*4))
-	**(**Tuint32_t)(__ccgo_up(os334 + uintptr(i80)*4)) = x1326
-	i80 = i80 + uint32(1)
-	_ = i80
-	os335 = wv_a113
-	x1327 = **(**Tuint32_t)(__ccgo_up(wv_a113 + uintptr(i80)*4)) + **(**Tuint32_t)(__ccgo_up(w2 + uintptr(i80)*4))
-	**(**Tuint32_t)(__ccgo_up(os335 + uintptr(i80)*4)) = x1327
-	i80 = i80 + uint32(1)
-	_ = i80
-	wv_a123 = wv + uintptr(d12*uint32(4))*4
-	wv_b133 = wv + uintptr(a02*uint32(4))*4
-	i81 = 0
-	os336 = wv_a123
-	x1328 = **(**Tuint32_t)(__ccgo_up(wv_a123 + uintptr(i81)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b133 + uintptr(i81)*4))
-	**(**Tuint32_t)(__ccgo_up(os336 + uintptr(i81)*4)) = x1328
-	i81 = i81 + uint32(1)
-	_ = i81
-	os337 = wv_a123
-	x1329 = **(**Tuint32_t)(__ccgo_up(wv_a123 + uintptr(i81)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b133 + uintptr(i81)*4))
-	**(**Tuint32_t)(__ccgo_up(os337 + uintptr(i81)*4)) = x1329
-	i81 = i81 + uint32(1)
-	_ = i81
-	os338 = wv_a123
-	x1330 = **(**Tuint32_t)(__ccgo_up(wv_a123 + uintptr(i81)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b133 + uintptr(i81)*4))
-	**(**Tuint32_t)(__ccgo_up(os338 + uintptr(i81)*4)) = x1330
-	i81 = i81 + uint32(1)
-	_ = i81
-	os339 = wv_a123
-	x1331 = **(**Tuint32_t)(__ccgo_up(wv_a123 + uintptr(i81)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b133 + uintptr(i81)*4))
-	**(**Tuint32_t)(__ccgo_up(os339 + uintptr(i81)*4)) = x1331
-	i81 = i81 + uint32(1)
-	_ = i81
-	r183 = wv_a123
-	i82 = 0
-	os340 = r183
-	x1332 = **(**Tuint32_t)(__ccgo_up(r183 + uintptr(i82)*4))
-	x13142 = x1332>>uint32(8) | x1332<<uint32(24)
-	**(**Tuint32_t)(__ccgo_up(os340 + uintptr(i82)*4)) = x13142
-	i82 = i82 + uint32(1)
-	_ = i82
-	os341 = r183
-	x1333 = **(**Tuint32_t)(__ccgo_up(r183 + uintptr(i82)*4))
-	x13143 = x1333>>uint32(8) | x1333<<uint32(24)
-	**(**Tuint32_t)(__ccgo_up(os341 + uintptr(i82)*4)) = x13143
-	i82 = i82 + uint32(1)
-	_ = i82
-	os342 = r183
-	x1334 = **(**Tuint32_t)(__ccgo_up(r183 + uintptr(i82)*4))
-	x13144 = x1334>>uint32(8) | x1334<<uint32(24)
-	**(**Tuint32_t)(__ccgo_up(os342 + uintptr(i82)*4)) = x13144
-	i82 = i82 + uint32(1)
-	_ = i82
-	os343 = r183
-	x1335 = **(**Tuint32_t)(__ccgo_up(r183 + uintptr(i82)*4))
-	x13145 = x1335>>uint32(8) | x1335<<uint32(24)
-	**(**Tuint32_t)(__ccgo_up(os343 + uintptr(i82)*4)) = x13145
-	i82 = i82 + uint32(1)
-	_ = i82
-	wv_a133 = wv + uintptr(c2*uint32(4))*4
-	wv_b143 = wv + uintptr(d12*uint32(4))*4
-	i83 = 0
-	os344 = wv_a133
-	x1336 = **(**Tuint32_t)(__ccgo_up(wv_a133 + uintptr(i83)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b143 + uintptr(i83)*4))
-	**(**Tuint32_t)(__ccgo_up(os344 + uintptr(i83)*4)) = x1336
-	i83 = i83 + uint32(1)
-	_ = i83
-	os345 = wv_a133
-	x1337 = **(**Tuint32_t)(__ccgo_up(wv_a133 + uintptr(i83)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b143 + uintptr(i83)*4))
-	**(**Tuint32_t)(__ccgo_up(os345 + uintptr(i83)*4)) = x1337
-	i83 = i83 + uint32(1)
-	_ = i83
-	os346 = wv_a133
-	x1338 = **(**Tuint32_t)(__ccgo_up(wv_a133 + uintptr(i83)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b143 + uintptr(i83)*4))
-	**(**Tuint32_t)(__ccgo_up(os346 + uintptr(i83)*4)) = x1338
-	i83 = i83 + uint32(1)
-	_ = i83
-	os347 = wv_a133
-	x1339 = **(**Tuint32_t)(__ccgo_up(wv_a133 + uintptr(i83)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b143 + uintptr(i83)*4))
-	**(**Tuint32_t)(__ccgo_up(os347 + uintptr(i83)*4)) = x1339
-	i83 = i83 + uint32(1)
-	_ = i83
-	wv_a143 = wv + uintptr(b3*uint32(4))*4
-	wv_b2 = wv + uintptr(c2*uint32(4))*4
-	i84 = 0
-	os348 = wv_a143
-	x1340 = **(**Tuint32_t)(__ccgo_up(wv_a143 + uintptr(i84)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b2 + uintptr(i84)*4))
-	**(**Tuint32_t)(__ccgo_up(os348 + uintptr(i84)*4)) = x1340
-	i84 = i84 + uint32(1)
-	_ = i84
-	os349 = wv_a143
-	x1341 = **(**Tuint32_t)(__ccgo_up(wv_a143 + uintptr(i84)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b2 + uintptr(i84)*4))
-	**(**Tuint32_t)(__ccgo_up(os349 + uintptr(i84)*4)) = x1341
-	i84 = i84 + uint32(1)
-	_ = i84
-	os350 = wv_a143
-	x1342 = **(**Tuint32_t)(__ccgo_up(wv_a143 + uintptr(i84)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b2 + uintptr(i84)*4))
-	**(**Tuint32_t)(__ccgo_up(os350 + uintptr(i84)*4)) = x1342
-	i84 = i84 + uint32(1)
-	_ = i84
-	os351 = wv_a143
-	x1343 = **(**Tuint32_t)(__ccgo_up(wv_a143 + uintptr(i84)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b2 + uintptr(i84)*4))
-	**(**Tuint32_t)(__ccgo_up(os351 + uintptr(i84)*4)) = x1343
-	i84 = i84 + uint32(1)
-	_ = i84
-	r193 = wv_a143
-	i85 = 0
-	os352 = r193
-	x1344 = **(**Tuint32_t)(__ccgo_up(r193 + uintptr(i85)*4))
-	x13146 = x1344>>uint32(7) | x1344<<uint32(25)
-	**(**Tuint32_t)(__ccgo_up(os352 + uintptr(i85)*4)) = x13146
-	i85 = i85 + uint32(1)
-	_ = i85
-	os353 = r193
-	x1345 = **(**Tuint32_t)(__ccgo_up(r193 + uintptr(i85)*4))
-	x13147 = x1345>>uint32(7) | x1345<<uint32(25)
-	**(**Tuint32_t)(__ccgo_up(os353 + uintptr(i85)*4)) = x13147
-	i85 = i85 + uint32(1)
-	_ = i85
-	os354 = r193
-	x1346 = **(**Tuint32_t)(__ccgo_up(r193 + uintptr(i85)*4))
-	x13148 = x1346>>uint32(7) | x1346<<uint32(25)
-	**(**Tuint32_t)(__ccgo_up(os354 + uintptr(i85)*4)) = x13148
-	i85 = i85 + uint32(1)
-	_ = i85
-	os355 = r193
-	x1347 = **(**Tuint32_t)(__ccgo_up(r193 + uintptr(i85)*4))
-	x13149 = x1347>>uint32(7) | x1347<<uint32(25)
-	**(**Tuint32_t)(__ccgo_up(os355 + uintptr(i85)*4)) = x13149
-	i85 = i85 + uint32(1)
-	_ = i85
-	r1133 = wv + uintptr(4)*4
-	r23 = wv + uintptr(8)*4
-	r33 = wv + uintptr(12)*4
-	r119 = r1133
-	x033 = **(**Tuint32_t)(__ccgo_up(r119 + 3*4))
-	x13150 = **(**Tuint32_t)(__ccgo_up(r119))
-	x233 = **(**Tuint32_t)(__ccgo_up(r119 + 1*4))
-	x333 = **(**Tuint32_t)(__ccgo_up(r119 + 2*4))
-	**(**Tuint32_t)(__ccgo_up(r119)) = x033
-	**(**Tuint32_t)(__ccgo_up(r119 + 1*4)) = x13150
-	**(**Tuint32_t)(__ccgo_up(r119 + 2*4)) = x233
-	**(**Tuint32_t)(__ccgo_up(r119 + 3*4)) = x333
-	r1143 = r23
-	x043 = **(**Tuint32_t)(__ccgo_up(r1143 + 2*4))
-	x14102 = **(**Tuint32_t)(__ccgo_up(r1143 + 3*4))
-	x243 = **(**Tuint32_t)(__ccgo_up(r1143))
-	x343 = **(**Tuint32_t)(__ccgo_up(r1143 + 1*4))
-	**(**Tuint32_t)(__ccgo_up(r1143)) = x043
-	**(**Tuint32_t)(__ccgo_up(r1143 + 1*4)) = x14102
-	**(**Tuint32_t)(__ccgo_up(r1143 + 2*4)) = x243
-	**(**Tuint32_t)(__ccgo_up(r1143 + 3*4)) = x343
-	r1153 = r33
-	x02 = **(**Tuint32_t)(__ccgo_up(r1153 + 1*4))
-	x1348 = **(**Tuint32_t)(__ccgo_up(r1153 + 2*4))
-	x212 = **(**Tuint32_t)(__ccgo_up(r1153 + 3*4))
-	x312 = **(**Tuint32_t)(__ccgo_up(r1153))
-	**(**Tuint32_t)(__ccgo_up(r1153)) = x02
-	**(**Tuint32_t)(__ccgo_up(r1153 + 1*4)) = x1348
-	**(**Tuint32_t)(__ccgo_up(r1153 + 2*4)) = x212
-	**(**Tuint32_t)(__ccgo_up(r1153 + 3*4)) = x312
-	i0 = i0 + uint32(1)
-	_ = i0
-	start_idx3 = i0 % uint32(10) * uint32(16)
-	**(**[16]Tuint32_t)(__ccgo_up(bp + 260)) = [16]Tuint32_t{}
-	r03 = bp + 260
-	r19 = bp + 260 + uintptr(4)*4
-	r203 = bp + 260 + uintptr(8)*4
-	r303 = bp + 260 + uintptr(12)*4
-	s03 = _Hacl_Hash_Blake2b_sigmaTable[start_idx3+0]
-	s13 = _Hacl_Hash_Blake2b_sigmaTable[start_idx3+uint32(1)]
-	s23 = _Hacl_Hash_Blake2b_sigmaTable[start_idx3+uint32(2)]
-	s33 = _Hacl_Hash_Blake2b_sigmaTable[start_idx3+uint32(3)]
-	s43 = _Hacl_Hash_Blake2b_sigmaTable[start_idx3+uint32(4)]
-	s53 = _Hacl_Hash_Blake2b_sigmaTable[start_idx3+uint32(5)]
-	s63 = _Hacl_Hash_Blake2b_sigmaTable[start_idx3+uint32(6)]
-	s73 = _Hacl_Hash_Blake2b_sigmaTable[start_idx3+uint32(7)]
-	s83 = _Hacl_Hash_Blake2b_sigmaTable[start_idx3+uint32(8)]
-	s93 = _Hacl_Hash_Blake2b_sigmaTable[start_idx3+uint32(9)]
-	s103 = _Hacl_Hash_Blake2b_sigmaTable[start_idx3+uint32(10)]
-	s114 = _Hacl_Hash_Blake2b_sigmaTable[start_idx3+uint32(11)]
-	s124 = _Hacl_Hash_Blake2b_sigmaTable[start_idx3+uint32(12)]
-	s134 = _Hacl_Hash_Blake2b_sigmaTable[start_idx3+uint32(13)]
-	s144 = _Hacl_Hash_Blake2b_sigmaTable[start_idx3+uint32(14)]
-	s154 = _Hacl_Hash_Blake2b_sigmaTable[start_idx3+uint32(15)]
-	uu____03 = (**(**[16]Tuint32_t)(__ccgo_up(bp + 4)))[s23]
-	uu____13 = (**(**[16]Tuint32_t)(__ccgo_up(bp + 4)))[s43]
-	uu____23 = (**(**[16]Tuint32_t)(__ccgo_up(bp + 4)))[s63]
-	**(**Tuint32_t)(__ccgo_up(r03)) = (**(**[16]Tuint32_t)(__ccgo_up(bp + 4)))[s03]
-	**(**Tuint32_t)(__ccgo_up(r03 + 1*4)) = uu____03
-	**(**Tuint32_t)(__ccgo_up(r03 + 2*4)) = uu____13
-	**(**Tuint32_t)(__ccgo_up(r03 + 3*4)) = uu____23
-	uu____33 = (**(**[16]Tuint32_t)(__ccgo_up(bp + 4)))[s33]
-	uu____43 = (**(**[16]Tuint32_t)(__ccgo_up(bp + 4)))[s53]
-	uu____53 = (**(**[16]Tuint32_t)(__ccgo_up(bp + 4)))[s73]
-	**(**Tuint32_t)(__ccgo_up(r19)) = (**(**[16]Tuint32_t)(__ccgo_up(bp + 4)))[s13]
-	**(**Tuint32_t)(__ccgo_up(r19 + 1*4)) = uu____33
-	**(**Tuint32_t)(__ccgo_up(r19 + 2*4)) = uu____43
-	**(**Tuint32_t)(__ccgo_up(r19 + 3*4)) = uu____53
-	uu____63 = (**(**[16]Tuint32_t)(__ccgo_up(bp + 4)))[s103]
-	uu____73 = (**(**[16]Tuint32_t)(__ccgo_up(bp + 4)))[s124]
-	uu____83 = (**(**[16]Tuint32_t)(__ccgo_up(bp + 4)))[s144]
-	**(**Tuint32_t)(__ccgo_up(r203)) = (**(**[16]Tuint32_t)(__ccgo_up(bp + 4)))[s83]
-	**(**Tuint32_t)(__ccgo_up(r203 + 1*4)) = uu____63
-	**(**Tuint32_t)(__ccgo_up(r203 + 2*4)) = uu____73
-	**(**Tuint32_t)(__ccgo_up(r203 + 3*4)) = uu____83
-	uu____93 = (**(**[16]Tuint32_t)(__ccgo_up(bp + 4)))[s114]
-	uu____103 = (**(**[16]Tuint32_t)(__ccgo_up(bp + 4)))[s134]
-	uu____114 = (**(**[16]Tuint32_t)(__ccgo_up(bp + 4)))[s154]
-	**(**Tuint32_t)(__ccgo_up(r303)) = (**(**[16]Tuint32_t)(__ccgo_up(bp + 4)))[s93]
-	**(**Tuint32_t)(__ccgo_up(r303 + 1*4)) = uu____93
-	**(**Tuint32_t)(__ccgo_up(r303 + 2*4)) = uu____103
-	**(**Tuint32_t)(__ccgo_up(r303 + 3*4)) = uu____114
-	x24 = bp + 260
-	y3 = bp + 260 + uintptr(4)*4
-	z3 = bp + 260 + uintptr(8)*4
-	w3 = bp + 260 + uintptr(12)*4
-	a3 = 0
-	b03 = uint32(1)
-	c03 = uint32(2)
-	d103 = uint32(3)
-	wv_a03 = wv + uintptr(a3*uint32(4))*4
-	wv_b03 = wv + uintptr(b03*uint32(4))*4
-	i86 = 0
-	os356 = wv_a03
-	x1349 = **(**Tuint32_t)(__ccgo_up(wv_a03 + uintptr(i86)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b03 + uintptr(i86)*4))
-	**(**Tuint32_t)(__ccgo_up(os356 + uintptr(i86)*4)) = x1349
-	i86 = i86 + uint32(1)
-	_ = i86
-	os357 = wv_a03
-	x1350 = **(**Tuint32_t)(__ccgo_up(wv_a03 + uintptr(i86)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b03 + uintptr(i86)*4))
-	**(**Tuint32_t)(__ccgo_up(os357 + uintptr(i86)*4)) = x1350
-	i86 = i86 + uint32(1)
-	_ = i86
-	os358 = wv_a03
-	x1351 = **(**Tuint32_t)(__ccgo_up(wv_a03 + uintptr(i86)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b03 + uintptr(i86)*4))
-	**(**Tuint32_t)(__ccgo_up(os358 + uintptr(i86)*4)) = x1351
-	i86 = i86 + uint32(1)
-	_ = i86
-	os359 = wv_a03
-	x1352 = **(**Tuint32_t)(__ccgo_up(wv_a03 + uintptr(i86)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b03 + uintptr(i86)*4))
-	**(**Tuint32_t)(__ccgo_up(os359 + uintptr(i86)*4)) = x1352
-	i86 = i86 + uint32(1)
-	_ = i86
-	i87 = 0
-	os360 = wv_a03
-	x1353 = **(**Tuint32_t)(__ccgo_up(wv_a03 + uintptr(i87)*4)) + **(**Tuint32_t)(__ccgo_up(x24 + uintptr(i87)*4))
-	**(**Tuint32_t)(__ccgo_up(os360 + uintptr(i87)*4)) = x1353
-	i87 = i87 + uint32(1)
-	_ = i87
-	os361 = wv_a03
-	x1354 = **(**Tuint32_t)(__ccgo_up(wv_a03 + uintptr(i87)*4)) + **(**Tuint32_t)(__ccgo_up(x24 + uintptr(i87)*4))
-	**(**Tuint32_t)(__ccgo_up(os361 + uintptr(i87)*4)) = x1354
-	i87 = i87 + uint32(1)
-	_ = i87
-	os362 = wv_a03
-	x1355 = **(**Tuint32_t)(__ccgo_up(wv_a03 + uintptr(i87)*4)) + **(**Tuint32_t)(__ccgo_up(x24 + uintptr(i87)*4))
-	**(**Tuint32_t)(__ccgo_up(os362 + uintptr(i87)*4)) = x1355
-	i87 = i87 + uint32(1)
-	_ = i87
-	os363 = wv_a03
-	x1356 = **(**Tuint32_t)(__ccgo_up(wv_a03 + uintptr(i87)*4)) + **(**Tuint32_t)(__ccgo_up(x24 + uintptr(i87)*4))
-	**(**Tuint32_t)(__ccgo_up(os363 + uintptr(i87)*4)) = x1356
-	i87 = i87 + uint32(1)
-	_ = i87
-	wv_a14 = wv + uintptr(d103*uint32(4))*4
-	wv_b14 = wv + uintptr(a3*uint32(4))*4
-	i88 = 0
-	os364 = wv_a14
-	x1357 = **(**Tuint32_t)(__ccgo_up(wv_a14 + uintptr(i88)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b14 + uintptr(i88)*4))
-	**(**Tuint32_t)(__ccgo_up(os364 + uintptr(i88)*4)) = x1357
-	i88 = i88 + uint32(1)
-	_ = i88
-	os365 = wv_a14
-	x1358 = **(**Tuint32_t)(__ccgo_up(wv_a14 + uintptr(i88)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b14 + uintptr(i88)*4))
-	**(**Tuint32_t)(__ccgo_up(os365 + uintptr(i88)*4)) = x1358
-	i88 = i88 + uint32(1)
-	_ = i88
-	os366 = wv_a14
-	x1359 = **(**Tuint32_t)(__ccgo_up(wv_a14 + uintptr(i88)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b14 + uintptr(i88)*4))
-	**(**Tuint32_t)(__ccgo_up(os366 + uintptr(i88)*4)) = x1359
-	i88 = i88 + uint32(1)
-	_ = i88
-	os367 = wv_a14
-	x1360 = **(**Tuint32_t)(__ccgo_up(wv_a14 + uintptr(i88)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b14 + uintptr(i88)*4))
-	**(**Tuint32_t)(__ccgo_up(os367 + uintptr(i88)*4)) = x1360
-	i88 = i88 + uint32(1)
-	_ = i88
-	r104 = wv_a14
-	i89 = 0
-	os368 = r104
-	x1361 = **(**Tuint32_t)(__ccgo_up(r104 + uintptr(i89)*4))
-	x1052 = x1361>>uint32(16) | x1361<<uint32(16)
-	**(**Tuint32_t)(__ccgo_up(os368 + uintptr(i89)*4)) = x1052
-	i89 = i89 + uint32(1)
-	_ = i89
-	os369 = r104
-	x1362 = **(**Tuint32_t)(__ccgo_up(r104 + uintptr(i89)*4))
-	x1053 = x1362>>uint32(16) | x1362<<uint32(16)
-	**(**Tuint32_t)(__ccgo_up(os369 + uintptr(i89)*4)) = x1053
-	i89 = i89 + uint32(1)
-	_ = i89
-	os370 = r104
-	x1363 = **(**Tuint32_t)(__ccgo_up(r104 + uintptr(i89)*4))
-	x1054 = x1363>>uint32(16) | x1363<<uint32(16)
-	**(**Tuint32_t)(__ccgo_up(os370 + uintptr(i89)*4)) = x1054
-	i89 = i89 + uint32(1)
-	_ = i89
-	os371 = r104
-	x1364 = **(**Tuint32_t)(__ccgo_up(r104 + uintptr(i89)*4))
-	x1055 = x1364>>uint32(16) | x1364<<uint32(16)
-	**(**Tuint32_t)(__ccgo_up(os371 + uintptr(i89)*4)) = x1055
-	i89 = i89 + uint32(1)
-	_ = i89
-	wv_a24 = wv + uintptr(c03*uint32(4))*4
-	wv_b24 = wv + uintptr(d103*uint32(4))*4
-	i90 = 0
-	os372 = wv_a24
-	x1365 = **(**Tuint32_t)(__ccgo_up(wv_a24 + uintptr(i90)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b24 + uintptr(i90)*4))
-	**(**Tuint32_t)(__ccgo_up(os372 + uintptr(i90)*4)) = x1365
-	i90 = i90 + uint32(1)
-	_ = i90
-	os373 = wv_a24
-	x1366 = **(**Tuint32_t)(__ccgo_up(wv_a24 + uintptr(i90)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b24 + uintptr(i90)*4))
-	**(**Tuint32_t)(__ccgo_up(os373 + uintptr(i90)*4)) = x1366
-	i90 = i90 + uint32(1)
-	_ = i90
-	os374 = wv_a24
-	x1367 = **(**Tuint32_t)(__ccgo_up(wv_a24 + uintptr(i90)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b24 + uintptr(i90)*4))
-	**(**Tuint32_t)(__ccgo_up(os374 + uintptr(i90)*4)) = x1367
-	i90 = i90 + uint32(1)
-	_ = i90
-	os375 = wv_a24
-	x1368 = **(**Tuint32_t)(__ccgo_up(wv_a24 + uintptr(i90)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b24 + uintptr(i90)*4))
-	**(**Tuint32_t)(__ccgo_up(os375 + uintptr(i90)*4)) = x1368
-	i90 = i90 + uint32(1)
-	_ = i90
-	wv_a34 = wv + uintptr(b03*uint32(4))*4
-	wv_b34 = wv + uintptr(c03*uint32(4))*4
-	i91 = 0
-	os376 = wv_a34
-	x1369 = **(**Tuint32_t)(__ccgo_up(wv_a34 + uintptr(i91)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b34 + uintptr(i91)*4))
-	**(**Tuint32_t)(__ccgo_up(os376 + uintptr(i91)*4)) = x1369
-	i91 = i91 + uint32(1)
-	_ = i91
-	os377 = wv_a34
-	x1370 = **(**Tuint32_t)(__ccgo_up(wv_a34 + uintptr(i91)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b34 + uintptr(i91)*4))
-	**(**Tuint32_t)(__ccgo_up(os377 + uintptr(i91)*4)) = x1370
-	i91 = i91 + uint32(1)
-	_ = i91
-	os378 = wv_a34
-	x1371 = **(**Tuint32_t)(__ccgo_up(wv_a34 + uintptr(i91)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b34 + uintptr(i91)*4))
-	**(**Tuint32_t)(__ccgo_up(os378 + uintptr(i91)*4)) = x1371
-	i91 = i91 + uint32(1)
-	_ = i91
-	os379 = wv_a34
-	x1372 = **(**Tuint32_t)(__ccgo_up(wv_a34 + uintptr(i91)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b34 + uintptr(i91)*4))
-	**(**Tuint32_t)(__ccgo_up(os379 + uintptr(i91)*4)) = x1372
-	i91 = i91 + uint32(1)
-	_ = i91
-	r124 = wv_a34
-	i92 = 0
-	os380 = r124
-	x1373 = **(**Tuint32_t)(__ccgo_up(r124 + uintptr(i92)*4))
-	x1056 = x1373>>uint32(12) | x1373<<uint32(20)
-	**(**Tuint32_t)(__ccgo_up(os380 + uintptr(i92)*4)) = x1056
-	i92 = i92 + uint32(1)
-	_ = i92
-	os381 = r124
-	x1374 = **(**Tuint32_t)(__ccgo_up(r124 + uintptr(i92)*4))
-	x1057 = x1374>>uint32(12) | x1374<<uint32(20)
-	**(**Tuint32_t)(__ccgo_up(os381 + uintptr(i92)*4)) = x1057
-	i92 = i92 + uint32(1)
-	_ = i92
-	os382 = r124
-	x1375 = **(**Tuint32_t)(__ccgo_up(r124 + uintptr(i92)*4))
-	x1058 = x1375>>uint32(12) | x1375<<uint32(20)
-	**(**Tuint32_t)(__ccgo_up(os382 + uintptr(i92)*4)) = x1058
-	i92 = i92 + uint32(1)
-	_ = i92
-	os383 = r124
-	x1376 = **(**Tuint32_t)(__ccgo_up(r124 + uintptr(i92)*4))
-	x1059 = x1376>>uint32(12) | x1376<<uint32(20)
-	**(**Tuint32_t)(__ccgo_up(os383 + uintptr(i92)*4)) = x1059
-	i92 = i92 + uint32(1)
-	_ = i92
-	wv_a44 = wv + uintptr(a3*uint32(4))*4
-	wv_b44 = wv + uintptr(b03*uint32(4))*4
-	i93 = 0
-	os384 = wv_a44
-	x1377 = **(**Tuint32_t)(__ccgo_up(wv_a44 + uintptr(i93)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b44 + uintptr(i93)*4))
-	**(**Tuint32_t)(__ccgo_up(os384 + uintptr(i93)*4)) = x1377
-	i93 = i93 + uint32(1)
-	_ = i93
-	os385 = wv_a44
-	x1378 = **(**Tuint32_t)(__ccgo_up(wv_a44 + uintptr(i93)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b44 + uintptr(i93)*4))
-	**(**Tuint32_t)(__ccgo_up(os385 + uintptr(i93)*4)) = x1378
-	i93 = i93 + uint32(1)
-	_ = i93
-	os386 = wv_a44
-	x1379 = **(**Tuint32_t)(__ccgo_up(wv_a44 + uintptr(i93)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b44 + uintptr(i93)*4))
-	**(**Tuint32_t)(__ccgo_up(os386 + uintptr(i93)*4)) = x1379
-	i93 = i93 + uint32(1)
-	_ = i93
-	os387 = wv_a44
-	x1380 = **(**Tuint32_t)(__ccgo_up(wv_a44 + uintptr(i93)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b44 + uintptr(i93)*4))
-	**(**Tuint32_t)(__ccgo_up(os387 + uintptr(i93)*4)) = x1380
-	i93 = i93 + uint32(1)
-	_ = i93
-	i94 = 0
-	os388 = wv_a44
-	x1381 = **(**Tuint32_t)(__ccgo_up(wv_a44 + uintptr(i94)*4)) + **(**Tuint32_t)(__ccgo_up(y3 + uintptr(i94)*4))
-	**(**Tuint32_t)(__ccgo_up(os388 + uintptr(i94)*4)) = x1381
-	i94 = i94 + uint32(1)
-	_ = i94
-	os389 = wv_a44
-	x1382 = **(**Tuint32_t)(__ccgo_up(wv_a44 + uintptr(i94)*4)) + **(**Tuint32_t)(__ccgo_up(y3 + uintptr(i94)*4))
-	**(**Tuint32_t)(__ccgo_up(os389 + uintptr(i94)*4)) = x1382
-	i94 = i94 + uint32(1)
-	_ = i94
-	os390 = wv_a44
-	x1383 = **(**Tuint32_t)(__ccgo_up(wv_a44 + uintptr(i94)*4)) + **(**Tuint32_t)(__ccgo_up(y3 + uintptr(i94)*4))
-	**(**Tuint32_t)(__ccgo_up(os390 + uintptr(i94)*4)) = x1383
-	i94 = i94 + uint32(1)
-	_ = i94
-	os391 = wv_a44
-	x1384 = **(**Tuint32_t)(__ccgo_up(wv_a44 + uintptr(i94)*4)) + **(**Tuint32_t)(__ccgo_up(y3 + uintptr(i94)*4))
-	**(**Tuint32_t)(__ccgo_up(os391 + uintptr(i94)*4)) = x1384
-	i94 = i94 + uint32(1)
-	_ = i94
-	wv_a54 = wv + uintptr(d103*uint32(4))*4
-	wv_b54 = wv + uintptr(a3*uint32(4))*4
-	i95 = 0
-	os392 = wv_a54
-	x1385 = **(**Tuint32_t)(__ccgo_up(wv_a54 + uintptr(i95)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b54 + uintptr(i95)*4))
-	**(**Tuint32_t)(__ccgo_up(os392 + uintptr(i95)*4)) = x1385
-	i95 = i95 + uint32(1)
-	_ = i95
-	os393 = wv_a54
-	x1386 = **(**Tuint32_t)(__ccgo_up(wv_a54 + uintptr(i95)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b54 + uintptr(i95)*4))
-	**(**Tuint32_t)(__ccgo_up(os393 + uintptr(i95)*4)) = x1386
-	i95 = i95 + uint32(1)
-	_ = i95
-	os394 = wv_a54
-	x1387 = **(**Tuint32_t)(__ccgo_up(wv_a54 + uintptr(i95)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b54 + uintptr(i95)*4))
-	**(**Tuint32_t)(__ccgo_up(os394 + uintptr(i95)*4)) = x1387
-	i95 = i95 + uint32(1)
-	_ = i95
-	os395 = wv_a54
-	x1388 = **(**Tuint32_t)(__ccgo_up(wv_a54 + uintptr(i95)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b54 + uintptr(i95)*4))
-	**(**Tuint32_t)(__ccgo_up(os395 + uintptr(i95)*4)) = x1388
-	i95 = i95 + uint32(1)
-	_ = i95
-	r134 = wv_a54
-	i96 = 0
-	os396 = r134
-	x1389 = **(**Tuint32_t)(__ccgo_up(r134 + uintptr(i96)*4))
-	x1060 = x1389>>uint32(8) | x1389<<uint32(24)
-	**(**Tuint32_t)(__ccgo_up(os396 + uintptr(i96)*4)) = x1060
-	i96 = i96 + uint32(1)
-	_ = i96
-	os397 = r134
-	x1390 = **(**Tuint32_t)(__ccgo_up(r134 + uintptr(i96)*4))
-	x1061 = x1390>>uint32(8) | x1390<<uint32(24)
-	**(**Tuint32_t)(__ccgo_up(os397 + uintptr(i96)*4)) = x1061
-	i96 = i96 + uint32(1)
-	_ = i96
-	os398 = r134
-	x1391 = **(**Tuint32_t)(__ccgo_up(r134 + uintptr(i96)*4))
-	x1062 = x1391>>uint32(8) | x1391<<uint32(24)
-	**(**Tuint32_t)(__ccgo_up(os398 + uintptr(i96)*4)) = x1062
-	i96 = i96 + uint32(1)
-	_ = i96
-	os399 = r134
-	x1392 = **(**Tuint32_t)(__ccgo_up(r134 + uintptr(i96)*4))
-	x1063 = x1392>>uint32(8) | x1392<<uint32(24)
-	**(**Tuint32_t)(__ccgo_up(os399 + uintptr(i96)*4)) = x1063
-	i96 = i96 + uint32(1)
-	_ = i96
-	wv_a64 = wv + uintptr(c03*uint32(4))*4
-	wv_b64 = wv + uintptr(d103*uint32(4))*4
-	i97 = 0
-	os400 = wv_a64
-	x1393 = **(**Tuint32_t)(__ccgo_up(wv_a64 + uintptr(i97)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b64 + uintptr(i97)*4))
-	**(**Tuint32_t)(__ccgo_up(os400 + uintptr(i97)*4)) = x1393
-	i97 = i97 + uint32(1)
-	_ = i97
-	os401 = wv_a64
-	x1394 = **(**Tuint32_t)(__ccgo_up(wv_a64 + uintptr(i97)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b64 + uintptr(i97)*4))
-	**(**Tuint32_t)(__ccgo_up(os401 + uintptr(i97)*4)) = x1394
-	i97 = i97 + uint32(1)
-	_ = i97
-	os402 = wv_a64
-	x1395 = **(**Tuint32_t)(__ccgo_up(wv_a64 + uintptr(i97)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b64 + uintptr(i97)*4))
-	**(**Tuint32_t)(__ccgo_up(os402 + uintptr(i97)*4)) = x1395
-	i97 = i97 + uint32(1)
-	_ = i97
-	os403 = wv_a64
-	x1396 = **(**Tuint32_t)(__ccgo_up(wv_a64 + uintptr(i97)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b64 + uintptr(i97)*4))
-	**(**Tuint32_t)(__ccgo_up(os403 + uintptr(i97)*4)) = x1396
-	i97 = i97 + uint32(1)
-	_ = i97
-	wv_a74 = wv + uintptr(b03*uint32(4))*4
-	wv_b74 = wv + uintptr(c03*uint32(4))*4
-	i98 = 0
-	os404 = wv_a74
-	x1397 = **(**Tuint32_t)(__ccgo_up(wv_a74 + uintptr(i98)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b74 + uintptr(i98)*4))
-	**(**Tuint32_t)(__ccgo_up(os404 + uintptr(i98)*4)) = x1397
-	i98 = i98 + uint32(1)
-	_ = i98
-	os405 = wv_a74
-	x1398 = **(**Tuint32_t)(__ccgo_up(wv_a74 + uintptr(i98)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b74 + uintptr(i98)*4))
-	**(**Tuint32_t)(__ccgo_up(os405 + uintptr(i98)*4)) = x1398
-	i98 = i98 + uint32(1)
-	_ = i98
-	os406 = wv_a74
-	x1399 = **(**Tuint32_t)(__ccgo_up(wv_a74 + uintptr(i98)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b74 + uintptr(i98)*4))
-	**(**Tuint32_t)(__ccgo_up(os406 + uintptr(i98)*4)) = x1399
-	i98 = i98 + uint32(1)
-	_ = i98
-	os407 = wv_a74
-	x1400 = **(**Tuint32_t)(__ccgo_up(wv_a74 + uintptr(i98)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b74 + uintptr(i98)*4))
-	**(**Tuint32_t)(__ccgo_up(os407 + uintptr(i98)*4)) = x1400
-	i98 = i98 + uint32(1)
-	_ = i98
-	r144 = wv_a74
-	i99 = 0
-	os408 = r144
-	x1401 = **(**Tuint32_t)(__ccgo_up(r144 + uintptr(i99)*4))
-	x1064 = x1401>>uint32(7) | x1401<<uint32(25)
-	**(**Tuint32_t)(__ccgo_up(os408 + uintptr(i99)*4)) = x1064
-	i99 = i99 + uint32(1)
-	_ = i99
-	os409 = r144
-	x1402 = **(**Tuint32_t)(__ccgo_up(r144 + uintptr(i99)*4))
-	x1065 = x1402>>uint32(7) | x1402<<uint32(25)
-	**(**Tuint32_t)(__ccgo_up(os409 + uintptr(i99)*4)) = x1065
-	i99 = i99 + uint32(1)
-	_ = i99
-	os410 = r144
-	x1403 = **(**Tuint32_t)(__ccgo_up(r144 + uintptr(i99)*4))
-	x1066 = x1403>>uint32(7) | x1403<<uint32(25)
-	**(**Tuint32_t)(__ccgo_up(os410 + uintptr(i99)*4)) = x1066
-	i99 = i99 + uint32(1)
-	_ = i99
-	os411 = r144
-	x1404 = **(**Tuint32_t)(__ccgo_up(r144 + uintptr(i99)*4))
-	x1067 = x1404>>uint32(7) | x1404<<uint32(25)
-	**(**Tuint32_t)(__ccgo_up(os411 + uintptr(i99)*4)) = x1067
-	i99 = i99 + uint32(1)
-	_ = i99
-	r154 = wv + uintptr(4)*4
-	r215 = wv + uintptr(8)*4
-	r315 = wv + uintptr(12)*4
-	r1104 = r154
-	x003 = **(**Tuint32_t)(__ccgo_up(r1104 + 1*4))
-	x1068 = **(**Tuint32_t)(__ccgo_up(r1104 + 2*4))
-	x204 = **(**Tuint32_t)(__ccgo_up(r1104 + 3*4))
-	x304 = **(**Tuint32_t)(__ccgo_up(r1104))
-	**(**Tuint32_t)(__ccgo_up(r1104)) = x003
-	**(**Tuint32_t)(__ccgo_up(r1104 + 1*4)) = x1068
-	**(**Tuint32_t)(__ccgo_up(r1104 + 2*4)) = x204
-	**(**Tuint32_t)(__ccgo_up(r1104 + 3*4)) = x304
-	r11110 = r215
-	x014 = **(**Tuint32_t)(__ccgo_up(r11110 + 2*4))
-	x11143 = **(**Tuint32_t)(__ccgo_up(r11110 + 3*4))
-	x2113 = **(**Tuint32_t)(__ccgo_up(r11110))
-	x3113 = **(**Tuint32_t)(__ccgo_up(r11110 + 1*4))
-	**(**Tuint32_t)(__ccgo_up(r11110)) = x014
-	**(**Tuint32_t)(__ccgo_up(r11110 + 1*4)) = x11143
-	**(**Tuint32_t)(__ccgo_up(r11110 + 2*4)) = x2113
-	**(**Tuint32_t)(__ccgo_up(r11110 + 3*4)) = x3113
-	r1124 = r315
-	x024 = **(**Tuint32_t)(__ccgo_up(r1124 + 3*4))
-	x12103 = **(**Tuint32_t)(__ccgo_up(r1124))
-	x224 = **(**Tuint32_t)(__ccgo_up(r1124 + 1*4))
-	x324 = **(**Tuint32_t)(__ccgo_up(r1124 + 2*4))
-	**(**Tuint32_t)(__ccgo_up(r1124)) = x024
-	**(**Tuint32_t)(__ccgo_up(r1124 + 1*4)) = x12103
-	**(**Tuint32_t)(__ccgo_up(r1124 + 2*4)) = x224
-	**(**Tuint32_t)(__ccgo_up(r1124 + 3*4)) = x324
-	a03 = 0
-	b4 = uint32(1)
-	c3 = uint32(2)
-	d13 = uint32(3)
-	wv_a3 = wv + uintptr(a03*uint32(4))*4
-	wv_b84 = wv + uintptr(b4*uint32(4))*4
-	i100 = 0
-	os412 = wv_a3
-	x1405 = **(**Tuint32_t)(__ccgo_up(wv_a3 + uintptr(i100)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b84 + uintptr(i100)*4))
-	**(**Tuint32_t)(__ccgo_up(os412 + uintptr(i100)*4)) = x1405
-	i100 = i100 + uint32(1)
-	_ = i100
-	os413 = wv_a3
-	x1406 = **(**Tuint32_t)(__ccgo_up(wv_a3 + uintptr(i100)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b84 + uintptr(i100)*4))
-	**(**Tuint32_t)(__ccgo_up(os413 + uintptr(i100)*4)) = x1406
-	i100 = i100 + uint32(1)
-	_ = i100
-	os414 = wv_a3
-	x1407 = **(**Tuint32_t)(__ccgo_up(wv_a3 + uintptr(i100)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b84 + uintptr(i100)*4))
-	**(**Tuint32_t)(__ccgo_up(os414 + uintptr(i100)*4)) = x1407
-	i100 = i100 + uint32(1)
-	_ = i100
-	os415 = wv_a3
-	x1408 = **(**Tuint32_t)(__ccgo_up(wv_a3 + uintptr(i100)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b84 + uintptr(i100)*4))
-	**(**Tuint32_t)(__ccgo_up(os415 + uintptr(i100)*4)) = x1408
-	i100 = i100 + uint32(1)
-	_ = i100
-	i101 = 0
-	os416 = wv_a3
-	x1409 = **(**Tuint32_t)(__ccgo_up(wv_a3 + uintptr(i101)*4)) + **(**Tuint32_t)(__ccgo_up(z3 + uintptr(i101)*4))
-	**(**Tuint32_t)(__ccgo_up(os416 + uintptr(i101)*4)) = x1409
-	i101 = i101 + uint32(1)
-	_ = i101
-	os417 = wv_a3
-	x1410 = **(**Tuint32_t)(__ccgo_up(wv_a3 + uintptr(i101)*4)) + **(**Tuint32_t)(__ccgo_up(z3 + uintptr(i101)*4))
-	**(**Tuint32_t)(__ccgo_up(os417 + uintptr(i101)*4)) = x1410
-	i101 = i101 + uint32(1)
-	_ = i101
-	os418 = wv_a3
-	x1411 = **(**Tuint32_t)(__ccgo_up(wv_a3 + uintptr(i101)*4)) + **(**Tuint32_t)(__ccgo_up(z3 + uintptr(i101)*4))
-	**(**Tuint32_t)(__ccgo_up(os418 + uintptr(i101)*4)) = x1411
-	i101 = i101 + uint32(1)
-	_ = i101
-	os419 = wv_a3
-	x1412 = **(**Tuint32_t)(__ccgo_up(wv_a3 + uintptr(i101)*4)) + **(**Tuint32_t)(__ccgo_up(z3 + uintptr(i101)*4))
-	**(**Tuint32_t)(__ccgo_up(os419 + uintptr(i101)*4)) = x1412
-	i101 = i101 + uint32(1)
-	_ = i101
-	wv_a84 = wv + uintptr(d13*uint32(4))*4
-	wv_b94 = wv + uintptr(a03*uint32(4))*4
-	i102 = 0
-	os420 = wv_a84
-	x1413 = **(**Tuint32_t)(__ccgo_up(wv_a84 + uintptr(i102)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b94 + uintptr(i102)*4))
-	**(**Tuint32_t)(__ccgo_up(os420 + uintptr(i102)*4)) = x1413
-	i102 = i102 + uint32(1)
-	_ = i102
-	os421 = wv_a84
-	x1414 = **(**Tuint32_t)(__ccgo_up(wv_a84 + uintptr(i102)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b94 + uintptr(i102)*4))
-	**(**Tuint32_t)(__ccgo_up(os421 + uintptr(i102)*4)) = x1414
-	i102 = i102 + uint32(1)
-	_ = i102
-	os422 = wv_a84
-	x1415 = **(**Tuint32_t)(__ccgo_up(wv_a84 + uintptr(i102)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b94 + uintptr(i102)*4))
-	**(**Tuint32_t)(__ccgo_up(os422 + uintptr(i102)*4)) = x1415
-	i102 = i102 + uint32(1)
-	_ = i102
-	os423 = wv_a84
-	x1416 = **(**Tuint32_t)(__ccgo_up(wv_a84 + uintptr(i102)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b94 + uintptr(i102)*4))
-	**(**Tuint32_t)(__ccgo_up(os423 + uintptr(i102)*4)) = x1416
-	i102 = i102 + uint32(1)
-	_ = i102
-	r164 = wv_a84
-	i103 = 0
-	os424 = r164
-	x1417 = **(**Tuint32_t)(__ccgo_up(r164 + uintptr(i103)*4))
-	x13151 = x1417>>uint32(16) | x1417<<uint32(16)
-	**(**Tuint32_t)(__ccgo_up(os424 + uintptr(i103)*4)) = x13151
-	i103 = i103 + uint32(1)
-	_ = i103
-	os425 = r164
-	x1418 = **(**Tuint32_t)(__ccgo_up(r164 + uintptr(i103)*4))
-	x13152 = x1418>>uint32(16) | x1418<<uint32(16)
-	**(**Tuint32_t)(__ccgo_up(os425 + uintptr(i103)*4)) = x13152
-	i103 = i103 + uint32(1)
-	_ = i103
-	os426 = r164
-	x1419 = **(**Tuint32_t)(__ccgo_up(r164 + uintptr(i103)*4))
-	x13153 = x1419>>uint32(16) | x1419<<uint32(16)
-	**(**Tuint32_t)(__ccgo_up(os426 + uintptr(i103)*4)) = x13153
-	i103 = i103 + uint32(1)
-	_ = i103
-	os427 = r164
-	x1420 = **(**Tuint32_t)(__ccgo_up(r164 + uintptr(i103)*4))
-	x13154 = x1420>>uint32(16) | x1420<<uint32(16)
-	**(**Tuint32_t)(__ccgo_up(os427 + uintptr(i103)*4)) = x13154
-	i103 = i103 + uint32(1)
-	_ = i103
-	wv_a94 = wv + uintptr(c3*uint32(4))*4
-	wv_b103 = wv + uintptr(d13*uint32(4))*4
-	i104 = 0
-	os428 = wv_a94
-	x1421 = **(**Tuint32_t)(__ccgo_up(wv_a94 + uintptr(i104)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b103 + uintptr(i104)*4))
-	**(**Tuint32_t)(__ccgo_up(os428 + uintptr(i104)*4)) = x1421
-	i104 = i104 + uint32(1)
-	_ = i104
-	os429 = wv_a94
-	x1422 = **(**Tuint32_t)(__ccgo_up(wv_a94 + uintptr(i104)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b103 + uintptr(i104)*4))
-	**(**Tuint32_t)(__ccgo_up(os429 + uintptr(i104)*4)) = x1422
-	i104 = i104 + uint32(1)
-	_ = i104
-	os430 = wv_a94
-	x1423 = **(**Tuint32_t)(__ccgo_up(wv_a94 + uintptr(i104)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b103 + uintptr(i104)*4))
-	**(**Tuint32_t)(__ccgo_up(os430 + uintptr(i104)*4)) = x1423
-	i104 = i104 + uint32(1)
-	_ = i104
-	os431 = wv_a94
-	x1424 = **(**Tuint32_t)(__ccgo_up(wv_a94 + uintptr(i104)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b103 + uintptr(i104)*4))
-	**(**Tuint32_t)(__ccgo_up(os431 + uintptr(i104)*4)) = x1424
-	i104 = i104 + uint32(1)
-	_ = i104
-	wv_a103 = wv + uintptr(b4*uint32(4))*4
-	wv_b114 = wv + uintptr(c3*uint32(4))*4
-	i105 = 0
-	os432 = wv_a103
-	x1425 = **(**Tuint32_t)(__ccgo_up(wv_a103 + uintptr(i105)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b114 + uintptr(i105)*4))
-	**(**Tuint32_t)(__ccgo_up(os432 + uintptr(i105)*4)) = x1425
-	i105 = i105 + uint32(1)
-	_ = i105
-	os433 = wv_a103
-	x1426 = **(**Tuint32_t)(__ccgo_up(wv_a103 + uintptr(i105)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b114 + uintptr(i105)*4))
-	**(**Tuint32_t)(__ccgo_up(os433 + uintptr(i105)*4)) = x1426
-	i105 = i105 + uint32(1)
-	_ = i105
-	os434 = wv_a103
-	x1427 = **(**Tuint32_t)(__ccgo_up(wv_a103 + uintptr(i105)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b114 + uintptr(i105)*4))
-	**(**Tuint32_t)(__ccgo_up(os434 + uintptr(i105)*4)) = x1427
-	i105 = i105 + uint32(1)
-	_ = i105
-	os435 = wv_a103
-	x1428 = **(**Tuint32_t)(__ccgo_up(wv_a103 + uintptr(i105)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b114 + uintptr(i105)*4))
-	**(**Tuint32_t)(__ccgo_up(os435 + uintptr(i105)*4)) = x1428
-	i105 = i105 + uint32(1)
-	_ = i105
-	r174 = wv_a103
-	i106 = 0
-	os436 = r174
-	x1429 = **(**Tuint32_t)(__ccgo_up(r174 + uintptr(i106)*4))
-	x13155 = x1429>>uint32(12) | x1429<<uint32(20)
-	**(**Tuint32_t)(__ccgo_up(os436 + uintptr(i106)*4)) = x13155
-	i106 = i106 + uint32(1)
-	_ = i106
-	os437 = r174
-	x1430 = **(**Tuint32_t)(__ccgo_up(r174 + uintptr(i106)*4))
-	x13156 = x1430>>uint32(12) | x1430<<uint32(20)
-	**(**Tuint32_t)(__ccgo_up(os437 + uintptr(i106)*4)) = x13156
-	i106 = i106 + uint32(1)
-	_ = i106
-	os438 = r174
-	x1431 = **(**Tuint32_t)(__ccgo_up(r174 + uintptr(i106)*4))
-	x13157 = x1431>>uint32(12) | x1431<<uint32(20)
-	**(**Tuint32_t)(__ccgo_up(os438 + uintptr(i106)*4)) = x13157
-	i106 = i106 + uint32(1)
-	_ = i106
-	os439 = r174
-	x1432 = **(**Tuint32_t)(__ccgo_up(r174 + uintptr(i106)*4))
-	x13158 = x1432>>uint32(12) | x1432<<uint32(20)
-	**(**Tuint32_t)(__ccgo_up(os439 + uintptr(i106)*4)) = x13158
-	i106 = i106 + uint32(1)
-	_ = i106
-	wv_a114 = wv + uintptr(a03*uint32(4))*4
-	wv_b124 = wv + uintptr(b4*uint32(4))*4
-	i107 = 0
-	os440 = wv_a114
-	x1433 = **(**Tuint32_t)(__ccgo_up(wv_a114 + uintptr(i107)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b124 + uintptr(i107)*4))
-	**(**Tuint32_t)(__ccgo_up(os440 + uintptr(i107)*4)) = x1433
-	i107 = i107 + uint32(1)
-	_ = i107
-	os441 = wv_a114
-	x1434 = **(**Tuint32_t)(__ccgo_up(wv_a114 + uintptr(i107)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b124 + uintptr(i107)*4))
-	**(**Tuint32_t)(__ccgo_up(os441 + uintptr(i107)*4)) = x1434
-	i107 = i107 + uint32(1)
-	_ = i107
-	os442 = wv_a114
-	x1435 = **(**Tuint32_t)(__ccgo_up(wv_a114 + uintptr(i107)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b124 + uintptr(i107)*4))
-	**(**Tuint32_t)(__ccgo_up(os442 + uintptr(i107)*4)) = x1435
-	i107 = i107 + uint32(1)
-	_ = i107
-	os443 = wv_a114
-	x1436 = **(**Tuint32_t)(__ccgo_up(wv_a114 + uintptr(i107)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b124 + uintptr(i107)*4))
-	**(**Tuint32_t)(__ccgo_up(os443 + uintptr(i107)*4)) = x1436
-	i107 = i107 + uint32(1)
-	_ = i107
-	i108 = 0
-	os444 = wv_a114
-	x1437 = **(**Tuint32_t)(__ccgo_up(wv_a114 + uintptr(i108)*4)) + **(**Tuint32_t)(__ccgo_up(w3 + uintptr(i108)*4))
-	**(**Tuint32_t)(__ccgo_up(os444 + uintptr(i108)*4)) = x1437
-	i108 = i108 + uint32(1)
-	_ = i108
-	os445 = wv_a114
-	x1438 = **(**Tuint32_t)(__ccgo_up(wv_a114 + uintptr(i108)*4)) + **(**Tuint32_t)(__ccgo_up(w3 + uintptr(i108)*4))
-	**(**Tuint32_t)(__ccgo_up(os445 + uintptr(i108)*4)) = x1438
-	i108 = i108 + uint32(1)
-	_ = i108
-	os446 = wv_a114
-	x1439 = **(**Tuint32_t)(__ccgo_up(wv_a114 + uintptr(i108)*4)) + **(**Tuint32_t)(__ccgo_up(w3 + uintptr(i108)*4))
-	**(**Tuint32_t)(__ccgo_up(os446 + uintptr(i108)*4)) = x1439
-	i108 = i108 + uint32(1)
-	_ = i108
-	os447 = wv_a114
-	x1440 = **(**Tuint32_t)(__ccgo_up(wv_a114 + uintptr(i108)*4)) + **(**Tuint32_t)(__ccgo_up(w3 + uintptr(i108)*4))
-	**(**Tuint32_t)(__ccgo_up(os447 + uintptr(i108)*4)) = x1440
-	i108 = i108 + uint32(1)
-	_ = i108
-	wv_a124 = wv + uintptr(d13*uint32(4))*4
-	wv_b134 = wv + uintptr(a03*uint32(4))*4
-	i109 = 0
-	os448 = wv_a124
-	x1441 = **(**Tuint32_t)(__ccgo_up(wv_a124 + uintptr(i109)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b134 + uintptr(i109)*4))
-	**(**Tuint32_t)(__ccgo_up(os448 + uintptr(i109)*4)) = x1441
-	i109 = i109 + uint32(1)
-	_ = i109
-	os449 = wv_a124
-	x1442 = **(**Tuint32_t)(__ccgo_up(wv_a124 + uintptr(i109)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b134 + uintptr(i109)*4))
-	**(**Tuint32_t)(__ccgo_up(os449 + uintptr(i109)*4)) = x1442
-	i109 = i109 + uint32(1)
-	_ = i109
-	os450 = wv_a124
-	x1443 = **(**Tuint32_t)(__ccgo_up(wv_a124 + uintptr(i109)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b134 + uintptr(i109)*4))
-	**(**Tuint32_t)(__ccgo_up(os450 + uintptr(i109)*4)) = x1443
-	i109 = i109 + uint32(1)
-	_ = i109
-	os451 = wv_a124
-	x1444 = **(**Tuint32_t)(__ccgo_up(wv_a124 + uintptr(i109)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b134 + uintptr(i109)*4))
-	**(**Tuint32_t)(__ccgo_up(os451 + uintptr(i109)*4)) = x1444
-	i109 = i109 + uint32(1)
-	_ = i109
-	r184 = wv_a124
-	i110 = 0
-	os452 = r184
-	x1445 = **(**Tuint32_t)(__ccgo_up(r184 + uintptr(i110)*4))
-	x13159 = x1445>>uint32(8) | x1445<<uint32(24)
-	**(**Tuint32_t)(__ccgo_up(os452 + uintptr(i110)*4)) = x13159
-	i110 = i110 + uint32(1)
-	_ = i110
-	os453 = r184
-	x1446 = **(**Tuint32_t)(__ccgo_up(r184 + uintptr(i110)*4))
-	x13160 = x1446>>uint32(8) | x1446<<uint32(24)
-	**(**Tuint32_t)(__ccgo_up(os453 + uintptr(i110)*4)) = x13160
-	i110 = i110 + uint32(1)
-	_ = i110
-	os454 = r184
-	x1447 = **(**Tuint32_t)(__ccgo_up(r184 + uintptr(i110)*4))
-	x13161 = x1447>>uint32(8) | x1447<<uint32(24)
-	**(**Tuint32_t)(__ccgo_up(os454 + uintptr(i110)*4)) = x13161
-	i110 = i110 + uint32(1)
-	_ = i110
-	os455 = r184
-	x1448 = **(**Tuint32_t)(__ccgo_up(r184 + uintptr(i110)*4))
-	x13162 = x1448>>uint32(8) | x1448<<uint32(24)
-	**(**Tuint32_t)(__ccgo_up(os455 + uintptr(i110)*4)) = x13162
-	i110 = i110 + uint32(1)
-	_ = i110
-	wv_a134 = wv + uintptr(c3*uint32(4))*4
-	wv_b144 = wv + uintptr(d13*uint32(4))*4
-	i111 = 0
-	os456 = wv_a134
-	x1449 = **(**Tuint32_t)(__ccgo_up(wv_a134 + uintptr(i111)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b144 + uintptr(i111)*4))
-	**(**Tuint32_t)(__ccgo_up(os456 + uintptr(i111)*4)) = x1449
-	i111 = i111 + uint32(1)
-	_ = i111
-	os457 = wv_a134
-	x1450 = **(**Tuint32_t)(__ccgo_up(wv_a134 + uintptr(i111)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b144 + uintptr(i111)*4))
-	**(**Tuint32_t)(__ccgo_up(os457 + uintptr(i111)*4)) = x1450
-	i111 = i111 + uint32(1)
-	_ = i111
-	os458 = wv_a134
-	x1451 = **(**Tuint32_t)(__ccgo_up(wv_a134 + uintptr(i111)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b144 + uintptr(i111)*4))
-	**(**Tuint32_t)(__ccgo_up(os458 + uintptr(i111)*4)) = x1451
-	i111 = i111 + uint32(1)
-	_ = i111
-	os459 = wv_a134
-	x1452 = **(**Tuint32_t)(__ccgo_up(wv_a134 + uintptr(i111)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b144 + uintptr(i111)*4))
-	**(**Tuint32_t)(__ccgo_up(os459 + uintptr(i111)*4)) = x1452
-	i111 = i111 + uint32(1)
-	_ = i111
-	wv_a144 = wv + uintptr(b4*uint32(4))*4
-	wv_b3 = wv + uintptr(c3*uint32(4))*4
-	i112 = 0
-	os460 = wv_a144
-	x1453 = **(**Tuint32_t)(__ccgo_up(wv_a144 + uintptr(i112)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b3 + uintptr(i112)*4))
-	**(**Tuint32_t)(__ccgo_up(os460 + uintptr(i112)*4)) = x1453
-	i112 = i112 + uint32(1)
-	_ = i112
-	os461 = wv_a144
-	x1454 = **(**Tuint32_t)(__ccgo_up(wv_a144 + uintptr(i112)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b3 + uintptr(i112)*4))
-	**(**Tuint32_t)(__ccgo_up(os461 + uintptr(i112)*4)) = x1454
-	i112 = i112 + uint32(1)
-	_ = i112
-	os462 = wv_a144
-	x1455 = **(**Tuint32_t)(__ccgo_up(wv_a144 + uintptr(i112)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b3 + uintptr(i112)*4))
-	**(**Tuint32_t)(__ccgo_up(os462 + uintptr(i112)*4)) = x1455
-	i112 = i112 + uint32(1)
-	_ = i112
-	os463 = wv_a144
-	x1456 = **(**Tuint32_t)(__ccgo_up(wv_a144 + uintptr(i112)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b3 + uintptr(i112)*4))
-	**(**Tuint32_t)(__ccgo_up(os463 + uintptr(i112)*4)) = x1456
-	i112 = i112 + uint32(1)
-	_ = i112
-	r194 = wv_a144
-	i113 = 0
-	os464 = r194
-	x1457 = **(**Tuint32_t)(__ccgo_up(r194 + uintptr(i113)*4))
-	x13163 = x1457>>uint32(7) | x1457<<uint32(25)
-	**(**Tuint32_t)(__ccgo_up(os464 + uintptr(i113)*4)) = x13163
-	i113 = i113 + uint32(1)
-	_ = i113
-	os465 = r194
-	x1458 = **(**Tuint32_t)(__ccgo_up(r194 + uintptr(i113)*4))
-	x13164 = x1458>>uint32(7) | x1458<<uint32(25)
-	**(**Tuint32_t)(__ccgo_up(os465 + uintptr(i113)*4)) = x13164
-	i113 = i113 + uint32(1)
-	_ = i113
-	os466 = r194
-	x1459 = **(**Tuint32_t)(__ccgo_up(r194 + uintptr(i113)*4))
-	x13165 = x1459>>uint32(7) | x1459<<uint32(25)
-	**(**Tuint32_t)(__ccgo_up(os466 + uintptr(i113)*4)) = x13165
-	i113 = i113 + uint32(1)
-	_ = i113
-	os467 = r194
-	x1460 = **(**Tuint32_t)(__ccgo_up(r194 + uintptr(i113)*4))
-	x13166 = x1460>>uint32(7) | x1460<<uint32(25)
-	**(**Tuint32_t)(__ccgo_up(os467 + uintptr(i113)*4)) = x13166
-	i113 = i113 + uint32(1)
-	_ = i113
-	r1134 = wv + uintptr(4)*4
-	r24 = wv + uintptr(8)*4
-	r34 = wv + uintptr(12)*4
-	r1110 = r1134
-	x034 = **(**Tuint32_t)(__ccgo_up(r1110 + 3*4))
-	x13167 = **(**Tuint32_t)(__ccgo_up(r1110))
-	x234 = **(**Tuint32_t)(__ccgo_up(r1110 + 1*4))
-	x334 = **(**Tuint32_t)(__ccgo_up(r1110 + 2*4))
-	**(**Tuint32_t)(__ccgo_up(r1110)) = x034
-	**(**Tuint32_t)(__ccgo_up(r1110 + 1*4)) = x13167
-	**(**Tuint32_t)(__ccgo_up(r1110 + 2*4)) = x234
-	**(**Tuint32_t)(__ccgo_up(r1110 + 3*4)) = x334
-	r1144 = r24
-	x044 = **(**Tuint32_t)(__ccgo_up(r1144 + 2*4))
-	x14103 = **(**Tuint32_t)(__ccgo_up(r1144 + 3*4))
-	x244 = **(**Tuint32_t)(__ccgo_up(r1144))
-	x344 = **(**Tuint32_t)(__ccgo_up(r1144 + 1*4))
-	**(**Tuint32_t)(__ccgo_up(r1144)) = x044
-	**(**Tuint32_t)(__ccgo_up(r1144 + 1*4)) = x14103
-	**(**Tuint32_t)(__ccgo_up(r1144 + 2*4)) = x244
-	**(**Tuint32_t)(__ccgo_up(r1144 + 3*4)) = x344
-	r1154 = r34
-	x03 = **(**Tuint32_t)(__ccgo_up(r1154 + 1*4))
-	x1461 = **(**Tuint32_t)(__ccgo_up(r1154 + 2*4))
-	x213 = **(**Tuint32_t)(__ccgo_up(r1154 + 3*4))
-	x313 = **(**Tuint32_t)(__ccgo_up(r1154))
-	**(**Tuint32_t)(__ccgo_up(r1154)) = x03
-	**(**Tuint32_t)(__ccgo_up(r1154 + 1*4)) = x1461
-	**(**Tuint32_t)(__ccgo_up(r1154 + 2*4)) = x213
-	**(**Tuint32_t)(__ccgo_up(r1154 + 3*4)) = x313
-	i0 = i0 + uint32(1)
-	_ = i0
-	start_idx4 = i0 % uint32(10) * uint32(16)
-	**(**[16]Tuint32_t)(__ccgo_up(bp + 324)) = [16]Tuint32_t{}
-	r04 = bp + 324
-	r110 = bp + 324 + uintptr(4)*4
-	r204 = bp + 324 + uintptr(8)*4
-	r304 = bp + 324 + uintptr(12)*4
-	s04 = _Hacl_Hash_Blake2b_sigmaTable[start_idx4+0]
-	s14 = _Hacl_Hash_Blake2b_sigmaTable[start_idx4+uint32(1)]
-	s24 = _Hacl_Hash_Blake2b_sigmaTable[start_idx4+uint32(2)]
-	s34 = _Hacl_Hash_Blake2b_sigmaTable[start_idx4+uint32(3)]
-	s44 = _Hacl_Hash_Blake2b_sigmaTable[start_idx4+uint32(4)]
-	s54 = _Hacl_Hash_Blake2b_sigmaTable[start_idx4+uint32(5)]
-	s64 = _Hacl_Hash_Blake2b_sigmaTable[start_idx4+uint32(6)]
-	s74 = _Hacl_Hash_Blake2b_sigmaTable[start_idx4+uint32(7)]
-	s84 = _Hacl_Hash_Blake2b_sigmaTable[start_idx4+uint32(8)]
-	s94 = _Hacl_Hash_Blake2b_sigmaTable[start_idx4+uint32(9)]
-	s104 = _Hacl_Hash_Blake2b_sigmaTable[start_idx4+uint32(10)]
-	s115 = _Hacl_Hash_Blake2b_sigmaTable[start_idx4+uint32(11)]
-	s125 = _Hacl_Hash_Blake2b_sigmaTable[start_idx4+uint32(12)]
-	s135 = _Hacl_Hash_Blake2b_sigmaTable[start_idx4+uint32(13)]
-	s145 = _Hacl_Hash_Blake2b_sigmaTable[start_idx4+uint32(14)]
-	s155 = _Hacl_Hash_Blake2b_sigmaTable[start_idx4+uint32(15)]
-	uu____04 = (**(**[16]Tuint32_t)(__ccgo_up(bp + 4)))[s24]
-	uu____14 = (**(**[16]Tuint32_t)(__ccgo_up(bp + 4)))[s44]
-	uu____24 = (**(**[16]Tuint32_t)(__ccgo_up(bp + 4)))[s64]
-	**(**Tuint32_t)(__ccgo_up(r04)) = (**(**[16]Tuint32_t)(__ccgo_up(bp + 4)))[s04]
-	**(**Tuint32_t)(__ccgo_up(r04 + 1*4)) = uu____04
-	**(**Tuint32_t)(__ccgo_up(r04 + 2*4)) = uu____14
-	**(**Tuint32_t)(__ccgo_up(r04 + 3*4)) = uu____24
-	uu____34 = (**(**[16]Tuint32_t)(__ccgo_up(bp + 4)))[s34]
-	uu____44 = (**(**[16]Tuint32_t)(__ccgo_up(bp + 4)))[s54]
-	uu____54 = (**(**[16]Tuint32_t)(__ccgo_up(bp + 4)))[s74]
-	**(**Tuint32_t)(__ccgo_up(r110)) = (**(**[16]Tuint32_t)(__ccgo_up(bp + 4)))[s14]
-	**(**Tuint32_t)(__ccgo_up(r110 + 1*4)) = uu____34
-	**(**Tuint32_t)(__ccgo_up(r110 + 2*4)) = uu____44
-	**(**Tuint32_t)(__ccgo_up(r110 + 3*4)) = uu____54
-	uu____64 = (**(**[16]Tuint32_t)(__ccgo_up(bp + 4)))[s104]
-	uu____74 = (**(**[16]Tuint32_t)(__ccgo_up(bp + 4)))[s125]
-	uu____84 = (**(**[16]Tuint32_t)(__ccgo_up(bp + 4)))[s145]
-	**(**Tuint32_t)(__ccgo_up(r204)) = (**(**[16]Tuint32_t)(__ccgo_up(bp + 4)))[s84]
-	**(**Tuint32_t)(__ccgo_up(r204 + 1*4)) = uu____64
-	**(**Tuint32_t)(__ccgo_up(r204 + 2*4)) = uu____74
-	**(**Tuint32_t)(__ccgo_up(r204 + 3*4)) = uu____84
-	uu____94 = (**(**[16]Tuint32_t)(__ccgo_up(bp + 4)))[s115]
-	uu____104 = (**(**[16]Tuint32_t)(__ccgo_up(bp + 4)))[s135]
-	uu____115 = (**(**[16]Tuint32_t)(__ccgo_up(bp + 4)))[s155]
-	**(**Tuint32_t)(__ccgo_up(r304)) = (**(**[16]Tuint32_t)(__ccgo_up(bp + 4)))[s94]
-	**(**Tuint32_t)(__ccgo_up(r304 + 1*4)) = uu____94
-	**(**Tuint32_t)(__ccgo_up(r304 + 2*4)) = uu____104
-	**(**Tuint32_t)(__ccgo_up(r304 + 3*4)) = uu____115
-	x25 = bp + 324
-	y4 = bp + 324 + uintptr(4)*4
-	z4 = bp + 324 + uintptr(8)*4
-	w4 = bp + 324 + uintptr(12)*4
-	a4 = 0
-	b04 = uint32(1)
-	c04 = uint32(2)
-	d104 = uint32(3)
-	wv_a04 = wv + uintptr(a4*uint32(4))*4
-	wv_b04 = wv + uintptr(b04*uint32(4))*4
-	i114 = 0
-	os468 = wv_a04
-	x1462 = **(**Tuint32_t)(__ccgo_up(wv_a04 + uintptr(i114)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b04 + uintptr(i114)*4))
-	**(**Tuint32_t)(__ccgo_up(os468 + uintptr(i114)*4)) = x1462
-	i114 = i114 + uint32(1)
-	_ = i114
-	os469 = wv_a04
-	x1463 = **(**Tuint32_t)(__ccgo_up(wv_a04 + uintptr(i114)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b04 + uintptr(i114)*4))
-	**(**Tuint32_t)(__ccgo_up(os469 + uintptr(i114)*4)) = x1463
-	i114 = i114 + uint32(1)
-	_ = i114
-	os470 = wv_a04
-	x1464 = **(**Tuint32_t)(__ccgo_up(wv_a04 + uintptr(i114)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b04 + uintptr(i114)*4))
-	**(**Tuint32_t)(__ccgo_up(os470 + uintptr(i114)*4)) = x1464
-	i114 = i114 + uint32(1)
-	_ = i114
-	os471 = wv_a04
-	x1465 = **(**Tuint32_t)(__ccgo_up(wv_a04 + uintptr(i114)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b04 + uintptr(i114)*4))
-	**(**Tuint32_t)(__ccgo_up(os471 + uintptr(i114)*4)) = x1465
-	i114 = i114 + uint32(1)
-	_ = i114
-	i115 = 0
-	os472 = wv_a04
-	x1466 = **(**Tuint32_t)(__ccgo_up(wv_a04 + uintptr(i115)*4)) + **(**Tuint32_t)(__ccgo_up(x25 + uintptr(i115)*4))
-	**(**Tuint32_t)(__ccgo_up(os472 + uintptr(i115)*4)) = x1466
-	i115 = i115 + uint32(1)
-	_ = i115
-	os473 = wv_a04
-	x1467 = **(**Tuint32_t)(__ccgo_up(wv_a04 + uintptr(i115)*4)) + **(**Tuint32_t)(__ccgo_up(x25 + uintptr(i115)*4))
-	**(**Tuint32_t)(__ccgo_up(os473 + uintptr(i115)*4)) = x1467
-	i115 = i115 + uint32(1)
-	_ = i115
-	os474 = wv_a04
-	x1468 = **(**Tuint32_t)(__ccgo_up(wv_a04 + uintptr(i115)*4)) + **(**Tuint32_t)(__ccgo_up(x25 + uintptr(i115)*4))
-	**(**Tuint32_t)(__ccgo_up(os474 + uintptr(i115)*4)) = x1468
-	i115 = i115 + uint32(1)
-	_ = i115
-	os475 = wv_a04
-	x1469 = **(**Tuint32_t)(__ccgo_up(wv_a04 + uintptr(i115)*4)) + **(**Tuint32_t)(__ccgo_up(x25 + uintptr(i115)*4))
-	**(**Tuint32_t)(__ccgo_up(os475 + uintptr(i115)*4)) = x1469
-	i115 = i115 + uint32(1)
-	_ = i115
-	wv_a15 = wv + uintptr(d104*uint32(4))*4
-	wv_b15 = wv + uintptr(a4*uint32(4))*4
-	i116 = 0
-	os476 = wv_a15
-	x1470 = **(**Tuint32_t)(__ccgo_up(wv_a15 + uintptr(i116)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b15 + uintptr(i116)*4))
-	**(**Tuint32_t)(__ccgo_up(os476 + uintptr(i116)*4)) = x1470
-	i116 = i116 + uint32(1)
-	_ = i116
-	os477 = wv_a15
-	x1471 = **(**Tuint32_t)(__ccgo_up(wv_a15 + uintptr(i116)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b15 + uintptr(i116)*4))
-	**(**Tuint32_t)(__ccgo_up(os477 + uintptr(i116)*4)) = x1471
-	i116 = i116 + uint32(1)
-	_ = i116
-	os478 = wv_a15
-	x1472 = **(**Tuint32_t)(__ccgo_up(wv_a15 + uintptr(i116)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b15 + uintptr(i116)*4))
-	**(**Tuint32_t)(__ccgo_up(os478 + uintptr(i116)*4)) = x1472
-	i116 = i116 + uint32(1)
-	_ = i116
-	os479 = wv_a15
-	x1473 = **(**Tuint32_t)(__ccgo_up(wv_a15 + uintptr(i116)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b15 + uintptr(i116)*4))
-	**(**Tuint32_t)(__ccgo_up(os479 + uintptr(i116)*4)) = x1473
-	i116 = i116 + uint32(1)
-	_ = i116
-	r105 = wv_a15
-	i117 = 0
-	os480 = r105
-	x1474 = **(**Tuint32_t)(__ccgo_up(r105 + uintptr(i117)*4))
-	x1069 = x1474>>uint32(16) | x1474<<uint32(16)
-	**(**Tuint32_t)(__ccgo_up(os480 + uintptr(i117)*4)) = x1069
-	i117 = i117 + uint32(1)
-	_ = i117
-	os481 = r105
-	x1475 = **(**Tuint32_t)(__ccgo_up(r105 + uintptr(i117)*4))
-	x1070 = x1475>>uint32(16) | x1475<<uint32(16)
-	**(**Tuint32_t)(__ccgo_up(os481 + uintptr(i117)*4)) = x1070
-	i117 = i117 + uint32(1)
-	_ = i117
-	os482 = r105
-	x1476 = **(**Tuint32_t)(__ccgo_up(r105 + uintptr(i117)*4))
-	x1071 = x1476>>uint32(16) | x1476<<uint32(16)
-	**(**Tuint32_t)(__ccgo_up(os482 + uintptr(i117)*4)) = x1071
-	i117 = i117 + uint32(1)
-	_ = i117
-	os483 = r105
-	x1477 = **(**Tuint32_t)(__ccgo_up(r105 + uintptr(i117)*4))
-	x1072 = x1477>>uint32(16) | x1477<<uint32(16)
-	**(**Tuint32_t)(__ccgo_up(os483 + uintptr(i117)*4)) = x1072
-	i117 = i117 + uint32(1)
-	_ = i117
-	wv_a25 = wv + uintptr(c04*uint32(4))*4
-	wv_b25 = wv + uintptr(d104*uint32(4))*4
-	i118 = 0
-	os484 = wv_a25
-	x1478 = **(**Tuint32_t)(__ccgo_up(wv_a25 + uintptr(i118)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b25 + uintptr(i118)*4))
-	**(**Tuint32_t)(__ccgo_up(os484 + uintptr(i118)*4)) = x1478
-	i118 = i118 + uint32(1)
-	_ = i118
-	os485 = wv_a25
-	x1479 = **(**Tuint32_t)(__ccgo_up(wv_a25 + uintptr(i118)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b25 + uintptr(i118)*4))
-	**(**Tuint32_t)(__ccgo_up(os485 + uintptr(i118)*4)) = x1479
-	i118 = i118 + uint32(1)
-	_ = i118
-	os486 = wv_a25
-	x1480 = **(**Tuint32_t)(__ccgo_up(wv_a25 + uintptr(i118)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b25 + uintptr(i118)*4))
-	**(**Tuint32_t)(__ccgo_up(os486 + uintptr(i118)*4)) = x1480
-	i118 = i118 + uint32(1)
-	_ = i118
-	os487 = wv_a25
-	x1481 = **(**Tuint32_t)(__ccgo_up(wv_a25 + uintptr(i118)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b25 + uintptr(i118)*4))
-	**(**Tuint32_t)(__ccgo_up(os487 + uintptr(i118)*4)) = x1481
-	i118 = i118 + uint32(1)
-	_ = i118
-	wv_a35 = wv + uintptr(b04*uint32(4))*4
-	wv_b35 = wv + uintptr(c04*uint32(4))*4
-	i119 = 0
-	os488 = wv_a35
-	x1482 = **(**Tuint32_t)(__ccgo_up(wv_a35 + uintptr(i119)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b35 + uintptr(i119)*4))
-	**(**Tuint32_t)(__ccgo_up(os488 + uintptr(i119)*4)) = x1482
-	i119 = i119 + uint32(1)
-	_ = i119
-	os489 = wv_a35
-	x1483 = **(**Tuint32_t)(__ccgo_up(wv_a35 + uintptr(i119)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b35 + uintptr(i119)*4))
-	**(**Tuint32_t)(__ccgo_up(os489 + uintptr(i119)*4)) = x1483
-	i119 = i119 + uint32(1)
-	_ = i119
-	os490 = wv_a35
-	x1484 = **(**Tuint32_t)(__ccgo_up(wv_a35 + uintptr(i119)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b35 + uintptr(i119)*4))
-	**(**Tuint32_t)(__ccgo_up(os490 + uintptr(i119)*4)) = x1484
-	i119 = i119 + uint32(1)
-	_ = i119
-	os491 = wv_a35
-	x1485 = **(**Tuint32_t)(__ccgo_up(wv_a35 + uintptr(i119)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b35 + uintptr(i119)*4))
-	**(**Tuint32_t)(__ccgo_up(os491 + uintptr(i119)*4)) = x1485
-	i119 = i119 + uint32(1)
-	_ = i119
-	r125 = wv_a35
-	i120 = 0
-	os492 = r125
-	x1486 = **(**Tuint32_t)(__ccgo_up(r125 + uintptr(i120)*4))
-	x1073 = x1486>>uint32(12) | x1486<<uint32(20)
-	**(**Tuint32_t)(__ccgo_up(os492 + uintptr(i120)*4)) = x1073
-	i120 = i120 + uint32(1)
-	_ = i120
-	os493 = r125
-	x1487 = **(**Tuint32_t)(__ccgo_up(r125 + uintptr(i120)*4))
-	x1074 = x1487>>uint32(12) | x1487<<uint32(20)
-	**(**Tuint32_t)(__ccgo_up(os493 + uintptr(i120)*4)) = x1074
-	i120 = i120 + uint32(1)
-	_ = i120
-	os494 = r125
-	x1488 = **(**Tuint32_t)(__ccgo_up(r125 + uintptr(i120)*4))
-	x1075 = x1488>>uint32(12) | x1488<<uint32(20)
-	**(**Tuint32_t)(__ccgo_up(os494 + uintptr(i120)*4)) = x1075
-	i120 = i120 + uint32(1)
-	_ = i120
-	os495 = r125
-	x1489 = **(**Tuint32_t)(__ccgo_up(r125 + uintptr(i120)*4))
-	x1076 = x1489>>uint32(12) | x1489<<uint32(20)
-	**(**Tuint32_t)(__ccgo_up(os495 + uintptr(i120)*4)) = x1076
-	i120 = i120 + uint32(1)
-	_ = i120
-	wv_a45 = wv + uintptr(a4*uint32(4))*4
-	wv_b45 = wv + uintptr(b04*uint32(4))*4
-	i121 = 0
-	os496 = wv_a45
-	x1490 = **(**Tuint32_t)(__ccgo_up(wv_a45 + uintptr(i121)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b45 + uintptr(i121)*4))
-	**(**Tuint32_t)(__ccgo_up(os496 + uintptr(i121)*4)) = x1490
-	i121 = i121 + uint32(1)
-	_ = i121
-	os497 = wv_a45
-	x1491 = **(**Tuint32_t)(__ccgo_up(wv_a45 + uintptr(i121)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b45 + uintptr(i121)*4))
-	**(**Tuint32_t)(__ccgo_up(os497 + uintptr(i121)*4)) = x1491
-	i121 = i121 + uint32(1)
-	_ = i121
-	os498 = wv_a45
-	x1492 = **(**Tuint32_t)(__ccgo_up(wv_a45 + uintptr(i121)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b45 + uintptr(i121)*4))
-	**(**Tuint32_t)(__ccgo_up(os498 + uintptr(i121)*4)) = x1492
-	i121 = i121 + uint32(1)
-	_ = i121
-	os499 = wv_a45
-	x1493 = **(**Tuint32_t)(__ccgo_up(wv_a45 + uintptr(i121)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b45 + uintptr(i121)*4))
-	**(**Tuint32_t)(__ccgo_up(os499 + uintptr(i121)*4)) = x1493
-	i121 = i121 + uint32(1)
-	_ = i121
-	i122 = 0
-	os500 = wv_a45
-	x1494 = **(**Tuint32_t)(__ccgo_up(wv_a45 + uintptr(i122)*4)) + **(**Tuint32_t)(__ccgo_up(y4 + uintptr(i122)*4))
-	**(**Tuint32_t)(__ccgo_up(os500 + uintptr(i122)*4)) = x1494
-	i122 = i122 + uint32(1)
-	_ = i122
-	os501 = wv_a45
-	x1495 = **(**Tuint32_t)(__ccgo_up(wv_a45 + uintptr(i122)*4)) + **(**Tuint32_t)(__ccgo_up(y4 + uintptr(i122)*4))
-	**(**Tuint32_t)(__ccgo_up(os501 + uintptr(i122)*4)) = x1495
-	i122 = i122 + uint32(1)
-	_ = i122
-	os502 = wv_a45
-	x1496 = **(**Tuint32_t)(__ccgo_up(wv_a45 + uintptr(i122)*4)) + **(**Tuint32_t)(__ccgo_up(y4 + uintptr(i122)*4))
-	**(**Tuint32_t)(__ccgo_up(os502 + uintptr(i122)*4)) = x1496
-	i122 = i122 + uint32(1)
-	_ = i122
-	os503 = wv_a45
-	x1497 = **(**Tuint32_t)(__ccgo_up(wv_a45 + uintptr(i122)*4)) + **(**Tuint32_t)(__ccgo_up(y4 + uintptr(i122)*4))
-	**(**Tuint32_t)(__ccgo_up(os503 + uintptr(i122)*4)) = x1497
-	i122 = i122 + uint32(1)
-	_ = i122
-	wv_a55 = wv + uintptr(d104*uint32(4))*4
-	wv_b55 = wv + uintptr(a4*uint32(4))*4
-	i123 = 0
-	os504 = wv_a55
-	x1498 = **(**Tuint32_t)(__ccgo_up(wv_a55 + uintptr(i123)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b55 + uintptr(i123)*4))
-	**(**Tuint32_t)(__ccgo_up(os504 + uintptr(i123)*4)) = x1498
-	i123 = i123 + uint32(1)
-	_ = i123
-	os505 = wv_a55
-	x1499 = **(**Tuint32_t)(__ccgo_up(wv_a55 + uintptr(i123)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b55 + uintptr(i123)*4))
-	**(**Tuint32_t)(__ccgo_up(os505 + uintptr(i123)*4)) = x1499
-	i123 = i123 + uint32(1)
-	_ = i123
-	os506 = wv_a55
-	x1500 = **(**Tuint32_t)(__ccgo_up(wv_a55 + uintptr(i123)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b55 + uintptr(i123)*4))
-	**(**Tuint32_t)(__ccgo_up(os506 + uintptr(i123)*4)) = x1500
-	i123 = i123 + uint32(1)
-	_ = i123
-	os507 = wv_a55
-	x1501 = **(**Tuint32_t)(__ccgo_up(wv_a55 + uintptr(i123)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b55 + uintptr(i123)*4))
-	**(**Tuint32_t)(__ccgo_up(os507 + uintptr(i123)*4)) = x1501
-	i123 = i123 + uint32(1)
-	_ = i123
-	r135 = wv_a55
-	i124 = 0
-	os508 = r135
-	x1502 = **(**Tuint32_t)(__ccgo_up(r135 + uintptr(i124)*4))
-	x1077 = x1502>>uint32(8) | x1502<<uint32(24)
-	**(**Tuint32_t)(__ccgo_up(os508 + uintptr(i124)*4)) = x1077
-	i124 = i124 + uint32(1)
-	_ = i124
-	os509 = r135
-	x1503 = **(**Tuint32_t)(__ccgo_up(r135 + uintptr(i124)*4))
-	x1078 = x1503>>uint32(8) | x1503<<uint32(24)
-	**(**Tuint32_t)(__ccgo_up(os509 + uintptr(i124)*4)) = x1078
-	i124 = i124 + uint32(1)
-	_ = i124
-	os510 = r135
-	x1504 = **(**Tuint32_t)(__ccgo_up(r135 + uintptr(i124)*4))
-	x1079 = x1504>>uint32(8) | x1504<<uint32(24)
-	**(**Tuint32_t)(__ccgo_up(os510 + uintptr(i124)*4)) = x1079
-	i124 = i124 + uint32(1)
-	_ = i124
-	os511 = r135
-	x1505 = **(**Tuint32_t)(__ccgo_up(r135 + uintptr(i124)*4))
-	x1080 = x1505>>uint32(8) | x1505<<uint32(24)
-	**(**Tuint32_t)(__ccgo_up(os511 + uintptr(i124)*4)) = x1080
-	i124 = i124 + uint32(1)
-	_ = i124
-	wv_a65 = wv + uintptr(c04*uint32(4))*4
-	wv_b65 = wv + uintptr(d104*uint32(4))*4
-	i125 = 0
-	os512 = wv_a65
-	x1506 = **(**Tuint32_t)(__ccgo_up(wv_a65 + uintptr(i125)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b65 + uintptr(i125)*4))
-	**(**Tuint32_t)(__ccgo_up(os512 + uintptr(i125)*4)) = x1506
-	i125 = i125 + uint32(1)
-	_ = i125
-	os513 = wv_a65
-	x1507 = **(**Tuint32_t)(__ccgo_up(wv_a65 + uintptr(i125)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b65 + uintptr(i125)*4))
-	**(**Tuint32_t)(__ccgo_up(os513 + uintptr(i125)*4)) = x1507
-	i125 = i125 + uint32(1)
-	_ = i125
-	os514 = wv_a65
-	x1508 = **(**Tuint32_t)(__ccgo_up(wv_a65 + uintptr(i125)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b65 + uintptr(i125)*4))
-	**(**Tuint32_t)(__ccgo_up(os514 + uintptr(i125)*4)) = x1508
-	i125 = i125 + uint32(1)
-	_ = i125
-	os515 = wv_a65
-	x1509 = **(**Tuint32_t)(__ccgo_up(wv_a65 + uintptr(i125)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b65 + uintptr(i125)*4))
-	**(**Tuint32_t)(__ccgo_up(os515 + uintptr(i125)*4)) = x1509
-	i125 = i125 + uint32(1)
-	_ = i125
-	wv_a75 = wv + uintptr(b04*uint32(4))*4
-	wv_b75 = wv + uintptr(c04*uint32(4))*4
-	i126 = 0
-	os516 = wv_a75
-	x1510 = **(**Tuint32_t)(__ccgo_up(wv_a75 + uintptr(i126)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b75 + uintptr(i126)*4))
-	**(**Tuint32_t)(__ccgo_up(os516 + uintptr(i126)*4)) = x1510
-	i126 = i126 + uint32(1)
-	_ = i126
-	os517 = wv_a75
-	x1511 = **(**Tuint32_t)(__ccgo_up(wv_a75 + uintptr(i126)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b75 + uintptr(i126)*4))
-	**(**Tuint32_t)(__ccgo_up(os517 + uintptr(i126)*4)) = x1511
-	i126 = i126 + uint32(1)
-	_ = i126
-	os518 = wv_a75
-	x1512 = **(**Tuint32_t)(__ccgo_up(wv_a75 + uintptr(i126)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b75 + uintptr(i126)*4))
-	**(**Tuint32_t)(__ccgo_up(os518 + uintptr(i126)*4)) = x1512
-	i126 = i126 + uint32(1)
-	_ = i126
-	os519 = wv_a75
-	x1513 = **(**Tuint32_t)(__ccgo_up(wv_a75 + uintptr(i126)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b75 + uintptr(i126)*4))
-	**(**Tuint32_t)(__ccgo_up(os519 + uintptr(i126)*4)) = x1513
-	i126 = i126 + uint32(1)
-	_ = i126
-	r145 = wv_a75
-	i127 = 0
-	os520 = r145
-	x1514 = **(**Tuint32_t)(__ccgo_up(r145 + uintptr(i127)*4))
-	x1081 = x1514>>uint32(7) | x1514<<uint32(25)
-	**(**Tuint32_t)(__ccgo_up(os520 + uintptr(i127)*4)) = x1081
-	i127 = i127 + uint32(1)
-	_ = i127
-	os521 = r145
-	x1515 = **(**Tuint32_t)(__ccgo_up(r145 + uintptr(i127)*4))
-	x1082 = x1515>>uint32(7) | x1515<<uint32(25)
-	**(**Tuint32_t)(__ccgo_up(os521 + uintptr(i127)*4)) = x1082
-	i127 = i127 + uint32(1)
-	_ = i127
-	os522 = r145
-	x1516 = **(**Tuint32_t)(__ccgo_up(r145 + uintptr(i127)*4))
-	x1083 = x1516>>uint32(7) | x1516<<uint32(25)
-	**(**Tuint32_t)(__ccgo_up(os522 + uintptr(i127)*4)) = x1083
-	i127 = i127 + uint32(1)
-	_ = i127
-	os523 = r145
-	x1517 = **(**Tuint32_t)(__ccgo_up(r145 + uintptr(i127)*4))
-	x1084 = x1517>>uint32(7) | x1517<<uint32(25)
-	**(**Tuint32_t)(__ccgo_up(os523 + uintptr(i127)*4)) = x1084
-	i127 = i127 + uint32(1)
-	_ = i127
-	r155 = wv + uintptr(4)*4
-	r216 = wv + uintptr(8)*4
-	r316 = wv + uintptr(12)*4
-	r1105 = r155
-	x004 = **(**Tuint32_t)(__ccgo_up(r1105 + 1*4))
-	x1085 = **(**Tuint32_t)(__ccgo_up(r1105 + 2*4))
-	x205 = **(**Tuint32_t)(__ccgo_up(r1105 + 3*4))
-	x305 = **(**Tuint32_t)(__ccgo_up(r1105))
-	**(**Tuint32_t)(__ccgo_up(r1105)) = x004
-	**(**Tuint32_t)(__ccgo_up(r1105 + 1*4)) = x1085
-	**(**Tuint32_t)(__ccgo_up(r1105 + 2*4)) = x205
-	**(**Tuint32_t)(__ccgo_up(r1105 + 3*4)) = x305
-	r11111 = r216
-	x015 = **(**Tuint32_t)(__ccgo_up(r11111 + 2*4))
-	x11144 = **(**Tuint32_t)(__ccgo_up(r11111 + 3*4))
-	x2114 = **(**Tuint32_t)(__ccgo_up(r11111))
-	x3114 = **(**Tuint32_t)(__ccgo_up(r11111 + 1*4))
-	**(**Tuint32_t)(__ccgo_up(r11111)) = x015
-	**(**Tuint32_t)(__ccgo_up(r11111 + 1*4)) = x11144
-	**(**Tuint32_t)(__ccgo_up(r11111 + 2*4)) = x2114
-	**(**Tuint32_t)(__ccgo_up(r11111 + 3*4)) = x3114
-	r1125 = r316
-	x025 = **(**Tuint32_t)(__ccgo_up(r1125 + 3*4))
-	x12104 = **(**Tuint32_t)(__ccgo_up(r1125))
-	x225 = **(**Tuint32_t)(__ccgo_up(r1125 + 1*4))
-	x325 = **(**Tuint32_t)(__ccgo_up(r1125 + 2*4))
-	**(**Tuint32_t)(__ccgo_up(r1125)) = x025
-	**(**Tuint32_t)(__ccgo_up(r1125 + 1*4)) = x12104
-	**(**Tuint32_t)(__ccgo_up(r1125 + 2*4)) = x225
-	**(**Tuint32_t)(__ccgo_up(r1125 + 3*4)) = x325
-	a04 = 0
-	b5 = uint32(1)
-	c4 = uint32(2)
-	d14 = uint32(3)
-	wv_a4 = wv + uintptr(a04*uint32(4))*4
-	wv_b85 = wv + uintptr(b5*uint32(4))*4
-	i128 = 0
-	os524 = wv_a4
-	x1518 = **(**Tuint32_t)(__ccgo_up(wv_a4 + uintptr(i128)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b85 + uintptr(i128)*4))
-	**(**Tuint32_t)(__ccgo_up(os524 + uintptr(i128)*4)) = x1518
-	i128 = i128 + uint32(1)
-	_ = i128
-	os525 = wv_a4
-	x1519 = **(**Tuint32_t)(__ccgo_up(wv_a4 + uintptr(i128)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b85 + uintptr(i128)*4))
-	**(**Tuint32_t)(__ccgo_up(os525 + uintptr(i128)*4)) = x1519
-	i128 = i128 + uint32(1)
-	_ = i128
-	os526 = wv_a4
-	x1520 = **(**Tuint32_t)(__ccgo_up(wv_a4 + uintptr(i128)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b85 + uintptr(i128)*4))
-	**(**Tuint32_t)(__ccgo_up(os526 + uintptr(i128)*4)) = x1520
-	i128 = i128 + uint32(1)
-	_ = i128
-	os527 = wv_a4
-	x1521 = **(**Tuint32_t)(__ccgo_up(wv_a4 + uintptr(i128)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b85 + uintptr(i128)*4))
-	**(**Tuint32_t)(__ccgo_up(os527 + uintptr(i128)*4)) = x1521
-	i128 = i128 + uint32(1)
-	_ = i128
-	i129 = 0
-	os528 = wv_a4
-	x1522 = **(**Tuint32_t)(__ccgo_up(wv_a4 + uintptr(i129)*4)) + **(**Tuint32_t)(__ccgo_up(z4 + uintptr(i129)*4))
-	**(**Tuint32_t)(__ccgo_up(os528 + uintptr(i129)*4)) = x1522
-	i129 = i129 + uint32(1)
-	_ = i129
-	os529 = wv_a4
-	x1523 = **(**Tuint32_t)(__ccgo_up(wv_a4 + uintptr(i129)*4)) + **(**Tuint32_t)(__ccgo_up(z4 + uintptr(i129)*4))
-	**(**Tuint32_t)(__ccgo_up(os529 + uintptr(i129)*4)) = x1523
-	i129 = i129 + uint32(1)
-	_ = i129
-	os530 = wv_a4
-	x1524 = **(**Tuint32_t)(__ccgo_up(wv_a4 + uintptr(i129)*4)) + **(**Tuint32_t)(__ccgo_up(z4 + uintptr(i129)*4))
-	**(**Tuint32_t)(__ccgo_up(os530 + uintptr(i129)*4)) = x1524
-	i129 = i129 + uint32(1)
-	_ = i129
-	os531 = wv_a4
-	x1525 = **(**Tuint32_t)(__ccgo_up(wv_a4 + uintptr(i129)*4)) + **(**Tuint32_t)(__ccgo_up(z4 + uintptr(i129)*4))
-	**(**Tuint32_t)(__ccgo_up(os531 + uintptr(i129)*4)) = x1525
-	i129 = i129 + uint32(1)
-	_ = i129
-	wv_a85 = wv + uintptr(d14*uint32(4))*4
-	wv_b95 = wv + uintptr(a04*uint32(4))*4
-	i130 = 0
-	os532 = wv_a85
-	x1526 = **(**Tuint32_t)(__ccgo_up(wv_a85 + uintptr(i130)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b95 + uintptr(i130)*4))
-	**(**Tuint32_t)(__ccgo_up(os532 + uintptr(i130)*4)) = x1526
-	i130 = i130 + uint32(1)
-	_ = i130
-	os533 = wv_a85
-	x1527 = **(**Tuint32_t)(__ccgo_up(wv_a85 + uintptr(i130)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b95 + uintptr(i130)*4))
-	**(**Tuint32_t)(__ccgo_up(os533 + uintptr(i130)*4)) = x1527
-	i130 = i130 + uint32(1)
-	_ = i130
-	os534 = wv_a85
-	x1528 = **(**Tuint32_t)(__ccgo_up(wv_a85 + uintptr(i130)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b95 + uintptr(i130)*4))
-	**(**Tuint32_t)(__ccgo_up(os534 + uintptr(i130)*4)) = x1528
-	i130 = i130 + uint32(1)
-	_ = i130
-	os535 = wv_a85
-	x1529 = **(**Tuint32_t)(__ccgo_up(wv_a85 + uintptr(i130)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b95 + uintptr(i130)*4))
-	**(**Tuint32_t)(__ccgo_up(os535 + uintptr(i130)*4)) = x1529
-	i130 = i130 + uint32(1)
-	_ = i130
-	r165 = wv_a85
-	i131 = 0
-	os536 = r165
-	x1530 = **(**Tuint32_t)(__ccgo_up(r165 + uintptr(i131)*4))
-	x13168 = x1530>>uint32(16) | x1530<<uint32(16)
-	**(**Tuint32_t)(__ccgo_up(os536 + uintptr(i131)*4)) = x13168
-	i131 = i131 + uint32(1)
-	_ = i131
-	os537 = r165
-	x1531 = **(**Tuint32_t)(__ccgo_up(r165 + uintptr(i131)*4))
-	x13169 = x1531>>uint32(16) | x1531<<uint32(16)
-	**(**Tuint32_t)(__ccgo_up(os537 + uintptr(i131)*4)) = x13169
-	i131 = i131 + uint32(1)
-	_ = i131
-	os538 = r165
-	x1532 = **(**Tuint32_t)(__ccgo_up(r165 + uintptr(i131)*4))
-	x13170 = x1532>>uint32(16) | x1532<<uint32(16)
-	**(**Tuint32_t)(__ccgo_up(os538 + uintptr(i131)*4)) = x13170
-	i131 = i131 + uint32(1)
-	_ = i131
-	os539 = r165
-	x1533 = **(**Tuint32_t)(__ccgo_up(r165 + uintptr(i131)*4))
-	x13171 = x1533>>uint32(16) | x1533<<uint32(16)
-	**(**Tuint32_t)(__ccgo_up(os539 + uintptr(i131)*4)) = x13171
-	i131 = i131 + uint32(1)
-	_ = i131
-	wv_a95 = wv + uintptr(c4*uint32(4))*4
-	wv_b104 = wv + uintptr(d14*uint32(4))*4
-	i132 = 0
-	os540 = wv_a95
-	x1534 = **(**Tuint32_t)(__ccgo_up(wv_a95 + uintptr(i132)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b104 + uintptr(i132)*4))
-	**(**Tuint32_t)(__ccgo_up(os540 + uintptr(i132)*4)) = x1534
-	i132 = i132 + uint32(1)
-	_ = i132
-	os541 = wv_a95
-	x1535 = **(**Tuint32_t)(__ccgo_up(wv_a95 + uintptr(i132)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b104 + uintptr(i132)*4))
-	**(**Tuint32_t)(__ccgo_up(os541 + uintptr(i132)*4)) = x1535
-	i132 = i132 + uint32(1)
-	_ = i132
-	os542 = wv_a95
-	x1536 = **(**Tuint32_t)(__ccgo_up(wv_a95 + uintptr(i132)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b104 + uintptr(i132)*4))
-	**(**Tuint32_t)(__ccgo_up(os542 + uintptr(i132)*4)) = x1536
-	i132 = i132 + uint32(1)
-	_ = i132
-	os543 = wv_a95
-	x1537 = **(**Tuint32_t)(__ccgo_up(wv_a95 + uintptr(i132)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b104 + uintptr(i132)*4))
-	**(**Tuint32_t)(__ccgo_up(os543 + uintptr(i132)*4)) = x1537
-	i132 = i132 + uint32(1)
-	_ = i132
-	wv_a104 = wv + uintptr(b5*uint32(4))*4
-	wv_b115 = wv + uintptr(c4*uint32(4))*4
-	i133 = 0
-	os544 = wv_a104
-	x1538 = **(**Tuint32_t)(__ccgo_up(wv_a104 + uintptr(i133)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b115 + uintptr(i133)*4))
-	**(**Tuint32_t)(__ccgo_up(os544 + uintptr(i133)*4)) = x1538
-	i133 = i133 + uint32(1)
-	_ = i133
-	os545 = wv_a104
-	x1539 = **(**Tuint32_t)(__ccgo_up(wv_a104 + uintptr(i133)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b115 + uintptr(i133)*4))
-	**(**Tuint32_t)(__ccgo_up(os545 + uintptr(i133)*4)) = x1539
-	i133 = i133 + uint32(1)
-	_ = i133
-	os546 = wv_a104
-	x1540 = **(**Tuint32_t)(__ccgo_up(wv_a104 + uintptr(i133)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b115 + uintptr(i133)*4))
-	**(**Tuint32_t)(__ccgo_up(os546 + uintptr(i133)*4)) = x1540
-	i133 = i133 + uint32(1)
-	_ = i133
-	os547 = wv_a104
-	x1541 = **(**Tuint32_t)(__ccgo_up(wv_a104 + uintptr(i133)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b115 + uintptr(i133)*4))
-	**(**Tuint32_t)(__ccgo_up(os547 + uintptr(i133)*4)) = x1541
-	i133 = i133 + uint32(1)
-	_ = i133
-	r175 = wv_a104
-	i134 = 0
-	os548 = r175
-	x1542 = **(**Tuint32_t)(__ccgo_up(r175 + uintptr(i134)*4))
-	x13172 = x1542>>uint32(12) | x1542<<uint32(20)
-	**(**Tuint32_t)(__ccgo_up(os548 + uintptr(i134)*4)) = x13172
-	i134 = i134 + uint32(1)
-	_ = i134
-	os549 = r175
-	x1543 = **(**Tuint32_t)(__ccgo_up(r175 + uintptr(i134)*4))
-	x13173 = x1543>>uint32(12) | x1543<<uint32(20)
-	**(**Tuint32_t)(__ccgo_up(os549 + uintptr(i134)*4)) = x13173
-	i134 = i134 + uint32(1)
-	_ = i134
-	os550 = r175
-	x1544 = **(**Tuint32_t)(__ccgo_up(r175 + uintptr(i134)*4))
-	x13174 = x1544>>uint32(12) | x1544<<uint32(20)
-	**(**Tuint32_t)(__ccgo_up(os550 + uintptr(i134)*4)) = x13174
-	i134 = i134 + uint32(1)
-	_ = i134
-	os551 = r175
-	x1545 = **(**Tuint32_t)(__ccgo_up(r175 + uintptr(i134)*4))
-	x13175 = x1545>>uint32(12) | x1545<<uint32(20)
-	**(**Tuint32_t)(__ccgo_up(os551 + uintptr(i134)*4)) = x13175
-	i134 = i134 + uint32(1)
-	_ = i134
-	wv_a115 = wv + uintptr(a04*uint32(4))*4
-	wv_b125 = wv + uintptr(b5*uint32(4))*4
-	i135 = 0
-	os552 = wv_a115
-	x1546 = **(**Tuint32_t)(__ccgo_up(wv_a115 + uintptr(i135)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b125 + uintptr(i135)*4))
-	**(**Tuint32_t)(__ccgo_up(os552 + uintptr(i135)*4)) = x1546
-	i135 = i135 + uint32(1)
-	_ = i135
-	os553 = wv_a115
-	x1547 = **(**Tuint32_t)(__ccgo_up(wv_a115 + uintptr(i135)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b125 + uintptr(i135)*4))
-	**(**Tuint32_t)(__ccgo_up(os553 + uintptr(i135)*4)) = x1547
-	i135 = i135 + uint32(1)
-	_ = i135
-	os554 = wv_a115
-	x1548 = **(**Tuint32_t)(__ccgo_up(wv_a115 + uintptr(i135)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b125 + uintptr(i135)*4))
-	**(**Tuint32_t)(__ccgo_up(os554 + uintptr(i135)*4)) = x1548
-	i135 = i135 + uint32(1)
-	_ = i135
-	os555 = wv_a115
-	x1549 = **(**Tuint32_t)(__ccgo_up(wv_a115 + uintptr(i135)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b125 + uintptr(i135)*4))
-	**(**Tuint32_t)(__ccgo_up(os555 + uintptr(i135)*4)) = x1549
-	i135 = i135 + uint32(1)
-	_ = i135
-	i136 = 0
-	os556 = wv_a115
-	x1550 = **(**Tuint32_t)(__ccgo_up(wv_a115 + uintptr(i136)*4)) + **(**Tuint32_t)(__ccgo_up(w4 + uintptr(i136)*4))
-	**(**Tuint32_t)(__ccgo_up(os556 + uintptr(i136)*4)) = x1550
-	i136 = i136 + uint32(1)
-	_ = i136
-	os557 = wv_a115
-	x1551 = **(**Tuint32_t)(__ccgo_up(wv_a115 + uintptr(i136)*4)) + **(**Tuint32_t)(__ccgo_up(w4 + uintptr(i136)*4))
-	**(**Tuint32_t)(__ccgo_up(os557 + uintptr(i136)*4)) = x1551
-	i136 = i136 + uint32(1)
-	_ = i136
-	os558 = wv_a115
-	x1552 = **(**Tuint32_t)(__ccgo_up(wv_a115 + uintptr(i136)*4)) + **(**Tuint32_t)(__ccgo_up(w4 + uintptr(i136)*4))
-	**(**Tuint32_t)(__ccgo_up(os558 + uintptr(i136)*4)) = x1552
-	i136 = i136 + uint32(1)
-	_ = i136
-	os559 = wv_a115
-	x1553 = **(**Tuint32_t)(__ccgo_up(wv_a115 + uintptr(i136)*4)) + **(**Tuint32_t)(__ccgo_up(w4 + uintptr(i136)*4))
-	**(**Tuint32_t)(__ccgo_up(os559 + uintptr(i136)*4)) = x1553
-	i136 = i136 + uint32(1)
-	_ = i136
-	wv_a125 = wv + uintptr(d14*uint32(4))*4
-	wv_b135 = wv + uintptr(a04*uint32(4))*4
-	i137 = 0
-	os560 = wv_a125
-	x1554 = **(**Tuint32_t)(__ccgo_up(wv_a125 + uintptr(i137)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b135 + uintptr(i137)*4))
-	**(**Tuint32_t)(__ccgo_up(os560 + uintptr(i137)*4)) = x1554
-	i137 = i137 + uint32(1)
-	_ = i137
-	os561 = wv_a125
-	x1555 = **(**Tuint32_t)(__ccgo_up(wv_a125 + uintptr(i137)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b135 + uintptr(i137)*4))
-	**(**Tuint32_t)(__ccgo_up(os561 + uintptr(i137)*4)) = x1555
-	i137 = i137 + uint32(1)
-	_ = i137
-	os562 = wv_a125
-	x1556 = **(**Tuint32_t)(__ccgo_up(wv_a125 + uintptr(i137)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b135 + uintptr(i137)*4))
-	**(**Tuint32_t)(__ccgo_up(os562 + uintptr(i137)*4)) = x1556
-	i137 = i137 + uint32(1)
-	_ = i137
-	os563 = wv_a125
-	x1557 = **(**Tuint32_t)(__ccgo_up(wv_a125 + uintptr(i137)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b135 + uintptr(i137)*4))
-	**(**Tuint32_t)(__ccgo_up(os563 + uintptr(i137)*4)) = x1557
-	i137 = i137 + uint32(1)
-	_ = i137
-	r185 = wv_a125
-	i138 = 0
-	os564 = r185
-	x1558 = **(**Tuint32_t)(__ccgo_up(r185 + uintptr(i138)*4))
-	x13176 = x1558>>uint32(8) | x1558<<uint32(24)
-	**(**Tuint32_t)(__ccgo_up(os564 + uintptr(i138)*4)) = x13176
-	i138 = i138 + uint32(1)
-	_ = i138
-	os565 = r185
-	x1559 = **(**Tuint32_t)(__ccgo_up(r185 + uintptr(i138)*4))
-	x13177 = x1559>>uint32(8) | x1559<<uint32(24)
-	**(**Tuint32_t)(__ccgo_up(os565 + uintptr(i138)*4)) = x13177
-	i138 = i138 + uint32(1)
-	_ = i138
-	os566 = r185
-	x1560 = **(**Tuint32_t)(__ccgo_up(r185 + uintptr(i138)*4))
-	x13178 = x1560>>uint32(8) | x1560<<uint32(24)
-	**(**Tuint32_t)(__ccgo_up(os566 + uintptr(i138)*4)) = x13178
-	i138 = i138 + uint32(1)
-	_ = i138
-	os567 = r185
-	x1561 = **(**Tuint32_t)(__ccgo_up(r185 + uintptr(i138)*4))
-	x13179 = x1561>>uint32(8) | x1561<<uint32(24)
-	**(**Tuint32_t)(__ccgo_up(os567 + uintptr(i138)*4)) = x13179
-	i138 = i138 + uint32(1)
-	_ = i138
-	wv_a135 = wv + uintptr(c4*uint32(4))*4
-	wv_b145 = wv + uintptr(d14*uint32(4))*4
-	i139 = 0
-	os568 = wv_a135
-	x1562 = **(**Tuint32_t)(__ccgo_up(wv_a135 + uintptr(i139)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b145 + uintptr(i139)*4))
-	**(**Tuint32_t)(__ccgo_up(os568 + uintptr(i139)*4)) = x1562
-	i139 = i139 + uint32(1)
-	_ = i139
-	os569 = wv_a135
-	x1563 = **(**Tuint32_t)(__ccgo_up(wv_a135 + uintptr(i139)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b145 + uintptr(i139)*4))
-	**(**Tuint32_t)(__ccgo_up(os569 + uintptr(i139)*4)) = x1563
-	i139 = i139 + uint32(1)
-	_ = i139
-	os570 = wv_a135
-	x1564 = **(**Tuint32_t)(__ccgo_up(wv_a135 + uintptr(i139)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b145 + uintptr(i139)*4))
-	**(**Tuint32_t)(__ccgo_up(os570 + uintptr(i139)*4)) = x1564
-	i139 = i139 + uint32(1)
-	_ = i139
-	os571 = wv_a135
-	x1565 = **(**Tuint32_t)(__ccgo_up(wv_a135 + uintptr(i139)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b145 + uintptr(i139)*4))
-	**(**Tuint32_t)(__ccgo_up(os571 + uintptr(i139)*4)) = x1565
-	i139 = i139 + uint32(1)
-	_ = i139
-	wv_a145 = wv + uintptr(b5*uint32(4))*4
-	wv_b4 = wv + uintptr(c4*uint32(4))*4
-	i140 = 0
-	os572 = wv_a145
-	x1566 = **(**Tuint32_t)(__ccgo_up(wv_a145 + uintptr(i140)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b4 + uintptr(i140)*4))
-	**(**Tuint32_t)(__ccgo_up(os572 + uintptr(i140)*4)) = x1566
-	i140 = i140 + uint32(1)
-	_ = i140
-	os573 = wv_a145
-	x1567 = **(**Tuint32_t)(__ccgo_up(wv_a145 + uintptr(i140)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b4 + uintptr(i140)*4))
-	**(**Tuint32_t)(__ccgo_up(os573 + uintptr(i140)*4)) = x1567
-	i140 = i140 + uint32(1)
-	_ = i140
-	os574 = wv_a145
-	x1568 = **(**Tuint32_t)(__ccgo_up(wv_a145 + uintptr(i140)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b4 + uintptr(i140)*4))
-	**(**Tuint32_t)(__ccgo_up(os574 + uintptr(i140)*4)) = x1568
-	i140 = i140 + uint32(1)
-	_ = i140
-	os575 = wv_a145
-	x1569 = **(**Tuint32_t)(__ccgo_up(wv_a145 + uintptr(i140)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b4 + uintptr(i140)*4))
-	**(**Tuint32_t)(__ccgo_up(os575 + uintptr(i140)*4)) = x1569
-	i140 = i140 + uint32(1)
-	_ = i140
-	r195 = wv_a145
-	i141 = 0
-	os576 = r195
-	x1570 = **(**Tuint32_t)(__ccgo_up(r195 + uintptr(i141)*4))
-	x13180 = x1570>>uint32(7) | x1570<<uint32(25)
-	**(**Tuint32_t)(__ccgo_up(os576 + uintptr(i141)*4)) = x13180
-	i141 = i141 + uint32(1)
-	_ = i141
-	os577 = r195
-	x1571 = **(**Tuint32_t)(__ccgo_up(r195 + uintptr(i141)*4))
-	x13181 = x1571>>uint32(7) | x1571<<uint32(25)
-	**(**Tuint32_t)(__ccgo_up(os577 + uintptr(i141)*4)) = x13181
-	i141 = i141 + uint32(1)
-	_ = i141
-	os578 = r195
-	x1572 = **(**Tuint32_t)(__ccgo_up(r195 + uintptr(i141)*4))
-	x13182 = x1572>>uint32(7) | x1572<<uint32(25)
-	**(**Tuint32_t)(__ccgo_up(os578 + uintptr(i141)*4)) = x13182
-	i141 = i141 + uint32(1)
-	_ = i141
-	os579 = r195
-	x1573 = **(**Tuint32_t)(__ccgo_up(r195 + uintptr(i141)*4))
-	x13183 = x1573>>uint32(7) | x1573<<uint32(25)
-	**(**Tuint32_t)(__ccgo_up(os579 + uintptr(i141)*4)) = x13183
-	i141 = i141 + uint32(1)
-	_ = i141
-	r1135 = wv + uintptr(4)*4
-	r25 = wv + uintptr(8)*4
-	r35 = wv + uintptr(12)*4
-	r1111 = r1135
-	x035 = **(**Tuint32_t)(__ccgo_up(r1111 + 3*4))
-	x13184 = **(**Tuint32_t)(__ccgo_up(r1111))
-	x235 = **(**Tuint32_t)(__ccgo_up(r1111 + 1*4))
-	x335 = **(**Tuint32_t)(__ccgo_up(r1111 + 2*4))
-	**(**Tuint32_t)(__ccgo_up(r1111)) = x035
-	**(**Tuint32_t)(__ccgo_up(r1111 + 1*4)) = x13184
-	**(**Tuint32_t)(__ccgo_up(r1111 + 2*4)) = x235
-	**(**Tuint32_t)(__ccgo_up(r1111 + 3*4)) = x335
-	r1145 = r25
-	x045 = **(**Tuint32_t)(__ccgo_up(r1145 + 2*4))
-	x14104 = **(**Tuint32_t)(__ccgo_up(r1145 + 3*4))
-	x245 = **(**Tuint32_t)(__ccgo_up(r1145))
-	x345 = **(**Tuint32_t)(__ccgo_up(r1145 + 1*4))
-	**(**Tuint32_t)(__ccgo_up(r1145)) = x045
-	**(**Tuint32_t)(__ccgo_up(r1145 + 1*4)) = x14104
-	**(**Tuint32_t)(__ccgo_up(r1145 + 2*4)) = x245
-	**(**Tuint32_t)(__ccgo_up(r1145 + 3*4)) = x345
-	r1155 = r35
-	x04 = **(**Tuint32_t)(__ccgo_up(r1155 + 1*4))
-	x1574 = **(**Tuint32_t)(__ccgo_up(r1155 + 2*4))
-	x214 = **(**Tuint32_t)(__ccgo_up(r1155 + 3*4))
-	x314 = **(**Tuint32_t)(__ccgo_up(r1155))
-	**(**Tuint32_t)(__ccgo_up(r1155)) = x04
-	**(**Tuint32_t)(__ccgo_up(r1155 + 1*4)) = x1574
-	**(**Tuint32_t)(__ccgo_up(r1155 + 2*4)) = x214
-	**(**Tuint32_t)(__ccgo_up(r1155 + 3*4)) = x314
-	i0 = i0 + uint32(1)
-	_ = i0
-	start_idx5 = i0 % uint32(10) * uint32(16)
-	**(**[16]Tuint32_t)(__ccgo_up(bp + 388)) = [16]Tuint32_t{}
-	r05 = bp + 388
-	r111 = bp + 388 + uintptr(4)*4
-	r205 = bp + 388 + uintptr(8)*4
-	r305 = bp + 388 + uintptr(12)*4
-	s05 = _Hacl_Hash_Blake2b_sigmaTable[start_idx5+0]
-	s15 = _Hacl_Hash_Blake2b_sigmaTable[start_idx5+uint32(1)]
-	s25 = _Hacl_Hash_Blake2b_sigmaTable[start_idx5+uint32(2)]
-	s35 = _Hacl_Hash_Blake2b_sigmaTable[start_idx5+uint32(3)]
-	s45 = _Hacl_Hash_Blake2b_sigmaTable[start_idx5+uint32(4)]
-	s55 = _Hacl_Hash_Blake2b_sigmaTable[start_idx5+uint32(5)]
-	s65 = _Hacl_Hash_Blake2b_sigmaTable[start_idx5+uint32(6)]
-	s75 = _Hacl_Hash_Blake2b_sigmaTable[start_idx5+uint32(7)]
-	s85 = _Hacl_Hash_Blake2b_sigmaTable[start_idx5+uint32(8)]
-	s95 = _Hacl_Hash_Blake2b_sigmaTable[start_idx5+uint32(9)]
-	s105 = _Hacl_Hash_Blake2b_sigmaTable[start_idx5+uint32(10)]
-	s116 = _Hacl_Hash_Blake2b_sigmaTable[start_idx5+uint32(11)]
-	s126 = _Hacl_Hash_Blake2b_sigmaTable[start_idx5+uint32(12)]
-	s136 = _Hacl_Hash_Blake2b_sigmaTable[start_idx5+uint32(13)]
-	s146 = _Hacl_Hash_Blake2b_sigmaTable[start_idx5+uint32(14)]
-	s156 = _Hacl_Hash_Blake2b_sigmaTable[start_idx5+uint32(15)]
-	uu____05 = (**(**[16]Tuint32_t)(__ccgo_up(bp + 4)))[s25]
-	uu____15 = (**(**[16]Tuint32_t)(__ccgo_up(bp + 4)))[s45]
-	uu____25 = (**(**[16]Tuint32_t)(__ccgo_up(bp + 4)))[s65]
-	**(**Tuint32_t)(__ccgo_up(r05)) = (**(**[16]Tuint32_t)(__ccgo_up(bp + 4)))[s05]
-	**(**Tuint32_t)(__ccgo_up(r05 + 1*4)) = uu____05
-	**(**Tuint32_t)(__ccgo_up(r05 + 2*4)) = uu____15
-	**(**Tuint32_t)(__ccgo_up(r05 + 3*4)) = uu____25
-	uu____35 = (**(**[16]Tuint32_t)(__ccgo_up(bp + 4)))[s35]
-	uu____45 = (**(**[16]Tuint32_t)(__ccgo_up(bp + 4)))[s55]
-	uu____55 = (**(**[16]Tuint32_t)(__ccgo_up(bp + 4)))[s75]
-	**(**Tuint32_t)(__ccgo_up(r111)) = (**(**[16]Tuint32_t)(__ccgo_up(bp + 4)))[s15]
-	**(**Tuint32_t)(__ccgo_up(r111 + 1*4)) = uu____35
-	**(**Tuint32_t)(__ccgo_up(r111 + 2*4)) = uu____45
-	**(**Tuint32_t)(__ccgo_up(r111 + 3*4)) = uu____55
-	uu____65 = (**(**[16]Tuint32_t)(__ccgo_up(bp + 4)))[s105]
-	uu____75 = (**(**[16]Tuint32_t)(__ccgo_up(bp + 4)))[s126]
-	uu____85 = (**(**[16]Tuint32_t)(__ccgo_up(bp + 4)))[s146]
-	**(**Tuint32_t)(__ccgo_up(r205)) = (**(**[16]Tuint32_t)(__ccgo_up(bp + 4)))[s85]
-	**(**Tuint32_t)(__ccgo_up(r205 + 1*4)) = uu____65
-	**(**Tuint32_t)(__ccgo_up(r205 + 2*4)) = uu____75
-	**(**Tuint32_t)(__ccgo_up(r205 + 3*4)) = uu____85
-	uu____95 = (**(**[16]Tuint32_t)(__ccgo_up(bp + 4)))[s116]
-	uu____105 = (**(**[16]Tuint32_t)(__ccgo_up(bp + 4)))[s136]
-	uu____116 = (**(**[16]Tuint32_t)(__ccgo_up(bp + 4)))[s156]
-	**(**Tuint32_t)(__ccgo_up(r305)) = (**(**[16]Tuint32_t)(__ccgo_up(bp + 4)))[s95]
-	**(**Tuint32_t)(__ccgo_up(r305 + 1*4)) = uu____95
-	**(**Tuint32_t)(__ccgo_up(r305 + 2*4)) = uu____105
-	**(**Tuint32_t)(__ccgo_up(r305 + 3*4)) = uu____116
-	x26 = bp + 388
-	y5 = bp + 388 + uintptr(4)*4
-	z5 = bp + 388 + uintptr(8)*4
-	w5 = bp + 388 + uintptr(12)*4
-	a5 = 0
-	b05 = uint32(1)
-	c05 = uint32(2)
-	d105 = uint32(3)
-	wv_a05 = wv + uintptr(a5*uint32(4))*4
-	wv_b05 = wv + uintptr(b05*uint32(4))*4
-	i142 = 0
-	os580 = wv_a05
-	x1575 = **(**Tuint32_t)(__ccgo_up(wv_a05 + uintptr(i142)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b05 + uintptr(i142)*4))
-	**(**Tuint32_t)(__ccgo_up(os580 + uintptr(i142)*4)) = x1575
-	i142 = i142 + uint32(1)
-	_ = i142
-	os581 = wv_a05
-	x1576 = **(**Tuint32_t)(__ccgo_up(wv_a05 + uintptr(i142)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b05 + uintptr(i142)*4))
-	**(**Tuint32_t)(__ccgo_up(os581 + uintptr(i142)*4)) = x1576
-	i142 = i142 + uint32(1)
-	_ = i142
-	os582 = wv_a05
-	x1577 = **(**Tuint32_t)(__ccgo_up(wv_a05 + uintptr(i142)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b05 + uintptr(i142)*4))
-	**(**Tuint32_t)(__ccgo_up(os582 + uintptr(i142)*4)) = x1577
-	i142 = i142 + uint32(1)
-	_ = i142
-	os583 = wv_a05
-	x1578 = **(**Tuint32_t)(__ccgo_up(wv_a05 + uintptr(i142)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b05 + uintptr(i142)*4))
-	**(**Tuint32_t)(__ccgo_up(os583 + uintptr(i142)*4)) = x1578
-	i142 = i142 + uint32(1)
-	_ = i142
-	i143 = 0
-	os584 = wv_a05
-	x1579 = **(**Tuint32_t)(__ccgo_up(wv_a05 + uintptr(i143)*4)) + **(**Tuint32_t)(__ccgo_up(x26 + uintptr(i143)*4))
-	**(**Tuint32_t)(__ccgo_up(os584 + uintptr(i143)*4)) = x1579
-	i143 = i143 + uint32(1)
-	_ = i143
-	os585 = wv_a05
-	x1580 = **(**Tuint32_t)(__ccgo_up(wv_a05 + uintptr(i143)*4)) + **(**Tuint32_t)(__ccgo_up(x26 + uintptr(i143)*4))
-	**(**Tuint32_t)(__ccgo_up(os585 + uintptr(i143)*4)) = x1580
-	i143 = i143 + uint32(1)
-	_ = i143
-	os586 = wv_a05
-	x1581 = **(**Tuint32_t)(__ccgo_up(wv_a05 + uintptr(i143)*4)) + **(**Tuint32_t)(__ccgo_up(x26 + uintptr(i143)*4))
-	**(**Tuint32_t)(__ccgo_up(os586 + uintptr(i143)*4)) = x1581
-	i143 = i143 + uint32(1)
-	_ = i143
-	os587 = wv_a05
-	x1582 = **(**Tuint32_t)(__ccgo_up(wv_a05 + uintptr(i143)*4)) + **(**Tuint32_t)(__ccgo_up(x26 + uintptr(i143)*4))
-	**(**Tuint32_t)(__ccgo_up(os587 + uintptr(i143)*4)) = x1582
-	i143 = i143 + uint32(1)
-	_ = i143
-	wv_a16 = wv + uintptr(d105*uint32(4))*4
-	wv_b16 = wv + uintptr(a5*uint32(4))*4
-	i144 = 0
-	os588 = wv_a16
-	x1583 = **(**Tuint32_t)(__ccgo_up(wv_a16 + uintptr(i144)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b16 + uintptr(i144)*4))
-	**(**Tuint32_t)(__ccgo_up(os588 + uintptr(i144)*4)) = x1583
-	i144 = i144 + uint32(1)
-	_ = i144
-	os589 = wv_a16
-	x1584 = **(**Tuint32_t)(__ccgo_up(wv_a16 + uintptr(i144)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b16 + uintptr(i144)*4))
-	**(**Tuint32_t)(__ccgo_up(os589 + uintptr(i144)*4)) = x1584
-	i144 = i144 + uint32(1)
-	_ = i144
-	os590 = wv_a16
-	x1585 = **(**Tuint32_t)(__ccgo_up(wv_a16 + uintptr(i144)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b16 + uintptr(i144)*4))
-	**(**Tuint32_t)(__ccgo_up(os590 + uintptr(i144)*4)) = x1585
-	i144 = i144 + uint32(1)
-	_ = i144
-	os591 = wv_a16
-	x1586 = **(**Tuint32_t)(__ccgo_up(wv_a16 + uintptr(i144)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b16 + uintptr(i144)*4))
-	**(**Tuint32_t)(__ccgo_up(os591 + uintptr(i144)*4)) = x1586
-	i144 = i144 + uint32(1)
-	_ = i144
-	r106 = wv_a16
-	i145 = 0
-	os592 = r106
-	x1587 = **(**Tuint32_t)(__ccgo_up(r106 + uintptr(i145)*4))
-	x1086 = x1587>>uint32(16) | x1587<<uint32(16)
-	**(**Tuint32_t)(__ccgo_up(os592 + uintptr(i145)*4)) = x1086
-	i145 = i145 + uint32(1)
-	_ = i145
-	os593 = r106
-	x1588 = **(**Tuint32_t)(__ccgo_up(r106 + uintptr(i145)*4))
-	x1087 = x1588>>uint32(16) | x1588<<uint32(16)
-	**(**Tuint32_t)(__ccgo_up(os593 + uintptr(i145)*4)) = x1087
-	i145 = i145 + uint32(1)
-	_ = i145
-	os594 = r106
-	x1589 = **(**Tuint32_t)(__ccgo_up(r106 + uintptr(i145)*4))
-	x1088 = x1589>>uint32(16) | x1589<<uint32(16)
-	**(**Tuint32_t)(__ccgo_up(os594 + uintptr(i145)*4)) = x1088
-	i145 = i145 + uint32(1)
-	_ = i145
-	os595 = r106
-	x1590 = **(**Tuint32_t)(__ccgo_up(r106 + uintptr(i145)*4))
-	x1089 = x1590>>uint32(16) | x1590<<uint32(16)
-	**(**Tuint32_t)(__ccgo_up(os595 + uintptr(i145)*4)) = x1089
-	i145 = i145 + uint32(1)
-	_ = i145
-	wv_a26 = wv + uintptr(c05*uint32(4))*4
-	wv_b26 = wv + uintptr(d105*uint32(4))*4
-	i146 = 0
-	os596 = wv_a26
-	x1591 = **(**Tuint32_t)(__ccgo_up(wv_a26 + uintptr(i146)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b26 + uintptr(i146)*4))
-	**(**Tuint32_t)(__ccgo_up(os596 + uintptr(i146)*4)) = x1591
-	i146 = i146 + uint32(1)
-	_ = i146
-	os597 = wv_a26
-	x1592 = **(**Tuint32_t)(__ccgo_up(wv_a26 + uintptr(i146)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b26 + uintptr(i146)*4))
-	**(**Tuint32_t)(__ccgo_up(os597 + uintptr(i146)*4)) = x1592
-	i146 = i146 + uint32(1)
-	_ = i146
-	os598 = wv_a26
-	x1593 = **(**Tuint32_t)(__ccgo_up(wv_a26 + uintptr(i146)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b26 + uintptr(i146)*4))
-	**(**Tuint32_t)(__ccgo_up(os598 + uintptr(i146)*4)) = x1593
-	i146 = i146 + uint32(1)
-	_ = i146
-	os599 = wv_a26
-	x1594 = **(**Tuint32_t)(__ccgo_up(wv_a26 + uintptr(i146)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b26 + uintptr(i146)*4))
-	**(**Tuint32_t)(__ccgo_up(os599 + uintptr(i146)*4)) = x1594
-	i146 = i146 + uint32(1)
-	_ = i146
-	wv_a36 = wv + uintptr(b05*uint32(4))*4
-	wv_b36 = wv + uintptr(c05*uint32(4))*4
-	i147 = 0
-	os600 = wv_a36
-	x1595 = **(**Tuint32_t)(__ccgo_up(wv_a36 + uintptr(i147)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b36 + uintptr(i147)*4))
-	**(**Tuint32_t)(__ccgo_up(os600 + uintptr(i147)*4)) = x1595
-	i147 = i147 + uint32(1)
-	_ = i147
-	os601 = wv_a36
-	x1596 = **(**Tuint32_t)(__ccgo_up(wv_a36 + uintptr(i147)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b36 + uintptr(i147)*4))
-	**(**Tuint32_t)(__ccgo_up(os601 + uintptr(i147)*4)) = x1596
-	i147 = i147 + uint32(1)
-	_ = i147
-	os602 = wv_a36
-	x1597 = **(**Tuint32_t)(__ccgo_up(wv_a36 + uintptr(i147)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b36 + uintptr(i147)*4))
-	**(**Tuint32_t)(__ccgo_up(os602 + uintptr(i147)*4)) = x1597
-	i147 = i147 + uint32(1)
-	_ = i147
-	os603 = wv_a36
-	x1598 = **(**Tuint32_t)(__ccgo_up(wv_a36 + uintptr(i147)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b36 + uintptr(i147)*4))
-	**(**Tuint32_t)(__ccgo_up(os603 + uintptr(i147)*4)) = x1598
-	i147 = i147 + uint32(1)
-	_ = i147
-	r126 = wv_a36
-	i148 = 0
-	os604 = r126
-	x1599 = **(**Tuint32_t)(__ccgo_up(r126 + uintptr(i148)*4))
-	x1090 = x1599>>uint32(12) | x1599<<uint32(20)
-	**(**Tuint32_t)(__ccgo_up(os604 + uintptr(i148)*4)) = x1090
-	i148 = i148 + uint32(1)
-	_ = i148
-	os605 = r126
-	x1600 = **(**Tuint32_t)(__ccgo_up(r126 + uintptr(i148)*4))
-	x1091 = x1600>>uint32(12) | x1600<<uint32(20)
-	**(**Tuint32_t)(__ccgo_up(os605 + uintptr(i148)*4)) = x1091
-	i148 = i148 + uint32(1)
-	_ = i148
-	os606 = r126
-	x1601 = **(**Tuint32_t)(__ccgo_up(r126 + uintptr(i148)*4))
-	x1092 = x1601>>uint32(12) | x1601<<uint32(20)
-	**(**Tuint32_t)(__ccgo_up(os606 + uintptr(i148)*4)) = x1092
-	i148 = i148 + uint32(1)
-	_ = i148
-	os607 = r126
-	x1602 = **(**Tuint32_t)(__ccgo_up(r126 + uintptr(i148)*4))
-	x1093 = x1602>>uint32(12) | x1602<<uint32(20)
-	**(**Tuint32_t)(__ccgo_up(os607 + uintptr(i148)*4)) = x1093
-	i148 = i148 + uint32(1)
-	_ = i148
-	wv_a46 = wv + uintptr(a5*uint32(4))*4
-	wv_b46 = wv + uintptr(b05*uint32(4))*4
-	i149 = 0
-	os608 = wv_a46
-	x1603 = **(**Tuint32_t)(__ccgo_up(wv_a46 + uintptr(i149)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b46 + uintptr(i149)*4))
-	**(**Tuint32_t)(__ccgo_up(os608 + uintptr(i149)*4)) = x1603
-	i149 = i149 + uint32(1)
-	_ = i149
-	os609 = wv_a46
-	x1604 = **(**Tuint32_t)(__ccgo_up(wv_a46 + uintptr(i149)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b46 + uintptr(i149)*4))
-	**(**Tuint32_t)(__ccgo_up(os609 + uintptr(i149)*4)) = x1604
-	i149 = i149 + uint32(1)
-	_ = i149
-	os610 = wv_a46
-	x1605 = **(**Tuint32_t)(__ccgo_up(wv_a46 + uintptr(i149)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b46 + uintptr(i149)*4))
-	**(**Tuint32_t)(__ccgo_up(os610 + uintptr(i149)*4)) = x1605
-	i149 = i149 + uint32(1)
-	_ = i149
-	os611 = wv_a46
-	x1606 = **(**Tuint32_t)(__ccgo_up(wv_a46 + uintptr(i149)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b46 + uintptr(i149)*4))
-	**(**Tuint32_t)(__ccgo_up(os611 + uintptr(i149)*4)) = x1606
-	i149 = i149 + uint32(1)
-	_ = i149
-	i150 = 0
-	os612 = wv_a46
-	x1607 = **(**Tuint32_t)(__ccgo_up(wv_a46 + uintptr(i150)*4)) + **(**Tuint32_t)(__ccgo_up(y5 + uintptr(i150)*4))
-	**(**Tuint32_t)(__ccgo_up(os612 + uintptr(i150)*4)) = x1607
-	i150 = i150 + uint32(1)
-	_ = i150
-	os613 = wv_a46
-	x1608 = **(**Tuint32_t)(__ccgo_up(wv_a46 + uintptr(i150)*4)) + **(**Tuint32_t)(__ccgo_up(y5 + uintptr(i150)*4))
-	**(**Tuint32_t)(__ccgo_up(os613 + uintptr(i150)*4)) = x1608
-	i150 = i150 + uint32(1)
-	_ = i150
-	os614 = wv_a46
-	x1609 = **(**Tuint32_t)(__ccgo_up(wv_a46 + uintptr(i150)*4)) + **(**Tuint32_t)(__ccgo_up(y5 + uintptr(i150)*4))
-	**(**Tuint32_t)(__ccgo_up(os614 + uintptr(i150)*4)) = x1609
-	i150 = i150 + uint32(1)
-	_ = i150
-	os615 = wv_a46
-	x1610 = **(**Tuint32_t)(__ccgo_up(wv_a46 + uintptr(i150)*4)) + **(**Tuint32_t)(__ccgo_up(y5 + uintptr(i150)*4))
-	**(**Tuint32_t)(__ccgo_up(os615 + uintptr(i150)*4)) = x1610
-	i150 = i150 + uint32(1)
-	_ = i150
-	wv_a56 = wv + uintptr(d105*uint32(4))*4
-	wv_b56 = wv + uintptr(a5*uint32(4))*4
-	i151 = 0
-	os616 = wv_a56
-	x1611 = **(**Tuint32_t)(__ccgo_up(wv_a56 + uintptr(i151)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b56 + uintptr(i151)*4))
-	**(**Tuint32_t)(__ccgo_up(os616 + uintptr(i151)*4)) = x1611
-	i151 = i151 + uint32(1)
-	_ = i151
-	os617 = wv_a56
-	x1612 = **(**Tuint32_t)(__ccgo_up(wv_a56 + uintptr(i151)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b56 + uintptr(i151)*4))
-	**(**Tuint32_t)(__ccgo_up(os617 + uintptr(i151)*4)) = x1612
-	i151 = i151 + uint32(1)
-	_ = i151
-	os618 = wv_a56
-	x1613 = **(**Tuint32_t)(__ccgo_up(wv_a56 + uintptr(i151)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b56 + uintptr(i151)*4))
-	**(**Tuint32_t)(__ccgo_up(os618 + uintptr(i151)*4)) = x1613
-	i151 = i151 + uint32(1)
-	_ = i151
-	os619 = wv_a56
-	x1614 = **(**Tuint32_t)(__ccgo_up(wv_a56 + uintptr(i151)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b56 + uintptr(i151)*4))
-	**(**Tuint32_t)(__ccgo_up(os619 + uintptr(i151)*4)) = x1614
-	i151 = i151 + uint32(1)
-	_ = i151
-	r136 = wv_a56
-	i152 = 0
-	os620 = r136
-	x1615 = **(**Tuint32_t)(__ccgo_up(r136 + uintptr(i152)*4))
-	x1094 = x1615>>uint32(8) | x1615<<uint32(24)
-	**(**Tuint32_t)(__ccgo_up(os620 + uintptr(i152)*4)) = x1094
-	i152 = i152 + uint32(1)
-	_ = i152
-	os621 = r136
-	x1616 = **(**Tuint32_t)(__ccgo_up(r136 + uintptr(i152)*4))
-	x1095 = x1616>>uint32(8) | x1616<<uint32(24)
-	**(**Tuint32_t)(__ccgo_up(os621 + uintptr(i152)*4)) = x1095
-	i152 = i152 + uint32(1)
-	_ = i152
-	os622 = r136
-	x1617 = **(**Tuint32_t)(__ccgo_up(r136 + uintptr(i152)*4))
-	x1096 = x1617>>uint32(8) | x1617<<uint32(24)
-	**(**Tuint32_t)(__ccgo_up(os622 + uintptr(i152)*4)) = x1096
-	i152 = i152 + uint32(1)
-	_ = i152
-	os623 = r136
-	x1618 = **(**Tuint32_t)(__ccgo_up(r136 + uintptr(i152)*4))
-	x1097 = x1618>>uint32(8) | x1618<<uint32(24)
-	**(**Tuint32_t)(__ccgo_up(os623 + uintptr(i152)*4)) = x1097
-	i152 = i152 + uint32(1)
-	_ = i152
-	wv_a66 = wv + uintptr(c05*uint32(4))*4
-	wv_b66 = wv + uintptr(d105*uint32(4))*4
-	i153 = 0
-	os624 = wv_a66
-	x1619 = **(**Tuint32_t)(__ccgo_up(wv_a66 + uintptr(i153)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b66 + uintptr(i153)*4))
-	**(**Tuint32_t)(__ccgo_up(os624 + uintptr(i153)*4)) = x1619
-	i153 = i153 + uint32(1)
-	_ = i153
-	os625 = wv_a66
-	x1620 = **(**Tuint32_t)(__ccgo_up(wv_a66 + uintptr(i153)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b66 + uintptr(i153)*4))
-	**(**Tuint32_t)(__ccgo_up(os625 + uintptr(i153)*4)) = x1620
-	i153 = i153 + uint32(1)
-	_ = i153
-	os626 = wv_a66
-	x1621 = **(**Tuint32_t)(__ccgo_up(wv_a66 + uintptr(i153)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b66 + uintptr(i153)*4))
-	**(**Tuint32_t)(__ccgo_up(os626 + uintptr(i153)*4)) = x1621
-	i153 = i153 + uint32(1)
-	_ = i153
-	os627 = wv_a66
-	x1622 = **(**Tuint32_t)(__ccgo_up(wv_a66 + uintptr(i153)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b66 + uintptr(i153)*4))
-	**(**Tuint32_t)(__ccgo_up(os627 + uintptr(i153)*4)) = x1622
-	i153 = i153 + uint32(1)
-	_ = i153
-	wv_a76 = wv + uintptr(b05*uint32(4))*4
-	wv_b76 = wv + uintptr(c05*uint32(4))*4
-	i154 = 0
-	os628 = wv_a76
-	x1623 = **(**Tuint32_t)(__ccgo_up(wv_a76 + uintptr(i154)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b76 + uintptr(i154)*4))
-	**(**Tuint32_t)(__ccgo_up(os628 + uintptr(i154)*4)) = x1623
-	i154 = i154 + uint32(1)
-	_ = i154
-	os629 = wv_a76
-	x1624 = **(**Tuint32_t)(__ccgo_up(wv_a76 + uintptr(i154)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b76 + uintptr(i154)*4))
-	**(**Tuint32_t)(__ccgo_up(os629 + uintptr(i154)*4)) = x1624
-	i154 = i154 + uint32(1)
-	_ = i154
-	os630 = wv_a76
-	x1625 = **(**Tuint32_t)(__ccgo_up(wv_a76 + uintptr(i154)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b76 + uintptr(i154)*4))
-	**(**Tuint32_t)(__ccgo_up(os630 + uintptr(i154)*4)) = x1625
-	i154 = i154 + uint32(1)
-	_ = i154
-	os631 = wv_a76
-	x1626 = **(**Tuint32_t)(__ccgo_up(wv_a76 + uintptr(i154)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b76 + uintptr(i154)*4))
-	**(**Tuint32_t)(__ccgo_up(os631 + uintptr(i154)*4)) = x1626
-	i154 = i154 + uint32(1)
-	_ = i154
-	r146 = wv_a76
-	i155 = 0
-	os632 = r146
-	x1627 = **(**Tuint32_t)(__ccgo_up(r146 + uintptr(i155)*4))
-	x1098 = x1627>>uint32(7) | x1627<<uint32(25)
-	**(**Tuint32_t)(__ccgo_up(os632 + uintptr(i155)*4)) = x1098
-	i155 = i155 + uint32(1)
-	_ = i155
-	os633 = r146
-	x1628 = **(**Tuint32_t)(__ccgo_up(r146 + uintptr(i155)*4))
-	x1099 = x1628>>uint32(7) | x1628<<uint32(25)
-	**(**Tuint32_t)(__ccgo_up(os633 + uintptr(i155)*4)) = x1099
-	i155 = i155 + uint32(1)
-	_ = i155
-	os634 = r146
-	x1629 = **(**Tuint32_t)(__ccgo_up(r146 + uintptr(i155)*4))
-	x10100 = x1629>>uint32(7) | x1629<<uint32(25)
-	**(**Tuint32_t)(__ccgo_up(os634 + uintptr(i155)*4)) = x10100
-	i155 = i155 + uint32(1)
-	_ = i155
-	os635 = r146
-	x1630 = **(**Tuint32_t)(__ccgo_up(r146 + uintptr(i155)*4))
-	x10101 = x1630>>uint32(7) | x1630<<uint32(25)
-	**(**Tuint32_t)(__ccgo_up(os635 + uintptr(i155)*4)) = x10101
-	i155 = i155 + uint32(1)
-	_ = i155
-	r156 = wv + uintptr(4)*4
-	r217 = wv + uintptr(8)*4
-	r317 = wv + uintptr(12)*4
-	r1106 = r156
-	x005 = **(**Tuint32_t)(__ccgo_up(r1106 + 1*4))
-	x10102 = **(**Tuint32_t)(__ccgo_up(r1106 + 2*4))
-	x206 = **(**Tuint32_t)(__ccgo_up(r1106 + 3*4))
-	x306 = **(**Tuint32_t)(__ccgo_up(r1106))
-	**(**Tuint32_t)(__ccgo_up(r1106)) = x005
-	**(**Tuint32_t)(__ccgo_up(r1106 + 1*4)) = x10102
-	**(**Tuint32_t)(__ccgo_up(r1106 + 2*4)) = x206
-	**(**Tuint32_t)(__ccgo_up(r1106 + 3*4)) = x306
-	r11112 = r217
-	x016 = **(**Tuint32_t)(__ccgo_up(r11112 + 2*4))
-	x11145 = **(**Tuint32_t)(__ccgo_up(r11112 + 3*4))
-	x2115 = **(**Tuint32_t)(__ccgo_up(r11112))
-	x3115 = **(**Tuint32_t)(__ccgo_up(r11112 + 1*4))
-	**(**Tuint32_t)(__ccgo_up(r11112)) = x016
-	**(**Tuint32_t)(__ccgo_up(r11112 + 1*4)) = x11145
-	**(**Tuint32_t)(__ccgo_up(r11112 + 2*4)) = x2115
-	**(**Tuint32_t)(__ccgo_up(r11112 + 3*4)) = x3115
-	r1126 = r317
-	x026 = **(**Tuint32_t)(__ccgo_up(r1126 + 3*4))
-	x12105 = **(**Tuint32_t)(__ccgo_up(r1126))
-	x226 = **(**Tuint32_t)(__ccgo_up(r1126 + 1*4))
-	x326 = **(**Tuint32_t)(__ccgo_up(r1126 + 2*4))
-	**(**Tuint32_t)(__ccgo_up(r1126)) = x026
-	**(**Tuint32_t)(__ccgo_up(r1126 + 1*4)) = x12105
-	**(**Tuint32_t)(__ccgo_up(r1126 + 2*4)) = x226
-	**(**Tuint32_t)(__ccgo_up(r1126 + 3*4)) = x326
-	a05 = 0
-	b6 = uint32(1)
-	c5 = uint32(2)
-	d15 = uint32(3)
-	wv_a5 = wv + uintptr(a05*uint32(4))*4
-	wv_b86 = wv + uintptr(b6*uint32(4))*4
-	i156 = 0
-	os636 = wv_a5
-	x1631 = **(**Tuint32_t)(__ccgo_up(wv_a5 + uintptr(i156)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b86 + uintptr(i156)*4))
-	**(**Tuint32_t)(__ccgo_up(os636 + uintptr(i156)*4)) = x1631
-	i156 = i156 + uint32(1)
-	_ = i156
-	os637 = wv_a5
-	x1632 = **(**Tuint32_t)(__ccgo_up(wv_a5 + uintptr(i156)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b86 + uintptr(i156)*4))
-	**(**Tuint32_t)(__ccgo_up(os637 + uintptr(i156)*4)) = x1632
-	i156 = i156 + uint32(1)
-	_ = i156
-	os638 = wv_a5
-	x1633 = **(**Tuint32_t)(__ccgo_up(wv_a5 + uintptr(i156)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b86 + uintptr(i156)*4))
-	**(**Tuint32_t)(__ccgo_up(os638 + uintptr(i156)*4)) = x1633
-	i156 = i156 + uint32(1)
-	_ = i156
-	os639 = wv_a5
-	x1634 = **(**Tuint32_t)(__ccgo_up(wv_a5 + uintptr(i156)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b86 + uintptr(i156)*4))
-	**(**Tuint32_t)(__ccgo_up(os639 + uintptr(i156)*4)) = x1634
-	i156 = i156 + uint32(1)
-	_ = i156
-	i157 = 0
-	os640 = wv_a5
-	x1635 = **(**Tuint32_t)(__ccgo_up(wv_a5 + uintptr(i157)*4)) + **(**Tuint32_t)(__ccgo_up(z5 + uintptr(i157)*4))
-	**(**Tuint32_t)(__ccgo_up(os640 + uintptr(i157)*4)) = x1635
-	i157 = i157 + uint32(1)
-	_ = i157
-	os641 = wv_a5
-	x1636 = **(**Tuint32_t)(__ccgo_up(wv_a5 + uintptr(i157)*4)) + **(**Tuint32_t)(__ccgo_up(z5 + uintptr(i157)*4))
-	**(**Tuint32_t)(__ccgo_up(os641 + uintptr(i157)*4)) = x1636
-	i157 = i157 + uint32(1)
-	_ = i157
-	os642 = wv_a5
-	x1637 = **(**Tuint32_t)(__ccgo_up(wv_a5 + uintptr(i157)*4)) + **(**Tuint32_t)(__ccgo_up(z5 + uintptr(i157)*4))
-	**(**Tuint32_t)(__ccgo_up(os642 + uintptr(i157)*4)) = x1637
-	i157 = i157 + uint32(1)
-	_ = i157
-	os643 = wv_a5
-	x1638 = **(**Tuint32_t)(__ccgo_up(wv_a5 + uintptr(i157)*4)) + **(**Tuint32_t)(__ccgo_up(z5 + uintptr(i157)*4))
-	**(**Tuint32_t)(__ccgo_up(os643 + uintptr(i157)*4)) = x1638
-	i157 = i157 + uint32(1)
-	_ = i157
-	wv_a86 = wv + uintptr(d15*uint32(4))*4
-	wv_b96 = wv + uintptr(a05*uint32(4))*4
-	i158 = 0
-	os644 = wv_a86
-	x1639 = **(**Tuint32_t)(__ccgo_up(wv_a86 + uintptr(i158)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b96 + uintptr(i158)*4))
-	**(**Tuint32_t)(__ccgo_up(os644 + uintptr(i158)*4)) = x1639
-	i158 = i158 + uint32(1)
-	_ = i158
-	os645 = wv_a86
-	x1640 = **(**Tuint32_t)(__ccgo_up(wv_a86 + uintptr(i158)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b96 + uintptr(i158)*4))
-	**(**Tuint32_t)(__ccgo_up(os645 + uintptr(i158)*4)) = x1640
-	i158 = i158 + uint32(1)
-	_ = i158
-	os646 = wv_a86
-	x1641 = **(**Tuint32_t)(__ccgo_up(wv_a86 + uintptr(i158)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b96 + uintptr(i158)*4))
-	**(**Tuint32_t)(__ccgo_up(os646 + uintptr(i158)*4)) = x1641
-	i158 = i158 + uint32(1)
-	_ = i158
-	os647 = wv_a86
-	x1642 = **(**Tuint32_t)(__ccgo_up(wv_a86 + uintptr(i158)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b96 + uintptr(i158)*4))
-	**(**Tuint32_t)(__ccgo_up(os647 + uintptr(i158)*4)) = x1642
-	i158 = i158 + uint32(1)
-	_ = i158
-	r166 = wv_a86
-	i159 = 0
-	os648 = r166
-	x1643 = **(**Tuint32_t)(__ccgo_up(r166 + uintptr(i159)*4))
-	x13185 = x1643>>uint32(16) | x1643<<uint32(16)
-	**(**Tuint32_t)(__ccgo_up(os648 + uintptr(i159)*4)) = x13185
-	i159 = i159 + uint32(1)
-	_ = i159
-	os649 = r166
-	x1644 = **(**Tuint32_t)(__ccgo_up(r166 + uintptr(i159)*4))
-	x13186 = x1644>>uint32(16) | x1644<<uint32(16)
-	**(**Tuint32_t)(__ccgo_up(os649 + uintptr(i159)*4)) = x13186
-	i159 = i159 + uint32(1)
-	_ = i159
-	os650 = r166
-	x1645 = **(**Tuint32_t)(__ccgo_up(r166 + uintptr(i159)*4))
-	x13187 = x1645>>uint32(16) | x1645<<uint32(16)
-	**(**Tuint32_t)(__ccgo_up(os650 + uintptr(i159)*4)) = x13187
-	i159 = i159 + uint32(1)
-	_ = i159
-	os651 = r166
-	x1646 = **(**Tuint32_t)(__ccgo_up(r166 + uintptr(i159)*4))
-	x13188 = x1646>>uint32(16) | x1646<<uint32(16)
-	**(**Tuint32_t)(__ccgo_up(os651 + uintptr(i159)*4)) = x13188
-	i159 = i159 + uint32(1)
-	_ = i159
-	wv_a96 = wv + uintptr(c5*uint32(4))*4
-	wv_b105 = wv + uintptr(d15*uint32(4))*4
-	i160 = 0
-	os652 = wv_a96
-	x1647 = **(**Tuint32_t)(__ccgo_up(wv_a96 + uintptr(i160)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b105 + uintptr(i160)*4))
-	**(**Tuint32_t)(__ccgo_up(os652 + uintptr(i160)*4)) = x1647
-	i160 = i160 + uint32(1)
-	_ = i160
-	os653 = wv_a96
-	x1648 = **(**Tuint32_t)(__ccgo_up(wv_a96 + uintptr(i160)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b105 + uintptr(i160)*4))
-	**(**Tuint32_t)(__ccgo_up(os653 + uintptr(i160)*4)) = x1648
-	i160 = i160 + uint32(1)
-	_ = i160
-	os654 = wv_a96
-	x1649 = **(**Tuint32_t)(__ccgo_up(wv_a96 + uintptr(i160)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b105 + uintptr(i160)*4))
-	**(**Tuint32_t)(__ccgo_up(os654 + uintptr(i160)*4)) = x1649
-	i160 = i160 + uint32(1)
-	_ = i160
-	os655 = wv_a96
-	x1650 = **(**Tuint32_t)(__ccgo_up(wv_a96 + uintptr(i160)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b105 + uintptr(i160)*4))
-	**(**Tuint32_t)(__ccgo_up(os655 + uintptr(i160)*4)) = x1650
-	i160 = i160 + uint32(1)
-	_ = i160
-	wv_a105 = wv + uintptr(b6*uint32(4))*4
-	wv_b116 = wv + uintptr(c5*uint32(4))*4
-	i161 = 0
-	os656 = wv_a105
-	x1651 = **(**Tuint32_t)(__ccgo_up(wv_a105 + uintptr(i161)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b116 + uintptr(i161)*4))
-	**(**Tuint32_t)(__ccgo_up(os656 + uintptr(i161)*4)) = x1651
-	i161 = i161 + uint32(1)
-	_ = i161
-	os657 = wv_a105
-	x1652 = **(**Tuint32_t)(__ccgo_up(wv_a105 + uintptr(i161)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b116 + uintptr(i161)*4))
-	**(**Tuint32_t)(__ccgo_up(os657 + uintptr(i161)*4)) = x1652
-	i161 = i161 + uint32(1)
-	_ = i161
-	os658 = wv_a105
-	x1653 = **(**Tuint32_t)(__ccgo_up(wv_a105 + uintptr(i161)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b116 + uintptr(i161)*4))
-	**(**Tuint32_t)(__ccgo_up(os658 + uintptr(i161)*4)) = x1653
-	i161 = i161 + uint32(1)
-	_ = i161
-	os659 = wv_a105
-	x1654 = **(**Tuint32_t)(__ccgo_up(wv_a105 + uintptr(i161)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b116 + uintptr(i161)*4))
-	**(**Tuint32_t)(__ccgo_up(os659 + uintptr(i161)*4)) = x1654
-	i161 = i161 + uint32(1)
-	_ = i161
-	r176 = wv_a105
-	i162 = 0
-	os660 = r176
-	x1655 = **(**Tuint32_t)(__ccgo_up(r176 + uintptr(i162)*4))
-	x13189 = x1655>>uint32(12) | x1655<<uint32(20)
-	**(**Tuint32_t)(__ccgo_up(os660 + uintptr(i162)*4)) = x13189
-	i162 = i162 + uint32(1)
-	_ = i162
-	os661 = r176
-	x1656 = **(**Tuint32_t)(__ccgo_up(r176 + uintptr(i162)*4))
-	x13190 = x1656>>uint32(12) | x1656<<uint32(20)
-	**(**Tuint32_t)(__ccgo_up(os661 + uintptr(i162)*4)) = x13190
-	i162 = i162 + uint32(1)
-	_ = i162
-	os662 = r176
-	x1657 = **(**Tuint32_t)(__ccgo_up(r176 + uintptr(i162)*4))
-	x13191 = x1657>>uint32(12) | x1657<<uint32(20)
-	**(**Tuint32_t)(__ccgo_up(os662 + uintptr(i162)*4)) = x13191
-	i162 = i162 + uint32(1)
-	_ = i162
-	os663 = r176
-	x1658 = **(**Tuint32_t)(__ccgo_up(r176 + uintptr(i162)*4))
-	x13192 = x1658>>uint32(12) | x1658<<uint32(20)
-	**(**Tuint32_t)(__ccgo_up(os663 + uintptr(i162)*4)) = x13192
-	i162 = i162 + uint32(1)
-	_ = i162
-	wv_a116 = wv + uintptr(a05*uint32(4))*4
-	wv_b126 = wv + uintptr(b6*uint32(4))*4
-	i163 = 0
-	os664 = wv_a116
-	x1659 = **(**Tuint32_t)(__ccgo_up(wv_a116 + uintptr(i163)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b126 + uintptr(i163)*4))
-	**(**Tuint32_t)(__ccgo_up(os664 + uintptr(i163)*4)) = x1659
-	i163 = i163 + uint32(1)
-	_ = i163
-	os665 = wv_a116
-	x1660 = **(**Tuint32_t)(__ccgo_up(wv_a116 + uintptr(i163)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b126 + uintptr(i163)*4))
-	**(**Tuint32_t)(__ccgo_up(os665 + uintptr(i163)*4)) = x1660
-	i163 = i163 + uint32(1)
-	_ = i163
-	os666 = wv_a116
-	x1661 = **(**Tuint32_t)(__ccgo_up(wv_a116 + uintptr(i163)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b126 + uintptr(i163)*4))
-	**(**Tuint32_t)(__ccgo_up(os666 + uintptr(i163)*4)) = x1661
-	i163 = i163 + uint32(1)
-	_ = i163
-	os667 = wv_a116
-	x1662 = **(**Tuint32_t)(__ccgo_up(wv_a116 + uintptr(i163)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b126 + uintptr(i163)*4))
-	**(**Tuint32_t)(__ccgo_up(os667 + uintptr(i163)*4)) = x1662
-	i163 = i163 + uint32(1)
-	_ = i163
-	i164 = 0
-	os668 = wv_a116
-	x1663 = **(**Tuint32_t)(__ccgo_up(wv_a116 + uintptr(i164)*4)) + **(**Tuint32_t)(__ccgo_up(w5 + uintptr(i164)*4))
-	**(**Tuint32_t)(__ccgo_up(os668 + uintptr(i164)*4)) = x1663
-	i164 = i164 + uint32(1)
-	_ = i164
-	os669 = wv_a116
-	x1664 = **(**Tuint32_t)(__ccgo_up(wv_a116 + uintptr(i164)*4)) + **(**Tuint32_t)(__ccgo_up(w5 + uintptr(i164)*4))
-	**(**Tuint32_t)(__ccgo_up(os669 + uintptr(i164)*4)) = x1664
-	i164 = i164 + uint32(1)
-	_ = i164
-	os670 = wv_a116
-	x1665 = **(**Tuint32_t)(__ccgo_up(wv_a116 + uintptr(i164)*4)) + **(**Tuint32_t)(__ccgo_up(w5 + uintptr(i164)*4))
-	**(**Tuint32_t)(__ccgo_up(os670 + uintptr(i164)*4)) = x1665
-	i164 = i164 + uint32(1)
-	_ = i164
-	os671 = wv_a116
-	x1666 = **(**Tuint32_t)(__ccgo_up(wv_a116 + uintptr(i164)*4)) + **(**Tuint32_t)(__ccgo_up(w5 + uintptr(i164)*4))
-	**(**Tuint32_t)(__ccgo_up(os671 + uintptr(i164)*4)) = x1666
-	i164 = i164 + uint32(1)
-	_ = i164
-	wv_a126 = wv + uintptr(d15*uint32(4))*4
-	wv_b136 = wv + uintptr(a05*uint32(4))*4
-	i165 = 0
-	os672 = wv_a126
-	x1667 = **(**Tuint32_t)(__ccgo_up(wv_a126 + uintptr(i165)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b136 + uintptr(i165)*4))
-	**(**Tuint32_t)(__ccgo_up(os672 + uintptr(i165)*4)) = x1667
-	i165 = i165 + uint32(1)
-	_ = i165
-	os673 = wv_a126
-	x1668 = **(**Tuint32_t)(__ccgo_up(wv_a126 + uintptr(i165)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b136 + uintptr(i165)*4))
-	**(**Tuint32_t)(__ccgo_up(os673 + uintptr(i165)*4)) = x1668
-	i165 = i165 + uint32(1)
-	_ = i165
-	os674 = wv_a126
-	x1669 = **(**Tuint32_t)(__ccgo_up(wv_a126 + uintptr(i165)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b136 + uintptr(i165)*4))
-	**(**Tuint32_t)(__ccgo_up(os674 + uintptr(i165)*4)) = x1669
-	i165 = i165 + uint32(1)
-	_ = i165
-	os675 = wv_a126
-	x1670 = **(**Tuint32_t)(__ccgo_up(wv_a126 + uintptr(i165)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b136 + uintptr(i165)*4))
-	**(**Tuint32_t)(__ccgo_up(os675 + uintptr(i165)*4)) = x1670
-	i165 = i165 + uint32(1)
-	_ = i165
-	r186 = wv_a126
-	i166 = 0
-	os676 = r186
-	x1671 = **(**Tuint32_t)(__ccgo_up(r186 + uintptr(i166)*4))
-	x13193 = x1671>>uint32(8) | x1671<<uint32(24)
-	**(**Tuint32_t)(__ccgo_up(os676 + uintptr(i166)*4)) = x13193
-	i166 = i166 + uint32(1)
-	_ = i166
-	os677 = r186
-	x1672 = **(**Tuint32_t)(__ccgo_up(r186 + uintptr(i166)*4))
-	x13194 = x1672>>uint32(8) | x1672<<uint32(24)
-	**(**Tuint32_t)(__ccgo_up(os677 + uintptr(i166)*4)) = x13194
-	i166 = i166 + uint32(1)
-	_ = i166
-	os678 = r186
-	x1673 = **(**Tuint32_t)(__ccgo_up(r186 + uintptr(i166)*4))
-	x13195 = x1673>>uint32(8) | x1673<<uint32(24)
-	**(**Tuint32_t)(__ccgo_up(os678 + uintptr(i166)*4)) = x13195
-	i166 = i166 + uint32(1)
-	_ = i166
-	os679 = r186
-	x1674 = **(**Tuint32_t)(__ccgo_up(r186 + uintptr(i166)*4))
-	x13196 = x1674>>uint32(8) | x1674<<uint32(24)
-	**(**Tuint32_t)(__ccgo_up(os679 + uintptr(i166)*4)) = x13196
-	i166 = i166 + uint32(1)
-	_ = i166
-	wv_a136 = wv + uintptr(c5*uint32(4))*4
-	wv_b146 = wv + uintptr(d15*uint32(4))*4
-	i167 = 0
-	os680 = wv_a136
-	x1675 = **(**Tuint32_t)(__ccgo_up(wv_a136 + uintptr(i167)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b146 + uintptr(i167)*4))
-	**(**Tuint32_t)(__ccgo_up(os680 + uintptr(i167)*4)) = x1675
-	i167 = i167 + uint32(1)
-	_ = i167
-	os681 = wv_a136
-	x1676 = **(**Tuint32_t)(__ccgo_up(wv_a136 + uintptr(i167)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b146 + uintptr(i167)*4))
-	**(**Tuint32_t)(__ccgo_up(os681 + uintptr(i167)*4)) = x1676
-	i167 = i167 + uint32(1)
-	_ = i167
-	os682 = wv_a136
-	x1677 = **(**Tuint32_t)(__ccgo_up(wv_a136 + uintptr(i167)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b146 + uintptr(i167)*4))
-	**(**Tuint32_t)(__ccgo_up(os682 + uintptr(i167)*4)) = x1677
-	i167 = i167 + uint32(1)
-	_ = i167
-	os683 = wv_a136
-	x1678 = **(**Tuint32_t)(__ccgo_up(wv_a136 + uintptr(i167)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b146 + uintptr(i167)*4))
-	**(**Tuint32_t)(__ccgo_up(os683 + uintptr(i167)*4)) = x1678
-	i167 = i167 + uint32(1)
-	_ = i167
-	wv_a146 = wv + uintptr(b6*uint32(4))*4
-	wv_b5 = wv + uintptr(c5*uint32(4))*4
-	i168 = 0
-	os684 = wv_a146
-	x1679 = **(**Tuint32_t)(__ccgo_up(wv_a146 + uintptr(i168)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b5 + uintptr(i168)*4))
-	**(**Tuint32_t)(__ccgo_up(os684 + uintptr(i168)*4)) = x1679
-	i168 = i168 + uint32(1)
-	_ = i168
-	os685 = wv_a146
-	x1680 = **(**Tuint32_t)(__ccgo_up(wv_a146 + uintptr(i168)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b5 + uintptr(i168)*4))
-	**(**Tuint32_t)(__ccgo_up(os685 + uintptr(i168)*4)) = x1680
-	i168 = i168 + uint32(1)
-	_ = i168
-	os686 = wv_a146
-	x1681 = **(**Tuint32_t)(__ccgo_up(wv_a146 + uintptr(i168)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b5 + uintptr(i168)*4))
-	**(**Tuint32_t)(__ccgo_up(os686 + uintptr(i168)*4)) = x1681
-	i168 = i168 + uint32(1)
-	_ = i168
-	os687 = wv_a146
-	x1682 = **(**Tuint32_t)(__ccgo_up(wv_a146 + uintptr(i168)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b5 + uintptr(i168)*4))
-	**(**Tuint32_t)(__ccgo_up(os687 + uintptr(i168)*4)) = x1682
-	i168 = i168 + uint32(1)
-	_ = i168
-	r196 = wv_a146
-	i169 = 0
-	os688 = r196
-	x1683 = **(**Tuint32_t)(__ccgo_up(r196 + uintptr(i169)*4))
-	x13197 = x1683>>uint32(7) | x1683<<uint32(25)
-	**(**Tuint32_t)(__ccgo_up(os688 + uintptr(i169)*4)) = x13197
-	i169 = i169 + uint32(1)
-	_ = i169
-	os689 = r196
-	x1684 = **(**Tuint32_t)(__ccgo_up(r196 + uintptr(i169)*4))
-	x13198 = x1684>>uint32(7) | x1684<<uint32(25)
-	**(**Tuint32_t)(__ccgo_up(os689 + uintptr(i169)*4)) = x13198
-	i169 = i169 + uint32(1)
-	_ = i169
-	os690 = r196
-	x1685 = **(**Tuint32_t)(__ccgo_up(r196 + uintptr(i169)*4))
-	x13199 = x1685>>uint32(7) | x1685<<uint32(25)
-	**(**Tuint32_t)(__ccgo_up(os690 + uintptr(i169)*4)) = x13199
-	i169 = i169 + uint32(1)
-	_ = i169
-	os691 = r196
-	x1686 = **(**Tuint32_t)(__ccgo_up(r196 + uintptr(i169)*4))
-	x13200 = x1686>>uint32(7) | x1686<<uint32(25)
-	**(**Tuint32_t)(__ccgo_up(os691 + uintptr(i169)*4)) = x13200
-	i169 = i169 + uint32(1)
-	_ = i169
-	r1136 = wv + uintptr(4)*4
-	r26 = wv + uintptr(8)*4
-	r36 = wv + uintptr(12)*4
-	r1112 = r1136
-	x036 = **(**Tuint32_t)(__ccgo_up(r1112 + 3*4))
-	x13201 = **(**Tuint32_t)(__ccgo_up(r1112))
-	x236 = **(**Tuint32_t)(__ccgo_up(r1112 + 1*4))
-	x336 = **(**Tuint32_t)(__ccgo_up(r1112 + 2*4))
-	**(**Tuint32_t)(__ccgo_up(r1112)) = x036
-	**(**Tuint32_t)(__ccgo_up(r1112 + 1*4)) = x13201
-	**(**Tuint32_t)(__ccgo_up(r1112 + 2*4)) = x236
-	**(**Tuint32_t)(__ccgo_up(r1112 + 3*4)) = x336
-	r1146 = r26
-	x046 = **(**Tuint32_t)(__ccgo_up(r1146 + 2*4))
-	x14105 = **(**Tuint32_t)(__ccgo_up(r1146 + 3*4))
-	x246 = **(**Tuint32_t)(__ccgo_up(r1146))
-	x346 = **(**Tuint32_t)(__ccgo_up(r1146 + 1*4))
-	**(**Tuint32_t)(__ccgo_up(r1146)) = x046
-	**(**Tuint32_t)(__ccgo_up(r1146 + 1*4)) = x14105
-	**(**Tuint32_t)(__ccgo_up(r1146 + 2*4)) = x246
-	**(**Tuint32_t)(__ccgo_up(r1146 + 3*4)) = x346
-	r1156 = r36
-	x05 = **(**Tuint32_t)(__ccgo_up(r1156 + 1*4))
-	x1687 = **(**Tuint32_t)(__ccgo_up(r1156 + 2*4))
-	x215 = **(**Tuint32_t)(__ccgo_up(r1156 + 3*4))
-	x315 = **(**Tuint32_t)(__ccgo_up(r1156))
-	**(**Tuint32_t)(__ccgo_up(r1156)) = x05
-	**(**Tuint32_t)(__ccgo_up(r1156 + 1*4)) = x1687
-	**(**Tuint32_t)(__ccgo_up(r1156 + 2*4)) = x215
-	**(**Tuint32_t)(__ccgo_up(r1156 + 3*4)) = x315
-	i0 = i0 + uint32(1)
-	_ = i0
-	start_idx6 = i0 % uint32(10) * uint32(16)
-	**(**[16]Tuint32_t)(__ccgo_up(bp + 452)) = [16]Tuint32_t{}
-	r06 = bp + 452
-	r112 = bp + 452 + uintptr(4)*4
-	r206 = bp + 452 + uintptr(8)*4
-	r306 = bp + 452 + uintptr(12)*4
-	s06 = _Hacl_Hash_Blake2b_sigmaTable[start_idx6+0]
-	s16 = _Hacl_Hash_Blake2b_sigmaTable[start_idx6+uint32(1)]
-	s26 = _Hacl_Hash_Blake2b_sigmaTable[start_idx6+uint32(2)]
-	s36 = _Hacl_Hash_Blake2b_sigmaTable[start_idx6+uint32(3)]
-	s46 = _Hacl_Hash_Blake2b_sigmaTable[start_idx6+uint32(4)]
-	s56 = _Hacl_Hash_Blake2b_sigmaTable[start_idx6+uint32(5)]
-	s66 = _Hacl_Hash_Blake2b_sigmaTable[start_idx6+uint32(6)]
-	s76 = _Hacl_Hash_Blake2b_sigmaTable[start_idx6+uint32(7)]
-	s86 = _Hacl_Hash_Blake2b_sigmaTable[start_idx6+uint32(8)]
-	s96 = _Hacl_Hash_Blake2b_sigmaTable[start_idx6+uint32(9)]
-	s106 = _Hacl_Hash_Blake2b_sigmaTable[start_idx6+uint32(10)]
-	s117 = _Hacl_Hash_Blake2b_sigmaTable[start_idx6+uint32(11)]
-	s127 = _Hacl_Hash_Blake2b_sigmaTable[start_idx6+uint32(12)]
-	s137 = _Hacl_Hash_Blake2b_sigmaTable[start_idx6+uint32(13)]
-	s147 = _Hacl_Hash_Blake2b_sigmaTable[start_idx6+uint32(14)]
-	s157 = _Hacl_Hash_Blake2b_sigmaTable[start_idx6+uint32(15)]
-	uu____06 = (**(**[16]Tuint32_t)(__ccgo_up(bp + 4)))[s26]
-	uu____16 = (**(**[16]Tuint32_t)(__ccgo_up(bp + 4)))[s46]
-	uu____26 = (**(**[16]Tuint32_t)(__ccgo_up(bp + 4)))[s66]
-	**(**Tuint32_t)(__ccgo_up(r06)) = (**(**[16]Tuint32_t)(__ccgo_up(bp + 4)))[s06]
-	**(**Tuint32_t)(__ccgo_up(r06 + 1*4)) = uu____06
-	**(**Tuint32_t)(__ccgo_up(r06 + 2*4)) = uu____16
-	**(**Tuint32_t)(__ccgo_up(r06 + 3*4)) = uu____26
-	uu____36 = (**(**[16]Tuint32_t)(__ccgo_up(bp + 4)))[s36]
-	uu____46 = (**(**[16]Tuint32_t)(__ccgo_up(bp + 4)))[s56]
-	uu____56 = (**(**[16]Tuint32_t)(__ccgo_up(bp + 4)))[s76]
-	**(**Tuint32_t)(__ccgo_up(r112)) = (**(**[16]Tuint32_t)(__ccgo_up(bp + 4)))[s16]
-	**(**Tuint32_t)(__ccgo_up(r112 + 1*4)) = uu____36
-	**(**Tuint32_t)(__ccgo_up(r112 + 2*4)) = uu____46
-	**(**Tuint32_t)(__ccgo_up(r112 + 3*4)) = uu____56
-	uu____66 = (**(**[16]Tuint32_t)(__ccgo_up(bp + 4)))[s106]
-	uu____76 = (**(**[16]Tuint32_t)(__ccgo_up(bp + 4)))[s127]
-	uu____86 = (**(**[16]Tuint32_t)(__ccgo_up(bp + 4)))[s147]
-	**(**Tuint32_t)(__ccgo_up(r206)) = (**(**[16]Tuint32_t)(__ccgo_up(bp + 4)))[s86]
-	**(**Tuint32_t)(__ccgo_up(r206 + 1*4)) = uu____66
-	**(**Tuint32_t)(__ccgo_up(r206 + 2*4)) = uu____76
-	**(**Tuint32_t)(__ccgo_up(r206 + 3*4)) = uu____86
-	uu____96 = (**(**[16]Tuint32_t)(__ccgo_up(bp + 4)))[s117]
-	uu____106 = (**(**[16]Tuint32_t)(__ccgo_up(bp + 4)))[s137]
-	uu____117 = (**(**[16]Tuint32_t)(__ccgo_up(bp + 4)))[s157]
-	**(**Tuint32_t)(__ccgo_up(r306)) = (**(**[16]Tuint32_t)(__ccgo_up(bp + 4)))[s96]
-	**(**Tuint32_t)(__ccgo_up(r306 + 1*4)) = uu____96
-	**(**Tuint32_t)(__ccgo_up(r306 + 2*4)) = uu____106
-	**(**Tuint32_t)(__ccgo_up(r306 + 3*4)) = uu____117
-	x27 = bp + 452
-	y6 = bp + 452 + uintptr(4)*4
-	z6 = bp + 452 + uintptr(8)*4
-	w6 = bp + 452 + uintptr(12)*4
-	a6 = 0
-	b06 = uint32(1)
-	c06 = uint32(2)
-	d106 = uint32(3)
-	wv_a06 = wv + uintptr(a6*uint32(4))*4
-	wv_b06 = wv + uintptr(b06*uint32(4))*4
-	i170 = 0
-	os692 = wv_a06
-	x1688 = **(**Tuint32_t)(__ccgo_up(wv_a06 + uintptr(i170)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b06 + uintptr(i170)*4))
-	**(**Tuint32_t)(__ccgo_up(os692 + uintptr(i170)*4)) = x1688
-	i170 = i170 + uint32(1)
-	_ = i170
-	os693 = wv_a06
-	x1689 = **(**Tuint32_t)(__ccgo_up(wv_a06 + uintptr(i170)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b06 + uintptr(i170)*4))
-	**(**Tuint32_t)(__ccgo_up(os693 + uintptr(i170)*4)) = x1689
-	i170 = i170 + uint32(1)
-	_ = i170
-	os694 = wv_a06
-	x1690 = **(**Tuint32_t)(__ccgo_up(wv_a06 + uintptr(i170)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b06 + uintptr(i170)*4))
-	**(**Tuint32_t)(__ccgo_up(os694 + uintptr(i170)*4)) = x1690
-	i170 = i170 + uint32(1)
-	_ = i170
-	os695 = wv_a06
-	x1691 = **(**Tuint32_t)(__ccgo_up(wv_a06 + uintptr(i170)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b06 + uintptr(i170)*4))
-	**(**Tuint32_t)(__ccgo_up(os695 + uintptr(i170)*4)) = x1691
-	i170 = i170 + uint32(1)
-	_ = i170
-	i171 = 0
-	os696 = wv_a06
-	x1692 = **(**Tuint32_t)(__ccgo_up(wv_a06 + uintptr(i171)*4)) + **(**Tuint32_t)(__ccgo_up(x27 + uintptr(i171)*4))
-	**(**Tuint32_t)(__ccgo_up(os696 + uintptr(i171)*4)) = x1692
-	i171 = i171 + uint32(1)
-	_ = i171
-	os697 = wv_a06
-	x1693 = **(**Tuint32_t)(__ccgo_up(wv_a06 + uintptr(i171)*4)) + **(**Tuint32_t)(__ccgo_up(x27 + uintptr(i171)*4))
-	**(**Tuint32_t)(__ccgo_up(os697 + uintptr(i171)*4)) = x1693
-	i171 = i171 + uint32(1)
-	_ = i171
-	os698 = wv_a06
-	x1694 = **(**Tuint32_t)(__ccgo_up(wv_a06 + uintptr(i171)*4)) + **(**Tuint32_t)(__ccgo_up(x27 + uintptr(i171)*4))
-	**(**Tuint32_t)(__ccgo_up(os698 + uintptr(i171)*4)) = x1694
-	i171 = i171 + uint32(1)
-	_ = i171
-	os699 = wv_a06
-	x1695 = **(**Tuint32_t)(__ccgo_up(wv_a06 + uintptr(i171)*4)) + **(**Tuint32_t)(__ccgo_up(x27 + uintptr(i171)*4))
-	**(**Tuint32_t)(__ccgo_up(os699 + uintptr(i171)*4)) = x1695
-	i171 = i171 + uint32(1)
-	_ = i171
-	wv_a17 = wv + uintptr(d106*uint32(4))*4
-	wv_b17 = wv + uintptr(a6*uint32(4))*4
-	i172 = 0
-	os700 = wv_a17
-	x1696 = **(**Tuint32_t)(__ccgo_up(wv_a17 + uintptr(i172)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b17 + uintptr(i172)*4))
-	**(**Tuint32_t)(__ccgo_up(os700 + uintptr(i172)*4)) = x1696
-	i172 = i172 + uint32(1)
-	_ = i172
-	os701 = wv_a17
-	x1697 = **(**Tuint32_t)(__ccgo_up(wv_a17 + uintptr(i172)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b17 + uintptr(i172)*4))
-	**(**Tuint32_t)(__ccgo_up(os701 + uintptr(i172)*4)) = x1697
-	i172 = i172 + uint32(1)
-	_ = i172
-	os702 = wv_a17
-	x1698 = **(**Tuint32_t)(__ccgo_up(wv_a17 + uintptr(i172)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b17 + uintptr(i172)*4))
-	**(**Tuint32_t)(__ccgo_up(os702 + uintptr(i172)*4)) = x1698
-	i172 = i172 + uint32(1)
-	_ = i172
-	os703 = wv_a17
-	x1699 = **(**Tuint32_t)(__ccgo_up(wv_a17 + uintptr(i172)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b17 + uintptr(i172)*4))
-	**(**Tuint32_t)(__ccgo_up(os703 + uintptr(i172)*4)) = x1699
-	i172 = i172 + uint32(1)
-	_ = i172
-	r107 = wv_a17
-	i173 = 0
-	os704 = r107
-	x1700 = **(**Tuint32_t)(__ccgo_up(r107 + uintptr(i173)*4))
-	x10103 = x1700>>uint32(16) | x1700<<uint32(16)
-	**(**Tuint32_t)(__ccgo_up(os704 + uintptr(i173)*4)) = x10103
-	i173 = i173 + uint32(1)
-	_ = i173
-	os705 = r107
-	x1701 = **(**Tuint32_t)(__ccgo_up(r107 + uintptr(i173)*4))
-	x10104 = x1701>>uint32(16) | x1701<<uint32(16)
-	**(**Tuint32_t)(__ccgo_up(os705 + uintptr(i173)*4)) = x10104
-	i173 = i173 + uint32(1)
-	_ = i173
-	os706 = r107
-	x1702 = **(**Tuint32_t)(__ccgo_up(r107 + uintptr(i173)*4))
-	x10105 = x1702>>uint32(16) | x1702<<uint32(16)
-	**(**Tuint32_t)(__ccgo_up(os706 + uintptr(i173)*4)) = x10105
-	i173 = i173 + uint32(1)
-	_ = i173
-	os707 = r107
-	x1703 = **(**Tuint32_t)(__ccgo_up(r107 + uintptr(i173)*4))
-	x10106 = x1703>>uint32(16) | x1703<<uint32(16)
-	**(**Tuint32_t)(__ccgo_up(os707 + uintptr(i173)*4)) = x10106
-	i173 = i173 + uint32(1)
-	_ = i173
-	wv_a27 = wv + uintptr(c06*uint32(4))*4
-	wv_b27 = wv + uintptr(d106*uint32(4))*4
-	i174 = 0
-	os708 = wv_a27
-	x1704 = **(**Tuint32_t)(__ccgo_up(wv_a27 + uintptr(i174)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b27 + uintptr(i174)*4))
-	**(**Tuint32_t)(__ccgo_up(os708 + uintptr(i174)*4)) = x1704
-	i174 = i174 + uint32(1)
-	_ = i174
-	os709 = wv_a27
-	x1705 = **(**Tuint32_t)(__ccgo_up(wv_a27 + uintptr(i174)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b27 + uintptr(i174)*4))
-	**(**Tuint32_t)(__ccgo_up(os709 + uintptr(i174)*4)) = x1705
-	i174 = i174 + uint32(1)
-	_ = i174
-	os710 = wv_a27
-	x1706 = **(**Tuint32_t)(__ccgo_up(wv_a27 + uintptr(i174)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b27 + uintptr(i174)*4))
-	**(**Tuint32_t)(__ccgo_up(os710 + uintptr(i174)*4)) = x1706
-	i174 = i174 + uint32(1)
-	_ = i174
-	os711 = wv_a27
-	x1707 = **(**Tuint32_t)(__ccgo_up(wv_a27 + uintptr(i174)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b27 + uintptr(i174)*4))
-	**(**Tuint32_t)(__ccgo_up(os711 + uintptr(i174)*4)) = x1707
-	i174 = i174 + uint32(1)
-	_ = i174
-	wv_a37 = wv + uintptr(b06*uint32(4))*4
-	wv_b37 = wv + uintptr(c06*uint32(4))*4
-	i175 = 0
-	os712 = wv_a37
-	x1708 = **(**Tuint32_t)(__ccgo_up(wv_a37 + uintptr(i175)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b37 + uintptr(i175)*4))
-	**(**Tuint32_t)(__ccgo_up(os712 + uintptr(i175)*4)) = x1708
-	i175 = i175 + uint32(1)
-	_ = i175
-	os713 = wv_a37
-	x1709 = **(**Tuint32_t)(__ccgo_up(wv_a37 + uintptr(i175)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b37 + uintptr(i175)*4))
-	**(**Tuint32_t)(__ccgo_up(os713 + uintptr(i175)*4)) = x1709
-	i175 = i175 + uint32(1)
-	_ = i175
-	os714 = wv_a37
-	x1710 = **(**Tuint32_t)(__ccgo_up(wv_a37 + uintptr(i175)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b37 + uintptr(i175)*4))
-	**(**Tuint32_t)(__ccgo_up(os714 + uintptr(i175)*4)) = x1710
-	i175 = i175 + uint32(1)
-	_ = i175
-	os715 = wv_a37
-	x1711 = **(**Tuint32_t)(__ccgo_up(wv_a37 + uintptr(i175)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b37 + uintptr(i175)*4))
-	**(**Tuint32_t)(__ccgo_up(os715 + uintptr(i175)*4)) = x1711
-	i175 = i175 + uint32(1)
-	_ = i175
-	r127 = wv_a37
-	i176 = 0
-	os716 = r127
-	x1712 = **(**Tuint32_t)(__ccgo_up(r127 + uintptr(i176)*4))
-	x10107 = x1712>>uint32(12) | x1712<<uint32(20)
-	**(**Tuint32_t)(__ccgo_up(os716 + uintptr(i176)*4)) = x10107
-	i176 = i176 + uint32(1)
-	_ = i176
-	os717 = r127
-	x1713 = **(**Tuint32_t)(__ccgo_up(r127 + uintptr(i176)*4))
-	x10108 = x1713>>uint32(12) | x1713<<uint32(20)
-	**(**Tuint32_t)(__ccgo_up(os717 + uintptr(i176)*4)) = x10108
-	i176 = i176 + uint32(1)
-	_ = i176
-	os718 = r127
-	x1714 = **(**Tuint32_t)(__ccgo_up(r127 + uintptr(i176)*4))
-	x10109 = x1714>>uint32(12) | x1714<<uint32(20)
-	**(**Tuint32_t)(__ccgo_up(os718 + uintptr(i176)*4)) = x10109
-	i176 = i176 + uint32(1)
-	_ = i176
-	os719 = r127
-	x1715 = **(**Tuint32_t)(__ccgo_up(r127 + uintptr(i176)*4))
-	x10110 = x1715>>uint32(12) | x1715<<uint32(20)
-	**(**Tuint32_t)(__ccgo_up(os719 + uintptr(i176)*4)) = x10110
-	i176 = i176 + uint32(1)
-	_ = i176
-	wv_a47 = wv + uintptr(a6*uint32(4))*4
-	wv_b47 = wv + uintptr(b06*uint32(4))*4
-	i177 = 0
-	os720 = wv_a47
-	x1716 = **(**Tuint32_t)(__ccgo_up(wv_a47 + uintptr(i177)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b47 + uintptr(i177)*4))
-	**(**Tuint32_t)(__ccgo_up(os720 + uintptr(i177)*4)) = x1716
-	i177 = i177 + uint32(1)
-	_ = i177
-	os721 = wv_a47
-	x1717 = **(**Tuint32_t)(__ccgo_up(wv_a47 + uintptr(i177)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b47 + uintptr(i177)*4))
-	**(**Tuint32_t)(__ccgo_up(os721 + uintptr(i177)*4)) = x1717
-	i177 = i177 + uint32(1)
-	_ = i177
-	os722 = wv_a47
-	x1718 = **(**Tuint32_t)(__ccgo_up(wv_a47 + uintptr(i177)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b47 + uintptr(i177)*4))
-	**(**Tuint32_t)(__ccgo_up(os722 + uintptr(i177)*4)) = x1718
-	i177 = i177 + uint32(1)
-	_ = i177
-	os723 = wv_a47
-	x1719 = **(**Tuint32_t)(__ccgo_up(wv_a47 + uintptr(i177)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b47 + uintptr(i177)*4))
-	**(**Tuint32_t)(__ccgo_up(os723 + uintptr(i177)*4)) = x1719
-	i177 = i177 + uint32(1)
-	_ = i177
-	i178 = 0
-	os724 = wv_a47
-	x1720 = **(**Tuint32_t)(__ccgo_up(wv_a47 + uintptr(i178)*4)) + **(**Tuint32_t)(__ccgo_up(y6 + uintptr(i178)*4))
-	**(**Tuint32_t)(__ccgo_up(os724 + uintptr(i178)*4)) = x1720
-	i178 = i178 + uint32(1)
-	_ = i178
-	os725 = wv_a47
-	x1721 = **(**Tuint32_t)(__ccgo_up(wv_a47 + uintptr(i178)*4)) + **(**Tuint32_t)(__ccgo_up(y6 + uintptr(i178)*4))
-	**(**Tuint32_t)(__ccgo_up(os725 + uintptr(i178)*4)) = x1721
-	i178 = i178 + uint32(1)
-	_ = i178
-	os726 = wv_a47
-	x1722 = **(**Tuint32_t)(__ccgo_up(wv_a47 + uintptr(i178)*4)) + **(**Tuint32_t)(__ccgo_up(y6 + uintptr(i178)*4))
-	**(**Tuint32_t)(__ccgo_up(os726 + uintptr(i178)*4)) = x1722
-	i178 = i178 + uint32(1)
-	_ = i178
-	os727 = wv_a47
-	x1723 = **(**Tuint32_t)(__ccgo_up(wv_a47 + uintptr(i178)*4)) + **(**Tuint32_t)(__ccgo_up(y6 + uintptr(i178)*4))
-	**(**Tuint32_t)(__ccgo_up(os727 + uintptr(i178)*4)) = x1723
-	i178 = i178 + uint32(1)
-	_ = i178
-	wv_a57 = wv + uintptr(d106*uint32(4))*4
-	wv_b57 = wv + uintptr(a6*uint32(4))*4
-	i179 = 0
-	os728 = wv_a57
-	x1724 = **(**Tuint32_t)(__ccgo_up(wv_a57 + uintptr(i179)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b57 + uintptr(i179)*4))
-	**(**Tuint32_t)(__ccgo_up(os728 + uintptr(i179)*4)) = x1724
-	i179 = i179 + uint32(1)
-	_ = i179
-	os729 = wv_a57
-	x1725 = **(**Tuint32_t)(__ccgo_up(wv_a57 + uintptr(i179)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b57 + uintptr(i179)*4))
-	**(**Tuint32_t)(__ccgo_up(os729 + uintptr(i179)*4)) = x1725
-	i179 = i179 + uint32(1)
-	_ = i179
-	os730 = wv_a57
-	x1726 = **(**Tuint32_t)(__ccgo_up(wv_a57 + uintptr(i179)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b57 + uintptr(i179)*4))
-	**(**Tuint32_t)(__ccgo_up(os730 + uintptr(i179)*4)) = x1726
-	i179 = i179 + uint32(1)
-	_ = i179
-	os731 = wv_a57
-	x1727 = **(**Tuint32_t)(__ccgo_up(wv_a57 + uintptr(i179)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b57 + uintptr(i179)*4))
-	**(**Tuint32_t)(__ccgo_up(os731 + uintptr(i179)*4)) = x1727
-	i179 = i179 + uint32(1)
-	_ = i179
-	r137 = wv_a57
-	i180 = 0
-	os732 = r137
-	x1728 = **(**Tuint32_t)(__ccgo_up(r137 + uintptr(i180)*4))
-	x10111 = x1728>>uint32(8) | x1728<<uint32(24)
-	**(**Tuint32_t)(__ccgo_up(os732 + uintptr(i180)*4)) = x10111
-	i180 = i180 + uint32(1)
-	_ = i180
-	os733 = r137
-	x1729 = **(**Tuint32_t)(__ccgo_up(r137 + uintptr(i180)*4))
-	x10112 = x1729>>uint32(8) | x1729<<uint32(24)
-	**(**Tuint32_t)(__ccgo_up(os733 + uintptr(i180)*4)) = x10112
-	i180 = i180 + uint32(1)
-	_ = i180
-	os734 = r137
-	x1730 = **(**Tuint32_t)(__ccgo_up(r137 + uintptr(i180)*4))
-	x10113 = x1730>>uint32(8) | x1730<<uint32(24)
-	**(**Tuint32_t)(__ccgo_up(os734 + uintptr(i180)*4)) = x10113
-	i180 = i180 + uint32(1)
-	_ = i180
-	os735 = r137
-	x1731 = **(**Tuint32_t)(__ccgo_up(r137 + uintptr(i180)*4))
-	x10114 = x1731>>uint32(8) | x1731<<uint32(24)
-	**(**Tuint32_t)(__ccgo_up(os735 + uintptr(i180)*4)) = x10114
-	i180 = i180 + uint32(1)
-	_ = i180
-	wv_a67 = wv + uintptr(c06*uint32(4))*4
-	wv_b67 = wv + uintptr(d106*uint32(4))*4
-	i181 = 0
-	os736 = wv_a67
-	x1732 = **(**Tuint32_t)(__ccgo_up(wv_a67 + uintptr(i181)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b67 + uintptr(i181)*4))
-	**(**Tuint32_t)(__ccgo_up(os736 + uintptr(i181)*4)) = x1732
-	i181 = i181 + uint32(1)
-	_ = i181
-	os737 = wv_a67
-	x1733 = **(**Tuint32_t)(__ccgo_up(wv_a67 + uintptr(i181)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b67 + uintptr(i181)*4))
-	**(**Tuint32_t)(__ccgo_up(os737 + uintptr(i181)*4)) = x1733
-	i181 = i181 + uint32(1)
-	_ = i181
-	os738 = wv_a67
-	x1734 = **(**Tuint32_t)(__ccgo_up(wv_a67 + uintptr(i181)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b67 + uintptr(i181)*4))
-	**(**Tuint32_t)(__ccgo_up(os738 + uintptr(i181)*4)) = x1734
-	i181 = i181 + uint32(1)
-	_ = i181
-	os739 = wv_a67
-	x1735 = **(**Tuint32_t)(__ccgo_up(wv_a67 + uintptr(i181)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b67 + uintptr(i181)*4))
-	**(**Tuint32_t)(__ccgo_up(os739 + uintptr(i181)*4)) = x1735
-	i181 = i181 + uint32(1)
-	_ = i181
-	wv_a77 = wv + uintptr(b06*uint32(4))*4
-	wv_b77 = wv + uintptr(c06*uint32(4))*4
-	i182 = 0
-	os740 = wv_a77
-	x1736 = **(**Tuint32_t)(__ccgo_up(wv_a77 + uintptr(i182)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b77 + uintptr(i182)*4))
-	**(**Tuint32_t)(__ccgo_up(os740 + uintptr(i182)*4)) = x1736
-	i182 = i182 + uint32(1)
-	_ = i182
-	os741 = wv_a77
-	x1737 = **(**Tuint32_t)(__ccgo_up(wv_a77 + uintptr(i182)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b77 + uintptr(i182)*4))
-	**(**Tuint32_t)(__ccgo_up(os741 + uintptr(i182)*4)) = x1737
-	i182 = i182 + uint32(1)
-	_ = i182
-	os742 = wv_a77
-	x1738 = **(**Tuint32_t)(__ccgo_up(wv_a77 + uintptr(i182)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b77 + uintptr(i182)*4))
-	**(**Tuint32_t)(__ccgo_up(os742 + uintptr(i182)*4)) = x1738
-	i182 = i182 + uint32(1)
-	_ = i182
-	os743 = wv_a77
-	x1739 = **(**Tuint32_t)(__ccgo_up(wv_a77 + uintptr(i182)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b77 + uintptr(i182)*4))
-	**(**Tuint32_t)(__ccgo_up(os743 + uintptr(i182)*4)) = x1739
-	i182 = i182 + uint32(1)
-	_ = i182
-	r147 = wv_a77
-	i183 = 0
-	os744 = r147
-	x1740 = **(**Tuint32_t)(__ccgo_up(r147 + uintptr(i183)*4))
-	x10115 = x1740>>uint32(7) | x1740<<uint32(25)
-	**(**Tuint32_t)(__ccgo_up(os744 + uintptr(i183)*4)) = x10115
-	i183 = i183 + uint32(1)
-	_ = i183
-	os745 = r147
-	x1741 = **(**Tuint32_t)(__ccgo_up(r147 + uintptr(i183)*4))
-	x10116 = x1741>>uint32(7) | x1741<<uint32(25)
-	**(**Tuint32_t)(__ccgo_up(os745 + uintptr(i183)*4)) = x10116
-	i183 = i183 + uint32(1)
-	_ = i183
-	os746 = r147
-	x1742 = **(**Tuint32_t)(__ccgo_up(r147 + uintptr(i183)*4))
-	x10117 = x1742>>uint32(7) | x1742<<uint32(25)
-	**(**Tuint32_t)(__ccgo_up(os746 + uintptr(i183)*4)) = x10117
-	i183 = i183 + uint32(1)
-	_ = i183
-	os747 = r147
-	x1743 = **(**Tuint32_t)(__ccgo_up(r147 + uintptr(i183)*4))
-	x10118 = x1743>>uint32(7) | x1743<<uint32(25)
-	**(**Tuint32_t)(__ccgo_up(os747 + uintptr(i183)*4)) = x10118
-	i183 = i183 + uint32(1)
-	_ = i183
-	r157 = wv + uintptr(4)*4
-	r218 = wv + uintptr(8)*4
-	r318 = wv + uintptr(12)*4
-	r1107 = r157
-	x006 = **(**Tuint32_t)(__ccgo_up(r1107 + 1*4))
-	x10119 = **(**Tuint32_t)(__ccgo_up(r1107 + 2*4))
-	x207 = **(**Tuint32_t)(__ccgo_up(r1107 + 3*4))
-	x307 = **(**Tuint32_t)(__ccgo_up(r1107))
-	**(**Tuint32_t)(__ccgo_up(r1107)) = x006
-	**(**Tuint32_t)(__ccgo_up(r1107 + 1*4)) = x10119
-	**(**Tuint32_t)(__ccgo_up(r1107 + 2*4)) = x207
-	**(**Tuint32_t)(__ccgo_up(r1107 + 3*4)) = x307
-	r11113 = r218
-	x017 = **(**Tuint32_t)(__ccgo_up(r11113 + 2*4))
-	x11146 = **(**Tuint32_t)(__ccgo_up(r11113 + 3*4))
-	x2116 = **(**Tuint32_t)(__ccgo_up(r11113))
-	x3116 = **(**Tuint32_t)(__ccgo_up(r11113 + 1*4))
-	**(**Tuint32_t)(__ccgo_up(r11113)) = x017
-	**(**Tuint32_t)(__ccgo_up(r11113 + 1*4)) = x11146
-	**(**Tuint32_t)(__ccgo_up(r11113 + 2*4)) = x2116
-	**(**Tuint32_t)(__ccgo_up(r11113 + 3*4)) = x3116
-	r1127 = r318
-	x027 = **(**Tuint32_t)(__ccgo_up(r1127 + 3*4))
-	x12106 = **(**Tuint32_t)(__ccgo_up(r1127))
-	x227 = **(**Tuint32_t)(__ccgo_up(r1127 + 1*4))
-	x327 = **(**Tuint32_t)(__ccgo_up(r1127 + 2*4))
-	**(**Tuint32_t)(__ccgo_up(r1127)) = x027
-	**(**Tuint32_t)(__ccgo_up(r1127 + 1*4)) = x12106
-	**(**Tuint32_t)(__ccgo_up(r1127 + 2*4)) = x227
-	**(**Tuint32_t)(__ccgo_up(r1127 + 3*4)) = x327
-	a06 = 0
-	b7 = uint32(1)
-	c6 = uint32(2)
-	d16 = uint32(3)
-	wv_a6 = wv + uintptr(a06*uint32(4))*4
-	wv_b87 = wv + uintptr(b7*uint32(4))*4
-	i184 = 0
-	os748 = wv_a6
-	x1744 = **(**Tuint32_t)(__ccgo_up(wv_a6 + uintptr(i184)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b87 + uintptr(i184)*4))
-	**(**Tuint32_t)(__ccgo_up(os748 + uintptr(i184)*4)) = x1744
-	i184 = i184 + uint32(1)
-	_ = i184
-	os749 = wv_a6
-	x1745 = **(**Tuint32_t)(__ccgo_up(wv_a6 + uintptr(i184)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b87 + uintptr(i184)*4))
-	**(**Tuint32_t)(__ccgo_up(os749 + uintptr(i184)*4)) = x1745
-	i184 = i184 + uint32(1)
-	_ = i184
-	os750 = wv_a6
-	x1746 = **(**Tuint32_t)(__ccgo_up(wv_a6 + uintptr(i184)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b87 + uintptr(i184)*4))
-	**(**Tuint32_t)(__ccgo_up(os750 + uintptr(i184)*4)) = x1746
-	i184 = i184 + uint32(1)
-	_ = i184
-	os751 = wv_a6
-	x1747 = **(**Tuint32_t)(__ccgo_up(wv_a6 + uintptr(i184)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b87 + uintptr(i184)*4))
-	**(**Tuint32_t)(__ccgo_up(os751 + uintptr(i184)*4)) = x1747
-	i184 = i184 + uint32(1)
-	_ = i184
-	i185 = 0
-	os752 = wv_a6
-	x1748 = **(**Tuint32_t)(__ccgo_up(wv_a6 + uintptr(i185)*4)) + **(**Tuint32_t)(__ccgo_up(z6 + uintptr(i185)*4))
-	**(**Tuint32_t)(__ccgo_up(os752 + uintptr(i185)*4)) = x1748
-	i185 = i185 + uint32(1)
-	_ = i185
-	os753 = wv_a6
-	x1749 = **(**Tuint32_t)(__ccgo_up(wv_a6 + uintptr(i185)*4)) + **(**Tuint32_t)(__ccgo_up(z6 + uintptr(i185)*4))
-	**(**Tuint32_t)(__ccgo_up(os753 + uintptr(i185)*4)) = x1749
-	i185 = i185 + uint32(1)
-	_ = i185
-	os754 = wv_a6
-	x1750 = **(**Tuint32_t)(__ccgo_up(wv_a6 + uintptr(i185)*4)) + **(**Tuint32_t)(__ccgo_up(z6 + uintptr(i185)*4))
-	**(**Tuint32_t)(__ccgo_up(os754 + uintptr(i185)*4)) = x1750
-	i185 = i185 + uint32(1)
-	_ = i185
-	os755 = wv_a6
-	x1751 = **(**Tuint32_t)(__ccgo_up(wv_a6 + uintptr(i185)*4)) + **(**Tuint32_t)(__ccgo_up(z6 + uintptr(i185)*4))
-	**(**Tuint32_t)(__ccgo_up(os755 + uintptr(i185)*4)) = x1751
-	i185 = i185 + uint32(1)
-	_ = i185
-	wv_a87 = wv + uintptr(d16*uint32(4))*4
-	wv_b97 = wv + uintptr(a06*uint32(4))*4
-	i186 = 0
-	os756 = wv_a87
-	x1752 = **(**Tuint32_t)(__ccgo_up(wv_a87 + uintptr(i186)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b97 + uintptr(i186)*4))
-	**(**Tuint32_t)(__ccgo_up(os756 + uintptr(i186)*4)) = x1752
-	i186 = i186 + uint32(1)
-	_ = i186
-	os757 = wv_a87
-	x1753 = **(**Tuint32_t)(__ccgo_up(wv_a87 + uintptr(i186)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b97 + uintptr(i186)*4))
-	**(**Tuint32_t)(__ccgo_up(os757 + uintptr(i186)*4)) = x1753
-	i186 = i186 + uint32(1)
-	_ = i186
-	os758 = wv_a87
-	x1754 = **(**Tuint32_t)(__ccgo_up(wv_a87 + uintptr(i186)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b97 + uintptr(i186)*4))
-	**(**Tuint32_t)(__ccgo_up(os758 + uintptr(i186)*4)) = x1754
-	i186 = i186 + uint32(1)
-	_ = i186
-	os759 = wv_a87
-	x1755 = **(**Tuint32_t)(__ccgo_up(wv_a87 + uintptr(i186)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b97 + uintptr(i186)*4))
-	**(**Tuint32_t)(__ccgo_up(os759 + uintptr(i186)*4)) = x1755
-	i186 = i186 + uint32(1)
-	_ = i186
-	r167 = wv_a87
-	i187 = 0
-	os760 = r167
-	x1756 = **(**Tuint32_t)(__ccgo_up(r167 + uintptr(i187)*4))
-	x13202 = x1756>>uint32(16) | x1756<<uint32(16)
-	**(**Tuint32_t)(__ccgo_up(os760 + uintptr(i187)*4)) = x13202
-	i187 = i187 + uint32(1)
-	_ = i187
-	os761 = r167
-	x1757 = **(**Tuint32_t)(__ccgo_up(r167 + uintptr(i187)*4))
-	x13203 = x1757>>uint32(16) | x1757<<uint32(16)
-	**(**Tuint32_t)(__ccgo_up(os761 + uintptr(i187)*4)) = x13203
-	i187 = i187 + uint32(1)
-	_ = i187
-	os762 = r167
-	x1758 = **(**Tuint32_t)(__ccgo_up(r167 + uintptr(i187)*4))
-	x13204 = x1758>>uint32(16) | x1758<<uint32(16)
-	**(**Tuint32_t)(__ccgo_up(os762 + uintptr(i187)*4)) = x13204
-	i187 = i187 + uint32(1)
-	_ = i187
-	os763 = r167
-	x1759 = **(**Tuint32_t)(__ccgo_up(r167 + uintptr(i187)*4))
-	x13205 = x1759>>uint32(16) | x1759<<uint32(16)
-	**(**Tuint32_t)(__ccgo_up(os763 + uintptr(i187)*4)) = x13205
-	i187 = i187 + uint32(1)
-	_ = i187
-	wv_a97 = wv + uintptr(c6*uint32(4))*4
-	wv_b106 = wv + uintptr(d16*uint32(4))*4
-	i188 = 0
-	os764 = wv_a97
-	x1760 = **(**Tuint32_t)(__ccgo_up(wv_a97 + uintptr(i188)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b106 + uintptr(i188)*4))
-	**(**Tuint32_t)(__ccgo_up(os764 + uintptr(i188)*4)) = x1760
-	i188 = i188 + uint32(1)
-	_ = i188
-	os765 = wv_a97
-	x1761 = **(**Tuint32_t)(__ccgo_up(wv_a97 + uintptr(i188)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b106 + uintptr(i188)*4))
-	**(**Tuint32_t)(__ccgo_up(os765 + uintptr(i188)*4)) = x1761
-	i188 = i188 + uint32(1)
-	_ = i188
-	os766 = wv_a97
-	x1762 = **(**Tuint32_t)(__ccgo_up(wv_a97 + uintptr(i188)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b106 + uintptr(i188)*4))
-	**(**Tuint32_t)(__ccgo_up(os766 + uintptr(i188)*4)) = x1762
-	i188 = i188 + uint32(1)
-	_ = i188
-	os767 = wv_a97
-	x1763 = **(**Tuint32_t)(__ccgo_up(wv_a97 + uintptr(i188)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b106 + uintptr(i188)*4))
-	**(**Tuint32_t)(__ccgo_up(os767 + uintptr(i188)*4)) = x1763
-	i188 = i188 + uint32(1)
-	_ = i188
-	wv_a106 = wv + uintptr(b7*uint32(4))*4
-	wv_b117 = wv + uintptr(c6*uint32(4))*4
-	i189 = 0
-	os768 = wv_a106
-	x1764 = **(**Tuint32_t)(__ccgo_up(wv_a106 + uintptr(i189)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b117 + uintptr(i189)*4))
-	**(**Tuint32_t)(__ccgo_up(os768 + uintptr(i189)*4)) = x1764
-	i189 = i189 + uint32(1)
-	_ = i189
-	os769 = wv_a106
-	x1765 = **(**Tuint32_t)(__ccgo_up(wv_a106 + uintptr(i189)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b117 + uintptr(i189)*4))
-	**(**Tuint32_t)(__ccgo_up(os769 + uintptr(i189)*4)) = x1765
-	i189 = i189 + uint32(1)
-	_ = i189
-	os770 = wv_a106
-	x1766 = **(**Tuint32_t)(__ccgo_up(wv_a106 + uintptr(i189)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b117 + uintptr(i189)*4))
-	**(**Tuint32_t)(__ccgo_up(os770 + uintptr(i189)*4)) = x1766
-	i189 = i189 + uint32(1)
-	_ = i189
-	os771 = wv_a106
-	x1767 = **(**Tuint32_t)(__ccgo_up(wv_a106 + uintptr(i189)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b117 + uintptr(i189)*4))
-	**(**Tuint32_t)(__ccgo_up(os771 + uintptr(i189)*4)) = x1767
-	i189 = i189 + uint32(1)
-	_ = i189
-	r177 = wv_a106
-	i190 = 0
-	os772 = r177
-	x1768 = **(**Tuint32_t)(__ccgo_up(r177 + uintptr(i190)*4))
-	x13206 = x1768>>uint32(12) | x1768<<uint32(20)
-	**(**Tuint32_t)(__ccgo_up(os772 + uintptr(i190)*4)) = x13206
-	i190 = i190 + uint32(1)
-	_ = i190
-	os773 = r177
-	x1769 = **(**Tuint32_t)(__ccgo_up(r177 + uintptr(i190)*4))
-	x13207 = x1769>>uint32(12) | x1769<<uint32(20)
-	**(**Tuint32_t)(__ccgo_up(os773 + uintptr(i190)*4)) = x13207
-	i190 = i190 + uint32(1)
-	_ = i190
-	os774 = r177
-	x1770 = **(**Tuint32_t)(__ccgo_up(r177 + uintptr(i190)*4))
-	x13208 = x1770>>uint32(12) | x1770<<uint32(20)
-	**(**Tuint32_t)(__ccgo_up(os774 + uintptr(i190)*4)) = x13208
-	i190 = i190 + uint32(1)
-	_ = i190
-	os775 = r177
-	x1771 = **(**Tuint32_t)(__ccgo_up(r177 + uintptr(i190)*4))
-	x13209 = x1771>>uint32(12) | x1771<<uint32(20)
-	**(**Tuint32_t)(__ccgo_up(os775 + uintptr(i190)*4)) = x13209
-	i190 = i190 + uint32(1)
-	_ = i190
-	wv_a117 = wv + uintptr(a06*uint32(4))*4
-	wv_b127 = wv + uintptr(b7*uint32(4))*4
-	i191 = 0
-	os776 = wv_a117
-	x1772 = **(**Tuint32_t)(__ccgo_up(wv_a117 + uintptr(i191)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b127 + uintptr(i191)*4))
-	**(**Tuint32_t)(__ccgo_up(os776 + uintptr(i191)*4)) = x1772
-	i191 = i191 + uint32(1)
-	_ = i191
-	os777 = wv_a117
-	x1773 = **(**Tuint32_t)(__ccgo_up(wv_a117 + uintptr(i191)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b127 + uintptr(i191)*4))
-	**(**Tuint32_t)(__ccgo_up(os777 + uintptr(i191)*4)) = x1773
-	i191 = i191 + uint32(1)
-	_ = i191
-	os778 = wv_a117
-	x1774 = **(**Tuint32_t)(__ccgo_up(wv_a117 + uintptr(i191)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b127 + uintptr(i191)*4))
-	**(**Tuint32_t)(__ccgo_up(os778 + uintptr(i191)*4)) = x1774
-	i191 = i191 + uint32(1)
-	_ = i191
-	os779 = wv_a117
-	x1775 = **(**Tuint32_t)(__ccgo_up(wv_a117 + uintptr(i191)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b127 + uintptr(i191)*4))
-	**(**Tuint32_t)(__ccgo_up(os779 + uintptr(i191)*4)) = x1775
-	i191 = i191 + uint32(1)
-	_ = i191
-	i192 = 0
-	os780 = wv_a117
-	x1776 = **(**Tuint32_t)(__ccgo_up(wv_a117 + uintptr(i192)*4)) + **(**Tuint32_t)(__ccgo_up(w6 + uintptr(i192)*4))
-	**(**Tuint32_t)(__ccgo_up(os780 + uintptr(i192)*4)) = x1776
-	i192 = i192 + uint32(1)
-	_ = i192
-	os781 = wv_a117
-	x1777 = **(**Tuint32_t)(__ccgo_up(wv_a117 + uintptr(i192)*4)) + **(**Tuint32_t)(__ccgo_up(w6 + uintptr(i192)*4))
-	**(**Tuint32_t)(__ccgo_up(os781 + uintptr(i192)*4)) = x1777
-	i192 = i192 + uint32(1)
-	_ = i192
-	os782 = wv_a117
-	x1778 = **(**Tuint32_t)(__ccgo_up(wv_a117 + uintptr(i192)*4)) + **(**Tuint32_t)(__ccgo_up(w6 + uintptr(i192)*4))
-	**(**Tuint32_t)(__ccgo_up(os782 + uintptr(i192)*4)) = x1778
-	i192 = i192 + uint32(1)
-	_ = i192
-	os783 = wv_a117
-	x1779 = **(**Tuint32_t)(__ccgo_up(wv_a117 + uintptr(i192)*4)) + **(**Tuint32_t)(__ccgo_up(w6 + uintptr(i192)*4))
-	**(**Tuint32_t)(__ccgo_up(os783 + uintptr(i192)*4)) = x1779
-	i192 = i192 + uint32(1)
-	_ = i192
-	wv_a127 = wv + uintptr(d16*uint32(4))*4
-	wv_b137 = wv + uintptr(a06*uint32(4))*4
-	i193 = 0
-	os784 = wv_a127
-	x1780 = **(**Tuint32_t)(__ccgo_up(wv_a127 + uintptr(i193)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b137 + uintptr(i193)*4))
-	**(**Tuint32_t)(__ccgo_up(os784 + uintptr(i193)*4)) = x1780
-	i193 = i193 + uint32(1)
-	_ = i193
-	os785 = wv_a127
-	x1781 = **(**Tuint32_t)(__ccgo_up(wv_a127 + uintptr(i193)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b137 + uintptr(i193)*4))
-	**(**Tuint32_t)(__ccgo_up(os785 + uintptr(i193)*4)) = x1781
-	i193 = i193 + uint32(1)
-	_ = i193
-	os786 = wv_a127
-	x1782 = **(**Tuint32_t)(__ccgo_up(wv_a127 + uintptr(i193)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b137 + uintptr(i193)*4))
-	**(**Tuint32_t)(__ccgo_up(os786 + uintptr(i193)*4)) = x1782
-	i193 = i193 + uint32(1)
-	_ = i193
-	os787 = wv_a127
-	x1783 = **(**Tuint32_t)(__ccgo_up(wv_a127 + uintptr(i193)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b137 + uintptr(i193)*4))
-	**(**Tuint32_t)(__ccgo_up(os787 + uintptr(i193)*4)) = x1783
-	i193 = i193 + uint32(1)
-	_ = i193
-	r187 = wv_a127
-	i194 = 0
-	os788 = r187
-	x1784 = **(**Tuint32_t)(__ccgo_up(r187 + uintptr(i194)*4))
-	x13210 = x1784>>uint32(8) | x1784<<uint32(24)
-	**(**Tuint32_t)(__ccgo_up(os788 + uintptr(i194)*4)) = x13210
-	i194 = i194 + uint32(1)
-	_ = i194
-	os789 = r187
-	x1785 = **(**Tuint32_t)(__ccgo_up(r187 + uintptr(i194)*4))
-	x13211 = x1785>>uint32(8) | x1785<<uint32(24)
-	**(**Tuint32_t)(__ccgo_up(os789 + uintptr(i194)*4)) = x13211
-	i194 = i194 + uint32(1)
-	_ = i194
-	os790 = r187
-	x1786 = **(**Tuint32_t)(__ccgo_up(r187 + uintptr(i194)*4))
-	x13212 = x1786>>uint32(8) | x1786<<uint32(24)
-	**(**Tuint32_t)(__ccgo_up(os790 + uintptr(i194)*4)) = x13212
-	i194 = i194 + uint32(1)
-	_ = i194
-	os791 = r187
-	x1787 = **(**Tuint32_t)(__ccgo_up(r187 + uintptr(i194)*4))
-	x13213 = x1787>>uint32(8) | x1787<<uint32(24)
-	**(**Tuint32_t)(__ccgo_up(os791 + uintptr(i194)*4)) = x13213
-	i194 = i194 + uint32(1)
-	_ = i194
-	wv_a137 = wv + uintptr(c6*uint32(4))*4
-	wv_b147 = wv + uintptr(d16*uint32(4))*4
-	i195 = 0
-	os792 = wv_a137
-	x1788 = **(**Tuint32_t)(__ccgo_up(wv_a137 + uintptr(i195)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b147 + uintptr(i195)*4))
-	**(**Tuint32_t)(__ccgo_up(os792 + uintptr(i195)*4)) = x1788
-	i195 = i195 + uint32(1)
-	_ = i195
-	os793 = wv_a137
-	x1789 = **(**Tuint32_t)(__ccgo_up(wv_a137 + uintptr(i195)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b147 + uintptr(i195)*4))
-	**(**Tuint32_t)(__ccgo_up(os793 + uintptr(i195)*4)) = x1789
-	i195 = i195 + uint32(1)
-	_ = i195
-	os794 = wv_a137
-	x1790 = **(**Tuint32_t)(__ccgo_up(wv_a137 + uintptr(i195)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b147 + uintptr(i195)*4))
-	**(**Tuint32_t)(__ccgo_up(os794 + uintptr(i195)*4)) = x1790
-	i195 = i195 + uint32(1)
-	_ = i195
-	os795 = wv_a137
-	x1791 = **(**Tuint32_t)(__ccgo_up(wv_a137 + uintptr(i195)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b147 + uintptr(i195)*4))
-	**(**Tuint32_t)(__ccgo_up(os795 + uintptr(i195)*4)) = x1791
-	i195 = i195 + uint32(1)
-	_ = i195
-	wv_a147 = wv + uintptr(b7*uint32(4))*4
-	wv_b6 = wv + uintptr(c6*uint32(4))*4
-	i196 = 0
-	os796 = wv_a147
-	x1792 = **(**Tuint32_t)(__ccgo_up(wv_a147 + uintptr(i196)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b6 + uintptr(i196)*4))
-	**(**Tuint32_t)(__ccgo_up(os796 + uintptr(i196)*4)) = x1792
-	i196 = i196 + uint32(1)
-	_ = i196
-	os797 = wv_a147
-	x1793 = **(**Tuint32_t)(__ccgo_up(wv_a147 + uintptr(i196)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b6 + uintptr(i196)*4))
-	**(**Tuint32_t)(__ccgo_up(os797 + uintptr(i196)*4)) = x1793
-	i196 = i196 + uint32(1)
-	_ = i196
-	os798 = wv_a147
-	x1794 = **(**Tuint32_t)(__ccgo_up(wv_a147 + uintptr(i196)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b6 + uintptr(i196)*4))
-	**(**Tuint32_t)(__ccgo_up(os798 + uintptr(i196)*4)) = x1794
-	i196 = i196 + uint32(1)
-	_ = i196
-	os799 = wv_a147
-	x1795 = **(**Tuint32_t)(__ccgo_up(wv_a147 + uintptr(i196)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b6 + uintptr(i196)*4))
-	**(**Tuint32_t)(__ccgo_up(os799 + uintptr(i196)*4)) = x1795
-	i196 = i196 + uint32(1)
-	_ = i196
-	r197 = wv_a147
-	i197 = 0
-	os800 = r197
-	x1796 = **(**Tuint32_t)(__ccgo_up(r197 + uintptr(i197)*4))
-	x13214 = x1796>>uint32(7) | x1796<<uint32(25)
-	**(**Tuint32_t)(__ccgo_up(os800 + uintptr(i197)*4)) = x13214
-	i197 = i197 + uint32(1)
-	_ = i197
-	os801 = r197
-	x1797 = **(**Tuint32_t)(__ccgo_up(r197 + uintptr(i197)*4))
-	x13215 = x1797>>uint32(7) | x1797<<uint32(25)
-	**(**Tuint32_t)(__ccgo_up(os801 + uintptr(i197)*4)) = x13215
-	i197 = i197 + uint32(1)
-	_ = i197
-	os802 = r197
-	x1798 = **(**Tuint32_t)(__ccgo_up(r197 + uintptr(i197)*4))
-	x13216 = x1798>>uint32(7) | x1798<<uint32(25)
-	**(**Tuint32_t)(__ccgo_up(os802 + uintptr(i197)*4)) = x13216
-	i197 = i197 + uint32(1)
-	_ = i197
-	os803 = r197
-	x1799 = **(**Tuint32_t)(__ccgo_up(r197 + uintptr(i197)*4))
-	x13217 = x1799>>uint32(7) | x1799<<uint32(25)
-	**(**Tuint32_t)(__ccgo_up(os803 + uintptr(i197)*4)) = x13217
-	i197 = i197 + uint32(1)
-	_ = i197
-	r1137 = wv + uintptr(4)*4
-	r27 = wv + uintptr(8)*4
-	r37 = wv + uintptr(12)*4
-	r1113 = r1137
-	x037 = **(**Tuint32_t)(__ccgo_up(r1113 + 3*4))
-	x13218 = **(**Tuint32_t)(__ccgo_up(r1113))
-	x237 = **(**Tuint32_t)(__ccgo_up(r1113 + 1*4))
-	x337 = **(**Tuint32_t)(__ccgo_up(r1113 + 2*4))
-	**(**Tuint32_t)(__ccgo_up(r1113)) = x037
-	**(**Tuint32_t)(__ccgo_up(r1113 + 1*4)) = x13218
-	**(**Tuint32_t)(__ccgo_up(r1113 + 2*4)) = x237
-	**(**Tuint32_t)(__ccgo_up(r1113 + 3*4)) = x337
-	r1147 = r27
-	x047 = **(**Tuint32_t)(__ccgo_up(r1147 + 2*4))
-	x14106 = **(**Tuint32_t)(__ccgo_up(r1147 + 3*4))
-	x247 = **(**Tuint32_t)(__ccgo_up(r1147))
-	x347 = **(**Tuint32_t)(__ccgo_up(r1147 + 1*4))
-	**(**Tuint32_t)(__ccgo_up(r1147)) = x047
-	**(**Tuint32_t)(__ccgo_up(r1147 + 1*4)) = x14106
-	**(**Tuint32_t)(__ccgo_up(r1147 + 2*4)) = x247
-	**(**Tuint32_t)(__ccgo_up(r1147 + 3*4)) = x347
-	r1157 = r37
-	x06 = **(**Tuint32_t)(__ccgo_up(r1157 + 1*4))
-	x1800 = **(**Tuint32_t)(__ccgo_up(r1157 + 2*4))
-	x216 = **(**Tuint32_t)(__ccgo_up(r1157 + 3*4))
-	x316 = **(**Tuint32_t)(__ccgo_up(r1157))
-	**(**Tuint32_t)(__ccgo_up(r1157)) = x06
-	**(**Tuint32_t)(__ccgo_up(r1157 + 1*4)) = x1800
-	**(**Tuint32_t)(__ccgo_up(r1157 + 2*4)) = x216
-	**(**Tuint32_t)(__ccgo_up(r1157 + 3*4)) = x316
-	i0 = i0 + uint32(1)
-	_ = i0
-	start_idx7 = i0 % uint32(10) * uint32(16)
-	**(**[16]Tuint32_t)(__ccgo_up(bp + 516)) = [16]Tuint32_t{}
-	r07 = bp + 516
-	r113 = bp + 516 + uintptr(4)*4
-	r207 = bp + 516 + uintptr(8)*4
-	r307 = bp + 516 + uintptr(12)*4
-	s07 = _Hacl_Hash_Blake2b_sigmaTable[start_idx7+0]
-	s17 = _Hacl_Hash_Blake2b_sigmaTable[start_idx7+uint32(1)]
-	s27 = _Hacl_Hash_Blake2b_sigmaTable[start_idx7+uint32(2)]
-	s37 = _Hacl_Hash_Blake2b_sigmaTable[start_idx7+uint32(3)]
-	s47 = _Hacl_Hash_Blake2b_sigmaTable[start_idx7+uint32(4)]
-	s57 = _Hacl_Hash_Blake2b_sigmaTable[start_idx7+uint32(5)]
-	s67 = _Hacl_Hash_Blake2b_sigmaTable[start_idx7+uint32(6)]
-	s77 = _Hacl_Hash_Blake2b_sigmaTable[start_idx7+uint32(7)]
-	s87 = _Hacl_Hash_Blake2b_sigmaTable[start_idx7+uint32(8)]
-	s97 = _Hacl_Hash_Blake2b_sigmaTable[start_idx7+uint32(9)]
-	s107 = _Hacl_Hash_Blake2b_sigmaTable[start_idx7+uint32(10)]
-	s118 = _Hacl_Hash_Blake2b_sigmaTable[start_idx7+uint32(11)]
-	s128 = _Hacl_Hash_Blake2b_sigmaTable[start_idx7+uint32(12)]
-	s138 = _Hacl_Hash_Blake2b_sigmaTable[start_idx7+uint32(13)]
-	s148 = _Hacl_Hash_Blake2b_sigmaTable[start_idx7+uint32(14)]
-	s158 = _Hacl_Hash_Blake2b_sigmaTable[start_idx7+uint32(15)]
-	uu____07 = (**(**[16]Tuint32_t)(__ccgo_up(bp + 4)))[s27]
-	uu____17 = (**(**[16]Tuint32_t)(__ccgo_up(bp + 4)))[s47]
-	uu____27 = (**(**[16]Tuint32_t)(__ccgo_up(bp + 4)))[s67]
-	**(**Tuint32_t)(__ccgo_up(r07)) = (**(**[16]Tuint32_t)(__ccgo_up(bp + 4)))[s07]
-	**(**Tuint32_t)(__ccgo_up(r07 + 1*4)) = uu____07
-	**(**Tuint32_t)(__ccgo_up(r07 + 2*4)) = uu____17
-	**(**Tuint32_t)(__ccgo_up(r07 + 3*4)) = uu____27
-	uu____37 = (**(**[16]Tuint32_t)(__ccgo_up(bp + 4)))[s37]
-	uu____47 = (**(**[16]Tuint32_t)(__ccgo_up(bp + 4)))[s57]
-	uu____57 = (**(**[16]Tuint32_t)(__ccgo_up(bp + 4)))[s77]
-	**(**Tuint32_t)(__ccgo_up(r113)) = (**(**[16]Tuint32_t)(__ccgo_up(bp + 4)))[s17]
-	**(**Tuint32_t)(__ccgo_up(r113 + 1*4)) = uu____37
-	**(**Tuint32_t)(__ccgo_up(r113 + 2*4)) = uu____47
-	**(**Tuint32_t)(__ccgo_up(r113 + 3*4)) = uu____57
-	uu____67 = (**(**[16]Tuint32_t)(__ccgo_up(bp + 4)))[s107]
-	uu____77 = (**(**[16]Tuint32_t)(__ccgo_up(bp + 4)))[s128]
-	uu____87 = (**(**[16]Tuint32_t)(__ccgo_up(bp + 4)))[s148]
-	**(**Tuint32_t)(__ccgo_up(r207)) = (**(**[16]Tuint32_t)(__ccgo_up(bp + 4)))[s87]
-	**(**Tuint32_t)(__ccgo_up(r207 + 1*4)) = uu____67
-	**(**Tuint32_t)(__ccgo_up(r207 + 2*4)) = uu____77
-	**(**Tuint32_t)(__ccgo_up(r207 + 3*4)) = uu____87
-	uu____97 = (**(**[16]Tuint32_t)(__ccgo_up(bp + 4)))[s118]
-	uu____107 = (**(**[16]Tuint32_t)(__ccgo_up(bp + 4)))[s138]
-	uu____118 = (**(**[16]Tuint32_t)(__ccgo_up(bp + 4)))[s158]
-	**(**Tuint32_t)(__ccgo_up(r307)) = (**(**[16]Tuint32_t)(__ccgo_up(bp + 4)))[s97]
-	**(**Tuint32_t)(__ccgo_up(r307 + 1*4)) = uu____97
-	**(**Tuint32_t)(__ccgo_up(r307 + 2*4)) = uu____107
-	**(**Tuint32_t)(__ccgo_up(r307 + 3*4)) = uu____118
-	x28 = bp + 516
-	y7 = bp + 516 + uintptr(4)*4
-	z7 = bp + 516 + uintptr(8)*4
-	w7 = bp + 516 + uintptr(12)*4
-	a7 = 0
-	b07 = uint32(1)
-	c07 = uint32(2)
-	d107 = uint32(3)
-	wv_a07 = wv + uintptr(a7*uint32(4))*4
-	wv_b07 = wv + uintptr(b07*uint32(4))*4
-	i198 = 0
-	os804 = wv_a07
-	x1801 = **(**Tuint32_t)(__ccgo_up(wv_a07 + uintptr(i198)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b07 + uintptr(i198)*4))
-	**(**Tuint32_t)(__ccgo_up(os804 + uintptr(i198)*4)) = x1801
-	i198 = i198 + uint32(1)
-	_ = i198
-	os805 = wv_a07
-	x1802 = **(**Tuint32_t)(__ccgo_up(wv_a07 + uintptr(i198)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b07 + uintptr(i198)*4))
-	**(**Tuint32_t)(__ccgo_up(os805 + uintptr(i198)*4)) = x1802
-	i198 = i198 + uint32(1)
-	_ = i198
-	os806 = wv_a07
-	x1803 = **(**Tuint32_t)(__ccgo_up(wv_a07 + uintptr(i198)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b07 + uintptr(i198)*4))
-	**(**Tuint32_t)(__ccgo_up(os806 + uintptr(i198)*4)) = x1803
-	i198 = i198 + uint32(1)
-	_ = i198
-	os807 = wv_a07
-	x1804 = **(**Tuint32_t)(__ccgo_up(wv_a07 + uintptr(i198)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b07 + uintptr(i198)*4))
-	**(**Tuint32_t)(__ccgo_up(os807 + uintptr(i198)*4)) = x1804
-	i198 = i198 + uint32(1)
-	_ = i198
-	i199 = 0
-	os808 = wv_a07
-	x1805 = **(**Tuint32_t)(__ccgo_up(wv_a07 + uintptr(i199)*4)) + **(**Tuint32_t)(__ccgo_up(x28 + uintptr(i199)*4))
-	**(**Tuint32_t)(__ccgo_up(os808 + uintptr(i199)*4)) = x1805
-	i199 = i199 + uint32(1)
-	_ = i199
-	os809 = wv_a07
-	x1806 = **(**Tuint32_t)(__ccgo_up(wv_a07 + uintptr(i199)*4)) + **(**Tuint32_t)(__ccgo_up(x28 + uintptr(i199)*4))
-	**(**Tuint32_t)(__ccgo_up(os809 + uintptr(i199)*4)) = x1806
-	i199 = i199 + uint32(1)
-	_ = i199
-	os810 = wv_a07
-	x1807 = **(**Tuint32_t)(__ccgo_up(wv_a07 + uintptr(i199)*4)) + **(**Tuint32_t)(__ccgo_up(x28 + uintptr(i199)*4))
-	**(**Tuint32_t)(__ccgo_up(os810 + uintptr(i199)*4)) = x1807
-	i199 = i199 + uint32(1)
-	_ = i199
-	os811 = wv_a07
-	x1808 = **(**Tuint32_t)(__ccgo_up(wv_a07 + uintptr(i199)*4)) + **(**Tuint32_t)(__ccgo_up(x28 + uintptr(i199)*4))
-	**(**Tuint32_t)(__ccgo_up(os811 + uintptr(i199)*4)) = x1808
-	i199 = i199 + uint32(1)
-	_ = i199
-	wv_a18 = wv + uintptr(d107*uint32(4))*4
-	wv_b18 = wv + uintptr(a7*uint32(4))*4
-	i200 = 0
-	os812 = wv_a18
-	x1809 = **(**Tuint32_t)(__ccgo_up(wv_a18 + uintptr(i200)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b18 + uintptr(i200)*4))
-	**(**Tuint32_t)(__ccgo_up(os812 + uintptr(i200)*4)) = x1809
-	i200 = i200 + uint32(1)
-	_ = i200
-	os813 = wv_a18
-	x1810 = **(**Tuint32_t)(__ccgo_up(wv_a18 + uintptr(i200)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b18 + uintptr(i200)*4))
-	**(**Tuint32_t)(__ccgo_up(os813 + uintptr(i200)*4)) = x1810
-	i200 = i200 + uint32(1)
-	_ = i200
-	os814 = wv_a18
-	x1811 = **(**Tuint32_t)(__ccgo_up(wv_a18 + uintptr(i200)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b18 + uintptr(i200)*4))
-	**(**Tuint32_t)(__ccgo_up(os814 + uintptr(i200)*4)) = x1811
-	i200 = i200 + uint32(1)
-	_ = i200
-	os815 = wv_a18
-	x1812 = **(**Tuint32_t)(__ccgo_up(wv_a18 + uintptr(i200)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b18 + uintptr(i200)*4))
-	**(**Tuint32_t)(__ccgo_up(os815 + uintptr(i200)*4)) = x1812
-	i200 = i200 + uint32(1)
-	_ = i200
-	r108 = wv_a18
-	i201 = 0
-	os816 = r108
-	x1813 = **(**Tuint32_t)(__ccgo_up(r108 + uintptr(i201)*4))
-	x10120 = x1813>>uint32(16) | x1813<<uint32(16)
-	**(**Tuint32_t)(__ccgo_up(os816 + uintptr(i201)*4)) = x10120
-	i201 = i201 + uint32(1)
-	_ = i201
-	os817 = r108
-	x1814 = **(**Tuint32_t)(__ccgo_up(r108 + uintptr(i201)*4))
-	x10121 = x1814>>uint32(16) | x1814<<uint32(16)
-	**(**Tuint32_t)(__ccgo_up(os817 + uintptr(i201)*4)) = x10121
-	i201 = i201 + uint32(1)
-	_ = i201
-	os818 = r108
-	x1815 = **(**Tuint32_t)(__ccgo_up(r108 + uintptr(i201)*4))
-	x10122 = x1815>>uint32(16) | x1815<<uint32(16)
-	**(**Tuint32_t)(__ccgo_up(os818 + uintptr(i201)*4)) = x10122
-	i201 = i201 + uint32(1)
-	_ = i201
-	os819 = r108
-	x1816 = **(**Tuint32_t)(__ccgo_up(r108 + uintptr(i201)*4))
-	x10123 = x1816>>uint32(16) | x1816<<uint32(16)
-	**(**Tuint32_t)(__ccgo_up(os819 + uintptr(i201)*4)) = x10123
-	i201 = i201 + uint32(1)
-	_ = i201
-	wv_a28 = wv + uintptr(c07*uint32(4))*4
-	wv_b28 = wv + uintptr(d107*uint32(4))*4
-	i202 = 0
-	os820 = wv_a28
-	x1817 = **(**Tuint32_t)(__ccgo_up(wv_a28 + uintptr(i202)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b28 + uintptr(i202)*4))
-	**(**Tuint32_t)(__ccgo_up(os820 + uintptr(i202)*4)) = x1817
-	i202 = i202 + uint32(1)
-	_ = i202
-	os821 = wv_a28
-	x1818 = **(**Tuint32_t)(__ccgo_up(wv_a28 + uintptr(i202)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b28 + uintptr(i202)*4))
-	**(**Tuint32_t)(__ccgo_up(os821 + uintptr(i202)*4)) = x1818
-	i202 = i202 + uint32(1)
-	_ = i202
-	os822 = wv_a28
-	x1819 = **(**Tuint32_t)(__ccgo_up(wv_a28 + uintptr(i202)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b28 + uintptr(i202)*4))
-	**(**Tuint32_t)(__ccgo_up(os822 + uintptr(i202)*4)) = x1819
-	i202 = i202 + uint32(1)
-	_ = i202
-	os823 = wv_a28
-	x1820 = **(**Tuint32_t)(__ccgo_up(wv_a28 + uintptr(i202)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b28 + uintptr(i202)*4))
-	**(**Tuint32_t)(__ccgo_up(os823 + uintptr(i202)*4)) = x1820
-	i202 = i202 + uint32(1)
-	_ = i202
-	wv_a38 = wv + uintptr(b07*uint32(4))*4
-	wv_b38 = wv + uintptr(c07*uint32(4))*4
-	i203 = 0
-	os824 = wv_a38
-	x1821 = **(**Tuint32_t)(__ccgo_up(wv_a38 + uintptr(i203)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b38 + uintptr(i203)*4))
-	**(**Tuint32_t)(__ccgo_up(os824 + uintptr(i203)*4)) = x1821
-	i203 = i203 + uint32(1)
-	_ = i203
-	os825 = wv_a38
-	x1822 = **(**Tuint32_t)(__ccgo_up(wv_a38 + uintptr(i203)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b38 + uintptr(i203)*4))
-	**(**Tuint32_t)(__ccgo_up(os825 + uintptr(i203)*4)) = x1822
-	i203 = i203 + uint32(1)
-	_ = i203
-	os826 = wv_a38
-	x1823 = **(**Tuint32_t)(__ccgo_up(wv_a38 + uintptr(i203)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b38 + uintptr(i203)*4))
-	**(**Tuint32_t)(__ccgo_up(os826 + uintptr(i203)*4)) = x1823
-	i203 = i203 + uint32(1)
-	_ = i203
-	os827 = wv_a38
-	x1824 = **(**Tuint32_t)(__ccgo_up(wv_a38 + uintptr(i203)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b38 + uintptr(i203)*4))
-	**(**Tuint32_t)(__ccgo_up(os827 + uintptr(i203)*4)) = x1824
-	i203 = i203 + uint32(1)
-	_ = i203
-	r128 = wv_a38
-	i204 = 0
-	os828 = r128
-	x1825 = **(**Tuint32_t)(__ccgo_up(r128 + uintptr(i204)*4))
-	x10124 = x1825>>uint32(12) | x1825<<uint32(20)
-	**(**Tuint32_t)(__ccgo_up(os828 + uintptr(i204)*4)) = x10124
-	i204 = i204 + uint32(1)
-	_ = i204
-	os829 = r128
-	x1826 = **(**Tuint32_t)(__ccgo_up(r128 + uintptr(i204)*4))
-	x10125 = x1826>>uint32(12) | x1826<<uint32(20)
-	**(**Tuint32_t)(__ccgo_up(os829 + uintptr(i204)*4)) = x10125
-	i204 = i204 + uint32(1)
-	_ = i204
-	os830 = r128
-	x1827 = **(**Tuint32_t)(__ccgo_up(r128 + uintptr(i204)*4))
-	x10126 = x1827>>uint32(12) | x1827<<uint32(20)
-	**(**Tuint32_t)(__ccgo_up(os830 + uintptr(i204)*4)) = x10126
-	i204 = i204 + uint32(1)
-	_ = i204
-	os831 = r128
-	x1828 = **(**Tuint32_t)(__ccgo_up(r128 + uintptr(i204)*4))
-	x10127 = x1828>>uint32(12) | x1828<<uint32(20)
-	**(**Tuint32_t)(__ccgo_up(os831 + uintptr(i204)*4)) = x10127
-	i204 = i204 + uint32(1)
-	_ = i204
-	wv_a48 = wv + uintptr(a7*uint32(4))*4
-	wv_b48 = wv + uintptr(b07*uint32(4))*4
-	i205 = 0
-	os832 = wv_a48
-	x1829 = **(**Tuint32_t)(__ccgo_up(wv_a48 + uintptr(i205)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b48 + uintptr(i205)*4))
-	**(**Tuint32_t)(__ccgo_up(os832 + uintptr(i205)*4)) = x1829
-	i205 = i205 + uint32(1)
-	_ = i205
-	os833 = wv_a48
-	x1830 = **(**Tuint32_t)(__ccgo_up(wv_a48 + uintptr(i205)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b48 + uintptr(i205)*4))
-	**(**Tuint32_t)(__ccgo_up(os833 + uintptr(i205)*4)) = x1830
-	i205 = i205 + uint32(1)
-	_ = i205
-	os834 = wv_a48
-	x1831 = **(**Tuint32_t)(__ccgo_up(wv_a48 + uintptr(i205)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b48 + uintptr(i205)*4))
-	**(**Tuint32_t)(__ccgo_up(os834 + uintptr(i205)*4)) = x1831
-	i205 = i205 + uint32(1)
-	_ = i205
-	os835 = wv_a48
-	x1832 = **(**Tuint32_t)(__ccgo_up(wv_a48 + uintptr(i205)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b48 + uintptr(i205)*4))
-	**(**Tuint32_t)(__ccgo_up(os835 + uintptr(i205)*4)) = x1832
-	i205 = i205 + uint32(1)
-	_ = i205
-	i206 = 0
-	os836 = wv_a48
-	x1833 = **(**Tuint32_t)(__ccgo_up(wv_a48 + uintptr(i206)*4)) + **(**Tuint32_t)(__ccgo_up(y7 + uintptr(i206)*4))
-	**(**Tuint32_t)(__ccgo_up(os836 + uintptr(i206)*4)) = x1833
-	i206 = i206 + uint32(1)
-	_ = i206
-	os837 = wv_a48
-	x1834 = **(**Tuint32_t)(__ccgo_up(wv_a48 + uintptr(i206)*4)) + **(**Tuint32_t)(__ccgo_up(y7 + uintptr(i206)*4))
-	**(**Tuint32_t)(__ccgo_up(os837 + uintptr(i206)*4)) = x1834
-	i206 = i206 + uint32(1)
-	_ = i206
-	os838 = wv_a48
-	x1835 = **(**Tuint32_t)(__ccgo_up(wv_a48 + uintptr(i206)*4)) + **(**Tuint32_t)(__ccgo_up(y7 + uintptr(i206)*4))
-	**(**Tuint32_t)(__ccgo_up(os838 + uintptr(i206)*4)) = x1835
-	i206 = i206 + uint32(1)
-	_ = i206
-	os839 = wv_a48
-	x1836 = **(**Tuint32_t)(__ccgo_up(wv_a48 + uintptr(i206)*4)) + **(**Tuint32_t)(__ccgo_up(y7 + uintptr(i206)*4))
-	**(**Tuint32_t)(__ccgo_up(os839 + uintptr(i206)*4)) = x1836
-	i206 = i206 + uint32(1)
-	_ = i206
-	wv_a58 = wv + uintptr(d107*uint32(4))*4
-	wv_b58 = wv + uintptr(a7*uint32(4))*4
-	i207 = 0
-	os840 = wv_a58
-	x1837 = **(**Tuint32_t)(__ccgo_up(wv_a58 + uintptr(i207)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b58 + uintptr(i207)*4))
-	**(**Tuint32_t)(__ccgo_up(os840 + uintptr(i207)*4)) = x1837
-	i207 = i207 + uint32(1)
-	_ = i207
-	os841 = wv_a58
-	x1838 = **(**Tuint32_t)(__ccgo_up(wv_a58 + uintptr(i207)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b58 + uintptr(i207)*4))
-	**(**Tuint32_t)(__ccgo_up(os841 + uintptr(i207)*4)) = x1838
-	i207 = i207 + uint32(1)
-	_ = i207
-	os842 = wv_a58
-	x1839 = **(**Tuint32_t)(__ccgo_up(wv_a58 + uintptr(i207)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b58 + uintptr(i207)*4))
-	**(**Tuint32_t)(__ccgo_up(os842 + uintptr(i207)*4)) = x1839
-	i207 = i207 + uint32(1)
-	_ = i207
-	os843 = wv_a58
-	x1840 = **(**Tuint32_t)(__ccgo_up(wv_a58 + uintptr(i207)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b58 + uintptr(i207)*4))
-	**(**Tuint32_t)(__ccgo_up(os843 + uintptr(i207)*4)) = x1840
-	i207 = i207 + uint32(1)
-	_ = i207
-	r138 = wv_a58
-	i208 = 0
-	os844 = r138
-	x1841 = **(**Tuint32_t)(__ccgo_up(r138 + uintptr(i208)*4))
-	x10128 = x1841>>uint32(8) | x1841<<uint32(24)
-	**(**Tuint32_t)(__ccgo_up(os844 + uintptr(i208)*4)) = x10128
-	i208 = i208 + uint32(1)
-	_ = i208
-	os845 = r138
-	x1842 = **(**Tuint32_t)(__ccgo_up(r138 + uintptr(i208)*4))
-	x10129 = x1842>>uint32(8) | x1842<<uint32(24)
-	**(**Tuint32_t)(__ccgo_up(os845 + uintptr(i208)*4)) = x10129
-	i208 = i208 + uint32(1)
-	_ = i208
-	os846 = r138
-	x1843 = **(**Tuint32_t)(__ccgo_up(r138 + uintptr(i208)*4))
-	x10130 = x1843>>uint32(8) | x1843<<uint32(24)
-	**(**Tuint32_t)(__ccgo_up(os846 + uintptr(i208)*4)) = x10130
-	i208 = i208 + uint32(1)
-	_ = i208
-	os847 = r138
-	x1844 = **(**Tuint32_t)(__ccgo_up(r138 + uintptr(i208)*4))
-	x10131 = x1844>>uint32(8) | x1844<<uint32(24)
-	**(**Tuint32_t)(__ccgo_up(os847 + uintptr(i208)*4)) = x10131
-	i208 = i208 + uint32(1)
-	_ = i208
-	wv_a68 = wv + uintptr(c07*uint32(4))*4
-	wv_b68 = wv + uintptr(d107*uint32(4))*4
-	i209 = 0
-	os848 = wv_a68
-	x1845 = **(**Tuint32_t)(__ccgo_up(wv_a68 + uintptr(i209)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b68 + uintptr(i209)*4))
-	**(**Tuint32_t)(__ccgo_up(os848 + uintptr(i209)*4)) = x1845
-	i209 = i209 + uint32(1)
-	_ = i209
-	os849 = wv_a68
-	x1846 = **(**Tuint32_t)(__ccgo_up(wv_a68 + uintptr(i209)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b68 + uintptr(i209)*4))
-	**(**Tuint32_t)(__ccgo_up(os849 + uintptr(i209)*4)) = x1846
-	i209 = i209 + uint32(1)
-	_ = i209
-	os850 = wv_a68
-	x1847 = **(**Tuint32_t)(__ccgo_up(wv_a68 + uintptr(i209)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b68 + uintptr(i209)*4))
-	**(**Tuint32_t)(__ccgo_up(os850 + uintptr(i209)*4)) = x1847
-	i209 = i209 + uint32(1)
-	_ = i209
-	os851 = wv_a68
-	x1848 = **(**Tuint32_t)(__ccgo_up(wv_a68 + uintptr(i209)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b68 + uintptr(i209)*4))
-	**(**Tuint32_t)(__ccgo_up(os851 + uintptr(i209)*4)) = x1848
-	i209 = i209 + uint32(1)
-	_ = i209
-	wv_a78 = wv + uintptr(b07*uint32(4))*4
-	wv_b78 = wv + uintptr(c07*uint32(4))*4
-	i210 = 0
-	os852 = wv_a78
-	x1849 = **(**Tuint32_t)(__ccgo_up(wv_a78 + uintptr(i210)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b78 + uintptr(i210)*4))
-	**(**Tuint32_t)(__ccgo_up(os852 + uintptr(i210)*4)) = x1849
-	i210 = i210 + uint32(1)
-	_ = i210
-	os853 = wv_a78
-	x1850 = **(**Tuint32_t)(__ccgo_up(wv_a78 + uintptr(i210)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b78 + uintptr(i210)*4))
-	**(**Tuint32_t)(__ccgo_up(os853 + uintptr(i210)*4)) = x1850
-	i210 = i210 + uint32(1)
-	_ = i210
-	os854 = wv_a78
-	x1851 = **(**Tuint32_t)(__ccgo_up(wv_a78 + uintptr(i210)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b78 + uintptr(i210)*4))
-	**(**Tuint32_t)(__ccgo_up(os854 + uintptr(i210)*4)) = x1851
-	i210 = i210 + uint32(1)
-	_ = i210
-	os855 = wv_a78
-	x1852 = **(**Tuint32_t)(__ccgo_up(wv_a78 + uintptr(i210)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b78 + uintptr(i210)*4))
-	**(**Tuint32_t)(__ccgo_up(os855 + uintptr(i210)*4)) = x1852
-	i210 = i210 + uint32(1)
-	_ = i210
-	r148 = wv_a78
-	i211 = 0
-	os856 = r148
-	x1853 = **(**Tuint32_t)(__ccgo_up(r148 + uintptr(i211)*4))
-	x10132 = x1853>>uint32(7) | x1853<<uint32(25)
-	**(**Tuint32_t)(__ccgo_up(os856 + uintptr(i211)*4)) = x10132
-	i211 = i211 + uint32(1)
-	_ = i211
-	os857 = r148
-	x1854 = **(**Tuint32_t)(__ccgo_up(r148 + uintptr(i211)*4))
-	x10133 = x1854>>uint32(7) | x1854<<uint32(25)
-	**(**Tuint32_t)(__ccgo_up(os857 + uintptr(i211)*4)) = x10133
-	i211 = i211 + uint32(1)
-	_ = i211
-	os858 = r148
-	x1855 = **(**Tuint32_t)(__ccgo_up(r148 + uintptr(i211)*4))
-	x10134 = x1855>>uint32(7) | x1855<<uint32(25)
-	**(**Tuint32_t)(__ccgo_up(os858 + uintptr(i211)*4)) = x10134
-	i211 = i211 + uint32(1)
-	_ = i211
-	os859 = r148
-	x1856 = **(**Tuint32_t)(__ccgo_up(r148 + uintptr(i211)*4))
-	x10135 = x1856>>uint32(7) | x1856<<uint32(25)
-	**(**Tuint32_t)(__ccgo_up(os859 + uintptr(i211)*4)) = x10135
-	i211 = i211 + uint32(1)
-	_ = i211
-	r158 = wv + uintptr(4)*4
-	r219 = wv + uintptr(8)*4
-	r319 = wv + uintptr(12)*4
-	r1108 = r158
-	x007 = **(**Tuint32_t)(__ccgo_up(r1108 + 1*4))
-	x10136 = **(**Tuint32_t)(__ccgo_up(r1108 + 2*4))
-	x208 = **(**Tuint32_t)(__ccgo_up(r1108 + 3*4))
-	x308 = **(**Tuint32_t)(__ccgo_up(r1108))
-	**(**Tuint32_t)(__ccgo_up(r1108)) = x007
-	**(**Tuint32_t)(__ccgo_up(r1108 + 1*4)) = x10136
-	**(**Tuint32_t)(__ccgo_up(r1108 + 2*4)) = x208
-	**(**Tuint32_t)(__ccgo_up(r1108 + 3*4)) = x308
-	r11114 = r219
-	x018 = **(**Tuint32_t)(__ccgo_up(r11114 + 2*4))
-	x11147 = **(**Tuint32_t)(__ccgo_up(r11114 + 3*4))
-	x2117 = **(**Tuint32_t)(__ccgo_up(r11114))
-	x3117 = **(**Tuint32_t)(__ccgo_up(r11114 + 1*4))
-	**(**Tuint32_t)(__ccgo_up(r11114)) = x018
-	**(**Tuint32_t)(__ccgo_up(r11114 + 1*4)) = x11147
-	**(**Tuint32_t)(__ccgo_up(r11114 + 2*4)) = x2117
-	**(**Tuint32_t)(__ccgo_up(r11114 + 3*4)) = x3117
-	r1128 = r319
-	x028 = **(**Tuint32_t)(__ccgo_up(r1128 + 3*4))
-	x12107 = **(**Tuint32_t)(__ccgo_up(r1128))
-	x228 = **(**Tuint32_t)(__ccgo_up(r1128 + 1*4))
-	x328 = **(**Tuint32_t)(__ccgo_up(r1128 + 2*4))
-	**(**Tuint32_t)(__ccgo_up(r1128)) = x028
-	**(**Tuint32_t)(__ccgo_up(r1128 + 1*4)) = x12107
-	**(**Tuint32_t)(__ccgo_up(r1128 + 2*4)) = x228
-	**(**Tuint32_t)(__ccgo_up(r1128 + 3*4)) = x328
-	a07 = 0
-	b8 = uint32(1)
-	c7 = uint32(2)
-	d17 = uint32(3)
-	wv_a7 = wv + uintptr(a07*uint32(4))*4
-	wv_b88 = wv + uintptr(b8*uint32(4))*4
-	i212 = 0
-	os860 = wv_a7
-	x1857 = **(**Tuint32_t)(__ccgo_up(wv_a7 + uintptr(i212)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b88 + uintptr(i212)*4))
-	**(**Tuint32_t)(__ccgo_up(os860 + uintptr(i212)*4)) = x1857
-	i212 = i212 + uint32(1)
-	_ = i212
-	os861 = wv_a7
-	x1858 = **(**Tuint32_t)(__ccgo_up(wv_a7 + uintptr(i212)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b88 + uintptr(i212)*4))
-	**(**Tuint32_t)(__ccgo_up(os861 + uintptr(i212)*4)) = x1858
-	i212 = i212 + uint32(1)
-	_ = i212
-	os862 = wv_a7
-	x1859 = **(**Tuint32_t)(__ccgo_up(wv_a7 + uintptr(i212)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b88 + uintptr(i212)*4))
-	**(**Tuint32_t)(__ccgo_up(os862 + uintptr(i212)*4)) = x1859
-	i212 = i212 + uint32(1)
-	_ = i212
-	os863 = wv_a7
-	x1860 = **(**Tuint32_t)(__ccgo_up(wv_a7 + uintptr(i212)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b88 + uintptr(i212)*4))
-	**(**Tuint32_t)(__ccgo_up(os863 + uintptr(i212)*4)) = x1860
-	i212 = i212 + uint32(1)
-	_ = i212
-	i213 = 0
-	os864 = wv_a7
-	x1861 = **(**Tuint32_t)(__ccgo_up(wv_a7 + uintptr(i213)*4)) + **(**Tuint32_t)(__ccgo_up(z7 + uintptr(i213)*4))
-	**(**Tuint32_t)(__ccgo_up(os864 + uintptr(i213)*4)) = x1861
-	i213 = i213 + uint32(1)
-	_ = i213
-	os865 = wv_a7
-	x1862 = **(**Tuint32_t)(__ccgo_up(wv_a7 + uintptr(i213)*4)) + **(**Tuint32_t)(__ccgo_up(z7 + uintptr(i213)*4))
-	**(**Tuint32_t)(__ccgo_up(os865 + uintptr(i213)*4)) = x1862
-	i213 = i213 + uint32(1)
-	_ = i213
-	os866 = wv_a7
-	x1863 = **(**Tuint32_t)(__ccgo_up(wv_a7 + uintptr(i213)*4)) + **(**Tuint32_t)(__ccgo_up(z7 + uintptr(i213)*4))
-	**(**Tuint32_t)(__ccgo_up(os866 + uintptr(i213)*4)) = x1863
-	i213 = i213 + uint32(1)
-	_ = i213
-	os867 = wv_a7
-	x1864 = **(**Tuint32_t)(__ccgo_up(wv_a7 + uintptr(i213)*4)) + **(**Tuint32_t)(__ccgo_up(z7 + uintptr(i213)*4))
-	**(**Tuint32_t)(__ccgo_up(os867 + uintptr(i213)*4)) = x1864
-	i213 = i213 + uint32(1)
-	_ = i213
-	wv_a88 = wv + uintptr(d17*uint32(4))*4
-	wv_b98 = wv + uintptr(a07*uint32(4))*4
-	i214 = 0
-	os868 = wv_a88
-	x1865 = **(**Tuint32_t)(__ccgo_up(wv_a88 + uintptr(i214)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b98 + uintptr(i214)*4))
-	**(**Tuint32_t)(__ccgo_up(os868 + uintptr(i214)*4)) = x1865
-	i214 = i214 + uint32(1)
-	_ = i214
-	os869 = wv_a88
-	x1866 = **(**Tuint32_t)(__ccgo_up(wv_a88 + uintptr(i214)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b98 + uintptr(i214)*4))
-	**(**Tuint32_t)(__ccgo_up(os869 + uintptr(i214)*4)) = x1866
-	i214 = i214 + uint32(1)
-	_ = i214
-	os870 = wv_a88
-	x1867 = **(**Tuint32_t)(__ccgo_up(wv_a88 + uintptr(i214)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b98 + uintptr(i214)*4))
-	**(**Tuint32_t)(__ccgo_up(os870 + uintptr(i214)*4)) = x1867
-	i214 = i214 + uint32(1)
-	_ = i214
-	os871 = wv_a88
-	x1868 = **(**Tuint32_t)(__ccgo_up(wv_a88 + uintptr(i214)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b98 + uintptr(i214)*4))
-	**(**Tuint32_t)(__ccgo_up(os871 + uintptr(i214)*4)) = x1868
-	i214 = i214 + uint32(1)
-	_ = i214
-	r168 = wv_a88
-	i215 = 0
-	os872 = r168
-	x1869 = **(**Tuint32_t)(__ccgo_up(r168 + uintptr(i215)*4))
-	x13219 = x1869>>uint32(16) | x1869<<uint32(16)
-	**(**Tuint32_t)(__ccgo_up(os872 + uintptr(i215)*4)) = x13219
-	i215 = i215 + uint32(1)
-	_ = i215
-	os873 = r168
-	x1870 = **(**Tuint32_t)(__ccgo_up(r168 + uintptr(i215)*4))
-	x13220 = x1870>>uint32(16) | x1870<<uint32(16)
-	**(**Tuint32_t)(__ccgo_up(os873 + uintptr(i215)*4)) = x13220
-	i215 = i215 + uint32(1)
-	_ = i215
-	os874 = r168
-	x1871 = **(**Tuint32_t)(__ccgo_up(r168 + uintptr(i215)*4))
-	x13221 = x1871>>uint32(16) | x1871<<uint32(16)
-	**(**Tuint32_t)(__ccgo_up(os874 + uintptr(i215)*4)) = x13221
-	i215 = i215 + uint32(1)
-	_ = i215
-	os875 = r168
-	x1872 = **(**Tuint32_t)(__ccgo_up(r168 + uintptr(i215)*4))
-	x13222 = x1872>>uint32(16) | x1872<<uint32(16)
-	**(**Tuint32_t)(__ccgo_up(os875 + uintptr(i215)*4)) = x13222
-	i215 = i215 + uint32(1)
-	_ = i215
-	wv_a98 = wv + uintptr(c7*uint32(4))*4
-	wv_b107 = wv + uintptr(d17*uint32(4))*4
-	i216 = 0
-	os876 = wv_a98
-	x1873 = **(**Tuint32_t)(__ccgo_up(wv_a98 + uintptr(i216)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b107 + uintptr(i216)*4))
-	**(**Tuint32_t)(__ccgo_up(os876 + uintptr(i216)*4)) = x1873
-	i216 = i216 + uint32(1)
-	_ = i216
-	os877 = wv_a98
-	x1874 = **(**Tuint32_t)(__ccgo_up(wv_a98 + uintptr(i216)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b107 + uintptr(i216)*4))
-	**(**Tuint32_t)(__ccgo_up(os877 + uintptr(i216)*4)) = x1874
-	i216 = i216 + uint32(1)
-	_ = i216
-	os878 = wv_a98
-	x1875 = **(**Tuint32_t)(__ccgo_up(wv_a98 + uintptr(i216)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b107 + uintptr(i216)*4))
-	**(**Tuint32_t)(__ccgo_up(os878 + uintptr(i216)*4)) = x1875
-	i216 = i216 + uint32(1)
-	_ = i216
-	os879 = wv_a98
-	x1876 = **(**Tuint32_t)(__ccgo_up(wv_a98 + uintptr(i216)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b107 + uintptr(i216)*4))
-	**(**Tuint32_t)(__ccgo_up(os879 + uintptr(i216)*4)) = x1876
-	i216 = i216 + uint32(1)
-	_ = i216
-	wv_a107 = wv + uintptr(b8*uint32(4))*4
-	wv_b118 = wv + uintptr(c7*uint32(4))*4
-	i217 = 0
-	os880 = wv_a107
-	x1877 = **(**Tuint32_t)(__ccgo_up(wv_a107 + uintptr(i217)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b118 + uintptr(i217)*4))
-	**(**Tuint32_t)(__ccgo_up(os880 + uintptr(i217)*4)) = x1877
-	i217 = i217 + uint32(1)
-	_ = i217
-	os881 = wv_a107
-	x1878 = **(**Tuint32_t)(__ccgo_up(wv_a107 + uintptr(i217)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b118 + uintptr(i217)*4))
-	**(**Tuint32_t)(__ccgo_up(os881 + uintptr(i217)*4)) = x1878
-	i217 = i217 + uint32(1)
-	_ = i217
-	os882 = wv_a107
-	x1879 = **(**Tuint32_t)(__ccgo_up(wv_a107 + uintptr(i217)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b118 + uintptr(i217)*4))
-	**(**Tuint32_t)(__ccgo_up(os882 + uintptr(i217)*4)) = x1879
-	i217 = i217 + uint32(1)
-	_ = i217
-	os883 = wv_a107
-	x1880 = **(**Tuint32_t)(__ccgo_up(wv_a107 + uintptr(i217)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b118 + uintptr(i217)*4))
-	**(**Tuint32_t)(__ccgo_up(os883 + uintptr(i217)*4)) = x1880
-	i217 = i217 + uint32(1)
-	_ = i217
-	r178 = wv_a107
-	i218 = 0
-	os884 = r178
-	x1881 = **(**Tuint32_t)(__ccgo_up(r178 + uintptr(i218)*4))
-	x13223 = x1881>>uint32(12) | x1881<<uint32(20)
-	**(**Tuint32_t)(__ccgo_up(os884 + uintptr(i218)*4)) = x13223
-	i218 = i218 + uint32(1)
-	_ = i218
-	os885 = r178
-	x1882 = **(**Tuint32_t)(__ccgo_up(r178 + uintptr(i218)*4))
-	x13224 = x1882>>uint32(12) | x1882<<uint32(20)
-	**(**Tuint32_t)(__ccgo_up(os885 + uintptr(i218)*4)) = x13224
-	i218 = i218 + uint32(1)
-	_ = i218
-	os886 = r178
-	x1883 = **(**Tuint32_t)(__ccgo_up(r178 + uintptr(i218)*4))
-	x13225 = x1883>>uint32(12) | x1883<<uint32(20)
-	**(**Tuint32_t)(__ccgo_up(os886 + uintptr(i218)*4)) = x13225
-	i218 = i218 + uint32(1)
-	_ = i218
-	os887 = r178
-	x1884 = **(**Tuint32_t)(__ccgo_up(r178 + uintptr(i218)*4))
-	x13226 = x1884>>uint32(12) | x1884<<uint32(20)
-	**(**Tuint32_t)(__ccgo_up(os887 + uintptr(i218)*4)) = x13226
-	i218 = i218 + uint32(1)
-	_ = i218
-	wv_a118 = wv + uintptr(a07*uint32(4))*4
-	wv_b128 = wv + uintptr(b8*uint32(4))*4
-	i219 = 0
-	os888 = wv_a118
-	x1885 = **(**Tuint32_t)(__ccgo_up(wv_a118 + uintptr(i219)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b128 + uintptr(i219)*4))
-	**(**Tuint32_t)(__ccgo_up(os888 + uintptr(i219)*4)) = x1885
-	i219 = i219 + uint32(1)
-	_ = i219
-	os889 = wv_a118
-	x1886 = **(**Tuint32_t)(__ccgo_up(wv_a118 + uintptr(i219)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b128 + uintptr(i219)*4))
-	**(**Tuint32_t)(__ccgo_up(os889 + uintptr(i219)*4)) = x1886
-	i219 = i219 + uint32(1)
-	_ = i219
-	os890 = wv_a118
-	x1887 = **(**Tuint32_t)(__ccgo_up(wv_a118 + uintptr(i219)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b128 + uintptr(i219)*4))
-	**(**Tuint32_t)(__ccgo_up(os890 + uintptr(i219)*4)) = x1887
-	i219 = i219 + uint32(1)
-	_ = i219
-	os891 = wv_a118
-	x1888 = **(**Tuint32_t)(__ccgo_up(wv_a118 + uintptr(i219)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b128 + uintptr(i219)*4))
-	**(**Tuint32_t)(__ccgo_up(os891 + uintptr(i219)*4)) = x1888
-	i219 = i219 + uint32(1)
-	_ = i219
-	i220 = 0
-	os892 = wv_a118
-	x1889 = **(**Tuint32_t)(__ccgo_up(wv_a118 + uintptr(i220)*4)) + **(**Tuint32_t)(__ccgo_up(w7 + uintptr(i220)*4))
-	**(**Tuint32_t)(__ccgo_up(os892 + uintptr(i220)*4)) = x1889
-	i220 = i220 + uint32(1)
-	_ = i220
-	os893 = wv_a118
-	x1890 = **(**Tuint32_t)(__ccgo_up(wv_a118 + uintptr(i220)*4)) + **(**Tuint32_t)(__ccgo_up(w7 + uintptr(i220)*4))
-	**(**Tuint32_t)(__ccgo_up(os893 + uintptr(i220)*4)) = x1890
-	i220 = i220 + uint32(1)
-	_ = i220
-	os894 = wv_a118
-	x1891 = **(**Tuint32_t)(__ccgo_up(wv_a118 + uintptr(i220)*4)) + **(**Tuint32_t)(__ccgo_up(w7 + uintptr(i220)*4))
-	**(**Tuint32_t)(__ccgo_up(os894 + uintptr(i220)*4)) = x1891
-	i220 = i220 + uint32(1)
-	_ = i220
-	os895 = wv_a118
-	x1892 = **(**Tuint32_t)(__ccgo_up(wv_a118 + uintptr(i220)*4)) + **(**Tuint32_t)(__ccgo_up(w7 + uintptr(i220)*4))
-	**(**Tuint32_t)(__ccgo_up(os895 + uintptr(i220)*4)) = x1892
-	i220 = i220 + uint32(1)
-	_ = i220
-	wv_a128 = wv + uintptr(d17*uint32(4))*4
-	wv_b138 = wv + uintptr(a07*uint32(4))*4
-	i221 = 0
-	os896 = wv_a128
-	x1893 = **(**Tuint32_t)(__ccgo_up(wv_a128 + uintptr(i221)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b138 + uintptr(i221)*4))
-	**(**Tuint32_t)(__ccgo_up(os896 + uintptr(i221)*4)) = x1893
-	i221 = i221 + uint32(1)
-	_ = i221
-	os897 = wv_a128
-	x1894 = **(**Tuint32_t)(__ccgo_up(wv_a128 + uintptr(i221)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b138 + uintptr(i221)*4))
-	**(**Tuint32_t)(__ccgo_up(os897 + uintptr(i221)*4)) = x1894
-	i221 = i221 + uint32(1)
-	_ = i221
-	os898 = wv_a128
-	x1895 = **(**Tuint32_t)(__ccgo_up(wv_a128 + uintptr(i221)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b138 + uintptr(i221)*4))
-	**(**Tuint32_t)(__ccgo_up(os898 + uintptr(i221)*4)) = x1895
-	i221 = i221 + uint32(1)
-	_ = i221
-	os899 = wv_a128
-	x1896 = **(**Tuint32_t)(__ccgo_up(wv_a128 + uintptr(i221)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b138 + uintptr(i221)*4))
-	**(**Tuint32_t)(__ccgo_up(os899 + uintptr(i221)*4)) = x1896
-	i221 = i221 + uint32(1)
-	_ = i221
-	r188 = wv_a128
-	i222 = 0
-	os900 = r188
-	x1897 = **(**Tuint32_t)(__ccgo_up(r188 + uintptr(i222)*4))
-	x13227 = x1897>>uint32(8) | x1897<<uint32(24)
-	**(**Tuint32_t)(__ccgo_up(os900 + uintptr(i222)*4)) = x13227
-	i222 = i222 + uint32(1)
-	_ = i222
-	os901 = r188
-	x1898 = **(**Tuint32_t)(__ccgo_up(r188 + uintptr(i222)*4))
-	x13228 = x1898>>uint32(8) | x1898<<uint32(24)
-	**(**Tuint32_t)(__ccgo_up(os901 + uintptr(i222)*4)) = x13228
-	i222 = i222 + uint32(1)
-	_ = i222
-	os902 = r188
-	x1899 = **(**Tuint32_t)(__ccgo_up(r188 + uintptr(i222)*4))
-	x13229 = x1899>>uint32(8) | x1899<<uint32(24)
-	**(**Tuint32_t)(__ccgo_up(os902 + uintptr(i222)*4)) = x13229
-	i222 = i222 + uint32(1)
-	_ = i222
-	os903 = r188
-	x1900 = **(**Tuint32_t)(__ccgo_up(r188 + uintptr(i222)*4))
-	x13230 = x1900>>uint32(8) | x1900<<uint32(24)
-	**(**Tuint32_t)(__ccgo_up(os903 + uintptr(i222)*4)) = x13230
-	i222 = i222 + uint32(1)
-	_ = i222
-	wv_a138 = wv + uintptr(c7*uint32(4))*4
-	wv_b148 = wv + uintptr(d17*uint32(4))*4
-	i223 = 0
-	os904 = wv_a138
-	x1901 = **(**Tuint32_t)(__ccgo_up(wv_a138 + uintptr(i223)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b148 + uintptr(i223)*4))
-	**(**Tuint32_t)(__ccgo_up(os904 + uintptr(i223)*4)) = x1901
-	i223 = i223 + uint32(1)
-	_ = i223
-	os905 = wv_a138
-	x1902 = **(**Tuint32_t)(__ccgo_up(wv_a138 + uintptr(i223)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b148 + uintptr(i223)*4))
-	**(**Tuint32_t)(__ccgo_up(os905 + uintptr(i223)*4)) = x1902
-	i223 = i223 + uint32(1)
-	_ = i223
-	os906 = wv_a138
-	x1903 = **(**Tuint32_t)(__ccgo_up(wv_a138 + uintptr(i223)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b148 + uintptr(i223)*4))
-	**(**Tuint32_t)(__ccgo_up(os906 + uintptr(i223)*4)) = x1903
-	i223 = i223 + uint32(1)
-	_ = i223
-	os907 = wv_a138
-	x1904 = **(**Tuint32_t)(__ccgo_up(wv_a138 + uintptr(i223)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b148 + uintptr(i223)*4))
-	**(**Tuint32_t)(__ccgo_up(os907 + uintptr(i223)*4)) = x1904
-	i223 = i223 + uint32(1)
-	_ = i223
-	wv_a148 = wv + uintptr(b8*uint32(4))*4
-	wv_b7 = wv + uintptr(c7*uint32(4))*4
-	i224 = 0
-	os908 = wv_a148
-	x1905 = **(**Tuint32_t)(__ccgo_up(wv_a148 + uintptr(i224)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b7 + uintptr(i224)*4))
-	**(**Tuint32_t)(__ccgo_up(os908 + uintptr(i224)*4)) = x1905
-	i224 = i224 + uint32(1)
-	_ = i224
-	os909 = wv_a148
-	x1906 = **(**Tuint32_t)(__ccgo_up(wv_a148 + uintptr(i224)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b7 + uintptr(i224)*4))
-	**(**Tuint32_t)(__ccgo_up(os909 + uintptr(i224)*4)) = x1906
-	i224 = i224 + uint32(1)
-	_ = i224
-	os910 = wv_a148
-	x1907 = **(**Tuint32_t)(__ccgo_up(wv_a148 + uintptr(i224)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b7 + uintptr(i224)*4))
-	**(**Tuint32_t)(__ccgo_up(os910 + uintptr(i224)*4)) = x1907
-	i224 = i224 + uint32(1)
-	_ = i224
-	os911 = wv_a148
-	x1908 = **(**Tuint32_t)(__ccgo_up(wv_a148 + uintptr(i224)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b7 + uintptr(i224)*4))
-	**(**Tuint32_t)(__ccgo_up(os911 + uintptr(i224)*4)) = x1908
-	i224 = i224 + uint32(1)
-	_ = i224
-	r198 = wv_a148
-	i225 = 0
-	os912 = r198
-	x1909 = **(**Tuint32_t)(__ccgo_up(r198 + uintptr(i225)*4))
-	x13231 = x1909>>uint32(7) | x1909<<uint32(25)
-	**(**Tuint32_t)(__ccgo_up(os912 + uintptr(i225)*4)) = x13231
-	i225 = i225 + uint32(1)
-	_ = i225
-	os913 = r198
-	x1910 = **(**Tuint32_t)(__ccgo_up(r198 + uintptr(i225)*4))
-	x13232 = x1910>>uint32(7) | x1910<<uint32(25)
-	**(**Tuint32_t)(__ccgo_up(os913 + uintptr(i225)*4)) = x13232
-	i225 = i225 + uint32(1)
-	_ = i225
-	os914 = r198
-	x1911 = **(**Tuint32_t)(__ccgo_up(r198 + uintptr(i225)*4))
-	x13233 = x1911>>uint32(7) | x1911<<uint32(25)
-	**(**Tuint32_t)(__ccgo_up(os914 + uintptr(i225)*4)) = x13233
-	i225 = i225 + uint32(1)
-	_ = i225
-	os915 = r198
-	x1912 = **(**Tuint32_t)(__ccgo_up(r198 + uintptr(i225)*4))
-	x13234 = x1912>>uint32(7) | x1912<<uint32(25)
-	**(**Tuint32_t)(__ccgo_up(os915 + uintptr(i225)*4)) = x13234
-	i225 = i225 + uint32(1)
-	_ = i225
-	r1138 = wv + uintptr(4)*4
-	r28 = wv + uintptr(8)*4
-	r38 = wv + uintptr(12)*4
-	r1114 = r1138
-	x038 = **(**Tuint32_t)(__ccgo_up(r1114 + 3*4))
-	x13235 = **(**Tuint32_t)(__ccgo_up(r1114))
-	x238 = **(**Tuint32_t)(__ccgo_up(r1114 + 1*4))
-	x338 = **(**Tuint32_t)(__ccgo_up(r1114 + 2*4))
-	**(**Tuint32_t)(__ccgo_up(r1114)) = x038
-	**(**Tuint32_t)(__ccgo_up(r1114 + 1*4)) = x13235
-	**(**Tuint32_t)(__ccgo_up(r1114 + 2*4)) = x238
-	**(**Tuint32_t)(__ccgo_up(r1114 + 3*4)) = x338
-	r1148 = r28
-	x048 = **(**Tuint32_t)(__ccgo_up(r1148 + 2*4))
-	x14107 = **(**Tuint32_t)(__ccgo_up(r1148 + 3*4))
-	x248 = **(**Tuint32_t)(__ccgo_up(r1148))
-	x348 = **(**Tuint32_t)(__ccgo_up(r1148 + 1*4))
-	**(**Tuint32_t)(__ccgo_up(r1148)) = x048
-	**(**Tuint32_t)(__ccgo_up(r1148 + 1*4)) = x14107
-	**(**Tuint32_t)(__ccgo_up(r1148 + 2*4)) = x248
-	**(**Tuint32_t)(__ccgo_up(r1148 + 3*4)) = x348
-	r1158 = r38
-	x07 = **(**Tuint32_t)(__ccgo_up(r1158 + 1*4))
-	x1913 = **(**Tuint32_t)(__ccgo_up(r1158 + 2*4))
-	x217 = **(**Tuint32_t)(__ccgo_up(r1158 + 3*4))
-	x317 = **(**Tuint32_t)(__ccgo_up(r1158))
-	**(**Tuint32_t)(__ccgo_up(r1158)) = x07
-	**(**Tuint32_t)(__ccgo_up(r1158 + 1*4)) = x1913
-	**(**Tuint32_t)(__ccgo_up(r1158 + 2*4)) = x217
-	**(**Tuint32_t)(__ccgo_up(r1158 + 3*4)) = x317
-	i0 = i0 + uint32(1)
-	_ = i0
-	start_idx8 = i0 % uint32(10) * uint32(16)
-	**(**[16]Tuint32_t)(__ccgo_up(bp + 580)) = [16]Tuint32_t{}
-	r08 = bp + 580
-	r114 = bp + 580 + uintptr(4)*4
-	r208 = bp + 580 + uintptr(8)*4
-	r308 = bp + 580 + uintptr(12)*4
-	s08 = _Hacl_Hash_Blake2b_sigmaTable[start_idx8+0]
-	s18 = _Hacl_Hash_Blake2b_sigmaTable[start_idx8+uint32(1)]
-	s28 = _Hacl_Hash_Blake2b_sigmaTable[start_idx8+uint32(2)]
-	s38 = _Hacl_Hash_Blake2b_sigmaTable[start_idx8+uint32(3)]
-	s48 = _Hacl_Hash_Blake2b_sigmaTable[start_idx8+uint32(4)]
-	s58 = _Hacl_Hash_Blake2b_sigmaTable[start_idx8+uint32(5)]
-	s68 = _Hacl_Hash_Blake2b_sigmaTable[start_idx8+uint32(6)]
-	s78 = _Hacl_Hash_Blake2b_sigmaTable[start_idx8+uint32(7)]
-	s88 = _Hacl_Hash_Blake2b_sigmaTable[start_idx8+uint32(8)]
-	s98 = _Hacl_Hash_Blake2b_sigmaTable[start_idx8+uint32(9)]
-	s108 = _Hacl_Hash_Blake2b_sigmaTable[start_idx8+uint32(10)]
-	s119 = _Hacl_Hash_Blake2b_sigmaTable[start_idx8+uint32(11)]
-	s129 = _Hacl_Hash_Blake2b_sigmaTable[start_idx8+uint32(12)]
-	s139 = _Hacl_Hash_Blake2b_sigmaTable[start_idx8+uint32(13)]
-	s149 = _Hacl_Hash_Blake2b_sigmaTable[start_idx8+uint32(14)]
-	s159 = _Hacl_Hash_Blake2b_sigmaTable[start_idx8+uint32(15)]
-	uu____08 = (**(**[16]Tuint32_t)(__ccgo_up(bp + 4)))[s28]
-	uu____18 = (**(**[16]Tuint32_t)(__ccgo_up(bp + 4)))[s48]
-	uu____28 = (**(**[16]Tuint32_t)(__ccgo_up(bp + 4)))[s68]
-	**(**Tuint32_t)(__ccgo_up(r08)) = (**(**[16]Tuint32_t)(__ccgo_up(bp + 4)))[s08]
-	**(**Tuint32_t)(__ccgo_up(r08 + 1*4)) = uu____08
-	**(**Tuint32_t)(__ccgo_up(r08 + 2*4)) = uu____18
-	**(**Tuint32_t)(__ccgo_up(r08 + 3*4)) = uu____28
-	uu____38 = (**(**[16]Tuint32_t)(__ccgo_up(bp + 4)))[s38]
-	uu____48 = (**(**[16]Tuint32_t)(__ccgo_up(bp + 4)))[s58]
-	uu____58 = (**(**[16]Tuint32_t)(__ccgo_up(bp + 4)))[s78]
-	**(**Tuint32_t)(__ccgo_up(r114)) = (**(**[16]Tuint32_t)(__ccgo_up(bp + 4)))[s18]
-	**(**Tuint32_t)(__ccgo_up(r114 + 1*4)) = uu____38
-	**(**Tuint32_t)(__ccgo_up(r114 + 2*4)) = uu____48
-	**(**Tuint32_t)(__ccgo_up(r114 + 3*4)) = uu____58
-	uu____68 = (**(**[16]Tuint32_t)(__ccgo_up(bp + 4)))[s108]
-	uu____78 = (**(**[16]Tuint32_t)(__ccgo_up(bp + 4)))[s129]
-	uu____88 = (**(**[16]Tuint32_t)(__ccgo_up(bp + 4)))[s149]
-	**(**Tuint32_t)(__ccgo_up(r208)) = (**(**[16]Tuint32_t)(__ccgo_up(bp + 4)))[s88]
-	**(**Tuint32_t)(__ccgo_up(r208 + 1*4)) = uu____68
-	**(**Tuint32_t)(__ccgo_up(r208 + 2*4)) = uu____78
-	**(**Tuint32_t)(__ccgo_up(r208 + 3*4)) = uu____88
-	uu____98 = (**(**[16]Tuint32_t)(__ccgo_up(bp + 4)))[s119]
-	uu____108 = (**(**[16]Tuint32_t)(__ccgo_up(bp + 4)))[s139]
-	uu____119 = (**(**[16]Tuint32_t)(__ccgo_up(bp + 4)))[s159]
-	**(**Tuint32_t)(__ccgo_up(r308)) = (**(**[16]Tuint32_t)(__ccgo_up(bp + 4)))[s98]
-	**(**Tuint32_t)(__ccgo_up(r308 + 1*4)) = uu____98
-	**(**Tuint32_t)(__ccgo_up(r308 + 2*4)) = uu____108
-	**(**Tuint32_t)(__ccgo_up(r308 + 3*4)) = uu____119
-	x29 = bp + 580
-	y8 = bp + 580 + uintptr(4)*4
-	z8 = bp + 580 + uintptr(8)*4
-	w8 = bp + 580 + uintptr(12)*4
-	a8 = 0
-	b08 = uint32(1)
-	c08 = uint32(2)
-	d108 = uint32(3)
-	wv_a08 = wv + uintptr(a8*uint32(4))*4
-	wv_b08 = wv + uintptr(b08*uint32(4))*4
-	i226 = 0
-	os916 = wv_a08
-	x1914 = **(**Tuint32_t)(__ccgo_up(wv_a08 + uintptr(i226)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b08 + uintptr(i226)*4))
-	**(**Tuint32_t)(__ccgo_up(os916 + uintptr(i226)*4)) = x1914
-	i226 = i226 + uint32(1)
-	_ = i226
-	os917 = wv_a08
-	x1915 = **(**Tuint32_t)(__ccgo_up(wv_a08 + uintptr(i226)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b08 + uintptr(i226)*4))
-	**(**Tuint32_t)(__ccgo_up(os917 + uintptr(i226)*4)) = x1915
-	i226 = i226 + uint32(1)
-	_ = i226
-	os918 = wv_a08
-	x1916 = **(**Tuint32_t)(__ccgo_up(wv_a08 + uintptr(i226)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b08 + uintptr(i226)*4))
-	**(**Tuint32_t)(__ccgo_up(os918 + uintptr(i226)*4)) = x1916
-	i226 = i226 + uint32(1)
-	_ = i226
-	os919 = wv_a08
-	x1917 = **(**Tuint32_t)(__ccgo_up(wv_a08 + uintptr(i226)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b08 + uintptr(i226)*4))
-	**(**Tuint32_t)(__ccgo_up(os919 + uintptr(i226)*4)) = x1917
-	i226 = i226 + uint32(1)
-	_ = i226
-	i227 = 0
-	os920 = wv_a08
-	x1918 = **(**Tuint32_t)(__ccgo_up(wv_a08 + uintptr(i227)*4)) + **(**Tuint32_t)(__ccgo_up(x29 + uintptr(i227)*4))
-	**(**Tuint32_t)(__ccgo_up(os920 + uintptr(i227)*4)) = x1918
-	i227 = i227 + uint32(1)
-	_ = i227
-	os921 = wv_a08
-	x1919 = **(**Tuint32_t)(__ccgo_up(wv_a08 + uintptr(i227)*4)) + **(**Tuint32_t)(__ccgo_up(x29 + uintptr(i227)*4))
-	**(**Tuint32_t)(__ccgo_up(os921 + uintptr(i227)*4)) = x1919
-	i227 = i227 + uint32(1)
-	_ = i227
-	os922 = wv_a08
-	x1920 = **(**Tuint32_t)(__ccgo_up(wv_a08 + uintptr(i227)*4)) + **(**Tuint32_t)(__ccgo_up(x29 + uintptr(i227)*4))
-	**(**Tuint32_t)(__ccgo_up(os922 + uintptr(i227)*4)) = x1920
-	i227 = i227 + uint32(1)
-	_ = i227
-	os923 = wv_a08
-	x1921 = **(**Tuint32_t)(__ccgo_up(wv_a08 + uintptr(i227)*4)) + **(**Tuint32_t)(__ccgo_up(x29 + uintptr(i227)*4))
-	**(**Tuint32_t)(__ccgo_up(os923 + uintptr(i227)*4)) = x1921
-	i227 = i227 + uint32(1)
-	_ = i227
-	wv_a19 = wv + uintptr(d108*uint32(4))*4
-	wv_b19 = wv + uintptr(a8*uint32(4))*4
-	i228 = 0
-	os924 = wv_a19
-	x1922 = **(**Tuint32_t)(__ccgo_up(wv_a19 + uintptr(i228)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b19 + uintptr(i228)*4))
-	**(**Tuint32_t)(__ccgo_up(os924 + uintptr(i228)*4)) = x1922
-	i228 = i228 + uint32(1)
-	_ = i228
-	os925 = wv_a19
-	x1923 = **(**Tuint32_t)(__ccgo_up(wv_a19 + uintptr(i228)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b19 + uintptr(i228)*4))
-	**(**Tuint32_t)(__ccgo_up(os925 + uintptr(i228)*4)) = x1923
-	i228 = i228 + uint32(1)
-	_ = i228
-	os926 = wv_a19
-	x1924 = **(**Tuint32_t)(__ccgo_up(wv_a19 + uintptr(i228)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b19 + uintptr(i228)*4))
-	**(**Tuint32_t)(__ccgo_up(os926 + uintptr(i228)*4)) = x1924
-	i228 = i228 + uint32(1)
-	_ = i228
-	os927 = wv_a19
-	x1925 = **(**Tuint32_t)(__ccgo_up(wv_a19 + uintptr(i228)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b19 + uintptr(i228)*4))
-	**(**Tuint32_t)(__ccgo_up(os927 + uintptr(i228)*4)) = x1925
-	i228 = i228 + uint32(1)
-	_ = i228
-	r109 = wv_a19
-	i229 = 0
-	os928 = r109
-	x1926 = **(**Tuint32_t)(__ccgo_up(r109 + uintptr(i229)*4))
-	x10137 = x1926>>uint32(16) | x1926<<uint32(16)
-	**(**Tuint32_t)(__ccgo_up(os928 + uintptr(i229)*4)) = x10137
-	i229 = i229 + uint32(1)
-	_ = i229
-	os929 = r109
-	x1927 = **(**Tuint32_t)(__ccgo_up(r109 + uintptr(i229)*4))
-	x10138 = x1927>>uint32(16) | x1927<<uint32(16)
-	**(**Tuint32_t)(__ccgo_up(os929 + uintptr(i229)*4)) = x10138
-	i229 = i229 + uint32(1)
-	_ = i229
-	os930 = r109
-	x1928 = **(**Tuint32_t)(__ccgo_up(r109 + uintptr(i229)*4))
-	x10139 = x1928>>uint32(16) | x1928<<uint32(16)
-	**(**Tuint32_t)(__ccgo_up(os930 + uintptr(i229)*4)) = x10139
-	i229 = i229 + uint32(1)
-	_ = i229
-	os931 = r109
-	x1929 = **(**Tuint32_t)(__ccgo_up(r109 + uintptr(i229)*4))
-	x10140 = x1929>>uint32(16) | x1929<<uint32(16)
-	**(**Tuint32_t)(__ccgo_up(os931 + uintptr(i229)*4)) = x10140
-	i229 = i229 + uint32(1)
-	_ = i229
-	wv_a29 = wv + uintptr(c08*uint32(4))*4
-	wv_b29 = wv + uintptr(d108*uint32(4))*4
-	i230 = 0
-	os932 = wv_a29
-	x1930 = **(**Tuint32_t)(__ccgo_up(wv_a29 + uintptr(i230)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b29 + uintptr(i230)*4))
-	**(**Tuint32_t)(__ccgo_up(os932 + uintptr(i230)*4)) = x1930
-	i230 = i230 + uint32(1)
-	_ = i230
-	os933 = wv_a29
-	x1931 = **(**Tuint32_t)(__ccgo_up(wv_a29 + uintptr(i230)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b29 + uintptr(i230)*4))
-	**(**Tuint32_t)(__ccgo_up(os933 + uintptr(i230)*4)) = x1931
-	i230 = i230 + uint32(1)
-	_ = i230
-	os934 = wv_a29
-	x1932 = **(**Tuint32_t)(__ccgo_up(wv_a29 + uintptr(i230)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b29 + uintptr(i230)*4))
-	**(**Tuint32_t)(__ccgo_up(os934 + uintptr(i230)*4)) = x1932
-	i230 = i230 + uint32(1)
-	_ = i230
-	os935 = wv_a29
-	x1933 = **(**Tuint32_t)(__ccgo_up(wv_a29 + uintptr(i230)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b29 + uintptr(i230)*4))
-	**(**Tuint32_t)(__ccgo_up(os935 + uintptr(i230)*4)) = x1933
-	i230 = i230 + uint32(1)
-	_ = i230
-	wv_a39 = wv + uintptr(b08*uint32(4))*4
-	wv_b39 = wv + uintptr(c08*uint32(4))*4
-	i231 = 0
-	os936 = wv_a39
-	x1934 = **(**Tuint32_t)(__ccgo_up(wv_a39 + uintptr(i231)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b39 + uintptr(i231)*4))
-	**(**Tuint32_t)(__ccgo_up(os936 + uintptr(i231)*4)) = x1934
-	i231 = i231 + uint32(1)
-	_ = i231
-	os937 = wv_a39
-	x1935 = **(**Tuint32_t)(__ccgo_up(wv_a39 + uintptr(i231)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b39 + uintptr(i231)*4))
-	**(**Tuint32_t)(__ccgo_up(os937 + uintptr(i231)*4)) = x1935
-	i231 = i231 + uint32(1)
-	_ = i231
-	os938 = wv_a39
-	x1936 = **(**Tuint32_t)(__ccgo_up(wv_a39 + uintptr(i231)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b39 + uintptr(i231)*4))
-	**(**Tuint32_t)(__ccgo_up(os938 + uintptr(i231)*4)) = x1936
-	i231 = i231 + uint32(1)
-	_ = i231
-	os939 = wv_a39
-	x1937 = **(**Tuint32_t)(__ccgo_up(wv_a39 + uintptr(i231)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b39 + uintptr(i231)*4))
-	**(**Tuint32_t)(__ccgo_up(os939 + uintptr(i231)*4)) = x1937
-	i231 = i231 + uint32(1)
-	_ = i231
-	r129 = wv_a39
-	i232 = 0
-	os940 = r129
-	x1938 = **(**Tuint32_t)(__ccgo_up(r129 + uintptr(i232)*4))
-	x10141 = x1938>>uint32(12) | x1938<<uint32(20)
-	**(**Tuint32_t)(__ccgo_up(os940 + uintptr(i232)*4)) = x10141
-	i232 = i232 + uint32(1)
-	_ = i232
-	os941 = r129
-	x1939 = **(**Tuint32_t)(__ccgo_up(r129 + uintptr(i232)*4))
-	x10142 = x1939>>uint32(12) | x1939<<uint32(20)
-	**(**Tuint32_t)(__ccgo_up(os941 + uintptr(i232)*4)) = x10142
-	i232 = i232 + uint32(1)
-	_ = i232
-	os942 = r129
-	x1940 = **(**Tuint32_t)(__ccgo_up(r129 + uintptr(i232)*4))
-	x10143 = x1940>>uint32(12) | x1940<<uint32(20)
-	**(**Tuint32_t)(__ccgo_up(os942 + uintptr(i232)*4)) = x10143
-	i232 = i232 + uint32(1)
-	_ = i232
-	os943 = r129
-	x1941 = **(**Tuint32_t)(__ccgo_up(r129 + uintptr(i232)*4))
-	x10144 = x1941>>uint32(12) | x1941<<uint32(20)
-	**(**Tuint32_t)(__ccgo_up(os943 + uintptr(i232)*4)) = x10144
-	i232 = i232 + uint32(1)
-	_ = i232
-	wv_a49 = wv + uintptr(a8*uint32(4))*4
-	wv_b49 = wv + uintptr(b08*uint32(4))*4
-	i233 = 0
-	os944 = wv_a49
-	x1942 = **(**Tuint32_t)(__ccgo_up(wv_a49 + uintptr(i233)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b49 + uintptr(i233)*4))
-	**(**Tuint32_t)(__ccgo_up(os944 + uintptr(i233)*4)) = x1942
-	i233 = i233 + uint32(1)
-	_ = i233
-	os945 = wv_a49
-	x1943 = **(**Tuint32_t)(__ccgo_up(wv_a49 + uintptr(i233)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b49 + uintptr(i233)*4))
-	**(**Tuint32_t)(__ccgo_up(os945 + uintptr(i233)*4)) = x1943
-	i233 = i233 + uint32(1)
-	_ = i233
-	os946 = wv_a49
-	x1944 = **(**Tuint32_t)(__ccgo_up(wv_a49 + uintptr(i233)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b49 + uintptr(i233)*4))
-	**(**Tuint32_t)(__ccgo_up(os946 + uintptr(i233)*4)) = x1944
-	i233 = i233 + uint32(1)
-	_ = i233
-	os947 = wv_a49
-	x1945 = **(**Tuint32_t)(__ccgo_up(wv_a49 + uintptr(i233)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b49 + uintptr(i233)*4))
-	**(**Tuint32_t)(__ccgo_up(os947 + uintptr(i233)*4)) = x1945
-	i233 = i233 + uint32(1)
-	_ = i233
-	i234 = 0
-	os948 = wv_a49
-	x1946 = **(**Tuint32_t)(__ccgo_up(wv_a49 + uintptr(i234)*4)) + **(**Tuint32_t)(__ccgo_up(y8 + uintptr(i234)*4))
-	**(**Tuint32_t)(__ccgo_up(os948 + uintptr(i234)*4)) = x1946
-	i234 = i234 + uint32(1)
-	_ = i234
-	os949 = wv_a49
-	x1947 = **(**Tuint32_t)(__ccgo_up(wv_a49 + uintptr(i234)*4)) + **(**Tuint32_t)(__ccgo_up(y8 + uintptr(i234)*4))
-	**(**Tuint32_t)(__ccgo_up(os949 + uintptr(i234)*4)) = x1947
-	i234 = i234 + uint32(1)
-	_ = i234
-	os950 = wv_a49
-	x1948 = **(**Tuint32_t)(__ccgo_up(wv_a49 + uintptr(i234)*4)) + **(**Tuint32_t)(__ccgo_up(y8 + uintptr(i234)*4))
-	**(**Tuint32_t)(__ccgo_up(os950 + uintptr(i234)*4)) = x1948
-	i234 = i234 + uint32(1)
-	_ = i234
-	os951 = wv_a49
-	x1949 = **(**Tuint32_t)(__ccgo_up(wv_a49 + uintptr(i234)*4)) + **(**Tuint32_t)(__ccgo_up(y8 + uintptr(i234)*4))
-	**(**Tuint32_t)(__ccgo_up(os951 + uintptr(i234)*4)) = x1949
-	i234 = i234 + uint32(1)
-	_ = i234
-	wv_a59 = wv + uintptr(d108*uint32(4))*4
-	wv_b59 = wv + uintptr(a8*uint32(4))*4
-	i235 = 0
-	os952 = wv_a59
-	x1950 = **(**Tuint32_t)(__ccgo_up(wv_a59 + uintptr(i235)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b59 + uintptr(i235)*4))
-	**(**Tuint32_t)(__ccgo_up(os952 + uintptr(i235)*4)) = x1950
-	i235 = i235 + uint32(1)
-	_ = i235
-	os953 = wv_a59
-	x1951 = **(**Tuint32_t)(__ccgo_up(wv_a59 + uintptr(i235)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b59 + uintptr(i235)*4))
-	**(**Tuint32_t)(__ccgo_up(os953 + uintptr(i235)*4)) = x1951
-	i235 = i235 + uint32(1)
-	_ = i235
-	os954 = wv_a59
-	x1952 = **(**Tuint32_t)(__ccgo_up(wv_a59 + uintptr(i235)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b59 + uintptr(i235)*4))
-	**(**Tuint32_t)(__ccgo_up(os954 + uintptr(i235)*4)) = x1952
-	i235 = i235 + uint32(1)
-	_ = i235
-	os955 = wv_a59
-	x1953 = **(**Tuint32_t)(__ccgo_up(wv_a59 + uintptr(i235)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b59 + uintptr(i235)*4))
-	**(**Tuint32_t)(__ccgo_up(os955 + uintptr(i235)*4)) = x1953
-	i235 = i235 + uint32(1)
-	_ = i235
-	r139 = wv_a59
-	i236 = 0
-	os956 = r139
-	x1954 = **(**Tuint32_t)(__ccgo_up(r139 + uintptr(i236)*4))
-	x10145 = x1954>>uint32(8) | x1954<<uint32(24)
-	**(**Tuint32_t)(__ccgo_up(os956 + uintptr(i236)*4)) = x10145
-	i236 = i236 + uint32(1)
-	_ = i236
-	os957 = r139
-	x1955 = **(**Tuint32_t)(__ccgo_up(r139 + uintptr(i236)*4))
-	x10146 = x1955>>uint32(8) | x1955<<uint32(24)
-	**(**Tuint32_t)(__ccgo_up(os957 + uintptr(i236)*4)) = x10146
-	i236 = i236 + uint32(1)
-	_ = i236
-	os958 = r139
-	x1956 = **(**Tuint32_t)(__ccgo_up(r139 + uintptr(i236)*4))
-	x10147 = x1956>>uint32(8) | x1956<<uint32(24)
-	**(**Tuint32_t)(__ccgo_up(os958 + uintptr(i236)*4)) = x10147
-	i236 = i236 + uint32(1)
-	_ = i236
-	os959 = r139
-	x1957 = **(**Tuint32_t)(__ccgo_up(r139 + uintptr(i236)*4))
-	x10148 = x1957>>uint32(8) | x1957<<uint32(24)
-	**(**Tuint32_t)(__ccgo_up(os959 + uintptr(i236)*4)) = x10148
-	i236 = i236 + uint32(1)
-	_ = i236
-	wv_a69 = wv + uintptr(c08*uint32(4))*4
-	wv_b69 = wv + uintptr(d108*uint32(4))*4
-	i237 = 0
-	os960 = wv_a69
-	x1958 = **(**Tuint32_t)(__ccgo_up(wv_a69 + uintptr(i237)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b69 + uintptr(i237)*4))
-	**(**Tuint32_t)(__ccgo_up(os960 + uintptr(i237)*4)) = x1958
-	i237 = i237 + uint32(1)
-	_ = i237
-	os961 = wv_a69
-	x1959 = **(**Tuint32_t)(__ccgo_up(wv_a69 + uintptr(i237)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b69 + uintptr(i237)*4))
-	**(**Tuint32_t)(__ccgo_up(os961 + uintptr(i237)*4)) = x1959
-	i237 = i237 + uint32(1)
-	_ = i237
-	os962 = wv_a69
-	x1960 = **(**Tuint32_t)(__ccgo_up(wv_a69 + uintptr(i237)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b69 + uintptr(i237)*4))
-	**(**Tuint32_t)(__ccgo_up(os962 + uintptr(i237)*4)) = x1960
-	i237 = i237 + uint32(1)
-	_ = i237
-	os963 = wv_a69
-	x1961 = **(**Tuint32_t)(__ccgo_up(wv_a69 + uintptr(i237)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b69 + uintptr(i237)*4))
-	**(**Tuint32_t)(__ccgo_up(os963 + uintptr(i237)*4)) = x1961
-	i237 = i237 + uint32(1)
-	_ = i237
-	wv_a79 = wv + uintptr(b08*uint32(4))*4
-	wv_b79 = wv + uintptr(c08*uint32(4))*4
-	i238 = 0
-	os964 = wv_a79
-	x1962 = **(**Tuint32_t)(__ccgo_up(wv_a79 + uintptr(i238)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b79 + uintptr(i238)*4))
-	**(**Tuint32_t)(__ccgo_up(os964 + uintptr(i238)*4)) = x1962
-	i238 = i238 + uint32(1)
-	_ = i238
-	os965 = wv_a79
-	x1963 = **(**Tuint32_t)(__ccgo_up(wv_a79 + uintptr(i238)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b79 + uintptr(i238)*4))
-	**(**Tuint32_t)(__ccgo_up(os965 + uintptr(i238)*4)) = x1963
-	i238 = i238 + uint32(1)
-	_ = i238
-	os966 = wv_a79
-	x1964 = **(**Tuint32_t)(__ccgo_up(wv_a79 + uintptr(i238)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b79 + uintptr(i238)*4))
-	**(**Tuint32_t)(__ccgo_up(os966 + uintptr(i238)*4)) = x1964
-	i238 = i238 + uint32(1)
-	_ = i238
-	os967 = wv_a79
-	x1965 = **(**Tuint32_t)(__ccgo_up(wv_a79 + uintptr(i238)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b79 + uintptr(i238)*4))
-	**(**Tuint32_t)(__ccgo_up(os967 + uintptr(i238)*4)) = x1965
-	i238 = i238 + uint32(1)
-	_ = i238
-	r149 = wv_a79
-	i239 = 0
-	os968 = r149
-	x1966 = **(**Tuint32_t)(__ccgo_up(r149 + uintptr(i239)*4))
-	x10149 = x1966>>uint32(7) | x1966<<uint32(25)
-	**(**Tuint32_t)(__ccgo_up(os968 + uintptr(i239)*4)) = x10149
-	i239 = i239 + uint32(1)
-	_ = i239
-	os969 = r149
-	x1967 = **(**Tuint32_t)(__ccgo_up(r149 + uintptr(i239)*4))
-	x10150 = x1967>>uint32(7) | x1967<<uint32(25)
-	**(**Tuint32_t)(__ccgo_up(os969 + uintptr(i239)*4)) = x10150
-	i239 = i239 + uint32(1)
-	_ = i239
-	os970 = r149
-	x1968 = **(**Tuint32_t)(__ccgo_up(r149 + uintptr(i239)*4))
-	x10151 = x1968>>uint32(7) | x1968<<uint32(25)
-	**(**Tuint32_t)(__ccgo_up(os970 + uintptr(i239)*4)) = x10151
-	i239 = i239 + uint32(1)
-	_ = i239
-	os971 = r149
-	x1969 = **(**Tuint32_t)(__ccgo_up(r149 + uintptr(i239)*4))
-	x10152 = x1969>>uint32(7) | x1969<<uint32(25)
-	**(**Tuint32_t)(__ccgo_up(os971 + uintptr(i239)*4)) = x10152
-	i239 = i239 + uint32(1)
-	_ = i239
-	r159 = wv + uintptr(4)*4
-	r2110 = wv + uintptr(8)*4
-	r3110 = wv + uintptr(12)*4
-	r1109 = r159
-	x008 = **(**Tuint32_t)(__ccgo_up(r1109 + 1*4))
-	x10153 = **(**Tuint32_t)(__ccgo_up(r1109 + 2*4))
-	x209 = **(**Tuint32_t)(__ccgo_up(r1109 + 3*4))
-	x309 = **(**Tuint32_t)(__ccgo_up(r1109))
-	**(**Tuint32_t)(__ccgo_up(r1109)) = x008
-	**(**Tuint32_t)(__ccgo_up(r1109 + 1*4)) = x10153
-	**(**Tuint32_t)(__ccgo_up(r1109 + 2*4)) = x209
-	**(**Tuint32_t)(__ccgo_up(r1109 + 3*4)) = x309
-	r11115 = r2110
-	x019 = **(**Tuint32_t)(__ccgo_up(r11115 + 2*4))
-	x11148 = **(**Tuint32_t)(__ccgo_up(r11115 + 3*4))
-	x2118 = **(**Tuint32_t)(__ccgo_up(r11115))
-	x3118 = **(**Tuint32_t)(__ccgo_up(r11115 + 1*4))
-	**(**Tuint32_t)(__ccgo_up(r11115)) = x019
-	**(**Tuint32_t)(__ccgo_up(r11115 + 1*4)) = x11148
-	**(**Tuint32_t)(__ccgo_up(r11115 + 2*4)) = x2118
-	**(**Tuint32_t)(__ccgo_up(r11115 + 3*4)) = x3118
-	r1129 = r3110
-	x029 = **(**Tuint32_t)(__ccgo_up(r1129 + 3*4))
-	x12108 = **(**Tuint32_t)(__ccgo_up(r1129))
-	x229 = **(**Tuint32_t)(__ccgo_up(r1129 + 1*4))
-	x329 = **(**Tuint32_t)(__ccgo_up(r1129 + 2*4))
-	**(**Tuint32_t)(__ccgo_up(r1129)) = x029
-	**(**Tuint32_t)(__ccgo_up(r1129 + 1*4)) = x12108
-	**(**Tuint32_t)(__ccgo_up(r1129 + 2*4)) = x229
-	**(**Tuint32_t)(__ccgo_up(r1129 + 3*4)) = x329
-	a08 = 0
-	b9 = uint32(1)
-	c8 = uint32(2)
-	d18 = uint32(3)
-	wv_a8 = wv + uintptr(a08*uint32(4))*4
-	wv_b89 = wv + uintptr(b9*uint32(4))*4
-	i240 = 0
-	os972 = wv_a8
-	x1970 = **(**Tuint32_t)(__ccgo_up(wv_a8 + uintptr(i240)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b89 + uintptr(i240)*4))
-	**(**Tuint32_t)(__ccgo_up(os972 + uintptr(i240)*4)) = x1970
-	i240 = i240 + uint32(1)
-	_ = i240
-	os973 = wv_a8
-	x1971 = **(**Tuint32_t)(__ccgo_up(wv_a8 + uintptr(i240)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b89 + uintptr(i240)*4))
-	**(**Tuint32_t)(__ccgo_up(os973 + uintptr(i240)*4)) = x1971
-	i240 = i240 + uint32(1)
-	_ = i240
-	os974 = wv_a8
-	x1972 = **(**Tuint32_t)(__ccgo_up(wv_a8 + uintptr(i240)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b89 + uintptr(i240)*4))
-	**(**Tuint32_t)(__ccgo_up(os974 + uintptr(i240)*4)) = x1972
-	i240 = i240 + uint32(1)
-	_ = i240
-	os975 = wv_a8
-	x1973 = **(**Tuint32_t)(__ccgo_up(wv_a8 + uintptr(i240)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b89 + uintptr(i240)*4))
-	**(**Tuint32_t)(__ccgo_up(os975 + uintptr(i240)*4)) = x1973
-	i240 = i240 + uint32(1)
-	_ = i240
-	i241 = 0
-	os976 = wv_a8
-	x1974 = **(**Tuint32_t)(__ccgo_up(wv_a8 + uintptr(i241)*4)) + **(**Tuint32_t)(__ccgo_up(z8 + uintptr(i241)*4))
-	**(**Tuint32_t)(__ccgo_up(os976 + uintptr(i241)*4)) = x1974
-	i241 = i241 + uint32(1)
-	_ = i241
-	os977 = wv_a8
-	x1975 = **(**Tuint32_t)(__ccgo_up(wv_a8 + uintptr(i241)*4)) + **(**Tuint32_t)(__ccgo_up(z8 + uintptr(i241)*4))
-	**(**Tuint32_t)(__ccgo_up(os977 + uintptr(i241)*4)) = x1975
-	i241 = i241 + uint32(1)
-	_ = i241
-	os978 = wv_a8
-	x1976 = **(**Tuint32_t)(__ccgo_up(wv_a8 + uintptr(i241)*4)) + **(**Tuint32_t)(__ccgo_up(z8 + uintptr(i241)*4))
-	**(**Tuint32_t)(__ccgo_up(os978 + uintptr(i241)*4)) = x1976
-	i241 = i241 + uint32(1)
-	_ = i241
-	os979 = wv_a8
-	x1977 = **(**Tuint32_t)(__ccgo_up(wv_a8 + uintptr(i241)*4)) + **(**Tuint32_t)(__ccgo_up(z8 + uintptr(i241)*4))
-	**(**Tuint32_t)(__ccgo_up(os979 + uintptr(i241)*4)) = x1977
-	i241 = i241 + uint32(1)
-	_ = i241
-	wv_a89 = wv + uintptr(d18*uint32(4))*4
-	wv_b99 = wv + uintptr(a08*uint32(4))*4
-	i242 = 0
-	os980 = wv_a89
-	x1978 = **(**Tuint32_t)(__ccgo_up(wv_a89 + uintptr(i242)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b99 + uintptr(i242)*4))
-	**(**Tuint32_t)(__ccgo_up(os980 + uintptr(i242)*4)) = x1978
-	i242 = i242 + uint32(1)
-	_ = i242
-	os981 = wv_a89
-	x1979 = **(**Tuint32_t)(__ccgo_up(wv_a89 + uintptr(i242)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b99 + uintptr(i242)*4))
-	**(**Tuint32_t)(__ccgo_up(os981 + uintptr(i242)*4)) = x1979
-	i242 = i242 + uint32(1)
-	_ = i242
-	os982 = wv_a89
-	x1980 = **(**Tuint32_t)(__ccgo_up(wv_a89 + uintptr(i242)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b99 + uintptr(i242)*4))
-	**(**Tuint32_t)(__ccgo_up(os982 + uintptr(i242)*4)) = x1980
-	i242 = i242 + uint32(1)
-	_ = i242
-	os983 = wv_a89
-	x1981 = **(**Tuint32_t)(__ccgo_up(wv_a89 + uintptr(i242)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b99 + uintptr(i242)*4))
-	**(**Tuint32_t)(__ccgo_up(os983 + uintptr(i242)*4)) = x1981
-	i242 = i242 + uint32(1)
-	_ = i242
-	r169 = wv_a89
-	i243 = 0
-	os984 = r169
-	x1982 = **(**Tuint32_t)(__ccgo_up(r169 + uintptr(i243)*4))
-	x13236 = x1982>>uint32(16) | x1982<<uint32(16)
-	**(**Tuint32_t)(__ccgo_up(os984 + uintptr(i243)*4)) = x13236
-	i243 = i243 + uint32(1)
-	_ = i243
-	os985 = r169
-	x1983 = **(**Tuint32_t)(__ccgo_up(r169 + uintptr(i243)*4))
-	x13237 = x1983>>uint32(16) | x1983<<uint32(16)
-	**(**Tuint32_t)(__ccgo_up(os985 + uintptr(i243)*4)) = x13237
-	i243 = i243 + uint32(1)
-	_ = i243
-	os986 = r169
-	x1984 = **(**Tuint32_t)(__ccgo_up(r169 + uintptr(i243)*4))
-	x13238 = x1984>>uint32(16) | x1984<<uint32(16)
-	**(**Tuint32_t)(__ccgo_up(os986 + uintptr(i243)*4)) = x13238
-	i243 = i243 + uint32(1)
-	_ = i243
-	os987 = r169
-	x1985 = **(**Tuint32_t)(__ccgo_up(r169 + uintptr(i243)*4))
-	x13239 = x1985>>uint32(16) | x1985<<uint32(16)
-	**(**Tuint32_t)(__ccgo_up(os987 + uintptr(i243)*4)) = x13239
-	i243 = i243 + uint32(1)
-	_ = i243
-	wv_a99 = wv + uintptr(c8*uint32(4))*4
-	wv_b108 = wv + uintptr(d18*uint32(4))*4
-	i244 = 0
-	os988 = wv_a99
-	x1986 = **(**Tuint32_t)(__ccgo_up(wv_a99 + uintptr(i244)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b108 + uintptr(i244)*4))
-	**(**Tuint32_t)(__ccgo_up(os988 + uintptr(i244)*4)) = x1986
-	i244 = i244 + uint32(1)
-	_ = i244
-	os989 = wv_a99
-	x1987 = **(**Tuint32_t)(__ccgo_up(wv_a99 + uintptr(i244)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b108 + uintptr(i244)*4))
-	**(**Tuint32_t)(__ccgo_up(os989 + uintptr(i244)*4)) = x1987
-	i244 = i244 + uint32(1)
-	_ = i244
-	os990 = wv_a99
-	x1988 = **(**Tuint32_t)(__ccgo_up(wv_a99 + uintptr(i244)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b108 + uintptr(i244)*4))
-	**(**Tuint32_t)(__ccgo_up(os990 + uintptr(i244)*4)) = x1988
-	i244 = i244 + uint32(1)
-	_ = i244
-	os991 = wv_a99
-	x1989 = **(**Tuint32_t)(__ccgo_up(wv_a99 + uintptr(i244)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b108 + uintptr(i244)*4))
-	**(**Tuint32_t)(__ccgo_up(os991 + uintptr(i244)*4)) = x1989
-	i244 = i244 + uint32(1)
-	_ = i244
-	wv_a108 = wv + uintptr(b9*uint32(4))*4
-	wv_b119 = wv + uintptr(c8*uint32(4))*4
-	i245 = 0
-	os992 = wv_a108
-	x1990 = **(**Tuint32_t)(__ccgo_up(wv_a108 + uintptr(i245)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b119 + uintptr(i245)*4))
-	**(**Tuint32_t)(__ccgo_up(os992 + uintptr(i245)*4)) = x1990
-	i245 = i245 + uint32(1)
-	_ = i245
-	os993 = wv_a108
-	x1991 = **(**Tuint32_t)(__ccgo_up(wv_a108 + uintptr(i245)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b119 + uintptr(i245)*4))
-	**(**Tuint32_t)(__ccgo_up(os993 + uintptr(i245)*4)) = x1991
-	i245 = i245 + uint32(1)
-	_ = i245
-	os994 = wv_a108
-	x1992 = **(**Tuint32_t)(__ccgo_up(wv_a108 + uintptr(i245)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b119 + uintptr(i245)*4))
-	**(**Tuint32_t)(__ccgo_up(os994 + uintptr(i245)*4)) = x1992
-	i245 = i245 + uint32(1)
-	_ = i245
-	os995 = wv_a108
-	x1993 = **(**Tuint32_t)(__ccgo_up(wv_a108 + uintptr(i245)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b119 + uintptr(i245)*4))
-	**(**Tuint32_t)(__ccgo_up(os995 + uintptr(i245)*4)) = x1993
-	i245 = i245 + uint32(1)
-	_ = i245
-	r179 = wv_a108
-	i246 = 0
-	os996 = r179
-	x1994 = **(**Tuint32_t)(__ccgo_up(r179 + uintptr(i246)*4))
-	x13240 = x1994>>uint32(12) | x1994<<uint32(20)
-	**(**Tuint32_t)(__ccgo_up(os996 + uintptr(i246)*4)) = x13240
-	i246 = i246 + uint32(1)
-	_ = i246
-	os997 = r179
-	x1995 = **(**Tuint32_t)(__ccgo_up(r179 + uintptr(i246)*4))
-	x13241 = x1995>>uint32(12) | x1995<<uint32(20)
-	**(**Tuint32_t)(__ccgo_up(os997 + uintptr(i246)*4)) = x13241
-	i246 = i246 + uint32(1)
-	_ = i246
-	os998 = r179
-	x1996 = **(**Tuint32_t)(__ccgo_up(r179 + uintptr(i246)*4))
-	x13242 = x1996>>uint32(12) | x1996<<uint32(20)
-	**(**Tuint32_t)(__ccgo_up(os998 + uintptr(i246)*4)) = x13242
-	i246 = i246 + uint32(1)
-	_ = i246
-	os999 = r179
-	x1997 = **(**Tuint32_t)(__ccgo_up(r179 + uintptr(i246)*4))
-	x13243 = x1997>>uint32(12) | x1997<<uint32(20)
-	**(**Tuint32_t)(__ccgo_up(os999 + uintptr(i246)*4)) = x13243
-	i246 = i246 + uint32(1)
-	_ = i246
-	wv_a119 = wv + uintptr(a08*uint32(4))*4
-	wv_b129 = wv + uintptr(b9*uint32(4))*4
-	i247 = 0
-	os1000 = wv_a119
-	x1998 = **(**Tuint32_t)(__ccgo_up(wv_a119 + uintptr(i247)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b129 + uintptr(i247)*4))
-	**(**Tuint32_t)(__ccgo_up(os1000 + uintptr(i247)*4)) = x1998
-	i247 = i247 + uint32(1)
-	_ = i247
-	os1001 = wv_a119
-	x1999 = **(**Tuint32_t)(__ccgo_up(wv_a119 + uintptr(i247)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b129 + uintptr(i247)*4))
-	**(**Tuint32_t)(__ccgo_up(os1001 + uintptr(i247)*4)) = x1999
-	i247 = i247 + uint32(1)
-	_ = i247
-	os1002 = wv_a119
-	x11000 = **(**Tuint32_t)(__ccgo_up(wv_a119 + uintptr(i247)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b129 + uintptr(i247)*4))
-	**(**Tuint32_t)(__ccgo_up(os1002 + uintptr(i247)*4)) = x11000
-	i247 = i247 + uint32(1)
-	_ = i247
-	os1003 = wv_a119
-	x11001 = **(**Tuint32_t)(__ccgo_up(wv_a119 + uintptr(i247)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b129 + uintptr(i247)*4))
-	**(**Tuint32_t)(__ccgo_up(os1003 + uintptr(i247)*4)) = x11001
-	i247 = i247 + uint32(1)
-	_ = i247
-	i248 = 0
-	os1004 = wv_a119
-	x11002 = **(**Tuint32_t)(__ccgo_up(wv_a119 + uintptr(i248)*4)) + **(**Tuint32_t)(__ccgo_up(w8 + uintptr(i248)*4))
-	**(**Tuint32_t)(__ccgo_up(os1004 + uintptr(i248)*4)) = x11002
-	i248 = i248 + uint32(1)
-	_ = i248
-	os1005 = wv_a119
-	x11003 = **(**Tuint32_t)(__ccgo_up(wv_a119 + uintptr(i248)*4)) + **(**Tuint32_t)(__ccgo_up(w8 + uintptr(i248)*4))
-	**(**Tuint32_t)(__ccgo_up(os1005 + uintptr(i248)*4)) = x11003
-	i248 = i248 + uint32(1)
-	_ = i248
-	os1006 = wv_a119
-	x11004 = **(**Tuint32_t)(__ccgo_up(wv_a119 + uintptr(i248)*4)) + **(**Tuint32_t)(__ccgo_up(w8 + uintptr(i248)*4))
-	**(**Tuint32_t)(__ccgo_up(os1006 + uintptr(i248)*4)) = x11004
-	i248 = i248 + uint32(1)
-	_ = i248
-	os1007 = wv_a119
-	x11005 = **(**Tuint32_t)(__ccgo_up(wv_a119 + uintptr(i248)*4)) + **(**Tuint32_t)(__ccgo_up(w8 + uintptr(i248)*4))
-	**(**Tuint32_t)(__ccgo_up(os1007 + uintptr(i248)*4)) = x11005
-	i248 = i248 + uint32(1)
-	_ = i248
-	wv_a129 = wv + uintptr(d18*uint32(4))*4
-	wv_b139 = wv + uintptr(a08*uint32(4))*4
-	i249 = 0
-	os1008 = wv_a129
-	x11006 = **(**Tuint32_t)(__ccgo_up(wv_a129 + uintptr(i249)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b139 + uintptr(i249)*4))
-	**(**Tuint32_t)(__ccgo_up(os1008 + uintptr(i249)*4)) = x11006
-	i249 = i249 + uint32(1)
-	_ = i249
-	os1009 = wv_a129
-	x11007 = **(**Tuint32_t)(__ccgo_up(wv_a129 + uintptr(i249)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b139 + uintptr(i249)*4))
-	**(**Tuint32_t)(__ccgo_up(os1009 + uintptr(i249)*4)) = x11007
-	i249 = i249 + uint32(1)
-	_ = i249
-	os1010 = wv_a129
-	x11008 = **(**Tuint32_t)(__ccgo_up(wv_a129 + uintptr(i249)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b139 + uintptr(i249)*4))
-	**(**Tuint32_t)(__ccgo_up(os1010 + uintptr(i249)*4)) = x11008
-	i249 = i249 + uint32(1)
-	_ = i249
-	os1011 = wv_a129
-	x11009 = **(**Tuint32_t)(__ccgo_up(wv_a129 + uintptr(i249)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b139 + uintptr(i249)*4))
-	**(**Tuint32_t)(__ccgo_up(os1011 + uintptr(i249)*4)) = x11009
-	i249 = i249 + uint32(1)
-	_ = i249
-	r189 = wv_a129
-	i250 = 0
-	os1012 = r189
-	x11010 = **(**Tuint32_t)(__ccgo_up(r189 + uintptr(i250)*4))
-	x13244 = x11010>>uint32(8) | x11010<<uint32(24)
-	**(**Tuint32_t)(__ccgo_up(os1012 + uintptr(i250)*4)) = x13244
-	i250 = i250 + uint32(1)
-	_ = i250
-	os1013 = r189
-	x11011 = **(**Tuint32_t)(__ccgo_up(r189 + uintptr(i250)*4))
-	x13245 = x11011>>uint32(8) | x11011<<uint32(24)
-	**(**Tuint32_t)(__ccgo_up(os1013 + uintptr(i250)*4)) = x13245
-	i250 = i250 + uint32(1)
-	_ = i250
-	os1014 = r189
-	x11012 = **(**Tuint32_t)(__ccgo_up(r189 + uintptr(i250)*4))
-	x13246 = x11012>>uint32(8) | x11012<<uint32(24)
-	**(**Tuint32_t)(__ccgo_up(os1014 + uintptr(i250)*4)) = x13246
-	i250 = i250 + uint32(1)
-	_ = i250
-	os1015 = r189
-	x11013 = **(**Tuint32_t)(__ccgo_up(r189 + uintptr(i250)*4))
-	x13247 = x11013>>uint32(8) | x11013<<uint32(24)
-	**(**Tuint32_t)(__ccgo_up(os1015 + uintptr(i250)*4)) = x13247
-	i250 = i250 + uint32(1)
-	_ = i250
-	wv_a139 = wv + uintptr(c8*uint32(4))*4
-	wv_b149 = wv + uintptr(d18*uint32(4))*4
-	i251 = 0
-	os1016 = wv_a139
-	x11014 = **(**Tuint32_t)(__ccgo_up(wv_a139 + uintptr(i251)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b149 + uintptr(i251)*4))
-	**(**Tuint32_t)(__ccgo_up(os1016 + uintptr(i251)*4)) = x11014
-	i251 = i251 + uint32(1)
-	_ = i251
-	os1017 = wv_a139
-	x11015 = **(**Tuint32_t)(__ccgo_up(wv_a139 + uintptr(i251)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b149 + uintptr(i251)*4))
-	**(**Tuint32_t)(__ccgo_up(os1017 + uintptr(i251)*4)) = x11015
-	i251 = i251 + uint32(1)
-	_ = i251
-	os1018 = wv_a139
-	x11016 = **(**Tuint32_t)(__ccgo_up(wv_a139 + uintptr(i251)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b149 + uintptr(i251)*4))
-	**(**Tuint32_t)(__ccgo_up(os1018 + uintptr(i251)*4)) = x11016
-	i251 = i251 + uint32(1)
-	_ = i251
-	os1019 = wv_a139
-	x11017 = **(**Tuint32_t)(__ccgo_up(wv_a139 + uintptr(i251)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b149 + uintptr(i251)*4))
-	**(**Tuint32_t)(__ccgo_up(os1019 + uintptr(i251)*4)) = x11017
-	i251 = i251 + uint32(1)
-	_ = i251
-	wv_a149 = wv + uintptr(b9*uint32(4))*4
-	wv_b8 = wv + uintptr(c8*uint32(4))*4
-	i252 = 0
-	os1020 = wv_a149
-	x11018 = **(**Tuint32_t)(__ccgo_up(wv_a149 + uintptr(i252)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b8 + uintptr(i252)*4))
-	**(**Tuint32_t)(__ccgo_up(os1020 + uintptr(i252)*4)) = x11018
-	i252 = i252 + uint32(1)
-	_ = i252
-	os1021 = wv_a149
-	x11019 = **(**Tuint32_t)(__ccgo_up(wv_a149 + uintptr(i252)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b8 + uintptr(i252)*4))
-	**(**Tuint32_t)(__ccgo_up(os1021 + uintptr(i252)*4)) = x11019
-	i252 = i252 + uint32(1)
-	_ = i252
-	os1022 = wv_a149
-	x11020 = **(**Tuint32_t)(__ccgo_up(wv_a149 + uintptr(i252)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b8 + uintptr(i252)*4))
-	**(**Tuint32_t)(__ccgo_up(os1022 + uintptr(i252)*4)) = x11020
-	i252 = i252 + uint32(1)
-	_ = i252
-	os1023 = wv_a149
-	x11021 = **(**Tuint32_t)(__ccgo_up(wv_a149 + uintptr(i252)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b8 + uintptr(i252)*4))
-	**(**Tuint32_t)(__ccgo_up(os1023 + uintptr(i252)*4)) = x11021
-	i252 = i252 + uint32(1)
-	_ = i252
-	r199 = wv_a149
-	i253 = 0
-	os1024 = r199
-	x11022 = **(**Tuint32_t)(__ccgo_up(r199 + uintptr(i253)*4))
-	x13248 = x11022>>uint32(7) | x11022<<uint32(25)
-	**(**Tuint32_t)(__ccgo_up(os1024 + uintptr(i253)*4)) = x13248
-	i253 = i253 + uint32(1)
-	_ = i253
-	os1025 = r199
-	x11023 = **(**Tuint32_t)(__ccgo_up(r199 + uintptr(i253)*4))
-	x13249 = x11023>>uint32(7) | x11023<<uint32(25)
-	**(**Tuint32_t)(__ccgo_up(os1025 + uintptr(i253)*4)) = x13249
-	i253 = i253 + uint32(1)
-	_ = i253
-	os1026 = r199
-	x11024 = **(**Tuint32_t)(__ccgo_up(r199 + uintptr(i253)*4))
-	x13250 = x11024>>uint32(7) | x11024<<uint32(25)
-	**(**Tuint32_t)(__ccgo_up(os1026 + uintptr(i253)*4)) = x13250
-	i253 = i253 + uint32(1)
-	_ = i253
-	os1027 = r199
-	x11025 = **(**Tuint32_t)(__ccgo_up(r199 + uintptr(i253)*4))
-	x13251 = x11025>>uint32(7) | x11025<<uint32(25)
-	**(**Tuint32_t)(__ccgo_up(os1027 + uintptr(i253)*4)) = x13251
-	i253 = i253 + uint32(1)
-	_ = i253
-	r1139 = wv + uintptr(4)*4
-	r29 = wv + uintptr(8)*4
-	r39 = wv + uintptr(12)*4
-	r1115 = r1139
-	x039 = **(**Tuint32_t)(__ccgo_up(r1115 + 3*4))
-	x13252 = **(**Tuint32_t)(__ccgo_up(r1115))
-	x239 = **(**Tuint32_t)(__ccgo_up(r1115 + 1*4))
-	x339 = **(**Tuint32_t)(__ccgo_up(r1115 + 2*4))
-	**(**Tuint32_t)(__ccgo_up(r1115)) = x039
-	**(**Tuint32_t)(__ccgo_up(r1115 + 1*4)) = x13252
-	**(**Tuint32_t)(__ccgo_up(r1115 + 2*4)) = x239
-	**(**Tuint32_t)(__ccgo_up(r1115 + 3*4)) = x339
-	r1149 = r29
-	x049 = **(**Tuint32_t)(__ccgo_up(r1149 + 2*4))
-	x14108 = **(**Tuint32_t)(__ccgo_up(r1149 + 3*4))
-	x249 = **(**Tuint32_t)(__ccgo_up(r1149))
-	x349 = **(**Tuint32_t)(__ccgo_up(r1149 + 1*4))
-	**(**Tuint32_t)(__ccgo_up(r1149)) = x049
-	**(**Tuint32_t)(__ccgo_up(r1149 + 1*4)) = x14108
-	**(**Tuint32_t)(__ccgo_up(r1149 + 2*4)) = x249
-	**(**Tuint32_t)(__ccgo_up(r1149 + 3*4)) = x349
-	r1159 = r39
-	x08 = **(**Tuint32_t)(__ccgo_up(r1159 + 1*4))
-	x11026 = **(**Tuint32_t)(__ccgo_up(r1159 + 2*4))
-	x218 = **(**Tuint32_t)(__ccgo_up(r1159 + 3*4))
-	x318 = **(**Tuint32_t)(__ccgo_up(r1159))
-	**(**Tuint32_t)(__ccgo_up(r1159)) = x08
-	**(**Tuint32_t)(__ccgo_up(r1159 + 1*4)) = x11026
-	**(**Tuint32_t)(__ccgo_up(r1159 + 2*4)) = x218
-	**(**Tuint32_t)(__ccgo_up(r1159 + 3*4)) = x318
-	i0 = i0 + uint32(1)
-	_ = i0
-	start_idx9 = i0 % uint32(10) * uint32(16)
-	**(**[16]Tuint32_t)(__ccgo_up(bp + 644)) = [16]Tuint32_t{}
-	r09 = bp + 644
-	r115 = bp + 644 + uintptr(4)*4
-	r209 = bp + 644 + uintptr(8)*4
-	r309 = bp + 644 + uintptr(12)*4
-	s09 = _Hacl_Hash_Blake2b_sigmaTable[start_idx9+0]
-	s19 = _Hacl_Hash_Blake2b_sigmaTable[start_idx9+uint32(1)]
-	s29 = _Hacl_Hash_Blake2b_sigmaTable[start_idx9+uint32(2)]
-	s39 = _Hacl_Hash_Blake2b_sigmaTable[start_idx9+uint32(3)]
-	s49 = _Hacl_Hash_Blake2b_sigmaTable[start_idx9+uint32(4)]
-	s59 = _Hacl_Hash_Blake2b_sigmaTable[start_idx9+uint32(5)]
-	s69 = _Hacl_Hash_Blake2b_sigmaTable[start_idx9+uint32(6)]
-	s79 = _Hacl_Hash_Blake2b_sigmaTable[start_idx9+uint32(7)]
-	s89 = _Hacl_Hash_Blake2b_sigmaTable[start_idx9+uint32(8)]
-	s99 = _Hacl_Hash_Blake2b_sigmaTable[start_idx9+uint32(9)]
-	s109 = _Hacl_Hash_Blake2b_sigmaTable[start_idx9+uint32(10)]
-	s1110 = _Hacl_Hash_Blake2b_sigmaTable[start_idx9+uint32(11)]
-	s1210 = _Hacl_Hash_Blake2b_sigmaTable[start_idx9+uint32(12)]
-	s1310 = _Hacl_Hash_Blake2b_sigmaTable[start_idx9+uint32(13)]
-	s1410 = _Hacl_Hash_Blake2b_sigmaTable[start_idx9+uint32(14)]
-	s1510 = _Hacl_Hash_Blake2b_sigmaTable[start_idx9+uint32(15)]
-	uu____09 = (**(**[16]Tuint32_t)(__ccgo_up(bp + 4)))[s29]
-	uu____19 = (**(**[16]Tuint32_t)(__ccgo_up(bp + 4)))[s49]
-	uu____29 = (**(**[16]Tuint32_t)(__ccgo_up(bp + 4)))[s69]
-	**(**Tuint32_t)(__ccgo_up(r09)) = (**(**[16]Tuint32_t)(__ccgo_up(bp + 4)))[s09]
-	**(**Tuint32_t)(__ccgo_up(r09 + 1*4)) = uu____09
-	**(**Tuint32_t)(__ccgo_up(r09 + 2*4)) = uu____19
-	**(**Tuint32_t)(__ccgo_up(r09 + 3*4)) = uu____29
-	uu____39 = (**(**[16]Tuint32_t)(__ccgo_up(bp + 4)))[s39]
-	uu____49 = (**(**[16]Tuint32_t)(__ccgo_up(bp + 4)))[s59]
-	uu____59 = (**(**[16]Tuint32_t)(__ccgo_up(bp + 4)))[s79]
-	**(**Tuint32_t)(__ccgo_up(r115)) = (**(**[16]Tuint32_t)(__ccgo_up(bp + 4)))[s19]
-	**(**Tuint32_t)(__ccgo_up(r115 + 1*4)) = uu____39
-	**(**Tuint32_t)(__ccgo_up(r115 + 2*4)) = uu____49
-	**(**Tuint32_t)(__ccgo_up(r115 + 3*4)) = uu____59
-	uu____69 = (**(**[16]Tuint32_t)(__ccgo_up(bp + 4)))[s109]
-	uu____79 = (**(**[16]Tuint32_t)(__ccgo_up(bp + 4)))[s1210]
-	uu____89 = (**(**[16]Tuint32_t)(__ccgo_up(bp + 4)))[s1410]
-	**(**Tuint32_t)(__ccgo_up(r209)) = (**(**[16]Tuint32_t)(__ccgo_up(bp + 4)))[s89]
-	**(**Tuint32_t)(__ccgo_up(r209 + 1*4)) = uu____69
-	**(**Tuint32_t)(__ccgo_up(r209 + 2*4)) = uu____79
-	**(**Tuint32_t)(__ccgo_up(r209 + 3*4)) = uu____89
-	uu____99 = (**(**[16]Tuint32_t)(__ccgo_up(bp + 4)))[s1110]
-	uu____109 = (**(**[16]Tuint32_t)(__ccgo_up(bp + 4)))[s1310]
-	uu____1110 = (**(**[16]Tuint32_t)(__ccgo_up(bp + 4)))[s1510]
-	**(**Tuint32_t)(__ccgo_up(r309)) = (**(**[16]Tuint32_t)(__ccgo_up(bp + 4)))[s99]
-	**(**Tuint32_t)(__ccgo_up(r309 + 1*4)) = uu____99
-	**(**Tuint32_t)(__ccgo_up(r309 + 2*4)) = uu____109
-	**(**Tuint32_t)(__ccgo_up(r309 + 3*4)) = uu____1110
-	x30 = bp + 644
-	y9 = bp + 644 + uintptr(4)*4
-	z9 = bp + 644 + uintptr(8)*4
-	w9 = bp + 644 + uintptr(12)*4
-	a9 = 0
-	b09 = uint32(1)
-	c09 = uint32(2)
-	d109 = uint32(3)
-	wv_a09 = wv + uintptr(a9*uint32(4))*4
-	wv_b09 = wv + uintptr(b09*uint32(4))*4
-	i254 = 0
-	os1028 = wv_a09
-	x11027 = **(**Tuint32_t)(__ccgo_up(wv_a09 + uintptr(i254)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b09 + uintptr(i254)*4))
-	**(**Tuint32_t)(__ccgo_up(os1028 + uintptr(i254)*4)) = x11027
-	i254 = i254 + uint32(1)
-	_ = i254
-	os1029 = wv_a09
-	x11028 = **(**Tuint32_t)(__ccgo_up(wv_a09 + uintptr(i254)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b09 + uintptr(i254)*4))
-	**(**Tuint32_t)(__ccgo_up(os1029 + uintptr(i254)*4)) = x11028
-	i254 = i254 + uint32(1)
-	_ = i254
-	os1030 = wv_a09
-	x11029 = **(**Tuint32_t)(__ccgo_up(wv_a09 + uintptr(i254)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b09 + uintptr(i254)*4))
-	**(**Tuint32_t)(__ccgo_up(os1030 + uintptr(i254)*4)) = x11029
-	i254 = i254 + uint32(1)
-	_ = i254
-	os1031 = wv_a09
-	x11030 = **(**Tuint32_t)(__ccgo_up(wv_a09 + uintptr(i254)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b09 + uintptr(i254)*4))
-	**(**Tuint32_t)(__ccgo_up(os1031 + uintptr(i254)*4)) = x11030
-	i254 = i254 + uint32(1)
-	_ = i254
-	i255 = 0
-	os1032 = wv_a09
-	x11031 = **(**Tuint32_t)(__ccgo_up(wv_a09 + uintptr(i255)*4)) + **(**Tuint32_t)(__ccgo_up(x30 + uintptr(i255)*4))
-	**(**Tuint32_t)(__ccgo_up(os1032 + uintptr(i255)*4)) = x11031
-	i255 = i255 + uint32(1)
-	_ = i255
-	os1033 = wv_a09
-	x11032 = **(**Tuint32_t)(__ccgo_up(wv_a09 + uintptr(i255)*4)) + **(**Tuint32_t)(__ccgo_up(x30 + uintptr(i255)*4))
-	**(**Tuint32_t)(__ccgo_up(os1033 + uintptr(i255)*4)) = x11032
-	i255 = i255 + uint32(1)
-	_ = i255
-	os1034 = wv_a09
-	x11033 = **(**Tuint32_t)(__ccgo_up(wv_a09 + uintptr(i255)*4)) + **(**Tuint32_t)(__ccgo_up(x30 + uintptr(i255)*4))
-	**(**Tuint32_t)(__ccgo_up(os1034 + uintptr(i255)*4)) = x11033
-	i255 = i255 + uint32(1)
-	_ = i255
-	os1035 = wv_a09
-	x11034 = **(**Tuint32_t)(__ccgo_up(wv_a09 + uintptr(i255)*4)) + **(**Tuint32_t)(__ccgo_up(x30 + uintptr(i255)*4))
-	**(**Tuint32_t)(__ccgo_up(os1035 + uintptr(i255)*4)) = x11034
-	i255 = i255 + uint32(1)
-	_ = i255
-	wv_a110 = wv + uintptr(d109*uint32(4))*4
-	wv_b110 = wv + uintptr(a9*uint32(4))*4
-	i256 = 0
-	os1036 = wv_a110
-	x11035 = **(**Tuint32_t)(__ccgo_up(wv_a110 + uintptr(i256)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b110 + uintptr(i256)*4))
-	**(**Tuint32_t)(__ccgo_up(os1036 + uintptr(i256)*4)) = x11035
-	i256 = i256 + uint32(1)
-	_ = i256
-	os1037 = wv_a110
-	x11036 = **(**Tuint32_t)(__ccgo_up(wv_a110 + uintptr(i256)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b110 + uintptr(i256)*4))
-	**(**Tuint32_t)(__ccgo_up(os1037 + uintptr(i256)*4)) = x11036
-	i256 = i256 + uint32(1)
-	_ = i256
-	os1038 = wv_a110
-	x11037 = **(**Tuint32_t)(__ccgo_up(wv_a110 + uintptr(i256)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b110 + uintptr(i256)*4))
-	**(**Tuint32_t)(__ccgo_up(os1038 + uintptr(i256)*4)) = x11037
-	i256 = i256 + uint32(1)
-	_ = i256
-	os1039 = wv_a110
-	x11038 = **(**Tuint32_t)(__ccgo_up(wv_a110 + uintptr(i256)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b110 + uintptr(i256)*4))
-	**(**Tuint32_t)(__ccgo_up(os1039 + uintptr(i256)*4)) = x11038
-	i256 = i256 + uint32(1)
-	_ = i256
-	r1010 = wv_a110
-	i257 = 0
-	os1040 = r1010
-	x11039 = **(**Tuint32_t)(__ccgo_up(r1010 + uintptr(i257)*4))
-	x10154 = x11039>>uint32(16) | x11039<<uint32(16)
-	**(**Tuint32_t)(__ccgo_up(os1040 + uintptr(i257)*4)) = x10154
-	i257 = i257 + uint32(1)
-	_ = i257
-	os1041 = r1010
-	x11040 = **(**Tuint32_t)(__ccgo_up(r1010 + uintptr(i257)*4))
-	x10155 = x11040>>uint32(16) | x11040<<uint32(16)
-	**(**Tuint32_t)(__ccgo_up(os1041 + uintptr(i257)*4)) = x10155
-	i257 = i257 + uint32(1)
-	_ = i257
-	os1042 = r1010
-	x11041 = **(**Tuint32_t)(__ccgo_up(r1010 + uintptr(i257)*4))
-	x10156 = x11041>>uint32(16) | x11041<<uint32(16)
-	**(**Tuint32_t)(__ccgo_up(os1042 + uintptr(i257)*4)) = x10156
-	i257 = i257 + uint32(1)
-	_ = i257
-	os1043 = r1010
-	x11042 = **(**Tuint32_t)(__ccgo_up(r1010 + uintptr(i257)*4))
-	x10157 = x11042>>uint32(16) | x11042<<uint32(16)
-	**(**Tuint32_t)(__ccgo_up(os1043 + uintptr(i257)*4)) = x10157
-	i257 = i257 + uint32(1)
-	_ = i257
-	wv_a210 = wv + uintptr(c09*uint32(4))*4
-	wv_b210 = wv + uintptr(d109*uint32(4))*4
-	i258 = 0
-	os1044 = wv_a210
-	x11043 = **(**Tuint32_t)(__ccgo_up(wv_a210 + uintptr(i258)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b210 + uintptr(i258)*4))
-	**(**Tuint32_t)(__ccgo_up(os1044 + uintptr(i258)*4)) = x11043
-	i258 = i258 + uint32(1)
-	_ = i258
-	os1045 = wv_a210
-	x11044 = **(**Tuint32_t)(__ccgo_up(wv_a210 + uintptr(i258)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b210 + uintptr(i258)*4))
-	**(**Tuint32_t)(__ccgo_up(os1045 + uintptr(i258)*4)) = x11044
-	i258 = i258 + uint32(1)
-	_ = i258
-	os1046 = wv_a210
-	x11045 = **(**Tuint32_t)(__ccgo_up(wv_a210 + uintptr(i258)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b210 + uintptr(i258)*4))
-	**(**Tuint32_t)(__ccgo_up(os1046 + uintptr(i258)*4)) = x11045
-	i258 = i258 + uint32(1)
-	_ = i258
-	os1047 = wv_a210
-	x11046 = **(**Tuint32_t)(__ccgo_up(wv_a210 + uintptr(i258)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b210 + uintptr(i258)*4))
-	**(**Tuint32_t)(__ccgo_up(os1047 + uintptr(i258)*4)) = x11046
-	i258 = i258 + uint32(1)
-	_ = i258
-	wv_a310 = wv + uintptr(b09*uint32(4))*4
-	wv_b310 = wv + uintptr(c09*uint32(4))*4
-	i259 = 0
-	os1048 = wv_a310
-	x11047 = **(**Tuint32_t)(__ccgo_up(wv_a310 + uintptr(i259)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b310 + uintptr(i259)*4))
-	**(**Tuint32_t)(__ccgo_up(os1048 + uintptr(i259)*4)) = x11047
-	i259 = i259 + uint32(1)
-	_ = i259
-	os1049 = wv_a310
-	x11048 = **(**Tuint32_t)(__ccgo_up(wv_a310 + uintptr(i259)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b310 + uintptr(i259)*4))
-	**(**Tuint32_t)(__ccgo_up(os1049 + uintptr(i259)*4)) = x11048
-	i259 = i259 + uint32(1)
-	_ = i259
-	os1050 = wv_a310
-	x11049 = **(**Tuint32_t)(__ccgo_up(wv_a310 + uintptr(i259)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b310 + uintptr(i259)*4))
-	**(**Tuint32_t)(__ccgo_up(os1050 + uintptr(i259)*4)) = x11049
-	i259 = i259 + uint32(1)
-	_ = i259
-	os1051 = wv_a310
-	x11050 = **(**Tuint32_t)(__ccgo_up(wv_a310 + uintptr(i259)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b310 + uintptr(i259)*4))
-	**(**Tuint32_t)(__ccgo_up(os1051 + uintptr(i259)*4)) = x11050
-	i259 = i259 + uint32(1)
-	_ = i259
-	r1210 = wv_a310
-	i260 = 0
-	os1052 = r1210
-	x11051 = **(**Tuint32_t)(__ccgo_up(r1210 + uintptr(i260)*4))
-	x10158 = x11051>>uint32(12) | x11051<<uint32(20)
-	**(**Tuint32_t)(__ccgo_up(os1052 + uintptr(i260)*4)) = x10158
-	i260 = i260 + uint32(1)
-	_ = i260
-	os1053 = r1210
-	x11052 = **(**Tuint32_t)(__ccgo_up(r1210 + uintptr(i260)*4))
-	x10159 = x11052>>uint32(12) | x11052<<uint32(20)
-	**(**Tuint32_t)(__ccgo_up(os1053 + uintptr(i260)*4)) = x10159
-	i260 = i260 + uint32(1)
-	_ = i260
-	os1054 = r1210
-	x11053 = **(**Tuint32_t)(__ccgo_up(r1210 + uintptr(i260)*4))
-	x10160 = x11053>>uint32(12) | x11053<<uint32(20)
-	**(**Tuint32_t)(__ccgo_up(os1054 + uintptr(i260)*4)) = x10160
-	i260 = i260 + uint32(1)
-	_ = i260
-	os1055 = r1210
-	x11054 = **(**Tuint32_t)(__ccgo_up(r1210 + uintptr(i260)*4))
-	x10161 = x11054>>uint32(12) | x11054<<uint32(20)
-	**(**Tuint32_t)(__ccgo_up(os1055 + uintptr(i260)*4)) = x10161
-	i260 = i260 + uint32(1)
-	_ = i260
-	wv_a410 = wv + uintptr(a9*uint32(4))*4
-	wv_b410 = wv + uintptr(b09*uint32(4))*4
-	i261 = 0
-	os1056 = wv_a410
-	x11055 = **(**Tuint32_t)(__ccgo_up(wv_a410 + uintptr(i261)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b410 + uintptr(i261)*4))
-	**(**Tuint32_t)(__ccgo_up(os1056 + uintptr(i261)*4)) = x11055
-	i261 = i261 + uint32(1)
-	_ = i261
-	os1057 = wv_a410
-	x11056 = **(**Tuint32_t)(__ccgo_up(wv_a410 + uintptr(i261)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b410 + uintptr(i261)*4))
-	**(**Tuint32_t)(__ccgo_up(os1057 + uintptr(i261)*4)) = x11056
-	i261 = i261 + uint32(1)
-	_ = i261
-	os1058 = wv_a410
-	x11057 = **(**Tuint32_t)(__ccgo_up(wv_a410 + uintptr(i261)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b410 + uintptr(i261)*4))
-	**(**Tuint32_t)(__ccgo_up(os1058 + uintptr(i261)*4)) = x11057
-	i261 = i261 + uint32(1)
-	_ = i261
-	os1059 = wv_a410
-	x11058 = **(**Tuint32_t)(__ccgo_up(wv_a410 + uintptr(i261)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b410 + uintptr(i261)*4))
-	**(**Tuint32_t)(__ccgo_up(os1059 + uintptr(i261)*4)) = x11058
-	i261 = i261 + uint32(1)
-	_ = i261
-	i262 = 0
-	os1060 = wv_a410
-	x11059 = **(**Tuint32_t)(__ccgo_up(wv_a410 + uintptr(i262)*4)) + **(**Tuint32_t)(__ccgo_up(y9 + uintptr(i262)*4))
-	**(**Tuint32_t)(__ccgo_up(os1060 + uintptr(i262)*4)) = x11059
-	i262 = i262 + uint32(1)
-	_ = i262
-	os1061 = wv_a410
-	x11060 = **(**Tuint32_t)(__ccgo_up(wv_a410 + uintptr(i262)*4)) + **(**Tuint32_t)(__ccgo_up(y9 + uintptr(i262)*4))
-	**(**Tuint32_t)(__ccgo_up(os1061 + uintptr(i262)*4)) = x11060
-	i262 = i262 + uint32(1)
-	_ = i262
-	os1062 = wv_a410
-	x11061 = **(**Tuint32_t)(__ccgo_up(wv_a410 + uintptr(i262)*4)) + **(**Tuint32_t)(__ccgo_up(y9 + uintptr(i262)*4))
-	**(**Tuint32_t)(__ccgo_up(os1062 + uintptr(i262)*4)) = x11061
-	i262 = i262 + uint32(1)
-	_ = i262
-	os1063 = wv_a410
-	x11062 = **(**Tuint32_t)(__ccgo_up(wv_a410 + uintptr(i262)*4)) + **(**Tuint32_t)(__ccgo_up(y9 + uintptr(i262)*4))
-	**(**Tuint32_t)(__ccgo_up(os1063 + uintptr(i262)*4)) = x11062
-	i262 = i262 + uint32(1)
-	_ = i262
-	wv_a510 = wv + uintptr(d109*uint32(4))*4
-	wv_b510 = wv + uintptr(a9*uint32(4))*4
-	i263 = 0
-	os1064 = wv_a510
-	x11063 = **(**Tuint32_t)(__ccgo_up(wv_a510 + uintptr(i263)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b510 + uintptr(i263)*4))
-	**(**Tuint32_t)(__ccgo_up(os1064 + uintptr(i263)*4)) = x11063
-	i263 = i263 + uint32(1)
-	_ = i263
-	os1065 = wv_a510
-	x11064 = **(**Tuint32_t)(__ccgo_up(wv_a510 + uintptr(i263)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b510 + uintptr(i263)*4))
-	**(**Tuint32_t)(__ccgo_up(os1065 + uintptr(i263)*4)) = x11064
-	i263 = i263 + uint32(1)
-	_ = i263
-	os1066 = wv_a510
-	x11065 = **(**Tuint32_t)(__ccgo_up(wv_a510 + uintptr(i263)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b510 + uintptr(i263)*4))
-	**(**Tuint32_t)(__ccgo_up(os1066 + uintptr(i263)*4)) = x11065
-	i263 = i263 + uint32(1)
-	_ = i263
-	os1067 = wv_a510
-	x11066 = **(**Tuint32_t)(__ccgo_up(wv_a510 + uintptr(i263)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b510 + uintptr(i263)*4))
-	**(**Tuint32_t)(__ccgo_up(os1067 + uintptr(i263)*4)) = x11066
-	i263 = i263 + uint32(1)
-	_ = i263
-	r1310 = wv_a510
-	i264 = 0
-	os1068 = r1310
-	x11067 = **(**Tuint32_t)(__ccgo_up(r1310 + uintptr(i264)*4))
-	x10162 = x11067>>uint32(8) | x11067<<uint32(24)
-	**(**Tuint32_t)(__ccgo_up(os1068 + uintptr(i264)*4)) = x10162
-	i264 = i264 + uint32(1)
-	_ = i264
-	os1069 = r1310
-	x11068 = **(**Tuint32_t)(__ccgo_up(r1310 + uintptr(i264)*4))
-	x10163 = x11068>>uint32(8) | x11068<<uint32(24)
-	**(**Tuint32_t)(__ccgo_up(os1069 + uintptr(i264)*4)) = x10163
-	i264 = i264 + uint32(1)
-	_ = i264
-	os1070 = r1310
-	x11069 = **(**Tuint32_t)(__ccgo_up(r1310 + uintptr(i264)*4))
-	x10164 = x11069>>uint32(8) | x11069<<uint32(24)
-	**(**Tuint32_t)(__ccgo_up(os1070 + uintptr(i264)*4)) = x10164
-	i264 = i264 + uint32(1)
-	_ = i264
-	os1071 = r1310
-	x11070 = **(**Tuint32_t)(__ccgo_up(r1310 + uintptr(i264)*4))
-	x10165 = x11070>>uint32(8) | x11070<<uint32(24)
-	**(**Tuint32_t)(__ccgo_up(os1071 + uintptr(i264)*4)) = x10165
-	i264 = i264 + uint32(1)
-	_ = i264
-	wv_a610 = wv + uintptr(c09*uint32(4))*4
-	wv_b610 = wv + uintptr(d109*uint32(4))*4
-	i265 = 0
-	os1072 = wv_a610
-	x11071 = **(**Tuint32_t)(__ccgo_up(wv_a610 + uintptr(i265)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b610 + uintptr(i265)*4))
-	**(**Tuint32_t)(__ccgo_up(os1072 + uintptr(i265)*4)) = x11071
-	i265 = i265 + uint32(1)
-	_ = i265
-	os1073 = wv_a610
-	x11072 = **(**Tuint32_t)(__ccgo_up(wv_a610 + uintptr(i265)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b610 + uintptr(i265)*4))
-	**(**Tuint32_t)(__ccgo_up(os1073 + uintptr(i265)*4)) = x11072
-	i265 = i265 + uint32(1)
-	_ = i265
-	os1074 = wv_a610
-	x11073 = **(**Tuint32_t)(__ccgo_up(wv_a610 + uintptr(i265)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b610 + uintptr(i265)*4))
-	**(**Tuint32_t)(__ccgo_up(os1074 + uintptr(i265)*4)) = x11073
-	i265 = i265 + uint32(1)
-	_ = i265
-	os1075 = wv_a610
-	x11074 = **(**Tuint32_t)(__ccgo_up(wv_a610 + uintptr(i265)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b610 + uintptr(i265)*4))
-	**(**Tuint32_t)(__ccgo_up(os1075 + uintptr(i265)*4)) = x11074
-	i265 = i265 + uint32(1)
-	_ = i265
-	wv_a710 = wv + uintptr(b09*uint32(4))*4
-	wv_b710 = wv + uintptr(c09*uint32(4))*4
-	i266 = 0
-	os1076 = wv_a710
-	x11075 = **(**Tuint32_t)(__ccgo_up(wv_a710 + uintptr(i266)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b710 + uintptr(i266)*4))
-	**(**Tuint32_t)(__ccgo_up(os1076 + uintptr(i266)*4)) = x11075
-	i266 = i266 + uint32(1)
-	_ = i266
-	os1077 = wv_a710
-	x11076 = **(**Tuint32_t)(__ccgo_up(wv_a710 + uintptr(i266)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b710 + uintptr(i266)*4))
-	**(**Tuint32_t)(__ccgo_up(os1077 + uintptr(i266)*4)) = x11076
-	i266 = i266 + uint32(1)
-	_ = i266
-	os1078 = wv_a710
-	x11077 = **(**Tuint32_t)(__ccgo_up(wv_a710 + uintptr(i266)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b710 + uintptr(i266)*4))
-	**(**Tuint32_t)(__ccgo_up(os1078 + uintptr(i266)*4)) = x11077
-	i266 = i266 + uint32(1)
-	_ = i266
-	os1079 = wv_a710
-	x11078 = **(**Tuint32_t)(__ccgo_up(wv_a710 + uintptr(i266)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b710 + uintptr(i266)*4))
-	**(**Tuint32_t)(__ccgo_up(os1079 + uintptr(i266)*4)) = x11078
-	i266 = i266 + uint32(1)
-	_ = i266
-	r1410 = wv_a710
-	i267 = 0
-	os1080 = r1410
-	x11079 = **(**Tuint32_t)(__ccgo_up(r1410 + uintptr(i267)*4))
-	x10166 = x11079>>uint32(7) | x11079<<uint32(25)
-	**(**Tuint32_t)(__ccgo_up(os1080 + uintptr(i267)*4)) = x10166
-	i267 = i267 + uint32(1)
-	_ = i267
-	os1081 = r1410
-	x11080 = **(**Tuint32_t)(__ccgo_up(r1410 + uintptr(i267)*4))
-	x10167 = x11080>>uint32(7) | x11080<<uint32(25)
-	**(**Tuint32_t)(__ccgo_up(os1081 + uintptr(i267)*4)) = x10167
-	i267 = i267 + uint32(1)
-	_ = i267
-	os1082 = r1410
-	x11081 = **(**Tuint32_t)(__ccgo_up(r1410 + uintptr(i267)*4))
-	x10168 = x11081>>uint32(7) | x11081<<uint32(25)
-	**(**Tuint32_t)(__ccgo_up(os1082 + uintptr(i267)*4)) = x10168
-	i267 = i267 + uint32(1)
-	_ = i267
-	os1083 = r1410
-	x11082 = **(**Tuint32_t)(__ccgo_up(r1410 + uintptr(i267)*4))
-	x10169 = x11082>>uint32(7) | x11082<<uint32(25)
-	**(**Tuint32_t)(__ccgo_up(os1083 + uintptr(i267)*4)) = x10169
-	i267 = i267 + uint32(1)
-	_ = i267
-	r1510 = wv + uintptr(4)*4
-	r2111 = wv + uintptr(8)*4
-	r3111 = wv + uintptr(12)*4
-	r11010 = r1510
-	x009 = **(**Tuint32_t)(__ccgo_up(r11010 + 1*4))
-	x10170 = **(**Tuint32_t)(__ccgo_up(r11010 + 2*4))
-	x2010 = **(**Tuint32_t)(__ccgo_up(r11010 + 3*4))
-	x3010 = **(**Tuint32_t)(__ccgo_up(r11010))
-	**(**Tuint32_t)(__ccgo_up(r11010)) = x009
-	**(**Tuint32_t)(__ccgo_up(r11010 + 1*4)) = x10170
-	**(**Tuint32_t)(__ccgo_up(r11010 + 2*4)) = x2010
-	**(**Tuint32_t)(__ccgo_up(r11010 + 3*4)) = x3010
-	r11116 = r2111
-	x0110 = **(**Tuint32_t)(__ccgo_up(r11116 + 2*4))
-	x11149 = **(**Tuint32_t)(__ccgo_up(r11116 + 3*4))
-	x2119 = **(**Tuint32_t)(__ccgo_up(r11116))
-	x3119 = **(**Tuint32_t)(__ccgo_up(r11116 + 1*4))
-	**(**Tuint32_t)(__ccgo_up(r11116)) = x0110
-	**(**Tuint32_t)(__ccgo_up(r11116 + 1*4)) = x11149
-	**(**Tuint32_t)(__ccgo_up(r11116 + 2*4)) = x2119
-	**(**Tuint32_t)(__ccgo_up(r11116 + 3*4)) = x3119
-	r11210 = r3111
-	x0210 = **(**Tuint32_t)(__ccgo_up(r11210 + 3*4))
-	x12109 = **(**Tuint32_t)(__ccgo_up(r11210))
-	x2210 = **(**Tuint32_t)(__ccgo_up(r11210 + 1*4))
-	x3210 = **(**Tuint32_t)(__ccgo_up(r11210 + 2*4))
-	**(**Tuint32_t)(__ccgo_up(r11210)) = x0210
-	**(**Tuint32_t)(__ccgo_up(r11210 + 1*4)) = x12109
-	**(**Tuint32_t)(__ccgo_up(r11210 + 2*4)) = x2210
-	**(**Tuint32_t)(__ccgo_up(r11210 + 3*4)) = x3210
-	a09 = 0
-	b10 = uint32(1)
-	c9 = uint32(2)
-	d19 = uint32(3)
-	wv_a9 = wv + uintptr(a09*uint32(4))*4
-	wv_b810 = wv + uintptr(b10*uint32(4))*4
-	i268 = 0
-	os1084 = wv_a9
-	x11083 = **(**Tuint32_t)(__ccgo_up(wv_a9 + uintptr(i268)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b810 + uintptr(i268)*4))
-	**(**Tuint32_t)(__ccgo_up(os1084 + uintptr(i268)*4)) = x11083
-	i268 = i268 + uint32(1)
-	_ = i268
-	os1085 = wv_a9
-	x11084 = **(**Tuint32_t)(__ccgo_up(wv_a9 + uintptr(i268)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b810 + uintptr(i268)*4))
-	**(**Tuint32_t)(__ccgo_up(os1085 + uintptr(i268)*4)) = x11084
-	i268 = i268 + uint32(1)
-	_ = i268
-	os1086 = wv_a9
-	x11085 = **(**Tuint32_t)(__ccgo_up(wv_a9 + uintptr(i268)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b810 + uintptr(i268)*4))
-	**(**Tuint32_t)(__ccgo_up(os1086 + uintptr(i268)*4)) = x11085
-	i268 = i268 + uint32(1)
-	_ = i268
-	os1087 = wv_a9
-	x11086 = **(**Tuint32_t)(__ccgo_up(wv_a9 + uintptr(i268)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b810 + uintptr(i268)*4))
-	**(**Tuint32_t)(__ccgo_up(os1087 + uintptr(i268)*4)) = x11086
-	i268 = i268 + uint32(1)
-	_ = i268
-	i269 = 0
-	os1088 = wv_a9
-	x11087 = **(**Tuint32_t)(__ccgo_up(wv_a9 + uintptr(i269)*4)) + **(**Tuint32_t)(__ccgo_up(z9 + uintptr(i269)*4))
-	**(**Tuint32_t)(__ccgo_up(os1088 + uintptr(i269)*4)) = x11087
-	i269 = i269 + uint32(1)
-	_ = i269
-	os1089 = wv_a9
-	x11088 = **(**Tuint32_t)(__ccgo_up(wv_a9 + uintptr(i269)*4)) + **(**Tuint32_t)(__ccgo_up(z9 + uintptr(i269)*4))
-	**(**Tuint32_t)(__ccgo_up(os1089 + uintptr(i269)*4)) = x11088
-	i269 = i269 + uint32(1)
-	_ = i269
-	os1090 = wv_a9
-	x11089 = **(**Tuint32_t)(__ccgo_up(wv_a9 + uintptr(i269)*4)) + **(**Tuint32_t)(__ccgo_up(z9 + uintptr(i269)*4))
-	**(**Tuint32_t)(__ccgo_up(os1090 + uintptr(i269)*4)) = x11089
-	i269 = i269 + uint32(1)
-	_ = i269
-	os1091 = wv_a9
-	x11090 = **(**Tuint32_t)(__ccgo_up(wv_a9 + uintptr(i269)*4)) + **(**Tuint32_t)(__ccgo_up(z9 + uintptr(i269)*4))
-	**(**Tuint32_t)(__ccgo_up(os1091 + uintptr(i269)*4)) = x11090
-	i269 = i269 + uint32(1)
-	_ = i269
-	wv_a810 = wv + uintptr(d19*uint32(4))*4
-	wv_b910 = wv + uintptr(a09*uint32(4))*4
-	i270 = 0
-	os1092 = wv_a810
-	x11091 = **(**Tuint32_t)(__ccgo_up(wv_a810 + uintptr(i270)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b910 + uintptr(i270)*4))
-	**(**Tuint32_t)(__ccgo_up(os1092 + uintptr(i270)*4)) = x11091
-	i270 = i270 + uint32(1)
-	_ = i270
-	os1093 = wv_a810
-	x11092 = **(**Tuint32_t)(__ccgo_up(wv_a810 + uintptr(i270)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b910 + uintptr(i270)*4))
-	**(**Tuint32_t)(__ccgo_up(os1093 + uintptr(i270)*4)) = x11092
-	i270 = i270 + uint32(1)
-	_ = i270
-	os1094 = wv_a810
-	x11093 = **(**Tuint32_t)(__ccgo_up(wv_a810 + uintptr(i270)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b910 + uintptr(i270)*4))
-	**(**Tuint32_t)(__ccgo_up(os1094 + uintptr(i270)*4)) = x11093
-	i270 = i270 + uint32(1)
-	_ = i270
-	os1095 = wv_a810
-	x11094 = **(**Tuint32_t)(__ccgo_up(wv_a810 + uintptr(i270)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b910 + uintptr(i270)*4))
-	**(**Tuint32_t)(__ccgo_up(os1095 + uintptr(i270)*4)) = x11094
-	i270 = i270 + uint32(1)
-	_ = i270
-	r1610 = wv_a810
-	i271 = 0
-	os1096 = r1610
-	x11095 = **(**Tuint32_t)(__ccgo_up(r1610 + uintptr(i271)*4))
-	x13253 = x11095>>uint32(16) | x11095<<uint32(16)
-	**(**Tuint32_t)(__ccgo_up(os1096 + uintptr(i271)*4)) = x13253
-	i271 = i271 + uint32(1)
-	_ = i271
-	os1097 = r1610
-	x11096 = **(**Tuint32_t)(__ccgo_up(r1610 + uintptr(i271)*4))
-	x13254 = x11096>>uint32(16) | x11096<<uint32(16)
-	**(**Tuint32_t)(__ccgo_up(os1097 + uintptr(i271)*4)) = x13254
-	i271 = i271 + uint32(1)
-	_ = i271
-	os1098 = r1610
-	x11097 = **(**Tuint32_t)(__ccgo_up(r1610 + uintptr(i271)*4))
-	x13255 = x11097>>uint32(16) | x11097<<uint32(16)
-	**(**Tuint32_t)(__ccgo_up(os1098 + uintptr(i271)*4)) = x13255
-	i271 = i271 + uint32(1)
-	_ = i271
-	os1099 = r1610
-	x11098 = **(**Tuint32_t)(__ccgo_up(r1610 + uintptr(i271)*4))
-	x13256 = x11098>>uint32(16) | x11098<<uint32(16)
-	**(**Tuint32_t)(__ccgo_up(os1099 + uintptr(i271)*4)) = x13256
-	i271 = i271 + uint32(1)
-	_ = i271
-	wv_a910 = wv + uintptr(c9*uint32(4))*4
-	wv_b109 = wv + uintptr(d19*uint32(4))*4
-	i272 = 0
-	os1100 = wv_a910
-	x11099 = **(**Tuint32_t)(__ccgo_up(wv_a910 + uintptr(i272)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b109 + uintptr(i272)*4))
-	**(**Tuint32_t)(__ccgo_up(os1100 + uintptr(i272)*4)) = x11099
-	i272 = i272 + uint32(1)
-	_ = i272
-	os1101 = wv_a910
-	x11100 = **(**Tuint32_t)(__ccgo_up(wv_a910 + uintptr(i272)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b109 + uintptr(i272)*4))
-	**(**Tuint32_t)(__ccgo_up(os1101 + uintptr(i272)*4)) = x11100
-	i272 = i272 + uint32(1)
-	_ = i272
-	os1102 = wv_a910
-	x11101 = **(**Tuint32_t)(__ccgo_up(wv_a910 + uintptr(i272)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b109 + uintptr(i272)*4))
-	**(**Tuint32_t)(__ccgo_up(os1102 + uintptr(i272)*4)) = x11101
-	i272 = i272 + uint32(1)
-	_ = i272
-	os1103 = wv_a910
-	x11102 = **(**Tuint32_t)(__ccgo_up(wv_a910 + uintptr(i272)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b109 + uintptr(i272)*4))
-	**(**Tuint32_t)(__ccgo_up(os1103 + uintptr(i272)*4)) = x11102
-	i272 = i272 + uint32(1)
-	_ = i272
-	wv_a109 = wv + uintptr(b10*uint32(4))*4
-	wv_b1110 = wv + uintptr(c9*uint32(4))*4
-	i273 = 0
-	os1104 = wv_a109
-	x11103 = **(**Tuint32_t)(__ccgo_up(wv_a109 + uintptr(i273)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b1110 + uintptr(i273)*4))
-	**(**Tuint32_t)(__ccgo_up(os1104 + uintptr(i273)*4)) = x11103
-	i273 = i273 + uint32(1)
-	_ = i273
-	os1105 = wv_a109
-	x11104 = **(**Tuint32_t)(__ccgo_up(wv_a109 + uintptr(i273)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b1110 + uintptr(i273)*4))
-	**(**Tuint32_t)(__ccgo_up(os1105 + uintptr(i273)*4)) = x11104
-	i273 = i273 + uint32(1)
-	_ = i273
-	os1106 = wv_a109
-	x11105 = **(**Tuint32_t)(__ccgo_up(wv_a109 + uintptr(i273)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b1110 + uintptr(i273)*4))
-	**(**Tuint32_t)(__ccgo_up(os1106 + uintptr(i273)*4)) = x11105
-	i273 = i273 + uint32(1)
-	_ = i273
-	os1107 = wv_a109
-	x11106 = **(**Tuint32_t)(__ccgo_up(wv_a109 + uintptr(i273)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b1110 + uintptr(i273)*4))
-	**(**Tuint32_t)(__ccgo_up(os1107 + uintptr(i273)*4)) = x11106
-	i273 = i273 + uint32(1)
-	_ = i273
-	r1710 = wv_a109
-	i274 = 0
-	os1108 = r1710
-	x11107 = **(**Tuint32_t)(__ccgo_up(r1710 + uintptr(i274)*4))
-	x13257 = x11107>>uint32(12) | x11107<<uint32(20)
-	**(**Tuint32_t)(__ccgo_up(os1108 + uintptr(i274)*4)) = x13257
-	i274 = i274 + uint32(1)
-	_ = i274
-	os1109 = r1710
-	x11108 = **(**Tuint32_t)(__ccgo_up(r1710 + uintptr(i274)*4))
-	x13258 = x11108>>uint32(12) | x11108<<uint32(20)
-	**(**Tuint32_t)(__ccgo_up(os1109 + uintptr(i274)*4)) = x13258
-	i274 = i274 + uint32(1)
-	_ = i274
-	os1110 = r1710
-	x11109 = **(**Tuint32_t)(__ccgo_up(r1710 + uintptr(i274)*4))
-	x13259 = x11109>>uint32(12) | x11109<<uint32(20)
-	**(**Tuint32_t)(__ccgo_up(os1110 + uintptr(i274)*4)) = x13259
-	i274 = i274 + uint32(1)
-	_ = i274
-	os1111 = r1710
-	x11110 = **(**Tuint32_t)(__ccgo_up(r1710 + uintptr(i274)*4))
-	x13260 = x11110>>uint32(12) | x11110<<uint32(20)
-	**(**Tuint32_t)(__ccgo_up(os1111 + uintptr(i274)*4)) = x13260
-	i274 = i274 + uint32(1)
-	_ = i274
-	wv_a1110 = wv + uintptr(a09*uint32(4))*4
-	wv_b1210 = wv + uintptr(b10*uint32(4))*4
-	i275 = 0
-	os1112 = wv_a1110
-	x11111 = **(**Tuint32_t)(__ccgo_up(wv_a1110 + uintptr(i275)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b1210 + uintptr(i275)*4))
-	**(**Tuint32_t)(__ccgo_up(os1112 + uintptr(i275)*4)) = x11111
-	i275 = i275 + uint32(1)
-	_ = i275
-	os1113 = wv_a1110
-	x11112 = **(**Tuint32_t)(__ccgo_up(wv_a1110 + uintptr(i275)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b1210 + uintptr(i275)*4))
-	**(**Tuint32_t)(__ccgo_up(os1113 + uintptr(i275)*4)) = x11112
-	i275 = i275 + uint32(1)
-	_ = i275
-	os1114 = wv_a1110
-	x11113 = **(**Tuint32_t)(__ccgo_up(wv_a1110 + uintptr(i275)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b1210 + uintptr(i275)*4))
-	**(**Tuint32_t)(__ccgo_up(os1114 + uintptr(i275)*4)) = x11113
-	i275 = i275 + uint32(1)
-	_ = i275
-	os1115 = wv_a1110
-	x11114 = **(**Tuint32_t)(__ccgo_up(wv_a1110 + uintptr(i275)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b1210 + uintptr(i275)*4))
-	**(**Tuint32_t)(__ccgo_up(os1115 + uintptr(i275)*4)) = x11114
-	i275 = i275 + uint32(1)
-	_ = i275
-	i276 = 0
-	os1116 = wv_a1110
-	x11115 = **(**Tuint32_t)(__ccgo_up(wv_a1110 + uintptr(i276)*4)) + **(**Tuint32_t)(__ccgo_up(w9 + uintptr(i276)*4))
-	**(**Tuint32_t)(__ccgo_up(os1116 + uintptr(i276)*4)) = x11115
-	i276 = i276 + uint32(1)
-	_ = i276
-	os1117 = wv_a1110
-	x11116 = **(**Tuint32_t)(__ccgo_up(wv_a1110 + uintptr(i276)*4)) + **(**Tuint32_t)(__ccgo_up(w9 + uintptr(i276)*4))
-	**(**Tuint32_t)(__ccgo_up(os1117 + uintptr(i276)*4)) = x11116
-	i276 = i276 + uint32(1)
-	_ = i276
-	os1118 = wv_a1110
-	x11117 = **(**Tuint32_t)(__ccgo_up(wv_a1110 + uintptr(i276)*4)) + **(**Tuint32_t)(__ccgo_up(w9 + uintptr(i276)*4))
-	**(**Tuint32_t)(__ccgo_up(os1118 + uintptr(i276)*4)) = x11117
-	i276 = i276 + uint32(1)
-	_ = i276
-	os1119 = wv_a1110
-	x11118 = **(**Tuint32_t)(__ccgo_up(wv_a1110 + uintptr(i276)*4)) + **(**Tuint32_t)(__ccgo_up(w9 + uintptr(i276)*4))
-	**(**Tuint32_t)(__ccgo_up(os1119 + uintptr(i276)*4)) = x11118
-	i276 = i276 + uint32(1)
-	_ = i276
-	wv_a1210 = wv + uintptr(d19*uint32(4))*4
-	wv_b1310 = wv + uintptr(a09*uint32(4))*4
-	i277 = 0
-	os1120 = wv_a1210
-	x11119 = **(**Tuint32_t)(__ccgo_up(wv_a1210 + uintptr(i277)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b1310 + uintptr(i277)*4))
-	**(**Tuint32_t)(__ccgo_up(os1120 + uintptr(i277)*4)) = x11119
-	i277 = i277 + uint32(1)
-	_ = i277
-	os1121 = wv_a1210
-	x11120 = **(**Tuint32_t)(__ccgo_up(wv_a1210 + uintptr(i277)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b1310 + uintptr(i277)*4))
-	**(**Tuint32_t)(__ccgo_up(os1121 + uintptr(i277)*4)) = x11120
-	i277 = i277 + uint32(1)
-	_ = i277
-	os1122 = wv_a1210
-	x11121 = **(**Tuint32_t)(__ccgo_up(wv_a1210 + uintptr(i277)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b1310 + uintptr(i277)*4))
-	**(**Tuint32_t)(__ccgo_up(os1122 + uintptr(i277)*4)) = x11121
-	i277 = i277 + uint32(1)
-	_ = i277
-	os1123 = wv_a1210
-	x11122 = **(**Tuint32_t)(__ccgo_up(wv_a1210 + uintptr(i277)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b1310 + uintptr(i277)*4))
-	**(**Tuint32_t)(__ccgo_up(os1123 + uintptr(i277)*4)) = x11122
-	i277 = i277 + uint32(1)
-	_ = i277
-	r1810 = wv_a1210
-	i278 = 0
-	os1124 = r1810
-	x11123 = **(**Tuint32_t)(__ccgo_up(r1810 + uintptr(i278)*4))
-	x13261 = x11123>>uint32(8) | x11123<<uint32(24)
-	**(**Tuint32_t)(__ccgo_up(os1124 + uintptr(i278)*4)) = x13261
-	i278 = i278 + uint32(1)
-	_ = i278
-	os1125 = r1810
-	x11124 = **(**Tuint32_t)(__ccgo_up(r1810 + uintptr(i278)*4))
-	x13262 = x11124>>uint32(8) | x11124<<uint32(24)
-	**(**Tuint32_t)(__ccgo_up(os1125 + uintptr(i278)*4)) = x13262
-	i278 = i278 + uint32(1)
-	_ = i278
-	os1126 = r1810
-	x11125 = **(**Tuint32_t)(__ccgo_up(r1810 + uintptr(i278)*4))
-	x13263 = x11125>>uint32(8) | x11125<<uint32(24)
-	**(**Tuint32_t)(__ccgo_up(os1126 + uintptr(i278)*4)) = x13263
-	i278 = i278 + uint32(1)
-	_ = i278
-	os1127 = r1810
-	x11126 = **(**Tuint32_t)(__ccgo_up(r1810 + uintptr(i278)*4))
-	x13264 = x11126>>uint32(8) | x11126<<uint32(24)
-	**(**Tuint32_t)(__ccgo_up(os1127 + uintptr(i278)*4)) = x13264
-	i278 = i278 + uint32(1)
-	_ = i278
-	wv_a1310 = wv + uintptr(c9*uint32(4))*4
-	wv_b1410 = wv + uintptr(d19*uint32(4))*4
-	i279 = 0
-	os1128 = wv_a1310
-	x11127 = **(**Tuint32_t)(__ccgo_up(wv_a1310 + uintptr(i279)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b1410 + uintptr(i279)*4))
-	**(**Tuint32_t)(__ccgo_up(os1128 + uintptr(i279)*4)) = x11127
-	i279 = i279 + uint32(1)
-	_ = i279
-	os1129 = wv_a1310
-	x11128 = **(**Tuint32_t)(__ccgo_up(wv_a1310 + uintptr(i279)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b1410 + uintptr(i279)*4))
-	**(**Tuint32_t)(__ccgo_up(os1129 + uintptr(i279)*4)) = x11128
-	i279 = i279 + uint32(1)
-	_ = i279
-	os1130 = wv_a1310
-	x11129 = **(**Tuint32_t)(__ccgo_up(wv_a1310 + uintptr(i279)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b1410 + uintptr(i279)*4))
-	**(**Tuint32_t)(__ccgo_up(os1130 + uintptr(i279)*4)) = x11129
-	i279 = i279 + uint32(1)
-	_ = i279
-	os1131 = wv_a1310
-	x11130 = **(**Tuint32_t)(__ccgo_up(wv_a1310 + uintptr(i279)*4)) + **(**Tuint32_t)(__ccgo_up(wv_b1410 + uintptr(i279)*4))
-	**(**Tuint32_t)(__ccgo_up(os1131 + uintptr(i279)*4)) = x11130
-	i279 = i279 + uint32(1)
-	_ = i279
-	wv_a1410 = wv + uintptr(b10*uint32(4))*4
-	wv_b9 = wv + uintptr(c9*uint32(4))*4
-	i280 = 0
-	os1132 = wv_a1410
-	x11131 = **(**Tuint32_t)(__ccgo_up(wv_a1410 + uintptr(i280)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b9 + uintptr(i280)*4))
-	**(**Tuint32_t)(__ccgo_up(os1132 + uintptr(i280)*4)) = x11131
-	i280 = i280 + uint32(1)
-	_ = i280
-	os1133 = wv_a1410
-	x11132 = **(**Tuint32_t)(__ccgo_up(wv_a1410 + uintptr(i280)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b9 + uintptr(i280)*4))
-	**(**Tuint32_t)(__ccgo_up(os1133 + uintptr(i280)*4)) = x11132
-	i280 = i280 + uint32(1)
-	_ = i280
-	os1134 = wv_a1410
-	x11133 = **(**Tuint32_t)(__ccgo_up(wv_a1410 + uintptr(i280)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b9 + uintptr(i280)*4))
-	**(**Tuint32_t)(__ccgo_up(os1134 + uintptr(i280)*4)) = x11133
-	i280 = i280 + uint32(1)
-	_ = i280
-	os1135 = wv_a1410
-	x11134 = **(**Tuint32_t)(__ccgo_up(wv_a1410 + uintptr(i280)*4)) ^ **(**Tuint32_t)(__ccgo_up(wv_b9 + uintptr(i280)*4))
-	**(**Tuint32_t)(__ccgo_up(os1135 + uintptr(i280)*4)) = x11134
-	i280 = i280 + uint32(1)
-	_ = i280
-	r1910 = wv_a1410
-	i281 = 0
-	os1136 = r1910
-	x11135 = **(**Tuint32_t)(__ccgo_up(r1910 + uintptr(i281)*4))
-	x13265 = x11135>>uint32(7) | x11135<<uint32(25)
-	**(**Tuint32_t)(__ccgo_up(os1136 + uintptr(i281)*4)) = x13265
-	i281 = i281 + uint32(1)
-	_ = i281
-	os1137 = r1910
-	x11136 = **(**Tuint32_t)(__ccgo_up(r1910 + uintptr(i281)*4))
-	x13266 = x11136>>uint32(7) | x11136<<uint32(25)
-	**(**Tuint32_t)(__ccgo_up(os1137 + uintptr(i281)*4)) = x13266
-	i281 = i281 + uint32(1)
-	_ = i281
-	os1138 = r1910
-	x11137 = **(**Tuint32_t)(__ccgo_up(r1910 + uintptr(i281)*4))
-	x13267 = x11137>>uint32(7) | x11137<<uint32(25)
-	**(**Tuint32_t)(__ccgo_up(os1138 + uintptr(i281)*4)) = x13267
-	i281 = i281 + uint32(1)
-	_ = i281
-	os1139 = r1910
-	x11138 = **(**Tuint32_t)(__ccgo_up(r1910 + uintptr(i281)*4))
-	x13268 = x11138>>uint32(7) | x11138<<uint32(25)
-	**(**Tuint32_t)(__ccgo_up(os1139 + uintptr(i281)*4)) = x13268
-	i281 = i281 + uint32(1)
-	_ = i281
-	r11310 = wv + uintptr(4)*4
-	r210 = wv + uintptr(8)*4
-	r310 = wv + uintptr(12)*4
-	r1116 = r11310
-	x0310 = **(**Tuint32_t)(__ccgo_up(r1116 + 3*4))
-	x13269 = **(**Tuint32_t)(__ccgo_up(r1116))
-	x2310 = **(**Tuint32_t)(__ccgo_up(r1116 + 1*4))
-	x3310 = **(**Tuint32_t)(__ccgo_up(r1116 + 2*4))
-	**(**Tuint32_t)(__ccgo_up(r1116)) = x0310
-	**(**Tuint32_t)(__ccgo_up(r1116 + 1*4)) = x13269
-	**(**Tuint32_t)(__ccgo_up(r1116 + 2*4)) = x2310
-	**(**Tuint32_t)(__ccgo_up(r1116 + 3*4)) = x3310
-	r11410 = r210
-	x0410 = **(**Tuint32_t)(__ccgo_up(r11410 + 2*4))
-	x14109 = **(**Tuint32_t)(__ccgo_up(r11410 + 3*4))
-	x2410 = **(**Tuint32_t)(__ccgo_up(r11410))
-	x3410 = **(**Tuint32_t)(__ccgo_up(r11410 + 1*4))
-	**(**Tuint32_t)(__ccgo_up(r11410)) = x0410
-	**(**Tuint32_t)(__ccgo_up(r11410 + 1*4)) = x14109
-	**(**Tuint32_t)(__ccgo_up(r11410 + 2*4)) = x2410
-	**(**Tuint32_t)(__ccgo_up(r11410 + 3*4)) = x3410
-	r11510 = r310
-	x09 = **(**Tuint32_t)(__ccgo_up(r11510 + 1*4))
-	x11139 = **(**Tuint32_t)(__ccgo_up(r11510 + 2*4))
-	x219 = **(**Tuint32_t)(__ccgo_up(r11510 + 3*4))
-	x319 = **(**Tuint32_t)(__ccgo_up(r11510))
-	**(**Tuint32_t)(__ccgo_up(r11510)) = x09
-	**(**Tuint32_t)(__ccgo_up(r11510 + 1*4)) = x11139
-	**(**Tuint32_t)(__ccgo_up(r11510 + 2*4)) = x219
-	**(**Tuint32_t)(__ccgo_up(r11510 + 3*4)) = x319
-	i0 = i0 + uint32(1)
-	_ = i0
-	s010 = hash
-	s110 = hash + uintptr(4)*4
-	r010 = wv
-	r116 = wv + uintptr(4)*4
-	r211 = wv + uintptr(8)*4
-	r311 = wv + uintptr(12)*4
-	i282 = 0
-	os1140 = s010
-	x31 = **(**Tuint32_t)(__ccgo_up(s010 + uintptr(i282)*4)) ^ **(**Tuint32_t)(__ccgo_up(r010 + uintptr(i282)*4))
-	**(**Tuint32_t)(__ccgo_up(os1140 + uintptr(i282)*4)) = x31
-	i282 = i282 + uint32(1)
-	_ = i282
-	os1141 = s010
-	x32 = **(**Tuint32_t)(__ccgo_up(s010 + uintptr(i282)*4)) ^ **(**Tuint32_t)(__ccgo_up(r010 + uintptr(i282)*4))
-	**(**Tuint32_t)(__ccgo_up(os1141 + uintptr(i282)*4)) = x32
-	i282 = i282 + uint32(1)
-	_ = i282
-	os1142 = s010
-	x33 = **(**Tuint32_t)(__ccgo_up(s010 + uintptr(i282)*4)) ^ **(**Tuint32_t)(__ccgo_up(r010 + uintptr(i282)*4))
-	**(**Tuint32_t)(__ccgo_up(os1142 + uintptr(i282)*4)) = x33
-	i282 = i282 + uint32(1)
-	_ = i282
-	os1143 = s010
-	x34 = **(**Tuint32_t)(__ccgo_up(s010 + uintptr(i282)*4)) ^ **(**Tuint32_t)(__ccgo_up(r010 + uintptr(i282)*4))
-	**(**Tuint32_t)(__ccgo_up(os1143 + uintptr(i282)*4)) = x34
-	i282 = i282 + uint32(1)
-	_ = i282
-	i283 = 0
-	os1144 = s010
-	x35 = **(**Tuint32_t)(__ccgo_up(s010 + uintptr(i283)*4)) ^ **(**Tuint32_t)(__ccgo_up(r211 + uintptr(i283)*4))
-	**(**Tuint32_t)(__ccgo_up(os1144 + uintptr(i283)*4)) = x35
-	i283 = i283 + uint32(1)
-	_ = i283
-	os1145 = s010
-	x36 = **(**Tuint32_t)(__ccgo_up(s010 + uintptr(i283)*4)) ^ **(**Tuint32_t)(__ccgo_up(r211 + uintptr(i283)*4))
-	**(**Tuint32_t)(__ccgo_up(os1145 + uintptr(i283)*4)) = x36
-	i283 = i283 + uint32(1)
-	_ = i283
-	os1146 = s010
-	x37 = **(**Tuint32_t)(__ccgo_up(s010 + uintptr(i283)*4)) ^ **(**Tuint32_t)(__ccgo_up(r211 + uintptr(i283)*4))
-	**(**Tuint32_t)(__ccgo_up(os1146 + uintptr(i283)*4)) = x37
-	i283 = i283 + uint32(1)
-	_ = i283
-	os1147 = s010
-	x38 = **(**Tuint32_t)(__ccgo_up(s010 + uintptr(i283)*4)) ^ **(**Tuint32_t)(__ccgo_up(r211 + uintptr(i283)*4))
-	**(**Tuint32_t)(__ccgo_up(os1147 + uintptr(i283)*4)) = x38
-	i283 = i283 + uint32(1)
-	_ = i283
-	i284 = 0
-	os1148 = s110
-	x39 = **(**Tuint32_t)(__ccgo_up(s110 + uintptr(i284)*4)) ^ **(**Tuint32_t)(__ccgo_up(r116 + uintptr(i284)*4))
-	**(**Tuint32_t)(__ccgo_up(os1148 + uintptr(i284)*4)) = x39
-	i284 = i284 + uint32(1)
-	_ = i284
-	os1149 = s110
-	x40 = **(**Tuint32_t)(__ccgo_up(s110 + uintptr(i284)*4)) ^ **(**Tuint32_t)(__ccgo_up(r116 + uintptr(i284)*4))
-	**(**Tuint32_t)(__ccgo_up(os1149 + uintptr(i284)*4)) = x40
-	i284 = i284 + uint32(1)
-	_ = i284
-	os1150 = s110
-	x41 = **(**Tuint32_t)(__ccgo_up(s110 + uintptr(i284)*4)) ^ **(**Tuint32_t)(__ccgo_up(r116 + uintptr(i284)*4))
-	**(**Tuint32_t)(__ccgo_up(os1150 + uintptr(i284)*4)) = x41
-	i284 = i284 + uint32(1)
-	_ = i284
-	os1151 = s110
-	x42 = **(**Tuint32_t)(__ccgo_up(s110 + uintptr(i284)*4)) ^ **(**Tuint32_t)(__ccgo_up(r116 + uintptr(i284)*4))
-	**(**Tuint32_t)(__ccgo_up(os1151 + uintptr(i284)*4)) = x42
-	i284 = i284 + uint32(1)
-	_ = i284
-	i285 = 0
-	os1152 = s110
-	x43 = **(**Tuint32_t)(__ccgo_up(s110 + uintptr(i285)*4)) ^ **(**Tuint32_t)(__ccgo_up(r311 + uintptr(i285)*4))
-	**(**Tuint32_t)(__ccgo_up(os1152 + uintptr(i285)*4)) = x43
-	i285 = i285 + uint32(1)
-	_ = i285
-	os1153 = s110
-	x44 = **(**Tuint32_t)(__ccgo_up(s110 + uintptr(i285)*4)) ^ **(**Tuint32_t)(__ccgo_up(r311 + uintptr(i285)*4))
-	**(**Tuint32_t)(__ccgo_up(os1153 + uintptr(i285)*4)) = x44
-	i285 = i285 + uint32(1)
-	_ = i285
-	os1154 = s110
-	x45 = **(**Tuint32_t)(__ccgo_up(s110 + uintptr(i285)*4)) ^ **(**Tuint32_t)(__ccgo_up(r311 + uintptr(i285)*4))
-	**(**Tuint32_t)(__ccgo_up(os1154 + uintptr(i285)*4)) = x45
-	i285 = i285 + uint32(1)
-	_ = i285
-	os1155 = s110
-	x46 = **(**Tuint32_t)(__ccgo_up(s110 + uintptr(i285)*4)) ^ **(**Tuint32_t)(__ccgo_up(r311 + uintptr(i285)*4))
-	**(**Tuint32_t)(__ccgo_up(os1155 + uintptr(i285)*4)) = x46
-	i285 = i285 + uint32(1)
-	_ = i285
 }

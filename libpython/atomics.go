@@ -46,6 +46,9 @@ func atomicStoreUint8(p uintptr, value uint8) {
 func __Py_atomic_add_int32(tls *libc.TLS, p uintptr, value int32) int32 {
 	return atomic.AddInt32((*int32)(unsafe.Pointer(p)), value) - value
 }
+func __Py_atomic_add_int(tls *libc.TLS, p uintptr, value int32) int32 {
+	return atomic.AddInt32((*int32)(unsafe.Pointer(p)), value) - value
+}
 func __Py_atomic_add_int64(tls *libc.TLS, p uintptr, value int64) int64 {
 	return atomic.AddInt64((*int64)(unsafe.Pointer(p)), value) - value
 }
