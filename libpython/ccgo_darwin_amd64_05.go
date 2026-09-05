@@ -676,7 +676,7 @@ var _PyContextVar_methods = [5]TPyMethodDef{
 		Fml_doc:   uintptr(unsafe.Pointer(&__contextvars_ContextVar_get__doc__)),
 	},
 	1: {
-		Fml_name:  __ccgo_ts + 58022,
+		Fml_name:  __ccgo_ts + 58012,
 		Fml_flags: int32(MMETH_O),
 		Fml_doc:   uintptr(unsafe.Pointer(&__contextvars_ContextVar_set__doc__)),
 	},
@@ -21495,7 +21495,7 @@ func _convertsimple(tls *libc.TLS, arg uintptr, p_format uintptr, p_va uintptr, 
 		if v3 != 0 {
 			**(**uintptr)(__ccgo_up(p21)) = arg
 		} else {
-			return _converterr(tls, __ccgo_ts+17605, arg, msgbuf, bufsize)
+			return _converterr(tls, __ccgo_ts+17620, arg, msgbuf, bufsize)
 		}
 	case int32('Y'):
 		p22 = libc.VaUintptr(&**(**Tva_list)(__ccgo_up(p_va)))
@@ -21519,7 +21519,7 @@ func _convertsimple(tls *libc.TLS, arg uintptr, p_format uintptr, p_va uintptr, 
 		if v3 != 0 {
 			**(**uintptr)(__ccgo_up(p22)) = arg
 		} else {
-			return _converterr(tls, __ccgo_ts+15059, arg, msgbuf, bufsize)
+			return _converterr(tls, __ccgo_ts+15040, arg, msgbuf, bufsize)
 		}
 	case int32('U'):
 		p23 = libc.VaUintptr(&**(**Tva_list)(__ccgo_up(p_va)))
@@ -28444,7 +28444,7 @@ func _hamt_py_set(tls *libc.TLS, op uintptr, args uintptr) (r uintptr) {
 	var _ uintptr
 	var _ uintptr
 	_ = self
-	if !(XPyArg_UnpackTuple(tls, args, __ccgo_ts+58022, int64(2), int64(2), libc.VaList(bp+24, bp, bp+8)) != 0) {
+	if !(XPyArg_UnpackTuple(tls, args, __ccgo_ts+58012, int64(2), int64(2), libc.VaList(bp+24, bp, bp+8)) != 0) {
 		return libc.UintptrFromInt32(0)
 	}
 	self = op
@@ -28538,7 +28538,7 @@ func _hamt_py_keys(tls *libc.TLS, op uintptr, _unused_args uintptr) (r uintptr) 
 
 var _PyHamt_methods = [7]TPyMethodDef{
 	0: {
-		Fml_name:  __ccgo_ts + 58022,
+		Fml_name:  __ccgo_ts + 58012,
 		Fml_flags: int32(MMETH_VARARGS),
 	},
 	1: {
@@ -36197,7 +36197,7 @@ func __imp_get_frozen_object_impl(tls *libc.TLS, module uintptr, name uintptr, d
 		(**(**Tfrozen_info)(__ccgo_up(bp))).Fsize = (**(**TPy_buffer)(__ccgo_up(bp + 40))).Flen1
 	} else {
 		if dataobj != uintptr(unsafe.Pointer(&X_Py_NoneStruct)) {
-			X_PyArg_BadArgument(tls, __ccgo_ts+144127, __ccgo_ts+16497, __ccgo_ts+17605, dataobj)
+			X_PyArg_BadArgument(tls, __ccgo_ts+144127, __ccgo_ts+16497, __ccgo_ts+17620, dataobj)
 			return libc.UintptrFromInt32(0)
 		} else {
 			status = _find_frozen(tls, name, bp)

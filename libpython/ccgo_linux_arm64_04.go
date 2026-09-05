@@ -25053,7 +25053,7 @@ func X_PyBuiltin_Init(tls *libc.TLS, interp uintptr) (r uintptr) {
 	if XPyDict_SetItemString(tls, dict, __ccgo_ts+14386, uintptr(unsafe.Pointer(&XPyBool_Type))) < 0 {
 		return libc.UintptrFromInt32(0)
 	}
-	if XPyDict_SetItemString(tls, dict, __ccgo_ts+48826, uintptr(unsafe.Pointer(&XPyMemoryView_Type))) < 0 {
+	if XPyDict_SetItemString(tls, dict, __ccgo_ts+48856, uintptr(unsafe.Pointer(&XPyMemoryView_Type))) < 0 {
 		return libc.UintptrFromInt32(0)
 	}
 	if XPyDict_SetItemString(tls, dict, __ccgo_ts+14971, uintptr(unsafe.Pointer(&XPyByteArray_Type))) < 0 {
@@ -25062,7 +25062,7 @@ func X_PyBuiltin_Init(tls *libc.TLS, interp uintptr) (r uintptr) {
 	if XPyDict_SetItemString(tls, dict, __ccgo_ts+17494, uintptr(unsafe.Pointer(&XPyBytes_Type))) < 0 {
 		return libc.UintptrFromInt32(0)
 	}
-	if XPyDict_SetItemString(tls, dict, __ccgo_ts+40286, uintptr(unsafe.Pointer(&XPyClassMethod_Type))) < 0 {
+	if XPyDict_SetItemString(tls, dict, __ccgo_ts+40308, uintptr(unsafe.Pointer(&XPyClassMethod_Type))) < 0 {
 		return libc.UintptrFromInt32(0)
 	}
 	if XPyDict_SetItemString(tls, dict, __ccgo_ts+23373, uintptr(unsafe.Pointer(&XPyComplex_Type))) < 0 {
@@ -25071,7 +25071,7 @@ func X_PyBuiltin_Init(tls *libc.TLS, interp uintptr) (r uintptr) {
 	if XPyDict_SetItemString(tls, dict, __ccgo_ts+40946, uintptr(unsafe.Pointer(&XPyDict_Type))) < 0 {
 		return libc.UintptrFromInt32(0)
 	}
-	if XPyDict_SetItemString(tls, dict, __ccgo_ts+26507, uintptr(unsafe.Pointer(&XPyEnum_Type))) < 0 {
+	if XPyDict_SetItemString(tls, dict, __ccgo_ts+26498, uintptr(unsafe.Pointer(&XPyEnum_Type))) < 0 {
 		return libc.UintptrFromInt32(0)
 	}
 	if XPyDict_SetItemString(tls, dict, __ccgo_ts+117018, uintptr(unsafe.Pointer(&XPyFilter_Type))) < 0 {
@@ -25080,10 +25080,10 @@ func X_PyBuiltin_Init(tls *libc.TLS, interp uintptr) (r uintptr) {
 	if XPyDict_SetItemString(tls, dict, __ccgo_ts+36968, uintptr(unsafe.Pointer(&XPyFloat_Type))) < 0 {
 		return libc.UintptrFromInt32(0)
 	}
-	if XPyDict_SetItemString(tls, dict, __ccgo_ts+57303, uintptr(unsafe.Pointer(&XPyFrozenSet_Type))) < 0 {
+	if XPyDict_SetItemString(tls, dict, __ccgo_ts+57286, uintptr(unsafe.Pointer(&XPyFrozenSet_Type))) < 0 {
 		return libc.UintptrFromInt32(0)
 	}
-	if XPyDict_SetItemString(tls, dict, __ccgo_ts+24080, uintptr(unsafe.Pointer(&XPyProperty_Type))) < 0 {
+	if XPyDict_SetItemString(tls, dict, __ccgo_ts+24204, uintptr(unsafe.Pointer(&XPyProperty_Type))) < 0 {
 		return libc.UintptrFromInt32(0)
 	}
 	if XPyDict_SetItemString(tls, dict, __ccgo_ts+43356, uintptr(unsafe.Pointer(&XPyLong_Type))) < 0 {
@@ -25098,25 +25098,25 @@ func X_PyBuiltin_Init(tls *libc.TLS, interp uintptr) (r uintptr) {
 	if XPyDict_SetItemString(tls, dict, __ccgo_ts+30133, uintptr(unsafe.Pointer(&XPyBaseObject_Type))) < 0 {
 		return libc.UintptrFromInt32(0)
 	}
-	if XPyDict_SetItemString(tls, dict, __ccgo_ts+56927, uintptr(unsafe.Pointer(&XPyRange_Type))) < 0 {
+	if XPyDict_SetItemString(tls, dict, __ccgo_ts+56946, uintptr(unsafe.Pointer(&XPyRange_Type))) < 0 {
 		return libc.UintptrFromInt32(0)
 	}
-	if XPyDict_SetItemString(tls, dict, __ccgo_ts+26498, uintptr(unsafe.Pointer(&XPyReversed_Type))) < 0 {
+	if XPyDict_SetItemString(tls, dict, __ccgo_ts+26508, uintptr(unsafe.Pointer(&XPyReversed_Type))) < 0 {
 		return libc.UintptrFromInt32(0)
 	}
-	if XPyDict_SetItemString(tls, dict, __ccgo_ts+57299, uintptr(unsafe.Pointer(&XPySet_Type))) < 0 {
+	if XPyDict_SetItemString(tls, dict, __ccgo_ts+57309, uintptr(unsafe.Pointer(&XPySet_Type))) < 0 {
 		return libc.UintptrFromInt32(0)
 	}
 	if XPyDict_SetItemString(tls, dict, __ccgo_ts+57777, uintptr(unsafe.Pointer(&XPySlice_Type))) < 0 {
 		return libc.UintptrFromInt32(0)
 	}
-	if XPyDict_SetItemString(tls, dict, __ccgo_ts+40298, uintptr(unsafe.Pointer(&XPyStaticMethod_Type))) < 0 {
+	if XPyDict_SetItemString(tls, dict, __ccgo_ts+40286, uintptr(unsafe.Pointer(&XPyStaticMethod_Type))) < 0 {
 		return libc.UintptrFromInt32(0)
 	}
 	if XPyDict_SetItemString(tls, dict, __ccgo_ts+15148, uintptr(unsafe.Pointer(&XPyUnicode_Type))) < 0 {
 		return libc.UintptrFromInt32(0)
 	}
-	if XPyDict_SetItemString(tls, dict, __ccgo_ts+59526, uintptr(unsafe.Pointer(&XPySuper_Type))) < 0 {
+	if XPyDict_SetItemString(tls, dict, __ccgo_ts+59510, uintptr(unsafe.Pointer(&XPySuper_Type))) < 0 {
 		return libc.UintptrFromInt32(0)
 	}
 	if XPyDict_SetItemString(tls, dict, __ccgo_ts+2169, uintptr(unsafe.Pointer(&XPyTuple_Type))) < 0 {
@@ -71566,7 +71566,7 @@ func _can_optimize_super_call(tls *libc.TLS, c uintptr, attr Texpr_ty) (r int32)
 		Ffunc1    Texpr_ty
 		Fargs     uintptr
 		Fkeywords uintptr
-	})(unsafe.Pointer(&(*T_expr)(unsafe.Pointer(e)).Fv))).Ffunc1)).Fv))).Fid, __ccgo_ts+59526) != 0) || X_PyUnicode_EqualToASCIIString(tls, (*(*struct {
+	})(unsafe.Pointer(&(*T_expr)(unsafe.Pointer(e)).Fv))).Ffunc1)).Fv))).Fid, __ccgo_ts+59510) != 0) || X_PyUnicode_EqualToASCIIString(tls, (*(*struct {
 		Fvalue Texpr_ty
 		Fattr  Tidentifier
 		Fctx   Texpr_context_ty

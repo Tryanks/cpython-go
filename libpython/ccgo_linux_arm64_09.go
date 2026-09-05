@@ -79976,7 +79976,7 @@ var __kwtuple285 = struct {
 var __keywords331 = [7]uintptr{
 	0: __ccgo_ts + 86067,
 	1: __ccgo_ts + 48867,
-	2: __ccgo_ts + 21258,
+	2: __ccgo_ts + 21277,
 	3: __ccgo_ts + 274106,
 	4: __ccgo_ts + 274113,
 	5: __ccgo_ts + 274124,
@@ -84157,7 +84157,7 @@ _11:
 }
 
 var _keywords13 = [4]uintptr{
-	0: __ccgo_ts + 40311,
+	0: __ccgo_ts + 40299,
 	1: __ccgo_ts + 276317,
 	2: __ccgo_ts + 276324,
 	3: libc.UintptrFromInt32(0),

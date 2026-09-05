@@ -18,6 +18,7 @@ var _ = math.Pi
 var _ reflect.Type
 
 var _ unsafe.Pointer
+
 var _ = libz.Xcrc32
 
 var _typingmodule = TPyModuleDef{

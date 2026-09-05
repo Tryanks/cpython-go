@@ -18,6 +18,7 @@ var _ = math.Pi
 var _ reflect.Type
 
 var _ unsafe.Pointer
+
 var _ = libz.Xcrc32
 
 func _task_wakeup_lock_held(tls *libc.TLS, task uintptr, o uintptr) (r uintptr) {

@@ -18,6 +18,7 @@ var _ = math.Pi
 var _ reflect.Type
 
 var _ unsafe.Pointer
+
 var _ = libz.Xcrc32
 
 func _bytes_endswith(tls *libc.TLS, self uintptr, args uintptr, nargs TPy_ssize_t) (r uintptr) {
@@ -29070,7 +29071,7 @@ var __keywords19 = [2]uintptr{
 
 var __parser19 = T_PyArg_Parser{
 	Fkeywords: uintptr(unsafe.Pointer(&__keywords19)),
-	Ffname:    __ccgo_ts + 24440,
+	Ffname:    __ccgo_ts + 24422,
 	Fkwtuple:  uintptr(unsafe.Pointer(&__kwtuple19)) + 16,
 }
 
@@ -29196,7 +29197,7 @@ var __keywords20 = [5]uintptr{
 
 var __parser20 = T_PyArg_Parser{
 	Fkeywords: uintptr(unsafe.Pointer(&__keywords20)),
-	Ffname:    __ccgo_ts + 24453,
+	Ffname:    __ccgo_ts + 24435,
 	Fkwtuple:  uintptr(unsafe.Pointer(&__kwtuple20)) + 16,
 }
 
@@ -40984,7 +40985,7 @@ var _static_exceptions = [68]Tstatic_exception{
 	},
 	13: {
 		Fexc:  uintptr(unsafe.Pointer(&X_PyExc_MemoryError)),
-		Fname: __ccgo_ts + 27133,
+		Fname: __ccgo_ts + 27093,
 	},
 	14: {
 		Fexc:  uintptr(unsafe.Pointer(&__PyExc_NameError)),
@@ -41136,7 +41137,7 @@ var _static_exceptions = [68]Tstatic_exception{
 	},
 	51: {
 		Fexc:  uintptr(unsafe.Pointer(&X_PyExc_IncompleteInputError)),
-		Fname: __ccgo_ts + 27093,
+		Fname: __ccgo_ts + 27120,
 	},
 	52: {
 		Fexc:  uintptr(unsafe.Pointer(&__PyExc_IndexError)),
@@ -60513,7 +60514,7 @@ _15:
 	goto _13
 _13:
 	if !(v12 != 0) {
-		X_PyArg_BadArgument(tls, __ccgo_ts+40618, __ccgo_ts+41285, (*TPyTypeObject)(unsafe.Pointer(uintptr(unsafe.Pointer(&XPyCode_Type)))).Ftp_name, **(**uintptr)(__ccgo_up(fastargs)))
+		X_PyArg_BadArgument(tls, __ccgo_ts+40631, __ccgo_ts+41285, (*TPyTypeObject)(unsafe.Pointer(uintptr(unsafe.Pointer(&XPyCode_Type)))).Ftp_name, **(**uintptr)(__ccgo_up(fastargs)))
 		goto exit
 	}
 	code = **(**uintptr)(__ccgo_up(fastargs))
@@ -60525,7 +60526,7 @@ _22:
 	goto _24
 _24:
 	if !(v12 != 0) {
-		X_PyArg_BadArgument(tls, __ccgo_ts+40618, __ccgo_ts+41301, __ccgo_ts+41320, **(**uintptr)(__ccgo_up(fastargs + 1*8)))
+		X_PyArg_BadArgument(tls, __ccgo_ts+40631, __ccgo_ts+41301, __ccgo_ts+41320, **(**uintptr)(__ccgo_up(fastargs + 1*8)))
 		goto exit
 	}
 	globals = **(**uintptr)(__ccgo_up(fastargs + 1*8))
@@ -60611,7 +60612,7 @@ var __keywords22 = [7]uintptr{
 
 var __parser22 = T_PyArg_Parser{
 	Fkeywords: uintptr(unsafe.Pointer(&__keywords22)),
-	Ffname:    __ccgo_ts + 40618,
+	Ffname:    __ccgo_ts + 40631,
 	Fkwtuple:  uintptr(unsafe.Pointer(&__kwtuple22)) + 16,
 }
 
@@ -63009,10 +63010,10 @@ func _cm_init(tls *libc.TLS, self uintptr, args uintptr, kwds uintptr) (r int32)
 	var _ uintptr
 	_, _, _, _, _, _, _, _, _ = _tmp_dst_ptr, _tmp_old_dst, cm, cur_refcnt, v1, v11, v2, v4, v8
 	cm = self
-	if !(kwds == libc.UintptrFromInt32(0) || X_PyArg_NoKeywords(tls, __ccgo_ts+40627, kwds) != 0) {
+	if !(kwds == libc.UintptrFromInt32(0) || X_PyArg_NoKeywords(tls, __ccgo_ts+40640, kwds) != 0) {
 		return -int32(1)
 	}
-	if !(XPyArg_UnpackTuple(tls, args, __ccgo_ts+40627, int64(1), int64(1), libc.VaList(bp+16, bp)) != 0) {
+	if !(XPyArg_UnpackTuple(tls, args, __ccgo_ts+40640, int64(1), int64(1), libc.VaList(bp+16, bp)) != 0) {
 		return -int32(1)
 	}
 	_tmp_dst_ptr = cm + 16
@@ -63093,7 +63094,7 @@ func _cm_get___annotations__(tls *libc.TLS, self uintptr, closure uintptr) (r ui
 }
 
 func _cm_set___annotations__(tls *libc.TLS, self uintptr, value uintptr, closure uintptr) (r int32) {
-	return _descriptor_set_wrapped_attribute(tls, self, uintptr(unsafe.Pointer(&X_PyRuntime))+13416+20712+1232+1248, value, __ccgo_ts+40627)
+	return _descriptor_set_wrapped_attribute(tls, self, uintptr(unsafe.Pointer(&X_PyRuntime))+13416+20712+1232+1248, value, __ccgo_ts+40640)
 }
 
 func _cm_get___annotate__(tls *libc.TLS, self uintptr, closure uintptr) (r uintptr) {
@@ -63104,7 +63105,7 @@ func _cm_get___annotate__(tls *libc.TLS, self uintptr, closure uintptr) (r uintp
 }
 
 func _cm_set___annotate__(tls *libc.TLS, self uintptr, value uintptr, closure uintptr) (r int32) {
-	return _descriptor_set_wrapped_attribute(tls, self, uintptr(unsafe.Pointer(&X_PyRuntime))+13416+20712+1232+1128, value, __ccgo_ts+40627)
+	return _descriptor_set_wrapped_attribute(tls, self, uintptr(unsafe.Pointer(&X_PyRuntime))+13416+20712+1232+1128, value, __ccgo_ts+40640)
 }
 
 var _cm_getsetlist = [5]TPyGetSetDef{
@@ -63388,10 +63389,10 @@ func _sm_init(tls *libc.TLS, self uintptr, args uintptr, kwds uintptr) (r int32)
 	var _ uintptr
 	_, _, _, _, _, _, _, _, _ = _tmp_dst_ptr, _tmp_old_dst, cur_refcnt, sm, v1, v11, v2, v4, v8
 	sm = self
-	if !(kwds == libc.UintptrFromInt32(0) || X_PyArg_NoKeywords(tls, __ccgo_ts+40639, kwds) != 0) {
+	if !(kwds == libc.UintptrFromInt32(0) || X_PyArg_NoKeywords(tls, __ccgo_ts+40618, kwds) != 0) {
 		return -int32(1)
 	}
-	if !(XPyArg_UnpackTuple(tls, args, __ccgo_ts+40639, int64(1), int64(1), libc.VaList(bp+16, bp)) != 0) {
+	if !(XPyArg_UnpackTuple(tls, args, __ccgo_ts+40618, int64(1), int64(1), libc.VaList(bp+16, bp)) != 0) {
 		return -int32(1)
 	}
 	_tmp_dst_ptr = sm + 16
@@ -63479,7 +63480,7 @@ func _sm_get___annotations__(tls *libc.TLS, self uintptr, closure uintptr) (r ui
 }
 
 func _sm_set___annotations__(tls *libc.TLS, self uintptr, value uintptr, closure uintptr) (r int32) {
-	return _descriptor_set_wrapped_attribute(tls, self, uintptr(unsafe.Pointer(&X_PyRuntime))+13416+20712+1232+1248, value, __ccgo_ts+40639)
+	return _descriptor_set_wrapped_attribute(tls, self, uintptr(unsafe.Pointer(&X_PyRuntime))+13416+20712+1232+1248, value, __ccgo_ts+40618)
 }
 
 func _sm_get___annotate__(tls *libc.TLS, self uintptr, closure uintptr) (r uintptr) {
@@ -63490,7 +63491,7 @@ func _sm_get___annotate__(tls *libc.TLS, self uintptr, closure uintptr) (r uintp
 }
 
 func _sm_set___annotate__(tls *libc.TLS, self uintptr, value uintptr, closure uintptr) (r int32) {
-	return _descriptor_set_wrapped_attribute(tls, self, uintptr(unsafe.Pointer(&X_PyRuntime))+13416+20712+1232+1128, value, __ccgo_ts+40639)
+	return _descriptor_set_wrapped_attribute(tls, self, uintptr(unsafe.Pointer(&X_PyRuntime))+13416+20712+1232+1128, value, __ccgo_ts+40618)
 }
 
 var _sm_getsetlist = [5]TPyGetSetDef{

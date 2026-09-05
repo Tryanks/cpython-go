@@ -18,6 +18,7 @@ var _ = math.Pi
 var _ reflect.Type
 
 var _ unsafe.Pointer
+
 var _ = libz.Xcrc32
 
 var __kwtuple210 = struct {
@@ -84078,7 +84079,7 @@ _11:
 }
 
 var _keywords13 = [4]uintptr{
-	0: __ccgo_ts + 40618,
+	0: __ccgo_ts + 40631,
 	1: __ccgo_ts + 274745,
 	2: __ccgo_ts + 274752,
 	3: libc.UintptrFromInt32(0),
@@ -87189,10 +87190,10 @@ func __types_exec(tls *libc.TLS, m uintptr) (r int32) {
 	if XPyModule_AddObjectRef(tls, m, __ccgo_ts+278047, uintptr(unsafe.Pointer(&XPyModule_Type))) < 0 {
 		return -int32(1)
 	}
-	if XPyModule_AddObjectRef(tls, m, __ccgo_ts+55013, uintptr(unsafe.Pointer(&X_PyNone_Type))) < 0 {
+	if XPyModule_AddObjectRef(tls, m, __ccgo_ts+55032, uintptr(unsafe.Pointer(&X_PyNone_Type))) < 0 {
 		return -int32(1)
 	}
-	if XPyModule_AddObjectRef(tls, m, __ccgo_ts+55022, uintptr(unsafe.Pointer(&X_PyNotImplemented_Type))) < 0 {
+	if XPyModule_AddObjectRef(tls, m, __ccgo_ts+55013, uintptr(unsafe.Pointer(&X_PyNotImplemented_Type))) < 0 {
 		return -int32(1)
 	}
 	if XPyModule_AddObjectRef(tls, m, __ccgo_ts+278058, uintptr(unsafe.Pointer(&X_PyNamespace_Type))) < 0 {

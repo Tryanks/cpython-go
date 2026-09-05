@@ -9091,7 +9091,7 @@ func _pending_exception(tls *libc.TLS, pObj uintptr) (r int32) {
 
 var _profiler_entry_fields = [7]TPyStructSequence_Field{
 	0: {
-		Fname: __ccgo_ts + 21258,
+		Fname: __ccgo_ts + 21277,
 		Fdoc:  __ccgo_ts + 184941,
 	},
 	1: {
@@ -9119,7 +9119,7 @@ var _profiler_entry_fields = [7]TPyStructSequence_Field{
 
 var _profiler_subentry_fields = [6]TPyStructSequence_Field{
 	0: {
-		Fname: __ccgo_ts + 21258,
+		Fname: __ccgo_ts + 21277,
 		Fdoc:  __ccgo_ts + 185184,
 	},
 	1: {
@@ -49419,7 +49419,7 @@ _2:
 
 var _kwlist15 = [5]uintptr{
 	0: __ccgo_ts + 85927,
-	1: __ccgo_ts + 21258,
+	1: __ccgo_ts + 21277,
 	2: __ccgo_ts + 152741,
 	3: __ccgo_ts + 204629,
 	4: libc.UintptrFromInt32(0),
