@@ -86,6 +86,11 @@ go run ./cmd/cpython-go -c 'import json, re, os; print(json.dumps({"a": [1, 2]})
   an llvm-mingw container (internal/builders/windows/run.sh --ccgo <arch>)
   with the MSYS2 mingw patch set; windows/amd64 runtime validated on GitHub
   Actions. Everything else is parked in TODO.md.
+- The static CPython test extensions (`_testcapi`, `_testinternalcapi`,
+  `_testlimitedcapi`, ...) are built on every target; C recursion in the
+  AST/symtable/codegen visitors is bounded by a CCGO-only depth counter
+  (libpython/recursion.go). Async C signal handlers run on a dedicated
+  libc.TLS (libpython/signals_unix.go).
 - A ccgo miscompilation (by-value union parameter returned after modifying a
   member) leaked one reference per returned local; worked around in
   PyStackRef_MakeHeapSafe (docs/refleak.md).

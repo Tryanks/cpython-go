@@ -104,6 +104,7 @@ vectored exception handling still returns deterministic
 `ERROR_CALL_NOT_IMPLEMENTED`. OS-delivered C signals are partial. Native `.pyd`
 loading is unsupported: optional DLL symbol probes take CPython's fallback
 paths, while the standard library and built-in extension modules are linked
-into the generated Go package. Several CPython regression tests also require
-optional built-in test extensions (`_ctypes`, `_multiprocessing`, `_testcapi`,
-or `_testconsole`) that are not part of the current generated archive.
+into the generated Go package. The static test extensions
+(`_testcapi`, `_testinternalcapi`, `_testlimitedcapi`, `_testbuffer`,
+`_testclinic`, `xxsubtype`) are linked in; `_ctypes`, `_multiprocessing` and
+`_testconsole` are not part of the generated archive.
