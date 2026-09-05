@@ -54,6 +54,8 @@ print(A().x, isinstance(A(), object))`, "1 True"},
 		{`import decimal, fractions; print(fractions.Fraction(1, 3) + fractions.Fraction(1, 6))`, "1/2"},
 		{`import datetime; print(datetime.date(2026, 9, 4).isoformat())`, "2026-09-04"},
 		{`import hashlib; print(hashlib.sha256(b"abc").hexdigest()[:16])`, "ba7816bf8f01cfea"},
+		{`import hashlib; print(hashlib.blake2b(b"abc").hexdigest()[:16], hashlib.blake2s(b"abc").hexdigest()[:8])`, "ba80a53f981c4d0d 508c5e8c"},
+		{`import zlib, gzip; print(zlib.crc32(b"abc"), gzip.decompress(gzip.compress(b"hi")))`, "891568578 b'hi'"},
 		{`import unittest; print(unittest.TestCase.__name__)`, "TestCase"},
 	} {
 		if got := run(t, "-c", tc.code); got != tc.want {
