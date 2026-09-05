@@ -189,3 +189,9 @@ until the Windows libc supplement is added.
   API probes use CPython's supported fallback paths. Also corrected the routed
   `_wopen` shim to translate UCRT `_O_*` bits before calling modernc's
   `x/sys/windows`-backed descriptor implementation.
+- Run 33950801035: `print(45)` passed for the first time. Importing `json`
+  reached `re`/`enum`, but `RegexFlag(72)` failed because `_all_bits_` was a
+  float. modernc defines Windows C `unsigned long` as `uint32` while its
+  generic `X__builtin_clzl` calls `bits.LeadingZeros64`; CPython therefore
+  calculated `(127).bit_length()` as `-29`, and `2 ** -29` took the float
+  power path. Routed `__builtin_clzl` to `bits.LeadingZeros32`.

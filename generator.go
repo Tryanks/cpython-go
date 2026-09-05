@@ -431,6 +431,7 @@ var shimmedLibc = map[string][]string{"windows": {
 	"LoadLibraryW",
 	"OutputDebugStringW",
 	"SetErrorMode",
+	"__builtin_clzl",
 	"_wgetenv",
 	"_wopen",
 	"mbstowcs",

@@ -56604,7 +56604,7 @@ func _factorial_partial_product(tls *libc.TLS, start uint32, stop uint32, max_bi
 	midpoint = start + num_operands | uint32(1)
 	v2 = midpoint - uint32(2)
 	if v2 != libc.Uint32FromInt32(0) {
-		v3 = libc.Int32FromInt64(4)*libc.Int32FromInt32(8) - libc.X__builtin_clzl(tls, v2)
+		v3 = libc.Int32FromInt64(4)*libc.Int32FromInt32(8) - _ccgo___builtin_clzl(tls, v2)
 		goto _4
 	} else {
 		v3 = 0
@@ -56690,7 +56690,7 @@ _5:
 	upper = uint32(3)
 	v7 = n
 	if v7 != libc.Uint32FromInt32(0) {
-		v8 = libc.Int32FromInt64(4)*libc.Int32FromInt32(8) - libc.X__builtin_clzl(tls, v7)
+		v8 = libc.Int32FromInt64(4)*libc.Int32FromInt32(8) - _ccgo___builtin_clzl(tls, v7)
 		goto _9
 	} else {
 		v8 = 0
@@ -56712,7 +56712,7 @@ _9:
 
 		v7 = upper - uint32(2)
 		if v7 != libc.Uint32FromInt32(0) {
-			v8 = libc.Int32FromInt64(4)*libc.Int32FromInt32(8) - libc.X__builtin_clzl(tls, v7)
+			v8 = libc.Int32FromInt64(4)*libc.Int32FromInt32(8) - _ccgo___builtin_clzl(tls, v7)
 			goto _12
 		} else {
 			v8 = 0

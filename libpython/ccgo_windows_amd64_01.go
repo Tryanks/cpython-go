@@ -99424,7 +99424,7 @@ func _bit_length_digit(tls *libc.TLS, x1 Tdigit) (r int32) {
 	_, _ = v1, v2
 	v1 = x1
 	if v1 != libc.Uint32FromInt32(0) {
-		v2 = libc.Int32FromInt64(4)*libc.Int32FromInt32(8) - libc.X__builtin_clzl(tls, v1)
+		v2 = libc.Int32FromInt64(4)*libc.Int32FromInt32(8) - _ccgo___builtin_clzl(tls, v1)
 		goto _3
 	} else {
 		v2 = 0

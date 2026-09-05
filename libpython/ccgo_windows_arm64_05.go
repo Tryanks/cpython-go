@@ -45542,7 +45542,7 @@ _3:
 	}
 	v4 = uint32(event)
 	if v4 != libc.Uint32FromInt32(0) {
-		v2 = libc.Int32FromInt64(4)*libc.Int32FromInt32(8) - libc.X__builtin_clzl(tls, v4)
+		v2 = libc.Int32FromInt64(4)*libc.Int32FromInt32(8) - _ccgo___builtin_clzl(tls, v4)
 		goto _6
 	} else {
 		v2 = 0

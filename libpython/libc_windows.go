@@ -365,6 +365,13 @@ func _ccgo_FreeLibrary(tls *libc.TLS, module uintptr) int32 {
 	return boolProc(tls, dllKernel32, "FreeLibrary", module)
 }
 
+// Windows C long is 32-bit even on amd64 and arm64. modernc's generic
+// non-Linux implementation uses LeadingZeros64 for its uint32 ulong alias,
+// making every nonzero result 32 too large.
+func _ccgo___builtin_clzl(tls *libc.TLS, value uint32) int32 {
+	return int32(bits.LeadingZeros32(value))
+}
+
 var (
 	windowsWideStringMu    sync.Mutex
 	windowsWideStringCache = map[string]uintptr{}

@@ -14,6 +14,7 @@ to native callback/function-pointer boundaries.
 
 ## UCRT and pure-Go compatibility
 
+- `__builtin_clzl` — real, routed: counts leading zeroes in Windows' 32-bit C `unsigned long`; modernc's generic non-Linux implementation incorrectly uses a 64-bit count.
 - `setlocale` — partial, routed: deterministic process-wide C/UTF-8 category state; Windows encoding decisions still use `GetACP` and the console code pages, as CPython expects.
 - `mbstowcs` — real for the routed fixed locale: strict UTF-8 to UTF-16 conversion, including sizing and bounded output.
 - `wcstombs` — real for the routed fixed locale: strict UTF-16 to UTF-8 conversion without splitting a multibyte output sequence.
