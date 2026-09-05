@@ -9,6 +9,7 @@ import (
 	"fmt"
 	"io"
 	"os"
+	"runtime"
 	"sync"
 	"sync/atomic"
 	"unsafe"
@@ -100,6 +101,9 @@ var (
 // ErrAlreadyOpen until the previous one is closed. Reopening after Close
 // works, but CPython does not release everything it allocated.
 func New(opts ...Option) (_ *Interpreter, err error) {
+	runtime.LockOSThread()
+	defer runtime.UnlockOSThread()
+
 	cfg := config{argv: []string{"cpython-go"}, isolated: true}
 	for _, o := range opts {
 		o(&cfg)
@@ -365,6 +369,9 @@ func (in *Interpreter) drain() {
 // call runs f while holding the interpreter, converting panics from
 // transpiled code into *CrashError or *ExitError.
 func call[T any](in *Interpreter, f func() (T, error)) (r T, err error) {
+	runtime.LockOSThread()
+	defer runtime.UnlockOSThread()
+
 	if err = in.enter(); err != nil {
 		return r, err
 	}
@@ -381,6 +388,9 @@ func do(in *Interpreter, f func() error) (err error) {
 // Close finalizes the interpreter and allows a later New. Objects created by
 // it must not be used afterwards.
 func (in *Interpreter) Close() (err error) {
+	runtime.LockOSThread()
+	defer runtime.UnlockOSThread()
+
 	openMu.Lock()
 	defer openMu.Unlock()
 	if err = in.enter(); err != nil {
