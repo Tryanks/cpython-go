@@ -93245,7 +93245,7 @@ func _Overlapped_dealloc(tls *libc.TLS, op2 uintptr) {
 		if _CancelIoEx(tls, (*TOverlappedObject)(unsafe.Pointer(self)).Fhandle, self+16) != 0 {
 			wait = int32(MTRUE)
 		}
-		ret = libc.XGetOverlappedResult(tls, (*TOverlappedObject)(unsafe.Pointer(self)).Fhandle, self+16, bp, wait)
+		ret = _ccgo_GetOverlappedResult(tls, (*TOverlappedObject)(unsafe.Pointer(self)).Fhandle, self+16, bp, wait)
 		XPyEval_RestoreThread(tls, _save)
 		if ret != 0 {
 			v1 = uint32(0)
@@ -93416,7 +93416,7 @@ func __overlapped_Overlapped_getresult_impl(tls *libc.TLS, self1 uintptr, wait T
 		return libc.UintptrFromInt32(0)
 	}
 	_save = XPyEval_SaveThread(tls)
-	ret = libc.XGetOverlappedResult(tls, (*TOverlappedObject)(unsafe.Pointer(self1)).Fhandle, self1+16, bp, wait)
+	ret = _ccgo_GetOverlappedResult(tls, (*TOverlappedObject)(unsafe.Pointer(self1)).Fhandle, self1+16, bp, wait)
 	XPyEval_RestoreThread(tls, _save)
 	if ret != 0 {
 		v2 = uint32(0)

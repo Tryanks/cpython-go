@@ -427,6 +427,7 @@ var shimmedVars = map[string][]string{
 var shimmedLibc = map[string][]string{"windows": {
 	"CloseHandle",
 	"FreeLibrary",
+	"GetOverlappedResult",
 	"GetProcAddress",
 	"GetShortPathNameW",
 	"LoadLibraryW",

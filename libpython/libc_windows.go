@@ -1268,6 +1268,21 @@ func _ccgo_SetHandleInformation(tls *libc.TLS, handle uintptr, mask, flags uint3
 	return 1
 }
 
+// modernc's Windows GetOverlappedResult is an unconditional TODO panic.
+func _ccgo_GetOverlappedResult(tls *libc.TLS, handle, overlapped, transferred uintptr, wait int32) int32 {
+	err := windows.GetOverlappedResult(
+		windows.Handle(handle),
+		(*windows.Overlapped)(unsafe.Pointer(overlapped)),
+		(*uint32)(unsafe.Pointer(transferred)),
+		wait != 0,
+	)
+	if err != nil {
+		setWinError(tls, err, errorInvalidFunction)
+		return 0
+	}
+	return 1
+}
+
 func _ccgo_GetShortPathNameW(tls *libc.TLS, path, buffer uintptr, capacity uint32) uint32 {
 	r, err := callProc(dllKernel32, "GetShortPathNameW", path, buffer, uintptr(capacity))
 	if r == 0 {
