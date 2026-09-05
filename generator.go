@@ -371,12 +371,26 @@ func main() {
 // go list keeps generation independent of GOPATH and of the cache mount used
 // by the platform builder containers.
 func moduleDir(module string) string {
-	cmd := exec.Command("go", "list", "-m", "-f", "{{.Dir}}", module)
-	out, err := cmd.Output()
-	if err != nil {
-		fail(1, "locate %s: %v", module, err)
+	list := func() string {
+		cmd := exec.Command("go", "list", "-m", "-f", "{{.Dir}}", module)
+		out, err := cmd.Output()
+		if err != nil {
+			fail(1, "locate %s: %v", module, err)
+		}
+		return strings.TrimSpace(string(out))
 	}
-	dir := strings.TrimSpace(string(out))
+	dir := list()
+	if dir == "" {
+		// Fresh builder volumes know the module from go.mod, but go list does
+		// not populate Dir until the module itself has been downloaded.
+		cmd := exec.Command("go", "mod", "download", module)
+		cmd.Stdout = os.Stdout
+		cmd.Stderr = os.Stderr
+		if err := cmd.Run(); err != nil {
+			fail(1, "download %s: %v", module, err)
+		}
+		dir = list()
+	}
 	if dir == "" {
 		fail(1, "locate %s: empty module directory", module)
 	}
