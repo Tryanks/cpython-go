@@ -143,10 +143,11 @@ when the six HACL archives and expat objects are included.
 
 `ccMain` links `libpython3.14.ago`, all six `Modules/_hacl/*.ago` archives, and
 `Modules/expat/libexpat.ago`. Postprocessing moved 1,461 variables (2,176,140
-bytes) into the data blob and reduced Go source from 59,369,280 to 35,279,840
+bytes) into the data blob and reduced Go source from 59,359,682 to 35,271,134
 bytes. The result is 12 numbered Go shards, one data Go file, and one data
-blob. Type-check gaps are inventoried in `UNDEFINED.md`; no runtime is expected
-until the Windows libc supplement is added.
+blob. The original type-check gaps are inventoried in `UNDEFINED.md`; the
+Windows libc supplement now closes the startup and smoke-test subset described
+below.
 
 ## Verified outputs
 
@@ -155,8 +156,8 @@ until the Windows libc supplement is added.
 - `tmp/windows_amd64/build/libpython3.14.ago`: 234 members; every native archive
   member has a matching transpiled member.
 - `libpython/ccgo_windows_amd64_00.go` through `_11.go`,
-  `ccgo_windows_amd64_data.go`, and `ccgo_windows_amd64_data.bin`: 37,455,980
-  bytes total (35,279,840 bytes of Go plus a 2,176,140-byte data blob).
+  `ccgo_windows_amd64_data.go`, and `ccgo_windows_amd64_data.bin`: 37,447,274
+  bytes total (35,271,134 bytes of Go plus a 2,176,140-byte data blob).
 - `tmp/windows_arm64/build/libpython3.14.a`: 234 members; contains
   `posixmodule.o` and `_winapi.o`; inspected member header `COFF-ARM64`,
   machine `IMAGE_FILE_MACHINE_ARM64`.
@@ -205,3 +206,29 @@ until the Windows libc supplement is added.
   `__cpuidex` branch; ccgo lowers that intrinsic to an "assembler statements
   not supported" assertion. Both CPUID branches are now disabled specifically
   for `MS_WINDOWS && CCGO`, selecting the supported scalar hash paths.
+- Run 33951423167: both original commands, the requested imports, and behavior
+  checks for `os`, a real `threading.Thread`, SHA-256, pickle, regex, and
+  `datetime` passed. The run was cancelled after `subprocess.check_output()`
+  remained blocked for more than two minutes; all three non-Windows jobs had
+  already passed.
+- Run 33951727288: splitting subprocess coverage proved that process creation,
+  a timed process wait, a bounded three-byte pipe read, and the small
+  `unittest` all pass. The full run was green across Windows, macOS, Linux
+  amd64, and Linux arm64. Only reading the pipe through EOF was broken.
+- Run 33952028834: a raw-handle probe showed the original write end returned by
+  `_winapi.CreatePipe` remained a valid pipe handle after the child exited and
+  after `gc.collect()`; a daemon reader waiting for EOF was still blocked after
+  five seconds. The Windows job's diagnostic assertion failed as intended
+  (the workflow run itself remained successful because the Windows job was
+  still nonblocking).
+- Run 33952410898: the embedded `Lib/subprocess.py` now explicitly closes each
+  original child-only pipe end after creating its inheritable duplicate.
+  `subprocess.check_output()` consumed output through EOF, and every Windows
+  startup, import, behavior, process, pipe, and unittest smoke passed. All four
+  jobs in the workflow completed successfully.
+- After run 33952410898, a clean
+  `internal/builders/windows/run.sh --ccgo amd64 /tmp/cpython-3.14.7` replay
+  applied every project and MSYS2 patch, produced matching 234-member native
+  and `.ago` archives, and regenerated all 12 amd64 shards. The regenerated
+  Blake2 detector contains scalar zero-valued feature inputs and no CPUID
+  assertion calls. Both Windows architectures then cross-built locally.

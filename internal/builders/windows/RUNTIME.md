@@ -8,9 +8,12 @@ both `libc.TLS.SetLastError` and the errno slot read by modernc's
 `libc.XGetLastError`; APIs that return HRESULT, NTSTATUS, RPC_STATUS, LSTATUS,
 or Winsock error codes return those values directly.
 
-No Windows runtime execution was available while this file was written. Check
-each area on `windows-latest`, with special attention to the partial entries and
-to native callback/function-pointer boundaries.
+The amd64 runtime is exercised on GitHub Actions `windows-latest` (Windows
+Server 2025). Run 33952410898 passed interpreter startup, `sys`/`json`, the
+requested module imports and behavior checks, process creation and pipe EOF,
+and a small `unittest` run. The partial entries and native
+callback/function-pointer boundaries below remain explicit limits rather than
+claims of complete Windows compatibility.
 
 ## UCRT and pure-Go compatibility
 
@@ -80,9 +83,16 @@ to native callback/function-pointer boundaries.
 - `_wcstol` — partial: implements bases 0 and 2–36, ASCII whitespace/sign/prefix handling, end pointers, and 32-bit saturation; it does not use locale-specific digits.
 - `_wcsxfrm` — real: forwards to UCRT `wcsxfrm` and returns the required wide-character count.
 - `_wmemchr` — real: scans the requested UTF-16 element range and returns the matching address or zero.
+- `Lib/subprocess.py` pipe ownership — patched: after duplicating the three
+  child-only pipe ends as inheritable handles, explicitly closes their original
+  `Handle` objects. The transpiled runtime retained those originals even after
+  `gc.collect()`, preventing pipe EOF after the child exited; run 33952410898
+  validates `subprocess.check_output()` end to end.
 
 ## kernel32.dll
 
+- `CloseHandle` — real, routed: closes the native handle and returns the exact
+  Win32 BOOL result; modernc incorrectly returned nonzero `EINVAL` on failure.
 - `FreeLibrary` — real, routed: direct release with LastError propagation.
 - `GetProcAddress` — stub, routed: returns null/`ERROR_PROC_NOT_FOUND` because a native `FARPROC` cannot be invoked through ccgo's Go function-pointer representation; optional Windows APIs take their fallback paths and native `.pyd` loading remains unsupported.
 - `LoadLibraryW` — real, routed: direct load with LastError propagation.
@@ -158,6 +168,9 @@ to native callback/function-pointer boundaries.
 - `_ResumeThread` — real: direct call preserving the `0xffffffff` failure result.
 - `_RtlSecureZeroMemory` — real: clears the exact caller-supplied byte range in Go and returns the original pointer.
 - `_SetEnvironmentVariableW` — real: uses `windows.SetEnvironmentVariable`, including nil-value deletion.
+- `SetHandleInformation` — real, routed: uses
+  `windows.SetHandleInformation` with exact mask/flag and BOOL/LastError
+  semantics; modernc's implementation is an unconditional TODO panic.
 - `_SetFileInformationByHandle` — real: uses `windows.SetFileInformationByHandle`.
 - `_SetFilePointerEx` — real: forwards the generated `LARGE_INTEGER` bit pattern and writes the optional new position.
 - `_SetLastError` — real: updates the native thread LastError plus both modernc TLS locations used by generated code.
@@ -276,4 +289,7 @@ function is implemented. In v1.75.7, core socket entry points including
 `Xclosesocket`, and `XWSAGetLastError` still panic with `TODO`. `Xsetlocale`
 returns zero unconditionally and `Xmbstowcs` panics; both are now routed, as
 are `Xwcstombs` (to keep conversion consistent) and the diagnostic-only
-`XOutputDebugStringW`. The socket symbols still gate networking.
+`XOutputDebugStringW`. `XSetHandleInformation` still panics and
+`XCloseHandle` returns nonzero `EINVAL` when native close fails; both calls are
+now routed to the exact Win32 contracts as well. The socket symbols still gate
+networking.

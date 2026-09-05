@@ -337,6 +337,16 @@ func _ccgo_OutputDebugStringW(tls *libc.TLS, text uintptr) {
 	// fatal-error reporting on the process' real stderr intact.
 }
 
+// modernc returns EINVAL (a nonzero BOOL) when CloseHandle fails. Preserve the
+// Win32 BOOL contract so callers can detect failure and read LastError.
+func _ccgo_CloseHandle(tls *libc.TLS, handle uintptr) int32 {
+	if err := windows.CloseHandle(windows.Handle(handle)); err != nil {
+		setWinError(tls, err, errorInvalidHandle)
+		return 0
+	}
+	return 1
+}
+
 // LoadLibraryW and FreeLibrary are needed by CPython's optional Windows API
 // probes. Native procedure addresses cannot be invoked through ccgo's Go
 // function-pointer representation, so GetProcAddress reports an unavailable
@@ -1230,6 +1240,15 @@ var _ccgo_in6addr_any Tin6_addr
 func _ccgo_SetErrorMode(tls *libc.TLS, mode uint32) uint32 {
 	r, _ := callProc(dllKernel32, "SetErrorMode", uintptr(mode))
 	return uint32(r)
+}
+
+// modernc's Windows SetHandleInformation is an unconditional TODO panic.
+func _ccgo_SetHandleInformation(tls *libc.TLS, handle uintptr, mask, flags uint32) int32 {
+	if err := windows.SetHandleInformation(windows.Handle(handle), mask, flags); err != nil {
+		setWinError(tls, err, errorInvalidHandle)
+		return 0
+	}
+	return 1
 }
 
 func _ccgo_GetShortPathNameW(tls *libc.TLS, path, buffer uintptr, capacity uint32) uint32 {

@@ -57078,7 +57078,7 @@ func X_PySemaphore_Init(tls *libc.TLS, sema uintptr) {
 var ___func__82 = [18]int8{'_', 'P', 'y', 'S', 'e', 'm', 'a', 'p', 'h', 'o', 'r', 'e', '_', 'I', 'n', 'i', 't'}
 
 func X_PySemaphore_Destroy(tls *libc.TLS, sema uintptr) {
-	libc.XCloseHandle(tls, (*T_PySemaphore)(unsafe.Pointer(sema)).Fplatform_sem)
+	_ccgo_CloseHandle(tls, (*T_PySemaphore)(unsafe.Pointer(sema)).Fplatform_sem)
 }
 
 func __PySemaphore_PlatformWait(tls *libc.TLS, sema uintptr, timeout TPyTime_t) (r int32) {

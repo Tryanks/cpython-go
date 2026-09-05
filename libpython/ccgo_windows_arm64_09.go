@@ -4981,7 +4981,7 @@ func X_PySignal_Fini(tls *libc.TLS) {
 		signum = signum + 1
 	}
 	if (*Tsignal_state_t)(unsafe.Pointer(state)).Fsigint_event != libc.UintptrFromInt32(0) {
-		libc.XCloseHandle(tls, (*Tsignal_state_t)(unsafe.Pointer(state)).Fsigint_event)
+		_ccgo_CloseHandle(tls, (*Tsignal_state_t)(unsafe.Pointer(state)).Fsigint_event)
 		(*Tsignal_state_t)(unsafe.Pointer(state)).Fsigint_event = libc.UintptrFromInt32(0)
 	}
 	_tmp_op_ptr = state + 384
@@ -55315,7 +55315,7 @@ _2:
 		}
 		if (*Twinconsoleio)(unsafe.Pointer(self)).Ffd < 0 {
 			XPyErr_SetFromErrnoWithFilenameObject(tls, XPyExc_OSError, nameobj)
-			libc.XCloseHandle(tls, handle)
+			_ccgo_CloseHandle(tls, handle)
 			goto error
 		}
 	}
@@ -87523,7 +87523,7 @@ func _time_exec(tls *libc.TLS, module uintptr) (r int32) {
 		} else {
 
 			_timer_flags = uint32(MCREATE_WAITABLE_TIMER_HIGH_RESOLUTION)
-			libc.XCloseHandle(tls, timer)
+			_ccgo_CloseHandle(tls, timer)
 		}
 	}
 
@@ -87702,12 +87702,12 @@ func _pysleep(tls *libc.TLS, timeout TPyTime_t) (r int32) {
 		}
 
 	}
-	libc.XCloseHandle(tls, timer)
+	_ccgo_CloseHandle(tls, timer)
 	return 0
 	goto error
 error:
 	;
-	libc.XCloseHandle(tls, timer)
+	_ccgo_CloseHandle(tls, timer)
 	return -int32(1)
 }
 

@@ -25774,7 +25774,7 @@ _2:
 
 func __Py_RemoteDebug_CleanupProcHandle(tls *libc.TLS, handle uintptr) {
 	if (*Tproc_handle_t)(unsafe.Pointer(handle)).FhProcess != libc.UintptrFromInt32(0) {
-		libc.XCloseHandle(tls, (*Tproc_handle_t)(unsafe.Pointer(handle)).FhProcess)
+		_ccgo_CloseHandle(tls, (*Tproc_handle_t)(unsafe.Pointer(handle)).FhProcess)
 		(*Tproc_handle_t)(unsafe.Pointer(handle)).FhProcess = libc.UintptrFromInt32(0)
 	}
 	(*Tproc_handle_t)(unsafe.Pointer(handle)).Fpid = 0
@@ -25859,7 +25859,7 @@ func _analyze_pe(tls *libc.TLS, mod_path uintptr, remote_base uintptr, secname u
 				X_PyErr_FormatFromCause(tls, XPyExc_OSError, __ccgo_ts+191268, libc.VaList(bp+8, secname, error11))
 			}
 		}
-		libc.XCloseHandle(tls, hFile)
+		_ccgo_CloseHandle(tls, hFile)
 		return libc.UintptrFromInt32(0)
 	}
 	mapView = libc.XMapViewOfFile(tls, hMap, uint32(MSECTION_MAP_READ), uint32(0), uint32(0), uint64(0))
@@ -25891,24 +25891,24 @@ func _analyze_pe(tls *libc.TLS, mod_path uintptr, remote_base uintptr, secname u
 				X_PyErr_FormatFromCause(tls, XPyExc_OSError, __ccgo_ts+191341, libc.VaList(bp+8, secname, error2))
 			}
 		}
-		libc.XCloseHandle(tls, hMap)
-		libc.XCloseHandle(tls, hFile)
+		_ccgo_CloseHandle(tls, hMap)
+		_ccgo_CloseHandle(tls, hFile)
 		return libc.UintptrFromInt32(0)
 	}
 	pDOSHeader = mapView
 	if int32((*TIMAGE_DOS_HEADER)(unsafe.Pointer(pDOSHeader)).Fe_magic) != int32(MIMAGE_DOS_SIGNATURE) {
 		XPyErr_Format(tls, XPyExc_RuntimeError, __ccgo_ts+191406, libc.VaList(bp+8, int32((*TIMAGE_DOS_HEADER)(unsafe.Pointer(pDOSHeader)).Fe_magic), secname, int32(MIMAGE_DOS_SIGNATURE)))
 		libc.XUnmapViewOfFile(tls, mapView)
-		libc.XCloseHandle(tls, hMap)
-		libc.XCloseHandle(tls, hFile)
+		_ccgo_CloseHandle(tls, hMap)
+		_ccgo_CloseHandle(tls, hFile)
 		return libc.UintptrFromInt32(0)
 	}
 	pNTHeaders = mapView + uintptr((*TIMAGE_DOS_HEADER)(unsafe.Pointer(pDOSHeader)).Fe_lfanew)
 	if (*TIMAGE_NT_HEADERS)(unsafe.Pointer(pNTHeaders)).FSignature != uint32(MIMAGE_NT_SIGNATURE) {
 		XPyErr_Format(tls, XPyExc_RuntimeError, __ccgo_ts+191488, libc.VaList(bp+8, (*TIMAGE_NT_HEADERS)(unsafe.Pointer(pNTHeaders)).FSignature, secname, int32(MIMAGE_NT_SIGNATURE)))
 		libc.XUnmapViewOfFile(tls, mapView)
-		libc.XCloseHandle(tls, hMap)
-		libc.XCloseHandle(tls, hFile)
+		_ccgo_CloseHandle(tls, hMap)
+		_ccgo_CloseHandle(tls, hFile)
 		return libc.UintptrFromInt32(0)
 	}
 	pSection_header = mapView + uintptr((*TIMAGE_DOS_HEADER)(unsafe.Pointer(pDOSHeader)).Fe_lfanew) + libc.UintptrFromInt64(264)
@@ -25929,8 +25929,8 @@ func _analyze_pe(tls *libc.TLS, mod_path uintptr, remote_base uintptr, secname u
 		i = i + 1
 	}
 	libc.XUnmapViewOfFile(tls, mapView)
-	libc.XCloseHandle(tls, hMap)
-	libc.XCloseHandle(tls, hFile)
+	_ccgo_CloseHandle(tls, hMap)
+	_ccgo_CloseHandle(tls, hFile)
 	return runtime_addr
 }
 
@@ -26006,7 +26006,7 @@ func _search_windows_map_for_section(tls *libc.TLS, handle uintptr, secname uint
 				X_PyErr_FormatFromCause(tls, XPyExc_OSError, __ccgo_ts+191682, libc.VaList(bp+1088, (*Tproc_handle_t)(unsafe.Pointer(handle)).Fpid, secname, error11))
 			}
 		}
-		libc.XCloseHandle(tls, hProcSnap)
+		_ccgo_CloseHandle(tls, hProcSnap)
 		return uint64(0)
 	}
 	for cond := true; cond; cond = _Module32NextW(tls, hProcSnap, bp) != 0 {
@@ -26065,7 +26065,7 @@ func _search_windows_map_for_section(tls *libc.TLS, handle uintptr, secname uint
 			}
 		}
 	}
-	libc.XCloseHandle(tls, hProcSnap)
+	_ccgo_CloseHandle(tls, hProcSnap)
 	return uint64(runtime_addr)
 }
 

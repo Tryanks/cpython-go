@@ -45445,10 +45445,10 @@ _2:
 		libc.XUnmapViewOfFile(tls, (*Tmmap_object)(unsafe.Pointer(m_obj)).Fdata)
 	}
 	if (*Tmmap_object)(unsafe.Pointer(m_obj)).Fmap_handle != libc.UintptrFromInt32(0) {
-		libc.XCloseHandle(tls, (*Tmmap_object)(unsafe.Pointer(m_obj)).Fmap_handle)
+		_ccgo_CloseHandle(tls, (*Tmmap_object)(unsafe.Pointer(m_obj)).Fmap_handle)
 	}
 	if (*Tmmap_object)(unsafe.Pointer(m_obj)).Ffile_handle != uintptr(int64(-libc.Int32FromInt32(1))) {
-		libc.XCloseHandle(tls, (*Tmmap_object)(unsafe.Pointer(m_obj)).Ffile_handle)
+		_ccgo_CloseHandle(tls, (*Tmmap_object)(unsafe.Pointer(m_obj)).Ffile_handle)
 	}
 	XPyEval_RestoreThread(tls, _save)
 	if (*Tmmap_object)(unsafe.Pointer(m_obj)).Ftagname != 0 {
@@ -45495,10 +45495,10 @@ func _mmap_mmap_close_impl(tls *libc.TLS, self uintptr) (r uintptr) {
 		libc.XUnmapViewOfFile(tls, data)
 	}
 	if map_handle != libc.UintptrFromInt32(0) {
-		libc.XCloseHandle(tls, map_handle)
+		_ccgo_CloseHandle(tls, map_handle)
 	}
 	if file_handle != uintptr(int64(-libc.Int32FromInt32(1))) {
-		libc.XCloseHandle(tls, file_handle)
+		_ccgo_CloseHandle(tls, file_handle)
 	}
 	XPyEval_RestoreThread(tls, _save)
 	return uintptr(unsafe.Pointer(&X_Py_NoneStruct))
@@ -45921,7 +45921,7 @@ func _mmap_mmap_resize_impl(tls *libc.TLS, self uintptr, new_size TPy_ssize_t) (
 	*(*TLONGLONG)(unsafe.Pointer(bp)) = (*Tmmap_object)(unsafe.Pointer(self)).Foffset
 	*(*TLONGLONG)(unsafe.Pointer(bp + 8)) = (*Tmmap_object)(unsafe.Pointer(self)).Foffset + new_size
 
-	libc.XCloseHandle(tls, (*Tmmap_object)(unsafe.Pointer(self)).Fmap_handle)
+	_ccgo_CloseHandle(tls, (*Tmmap_object)(unsafe.Pointer(self)).Fmap_handle)
 
 	if (*Tmmap_object)(unsafe.Pointer(self)).Ftagname != 0 {
 		(*Tmmap_object)(unsafe.Pointer(self)).Fmap_handle = _OpenFileMappingW(tls, uint32(MSECTION_MAP_WRITE), MFALSE, (*Tmmap_object)(unsafe.Pointer(self)).Ftagname)
@@ -45951,7 +45951,7 @@ func _mmap_mmap_resize_impl(tls *libc.TLS, self uintptr, new_size TPy_ssize_t) (
 	error1 = libc.XGetLastError(tls)
 
 	if error1 == uint32(183) {
-		libc.XCloseHandle(tls, (*Tmmap_object)(unsafe.Pointer(self)).Fmap_handle)
+		_ccgo_CloseHandle(tls, (*Tmmap_object)(unsafe.Pointer(self)).Fmap_handle)
 		(*Tmmap_object)(unsafe.Pointer(self)).Fmap_handle = libc.UintptrFromInt32(0)
 	} else {
 		if (*Tmmap_object)(unsafe.Pointer(self)).Fmap_handle != libc.UintptrFromInt32(0) {
@@ -45972,7 +45972,7 @@ func _mmap_mmap_resize_impl(tls *libc.TLS, self uintptr, new_size TPy_ssize_t) (
 				(*Tmmap_object)(unsafe.Pointer(self)).Fsize = new_size
 			} else {
 				error1 = libc.XGetLastError(tls)
-				libc.XCloseHandle(tls, (*Tmmap_object)(unsafe.Pointer(self)).Fmap_handle)
+				_ccgo_CloseHandle(tls, (*Tmmap_object)(unsafe.Pointer(self)).Fmap_handle)
 				(*Tmmap_object)(unsafe.Pointer(self)).Fmap_handle = libc.UintptrFromInt32(0)
 			}
 		}
@@ -47001,7 +47001,7 @@ func _new_mmap_object(tls *libc.TLS, type1 uintptr, args uintptr, kwdict uintptr
 			return m_obj
 		} else {
 			dwErr = libc.XGetLastError(tls)
-			libc.XCloseHandle(tls, (*Tmmap_object)(unsafe.Pointer(m_obj)).Fmap_handle)
+			_ccgo_CloseHandle(tls, (*Tmmap_object)(unsafe.Pointer(m_obj)).Fmap_handle)
 			(*Tmmap_object)(unsafe.Pointer(m_obj)).Fmap_handle = libc.UintptrFromInt32(0)
 		}
 	} else {
@@ -76778,7 +76778,7 @@ func _sock_accept(tls *libc.TLS, self uintptr, _unused_ignored uintptr) (r uintp
 		return libc.UintptrFromInt32(0)
 	}
 	newfd = (**(**Tsock_accept)(__ccgo_up(bp + 136))).Fresult
-	if !(libc.XSetHandleInformation(tls, uintptr(newfd), uint32(MHANDLE_FLAG_INHERIT), uint32(0)) != 0) {
+	if !(_ccgo_SetHandleInformation(tls, uintptr(newfd), uint32(MHANDLE_FLAG_INHERIT), uint32(0)) != 0) {
 		XPyErr_SetFromWindowsErr(tls, 0)
 		libc.Xclosesocket(tls, newfd)
 		goto finally
@@ -78359,7 +78359,7 @@ _2:
 				_set_error1(tls)
 				return -int32(1)
 			}
-			if !(libc.XSetHandleInformation(tls, uintptr(fd), uint32(MHANDLE_FLAG_INHERIT), uint32(0)) != 0) {
+			if !(_ccgo_SetHandleInformation(tls, uintptr(fd), uint32(MHANDLE_FLAG_INHERIT), uint32(0)) != 0) {
 				XPyErr_SetFromWindowsErr(tls, 0)
 				libc.Xclosesocket(tls, fd)
 				return -int32(1)
@@ -78947,7 +78947,7 @@ func _socket_dup(tls *libc.TLS, self uintptr, fdobj uintptr) (r uintptr) {
 	if newfd == uint64(^libc.Int32FromInt32(0)) {
 		return _set_error1(tls)
 	}
-	if !(libc.XSetHandleInformation(tls, uintptr(newfd), uint32(MHANDLE_FLAG_INHERIT), uint32(0)) != 0) {
+	if !(_ccgo_SetHandleInformation(tls, uintptr(newfd), uint32(MHANDLE_FLAG_INHERIT), uint32(0)) != 0) {
 		XPyErr_SetFromWindowsErr(tls, 0)
 		libc.Xclosesocket(tls, newfd)
 		return libc.UintptrFromInt32(0)
@@ -93101,7 +93101,7 @@ func __overlapped_Overlapped_impl(tls *libc.TLS, type1 uintptr, event THANDLE) (
 	self = X_PyObject_New(tls, type1)
 	if self == libc.UintptrFromInt32(0) {
 		if event != libc.UintptrFromInt32(0) {
-			libc.XCloseHandle(tls, event)
+			_ccgo_CloseHandle(tls, event)
 		}
 		return libc.UintptrFromInt32(0)
 	}
@@ -93298,7 +93298,7 @@ func _Overlapped_dealloc(tls *libc.TLS, op2 uintptr) {
 		}
 	}
 	if (*TOverlappedObject)(unsafe.Pointer(self)).Foverlapped.FhEvent != libc.UintptrFromInt32(0) {
-		libc.XCloseHandle(tls, (*TOverlappedObject)(unsafe.Pointer(self)).Foverlapped.FhEvent)
+		_ccgo_CloseHandle(tls, (*TOverlappedObject)(unsafe.Pointer(self)).Foverlapped.FhEvent)
 	}
 	_Overlapped_clear(tls, self)
 	_SetLastError(tls, olderr)
@@ -101348,7 +101348,7 @@ func _win32_xstat_slow_impl(tls *libc.TLS, path uintptr, result uintptr, travers
 
 					} else {
 						if !(isUnhandledTag != 0) {
-							libc.XCloseHandle(tls, hFile)
+							_ccgo_CloseHandle(tls, hFile)
 							return _win32_xstat_slow_impl(tls, path, result, int32(MTRUE))
 						}
 					}
@@ -101390,7 +101390,7 @@ cleanup:
 			v1 = uint32(0)
 		}
 		error1 = v1
-		if !(libc.XCloseHandle(tls, hFile) != 0) {
+		if !(_ccgo_CloseHandle(tls, hFile) != 0) {
 			retval = -int32(1)
 		} else {
 			if retval != 0 {
@@ -102463,7 +102463,7 @@ func _os_chmod_impl(tls *libc.TLS, module uintptr, path uintptr, mode int32, dir
 			hfile = libc.XCreateFileW(tls, (*Tpath_t)(unsafe.Pointer(path)).Fwide, uint32(libc.Int32FromInt32(MFILE_READ_ATTRIBUTES)|libc.Int32FromInt32(MFILE_WRITE_ATTRIBUTES)), uint32(0), libc.UintptrFromInt32(0), uint32(MOPEN_EXISTING), uint32(MFILE_FLAG_BACKUP_SEMANTICS), libc.UintptrFromInt32(0))
 			if hfile != uintptr(int64(-libc.Int32FromInt32(1))) {
 				result = _win32_hchmod(tls, hfile, mode)
-				libc.XCloseHandle(tls, hfile)
+				_ccgo_CloseHandle(tls, hfile)
 			}
 		} else {
 			result = _win32_lchmod(tls, (*Tpath_t)(unsafe.Pointer(path)).Fwide, mode)
@@ -103213,7 +103213,7 @@ func _os__path_isdevdrive_impl(tls *libc.TLS, module uintptr, path uintptr) (r1 
 				if !(libc.XDeviceIoControl(tls, hVolume, uint32(libc.Int32FromInt32(MFILE_DEVICE_FILE_SYSTEM)<<libc.Int32FromInt32(16)|libc.Int32FromInt32(MFILE_ANY_ACCESS)<<libc.Int32FromInt32(14)|libc.Int32FromInt32(143)<<libc.Int32FromInt32(2)|libc.Int32FromInt32(MMETHOD_BUFFERED)), bp+520, uint32(16), bp+520, uint32(16), libc.UintptrFromInt32(0), libc.UintptrFromInt32(0)) != 0) {
 					err = int32(libc.XGetLastError(tls))
 				}
-				libc.XCloseHandle(tls, hVolume)
+				_ccgo_CloseHandle(tls, hVolume)
 				if err == int32(87) {
 
 					r = uintptr(unsafe.Pointer(&X_Py_FalseStruct))
@@ -103422,7 +103422,7 @@ cleanup:
 	if target_path != bp {
 		XPyMem_Free(tls, target_path)
 	}
-	libc.XCloseHandle(tls, hFile)
+	_ccgo_CloseHandle(tls, hFile)
 	return **(**uintptr)(__ccgo_up(bp + 520))
 }
 
@@ -103674,7 +103674,7 @@ _2:
 	hfile = libc.XCreateFileW(tls, path, uint32(libc.Int32FromInt32(MFILE_READ_ATTRIBUTES)), uint32(0), libc.UintptrFromInt32(0), uint32(MOPEN_EXISTING), flags, libc.UintptrFromInt32(0))
 	if hfile != uintptr(int64(-libc.Int32FromInt32(1))) {
 		result1 = __testFileTypeByHandle(tls, hfile, testedType, MFALSE)
-		libc.XCloseHandle(tls, hfile)
+		_ccgo_CloseHandle(tls, hfile)
 		return result1
 	}
 	switch libc.XGetLastError(tls) {
@@ -103779,18 +103779,18 @@ _2:
 	hfile = libc.XCreateFileW(tls, path, uint32(libc.Int32FromInt32(MFILE_READ_ATTRIBUTES)), uint32(0), libc.UintptrFromInt32(0), uint32(MOPEN_EXISTING), flags, libc.UintptrFromInt32(0))
 	if hfile != uintptr(int64(-libc.Int32FromInt32(1))) {
 		if followLinks != 0 {
-			libc.XCloseHandle(tls, hfile)
+			_ccgo_CloseHandle(tls, hfile)
 			return int32(MTRUE)
 		}
 
 		result = __testFileTypeByHandle(tls, hfile, int32(32), MFALSE)
-		libc.XCloseHandle(tls, hfile)
+		_ccgo_CloseHandle(tls, hfile)
 		if !(result != 0) {
 			return int32(MTRUE)
 		}
 		hfile = libc.XCreateFileW(tls, path, uint32(libc.Int32FromInt32(MFILE_READ_ATTRIBUTES)), uint32(0), libc.UintptrFromInt32(0), uint32(MOPEN_EXISTING), uint32(MFILE_FLAG_BACKUP_SEMANTICS), libc.UintptrFromInt32(0))
 		if hfile != uintptr(int64(-libc.Int32FromInt32(1))) {
-			libc.XCloseHandle(tls, hfile)
+			_ccgo_CloseHandle(tls, hfile)
 			return int32(MTRUE)
 		}
 	}
@@ -104548,10 +104548,10 @@ func _os_utime_impl(tls *libc.TLS, module uintptr, path uintptr, times uintptr, 
 	}
 	if !(libc.XSetFileTime(tls, hFile, libc.UintptrFromInt32(0), bp, bp+8) != 0) {
 		_path_error(tls, path)
-		libc.XCloseHandle(tls, hFile)
+		_ccgo_CloseHandle(tls, hFile)
 		return libc.UintptrFromInt32(0)
 	}
-	libc.XCloseHandle(tls, hFile)
+	_ccgo_CloseHandle(tls, hFile)
 	return uintptr(unsafe.Pointer(&X_Py_NoneStruct))
 }
 
@@ -107493,7 +107493,7 @@ func _os_kill_impl(tls *libc.TLS, module uintptr, pid Tpid_t, signal TPy_ssize_t
 		return XPyErr_SetFromWindowsErr(tls, 0)
 	}
 	res = _TerminateProcess(tls, handle, sig)
-	libc.XCloseHandle(tls, handle)
+	_ccgo_CloseHandle(tls, handle)
 	if res == 0 {
 		return XPyErr_SetFromWindowsErr(tls, 0)
 	}
@@ -107565,7 +107565,7 @@ func _os_readlink_impl(tls *libc.TLS, module uintptr, path uintptr, dir_fd int32
 	if reparse_point_handle != uintptr(int64(-libc.Int32FromInt32(1))) {
 
 		io_result = uint32(libc.XDeviceIoControl(tls, reparse_point_handle, uint32(libc.Int32FromInt32(MFILE_DEVICE_FILE_SYSTEM)<<libc.Int32FromInt32(16)|libc.Int32FromInt32(MFILE_ANY_ACCESS)<<libc.Int32FromInt32(14)|libc.Int32FromInt32(42)<<libc.Int32FromInt32(2)|libc.Int32FromInt32(MMETHOD_BUFFERED)), uintptr(0), uint32(0), bp+4, uint32(16384), bp, uintptr(0)))
-		libc.XCloseHandle(tls, reparse_point_handle)
+		_ccgo_CloseHandle(tls, reparse_point_handle)
 	}
 	XPyEval_RestoreThread(tls, _save)
 	if io_result == uint32(0) {
@@ -108167,8 +108167,8 @@ func _os_pipe_impl(tls *libc.TLS, module uintptr) (r uintptr) {
 		fds[0] = X_Py_open_osfhandle_noraise(tls, **(**THANDLE)(__ccgo_up(bp)), libc.Int32FromInt32(M_O_RDONLY)|libc.Int32FromInt32(M_O_NOINHERIT))
 		fds[int32(1)] = X_Py_open_osfhandle_noraise(tls, **(**THANDLE)(__ccgo_up(bp + 8)), libc.Int32FromInt32(M_O_WRONLY)|libc.Int32FromInt32(M_O_NOINHERIT))
 		if fds[0] == -int32(1) || fds[int32(1)] == -int32(1) {
-			libc.XCloseHandle(tls, **(**THANDLE)(__ccgo_up(bp)))
-			libc.XCloseHandle(tls, **(**THANDLE)(__ccgo_up(bp + 8)))
+			_ccgo_CloseHandle(tls, **(**THANDLE)(__ccgo_up(bp)))
+			_ccgo_CloseHandle(tls, **(**THANDLE)(__ccgo_up(bp + 8)))
 			ok = 0
 		}
 	}
@@ -108845,7 +108845,7 @@ func _os_set_handle_inheritable_impl(tls *libc.TLS, module uintptr, handle Tintp
 		v1 = 0
 	}
 	flags = uint32(v1)
-	if !(libc.XSetHandleInformation(tls, uintptr(handle), uint32(MHANDLE_FLAG_INHERIT), flags) != 0) {
+	if !(_ccgo_SetHandleInformation(tls, uintptr(handle), uint32(MHANDLE_FLAG_INHERIT), flags) != 0) {
 		XPyErr_SetFromWindowsErr(tls, 0)
 		return libc.UintptrFromInt32(0)
 	}

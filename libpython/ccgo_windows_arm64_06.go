@@ -30620,7 +30620,7 @@ func XPyThread_start_new_thread(tls *libc.TLS, __ccgo_fp_func uintptr, arg uintp
 	if XPyThread_start_joinable_thread(tls, __ccgo_fp_func, arg, bp+8, bp) != 0 {
 		return uint32(-libc.Int32FromInt32(1))
 	}
-	libc.XCloseHandle(tls, uintptr(**(**TPyThread_handle_t)(__ccgo_up(bp))))
+	_ccgo_CloseHandle(tls, uintptr(**(**TPyThread_handle_t)(__ccgo_up(bp))))
 	return uint32(**(**TPyThread_ident_t)(__ccgo_up(bp + 8)))
 }
 
@@ -30630,7 +30630,7 @@ func XPyThread_join_thread(tls *libc.TLS, handle TPyThread_handle_t) (r int32) {
 	_, _ = errored, hThread
 	hThread = uintptr(handle)
 	errored = libc.BoolInt32(libc.XWaitForSingleObject(tls, hThread, uint32(MINFINITE)) != libc.Uint32FromInt32(0x00000000)+libc.Uint32FromInt32(0))
-	libc.XCloseHandle(tls, hThread)
+	_ccgo_CloseHandle(tls, hThread)
 	return errored
 }
 
@@ -30638,7 +30638,7 @@ func XPyThread_detach_thread(tls *libc.TLS, handle TPyThread_handle_t) (r int32)
 	var hThread THANDLE
 	_ = hThread
 	hThread = uintptr(handle)
-	return libc.BoolInt32(libc.XCloseHandle(tls, hThread) == 0)
+	return libc.BoolInt32(_ccgo_CloseHandle(tls, hThread) == 0)
 }
 
 func XPyThread_get_thread_ident_ex(tls *libc.TLS) (r TPyThread_ident_t) {
@@ -33543,7 +33543,7 @@ func _write_thread_name(tls *libc.TLS, fd int32, tstate uintptr) {
 		}
 		libc.XLocalFree(tls, **(**uintptr)(__ccgo_up(bp)))
 	}
-	libc.XCloseHandle(tls, thread)
+	_ccgo_CloseHandle(tls, thread)
 }
 
 func _write_thread_id(tls *libc.TLS, fd int32, tstate uintptr, is_current int32) {
@@ -47706,7 +47706,7 @@ func _set_inheritable(tls *libc.TLS, fd int32, inheritable int32, raise int32, a
 	} else {
 		flags = uint32(0)
 	}
-	if !(libc.XSetHandleInformation(tls, handle, uint32(MHANDLE_FLAG_INHERIT), flags) != 0) {
+	if !(_ccgo_SetHandleInformation(tls, handle, uint32(MHANDLE_FLAG_INHERIT), flags) != 0) {
 		if raise != 0 {
 			XPyErr_SetFromWindowsErr(tls, 0)
 		}

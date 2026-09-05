@@ -306,7 +306,7 @@ func _expat_start_doctype_handler(tls *libc.TLS, op4 uintptr, doctype_name uintp
 		}
 	} else {
 		if XPyObject_HasAttrWithError(tls, self, (*Telementtreestate)(unsafe.Pointer(st)).Fstr_doctype) > 0 {
-			XPyErr_WarnEx(tls, XPyExc_RuntimeWarning, __ccgo_ts+219195, int64(1))
+			XPyErr_WarnEx(tls, XPyExc_RuntimeWarning, __ccgo_ts+219103, int64(1))
 		}
 	}
 	v1 = doctype_name_obj
@@ -713,11 +713,11 @@ func __elementtree_XMLParser___init___impl(tls *libc.TLS, self uintptr, target u
 		}
 	}
 	(*TXMLParserObject)(unsafe.Pointer(self)).Ftarget = target
-	(*TXMLParserObject)(unsafe.Pointer(self)).Fhandle_start_ns = XPyObject_GetAttrString(tls, target, __ccgo_ts+219293)
+	(*TXMLParserObject)(unsafe.Pointer(self)).Fhandle_start_ns = XPyObject_GetAttrString(tls, target, __ccgo_ts+219201)
 	if _ignore_attribute_error(tls, (*TXMLParserObject)(unsafe.Pointer(self)).Fhandle_start_ns) != 0 {
 		return -int32(1)
 	}
-	(*TXMLParserObject)(unsafe.Pointer(self)).Fhandle_end_ns = XPyObject_GetAttrString(tls, target, __ccgo_ts+219302)
+	(*TXMLParserObject)(unsafe.Pointer(self)).Fhandle_end_ns = XPyObject_GetAttrString(tls, target, __ccgo_ts+219210)
 	if _ignore_attribute_error(tls, (*TXMLParserObject)(unsafe.Pointer(self)).Fhandle_end_ns) != 0 {
 		return -int32(1)
 	}
@@ -733,7 +733,7 @@ func __elementtree_XMLParser___init___impl(tls *libc.TLS, self uintptr, target u
 	if _ignore_attribute_error(tls, (*TXMLParserObject)(unsafe.Pointer(self)).Fhandle_end) != 0 {
 		return -int32(1)
 	}
-	(*TXMLParserObject)(unsafe.Pointer(self)).Fhandle_comment = XPyObject_GetAttrString(tls, target, __ccgo_ts+219309)
+	(*TXMLParserObject)(unsafe.Pointer(self)).Fhandle_comment = XPyObject_GetAttrString(tls, target, __ccgo_ts+219217)
 	if _ignore_attribute_error(tls, (*TXMLParserObject)(unsafe.Pointer(self)).Fhandle_comment) != 0 {
 		return -int32(1)
 	}
@@ -745,7 +745,7 @@ func __elementtree_XMLParser___init___impl(tls *libc.TLS, self uintptr, target u
 	if _ignore_attribute_error(tls, (*TXMLParserObject)(unsafe.Pointer(self)).Fhandle_close) != 0 {
 		return -int32(1)
 	}
-	(*TXMLParserObject)(unsafe.Pointer(self)).Fhandle_doctype = XPyObject_GetAttrString(tls, target, __ccgo_ts+219317)
+	(*TXMLParserObject)(unsafe.Pointer(self)).Fhandle_doctype = XPyObject_GetAttrString(tls, target, __ccgo_ts+219225)
 	if _ignore_attribute_error(tls, (*TXMLParserObject)(unsafe.Pointer(self)).Fhandle_doctype) != 0 {
 		return -int32(1)
 	}
@@ -1153,7 +1153,7 @@ _6:
 
 func __check_xmlparser(tls *libc.TLS, self uintptr) (r int32) {
 	if (*TXMLParserObject)(unsafe.Pointer(self)).Ftarget == libc.UintptrFromInt32(0) {
-		XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+219325)
+		XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+219233)
 		return 0
 	}
 	return int32(1)
@@ -1281,7 +1281,7 @@ _4:
 			return libc.UintptrFromInt32(0)
 		}
 		if **(**TPy_ssize_t)(__ccgo_up(bp)) > int64(M__INT_MAX__) {
-			XPyErr_SetString(tls, XPyExc_OverflowError, __ccgo_ts+219360)
+			XPyErr_SetString(tls, XPyExc_OverflowError, __ccgo_ts+219268)
 			return libc.UintptrFromInt32(0)
 		}
 
@@ -1293,7 +1293,7 @@ _4:
 		}
 		if (**(**TPy_buffer)(__ccgo_up(bp + 8))).Flen1 > int64(M__INT_MAX__) {
 			XPyBuffer_Release(tls, bp+8)
-			XPyErr_SetString(tls, XPyExc_OverflowError, __ccgo_ts+219360)
+			XPyErr_SetString(tls, XPyExc_OverflowError, __ccgo_ts+219268)
 			return libc.UintptrFromInt32(0)
 		}
 		res = _expat_parse(tls, st, self, (**(**TPy_buffer)(__ccgo_up(bp + 8))).Fbuf, int32((**(**TPy_buffer)(__ccgo_up(bp + 8))).Flen1), 0)
@@ -1482,7 +1482,7 @@ func __elementtree_XMLParser__parse_whole_impl(tls *libc.TLS, self1 uintptr, fil
 			}
 		_60:
 			;
-			XPyErr_SetString(tls, XPyExc_OverflowError, __ccgo_ts+219360)
+			XPyErr_SetString(tls, XPyExc_OverflowError, __ccgo_ts+219268)
 			return libc.UintptrFromInt32(0)
 		}
 		v2 = buffer + 32
@@ -1615,7 +1615,7 @@ _4:
 	goto _2
 _2:
 	if !(v1 != 0) {
-		XPyErr_SetString(tls, XPyExc_TypeError, __ccgo_ts+219388)
+		XPyErr_SetString(tls, XPyExc_TypeError, __ccgo_ts+219296)
 		return libc.UintptrFromInt32(0)
 	}
 	target = (*TXMLParserObject)(unsafe.Pointer(self)).Ftarget
@@ -1763,7 +1763,7 @@ _2:
 		(*TTreeBuilderObject)(unsafe.Pointer(target)).Fend_event_obj = XPyUnicode_FromString(tls, __ccgo_ts+31149)
 		return uintptr(unsafe.Pointer(&X_Py_NoneStruct))
 	}
-	v3 = XPySequence_Fast(tls, events_to_report, __ccgo_ts+219454)
+	v3 = XPySequence_Fast(tls, events_to_report, __ccgo_ts+219362)
 	events_seq = v3
 	if !(v3 != 0) {
 		return libc.UintptrFromInt32(0)
@@ -1853,7 +1853,7 @@ _2:
 			}
 		_81:
 			;
-			XPyErr_Format(tls, XPyExc_ValueError, __ccgo_ts+219480, 0)
+			XPyErr_Format(tls, XPyExc_ValueError, __ccgo_ts+219388, 0)
 			return libc.UintptrFromInt32(0)
 		}
 		if libc.Xstrcmp(tls, event_name, __ccgo_ts+26495) == 0 {
@@ -1924,7 +1924,7 @@ _2:
 				_105:
 				}
 			} else {
-				if libc.Xstrcmp(tls, event_name, __ccgo_ts+219504) == 0 {
+				if libc.Xstrcmp(tls, event_name, __ccgo_ts+219412) == 0 {
 					_tmp_dst_ptr3 = target + 120
 					_tmp_old_dst3 = **(**uintptr)(__ccgo_up(_tmp_dst_ptr3))
 					v3 = event_name_obj
@@ -1959,7 +1959,7 @@ _2:
 					}
 					(*(*func(*libc.TLS, TXML_Parser, TXML_StartNamespaceDeclHandler, TXML_EndNamespaceDeclHandler))(unsafe.Pointer(&struct{ uintptr }{(*TPyExpat_CAPI)(unsafe.Pointer((*Telementtreestate)(unsafe.Pointer(st)).Fexpat_capi)).FSetNamespaceDeclHandler})))(tls, (*TXMLParserObject)(unsafe.Pointer(self)).Fparser, __ccgo_fp(_expat_start_ns_handler), __ccgo_fp(_expat_end_ns_handler))
 				} else {
-					if libc.Xstrcmp(tls, event_name, __ccgo_ts+219513) == 0 {
+					if libc.Xstrcmp(tls, event_name, __ccgo_ts+219421) == 0 {
 						_tmp_dst_ptr4 = target + 128
 						_tmp_old_dst4 = **(**uintptr)(__ccgo_up(_tmp_dst_ptr4))
 						v3 = event_name_obj
@@ -1994,7 +1994,7 @@ _2:
 						}
 						(*(*func(*libc.TLS, TXML_Parser, TXML_StartNamespaceDeclHandler, TXML_EndNamespaceDeclHandler))(unsafe.Pointer(&struct{ uintptr }{(*TPyExpat_CAPI)(unsafe.Pointer((*Telementtreestate)(unsafe.Pointer(st)).Fexpat_capi)).FSetNamespaceDeclHandler})))(tls, (*TXMLParserObject)(unsafe.Pointer(self)).Fparser, __ccgo_fp(_expat_start_ns_handler), __ccgo_fp(_expat_end_ns_handler))
 					} else {
-						if libc.Xstrcmp(tls, event_name, __ccgo_ts+219309) == 0 {
+						if libc.Xstrcmp(tls, event_name, __ccgo_ts+219217) == 0 {
 							_tmp_dst_ptr5 = target + 136
 							_tmp_old_dst5 = **(**uintptr)(__ccgo_up(_tmp_dst_ptr5))
 							v3 = event_name_obj
@@ -2064,7 +2064,7 @@ _2:
 								}
 								(*(*func(*libc.TLS, TXML_Parser, TXML_ProcessingInstructionHandler))(unsafe.Pointer(&struct{ uintptr }{(*TPyExpat_CAPI)(unsafe.Pointer((*Telementtreestate)(unsafe.Pointer(st)).Fexpat_capi)).FSetProcessingInstructionHandler})))(tls, (*TXMLParserObject)(unsafe.Pointer(self)).Fparser, __ccgo_fp(_expat_pi_handler))
 							} else {
-								XPyErr_Format(tls, XPyExc_ValueError, __ccgo_ts+219520, libc.VaList(bp+8, event_name))
+								XPyErr_Format(tls, XPyExc_ValueError, __ccgo_ts+219428, libc.VaList(bp+8, event_name))
 								v3 = events_seq
 								v1 = libc.BoolInt32(int32(*(*Tuint32_t)(unsafe.Pointer(v3))) < 0)
 								goto _158
@@ -2112,7 +2112,7 @@ _165:
 
 var _xmlparser_members = [3]TPyMemberDef{
 	0: {
-		Fname:   __ccgo_ts + 219539,
+		Fname:   __ccgo_ts + 219447,
 		Ftype1:  int32(M_Py_T_OBJECT),
 		Foffset: int64(uint64(libc.UintptrFromInt32(0) + 32)),
 		Fflags:  int32(MPy_READONLY),
@@ -2129,7 +2129,7 @@ var _xmlparser_members = [3]TPyMemberDef{
 func _xmlparser_version_getter(tls *libc.TLS, op uintptr, closure uintptr) (r uintptr) {
 	bp := tls.Alloc(32)
 	defer tls.Free(32)
-	return XPyUnicode_FromFormat(tls, __ccgo_ts+219546, libc.VaList(bp+8, int32(MXML_MAJOR_VERSION), int32(MXML_MINOR_VERSION), int32(MXML_MICRO_VERSION)))
+	return XPyUnicode_FromFormat(tls, __ccgo_ts+219454, libc.VaList(bp+8, int32(MXML_MAJOR_VERSION), int32(MXML_MINOR_VERSION), int32(MXML_MICRO_VERSION)))
 }
 
 var _xmlparser_getsetlist = [2]TPyGetSetDef{
@@ -2236,7 +2236,7 @@ func __elementtree_Element___copy__(tls *libc.TLS, self uintptr, cls uintptr, ar
 		}
 	}
 	if v6 || v5 && v1 != 0 {
-		XPyErr_SetString(tls, XPyExc_TypeError, __ccgo_ts+219561)
+		XPyErr_SetString(tls, XPyExc_TypeError, __ccgo_ts+219469)
 		return libc.UintptrFromInt32(0)
 	}
 	return __elementtree_Element___copy___impl(tls, self, cls)
@@ -2450,7 +2450,7 @@ var __kwtuple151 = struct {
 
 var __keywords176 = [3]uintptr{
 	0: __ccgo_ts + 28662,
-	1: __ccgo_ts + 219591,
+	1: __ccgo_ts + 219499,
 	2: libc.UintptrFromInt32(0),
 }
 
@@ -2550,13 +2550,13 @@ var __kwtuple152 = struct {
 var __keywords177 = [4]uintptr{
 	0: __ccgo_ts + 28662,
 	1: __ccgo_ts + 48485,
-	2: __ccgo_ts + 219591,
+	2: __ccgo_ts + 219499,
 	3: libc.UintptrFromInt32(0),
 }
 
 var __parser177 = T_PyArg_Parser{
 	Fkeywords: uintptr(unsafe.Pointer(&__keywords177)),
-	Ffname:    __ccgo_ts + 219602,
+	Ffname:    __ccgo_ts + 219510,
 	Fkwtuple:  uintptr(unsafe.Pointer(&__kwtuple152)) + 16,
 }
 
@@ -2639,13 +2639,13 @@ var __kwtuple153 = struct {
 
 var __keywords178 = [3]uintptr{
 	0: __ccgo_ts + 28662,
-	1: __ccgo_ts + 219591,
+	1: __ccgo_ts + 219499,
 	2: libc.UintptrFromInt32(0),
 }
 
 var __parser178 = T_PyArg_Parser{
 	Fkeywords: uintptr(unsafe.Pointer(&__keywords178)),
-	Ffname:    __ccgo_ts + 219611,
+	Ffname:    __ccgo_ts + 219519,
 	Fkwtuple:  uintptr(unsafe.Pointer(&__kwtuple153)) + 16,
 }
 
@@ -2728,13 +2728,13 @@ var __kwtuple154 = struct {
 
 var __keywords179 = [3]uintptr{
 	0: __ccgo_ts + 28662,
-	1: __ccgo_ts + 219591,
+	1: __ccgo_ts + 219499,
 	2: libc.UintptrFromInt32(0),
 }
 
 var __parser179 = T_PyArg_Parser{
 	Fkeywords: uintptr(unsafe.Pointer(&__keywords179)),
-	Ffname:    __ccgo_ts + 219619,
+	Ffname:    __ccgo_ts + 219527,
 	Fkwtuple:  uintptr(unsafe.Pointer(&__kwtuple154)) + 16,
 }
 
@@ -2932,7 +2932,7 @@ func __elementtree_Element_itertext(tls *libc.TLS, self uintptr, cls uintptr, ar
 		}
 	}
 	if v6 || v5 && v1 != 0 {
-		XPyErr_SetString(tls, XPyExc_TypeError, __ccgo_ts+219628)
+		XPyErr_SetString(tls, XPyExc_TypeError, __ccgo_ts+219536)
 		return libc.UintptrFromInt32(0)
 	}
 	return __elementtree_Element_itertext_impl(tls, self, cls)
@@ -3051,7 +3051,7 @@ _3:
 	goto _5
 _5:
 	if !(v4 != 0) {
-		X_PyArg_BadArgument(tls, __ccgo_ts+219658, __ccgo_ts+16387, __ccgo_ts+40926, **(**uintptr)(__ccgo_up(args + 1*8)))
+		X_PyArg_BadArgument(tls, __ccgo_ts+219566, __ccgo_ts+16387, __ccgo_ts+40926, **(**uintptr)(__ccgo_up(args + 1*8)))
 		goto exit
 	}
 	attrib = **(**uintptr)(__ccgo_up(args + 1*8))
@@ -3071,7 +3071,7 @@ var __keywords182 = [3]uintptr{
 
 var __parser182 = T_PyArg_Parser{
 	Fkeywords: uintptr(unsafe.Pointer(&__keywords182)),
-	Ffname:    __ccgo_ts + 219658,
+	Ffname:    __ccgo_ts + 219566,
 	Fkwtuple:  uintptr(unsafe.Pointer(&X_PyRuntime)) + 13248 + 76576,
 }
 
@@ -3125,7 +3125,7 @@ func __elementtree_Element_set(tls *libc.TLS, self uintptr, args uintptr, nargs 
 	var key, return_value, value uintptr
 	_, _, _ = key, return_value, value
 	return_value = libc.UintptrFromInt32(0)
-	if !(libc.Bool(!false) && int64(libc.Int32FromInt32(2)) <= nargs && nargs <= int64(libc.Int32FromInt32(2)) || X_PyArg_CheckPositional(tls, __ccgo_ts+57281, nargs, int64(libc.Int32FromInt32(2)), int64(libc.Int32FromInt32(2))) != 0) {
+	if !(libc.Bool(!false) && int64(libc.Int32FromInt32(2)) <= nargs && nargs <= int64(libc.Int32FromInt32(2)) || X_PyArg_CheckPositional(tls, __ccgo_ts+57258, nargs, int64(libc.Int32FromInt32(2)), int64(libc.Int32FromInt32(2))) != 0) {
 		goto exit
 	}
 	key = **(**uintptr)(__ccgo_up(args))
@@ -3273,17 +3273,17 @@ var __kwtuple157 = struct {
 }
 
 var __keywords183 = [6]uintptr{
-	0: __ccgo_ts + 219670,
-	1: __ccgo_ts + 219686,
-	2: __ccgo_ts + 219702,
-	3: __ccgo_ts + 219713,
-	4: __ccgo_ts + 219729,
+	0: __ccgo_ts + 219578,
+	1: __ccgo_ts + 219594,
+	2: __ccgo_ts + 219610,
+	3: __ccgo_ts + 219621,
+	4: __ccgo_ts + 219637,
 	5: libc.UintptrFromInt32(0),
 }
 
 var __parser183 = T_PyArg_Parser{
 	Fkeywords: uintptr(unsafe.Pointer(&__keywords183)),
-	Ffname:    __ccgo_ts + 219740,
+	Ffname:    __ccgo_ts + 219648,
 	Fkwtuple:  uintptr(unsafe.Pointer(&__kwtuple157)) + 16,
 }
 
@@ -3291,7 +3291,7 @@ func __elementtree__set_factories(tls *libc.TLS, module uintptr, args uintptr, n
 	var comment_factory, pi_factory, return_value uintptr
 	_, _, _ = comment_factory, pi_factory, return_value
 	return_value = libc.UintptrFromInt32(0)
-	if !(libc.Bool(!false) && int64(libc.Int32FromInt32(2)) <= nargs && nargs <= int64(libc.Int32FromInt32(2)) || X_PyArg_CheckPositional(tls, __ccgo_ts+219752, nargs, int64(libc.Int32FromInt32(2)), int64(libc.Int32FromInt32(2))) != 0) {
+	if !(libc.Bool(!false) && int64(libc.Int32FromInt32(2)) <= nargs && nargs <= int64(libc.Int32FromInt32(2)) || X_PyArg_CheckPositional(tls, __ccgo_ts+219660, nargs, int64(libc.Int32FromInt32(2)), int64(libc.Int32FromInt32(2))) != 0) {
 		goto exit
 	}
 	comment_factory = **(**uintptr)(__ccgo_up(args))
@@ -3473,7 +3473,7 @@ _2:
 				goto exit
 			}
 		} else {
-			X_PyArg_BadArgument(tls, __ccgo_ts+219767, __ccgo_ts+15087, __ccgo_ts+48940, **(**uintptr)(__ccgo_up(fastargs + 1*8)))
+			X_PyArg_BadArgument(tls, __ccgo_ts+219675, __ccgo_ts+15087, __ccgo_ts+48940, **(**uintptr)(__ccgo_up(fastargs + 1*8)))
 			goto exit
 		}
 	}
@@ -3523,7 +3523,7 @@ var __keywords184 = [3]uintptr{
 
 var __parser184 = T_PyArg_Parser{
 	Fkeywords: uintptr(unsafe.Pointer(&__keywords184)),
-	Ffname:    __ccgo_ts + 219767,
+	Ffname:    __ccgo_ts + 219675,
 	Fkwtuple:  uintptr(unsafe.Pointer(&__kwtuple158)) + 16,
 }
 
@@ -3566,7 +3566,7 @@ func __elementtree_XMLParser__setevents(tls *libc.TLS, self uintptr, args uintpt
 	_, _, _ = events_queue, events_to_report, return_value
 	return_value = libc.UintptrFromInt32(0)
 	events_to_report = uintptr(unsafe.Pointer(&X_Py_NoneStruct))
-	if !(libc.Bool(!false) && int64(libc.Int32FromInt32(1)) <= nargs && nargs <= int64(libc.Int32FromInt32(2)) || X_PyArg_CheckPositional(tls, __ccgo_ts+219777, nargs, int64(libc.Int32FromInt32(1)), int64(libc.Int32FromInt32(2))) != 0) {
+	if !(libc.Bool(!false) && int64(libc.Int32FromInt32(1)) <= nargs && nargs <= int64(libc.Int32FromInt32(2)) || X_PyArg_CheckPositional(tls, __ccgo_ts+219685, nargs, int64(libc.Int32FromInt32(1)), int64(libc.Int32FromInt32(2))) != 0) {
 		goto exit
 	}
 	events_queue = **(**uintptr)(__ccgo_up(args))
@@ -3597,7 +3597,7 @@ var _element_methods = [22]TPyMethodDef{
 		Fml_doc:   uintptr(unsafe.Pointer(&__elementtree_Element_get__doc__)),
 	},
 	2: {
-		Fml_name:  __ccgo_ts + 57281,
+		Fml_name:  __ccgo_ts + 57258,
 		Fml_flags: int32(MMETH_FASTCALL),
 		Fml_doc:   uintptr(unsafe.Pointer(&__elementtree_Element_set__doc__)),
 	},
@@ -3607,12 +3607,12 @@ var _element_methods = [22]TPyMethodDef{
 		Fml_doc:   uintptr(unsafe.Pointer(&__elementtree_Element_find__doc__)),
 	},
 	4: {
-		Fml_name:  __ccgo_ts + 219602,
+		Fml_name:  __ccgo_ts + 219510,
 		Fml_flags: libc.Int32FromInt32(MMETH_METHOD) | libc.Int32FromInt32(MMETH_FASTCALL) | libc.Int32FromInt32(MMETH_KEYWORDS),
 		Fml_doc:   uintptr(unsafe.Pointer(&__elementtree_Element_findtext__doc__)),
 	},
 	5: {
-		Fml_name:  __ccgo_ts + 219611,
+		Fml_name:  __ccgo_ts + 219519,
 		Fml_flags: libc.Int32FromInt32(MMETH_METHOD) | libc.Int32FromInt32(MMETH_FASTCALL) | libc.Int32FromInt32(MMETH_KEYWORDS),
 		Fml_doc:   uintptr(unsafe.Pointer(&__elementtree_Element_findall__doc__)),
 	},
@@ -3642,12 +3642,12 @@ var _element_methods = [22]TPyMethodDef{
 		Fml_doc:   uintptr(unsafe.Pointer(&__elementtree_Element_iter__doc__)),
 	},
 	11: {
-		Fml_name:  __ccgo_ts + 219788,
+		Fml_name:  __ccgo_ts + 219696,
 		Fml_flags: libc.Int32FromInt32(MMETH_METHOD) | libc.Int32FromInt32(MMETH_FASTCALL) | libc.Int32FromInt32(MMETH_KEYWORDS),
 		Fml_doc:   uintptr(unsafe.Pointer(&__elementtree_Element_itertext__doc__)),
 	},
 	12: {
-		Fml_name:  __ccgo_ts + 219619,
+		Fml_name:  __ccgo_ts + 219527,
 		Fml_flags: libc.Int32FromInt32(MMETH_METHOD) | libc.Int32FromInt32(MMETH_FASTCALL) | libc.Int32FromInt32(MMETH_KEYWORDS),
 		Fml_doc:   uintptr(unsafe.Pointer(&__elementtree_Element_iterfind__doc__)),
 	},
@@ -3662,7 +3662,7 @@ var _element_methods = [22]TPyMethodDef{
 		Fml_doc:   uintptr(unsafe.Pointer(&__elementtree_Element_keys__doc__)),
 	},
 	15: {
-		Fml_name:  __ccgo_ts + 219658,
+		Fml_name:  __ccgo_ts + 219566,
 		Fml_flags: libc.Int32FromInt32(MMETH_METHOD) | libc.Int32FromInt32(MMETH_FASTCALL) | libc.Int32FromInt32(MMETH_KEYWORDS),
 		Fml_doc:   uintptr(unsafe.Pointer(&__elementtree_Element_makeelement__doc__)),
 	},
@@ -3732,19 +3732,19 @@ var _element_members = [2]TPyMemberDef{
 var _element_getsetlist = [5]TPyGetSetDef{
 	0: {
 		Fname: __ccgo_ts + 86166,
-		Fdoc:  __ccgo_ts + 219797,
+		Fdoc:  __ccgo_ts + 219705,
 	},
 	1: {
 		Fname: __ccgo_ts + 30420,
-		Fdoc:  __ccgo_ts + 219860,
+		Fdoc:  __ccgo_ts + 219768,
 	},
 	2: {
-		Fname: __ccgo_ts + 218415,
-		Fdoc:  __ccgo_ts + 219915,
+		Fname: __ccgo_ts + 218323,
+		Fdoc:  __ccgo_ts + 219823,
 	},
 	3: {
-		Fname: __ccgo_ts + 218237,
-		Fdoc:  __ccgo_ts + 219968,
+		Fname: __ccgo_ts + 218145,
+		Fdoc:  __ccgo_ts + 219876,
 	},
 	4: {},
 }
@@ -3842,7 +3842,7 @@ func init() {
 }
 
 var _element_spec = TPyType_Spec{
-	Fname:      __ccgo_ts + 220017,
+	Fname:      __ccgo_ts + 219925,
 	Fbasicsize: int32(56),
 	Fflags:     uint32(uint32(libc.Int32FromInt32(MPy_TPFLAGS_HAVE_STACKLESS_EXTENSION)|libc.Int32FromInt32(0)) | libc.Uint32FromUint32(1)<<libc.Int32FromInt32(10) | libc.Uint32FromUint32(1)<<libc.Int32FromInt32(14) | libc.Uint32FromUint32(1)<<libc.Int32FromInt32(8)),
 	Fslots:     uintptr(unsafe.Pointer(&_element_slots)),
@@ -3865,7 +3865,7 @@ var _treebuilder_methods = [7]TPyMethodDef{
 		Fml_doc:   uintptr(unsafe.Pointer(&__elementtree_TreeBuilder_end__doc__)),
 	},
 	3: {
-		Fml_name:  __ccgo_ts + 219309,
+		Fml_name:  __ccgo_ts + 219217,
 		Fml_flags: int32(MMETH_O),
 		Fml_doc:   uintptr(unsafe.Pointer(&__elementtree_TreeBuilder_comment__doc__)),
 	},
@@ -3929,7 +3929,7 @@ func init() {
 }
 
 var _treebuilder_spec = TPyType_Spec{
-	Fname:      __ccgo_ts + 220047,
+	Fname:      __ccgo_ts + 219955,
 	Fbasicsize: int32(168),
 	Fflags:     uint32(uint32(libc.Int32FromInt32(MPy_TPFLAGS_HAVE_STACKLESS_EXTENSION)|libc.Int32FromInt32(0)) | libc.Uint32FromUint32(1)<<libc.Int32FromInt32(10) | libc.Uint32FromUint32(1)<<libc.Int32FromInt32(14) | libc.Uint32FromUint32(1)<<libc.Int32FromInt32(8)),
 	Fslots:     uintptr(unsafe.Pointer(&_treebuilder_slots)),
@@ -3937,7 +3937,7 @@ var _treebuilder_spec = TPyType_Spec{
 
 var _xmlparser_methods = [6]TPyMethodDef{
 	0: {
-		Fml_name:  __ccgo_ts + 220081,
+		Fml_name:  __ccgo_ts + 219989,
 		Fml_flags: int32(MMETH_O),
 		Fml_doc:   uintptr(unsafe.Pointer(&__elementtree_XMLParser_feed__doc__)),
 	},
@@ -3952,12 +3952,12 @@ var _xmlparser_methods = [6]TPyMethodDef{
 		Fml_doc:   uintptr(unsafe.Pointer(&__elementtree_XMLParser_flush__doc__)),
 	},
 	3: {
-		Fml_name:  __ccgo_ts + 220086,
+		Fml_name:  __ccgo_ts + 219994,
 		Fml_flags: int32(MMETH_O),
 		Fml_doc:   uintptr(unsafe.Pointer(&__elementtree_XMLParser__parse_whole__doc__)),
 	},
 	4: {
-		Fml_name:  __ccgo_ts + 219777,
+		Fml_name:  __ccgo_ts + 219685,
 		Fml_flags: int32(MMETH_FASTCALL),
 		Fml_doc:   uintptr(unsafe.Pointer(&__elementtree_XMLParser__setevents__doc__)),
 	},
@@ -4018,7 +4018,7 @@ func init() {
 }
 
 var _xmlparser_spec = TPyType_Spec{
-	Fname:      __ccgo_ts + 220099,
+	Fname:      __ccgo_ts + 220007,
 	Fbasicsize: int32(136),
 	Fflags:     uint32(uint32(libc.Int32FromInt32(MPy_TPFLAGS_HAVE_STACKLESS_EXTENSION)|libc.Int32FromInt32(0)) | libc.Uint32FromUint32(1)<<libc.Int32FromInt32(10) | libc.Uint32FromUint32(1)<<libc.Int32FromInt32(14) | libc.Uint32FromUint32(1)<<libc.Int32FromInt32(8)),
 	Fslots:     uintptr(unsafe.Pointer(&_xmlparser_slots)),
@@ -4026,11 +4026,11 @@ var _xmlparser_spec = TPyType_Spec{
 
 var __functions = [3]TPyMethodDef{
 	0: {
-		Fml_name:  __ccgo_ts + 220131,
+		Fml_name:  __ccgo_ts + 220039,
 		Fml_flags: libc.Int32FromInt32(MMETH_VARARGS) | libc.Int32FromInt32(MMETH_KEYWORDS),
 	},
 	1: {
-		Fml_name:  __ccgo_ts + 219752,
+		Fml_name:  __ccgo_ts + 219660,
 		Fml_flags: int32(MMETH_FASTCALL),
 		Fml_doc:   uintptr(unsafe.Pointer(&__elementtree__set_factories__doc__)),
 	},
@@ -4102,30 +4102,30 @@ _8:
 	goto _7
 _7:
 	;
-	(*Telementtreestate)(unsafe.Pointer(st)).Fdeepcopy_obj = XPyImport_ImportModuleAttrString(tls, __ccgo_ts+17166, __ccgo_ts+220142)
+	(*Telementtreestate)(unsafe.Pointer(st)).Fdeepcopy_obj = XPyImport_ImportModuleAttrString(tls, __ccgo_ts+17166, __ccgo_ts+220050)
 	if (*Telementtreestate)(unsafe.Pointer(st)).Fdeepcopy_obj == libc.UintptrFromInt32(0) {
 		goto error
 	}
-	v9 = XPyImport_ImportModule(tls, __ccgo_ts+220151)
+	v9 = XPyImport_ImportModule(tls, __ccgo_ts+220059)
 	(*Telementtreestate)(unsafe.Pointer(st)).Felementpath_obj = v9
 	if !(v9 != 0) {
 		goto error
 	}
 
-	v9 = XPyImport_ImportModuleAttrString(tls, __ccgo_ts+166206, __ccgo_ts+217780)
+	v9 = XPyImport_ImportModuleAttrString(tls, __ccgo_ts+166206, __ccgo_ts+217688)
 	(*Telementtreestate)(unsafe.Pointer(st)).Fexpat_capsule = v9
 	if !(v9 != 0) {
 		goto error
 	}
-	v9 = XPyCapsule_GetPointer(tls, (*Telementtreestate)(unsafe.Pointer(st)).Fexpat_capsule, __ccgo_ts+217497)
+	v9 = XPyCapsule_GetPointer(tls, (*Telementtreestate)(unsafe.Pointer(st)).Fexpat_capsule, __ccgo_ts+217405)
 	(*Telementtreestate)(unsafe.Pointer(st)).Fexpat_capi = v9
 	if !(v9 != 0) {
 		goto error
 	}
 	if (*Telementtreestate)(unsafe.Pointer(st)).Fexpat_capi != 0 {
 
-		if libc.Xstrcmp(tls, (*TPyExpat_CAPI)(unsafe.Pointer((*Telementtreestate)(unsafe.Pointer(st)).Fexpat_capi)).Fmagic, __ccgo_ts+217757) != 0 || uint64((*TPyExpat_CAPI)(unsafe.Pointer((*Telementtreestate)(unsafe.Pointer(st)).Fexpat_capi)).Fsize) < uint64(224) || (*TPyExpat_CAPI)(unsafe.Pointer((*Telementtreestate)(unsafe.Pointer(st)).Fexpat_capi)).FMAJOR_VERSION != int32(MXML_MAJOR_VERSION) || (*TPyExpat_CAPI)(unsafe.Pointer((*Telementtreestate)(unsafe.Pointer(st)).Fexpat_capi)).FMINOR_VERSION != int32(MXML_MINOR_VERSION) || (*TPyExpat_CAPI)(unsafe.Pointer((*Telementtreestate)(unsafe.Pointer(st)).Fexpat_capi)).FMICRO_VERSION != int32(MXML_MICRO_VERSION) {
-			XPyErr_SetString(tls, XPyExc_ImportError, __ccgo_ts+220173)
+		if libc.Xstrcmp(tls, (*TPyExpat_CAPI)(unsafe.Pointer((*Telementtreestate)(unsafe.Pointer(st)).Fexpat_capi)).Fmagic, __ccgo_ts+217665) != 0 || uint64((*TPyExpat_CAPI)(unsafe.Pointer((*Telementtreestate)(unsafe.Pointer(st)).Fexpat_capi)).Fsize) < uint64(224) || (*TPyExpat_CAPI)(unsafe.Pointer((*Telementtreestate)(unsafe.Pointer(st)).Fexpat_capi)).FMAJOR_VERSION != int32(MXML_MAJOR_VERSION) || (*TPyExpat_CAPI)(unsafe.Pointer((*Telementtreestate)(unsafe.Pointer(st)).Fexpat_capi)).FMINOR_VERSION != int32(MXML_MINOR_VERSION) || (*TPyExpat_CAPI)(unsafe.Pointer((*Telementtreestate)(unsafe.Pointer(st)).Fexpat_capi)).FMICRO_VERSION != int32(MXML_MICRO_VERSION) {
+			XPyErr_SetString(tls, XPyExc_ImportError, __ccgo_ts+220081)
 			goto error
 		}
 	} else {
@@ -4139,19 +4139,19 @@ _7:
 	if (*Telementtreestate)(unsafe.Pointer(st)).Fstr_find == libc.UintptrFromInt32(0) {
 		goto error
 	}
-	(*Telementtreestate)(unsafe.Pointer(st)).Fstr_findall = XPyUnicode_InternFromString(tls, __ccgo_ts+219611)
+	(*Telementtreestate)(unsafe.Pointer(st)).Fstr_findall = XPyUnicode_InternFromString(tls, __ccgo_ts+219519)
 	if (*Telementtreestate)(unsafe.Pointer(st)).Fstr_findall == libc.UintptrFromInt32(0) {
 		goto error
 	}
-	(*Telementtreestate)(unsafe.Pointer(st)).Fstr_findtext = XPyUnicode_InternFromString(tls, __ccgo_ts+219602)
+	(*Telementtreestate)(unsafe.Pointer(st)).Fstr_findtext = XPyUnicode_InternFromString(tls, __ccgo_ts+219510)
 	if (*Telementtreestate)(unsafe.Pointer(st)).Fstr_findtext == libc.UintptrFromInt32(0) {
 		goto error
 	}
-	(*Telementtreestate)(unsafe.Pointer(st)).Fstr_iterfind = XPyUnicode_InternFromString(tls, __ccgo_ts+219619)
+	(*Telementtreestate)(unsafe.Pointer(st)).Fstr_iterfind = XPyUnicode_InternFromString(tls, __ccgo_ts+219527)
 	if (*Telementtreestate)(unsafe.Pointer(st)).Fstr_iterfind == libc.UintptrFromInt32(0) {
 		goto error
 	}
-	(*Telementtreestate)(unsafe.Pointer(st)).Fstr_tail = XPyUnicode_InternFromString(tls, __ccgo_ts+218415)
+	(*Telementtreestate)(unsafe.Pointer(st)).Fstr_tail = XPyUnicode_InternFromString(tls, __ccgo_ts+218323)
 	if (*Telementtreestate)(unsafe.Pointer(st)).Fstr_tail == libc.UintptrFromInt32(0) {
 		goto error
 	}
@@ -4159,12 +4159,12 @@ _7:
 	if (*Telementtreestate)(unsafe.Pointer(st)).Fstr_text == libc.UintptrFromInt32(0) {
 		goto error
 	}
-	(*Telementtreestate)(unsafe.Pointer(st)).Fstr_doctype = XPyUnicode_InternFromString(tls, __ccgo_ts+219317)
+	(*Telementtreestate)(unsafe.Pointer(st)).Fstr_doctype = XPyUnicode_InternFromString(tls, __ccgo_ts+219225)
 	if (*Telementtreestate)(unsafe.Pointer(st)).Fstr_doctype == libc.UintptrFromInt32(0) {
 		goto error
 	}
-	(*Telementtreestate)(unsafe.Pointer(st)).Fparseerror_obj = XPyErr_NewException(tls, __ccgo_ts+220205, XPyExc_SyntaxError, libc.UintptrFromInt32(0))
-	if XPyModule_AddObjectRef(tls, m, __ccgo_ts+220238, (*Telementtreestate)(unsafe.Pointer(st)).Fparseerror_obj) < 0 {
+	(*Telementtreestate)(unsafe.Pointer(st)).Fparseerror_obj = XPyErr_NewException(tls, __ccgo_ts+220113, XPyExc_SyntaxError, libc.UintptrFromInt32(0))
+	if XPyModule_AddObjectRef(tls, m, __ccgo_ts+220146, (*Telementtreestate)(unsafe.Pointer(st)).Fparseerror_obj) < 0 {
 		goto error
 	}
 	types = [3]uintptr{
@@ -4476,7 +4476,7 @@ type Tcjkcodecs_module_state = struct {
 }
 
 func _getmultibytecodec(tls *libc.TLS) (r uintptr) {
-	return XPyImport_ImportModuleAttrString(tls, __ccgo_ts+164956, __ccgo_ts+220249)
+	return XPyImport_ImportModuleAttrString(tls, __ccgo_ts+164956, __ccgo_ts+220157)
 }
 
 func _destroy_codec_capsule(tls *libc.TLS, capsule uintptr) {
@@ -4484,7 +4484,7 @@ func _destroy_codec_capsule(tls *libc.TLS, capsule uintptr) {
 	var v2 int32
 	var v5 Tuint32_t
 	_, _, _, _, _, _ = data, ptr, v1, v2, v5, v6
-	ptr = XPyCapsule_GetPointer(tls, capsule, __ccgo_ts+220264)
+	ptr = XPyCapsule_GetPointer(tls, capsule, __ccgo_ts+220172)
 	data = ptr
 	v1 = (*Tcodec_capsule)(unsafe.Pointer(data)).Fcjk_module
 	v2 = libc.BoolInt32(int32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
@@ -4558,7 +4558,7 @@ func __getcodec(tls *libc.TLS, self uintptr, codec uintptr) (r uintptr) {
 		;
 		return libc.UintptrFromInt32(0)
 	}
-	codecobj = XPyCapsule_New(tls, data, __ccgo_ts+220264, __ccgo_fp(_destroy_codec_capsule))
+	codecobj = XPyCapsule_New(tls, data, __ccgo_ts+220172, __ccgo_fp(_destroy_codec_capsule))
 	if codecobj == libc.UintptrFromInt32(0) {
 		XPyMem_Free(tls, data)
 		v1 = cofunc
@@ -4625,7 +4625,7 @@ _2:
 	goto _4
 _4:
 	if !(v3 != 0) {
-		XPyErr_SetString(tls, XPyExc_TypeError, __ccgo_ts+220285)
+		XPyErr_SetString(tls, XPyExc_TypeError, __ccgo_ts+220193)
 		return libc.UintptrFromInt32(0)
 	}
 	enc = XPyUnicode_AsUTF8(tls, encoding)
@@ -4651,7 +4651,7 @@ _6:
 		;
 		i = i + 1
 	}
-	XPyErr_SetString(tls, XPyExc_LookupError, __ccgo_ts+220317)
+	XPyErr_SetString(tls, XPyExc_LookupError, __ccgo_ts+220225)
 	return libc.UintptrFromInt32(0)
 }
 
@@ -4681,7 +4681,7 @@ _2:
 		h = (*Tcjkcodecs_module_state)(unsafe.Pointer(st)).Fmapping_list + uintptr(i)*24
 		**(**[256]int8)(__ccgo_up(bp)) = [256]int8{'_', '_', 'm', 'a', 'p', '_'}
 		libc.Xstrcpy(tls, bp+uintptr(7)-uintptr(1), (*Tdbcs_map)(unsafe.Pointer(h)).Fcharset)
-		capsule = XPyCapsule_New(tls, h, __ccgo_ts+220345, libc.UintptrFromInt32(0))
+		capsule = XPyCapsule_New(tls, h, __ccgo_ts+220253, libc.UintptrFromInt32(0))
 		if XPyModule_Add(tls, module, bp, capsule) < 0 {
 			return -int32(1)
 		}
@@ -4711,7 +4711,7 @@ _2:
 
 var __cjk_methods = [2]TPyMethodDef{
 	0: {
-		Fml_name:  __ccgo_ts + 220364,
+		Fml_name:  __ccgo_ts + 220272,
 		Fml_flags: int32(MMETH_O),
 		Fml_doc:   __ccgo_ts + 2,
 	},
@@ -9107,25 +9107,25 @@ func _add_mappings(tls *libc.TLS, st uintptr) (r int32) {
 	v1 = idx
 	idx = idx + 1
 	**(**Tdbcs_map)(__ccgo_up((*Tcjkcodecs_module_state)(unsafe.Pointer(st)).Fmapping_list + uintptr(v1)*24)) = Tdbcs_map{
-		Fcharset: __ccgo_ts + 220373,
+		Fcharset: __ccgo_ts + 220281,
 		Fdecmap:  uintptr(unsafe.Pointer(&_gb2312_decmap)),
 	}
 	v1 = idx
 	idx = idx + 1
 	**(**Tdbcs_map)(__ccgo_up((*Tcjkcodecs_module_state)(unsafe.Pointer(st)).Fmapping_list + uintptr(v1)*24)) = Tdbcs_map{
-		Fcharset: __ccgo_ts + 220380,
+		Fcharset: __ccgo_ts + 220288,
 		Fdecmap:  uintptr(unsafe.Pointer(&_gbkext_decmap)),
 	}
 	v1 = idx
 	idx = idx + 1
 	**(**Tdbcs_map)(__ccgo_up((*Tcjkcodecs_module_state)(unsafe.Pointer(st)).Fmapping_list + uintptr(v1)*24)) = Tdbcs_map{
-		Fcharset: __ccgo_ts + 220387,
+		Fcharset: __ccgo_ts + 220295,
 		Fencmap:  uintptr(unsafe.Pointer(&_gbcommon_encmap)),
 	}
 	v1 = idx
 	idx = idx + 1
 	**(**Tdbcs_map)(__ccgo_up((*Tcjkcodecs_module_state)(unsafe.Pointer(st)).Fmapping_list + uintptr(v1)*24)) = Tdbcs_map{
-		Fcharset: __ccgo_ts + 220396,
+		Fcharset: __ccgo_ts + 220304,
 		Fencmap:  uintptr(unsafe.Pointer(&_gb18030ext_encmap)),
 		Fdecmap:  uintptr(unsafe.Pointer(&_gb18030ext_decmap)),
 	}
@@ -9145,28 +9145,28 @@ func _add_codecs(tls *libc.TLS, st uintptr) (r int32) {
 	v1 = idx
 	idx = idx + 1
 	**(**TMultibyteCodec)(__ccgo_up((*Tcjkcodecs_module_state)(unsafe.Pointer(st)).Fcodec_list + uintptr(v1)*80)) = TMultibyteCodec{
-		Fencoding: __ccgo_ts + 220373,
+		Fencoding: __ccgo_ts + 220281,
 		Fencode:   __ccgo_fp(_gb2312_encode),
 		Fdecode:   __ccgo_fp(_gb2312_decode),
 	}
 	v1 = idx
 	idx = idx + 1
 	**(**TMultibyteCodec)(__ccgo_up((*Tcjkcodecs_module_state)(unsafe.Pointer(st)).Fcodec_list + uintptr(v1)*80)) = TMultibyteCodec{
-		Fencoding: __ccgo_ts + 220407,
+		Fencoding: __ccgo_ts + 220315,
 		Fencode:   __ccgo_fp(_gbk_encode),
 		Fdecode:   __ccgo_fp(_gbk_decode),
 	}
 	v1 = idx
 	idx = idx + 1
 	**(**TMultibyteCodec)(__ccgo_up((*Tcjkcodecs_module_state)(unsafe.Pointer(st)).Fcodec_list + uintptr(v1)*80)) = TMultibyteCodec{
-		Fencoding: __ccgo_ts + 220411,
+		Fencoding: __ccgo_ts + 220319,
 		Fencode:   __ccgo_fp(_gb18030_encode),
 		Fdecode:   __ccgo_fp(_gb18030_decode),
 	}
 	v1 = idx
 	idx = idx + 1
 	**(**TMultibyteCodec)(__ccgo_up((*Tcjkcodecs_module_state)(unsafe.Pointer(st)).Fcodec_list + uintptr(v1)*80)) = TMultibyteCodec{
-		Fencoding: __ccgo_ts + 220419,
+		Fencoding: __ccgo_ts + 220327,
 		Fencode:   __ccgo_fp(_hz_encode),
 		Fencinit:  __ccgo_fp(_hz_encode_init),
 		Fencreset: __ccgo_fp(_hz_encode_reset),
@@ -9235,7 +9235,7 @@ type Tcjkcodecs_module_state1 = struct {
 }
 
 func _getmultibytecodec1(tls *libc.TLS) (r uintptr) {
-	return XPyImport_ImportModuleAttrString(tls, __ccgo_ts+164956, __ccgo_ts+220249)
+	return XPyImport_ImportModuleAttrString(tls, __ccgo_ts+164956, __ccgo_ts+220157)
 }
 
 func _destroy_codec_capsule1(tls *libc.TLS, capsule uintptr) {
@@ -9243,7 +9243,7 @@ func _destroy_codec_capsule1(tls *libc.TLS, capsule uintptr) {
 	var v2 int32
 	var v5 Tuint32_t
 	_, _, _, _, _, _ = data, ptr, v1, v2, v5, v6
-	ptr = XPyCapsule_GetPointer(tls, capsule, __ccgo_ts+220264)
+	ptr = XPyCapsule_GetPointer(tls, capsule, __ccgo_ts+220172)
 	data = ptr
 	v1 = (*Tcodec_capsule)(unsafe.Pointer(data)).Fcjk_module
 	v2 = libc.BoolInt32(int32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
@@ -9317,7 +9317,7 @@ func __getcodec1(tls *libc.TLS, self uintptr, codec uintptr) (r uintptr) {
 		;
 		return libc.UintptrFromInt32(0)
 	}
-	codecobj = XPyCapsule_New(tls, data, __ccgo_ts+220264, __ccgo_fp(_destroy_codec_capsule1))
+	codecobj = XPyCapsule_New(tls, data, __ccgo_ts+220172, __ccgo_fp(_destroy_codec_capsule1))
 	if codecobj == libc.UintptrFromInt32(0) {
 		XPyMem_Free(tls, data)
 		v1 = cofunc
@@ -9384,7 +9384,7 @@ _2:
 	goto _4
 _4:
 	if !(v3 != 0) {
-		XPyErr_SetString(tls, XPyExc_TypeError, __ccgo_ts+220285)
+		XPyErr_SetString(tls, XPyExc_TypeError, __ccgo_ts+220193)
 		return libc.UintptrFromInt32(0)
 	}
 	enc = XPyUnicode_AsUTF8(tls, encoding)
@@ -9410,7 +9410,7 @@ _6:
 		;
 		i = i + 1
 	}
-	XPyErr_SetString(tls, XPyExc_LookupError, __ccgo_ts+220317)
+	XPyErr_SetString(tls, XPyExc_LookupError, __ccgo_ts+220225)
 	return libc.UintptrFromInt32(0)
 }
 
@@ -9440,7 +9440,7 @@ _2:
 		h = (*Tcjkcodecs_module_state1)(unsafe.Pointer(st)).Fmapping_list + uintptr(i)*24
 		**(**[256]int8)(__ccgo_up(bp)) = [256]int8{'_', '_', 'm', 'a', 'p', '_'}
 		libc.Xstrcpy(tls, bp+uintptr(7)-uintptr(1), (*Tdbcs_map)(unsafe.Pointer(h)).Fcharset)
-		capsule = XPyCapsule_New(tls, h, __ccgo_ts+220345, libc.UintptrFromInt32(0))
+		capsule = XPyCapsule_New(tls, h, __ccgo_ts+220253, libc.UintptrFromInt32(0))
 		if XPyModule_Add(tls, module, bp, capsule) < 0 {
 			return -int32(1)
 		}
@@ -9465,11 +9465,11 @@ func _importmap(tls *libc.TLS, modname uintptr, symbol uintptr, encmap uintptr, 
 	if o == libc.UintptrFromInt32(0) {
 		goto errorexit
 	} else {
-		if !(XPyCapsule_IsValid(tls, o, __ccgo_ts+220345) != 0) {
-			XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+220422)
+		if !(XPyCapsule_IsValid(tls, o, __ccgo_ts+220253) != 0) {
+			XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+220330)
 			goto errorexit
 		} else {
-			map1 = XPyCapsule_GetPointer(tls, o, __ccgo_ts+220345)
+			map1 = XPyCapsule_GetPointer(tls, o, __ccgo_ts+220253)
 			if encmap != libc.UintptrFromInt32(0) {
 				**(**uintptr)(__ccgo_up(encmap)) = (*Tdbcs_map)(unsafe.Pointer(map1)).Fencmap
 			}
@@ -9547,7 +9547,7 @@ _2:
 
 var __cjk_methods1 = [2]TPyMethodDef{
 	0: {
-		Fml_name:  __ccgo_ts + 220364,
+		Fml_name:  __ccgo_ts + 220272,
 		Fml_flags: int32(MMETH_O),
 		Fml_doc:   __ccgo_ts + 2,
 	},
@@ -11659,7 +11659,7 @@ func _big5hkscs_codec_init(tls *libc.TLS, codec uintptr) (r int32) {
 	var st uintptr
 	_ = st
 	st = (*TMultibyteCodec)(unsafe.Pointer(codec)).Fmodstate
-	if _importmap(tls, __ccgo_ts+164650, __ccgo_ts+220450, st+24, st+32) != 0 {
+	if _importmap(tls, __ccgo_ts+164650, __ccgo_ts+220358, st+24, st+32) != 0 {
 		return -int32(1)
 	}
 	return 0
@@ -12117,19 +12117,19 @@ func _add_mappings1(tls *libc.TLS, st uintptr) (r int32) {
 	v1 = idx
 	idx = idx + 1
 	**(**Tdbcs_map)(__ccgo_up((*Tcjkcodecs_module_state1)(unsafe.Pointer(st)).Fmapping_list + uintptr(v1)*24)) = Tdbcs_map{
-		Fcharset: __ccgo_ts + 220461,
+		Fcharset: __ccgo_ts + 220369,
 		Fdecmap:  uintptr(unsafe.Pointer(&_big5hkscs_decmap)),
 	}
 	v1 = idx
 	idx = idx + 1
 	**(**Tdbcs_map)(__ccgo_up((*Tcjkcodecs_module_state1)(unsafe.Pointer(st)).Fmapping_list + uintptr(v1)*24)) = Tdbcs_map{
-		Fcharset: __ccgo_ts + 220471,
+		Fcharset: __ccgo_ts + 220379,
 		Fencmap:  uintptr(unsafe.Pointer(&_big5hkscs_bmp_encmap)),
 	}
 	v1 = idx
 	idx = idx + 1
 	**(**Tdbcs_map)(__ccgo_up((*Tcjkcodecs_module_state1)(unsafe.Pointer(st)).Fmapping_list + uintptr(v1)*24)) = Tdbcs_map{
-		Fcharset: __ccgo_ts + 220485,
+		Fcharset: __ccgo_ts + 220393,
 		Fencmap:  uintptr(unsafe.Pointer(&_big5hkscs_nonbmp_encmap)),
 	}
 	return 0
@@ -12148,7 +12148,7 @@ func _add_codecs1(tls *libc.TLS, st uintptr) (r int32) {
 	v1 = idx
 	idx = idx + 1
 	**(**TMultibyteCodec)(__ccgo_up((*Tcjkcodecs_module_state1)(unsafe.Pointer(st)).Fcodec_list + uintptr(v1)*80)) = TMultibyteCodec{
-		Fencoding:  __ccgo_ts + 220461,
+		Fencoding:  __ccgo_ts + 220369,
 		Fcodecinit: __ccgo_fp(_big5hkscs_codec_init),
 		Fencode:    __ccgo_fp(_big5hkscs_encode),
 		Fdecode:    __ccgo_fp(_big5hkscs_decode),
@@ -12300,7 +12300,7 @@ type Tcjkcodecs_module_state2 = struct {
 }
 
 func _getmultibytecodec2(tls *libc.TLS) (r uintptr) {
-	return XPyImport_ImportModuleAttrString(tls, __ccgo_ts+164956, __ccgo_ts+220249)
+	return XPyImport_ImportModuleAttrString(tls, __ccgo_ts+164956, __ccgo_ts+220157)
 }
 
 func _destroy_codec_capsule2(tls *libc.TLS, capsule uintptr) {
@@ -12308,7 +12308,7 @@ func _destroy_codec_capsule2(tls *libc.TLS, capsule uintptr) {
 	var v2 int32
 	var v5 Tuint32_t
 	_, _, _, _, _, _ = data, ptr, v1, v2, v5, v6
-	ptr = XPyCapsule_GetPointer(tls, capsule, __ccgo_ts+220264)
+	ptr = XPyCapsule_GetPointer(tls, capsule, __ccgo_ts+220172)
 	data = ptr
 	v1 = (*Tcodec_capsule)(unsafe.Pointer(data)).Fcjk_module
 	v2 = libc.BoolInt32(int32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
@@ -12382,7 +12382,7 @@ func __getcodec2(tls *libc.TLS, self uintptr, codec uintptr) (r uintptr) {
 		;
 		return libc.UintptrFromInt32(0)
 	}
-	codecobj = XPyCapsule_New(tls, data, __ccgo_ts+220264, __ccgo_fp(_destroy_codec_capsule2))
+	codecobj = XPyCapsule_New(tls, data, __ccgo_ts+220172, __ccgo_fp(_destroy_codec_capsule2))
 	if codecobj == libc.UintptrFromInt32(0) {
 		XPyMem_Free(tls, data)
 		v1 = cofunc
@@ -12449,7 +12449,7 @@ _2:
 	goto _4
 _4:
 	if !(v3 != 0) {
-		XPyErr_SetString(tls, XPyExc_TypeError, __ccgo_ts+220285)
+		XPyErr_SetString(tls, XPyExc_TypeError, __ccgo_ts+220193)
 		return libc.UintptrFromInt32(0)
 	}
 	enc = XPyUnicode_AsUTF8(tls, encoding)
@@ -12475,7 +12475,7 @@ _6:
 		;
 		i = i + 1
 	}
-	XPyErr_SetString(tls, XPyExc_LookupError, __ccgo_ts+220317)
+	XPyErr_SetString(tls, XPyExc_LookupError, __ccgo_ts+220225)
 	return libc.UintptrFromInt32(0)
 }
 
@@ -12505,7 +12505,7 @@ _2:
 		h = (*Tcjkcodecs_module_state2)(unsafe.Pointer(st)).Fmapping_list + uintptr(i)*24
 		**(**[256]int8)(__ccgo_up(bp)) = [256]int8{'_', '_', 'm', 'a', 'p', '_'}
 		libc.Xstrcpy(tls, bp+uintptr(7)-uintptr(1), (*Tdbcs_map)(unsafe.Pointer(h)).Fcharset)
-		capsule = XPyCapsule_New(tls, h, __ccgo_ts+220345, libc.UintptrFromInt32(0))
+		capsule = XPyCapsule_New(tls, h, __ccgo_ts+220253, libc.UintptrFromInt32(0))
 		if XPyModule_Add(tls, module, bp, capsule) < 0 {
 			return -int32(1)
 		}
@@ -12567,11 +12567,11 @@ func _importmap1(tls *libc.TLS, modname uintptr, symbol uintptr, encmap uintptr,
 	if o == libc.UintptrFromInt32(0) {
 		goto errorexit
 	} else {
-		if !(XPyCapsule_IsValid(tls, o, __ccgo_ts+220345) != 0) {
-			XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+220422)
+		if !(XPyCapsule_IsValid(tls, o, __ccgo_ts+220253) != 0) {
+			XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+220330)
 			goto errorexit
 		} else {
-			map1 = XPyCapsule_GetPointer(tls, o, __ccgo_ts+220345)
+			map1 = XPyCapsule_GetPointer(tls, o, __ccgo_ts+220253)
 			if encmap != libc.UintptrFromInt32(0) {
 				**(**uintptr)(__ccgo_up(encmap)) = (*Tdbcs_map)(unsafe.Pointer(map1)).Fencmap
 			}
@@ -12649,7 +12649,7 @@ _2:
 
 var __cjk_methods2 = [2]TPyMethodDef{
 	0: {
-		Fml_name:  __ccgo_ts + 220364,
+		Fml_name:  __ccgo_ts + 220272,
 		Fml_flags: int32(MMETH_O),
 		Fml_doc:   __ccgo_ts + 2,
 	},
@@ -13397,7 +13397,7 @@ func _ksx1001_init(tls *libc.TLS, codec uintptr) (r int32) {
 	var st uintptr
 	_ = st
 	st = (*TMultibyteCodec)(unsafe.Pointer(codec)).Fmodstate
-	if _importmap1(tls, __ccgo_ts+164639, __ccgo_ts+220502, st+24, libc.UintptrFromInt32(0)) != 0 || _importmap1(tls, __ccgo_ts+164639, __ccgo_ts+220514, libc.UintptrFromInt32(0), st+32) != 0 {
+	if _importmap1(tls, __ccgo_ts+164639, __ccgo_ts+220410, st+24, libc.UintptrFromInt32(0)) != 0 || _importmap1(tls, __ccgo_ts+164639, __ccgo_ts+220422, libc.UintptrFromInt32(0), st+32) != 0 {
 		return -int32(1)
 	}
 	return 0
@@ -13441,7 +13441,7 @@ func _jisx0208_init(tls *libc.TLS, codec uintptr) (r int32) {
 	var st uintptr
 	_ = st
 	st = (*TMultibyteCodec)(unsafe.Pointer(codec)).Fmodstate
-	if _importmap1(tls, __ccgo_ts+164628, __ccgo_ts+220528, st+40, libc.UintptrFromInt32(0)) != 0 || _importmap1(tls, __ccgo_ts+164628, __ccgo_ts+220545, libc.UintptrFromInt32(0), st+48) != 0 {
+	if _importmap1(tls, __ccgo_ts+164628, __ccgo_ts+220436, st+40, libc.UintptrFromInt32(0)) != 0 || _importmap1(tls, __ccgo_ts+164628, __ccgo_ts+220453, libc.UintptrFromInt32(0), st+48) != 0 {
 		return -int32(1)
 	}
 	return 0
@@ -13493,7 +13493,7 @@ func _jisx0212_init(tls *libc.TLS, codec uintptr) (r int32) {
 	var st uintptr
 	_ = st
 	st = (*TMultibyteCodec)(unsafe.Pointer(codec)).Fmodstate
-	if _importmap1(tls, __ccgo_ts+164628, __ccgo_ts+220528, st+40, libc.UintptrFromInt32(0)) != 0 || _importmap1(tls, __ccgo_ts+164628, __ccgo_ts+220560, libc.UintptrFromInt32(0), st+56) != 0 {
+	if _importmap1(tls, __ccgo_ts+164628, __ccgo_ts+220436, st+40, libc.UintptrFromInt32(0)) != 0 || _importmap1(tls, __ccgo_ts+164628, __ccgo_ts+220468, libc.UintptrFromInt32(0), st+56) != 0 {
 		return -int32(1)
 	}
 	return 0
@@ -13537,7 +13537,7 @@ func _jisx0213_init(tls *libc.TLS, codec uintptr) (r int32) {
 	var st uintptr
 	_ = st
 	st = (*TMultibyteCodec)(unsafe.Pointer(codec)).Fmodstate
-	if _jisx0208_init(tls, codec) != 0 || _importmap1(tls, __ccgo_ts+164628, __ccgo_ts+220575, st+64, libc.UintptrFromInt32(0)) != 0 || _importmap1(tls, __ccgo_ts+164628, __ccgo_ts+220594, libc.UintptrFromInt32(0), st+72) != 0 || _importmap1(tls, __ccgo_ts+164628, __ccgo_ts+220615, libc.UintptrFromInt32(0), st+80) != 0 || _importmap1(tls, __ccgo_ts+164628, __ccgo_ts+220636, st+88, libc.UintptrFromInt32(0)) != 0 || _importmap1(tls, __ccgo_ts+164628, __ccgo_ts+220655, libc.UintptrFromInt32(0), st+96) != 0 || _importmap1(tls, __ccgo_ts+164628, __ccgo_ts+220676, libc.UintptrFromInt32(0), st+104) != 0 || _importmap1(tls, __ccgo_ts+164628, __ccgo_ts+220697, uintptr(unsafe.Pointer(&_jisx0213_pair_encmap)), uintptr(unsafe.Pointer(&_jisx0213_pair_decmap))) != 0 {
+	if _jisx0208_init(tls, codec) != 0 || _importmap1(tls, __ccgo_ts+164628, __ccgo_ts+220483, st+64, libc.UintptrFromInt32(0)) != 0 || _importmap1(tls, __ccgo_ts+164628, __ccgo_ts+220502, libc.UintptrFromInt32(0), st+72) != 0 || _importmap1(tls, __ccgo_ts+164628, __ccgo_ts+220523, libc.UintptrFromInt32(0), st+80) != 0 || _importmap1(tls, __ccgo_ts+164628, __ccgo_ts+220544, st+88, libc.UintptrFromInt32(0)) != 0 || _importmap1(tls, __ccgo_ts+164628, __ccgo_ts+220563, libc.UintptrFromInt32(0), st+96) != 0 || _importmap1(tls, __ccgo_ts+164628, __ccgo_ts+220584, libc.UintptrFromInt32(0), st+104) != 0 || _importmap1(tls, __ccgo_ts+164628, __ccgo_ts+220605, uintptr(unsafe.Pointer(&_jisx0213_pair_encmap)), uintptr(unsafe.Pointer(&_jisx0213_pair_decmap))) != 0 {
 		return -int32(1)
 	}
 	return 0
@@ -13934,7 +13934,7 @@ func _gb2312_init(tls *libc.TLS, codec uintptr) (r int32) {
 	var st uintptr
 	_ = st
 	st = (*TMultibyteCodec)(unsafe.Pointer(codec)).Fmodstate
-	if _importmap1(tls, __ccgo_ts+164590, __ccgo_ts+220717, st+112, libc.UintptrFromInt32(0)) != 0 || _importmap1(tls, __ccgo_ts+164590, __ccgo_ts+220732, libc.UintptrFromInt32(0), st+120) != 0 {
+	if _importmap1(tls, __ccgo_ts+164590, __ccgo_ts+220625, st+112, libc.UintptrFromInt32(0)) != 0 || _importmap1(tls, __ccgo_ts+164590, __ccgo_ts+220640, libc.UintptrFromInt32(0), st+120) != 0 {
 		return -int32(1)
 	}
 	return 0
@@ -14298,7 +14298,7 @@ func _add_codecs2(tls *libc.TLS, st uintptr) (r int32) {
 	v1 = idx
 	idx = idx + 1
 	**(**TMultibyteCodec)(__ccgo_up((*Tcjkcodecs_module_state2)(unsafe.Pointer(st)).Fcodec_list + uintptr(v1)*80)) = TMultibyteCodec{
-		Fencoding:  __ccgo_ts + 220745,
+		Fencoding:  __ccgo_ts + 220653,
 		Fconfig:    uintptr(unsafe.Pointer(&_iso2022_kr_config)),
 		Fcodecinit: __ccgo_fp(_iso2022_codec_init),
 		Fencode:    __ccgo_fp(_iso2022_encode),
@@ -14311,7 +14311,7 @@ func _add_codecs2(tls *libc.TLS, st uintptr) (r int32) {
 	v1 = idx
 	idx = idx + 1
 	**(**TMultibyteCodec)(__ccgo_up((*Tcjkcodecs_module_state2)(unsafe.Pointer(st)).Fcodec_list + uintptr(v1)*80)) = TMultibyteCodec{
-		Fencoding:  __ccgo_ts + 220756,
+		Fencoding:  __ccgo_ts + 220664,
 		Fconfig:    uintptr(unsafe.Pointer(&_iso2022_jp_config)),
 		Fcodecinit: __ccgo_fp(_iso2022_codec_init),
 		Fencode:    __ccgo_fp(_iso2022_encode),
@@ -14324,7 +14324,7 @@ func _add_codecs2(tls *libc.TLS, st uintptr) (r int32) {
 	v1 = idx
 	idx = idx + 1
 	**(**TMultibyteCodec)(__ccgo_up((*Tcjkcodecs_module_state2)(unsafe.Pointer(st)).Fcodec_list + uintptr(v1)*80)) = TMultibyteCodec{
-		Fencoding:  __ccgo_ts + 220767,
+		Fencoding:  __ccgo_ts + 220675,
 		Fconfig:    uintptr(unsafe.Pointer(&_iso2022_jp_1_config)),
 		Fcodecinit: __ccgo_fp(_iso2022_codec_init),
 		Fencode:    __ccgo_fp(_iso2022_encode),
@@ -14337,7 +14337,7 @@ func _add_codecs2(tls *libc.TLS, st uintptr) (r int32) {
 	v1 = idx
 	idx = idx + 1
 	**(**TMultibyteCodec)(__ccgo_up((*Tcjkcodecs_module_state2)(unsafe.Pointer(st)).Fcodec_list + uintptr(v1)*80)) = TMultibyteCodec{
-		Fencoding:  __ccgo_ts + 220780,
+		Fencoding:  __ccgo_ts + 220688,
 		Fconfig:    uintptr(unsafe.Pointer(&_iso2022_jp_2_config)),
 		Fcodecinit: __ccgo_fp(_iso2022_codec_init),
 		Fencode:    __ccgo_fp(_iso2022_encode),
@@ -14350,7 +14350,7 @@ func _add_codecs2(tls *libc.TLS, st uintptr) (r int32) {
 	v1 = idx
 	idx = idx + 1
 	**(**TMultibyteCodec)(__ccgo_up((*Tcjkcodecs_module_state2)(unsafe.Pointer(st)).Fcodec_list + uintptr(v1)*80)) = TMultibyteCodec{
-		Fencoding:  __ccgo_ts + 220793,
+		Fencoding:  __ccgo_ts + 220701,
 		Fconfig:    uintptr(unsafe.Pointer(&_iso2022_jp_2004_config)),
 		Fcodecinit: __ccgo_fp(_iso2022_codec_init),
 		Fencode:    __ccgo_fp(_iso2022_encode),
@@ -14363,7 +14363,7 @@ func _add_codecs2(tls *libc.TLS, st uintptr) (r int32) {
 	v1 = idx
 	idx = idx + 1
 	**(**TMultibyteCodec)(__ccgo_up((*Tcjkcodecs_module_state2)(unsafe.Pointer(st)).Fcodec_list + uintptr(v1)*80)) = TMultibyteCodec{
-		Fencoding:  __ccgo_ts + 220809,
+		Fencoding:  __ccgo_ts + 220717,
 		Fconfig:    uintptr(unsafe.Pointer(&_iso2022_jp_3_config)),
 		Fcodecinit: __ccgo_fp(_iso2022_codec_init),
 		Fencode:    __ccgo_fp(_iso2022_encode),
@@ -14376,7 +14376,7 @@ func _add_codecs2(tls *libc.TLS, st uintptr) (r int32) {
 	v1 = idx
 	idx = idx + 1
 	**(**TMultibyteCodec)(__ccgo_up((*Tcjkcodecs_module_state2)(unsafe.Pointer(st)).Fcodec_list + uintptr(v1)*80)) = TMultibyteCodec{
-		Fencoding:  __ccgo_ts + 220822,
+		Fencoding:  __ccgo_ts + 220730,
 		Fconfig:    uintptr(unsafe.Pointer(&_iso2022_jp_ext_config)),
 		Fcodecinit: __ccgo_fp(_iso2022_codec_init),
 		Fencode:    __ccgo_fp(_iso2022_encode),
@@ -14435,7 +14435,7 @@ const MEMULATE_JISX0213_2000_DECODE_INVALID1 = 2
 const MEMULATE_JISX0213_2000_ENCODE_INVALID1 = 1
 
 func _getmultibytecodec3(tls *libc.TLS) (r uintptr) {
-	return XPyImport_ImportModuleAttrString(tls, __ccgo_ts+164956, __ccgo_ts+220249)
+	return XPyImport_ImportModuleAttrString(tls, __ccgo_ts+164956, __ccgo_ts+220157)
 }
 
 func _destroy_codec_capsule3(tls *libc.TLS, capsule uintptr) {
@@ -14443,7 +14443,7 @@ func _destroy_codec_capsule3(tls *libc.TLS, capsule uintptr) {
 	var v2 int32
 	var v5 Tuint32_t
 	_, _, _, _, _, _ = data, ptr, v1, v2, v5, v6
-	ptr = XPyCapsule_GetPointer(tls, capsule, __ccgo_ts+220264)
+	ptr = XPyCapsule_GetPointer(tls, capsule, __ccgo_ts+220172)
 	data = ptr
 	v1 = (*Tcodec_capsule)(unsafe.Pointer(data)).Fcjk_module
 	v2 = libc.BoolInt32(int32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
@@ -14517,7 +14517,7 @@ func __getcodec3(tls *libc.TLS, self uintptr, codec uintptr) (r uintptr) {
 		;
 		return libc.UintptrFromInt32(0)
 	}
-	codecobj = XPyCapsule_New(tls, data, __ccgo_ts+220264, __ccgo_fp(_destroy_codec_capsule3))
+	codecobj = XPyCapsule_New(tls, data, __ccgo_ts+220172, __ccgo_fp(_destroy_codec_capsule3))
 	if codecobj == libc.UintptrFromInt32(0) {
 		XPyMem_Free(tls, data)
 		v1 = cofunc
@@ -14584,7 +14584,7 @@ _2:
 	goto _4
 _4:
 	if !(v3 != 0) {
-		XPyErr_SetString(tls, XPyExc_TypeError, __ccgo_ts+220285)
+		XPyErr_SetString(tls, XPyExc_TypeError, __ccgo_ts+220193)
 		return libc.UintptrFromInt32(0)
 	}
 	enc = XPyUnicode_AsUTF8(tls, encoding)
@@ -14610,7 +14610,7 @@ _6:
 		;
 		i = i + 1
 	}
-	XPyErr_SetString(tls, XPyExc_LookupError, __ccgo_ts+220317)
+	XPyErr_SetString(tls, XPyExc_LookupError, __ccgo_ts+220225)
 	return libc.UintptrFromInt32(0)
 }
 
@@ -14640,7 +14640,7 @@ _2:
 		h = (*Tcjkcodecs_module_state)(unsafe.Pointer(st)).Fmapping_list + uintptr(i)*24
 		**(**[256]int8)(__ccgo_up(bp)) = [256]int8{'_', '_', 'm', 'a', 'p', '_'}
 		libc.Xstrcpy(tls, bp+uintptr(7)-uintptr(1), (*Tdbcs_map)(unsafe.Pointer(h)).Fcharset)
-		capsule = XPyCapsule_New(tls, h, __ccgo_ts+220345, libc.UintptrFromInt32(0))
+		capsule = XPyCapsule_New(tls, h, __ccgo_ts+220253, libc.UintptrFromInt32(0))
 		if XPyModule_Add(tls, module, bp, capsule) < 0 {
 			return -int32(1)
 		}
@@ -14707,7 +14707,7 @@ _2:
 
 var __cjk_methods3 = [2]TPyMethodDef{
 	0: {
-		Fml_name:  __ccgo_ts + 220364,
+		Fml_name:  __ccgo_ts + 220272,
 		Fml_flags: int32(MMETH_O),
 		Fml_doc:   __ccgo_ts + 2,
 	},
@@ -22093,68 +22093,68 @@ func _add_mappings3(tls *libc.TLS, st uintptr) (r int32) {
 	v1 = idx
 	idx = idx + 1
 	**(**Tdbcs_map)(__ccgo_up((*Tcjkcodecs_module_state)(unsafe.Pointer(st)).Fmapping_list + uintptr(v1)*24)) = Tdbcs_map{
-		Fcharset: __ccgo_ts + 220837,
+		Fcharset: __ccgo_ts + 220745,
 		Fdecmap:  uintptr(unsafe.Pointer(&_jisx0208_decmap)),
 	}
 	v1 = idx
 	idx = idx + 1
 	**(**Tdbcs_map)(__ccgo_up((*Tcjkcodecs_module_state)(unsafe.Pointer(st)).Fmapping_list + uintptr(v1)*24)) = Tdbcs_map{
-		Fcharset: __ccgo_ts + 220846,
+		Fcharset: __ccgo_ts + 220754,
 		Fdecmap:  uintptr(unsafe.Pointer(&_jisx0212_decmap)),
 	}
 	v1 = idx
 	idx = idx + 1
 	**(**Tdbcs_map)(__ccgo_up((*Tcjkcodecs_module_state)(unsafe.Pointer(st)).Fmapping_list + uintptr(v1)*24)) = Tdbcs_map{
-		Fcharset: __ccgo_ts + 220855,
+		Fcharset: __ccgo_ts + 220763,
 		Fencmap:  uintptr(unsafe.Pointer(&_jisxcommon_encmap)),
 	}
 	v1 = idx
 	idx = idx + 1
 	**(**Tdbcs_map)(__ccgo_up((*Tcjkcodecs_module_state)(unsafe.Pointer(st)).Fmapping_list + uintptr(v1)*24)) = Tdbcs_map{
-		Fcharset: __ccgo_ts + 220866,
+		Fcharset: __ccgo_ts + 220774,
 		Fdecmap:  uintptr(unsafe.Pointer(&_jisx0213_1_bmp_decmap)),
 	}
 	v1 = idx
 	idx = idx + 1
 	**(**Tdbcs_map)(__ccgo_up((*Tcjkcodecs_module_state)(unsafe.Pointer(st)).Fmapping_list + uintptr(v1)*24)) = Tdbcs_map{
-		Fcharset: __ccgo_ts + 220881,
+		Fcharset: __ccgo_ts + 220789,
 		Fdecmap:  uintptr(unsafe.Pointer(&_jisx0213_2_bmp_decmap)),
 	}
 	v1 = idx
 	idx = idx + 1
 	**(**Tdbcs_map)(__ccgo_up((*Tcjkcodecs_module_state)(unsafe.Pointer(st)).Fmapping_list + uintptr(v1)*24)) = Tdbcs_map{
-		Fcharset: __ccgo_ts + 220896,
+		Fcharset: __ccgo_ts + 220804,
 		Fencmap:  uintptr(unsafe.Pointer(&_jisx0213_bmp_encmap)),
 	}
 	v1 = idx
 	idx = idx + 1
 	**(**Tdbcs_map)(__ccgo_up((*Tcjkcodecs_module_state)(unsafe.Pointer(st)).Fmapping_list + uintptr(v1)*24)) = Tdbcs_map{
-		Fcharset: __ccgo_ts + 220909,
+		Fcharset: __ccgo_ts + 220817,
 		Fdecmap:  uintptr(unsafe.Pointer(&_jisx0213_1_emp_decmap)),
 	}
 	v1 = idx
 	idx = idx + 1
 	**(**Tdbcs_map)(__ccgo_up((*Tcjkcodecs_module_state)(unsafe.Pointer(st)).Fmapping_list + uintptr(v1)*24)) = Tdbcs_map{
-		Fcharset: __ccgo_ts + 220924,
+		Fcharset: __ccgo_ts + 220832,
 		Fdecmap:  uintptr(unsafe.Pointer(&_jisx0213_2_emp_decmap)),
 	}
 	v1 = idx
 	idx = idx + 1
 	**(**Tdbcs_map)(__ccgo_up((*Tcjkcodecs_module_state)(unsafe.Pointer(st)).Fmapping_list + uintptr(v1)*24)) = Tdbcs_map{
-		Fcharset: __ccgo_ts + 220939,
+		Fcharset: __ccgo_ts + 220847,
 		Fencmap:  uintptr(unsafe.Pointer(&_jisx0213_emp_encmap)),
 	}
 	v1 = idx
 	idx = idx + 1
 	**(**Tdbcs_map)(__ccgo_up((*Tcjkcodecs_module_state)(unsafe.Pointer(st)).Fmapping_list + uintptr(v1)*24)) = Tdbcs_map{
-		Fcharset: __ccgo_ts + 220952,
+		Fcharset: __ccgo_ts + 220860,
 		Fencmap:  uintptr(unsafe.Pointer(&_jisx0213_pair_encmap1)),
 		Fdecmap:  uintptr(unsafe.Pointer(&_jisx0213_pair_decmap1)),
 	}
 	v1 = idx
 	idx = idx + 1
 	**(**Tdbcs_map)(__ccgo_up((*Tcjkcodecs_module_state)(unsafe.Pointer(st)).Fmapping_list + uintptr(v1)*24)) = Tdbcs_map{
-		Fcharset: __ccgo_ts + 220966,
+		Fcharset: __ccgo_ts + 220874,
 		Fencmap:  uintptr(unsafe.Pointer(&_cp932ext_encmap)),
 		Fdecmap:  uintptr(unsafe.Pointer(&_cp932ext_decmap)),
 	}
@@ -22174,42 +22174,42 @@ func _add_codecs3(tls *libc.TLS, st uintptr) (r int32) {
 	v1 = idx
 	idx = idx + 1
 	**(**TMultibyteCodec)(__ccgo_up((*Tcjkcodecs_module_state)(unsafe.Pointer(st)).Fcodec_list + uintptr(v1)*80)) = TMultibyteCodec{
-		Fencoding: __ccgo_ts + 220975,
+		Fencoding: __ccgo_ts + 220883,
 		Fencode:   __ccgo_fp(_shift_jis_encode),
 		Fdecode:   __ccgo_fp(_shift_jis_decode),
 	}
 	v1 = idx
 	idx = idx + 1
 	**(**TMultibyteCodec)(__ccgo_up((*Tcjkcodecs_module_state)(unsafe.Pointer(st)).Fcodec_list + uintptr(v1)*80)) = TMultibyteCodec{
-		Fencoding: __ccgo_ts + 220985,
+		Fencoding: __ccgo_ts + 220893,
 		Fencode:   __ccgo_fp(_cp932_encode),
 		Fdecode:   __ccgo_fp(_cp932_decode),
 	}
 	v1 = idx
 	idx = idx + 1
 	**(**TMultibyteCodec)(__ccgo_up((*Tcjkcodecs_module_state)(unsafe.Pointer(st)).Fcodec_list + uintptr(v1)*80)) = TMultibyteCodec{
-		Fencoding: __ccgo_ts + 220991,
+		Fencoding: __ccgo_ts + 220899,
 		Fencode:   __ccgo_fp(_euc_jp_encode),
 		Fdecode:   __ccgo_fp(_euc_jp_decode),
 	}
 	v1 = idx
 	idx = idx + 1
 	**(**TMultibyteCodec)(__ccgo_up((*Tcjkcodecs_module_state)(unsafe.Pointer(st)).Fcodec_list + uintptr(v1)*80)) = TMultibyteCodec{
-		Fencoding: __ccgo_ts + 220998,
+		Fencoding: __ccgo_ts + 220906,
 		Fencode:   __ccgo_fp(_shift_jis_2004_encode),
 		Fdecode:   __ccgo_fp(_shift_jis_2004_decode),
 	}
 	v1 = idx
 	idx = idx + 1
 	**(**TMultibyteCodec)(__ccgo_up((*Tcjkcodecs_module_state)(unsafe.Pointer(st)).Fcodec_list + uintptr(v1)*80)) = TMultibyteCodec{
-		Fencoding: __ccgo_ts + 221013,
+		Fencoding: __ccgo_ts + 220921,
 		Fencode:   __ccgo_fp(_euc_jis_2004_encode),
 		Fdecode:   __ccgo_fp(_euc_jis_2004_decode),
 	}
 	v1 = idx
 	idx = idx + 1
 	**(**TMultibyteCodec)(__ccgo_up((*Tcjkcodecs_module_state)(unsafe.Pointer(st)).Fcodec_list + uintptr(v1)*80)) = TMultibyteCodec{
-		Fencoding: __ccgo_ts + 221026,
+		Fencoding: __ccgo_ts + 220934,
 		Fconfig:   libc.UintptrFromInt32(2000),
 		Fencode:   __ccgo_fp(_euc_jis_2004_encode),
 		Fdecode:   __ccgo_fp(_euc_jis_2004_decode),
@@ -22217,7 +22217,7 @@ func _add_codecs3(tls *libc.TLS, st uintptr) (r int32) {
 	v1 = idx
 	idx = idx + 1
 	**(**TMultibyteCodec)(__ccgo_up((*Tcjkcodecs_module_state)(unsafe.Pointer(st)).Fcodec_list + uintptr(v1)*80)) = TMultibyteCodec{
-		Fencoding: __ccgo_ts + 221039,
+		Fencoding: __ccgo_ts + 220947,
 		Fconfig:   libc.UintptrFromInt32(2000),
 		Fencode:   __ccgo_fp(_shift_jis_2004_encode),
 		Fdecode:   __ccgo_fp(_shift_jis_2004_decode),
@@ -22269,7 +22269,7 @@ const MEUCKR_JAMO_FILLER = 212
 const MEUCKR_JAMO_FIRSTBYTE = 164
 
 func _getmultibytecodec4(tls *libc.TLS) (r uintptr) {
-	return XPyImport_ImportModuleAttrString(tls, __ccgo_ts+164956, __ccgo_ts+220249)
+	return XPyImport_ImportModuleAttrString(tls, __ccgo_ts+164956, __ccgo_ts+220157)
 }
 
 func _destroy_codec_capsule4(tls *libc.TLS, capsule uintptr) {
@@ -22277,7 +22277,7 @@ func _destroy_codec_capsule4(tls *libc.TLS, capsule uintptr) {
 	var v2 int32
 	var v5 Tuint32_t
 	_, _, _, _, _, _ = data, ptr, v1, v2, v5, v6
-	ptr = XPyCapsule_GetPointer(tls, capsule, __ccgo_ts+220264)
+	ptr = XPyCapsule_GetPointer(tls, capsule, __ccgo_ts+220172)
 	data = ptr
 	v1 = (*Tcodec_capsule)(unsafe.Pointer(data)).Fcjk_module
 	v2 = libc.BoolInt32(int32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
@@ -22351,7 +22351,7 @@ func __getcodec4(tls *libc.TLS, self uintptr, codec uintptr) (r uintptr) {
 		;
 		return libc.UintptrFromInt32(0)
 	}
-	codecobj = XPyCapsule_New(tls, data, __ccgo_ts+220264, __ccgo_fp(_destroy_codec_capsule4))
+	codecobj = XPyCapsule_New(tls, data, __ccgo_ts+220172, __ccgo_fp(_destroy_codec_capsule4))
 	if codecobj == libc.UintptrFromInt32(0) {
 		XPyMem_Free(tls, data)
 		v1 = cofunc
@@ -22418,7 +22418,7 @@ _2:
 	goto _4
 _4:
 	if !(v3 != 0) {
-		XPyErr_SetString(tls, XPyExc_TypeError, __ccgo_ts+220285)
+		XPyErr_SetString(tls, XPyExc_TypeError, __ccgo_ts+220193)
 		return libc.UintptrFromInt32(0)
 	}
 	enc = XPyUnicode_AsUTF8(tls, encoding)
@@ -22444,7 +22444,7 @@ _6:
 		;
 		i = i + 1
 	}
-	XPyErr_SetString(tls, XPyExc_LookupError, __ccgo_ts+220317)
+	XPyErr_SetString(tls, XPyExc_LookupError, __ccgo_ts+220225)
 	return libc.UintptrFromInt32(0)
 }
 
@@ -22474,7 +22474,7 @@ _2:
 		h = (*Tcjkcodecs_module_state)(unsafe.Pointer(st)).Fmapping_list + uintptr(i)*24
 		**(**[256]int8)(__ccgo_up(bp)) = [256]int8{'_', '_', 'm', 'a', 'p', '_'}
 		libc.Xstrcpy(tls, bp+uintptr(7)-uintptr(1), (*Tdbcs_map)(unsafe.Pointer(h)).Fcharset)
-		capsule = XPyCapsule_New(tls, h, __ccgo_ts+220345, libc.UintptrFromInt32(0))
+		capsule = XPyCapsule_New(tls, h, __ccgo_ts+220253, libc.UintptrFromInt32(0))
 		if XPyModule_Add(tls, module, bp, capsule) < 0 {
 			return -int32(1)
 		}
@@ -22504,7 +22504,7 @@ _2:
 
 var __cjk_methods4 = [2]TPyMethodDef{
 	0: {
-		Fml_name:  __ccgo_ts + 220364,
+		Fml_name:  __ccgo_ts + 220272,
 		Fml_flags: int32(MMETH_O),
 		Fml_doc:   __ccgo_ts + 2,
 	},
@@ -25383,19 +25383,19 @@ func _add_mappings4(tls *libc.TLS, st uintptr) (r int32) {
 	v1 = idx
 	idx = idx + 1
 	**(**Tdbcs_map)(__ccgo_up((*Tcjkcodecs_module_state)(unsafe.Pointer(st)).Fmapping_list + uintptr(v1)*24)) = Tdbcs_map{
-		Fcharset: __ccgo_ts + 221054,
+		Fcharset: __ccgo_ts + 220962,
 		Fdecmap:  uintptr(unsafe.Pointer(&_ksx1001_decmap)),
 	}
 	v1 = idx
 	idx = idx + 1
 	**(**Tdbcs_map)(__ccgo_up((*Tcjkcodecs_module_state)(unsafe.Pointer(st)).Fmapping_list + uintptr(v1)*24)) = Tdbcs_map{
-		Fcharset: __ccgo_ts + 221062,
+		Fcharset: __ccgo_ts + 220970,
 		Fencmap:  uintptr(unsafe.Pointer(&_cp949_encmap)),
 	}
 	v1 = idx
 	idx = idx + 1
 	**(**Tdbcs_map)(__ccgo_up((*Tcjkcodecs_module_state)(unsafe.Pointer(st)).Fmapping_list + uintptr(v1)*24)) = Tdbcs_map{
-		Fcharset: __ccgo_ts + 221068,
+		Fcharset: __ccgo_ts + 220976,
 		Fdecmap:  uintptr(unsafe.Pointer(&_cp949ext_decmap)),
 	}
 	return 0
@@ -25414,21 +25414,21 @@ func _add_codecs4(tls *libc.TLS, st uintptr) (r int32) {
 	v1 = idx
 	idx = idx + 1
 	**(**TMultibyteCodec)(__ccgo_up((*Tcjkcodecs_module_state)(unsafe.Pointer(st)).Fcodec_list + uintptr(v1)*80)) = TMultibyteCodec{
-		Fencoding: __ccgo_ts + 221077,
+		Fencoding: __ccgo_ts + 220985,
 		Fencode:   __ccgo_fp(_euc_kr_encode),
 		Fdecode:   __ccgo_fp(_euc_kr_decode),
 	}
 	v1 = idx
 	idx = idx + 1
 	**(**TMultibyteCodec)(__ccgo_up((*Tcjkcodecs_module_state)(unsafe.Pointer(st)).Fcodec_list + uintptr(v1)*80)) = TMultibyteCodec{
-		Fencoding: __ccgo_ts + 221062,
+		Fencoding: __ccgo_ts + 220970,
 		Fencode:   __ccgo_fp(_cp949_encode),
 		Fdecode:   __ccgo_fp(_cp949_decode),
 	}
 	v1 = idx
 	idx = idx + 1
 	**(**TMultibyteCodec)(__ccgo_up((*Tcjkcodecs_module_state)(unsafe.Pointer(st)).Fcodec_list + uintptr(v1)*80)) = TMultibyteCodec{
-		Fencoding: __ccgo_ts + 221084,
+		Fencoding: __ccgo_ts + 220992,
 		Fencode:   __ccgo_fp(_johab_encode),
 		Fdecode:   __ccgo_fp(_johab_decode),
 	}
@@ -25475,7 +25475,7 @@ func XPyInit__codecs_kr(tls *libc.TLS) (r uintptr) {
 }
 
 func _getmultibytecodec5(tls *libc.TLS) (r uintptr) {
-	return XPyImport_ImportModuleAttrString(tls, __ccgo_ts+164956, __ccgo_ts+220249)
+	return XPyImport_ImportModuleAttrString(tls, __ccgo_ts+164956, __ccgo_ts+220157)
 }
 
 func _destroy_codec_capsule5(tls *libc.TLS, capsule uintptr) {
@@ -25483,7 +25483,7 @@ func _destroy_codec_capsule5(tls *libc.TLS, capsule uintptr) {
 	var v2 int32
 	var v5 Tuint32_t
 	_, _, _, _, _, _ = data, ptr, v1, v2, v5, v6
-	ptr = XPyCapsule_GetPointer(tls, capsule, __ccgo_ts+220264)
+	ptr = XPyCapsule_GetPointer(tls, capsule, __ccgo_ts+220172)
 	data = ptr
 	v1 = (*Tcodec_capsule)(unsafe.Pointer(data)).Fcjk_module
 	v2 = libc.BoolInt32(int32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
@@ -25557,7 +25557,7 @@ func __getcodec5(tls *libc.TLS, self uintptr, codec uintptr) (r uintptr) {
 		;
 		return libc.UintptrFromInt32(0)
 	}
-	codecobj = XPyCapsule_New(tls, data, __ccgo_ts+220264, __ccgo_fp(_destroy_codec_capsule5))
+	codecobj = XPyCapsule_New(tls, data, __ccgo_ts+220172, __ccgo_fp(_destroy_codec_capsule5))
 	if codecobj == libc.UintptrFromInt32(0) {
 		XPyMem_Free(tls, data)
 		v1 = cofunc
@@ -25624,7 +25624,7 @@ _2:
 	goto _4
 _4:
 	if !(v3 != 0) {
-		XPyErr_SetString(tls, XPyExc_TypeError, __ccgo_ts+220285)
+		XPyErr_SetString(tls, XPyExc_TypeError, __ccgo_ts+220193)
 		return libc.UintptrFromInt32(0)
 	}
 	enc = XPyUnicode_AsUTF8(tls, encoding)
@@ -25650,7 +25650,7 @@ _6:
 		;
 		i = i + 1
 	}
-	XPyErr_SetString(tls, XPyExc_LookupError, __ccgo_ts+220317)
+	XPyErr_SetString(tls, XPyExc_LookupError, __ccgo_ts+220225)
 	return libc.UintptrFromInt32(0)
 }
 
@@ -25680,7 +25680,7 @@ _2:
 		h = (*Tcjkcodecs_module_state)(unsafe.Pointer(st)).Fmapping_list + uintptr(i)*24
 		**(**[256]int8)(__ccgo_up(bp)) = [256]int8{'_', '_', 'm', 'a', 'p', '_'}
 		libc.Xstrcpy(tls, bp+uintptr(7)-uintptr(1), (*Tdbcs_map)(unsafe.Pointer(h)).Fcharset)
-		capsule = XPyCapsule_New(tls, h, __ccgo_ts+220345, libc.UintptrFromInt32(0))
+		capsule = XPyCapsule_New(tls, h, __ccgo_ts+220253, libc.UintptrFromInt32(0))
 		if XPyModule_Add(tls, module, bp, capsule) < 0 {
 			return -int32(1)
 		}
@@ -25710,7 +25710,7 @@ _2:
 
 var __cjk_methods5 = [2]TPyMethodDef{
 	0: {
-		Fml_name:  __ccgo_ts + 220364,
+		Fml_name:  __ccgo_ts + 220272,
 		Fml_flags: int32(MMETH_O),
 		Fml_doc:   __ccgo_ts + 2,
 	},
@@ -27753,14 +27753,14 @@ func _add_mappings5(tls *libc.TLS, st uintptr) (r int32) {
 	v1 = idx
 	idx = idx + 1
 	**(**Tdbcs_map)(__ccgo_up((*Tcjkcodecs_module_state)(unsafe.Pointer(st)).Fmapping_list + uintptr(v1)*24)) = Tdbcs_map{
-		Fcharset: __ccgo_ts + 221090,
+		Fcharset: __ccgo_ts + 220998,
 		Fencmap:  uintptr(unsafe.Pointer(&_big5_encmap)),
 		Fdecmap:  uintptr(unsafe.Pointer(&_big5_decmap)),
 	}
 	v1 = idx
 	idx = idx + 1
 	**(**Tdbcs_map)(__ccgo_up((*Tcjkcodecs_module_state)(unsafe.Pointer(st)).Fmapping_list + uintptr(v1)*24)) = Tdbcs_map{
-		Fcharset: __ccgo_ts + 221095,
+		Fcharset: __ccgo_ts + 221003,
 		Fencmap:  uintptr(unsafe.Pointer(&_cp950ext_encmap)),
 		Fdecmap:  uintptr(unsafe.Pointer(&_cp950ext_decmap)),
 	}
@@ -27780,14 +27780,14 @@ func _add_codecs5(tls *libc.TLS, st uintptr) (r int32) {
 	v1 = idx
 	idx = idx + 1
 	**(**TMultibyteCodec)(__ccgo_up((*Tcjkcodecs_module_state)(unsafe.Pointer(st)).Fcodec_list + uintptr(v1)*80)) = TMultibyteCodec{
-		Fencoding: __ccgo_ts + 221090,
+		Fencoding: __ccgo_ts + 220998,
 		Fencode:   __ccgo_fp(_big5_encode),
 		Fdecode:   __ccgo_fp(_big5_decode),
 	}
 	v1 = idx
 	idx = idx + 1
 	**(**TMultibyteCodec)(__ccgo_up((*Tcjkcodecs_module_state)(unsafe.Pointer(st)).Fcodec_list + uintptr(v1)*80)) = TMultibyteCodec{
-		Fencoding: __ccgo_ts + 221104,
+		Fencoding: __ccgo_ts + 221012,
 		Fencode:   __ccgo_fp(_cp950_encode),
 		Fdecode:   __ccgo_fp(_cp950_decode),
 	}
@@ -28400,7 +28400,7 @@ func __multibytecodec_MultibyteStreamReader_readlines(tls *libc.TLS, self uintpt
 	_, _ = return_value, sizehintobj
 	return_value = libc.UintptrFromInt32(0)
 	sizehintobj = uintptr(unsafe.Pointer(&X_Py_NoneStruct))
-	if !(libc.Bool(!false) && int64(libc.Int32FromInt32(0)) <= nargs && nargs <= int64(libc.Int32FromInt32(1)) || X_PyArg_CheckPositional(tls, __ccgo_ts+221110, nargs, int64(libc.Int32FromInt32(0)), int64(libc.Int32FromInt32(1))) != 0) {
+	if !(libc.Bool(!false) && int64(libc.Int32FromInt32(0)) <= nargs && nargs <= int64(libc.Int32FromInt32(1)) || X_PyArg_CheckPositional(tls, __ccgo_ts+221018, nargs, int64(libc.Int32FromInt32(0)), int64(libc.Int32FromInt32(1))) != 0) {
 		goto exit
 	}
 	if nargs < int64(1) {
@@ -28496,7 +28496,7 @@ var __keywords190 = [2]uintptr{
 
 var __parser190 = T_PyArg_Parser{
 	Fkeywords: uintptr(unsafe.Pointer(&__keywords190)),
-	Ffname:    __ccgo_ts + 221120,
+	Ffname:    __ccgo_ts + 221028,
 	Fkwtuple:  uintptr(unsafe.Pointer(&X_PyRuntime)) + 13248 + 76576,
 }
 
@@ -28519,7 +28519,7 @@ func __multibytecodec_MultibyteStreamWriter_reset(tls *libc.TLS, self uintptr, c
 		}
 	}
 	if v6 || v5 && v1 != 0 {
-		XPyErr_SetString(tls, XPyExc_TypeError, __ccgo_ts+221131)
+		XPyErr_SetString(tls, XPyExc_TypeError, __ccgo_ts+221039)
 		return libc.UintptrFromInt32(0)
 	}
 	return __multibytecodec_MultibyteStreamWriter_reset_impl(tls, self, cls)
@@ -28574,7 +28574,7 @@ var _incnewkwarglist = [2]uintptr{
 }
 
 var _streamkwarglist = [3]uintptr{
-	0: __ccgo_ts + 221158,
+	0: __ccgo_ts + 221066,
 	1: __ccgo_ts + 15080,
 	2: libc.UintptrFromInt32(0),
 }
@@ -28733,7 +28733,7 @@ _2:
 	goto _4
 _4:
 	if !(v3 != 0) {
-		XPyErr_SetString(tls, XPyExc_TypeError, __ccgo_ts+221165)
+		XPyErr_SetString(tls, XPyExc_TypeError, __ccgo_ts+221073)
 		return -int32(1)
 	}
 	str = XPyUnicode_AsUTF8(tls, value)
@@ -28770,7 +28770,7 @@ _4:
 var _codecctx_getsets = [2]TPyGetSetDef{
 	0: {
 		Fname: __ccgo_ts + 15080,
-		Fdoc:  __ccgo_ts + 221189,
+		Fdoc:  __ccgo_ts + 221097,
 	},
 	1: {},
 }
@@ -28845,7 +28845,7 @@ func _multibytecodec_encerror(tls *libc.TLS, codec uintptr, state uintptr, buf u
 	retobj = libc.UintptrFromInt32(0)
 	retstr = libc.UintptrFromInt32(0)
 	if e > 0 {
-		reason = __ccgo_ts + 221209
+		reason = __ccgo_ts + 221117
 		esize = e
 	} else {
 		switch e {
@@ -28880,16 +28880,16 @@ func _multibytecodec_encerror(tls *libc.TLS, codec uintptr, state uintptr, buf u
 		return 0
 	_2:
 		;
-		reason = __ccgo_ts + 221236
+		reason = __ccgo_ts + 221144
 		esize = (*TMultibyteEncodeBuffer)(unsafe.Pointer(buf)).Finpos
 		goto _5
 	_3:
 		;
-		XPyErr_SetString(tls, XPyExc_RuntimeError, __ccgo_ts+221266)
+		XPyErr_SetString(tls, XPyExc_RuntimeError, __ccgo_ts+221174)
 		return -int32(1)
 	_4:
 		;
-		XPyErr_SetString(tls, XPyExc_RuntimeError, __ccgo_ts+221287)
+		XPyErr_SetString(tls, XPyExc_RuntimeError, __ccgo_ts+221195)
 		return -int32(1)
 	_5:
 	}
@@ -29043,7 +29043,7 @@ _33:
 	_53:
 	}
 	if v54 || !(v46 != 0) {
-		XPyErr_SetString(tls, XPyExc_TypeError, __ccgo_ts+221309)
+		XPyErr_SetString(tls, XPyExc_TypeError, __ccgo_ts+221217)
 		goto errorexit
 	}
 	v9 = (*TPyObject)(unsafe.Pointer(tobj)).Fob_type
@@ -29187,22 +29187,22 @@ func _multibytecodec_decerror(tls *libc.TLS, codec uintptr, state uintptr, buf u
 	retobj = libc.UintptrFromInt32(0)
 	retuni = libc.UintptrFromInt32(0)
 	if e > 0 {
-		reason = __ccgo_ts + 221209
+		reason = __ccgo_ts + 221117
 		esize = e
 	} else {
 		switch e {
 		case int64(-libc.Int32FromInt32(1)):
 			return 0
 		case int64(-libc.Int32FromInt32(2)):
-			reason = __ccgo_ts + 221236
+			reason = __ccgo_ts + 221144
 			esize = int64((*TMultibyteDecodeBuffer)(unsafe.Pointer(buf)).Finbuf_end) - int64((*TMultibyteDecodeBuffer)(unsafe.Pointer(buf)).Finbuf)
 		case int64(-libc.Int32FromInt32(3)):
-			XPyErr_SetString(tls, XPyExc_RuntimeError, __ccgo_ts+221266)
+			XPyErr_SetString(tls, XPyExc_RuntimeError, __ccgo_ts+221174)
 			return -int32(1)
 		case int64(-libc.Int32FromInt32(4)):
 			return -int32(1)
 		default:
-			XPyErr_SetString(tls, XPyExc_RuntimeError, __ccgo_ts+221287)
+			XPyErr_SetString(tls, XPyExc_RuntimeError, __ccgo_ts+221195)
 			return -int32(1)
 		}
 	}
@@ -29274,7 +29274,7 @@ _4:
 	_19:
 	}
 	if v20 || !(v18 != 0) {
-		XPyErr_SetString(tls, XPyExc_TypeError, __ccgo_ts+221361)
+		XPyErr_SetString(tls, XPyExc_TypeError, __ccgo_ts+221269)
 		goto errorexit
 	}
 	if X_PyUnicodeWriter_WriteStr(tls, buf+32, retuni) < 0 {
@@ -29543,7 +29543,7 @@ _4:
 			goto _9
 		_9:
 			if !(v3 != 0) {
-				XPyErr_SetString(tls, XPyExc_TypeError, __ccgo_ts+221413)
+				XPyErr_SetString(tls, XPyExc_TypeError, __ccgo_ts+221321)
 				v1 = ucvt
 				v3 = libc.BoolInt32(int32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
 				goto _12
@@ -29934,7 +29934,7 @@ func init() {
 }
 
 var _multibytecodec_spec = TPyType_Spec{
-	Fname:      __ccgo_ts + 221453,
+	Fname:      __ccgo_ts + 221361,
 	Fbasicsize: int32(32),
 	Fflags:     uint32(uint32(libc.Int32FromInt32(MPy_TPFLAGS_HAVE_STACKLESS_EXTENSION)|libc.Int32FromInt32(0)) | libc.Uint32FromUint32(1)<<libc.Int32FromInt32(14) | libc.Uint32FromUint32(1)<<libc.Int32FromInt32(7) | libc.Uint32FromUint32(1)<<libc.Int32FromInt32(8)),
 	Fslots:     uintptr(unsafe.Pointer(&_multibytecodec_slots)),
@@ -29978,7 +29978,7 @@ _4:
 			goto _9
 		_9:
 			if !(v3 != 0) {
-				XPyErr_SetString(tls, XPyExc_TypeError, __ccgo_ts+221484)
+				XPyErr_SetString(tls, XPyExc_TypeError, __ccgo_ts+221392)
 				v1 = ucvt
 				v3 = libc.BoolInt32(int32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
 				goto _12
@@ -30121,7 +30121,7 @@ _38:
 	if **(**TPy_ssize_t)(__ccgo_up(bp)) < datalen {
 		if datalen-**(**TPy_ssize_t)(__ccgo_up(bp)) > int64(MMAXENCPENDING) {
 
-			excobj = XPyObject_CallFunction(tls, XPyExc_UnicodeEncodeError, __ccgo_ts+77822, libc.VaList(bp+24, (*TMultibyteCodec)(unsafe.Pointer((*TMultibyteStatefulEncoderContext)(unsafe.Pointer(ctx)).Fcodec)).Fencoding, inbuf, **(**TPy_ssize_t)(__ccgo_up(bp)), datalen, __ccgo_ts+221520))
+			excobj = XPyObject_CallFunction(tls, XPyExc_UnicodeEncodeError, __ccgo_ts+77822, libc.VaList(bp+24, (*TMultibyteCodec)(unsafe.Pointer((*TMultibyteStatefulEncoderContext)(unsafe.Pointer(ctx)).Fcodec)).Fencoding, inbuf, **(**TPy_ssize_t)(__ccgo_up(bp)), datalen, __ccgo_ts+221428))
 			if excobj == libc.UintptrFromInt32(0) {
 				goto errorexit
 			}
@@ -30265,7 +30265,7 @@ func _decoder_append_pending(tls *libc.TLS, ctx uintptr, buf uintptr) (r int32) 
 	npendings = int64((*TMultibyteDecodeBuffer)(unsafe.Pointer(buf)).Finbuf_end) - int64((*TMultibyteDecodeBuffer)(unsafe.Pointer(buf)).Finbuf)
 	if npendings+(*TMultibyteStatefulDecoderContext)(unsafe.Pointer(ctx)).Fpendingsize > int64(MMAXDECPENDING) || npendings > int64(9223372036854775807)-(*TMultibyteStatefulDecoderContext)(unsafe.Pointer(ctx)).Fpendingsize {
 		bufsize = int64((*TMultibyteDecodeBuffer)(unsafe.Pointer(buf)).Finbuf_end) - int64((*TMultibyteDecodeBuffer)(unsafe.Pointer(buf)).Finbuf_top)
-		excobj = XPyUnicodeDecodeError_Create(tls, (*TMultibyteCodec)(unsafe.Pointer((*TMultibyteStatefulDecoderContext)(unsafe.Pointer(ctx)).Fcodec)).Fencoding, (*TMultibyteDecodeBuffer)(unsafe.Pointer(buf)).Finbuf_top, bufsize, 0, bufsize, __ccgo_ts+221520)
+		excobj = XPyUnicodeDecodeError_Create(tls, (*TMultibyteCodec)(unsafe.Pointer((*TMultibyteStatefulDecoderContext)(unsafe.Pointer(ctx)).Fcodec)).Fencoding, (*TMultibyteDecodeBuffer)(unsafe.Pointer(buf)).Finbuf_top, bufsize, 0, bufsize, __ccgo_ts+221428)
 		if excobj == libc.UintptrFromInt32(0) {
 			return -int32(1)
 		}
@@ -30346,7 +30346,7 @@ func __multibytecodec_MultibyteIncrementalEncoder_getstate_impl(tls *libc.TLS, s
 			v1 = (*TPyASCIIObject)(unsafe.Pointer((*TMultibyteIncrementalEncoderObject)(unsafe.Pointer(self)).Fpending)).Flength
 			goto _2
 		_2:
-			excobj = XPyObject_CallFunction(tls, XPyExc_UnicodeEncodeError, __ccgo_ts+77822, libc.VaList(bp+40, (*TMultibyteCodec)(unsafe.Pointer((*TMultibyteIncrementalEncoderObject)(unsafe.Pointer(self)).Fcodec)).Fencoding, (*TMultibyteIncrementalEncoderObject)(unsafe.Pointer(self)).Fpending, 0, v1, __ccgo_ts+221544))
+			excobj = XPyObject_CallFunction(tls, XPyExc_UnicodeEncodeError, __ccgo_ts+77822, libc.VaList(bp+40, (*TMultibyteCodec)(unsafe.Pointer((*TMultibyteIncrementalEncoderObject)(unsafe.Pointer(self)).Fcodec)).Fencoding, (*TMultibyteIncrementalEncoderObject)(unsafe.Pointer(self)).Fpending, 0, v1, __ccgo_ts+221452))
 			if excobj == libc.UintptrFromInt32(0) {
 				return libc.UintptrFromInt32(0)
 			}
@@ -30394,7 +30394,7 @@ func __multibytecodec_MultibyteIncrementalEncoder_setstate_impl(tls *libc.TLS, s
 		goto errorexit
 	}
 	if int32((**(**[17]uint8)(__ccgo_up(bp)))[0]) > libc.Int32FromInt32(MMAXENCPENDING)*libc.Int32FromInt32(4) {
-		XPyErr_SetString(tls, XPyExc_UnicodeError, __ccgo_ts+221544)
+		XPyErr_SetString(tls, XPyExc_UnicodeError, __ccgo_ts+221452)
 		return libc.UintptrFromInt32(0)
 	}
 	pending = XPyUnicode_DecodeUTF8(tls, bp+uintptr(1), int64((**(**[17]uint8)(__ccgo_up(bp)))[0]), __ccgo_ts+18501)
@@ -30528,14 +30528,14 @@ func _mbiencoder_new(tls *libc.TLS, type1 uintptr, args uintptr, kwds uintptr) (
 	_, _, _, _, _, _, _, _ = codec, self, state, v1, v10, v3, v5, v9
 	codec = libc.UintptrFromInt32(0)
 	**(**uintptr)(__ccgo_up(bp)) = libc.UintptrFromInt32(0)
-	if !(XPyArg_ParseTupleAndKeywords(tls, args, kwds, __ccgo_ts+221569, uintptr(unsafe.Pointer(&_incnewkwarglist)), libc.VaList(bp+16, bp)) != 0) {
+	if !(XPyArg_ParseTupleAndKeywords(tls, args, kwds, __ccgo_ts+221477, uintptr(unsafe.Pointer(&_incnewkwarglist)), libc.VaList(bp+16, bp)) != 0) {
 		return libc.UintptrFromInt32(0)
 	}
 	self = (*(*func(*libc.TLS, uintptr, TPy_ssize_t) uintptr)(unsafe.Pointer(&struct{ uintptr }{(*TPyTypeObject)(unsafe.Pointer(type1)).Ftp_alloc})))(tls, type1, 0)
 	if self == libc.UintptrFromInt32(0) {
 		return libc.UintptrFromInt32(0)
 	}
-	codec = XPyObject_GetAttrString(tls, type1, __ccgo_ts+221591)
+	codec = XPyObject_GetAttrString(tls, type1, __ccgo_ts+221499)
 	if codec == libc.UintptrFromInt32(0) {
 		goto errorexit
 	}
@@ -30547,7 +30547,7 @@ _4:
 	goto _2
 _2:
 	if !(v1 != 0) {
-		XPyErr_SetString(tls, XPyExc_TypeError, __ccgo_ts+221597)
+		XPyErr_SetString(tls, XPyExc_TypeError, __ccgo_ts+221505)
 		goto errorexit
 	}
 	(*TMultibyteIncrementalEncoderObject)(unsafe.Pointer(self)).Fcodec = (*TMultibyteCodecObject)(unsafe.Pointer(codec)).Fcodec
@@ -30735,7 +30735,7 @@ func init() {
 }
 
 var _encoder_spec = TPyType_Spec{
-	Fname:      __ccgo_ts + 221622,
+	Fname:      __ccgo_ts + 221530,
 	Fbasicsize: int32(48),
 	Fflags:     uint32(uint32(libc.Int32FromInt32(MPy_TPFLAGS_HAVE_STACKLESS_EXTENSION)|libc.Int32FromInt32(0)) | libc.Uint32FromUint32(1)<<libc.Int32FromInt32(14) | libc.Uint32FromUint32(1)<<libc.Int32FromInt32(10) | libc.Uint32FromUint32(1)<<libc.Int32FromInt32(8)),
 	Fslots:     uintptr(unsafe.Pointer(&_encoder_slots)),
@@ -30877,7 +30877,7 @@ func __multibytecodec_MultibyteIncrementalDecoder_getstate_impl(tls *libc.TLS, s
 		;
 		return libc.UintptrFromInt32(0)
 	}
-	return XPy_BuildValue(tls, __ccgo_ts+213489, libc.VaList(bp+8, buffer, statelong))
+	return XPy_BuildValue(tls, __ccgo_ts+213397, libc.VaList(bp+8, buffer, statelong))
 }
 
 func __multibytecodec_MultibyteIncrementalDecoder_setstate_impl(tls *libc.TLS, self uintptr, state uintptr) (r uintptr) {
@@ -30892,7 +30892,7 @@ func __multibytecodec_MultibyteIncrementalDecoder_setstate_impl(tls *libc.TLS, s
 	var _ [8]uint8
 	var _ uintptr
 	_, _, _, _, _, _, _ = buffersize, bufferstr, excobj, v1, v3, v4, v7
-	if !(XPyArg_ParseTuple(tls, state, __ccgo_ts+221666, libc.VaList(bp+32, bp, uintptr(unsafe.Pointer(&XPyLong_Type)), bp+8)) != 0) {
+	if !(XPyArg_ParseTuple(tls, state, __ccgo_ts+221574, libc.VaList(bp+32, bp, uintptr(unsafe.Pointer(&XPyLong_Type)), bp+8)) != 0) {
 		return libc.UintptrFromInt32(0)
 	}
 	if X_PyLong_AsByteArray(tls, **(**uintptr)(__ccgo_up(bp + 8)), bp+16, uint64(8), int32(1), 0, int32(1)) < 0 {
@@ -30906,7 +30906,7 @@ func __multibytecodec_MultibyteIncrementalDecoder_setstate_impl(tls *libc.TLS, s
 		v1 = **(**uintptr)(__ccgo_up(bp)) + 32
 		goto _2
 	_2:
-		excobj = XPyUnicodeDecodeError_Create(tls, (*TMultibyteCodec)(unsafe.Pointer((*TMultibyteIncrementalDecoderObject)(unsafe.Pointer(self)).Fcodec)).Fencoding, v1, buffersize, 0, buffersize, __ccgo_ts+221544)
+		excobj = XPyUnicodeDecodeError_Create(tls, (*TMultibyteCodec)(unsafe.Pointer((*TMultibyteIncrementalDecoderObject)(unsafe.Pointer(self)).Fcodec)).Fencoding, v1, buffersize, 0, buffersize, __ccgo_ts+221452)
 		if excobj == libc.UintptrFromInt32(0) {
 			return libc.UintptrFromInt32(0)
 		}
@@ -30989,14 +30989,14 @@ func _mbidecoder_new(tls *libc.TLS, type1 uintptr, args uintptr, kwds uintptr) (
 	_, _, _, _, _, _, _, _ = codec, self, state, v1, v10, v3, v5, v9
 	codec = libc.UintptrFromInt32(0)
 	**(**uintptr)(__ccgo_up(bp)) = libc.UintptrFromInt32(0)
-	if !(XPyArg_ParseTupleAndKeywords(tls, args, kwds, __ccgo_ts+221705, uintptr(unsafe.Pointer(&_incnewkwarglist)), libc.VaList(bp+16, bp)) != 0) {
+	if !(XPyArg_ParseTupleAndKeywords(tls, args, kwds, __ccgo_ts+221613, uintptr(unsafe.Pointer(&_incnewkwarglist)), libc.VaList(bp+16, bp)) != 0) {
 		return libc.UintptrFromInt32(0)
 	}
 	self = (*(*func(*libc.TLS, uintptr, TPy_ssize_t) uintptr)(unsafe.Pointer(&struct{ uintptr }{(*TPyTypeObject)(unsafe.Pointer(type1)).Ftp_alloc})))(tls, type1, 0)
 	if self == libc.UintptrFromInt32(0) {
 		return libc.UintptrFromInt32(0)
 	}
-	codec = XPyObject_GetAttrString(tls, type1, __ccgo_ts+221591)
+	codec = XPyObject_GetAttrString(tls, type1, __ccgo_ts+221499)
 	if codec == libc.UintptrFromInt32(0) {
 		goto errorexit
 	}
@@ -31008,7 +31008,7 @@ _4:
 	goto _2
 _2:
 	if !(v1 != 0) {
-		XPyErr_SetString(tls, XPyExc_TypeError, __ccgo_ts+221597)
+		XPyErr_SetString(tls, XPyExc_TypeError, __ccgo_ts+221505)
 		goto errorexit
 	}
 	(*TMultibyteIncrementalDecoderObject)(unsafe.Pointer(self)).Fcodec = (*TMultibyteCodecObject)(unsafe.Pointer(codec)).Fcodec
@@ -31177,7 +31177,7 @@ func init() {
 }
 
 var _decoder_spec = TPyType_Spec{
-	Fname:      __ccgo_ts + 221727,
+	Fname:      __ccgo_ts + 221635,
 	Fbasicsize: int32(56),
 	Fflags:     uint32(uint32(libc.Int32FromInt32(MPy_TPFLAGS_HAVE_STACKLESS_EXTENSION)|libc.Int32FromInt32(0)) | libc.Uint32FromUint32(1)<<libc.Int32FromInt32(14) | libc.Uint32FromUint32(1)<<libc.Int32FromInt32(10) | libc.Uint32FromUint32(1)<<libc.Int32FromInt32(8)),
 	Fslots:     uintptr(unsafe.Pointer(&_decoder_slots)),
@@ -31220,7 +31220,7 @@ func _mbstreamreader_iread(tls *libc.TLS, self1 uintptr, method uintptr, sizehin
 			v6 = (*TPyObject)(unsafe.Pointer(**(**uintptr)(__ccgo_up(bp + 88)))).Fob_type
 			goto _7
 		_7:
-			XPyErr_Format(tls, XPyExc_TypeError, __ccgo_ts+221771, libc.VaList(bp+104, (*TPyTypeObject)(unsafe.Pointer(v6)).Ftp_name))
+			XPyErr_Format(tls, XPyExc_TypeError, __ccgo_ts+221679, libc.VaList(bp+104, (*TPyTypeObject)(unsafe.Pointer(v6)).Ftp_name))
 			goto errorexit
 		}
 		self = **(**uintptr)(__ccgo_up(bp + 88))
@@ -31444,7 +31444,7 @@ func __multibytecodec_MultibyteStreamReader_read_impl(tls *libc.TLS, self uintpt
 		if v3 != 0 {
 			size = XPyLong_AsSsize_t(tls, sizeobj)
 		} else {
-			XPyErr_SetString(tls, XPyExc_TypeError, __ccgo_ts+221824)
+			XPyErr_SetString(tls, XPyExc_TypeError, __ccgo_ts+221732)
 			return libc.UintptrFromInt32(0)
 		}
 	}
@@ -31474,7 +31474,7 @@ func __multibytecodec_MultibyteStreamReader_readline_impl(tls *libc.TLS, self ui
 		if v3 != 0 {
 			size = XPyLong_AsSsize_t(tls, sizeobj)
 		} else {
-			XPyErr_SetString(tls, XPyExc_TypeError, __ccgo_ts+221824)
+			XPyErr_SetString(tls, XPyExc_TypeError, __ccgo_ts+221732)
 			return libc.UintptrFromInt32(0)
 		}
 	}
@@ -31505,7 +31505,7 @@ func __multibytecodec_MultibyteStreamReader_readlines_impl(tls *libc.TLS, self u
 		if v3 != 0 {
 			sizehint = XPyLong_AsSsize_t(tls, sizehintobj)
 		} else {
-			XPyErr_SetString(tls, XPyExc_TypeError, __ccgo_ts+221824)
+			XPyErr_SetString(tls, XPyExc_TypeError, __ccgo_ts+221732)
 			return libc.UintptrFromInt32(0)
 		}
 	}
@@ -31556,7 +31556,7 @@ var _mbstreamreader_methods = [5]TPyMethodDef{
 		Fml_doc:   uintptr(unsafe.Pointer(&__multibytecodec_MultibyteStreamReader_readline__doc__)),
 	},
 	2: {
-		Fml_name:  __ccgo_ts + 221110,
+		Fml_name:  __ccgo_ts + 221018,
 		Fml_flags: int32(MMETH_FASTCALL),
 		Fml_doc:   uintptr(unsafe.Pointer(&__multibytecodec_MultibyteStreamReader_readlines__doc__)),
 	},
@@ -31578,7 +31578,7 @@ func init() {
 
 var _mbstreamreader_members = [2]TPyMemberDef{
 	0: {
-		Fname:   __ccgo_ts + 221158,
+		Fname:   __ccgo_ts + 221066,
 		Ftype1:  int32(M_Py_T_OBJECT),
 		Foffset: int64(uint64(libc.UintptrFromInt32(0) + 56)),
 		Fflags:  int32(MPy_READONLY),
@@ -31597,14 +31597,14 @@ func _mbstreamreader_new(tls *libc.TLS, type1 uintptr, args uintptr, kwds uintpt
 	_, _, _, _, _, _, _, _, _ = codec, cur_refcnt, self, state, v1, v14, v3, v5, v6
 	codec = libc.UintptrFromInt32(0)
 	**(**uintptr)(__ccgo_up(bp + 8)) = libc.UintptrFromInt32(0)
-	if !(XPyArg_ParseTupleAndKeywords(tls, args, kwds, __ccgo_ts+221849, uintptr(unsafe.Pointer(&_streamkwarglist)), libc.VaList(bp+24, bp, bp+8)) != 0) {
+	if !(XPyArg_ParseTupleAndKeywords(tls, args, kwds, __ccgo_ts+221757, uintptr(unsafe.Pointer(&_streamkwarglist)), libc.VaList(bp+24, bp, bp+8)) != 0) {
 		return libc.UintptrFromInt32(0)
 	}
 	self = (*(*func(*libc.TLS, uintptr, TPy_ssize_t) uintptr)(unsafe.Pointer(&struct{ uintptr }{(*TPyTypeObject)(unsafe.Pointer(type1)).Ftp_alloc})))(tls, type1, 0)
 	if self == libc.UintptrFromInt32(0) {
 		return libc.UintptrFromInt32(0)
 	}
-	codec = XPyObject_GetAttrString(tls, type1, __ccgo_ts+221591)
+	codec = XPyObject_GetAttrString(tls, type1, __ccgo_ts+221499)
 	if codec == libc.UintptrFromInt32(0) {
 		goto errorexit
 	}
@@ -31616,7 +31616,7 @@ _4:
 	goto _2
 _2:
 	if !(v1 != 0) {
-		XPyErr_SetString(tls, XPyExc_TypeError, __ccgo_ts+221597)
+		XPyErr_SetString(tls, XPyExc_TypeError, __ccgo_ts+221505)
 		goto errorexit
 	}
 	(*TMultibyteStreamReaderObject)(unsafe.Pointer(self)).Fcodec = (*TMultibyteCodecObject)(unsafe.Pointer(codec)).Fcodec
@@ -31825,7 +31825,7 @@ func init() {
 }
 
 var _reader_spec = TPyType_Spec{
-	Fname:      __ccgo_ts + 221866,
+	Fname:      __ccgo_ts + 221774,
 	Fbasicsize: int32(64),
 	Fflags:     uint32(uint32(libc.Int32FromInt32(MPy_TPFLAGS_HAVE_STACKLESS_EXTENSION)|libc.Int32FromInt32(0)) | libc.Uint32FromUint32(1)<<libc.Int32FromInt32(14) | libc.Uint32FromUint32(1)<<libc.Int32FromInt32(10) | libc.Uint32FromUint32(1)<<libc.Int32FromInt32(8)),
 	Fslots:     uintptr(unsafe.Pointer(&_reader_slots)),
@@ -31907,7 +31907,7 @@ func __multibytecodec_MultibyteStreamWriter_writelines_impl(tls *libc.TLS, self 
 	var v6 Tuint32_t
 	_, _, _, _, _, _, _, _ = i, r, state, strobj, v2, v3, v6, v7
 	if !(XPySequence_Check(tls, lines) != 0) {
-		XPyErr_SetString(tls, XPyExc_TypeError, __ccgo_ts+221904)
+		XPyErr_SetString(tls, XPyExc_TypeError, __ccgo_ts+221812)
 		return libc.UintptrFromInt32(0)
 	}
 	state = XPyType_GetModuleState(tls, cls)
@@ -32048,14 +32048,14 @@ func _mbstreamwriter_new(tls *libc.TLS, type1 uintptr, args uintptr, kwds uintpt
 	_, _, _, _, _, _, _, _, _ = codec, cur_refcnt, self, state, v1, v14, v3, v5, v6
 	codec = libc.UintptrFromInt32(0)
 	**(**uintptr)(__ccgo_up(bp + 8)) = libc.UintptrFromInt32(0)
-	if !(XPyArg_ParseTupleAndKeywords(tls, args, kwds, __ccgo_ts+221934, uintptr(unsafe.Pointer(&_streamkwarglist)), libc.VaList(bp+24, bp, bp+8)) != 0) {
+	if !(XPyArg_ParseTupleAndKeywords(tls, args, kwds, __ccgo_ts+221842, uintptr(unsafe.Pointer(&_streamkwarglist)), libc.VaList(bp+24, bp, bp+8)) != 0) {
 		return libc.UintptrFromInt32(0)
 	}
 	self = (*(*func(*libc.TLS, uintptr, TPy_ssize_t) uintptr)(unsafe.Pointer(&struct{ uintptr }{(*TPyTypeObject)(unsafe.Pointer(type1)).Ftp_alloc})))(tls, type1, 0)
 	if self == libc.UintptrFromInt32(0) {
 		return libc.UintptrFromInt32(0)
 	}
-	codec = XPyObject_GetAttrString(tls, type1, __ccgo_ts+221591)
+	codec = XPyObject_GetAttrString(tls, type1, __ccgo_ts+221499)
 	if codec == libc.UintptrFromInt32(0) {
 		goto errorexit
 	}
@@ -32067,7 +32067,7 @@ _4:
 	goto _2
 _2:
 	if !(v1 != 0) {
-		XPyErr_SetString(tls, XPyExc_TypeError, __ccgo_ts+221597)
+		XPyErr_SetString(tls, XPyExc_TypeError, __ccgo_ts+221505)
 		goto errorexit
 	}
 	(*TMultibyteStreamWriterObject)(unsafe.Pointer(self)).Fcodec = (*TMultibyteCodecObject)(unsafe.Pointer(codec)).Fcodec
@@ -32242,7 +32242,7 @@ var _mbstreamwriter_methods = [4]TPyMethodDef{
 		Fml_doc:   uintptr(unsafe.Pointer(&__multibytecodec_MultibyteStreamWriter_write__doc__)),
 	},
 	1: {
-		Fml_name:  __ccgo_ts + 221120,
+		Fml_name:  __ccgo_ts + 221028,
 		Fml_flags: libc.Int32FromInt32(MMETH_METHOD) | libc.Int32FromInt32(MMETH_FASTCALL) | libc.Int32FromInt32(MMETH_KEYWORDS),
 		Fml_doc:   uintptr(unsafe.Pointer(&__multibytecodec_MultibyteStreamWriter_writelines__doc__)),
 	},
@@ -32263,7 +32263,7 @@ func init() {
 
 var _mbstreamwriter_members = [2]TPyMemberDef{
 	0: {
-		Fname:   __ccgo_ts + 221158,
+		Fname:   __ccgo_ts + 221066,
 		Ftype1:  int32(M_Py_T_OBJECT),
 		Foffset: int64(uint64(libc.UintptrFromInt32(0) + 48)),
 		Fflags:  int32(MPy_READONLY),
@@ -32312,7 +32312,7 @@ func init() {
 }
 
 var _writer_spec = TPyType_Spec{
-	Fname:      __ccgo_ts + 221951,
+	Fname:      __ccgo_ts + 221859,
 	Fbasicsize: int32(56),
 	Fflags:     uint32(uint32(libc.Int32FromInt32(MPy_TPFLAGS_HAVE_STACKLESS_EXTENSION)|libc.Int32FromInt32(0)) | libc.Uint32FromUint32(1)<<libc.Int32FromInt32(14) | libc.Uint32FromUint32(1)<<libc.Int32FromInt32(10) | libc.Uint32FromUint32(1)<<libc.Int32FromInt32(8)),
 	Fslots:     uintptr(unsafe.Pointer(&_writer_slots)),
@@ -32323,11 +32323,11 @@ func __multibytecodec___create_codec(tls *libc.TLS, module uintptr, arg uintptr)
 	var codec, data, self, state, v1, v2, v4 uintptr
 	var cur_refcnt Tuint32_t
 	_, _, _, _, _, _, _, _ = codec, cur_refcnt, data, self, state, v1, v2, v4
-	if !(XPyCapsule_IsValid(tls, arg, __ccgo_ts+220264) != 0) {
-		XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+221989)
+	if !(XPyCapsule_IsValid(tls, arg, __ccgo_ts+220172) != 0) {
+		XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+221897)
 		return libc.UintptrFromInt32(0)
 	}
-	data = XPyCapsule_GetPointer(tls, arg, __ccgo_ts+220264)
+	data = XPyCapsule_GetPointer(tls, arg, __ccgo_ts+220172)
 	codec = (*Tcodec_capsule)(unsafe.Pointer(data)).Fcodec
 	if (*TMultibyteCodec)(unsafe.Pointer(codec)).Fcodecinit != libc.UintptrFromInt32(0) && (*(*func(*libc.TLS, uintptr) int32)(unsafe.Pointer(&struct{ uintptr }{(*TMultibyteCodec)(unsafe.Pointer(codec)).Fcodecinit})))(tls, codec) != 0 {
 		return libc.UintptrFromInt32(0)
@@ -32565,7 +32565,7 @@ func __multibytecodec_exec(tls *libc.TLS, mod uintptr) (r int32) {
 
 var __multibytecodec_methods = [2]TPyMethodDef{
 	0: {
-		Fml_name:  __ccgo_ts + 220249,
+		Fml_name:  __ccgo_ts + 220157,
 		Fml_flags: int32(MMETH_O),
 		Fml_doc:   uintptr(unsafe.Pointer(&__multibytecodec___create_codec__doc__)),
 	},
@@ -33848,22 +33848,22 @@ var _nfc_last = [48]Treindex{
 
 var _decomp_prefix = [18]uintptr{
 	0:  __ccgo_ts + 2,
-	1:  __ccgo_ts + 222171,
-	2:  __ccgo_ts + 222181,
-	3:  __ccgo_ts + 222190,
-	4:  __ccgo_ts + 222198,
-	5:  __ccgo_ts + 222209,
-	6:  __ccgo_ts + 222215,
-	7:  __ccgo_ts + 222222,
-	8:  __ccgo_ts + 222231,
-	9:  __ccgo_ts + 222238,
-	10: __ccgo_ts + 222249,
-	11: __ccgo_ts + 222258,
-	12: __ccgo_ts + 222269,
-	13: __ccgo_ts + 222277,
-	14: __ccgo_ts + 222287,
-	15: __ccgo_ts + 222296,
-	16: __ccgo_ts + 222304,
+	1:  __ccgo_ts + 222079,
+	2:  __ccgo_ts + 222089,
+	3:  __ccgo_ts + 222098,
+	4:  __ccgo_ts + 222106,
+	5:  __ccgo_ts + 222117,
+	6:  __ccgo_ts + 222123,
+	7:  __ccgo_ts + 222130,
+	8:  __ccgo_ts + 222139,
+	9:  __ccgo_ts + 222146,
+	10: __ccgo_ts + 222157,
+	11: __ccgo_ts + 222166,
+	12: __ccgo_ts + 222177,
+	13: __ccgo_ts + 222185,
+	14: __ccgo_ts + 222195,
+	15: __ccgo_ts + 222204,
+	16: __ccgo_ts + 222212,
 	17: libc.UintptrFromInt32(0),
 }
 
@@ -34375,7 +34375,7 @@ _6:
 		v7 = (*TPyASCIIObject)(unsafe.Pointer(**(**uintptr)(__ccgo_up(args)))).Flength
 		goto _8
 	_8:
-		XPyErr_Format(tls, XPyExc_TypeError, __ccgo_ts+222313, libc.VaList(bp+8, v7))
+		XPyErr_Format(tls, XPyExc_TypeError, __ccgo_ts+222221, libc.VaList(bp+8, v7))
 		goto exit
 	}
 	v1 = **(**uintptr)(__ccgo_up(args))
@@ -34497,7 +34497,7 @@ func _unicodedata_UCD_digit(tls *libc.TLS, self uintptr, args uintptr, nargs TPy
 	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = chr, data, default_value, flags, kind, return_value, v1, v11, v13, v14, v16, v18, v19, v21, v23, v25, v26, v28, v3, v30, v31, v33, v35, v37, v38, v40, v42, v43, v45, v5, v7, v9
 	return_value = libc.UintptrFromInt32(0)
 	default_value = libc.UintptrFromInt32(0)
-	if !(libc.Bool(!false) && int64(libc.Int32FromInt32(1)) <= nargs && nargs <= int64(libc.Int32FromInt32(2)) || X_PyArg_CheckPositional(tls, __ccgo_ts+222391, nargs, int64(libc.Int32FromInt32(1)), int64(libc.Int32FromInt32(2))) != 0) {
+	if !(libc.Bool(!false) && int64(libc.Int32FromInt32(1)) <= nargs && nargs <= int64(libc.Int32FromInt32(2)) || X_PyArg_CheckPositional(tls, __ccgo_ts+222299, nargs, int64(libc.Int32FromInt32(1)), int64(libc.Int32FromInt32(2))) != 0) {
 		goto exit
 	}
 	v1 = (*TPyObject)(unsafe.Pointer(**(**uintptr)(__ccgo_up(args)))).Fob_type
@@ -34508,7 +34508,7 @@ _2:
 	goto _4
 _4:
 	if !(v3 != 0) {
-		X_PyArg_BadArgument(tls, __ccgo_ts+222391, __ccgo_ts+75042, __ccgo_ts+140401, **(**uintptr)(__ccgo_up(args)))
+		X_PyArg_BadArgument(tls, __ccgo_ts+222299, __ccgo_ts+75042, __ccgo_ts+140401, **(**uintptr)(__ccgo_up(args)))
 		goto exit
 	}
 	v5 = (*TPyASCIIObject)(unsafe.Pointer(**(**uintptr)(__ccgo_up(args)))).Flength
@@ -34518,7 +34518,7 @@ _6:
 		v7 = (*TPyASCIIObject)(unsafe.Pointer(**(**uintptr)(__ccgo_up(args)))).Flength
 		goto _8
 	_8:
-		XPyErr_Format(tls, XPyExc_TypeError, __ccgo_ts+222397, libc.VaList(bp+8, v7))
+		XPyErr_Format(tls, XPyExc_TypeError, __ccgo_ts+222305, libc.VaList(bp+8, v7))
 		goto exit
 	}
 	v1 = **(**uintptr)(__ccgo_up(args))
@@ -34640,7 +34640,7 @@ func _unicodedata_UCD_numeric(tls *libc.TLS, self uintptr, args uintptr, nargs T
 	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = chr, data, default_value, flags, kind, return_value, v1, v11, v13, v14, v16, v18, v19, v21, v23, v25, v26, v28, v3, v30, v31, v33, v35, v37, v38, v40, v42, v43, v45, v5, v7, v9
 	return_value = libc.UintptrFromInt32(0)
 	default_value = libc.UintptrFromInt32(0)
-	if !(libc.Bool(!false) && int64(libc.Int32FromInt32(1)) <= nargs && nargs <= int64(libc.Int32FromInt32(2)) || X_PyArg_CheckPositional(tls, __ccgo_ts+222473, nargs, int64(libc.Int32FromInt32(1)), int64(libc.Int32FromInt32(2))) != 0) {
+	if !(libc.Bool(!false) && int64(libc.Int32FromInt32(1)) <= nargs && nargs <= int64(libc.Int32FromInt32(2)) || X_PyArg_CheckPositional(tls, __ccgo_ts+222381, nargs, int64(libc.Int32FromInt32(1)), int64(libc.Int32FromInt32(2))) != 0) {
 		goto exit
 	}
 	v1 = (*TPyObject)(unsafe.Pointer(**(**uintptr)(__ccgo_up(args)))).Fob_type
@@ -34651,7 +34651,7 @@ _2:
 	goto _4
 _4:
 	if !(v3 != 0) {
-		X_PyArg_BadArgument(tls, __ccgo_ts+222473, __ccgo_ts+75042, __ccgo_ts+140401, **(**uintptr)(__ccgo_up(args)))
+		X_PyArg_BadArgument(tls, __ccgo_ts+222381, __ccgo_ts+75042, __ccgo_ts+140401, **(**uintptr)(__ccgo_up(args)))
 		goto exit
 	}
 	v5 = (*TPyASCIIObject)(unsafe.Pointer(**(**uintptr)(__ccgo_up(args)))).Flength
@@ -34661,7 +34661,7 @@ _6:
 		v7 = (*TPyASCIIObject)(unsafe.Pointer(**(**uintptr)(__ccgo_up(args)))).Flength
 		goto _8
 	_8:
-		XPyErr_Format(tls, XPyExc_TypeError, __ccgo_ts+222481, libc.VaList(bp+8, v7))
+		XPyErr_Format(tls, XPyExc_TypeError, __ccgo_ts+222389, libc.VaList(bp+8, v7))
 		goto exit
 	}
 	v1 = **(**uintptr)(__ccgo_up(args))
@@ -34800,7 +34800,7 @@ _6:
 		v7 = (*TPyASCIIObject)(unsafe.Pointer(arg)).Flength
 		goto _8
 	_8:
-		XPyErr_Format(tls, XPyExc_TypeError, __ccgo_ts+222559, libc.VaList(bp+8, v7))
+		XPyErr_Format(tls, XPyExc_TypeError, __ccgo_ts+222467, libc.VaList(bp+8, v7))
 		goto exit
 	}
 	v1 = arg
@@ -34922,7 +34922,7 @@ _2:
 	goto _4
 _4:
 	if !(v3 != 0) {
-		X_PyArg_BadArgument(tls, __ccgo_ts+222636, __ccgo_ts+23361, __ccgo_ts+140401, arg)
+		X_PyArg_BadArgument(tls, __ccgo_ts+222544, __ccgo_ts+23361, __ccgo_ts+140401, arg)
 		goto exit
 	}
 	v5 = (*TPyASCIIObject)(unsafe.Pointer(arg)).Flength
@@ -34932,7 +34932,7 @@ _6:
 		v7 = (*TPyASCIIObject)(unsafe.Pointer(arg)).Flength
 		goto _8
 	_8:
-		XPyErr_Format(tls, XPyExc_TypeError, __ccgo_ts+222650, libc.VaList(bp+8, v7))
+		XPyErr_Format(tls, XPyExc_TypeError, __ccgo_ts+222558, libc.VaList(bp+8, v7))
 		goto exit
 	}
 	v1 = arg
@@ -35054,7 +35054,7 @@ _2:
 	goto _4
 _4:
 	if !(v3 != 0) {
-		X_PyArg_BadArgument(tls, __ccgo_ts+222732, __ccgo_ts+23361, __ccgo_ts+140401, arg)
+		X_PyArg_BadArgument(tls, __ccgo_ts+222640, __ccgo_ts+23361, __ccgo_ts+140401, arg)
 		goto exit
 	}
 	v5 = (*TPyASCIIObject)(unsafe.Pointer(arg)).Flength
@@ -35064,7 +35064,7 @@ _6:
 		v7 = (*TPyASCIIObject)(unsafe.Pointer(arg)).Flength
 		goto _8
 	_8:
-		XPyErr_Format(tls, XPyExc_TypeError, __ccgo_ts+222742, libc.VaList(bp+8, v7))
+		XPyErr_Format(tls, XPyExc_TypeError, __ccgo_ts+222650, libc.VaList(bp+8, v7))
 		goto exit
 	}
 	v1 = arg
@@ -35190,7 +35190,7 @@ _2:
 	goto _4
 _4:
 	if !(v3 != 0) {
-		X_PyArg_BadArgument(tls, __ccgo_ts+222820, __ccgo_ts+23361, __ccgo_ts+140401, arg)
+		X_PyArg_BadArgument(tls, __ccgo_ts+222728, __ccgo_ts+23361, __ccgo_ts+140401, arg)
 		goto exit
 	}
 	v5 = (*TPyASCIIObject)(unsafe.Pointer(arg)).Flength
@@ -35200,7 +35200,7 @@ _6:
 		v7 = (*TPyASCIIObject)(unsafe.Pointer(arg)).Flength
 		goto _8
 	_8:
-		XPyErr_Format(tls, XPyExc_TypeError, __ccgo_ts+222829, libc.VaList(bp+8, v7))
+		XPyErr_Format(tls, XPyExc_TypeError, __ccgo_ts+222737, libc.VaList(bp+8, v7))
 		goto exit
 	}
 	v1 = arg
@@ -35326,7 +35326,7 @@ _2:
 	goto _4
 _4:
 	if !(v3 != 0) {
-		X_PyArg_BadArgument(tls, __ccgo_ts+222906, __ccgo_ts+23361, __ccgo_ts+140401, arg)
+		X_PyArg_BadArgument(tls, __ccgo_ts+222814, __ccgo_ts+23361, __ccgo_ts+140401, arg)
 		goto exit
 	}
 	v5 = (*TPyASCIIObject)(unsafe.Pointer(arg)).Flength
@@ -35336,7 +35336,7 @@ _6:
 		v7 = (*TPyASCIIObject)(unsafe.Pointer(arg)).Flength
 		goto _8
 	_8:
-		XPyErr_Format(tls, XPyExc_TypeError, __ccgo_ts+222923, libc.VaList(bp+8, v7))
+		XPyErr_Format(tls, XPyExc_TypeError, __ccgo_ts+222831, libc.VaList(bp+8, v7))
 		goto exit
 	}
 	v1 = arg
@@ -35458,7 +35458,7 @@ _2:
 	goto _4
 _4:
 	if !(v3 != 0) {
-		X_PyArg_BadArgument(tls, __ccgo_ts+223008, __ccgo_ts+23361, __ccgo_ts+140401, arg)
+		X_PyArg_BadArgument(tls, __ccgo_ts+222916, __ccgo_ts+23361, __ccgo_ts+140401, arg)
 		goto exit
 	}
 	v5 = (*TPyASCIIObject)(unsafe.Pointer(arg)).Flength
@@ -35468,7 +35468,7 @@ _6:
 		v7 = (*TPyASCIIObject)(unsafe.Pointer(arg)).Flength
 		goto _8
 	_8:
-		XPyErr_Format(tls, XPyExc_TypeError, __ccgo_ts+223022, libc.VaList(bp+8, v7))
+		XPyErr_Format(tls, XPyExc_TypeError, __ccgo_ts+222930, libc.VaList(bp+8, v7))
 		goto exit
 	}
 	v1 = arg
@@ -35578,7 +35578,7 @@ func _unicodedata_UCD_is_normalized(tls *libc.TLS, self uintptr, args uintptr, n
 	var v3 int32
 	_, _, _, _, _, _ = flags, form, input, return_value, v1, v3
 	return_value = libc.UintptrFromInt32(0)
-	if !(libc.Bool(!false) && int64(libc.Int32FromInt32(2)) <= nargs && nargs <= int64(libc.Int32FromInt32(2)) || X_PyArg_CheckPositional(tls, __ccgo_ts+223104, nargs, int64(libc.Int32FromInt32(2)), int64(libc.Int32FromInt32(2))) != 0) {
+	if !(libc.Bool(!false) && int64(libc.Int32FromInt32(2)) <= nargs && nargs <= int64(libc.Int32FromInt32(2)) || X_PyArg_CheckPositional(tls, __ccgo_ts+223012, nargs, int64(libc.Int32FromInt32(2)), int64(libc.Int32FromInt32(2))) != 0) {
 		goto exit
 	}
 	v1 = (*TPyObject)(unsafe.Pointer(**(**uintptr)(__ccgo_up(args)))).Fob_type
@@ -35589,7 +35589,7 @@ _2:
 	goto _4
 _4:
 	if !(v3 != 0) {
-		X_PyArg_BadArgument(tls, __ccgo_ts+223104, __ccgo_ts+75042, __ccgo_ts+15107, **(**uintptr)(__ccgo_up(args)))
+		X_PyArg_BadArgument(tls, __ccgo_ts+223012, __ccgo_ts+75042, __ccgo_ts+15107, **(**uintptr)(__ccgo_up(args)))
 		goto exit
 	}
 	form = **(**uintptr)(__ccgo_up(args))
@@ -35601,7 +35601,7 @@ _6:
 	goto _8
 _8:
 	if !(v3 != 0) {
-		X_PyArg_BadArgument(tls, __ccgo_ts+223104, __ccgo_ts+16387, __ccgo_ts+15107, **(**uintptr)(__ccgo_up(args + 1*8)))
+		X_PyArg_BadArgument(tls, __ccgo_ts+223012, __ccgo_ts+16387, __ccgo_ts+15107, **(**uintptr)(__ccgo_up(args + 1*8)))
 		goto exit
 	}
 	input = **(**uintptr)(__ccgo_up(args + 1*8))
@@ -35686,7 +35686,7 @@ _6:
 		v7 = (*TPyASCIIObject)(unsafe.Pointer(**(**uintptr)(__ccgo_up(args)))).Flength
 		goto _8
 	_8:
-		XPyErr_Format(tls, XPyExc_TypeError, __ccgo_ts+223118, libc.VaList(bp+8, v7))
+		XPyErr_Format(tls, XPyExc_TypeError, __ccgo_ts+223026, libc.VaList(bp+8, v7))
 		goto exit
 	}
 	v1 = **(**uintptr)(__ccgo_up(args))
@@ -35805,7 +35805,7 @@ func _unicodedata_UCD_lookup(tls *libc.TLS, self uintptr, arg uintptr) (r uintpt
 	var _ TPy_ssize_t
 	_ = return_value
 	return_value = libc.UintptrFromInt32(0)
-	if !(XPyArg_Parse(tls, arg, __ccgo_ts+223193, libc.VaList(bp+24, bp, bp+8)) != 0) {
+	if !(XPyArg_Parse(tls, arg, __ccgo_ts+223101, libc.VaList(bp+24, bp, bp+8)) != 0) {
 		goto exit
 	}
 	return_value = _unicodedata_UCD_lookup_impl(tls, self, **(**uintptr)(__ccgo_up(bp)), **(**TPy_ssize_t)(__ccgo_up(bp + 8)))
@@ -35818,7 +35818,7 @@ exit:
 
 var _DB_members = [2]TPyMemberDef{
 	0: {
-		Fname:   __ccgo_ts + 223203,
+		Fname:   __ccgo_ts + 223111,
 		Ftype1:  int32(MPy_T_STRING),
 		Foffset: int64(uint64(libc.UintptrFromInt32(0) + 16)),
 		Fflags:  int32(MPy_READONLY),
@@ -35887,7 +35887,7 @@ func _unicodedata_UCD_decimal_impl(tls *libc.TLS, self uintptr, chr int32, defau
 	}
 	if rc < 0 {
 		if default_value == libc.UintptrFromInt32(0) {
-			XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+223219)
+			XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+223127)
 			return libc.UintptrFromInt32(0)
 		} else {
 			v1 = default_value
@@ -35919,7 +35919,7 @@ func _unicodedata_UCD_digit_impl(tls *libc.TLS, self uintptr, chr int32, default
 	rc = X_PyUnicode_ToDigit(tls, c)
 	if rc < 0 {
 		if default_value == libc.UintptrFromInt32(0) {
-			XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+223233)
+			XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+223141)
 			return libc.UintptrFromInt32(0)
 		} else {
 			v1 = default_value
@@ -35988,7 +35988,7 @@ func _unicodedata_UCD_numeric_impl(tls *libc.TLS, self uintptr, chr int32, defau
 	}
 	if rc == -libc.Float64FromFloat64(1) {
 		if default_value == libc.UintptrFromInt32(0) {
-			XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+223245)
+			XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+223153)
 			return libc.UintptrFromInt32(0)
 		} else {
 			v1 = default_value
@@ -36252,9 +36252,9 @@ func _unicodedata_UCD_decomposition_impl(tls *libc.TLS, self uintptr, chr int32)
 		V = int32(MVBase) + SIndex%(libc.Int32FromInt32(MVCount)*libc.Int32FromInt32(MTCount))/int32(MTCount)
 		T = int32(MTBase) + SIndex%int32(MTCount)
 		if T != int32(MTBase) {
-			XPyOS_snprintf(tls, bp, uint64(256), __ccgo_ts+223269, libc.VaList(bp+264, L, V, T))
+			XPyOS_snprintf(tls, bp, uint64(256), __ccgo_ts+223177, libc.VaList(bp+264, L, V, T))
 		} else {
-			XPyOS_snprintf(tls, bp, uint64(256), __ccgo_ts+223284, libc.VaList(bp+264, L, V))
+			XPyOS_snprintf(tls, bp, uint64(256), __ccgo_ts+223192, libc.VaList(bp+264, L, V))
 		}
 		return XPyUnicode_FromString(tls, bp)
 	}
@@ -36284,7 +36284,7 @@ func _unicodedata_UCD_decomposition_impl(tls *libc.TLS, self uintptr, chr int32)
 		}
 		index = index + 1
 		v3 = index
-		XPyOS_snprintf(tls, bp+uintptr(i), uint64(256)-i, __ccgo_ts+223294, libc.VaList(bp+264, _decomp_data[v3]))
+		XPyOS_snprintf(tls, bp+uintptr(i), uint64(256)-i, __ccgo_ts+223202, libc.VaList(bp+264, _decomp_data[v3]))
 		i = i + libc.Xstrlen(tls, bp+uintptr(i))
 	}
 	return XPyUnicode_FromStringAndSize(tls, bp, int64(i))
@@ -37380,20 +37380,20 @@ _2:
 	nfc = libc.BoolUint8(Mfalse != 0)
 	k = libc.BoolUint8(Mfalse != 0)
 	match = 0
-	if XPyUnicode_CompareWithASCIIString(tls, form, __ccgo_ts+223299) == 0 {
+	if XPyUnicode_CompareWithASCIIString(tls, form, __ccgo_ts+223207) == 0 {
 		nfc = libc.BoolUint8(Mtrue != 0)
 	} else {
 		if XPyUnicode_CompareWithASCIIString(tls, form, __ccgo_ts+877) == 0 {
 			nfc = libc.BoolUint8(Mtrue != 0)
 			k = libc.BoolUint8(Mtrue != 0)
 		} else {
-			if XPyUnicode_CompareWithASCIIString(tls, form, __ccgo_ts+223303) == 0 {
+			if XPyUnicode_CompareWithASCIIString(tls, form, __ccgo_ts+223211) == 0 {
 
 			} else {
-				if XPyUnicode_CompareWithASCIIString(tls, form, __ccgo_ts+223307) == 0 {
+				if XPyUnicode_CompareWithASCIIString(tls, form, __ccgo_ts+223215) == 0 {
 					k = libc.BoolUint8(Mtrue != 0)
 				} else {
-					XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+223312)
+					XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+223220)
 					return libc.UintptrFromInt32(0)
 				}
 			}
@@ -37466,7 +37466,7 @@ _2:
 
 		return XPyUnicode_FromObject(tls, input)
 	}
-	if XPyUnicode_CompareWithASCIIString(tls, form, __ccgo_ts+223299) == 0 {
+	if XPyUnicode_CompareWithASCIIString(tls, form, __ccgo_ts+223207) == 0 {
 		if _is_normalized_quickcheck(tls, self, input, libc.BoolUint8(Mtrue != 0), libc.BoolUint8(Mfalse != 0), libc.BoolUint8(Mtrue != 0)) == int32(EYES) {
 			return XPyUnicode_FromObject(tls, input)
 		}
@@ -37478,19 +37478,19 @@ _2:
 		}
 		return _nfc_nfkc(tls, self, input, int32(1))
 	}
-	if XPyUnicode_CompareWithASCIIString(tls, form, __ccgo_ts+223303) == 0 {
+	if XPyUnicode_CompareWithASCIIString(tls, form, __ccgo_ts+223211) == 0 {
 		if _is_normalized_quickcheck(tls, self, input, libc.BoolUint8(Mfalse != 0), libc.BoolUint8(Mfalse != 0), libc.BoolUint8(Mtrue != 0)) == int32(EYES) {
 			return XPyUnicode_FromObject(tls, input)
 		}
 		return _nfd_nfkd(tls, self, input, 0)
 	}
-	if XPyUnicode_CompareWithASCIIString(tls, form, __ccgo_ts+223307) == 0 {
+	if XPyUnicode_CompareWithASCIIString(tls, form, __ccgo_ts+223215) == 0 {
 		if _is_normalized_quickcheck(tls, self, input, libc.BoolUint8(Mfalse != 0), libc.BoolUint8(Mtrue != 0), libc.BoolUint8(Mtrue != 0)) == int32(EYES) {
 			return XPyUnicode_FromObject(tls, input)
 		}
 		return _nfd_nfkd(tls, self, input, int32(1))
 	}
-	XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+223312)
+	XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+223220)
 	return libc.UintptrFromInt32(0)
 }
 
@@ -40863,129 +40863,129 @@ var _derived_name_ranges = [13]Tderived_name_range{
 }
 
 var _derived_name_prefixes = [3]uintptr{
-	0: __ccgo_ts + 223339,
-	1: __ccgo_ts + 223356,
-	2: __ccgo_ts + 223379,
+	0: __ccgo_ts + 223247,
+	1: __ccgo_ts + 223264,
+	2: __ccgo_ts + 223287,
 }
 
 var _hangul_syllables = [28][3]uintptr{
 	0: {
-		0: __ccgo_ts + 223397,
+		0: __ccgo_ts + 223305,
 		1: __ccgo_ts + 50707,
 		2: __ccgo_ts + 2,
 	},
 	1: {
-		0: __ccgo_ts + 223399,
-		1: __ccgo_ts + 223402,
-		2: __ccgo_ts + 223397,
+		0: __ccgo_ts + 223307,
+		1: __ccgo_ts + 223310,
+		2: __ccgo_ts + 223305,
 	},
 	2: {
 		0: __ccgo_ts + 49551,
-		1: __ccgo_ts + 223405,
-		2: __ccgo_ts + 223399,
+		1: __ccgo_ts + 223313,
+		2: __ccgo_ts + 223307,
 	},
 	3: {
-		0: __ccgo_ts + 223408,
-		1: __ccgo_ts + 223410,
-		2: __ccgo_ts + 223414,
+		0: __ccgo_ts + 223316,
+		1: __ccgo_ts + 223318,
+		2: __ccgo_ts + 223322,
 	},
 	4: {
-		0: __ccgo_ts + 223417,
-		1: __ccgo_ts + 223420,
+		0: __ccgo_ts + 223325,
+		1: __ccgo_ts + 223328,
 		2: __ccgo_ts + 49551,
 	},
 	5: {
-		0: __ccgo_ts + 222111,
+		0: __ccgo_ts + 222014,
 		1: __ccgo_ts + 172966,
-		2: __ccgo_ts + 223423,
+		2: __ccgo_ts + 223331,
 	},
 	6: {
-		0: __ccgo_ts + 223426,
-		1: __ccgo_ts + 223428,
-		2: __ccgo_ts + 223432,
+		0: __ccgo_ts + 223334,
+		1: __ccgo_ts + 223336,
+		2: __ccgo_ts + 223340,
 	},
 	7: {
 		0: __ccgo_ts + 11571,
-		1: __ccgo_ts + 223435,
-		2: __ccgo_ts + 223408,
+		1: __ccgo_ts + 223343,
+		2: __ccgo_ts + 223316,
 	},
 	8: {
-		0: __ccgo_ts + 223438,
+		0: __ccgo_ts + 223346,
 		1: __ccgo_ts + 41785,
 		2: __ccgo_ts + 49531,
 	},
 	9: {
-		0: __ccgo_ts + 222150,
-		1: __ccgo_ts + 223441,
-		2: __ccgo_ts + 223444,
+		0: __ccgo_ts + 222053,
+		1: __ccgo_ts + 223349,
+		2: __ccgo_ts + 223352,
 	},
 	10: {
-		0: __ccgo_ts + 223447,
-		1: __ccgo_ts + 223450,
-		2: __ccgo_ts + 223454,
+		0: __ccgo_ts + 223355,
+		1: __ccgo_ts + 223358,
+		2: __ccgo_ts + 223362,
 	},
 	11: {
 		0: __ccgo_ts + 2,
-		1: __ccgo_ts + 223457,
-		2: __ccgo_ts + 223460,
+		1: __ccgo_ts + 223365,
+		2: __ccgo_ts + 223368,
 	},
 	12: {
-		0: __ccgo_ts + 223463,
-		1: __ccgo_ts + 223465,
-		2: __ccgo_ts + 223468,
+		0: __ccgo_ts + 223371,
+		1: __ccgo_ts + 223373,
+		2: __ccgo_ts + 223376,
 	},
 	13: {
-		0: __ccgo_ts + 223471,
+		0: __ccgo_ts + 223379,
 		1: __ccgo_ts + 36784,
-		2: __ccgo_ts + 223474,
+		2: __ccgo_ts + 223382,
 	},
 	14: {
 		0: __ccgo_ts + 50709,
-		1: __ccgo_ts + 223477,
-		2: __ccgo_ts + 223481,
+		1: __ccgo_ts + 223385,
+		2: __ccgo_ts + 223389,
 	},
 	15: {
-		0: __ccgo_ts + 223484,
-		1: __ccgo_ts + 223486,
-		2: __ccgo_ts + 223489,
+		0: __ccgo_ts + 223392,
+		1: __ccgo_ts + 223394,
+		2: __ccgo_ts + 223397,
 	},
 	16: {
-		0: __ccgo_ts + 223492,
-		1: __ccgo_ts + 223494,
-		2: __ccgo_ts + 223426,
+		0: __ccgo_ts + 223400,
+		1: __ccgo_ts + 223402,
+		2: __ccgo_ts + 223334,
 	},
 	17: {
 		0: __ccgo_ts + 49574,
-		1: __ccgo_ts + 223497,
+		1: __ccgo_ts + 223405,
 		2: __ccgo_ts + 11571,
 	},
 	18: {
 		0: __ccgo_ts + 49513,
-		1: __ccgo_ts + 223500,
-		2: __ccgo_ts + 223503,
+		1: __ccgo_ts + 223408,
+		2: __ccgo_ts + 223411,
 	},
 	19: {
-		1: __ccgo_ts + 223506,
-		2: __ccgo_ts + 222150,
+		1: __ccgo_ts + 223414,
+		2: __ccgo_ts + 222053,
 	},
 	20: {
 		1: __ccgo_ts + 49521,
-		2: __ccgo_ts + 223447,
+		2: __ccgo_ts + 223355,
 	},
 	21: {
-		2: __ccgo_ts + 223509,
+		2: __ccgo_ts + 223417,
 	},
 	22: {
-		2: __ccgo_ts + 223463,
+		2: __ccgo_ts + 223371,
 	},
 	23: {
 		2: __ccgo_ts + 50709,
 	},
 	24: {
-		2: __ccgo_ts + 223484,
+		2: __ccgo_ts + 223392,
 	},
 	25: {
-		2: __ccgo_ts + 223492,
+		2: __ccgo_ts + 223400,
 	},
 	26: {
 		2: __ccgo_ts + 49574,
@@ -41295,7 +41295,7 @@ func __getucname(tls *libc.TLS, self uintptr, code TPy_UCS4, buffer uintptr, buf
 
 			return 0
 		}
-		libc.Xstrcpy(tls, buffer, __ccgo_ts+223339)
+		libc.Xstrcpy(tls, buffer, __ccgo_ts+223247)
 		buffer = buffer + uintptr(16)
 		libc.Xstrcpy(tls, buffer, **(**uintptr)(__ccgo_up(uintptr(unsafe.Pointer(&_hangul_syllables)) + uintptr(L)*24)))
 		buffer = buffer + uintptr(libc.Xstrlen(tls, **(**uintptr)(__ccgo_up(uintptr(unsafe.Pointer(&_hangul_syllables)) + uintptr(L)*24))))
@@ -41309,7 +41309,7 @@ func __getucname(tls *libc.TLS, self uintptr, code TPy_UCS4, buffer uintptr, buf
 
 	if prefixid == int32(1) {
 		prefix = _derived_name_prefixes[prefixid]
-		if libc.X__builtin_snprintf(tls, buffer, uint64(buflen), __ccgo_ts+223512, libc.VaList(bp+8, prefix, code)) >= buflen {
+		if libc.X__builtin_snprintf(tls, buffer, uint64(buflen), __ccgo_ts+223420, libc.VaList(bp+8, prefix, code)) >= buflen {
 			return 0
 		}
 		return int32(1)
@@ -41500,7 +41500,7 @@ func _unicodedata_UCD_name_impl(tls *libc.TLS, self uintptr, chr int32, default_
 	c = uint32(chr)
 	if !(__getucname(tls, self, c, bp, int32(MNAME_MAXLEN), 0) != 0) {
 		if default_value == libc.UintptrFromInt32(0) {
-			XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+223519)
+			XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+223427)
 			return libc.UintptrFromInt32(0)
 		} else {
 			v1 = default_value
@@ -41532,11 +41532,11 @@ func _unicodedata_UCD_lookup_impl(tls *libc.TLS, self uintptr, name uintptr, nam
 	var _ TPy_UCS4
 	_, _, _, _, _, _, _, _, _ = index, v1, v11, v12, v2, v3, v5, v7, v9
 	if name_length > int64(MNAME_MAXLEN) {
-		XPyErr_SetString(tls, XPyExc_KeyError, __ccgo_ts+223532)
+		XPyErr_SetString(tls, XPyExc_KeyError, __ccgo_ts+223440)
 		return libc.UintptrFromInt32(0)
 	}
 	if !(__getcode(tls, name, int32(name_length), bp) != 0) {
-		XPyErr_Format(tls, XPyExc_KeyError, __ccgo_ts+223546, libc.VaList(bp+16, name))
+		XPyErr_Format(tls, XPyExc_KeyError, __ccgo_ts+223454, libc.VaList(bp+16, name))
 		return libc.UintptrFromInt32(0)
 	}
 	if v12 = self != libc.UintptrFromInt32(0); v12 {
@@ -41561,7 +41561,7 @@ func _unicodedata_UCD_lookup_impl(tls *libc.TLS, self uintptr, name uintptr, nam
 	if v12 && !(v3 != 0) {
 
 		if **(**TPy_UCS4)(__ccgo_up(bp)) >= _aliases_start && **(**TPy_UCS4)(__ccgo_up(bp)) < _aliases_end || **(**TPy_UCS4)(__ccgo_up(bp)) >= _named_sequences_start && **(**TPy_UCS4)(__ccgo_up(bp)) < _named_sequences_end {
-			XPyErr_Format(tls, XPyExc_KeyError, __ccgo_ts+223546, libc.VaList(bp+16, name))
+			XPyErr_Format(tls, XPyExc_KeyError, __ccgo_ts+223454, libc.VaList(bp+16, name))
 			return uintptr(0)
 		}
 	}
@@ -41589,12 +41589,12 @@ var _unicodedata_functions = [14]TPyMethodDef{
 		Fml_doc:   uintptr(unsafe.Pointer(&_unicodedata_UCD_decimal__doc__)),
 	},
 	1: {
-		Fml_name:  __ccgo_ts + 222391,
+		Fml_name:  __ccgo_ts + 222299,
 		Fml_flags: int32(MMETH_FASTCALL),
 		Fml_doc:   uintptr(unsafe.Pointer(&_unicodedata_UCD_digit__doc__)),
 	},
 	2: {
-		Fml_name:  __ccgo_ts + 222473,
+		Fml_name:  __ccgo_ts + 222381,
 		Fml_flags: int32(MMETH_FASTCALL),
 		Fml_doc:   uintptr(unsafe.Pointer(&_unicodedata_UCD_numeric__doc__)),
 	},
@@ -41604,27 +41604,27 @@ var _unicodedata_functions = [14]TPyMethodDef{
 		Fml_doc:   uintptr(unsafe.Pointer(&_unicodedata_UCD_category__doc__)),
 	},
 	4: {
-		Fml_name:  __ccgo_ts + 222636,
+		Fml_name:  __ccgo_ts + 222544,
 		Fml_flags: int32(MMETH_O),
 		Fml_doc:   uintptr(unsafe.Pointer(&_unicodedata_UCD_bidirectional__doc__)),
 	},
 	5: {
-		Fml_name:  __ccgo_ts + 222732,
+		Fml_name:  __ccgo_ts + 222640,
 		Fml_flags: int32(MMETH_O),
 		Fml_doc:   uintptr(unsafe.Pointer(&_unicodedata_UCD_combining__doc__)),
 	},
 	6: {
-		Fml_name:  __ccgo_ts + 222820,
+		Fml_name:  __ccgo_ts + 222728,
 		Fml_flags: int32(MMETH_O),
 		Fml_doc:   uintptr(unsafe.Pointer(&_unicodedata_UCD_mirrored__doc__)),
 	},
 	7: {
-		Fml_name:  __ccgo_ts + 222906,
+		Fml_name:  __ccgo_ts + 222814,
 		Fml_flags: int32(MMETH_O),
 		Fml_doc:   uintptr(unsafe.Pointer(&_unicodedata_UCD_east_asian_width__doc__)),
 	},
 	8: {
-		Fml_name:  __ccgo_ts + 223008,
+		Fml_name:  __ccgo_ts + 222916,
 		Fml_flags: int32(MMETH_O),
 		Fml_doc:   uintptr(unsafe.Pointer(&_unicodedata_UCD_decomposition__doc__)),
 	},
@@ -41634,12 +41634,12 @@ var _unicodedata_functions = [14]TPyMethodDef{
 		Fml_doc:   uintptr(unsafe.Pointer(&_unicodedata_UCD_name__doc__)),
 	},
 	10: {
-		Fml_name:  __ccgo_ts + 223576,
+		Fml_name:  __ccgo_ts + 223484,
 		Fml_flags: int32(MMETH_O),
 		Fml_doc:   uintptr(unsafe.Pointer(&_unicodedata_UCD_lookup__doc__)),
 	},
 	11: {
-		Fml_name:  __ccgo_ts + 223104,
+		Fml_name:  __ccgo_ts + 223012,
 		Fml_flags: int32(MMETH_FASTCALL),
 		Fml_doc:   uintptr(unsafe.Pointer(&_unicodedata_UCD_is_normalized__doc__)),
 	},
@@ -41743,7 +41743,7 @@ func init() {
 }
 
 var _ucd_type_spec = TPyType_Spec{
-	Fname:      __ccgo_ts + 223583,
+	Fname:      __ccgo_ts + 223491,
 	Fbasicsize: int32(40),
 	Fflags:     uint32(uint32(libc.Int32FromInt32(MPy_TPFLAGS_HAVE_STACKLESS_EXTENSION)|libc.Int32FromInt32(0)) | libc.Uint32FromUint32(1)<<libc.Int32FromInt32(7) | libc.Uint32FromUint32(1)<<libc.Int32FromInt32(14) | libc.Uint32FromUint32(1)<<libc.Int32FromInt32(8)),
 	Fslots:     uintptr(unsafe.Pointer(&_ucd_type_slots)),
@@ -41754,7 +41754,7 @@ func _unicodedata_exec(tls *libc.TLS, module uintptr) (r int32) {
 	var v5 Tuint32_t
 	var v2 int32
 	_, _, _, _, _, _ = ucd_type, v, v1, v2, v5, v6
-	if XPyModule_AddStringConstant(tls, module, __ccgo_ts+223203, __ccgo_ts+223599) < 0 {
+	if XPyModule_AddStringConstant(tls, module, __ccgo_ts+223111, __ccgo_ts+223507) < 0 {
 		return -int32(1)
 	}
 	ucd_type = XPyType_FromSpec(tls, uintptr(unsafe.Pointer(&_ucd_type_spec)))
@@ -41779,7 +41779,7 @@ func _unicodedata_exec(tls *libc.TLS, module uintptr) (r int32) {
 		;
 		return -int32(1)
 	}
-	v = _new_previous_version(tls, ucd_type, __ccgo_ts+223606, __ccgo_fp(_get_change_3_2_0), __ccgo_fp(_normalization_3_2_0))
+	v = _new_previous_version(tls, ucd_type, __ccgo_ts+223514, __ccgo_fp(_get_change_3_2_0), __ccgo_fp(_normalization_3_2_0))
 	v1 = ucd_type
 	v2 = libc.BoolInt32(int32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
 	goto _9
@@ -41795,11 +41795,11 @@ _9:
 	}
 _10:
 	;
-	if XPyModule_Add(tls, module, __ccgo_ts+223612, v) < 0 {
+	if XPyModule_Add(tls, module, __ccgo_ts+223520, v) < 0 {
 		return -int32(1)
 	}
 
-	if XPyModule_Add(tls, module, __ccgo_ts+223622, _unicodedata_create_capi(tls)) < 0 {
+	if XPyModule_Add(tls, module, __ccgo_ts+223530, _unicodedata_create_capi(tls)) < 0 {
 		return -int32(1)
 	}
 	return 0
@@ -45264,7 +45264,7 @@ func _mmap_mmap_seek(tls *libc.TLS, self uintptr, args uintptr, nargs TPy_ssize_
 	_, _, _, _, _, _, _, _, _ = dist, how, iobj, ival, return_value, v1, v2, v5, v6
 	return_value = libc.UintptrFromInt32(0)
 	how = 0
-	if !(libc.Bool(!false) && int64(libc.Int32FromInt32(1)) <= nargs && nargs <= int64(libc.Int32FromInt32(2)) || X_PyArg_CheckPositional(tls, __ccgo_ts+223636, nargs, int64(libc.Int32FromInt32(1)), int64(libc.Int32FromInt32(2))) != 0) {
+	if !(libc.Bool(!false) && int64(libc.Int32FromInt32(1)) <= nargs && nargs <= int64(libc.Int32FromInt32(2)) || X_PyArg_CheckPositional(tls, __ccgo_ts+223544, nargs, int64(libc.Int32FromInt32(1)), int64(libc.Int32FromInt32(2))) != 0) {
 		goto exit
 	}
 	ival = int64(-int32(1))
@@ -45323,7 +45323,7 @@ func _mmap_mmap_move(tls *libc.TLS, self uintptr, args uintptr, nargs TPy_ssize_
 	var v2 int32
 	_, _, _, _, _, _, _, _, _, _, _, _, _, _ = cnt, dest, iobj, iobj1, iobj2, ival, ival1, ival2, return_value, src, v1, v2, v5, v6
 	return_value = libc.UintptrFromInt32(0)
-	if !(libc.Bool(!false) && int64(libc.Int32FromInt32(3)) <= nargs && nargs <= int64(libc.Int32FromInt32(3)) || X_PyArg_CheckPositional(tls, __ccgo_ts+223641, nargs, int64(libc.Int32FromInt32(3)), int64(libc.Int32FromInt32(3))) != 0) {
+	if !(libc.Bool(!false) && int64(libc.Int32FromInt32(3)) <= nargs && nargs <= int64(libc.Int32FromInt32(3)) || X_PyArg_CheckPositional(tls, __ccgo_ts+223549, nargs, int64(libc.Int32FromInt32(3)), int64(libc.Int32FromInt32(3))) != 0) {
 		goto exit
 	}
 	ival = int64(-int32(1))
@@ -45513,10 +45513,10 @@ _2:
 		libc.XUnmapViewOfFile(tls, (*Tmmap_object)(unsafe.Pointer(m_obj)).Fdata)
 	}
 	if (*Tmmap_object)(unsafe.Pointer(m_obj)).Fmap_handle != libc.UintptrFromInt32(0) {
-		libc.XCloseHandle(tls, (*Tmmap_object)(unsafe.Pointer(m_obj)).Fmap_handle)
+		_ccgo_CloseHandle(tls, (*Tmmap_object)(unsafe.Pointer(m_obj)).Fmap_handle)
 	}
 	if (*Tmmap_object)(unsafe.Pointer(m_obj)).Ffile_handle != uintptr(int64(-libc.Int32FromInt32(1))) {
-		libc.XCloseHandle(tls, (*Tmmap_object)(unsafe.Pointer(m_obj)).Ffile_handle)
+		_ccgo_CloseHandle(tls, (*Tmmap_object)(unsafe.Pointer(m_obj)).Ffile_handle)
 	}
 	XPyEval_RestoreThread(tls, _save)
 	if (*Tmmap_object)(unsafe.Pointer(m_obj)).Ftagname != 0 {
@@ -45548,7 +45548,7 @@ func _mmap_mmap_close_impl(tls *libc.TLS, self uintptr) (r uintptr) {
 	var file_handle, map_handle THANDLE
 	_, _, _, _ = _save, data, file_handle, map_handle
 	if (*Tmmap_object)(unsafe.Pointer(self)).Fexports > 0 {
-		XPyErr_SetString(tls, XPyExc_BufferError, __ccgo_ts+223646)
+		XPyErr_SetString(tls, XPyExc_BufferError, __ccgo_ts+223554)
 		return libc.UintptrFromInt32(0)
 	}
 
@@ -45563,10 +45563,10 @@ func _mmap_mmap_close_impl(tls *libc.TLS, self uintptr) (r uintptr) {
 		libc.XUnmapViewOfFile(tls, data)
 	}
 	if map_handle != libc.UintptrFromInt32(0) {
-		libc.XCloseHandle(tls, map_handle)
+		_ccgo_CloseHandle(tls, map_handle)
 	}
 	if file_handle != uintptr(int64(-libc.Int32FromInt32(1))) {
-		libc.XCloseHandle(tls, file_handle)
+		_ccgo_CloseHandle(tls, file_handle)
 	}
 	XPyEval_RestoreThread(tls, _save)
 	return uintptr(unsafe.Pointer(&X_Py_NoneStruct))
@@ -45697,11 +45697,11 @@ func _mmap_mmap_read_byte_impl(tls *libc.TLS, self uintptr) (r uintptr) {
 	/*[clinic end generated code: output=d931da1319f3869b input=5b8c6a904bdddda9]*/
 	var _ int8
 	if (*Tmmap_object)(unsafe.Pointer(self)).Fmap_handle == libc.UintptrFromInt32(0) {
-		XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+223683)
+		XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+223591)
 		return libc.UintptrFromInt32(0)
 	}
 	if (*Tmmap_object)(unsafe.Pointer(self)).Fpos >= (*Tmmap_object)(unsafe.Pointer(self)).Fsize {
-		XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+223706)
+		XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+223614)
 		return libc.UintptrFromInt32(0)
 	}
 	if Xsafe_byte_copy(tls, bp, (*Tmmap_object)(unsafe.Pointer(self)).Fdata+uintptr((*Tmmap_object)(unsafe.Pointer(self)).Fpos)) < 0 {
@@ -45721,7 +45721,7 @@ func _mmap_mmap_readline_impl(tls *libc.TLS, self uintptr) (r uintptr) {
 	var _ uintptr
 	_, _, _, _ = remaining, result, start, v1
 	if (*Tmmap_object)(unsafe.Pointer(self)).Fmap_handle == libc.UintptrFromInt32(0) {
-		XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+223683)
+		XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+223591)
 		return libc.UintptrFromInt32(0)
 	}
 	if (*Tmmap_object)(unsafe.Pointer(self)).Fpos < (*Tmmap_object)(unsafe.Pointer(self)).Fsize {
@@ -45756,7 +45756,7 @@ func _mmap_mmap_read_impl(tls *libc.TLS, self uintptr, num_bytes TPy_ssize_t) (r
 	var v1 int64
 	_, _, _ = remaining, result, v1
 	if (*Tmmap_object)(unsafe.Pointer(self)).Fmap_handle == libc.UintptrFromInt32(0) {
-		XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+223683)
+		XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+223591)
 		return libc.UintptrFromInt32(0)
 	}
 
@@ -45786,7 +45786,7 @@ func _mmap_gfind_lock_held(tls *libc.TLS, self uintptr, view uintptr, start_obj 
 	start = (*Tmmap_object)(unsafe.Pointer(self)).Fpos
 	end = (*Tmmap_object)(unsafe.Pointer(self)).Fsize
 	if (*Tmmap_object)(unsafe.Pointer(self)).Fmap_handle == libc.UintptrFromInt32(0) {
-		XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+223683)
+		XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+223591)
 		return libc.UintptrFromInt32(0)
 	}
 	if start_obj != uintptr(unsafe.Pointer(&X_Py_NoneStruct)) {
@@ -45822,7 +45822,7 @@ func _mmap_gfind_lock_held(tls *libc.TLS, self uintptr, view uintptr, start_obj 
 		}
 	}
 	if (*Tmmap_object)(unsafe.Pointer(self)).Fmap_handle == libc.UintptrFromInt32(0) {
-		XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+223683)
+		XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+223591)
 		return libc.UintptrFromInt32(0)
 	}
 	if end < start {
@@ -45859,19 +45859,19 @@ func _is_writable(tls *libc.TLS, self uintptr) (r int32) {
 	if (*Tmmap_object)(unsafe.Pointer(self)).Faccess != int32(EACCESS_READ) {
 		return int32(1)
 	}
-	XPyErr_Format(tls, XPyExc_TypeError, __ccgo_ts+223729, 0)
+	XPyErr_Format(tls, XPyExc_TypeError, __ccgo_ts+223637, 0)
 	return 0
 }
 
 func _is_resizeable(tls *libc.TLS, self uintptr) (r int32) {
 	if (*Tmmap_object)(unsafe.Pointer(self)).Fexports > 0 {
-		XPyErr_SetString(tls, XPyExc_BufferError, __ccgo_ts+223770)
+		XPyErr_SetString(tls, XPyExc_BufferError, __ccgo_ts+223678)
 		return 0
 	}
 	if (*Tmmap_object)(unsafe.Pointer(self)).Faccess == int32(EACCESS_WRITE) || (*Tmmap_object)(unsafe.Pointer(self)).Faccess == int32(EACCESS_DEFAULT) {
 		return int32(1)
 	}
-	XPyErr_Format(tls, XPyExc_TypeError, __ccgo_ts+223818, 0)
+	XPyErr_Format(tls, XPyExc_TypeError, __ccgo_ts+223726, 0)
 	return 0
 }
 
@@ -45880,18 +45880,18 @@ func _mmap_mmap_write_impl(tls *libc.TLS, self uintptr, data uintptr) (r uintptr
 	var result uintptr
 	_ = result
 	if (*Tmmap_object)(unsafe.Pointer(self)).Fmap_handle == libc.UintptrFromInt32(0) {
-		XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+223683)
+		XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+223591)
 		return libc.UintptrFromInt32(0)
 	}
 	if !(_is_writable(tls, self) != 0) {
 		return libc.UintptrFromInt32(0)
 	}
 	if (*Tmmap_object)(unsafe.Pointer(self)).Fpos > (*Tmmap_object)(unsafe.Pointer(self)).Fsize || (*Tmmap_object)(unsafe.Pointer(self)).Fsize-(*Tmmap_object)(unsafe.Pointer(self)).Fpos < (*TPy_buffer)(unsafe.Pointer(data)).Flen1 {
-		XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+223876)
+		XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+223784)
 		return libc.UintptrFromInt32(0)
 	}
 	if (*Tmmap_object)(unsafe.Pointer(self)).Fmap_handle == libc.UintptrFromInt32(0) {
-		XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+223683)
+		XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+223591)
 		return libc.UintptrFromInt32(0)
 	}
 	if Xsafe_memcpy(tls, (*Tmmap_object)(unsafe.Pointer(self)).Fdata+uintptr((*Tmmap_object)(unsafe.Pointer(self)).Fpos), (*TPy_buffer)(unsafe.Pointer(data)).Fbuf, uint64((*TPy_buffer)(unsafe.Pointer(data)).Flen1)) < 0 {
@@ -45909,18 +45909,18 @@ func _mmap_mmap_write_byte_impl(tls *libc.TLS, self uintptr, _value uint8) (r ui
 	*(*uint8)(unsafe.Pointer(bp)) = _value
 
 	if (*Tmmap_object)(unsafe.Pointer(self)).Fmap_handle == libc.UintptrFromInt32(0) {
-		XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+223683)
+		XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+223591)
 		return libc.UintptrFromInt32(0)
 	}
 	if !(_is_writable(tls, self) != 0) {
 		return libc.UintptrFromInt32(0)
 	}
 	if (*Tmmap_object)(unsafe.Pointer(self)).Fmap_handle == libc.UintptrFromInt32(0) {
-		XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+223683)
+		XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+223591)
 		return libc.UintptrFromInt32(0)
 	}
 	if (*Tmmap_object)(unsafe.Pointer(self)).Fpos >= (*Tmmap_object)(unsafe.Pointer(self)).Fsize {
-		XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+223894)
+		XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+223802)
 		return libc.UintptrFromInt32(0)
 	}
 	if Xsafe_byte_copy(tls, (*Tmmap_object)(unsafe.Pointer(self)).Fdata+uintptr((*Tmmap_object)(unsafe.Pointer(self)).Fpos), bp) < 0 {
@@ -45939,7 +45939,7 @@ func _mmap_mmap_size_impl(tls *libc.TLS, self uintptr) (r uintptr) {
 	var _ TDWORD
 	_, _, _ = error1, low, size
 	if (*Tmmap_object)(unsafe.Pointer(self)).Fmap_handle == libc.UintptrFromInt32(0) {
-		XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+223683)
+		XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+223591)
 		return libc.UintptrFromInt32(0)
 	}
 	if (*Tmmap_object)(unsafe.Pointer(self)).Ffile_handle != uintptr(int64(-libc.Int32FromInt32(1))) {
@@ -45973,14 +45973,14 @@ func _mmap_mmap_resize_impl(tls *libc.TLS, self uintptr, new_size TPy_ssize_t) (
 	var _ TLARGE_INTEGER
 	_, _, _, _ = error1, file_resize_error, old_data, v1
 	if (*Tmmap_object)(unsafe.Pointer(self)).Fmap_handle == libc.UintptrFromInt32(0) {
-		XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+223683)
+		XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+223591)
 		return libc.UintptrFromInt32(0)
 	}
 	if !(_is_resizeable(tls, self) != 0) {
 		return libc.UintptrFromInt32(0)
 	}
 	if new_size < 0 || int64(9223372036854775807)-new_size < (*Tmmap_object)(unsafe.Pointer(self)).Foffset {
-		XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+223918)
+		XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+223826)
 		return libc.UintptrFromInt32(0)
 	}
 	error1 = uint32(0)
@@ -45989,7 +45989,7 @@ func _mmap_mmap_resize_impl(tls *libc.TLS, self uintptr, new_size TPy_ssize_t) (
 	*(*TLONGLONG)(unsafe.Pointer(bp)) = (*Tmmap_object)(unsafe.Pointer(self)).Foffset
 	*(*TLONGLONG)(unsafe.Pointer(bp + 8)) = (*Tmmap_object)(unsafe.Pointer(self)).Foffset + new_size
 
-	libc.XCloseHandle(tls, (*Tmmap_object)(unsafe.Pointer(self)).Fmap_handle)
+	_ccgo_CloseHandle(tls, (*Tmmap_object)(unsafe.Pointer(self)).Fmap_handle)
 
 	if (*Tmmap_object)(unsafe.Pointer(self)).Ftagname != 0 {
 		(*Tmmap_object)(unsafe.Pointer(self)).Fmap_handle = _OpenFileMappingW(tls, uint32(MSECTION_MAP_WRITE), MFALSE, (*Tmmap_object)(unsafe.Pointer(self)).Ftagname)
@@ -46019,7 +46019,7 @@ func _mmap_mmap_resize_impl(tls *libc.TLS, self uintptr, new_size TPy_ssize_t) (
 	error1 = libc.XGetLastError(tls)
 
 	if error1 == uint32(183) {
-		libc.XCloseHandle(tls, (*Tmmap_object)(unsafe.Pointer(self)).Fmap_handle)
+		_ccgo_CloseHandle(tls, (*Tmmap_object)(unsafe.Pointer(self)).Fmap_handle)
 		(*Tmmap_object)(unsafe.Pointer(self)).Fmap_handle = libc.UintptrFromInt32(0)
 	} else {
 		if (*Tmmap_object)(unsafe.Pointer(self)).Fmap_handle != libc.UintptrFromInt32(0) {
@@ -46040,7 +46040,7 @@ func _mmap_mmap_resize_impl(tls *libc.TLS, self uintptr, new_size TPy_ssize_t) (
 				(*Tmmap_object)(unsafe.Pointer(self)).Fsize = new_size
 			} else {
 				error1 = libc.XGetLastError(tls)
-				libc.XCloseHandle(tls, (*Tmmap_object)(unsafe.Pointer(self)).Fmap_handle)
+				_ccgo_CloseHandle(tls, (*Tmmap_object)(unsafe.Pointer(self)).Fmap_handle)
 				(*Tmmap_object)(unsafe.Pointer(self)).Fmap_handle = libc.UintptrFromInt32(0)
 			}
 		}
@@ -46061,7 +46061,7 @@ func _mmap_mmap_resize_impl(tls *libc.TLS, self uintptr, new_size TPy_ssize_t) (
 func _mmap_mmap_tell_impl(tls *libc.TLS, self uintptr) (r uintptr) {
 
 	if (*Tmmap_object)(unsafe.Pointer(self)).Fmap_handle == libc.UintptrFromInt32(0) {
-		XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+223683)
+		XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+223591)
 		return libc.UintptrFromInt32(0)
 	}
 	return XPyLong_FromSize_t(tls, uint64((*Tmmap_object)(unsafe.Pointer(self)).Fpos))
@@ -46073,7 +46073,7 @@ func _mmap_mmap_flush_impl(tls *libc.TLS, self uintptr, offset TPy_ssize_t, size
 	_ = size
 	size = (*Tmmap_object)(unsafe.Pointer(self)).Fsize
 	if (*Tmmap_object)(unsafe.Pointer(self)).Fmap_handle == libc.UintptrFromInt32(0) {
-		XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+223683)
+		XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+223591)
 		return libc.UintptrFromInt32(0)
 	}
 	if size_obj != uintptr(unsafe.Pointer(&X_Py_NoneStruct)) {
@@ -46083,7 +46083,7 @@ func _mmap_mmap_flush_impl(tls *libc.TLS, self uintptr, offset TPy_ssize_t, size
 		}
 	}
 	if size < 0 || offset < 0 || (*Tmmap_object)(unsafe.Pointer(self)).Fsize-offset < size {
-		XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+223940)
+		XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+223848)
 		return libc.UintptrFromInt32(0)
 	}
 	if (*Tmmap_object)(unsafe.Pointer(self)).Faccess == int32(EACCESS_READ) || (*Tmmap_object)(unsafe.Pointer(self)).Faccess == int32(EACCESS_COPY) {
@@ -46101,7 +46101,7 @@ func _mmap_mmap_seek_impl(tls *libc.TLS, self uintptr, dist TPy_ssize_t, how int
 	var where TPy_ssize_t
 	_ = where
 	if (*Tmmap_object)(unsafe.Pointer(self)).Fmap_handle == libc.UintptrFromInt32(0) {
-		XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+223683)
+		XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+223591)
 		return libc.UintptrFromInt32(0)
 	}
 	switch how {
@@ -46118,7 +46118,7 @@ func _mmap_mmap_seek_impl(tls *libc.TLS, self uintptr, dist TPy_ssize_t, how int
 		}
 		where = (*Tmmap_object)(unsafe.Pointer(self)).Fsize + dist
 	default:
-		XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+223966)
+		XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+223874)
 		return libc.UintptrFromInt32(0)
 	}
 	if where > (*Tmmap_object)(unsafe.Pointer(self)).Fsize || where < 0 {
@@ -46129,7 +46129,7 @@ func _mmap_mmap_seek_impl(tls *libc.TLS, self uintptr, dist TPy_ssize_t, how int
 	goto onoutofrange
 onoutofrange:
 	;
-	XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+223984)
+	XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+223892)
 	return libc.UintptrFromInt32(0)
 }
 
@@ -46141,7 +46141,7 @@ func _mmap_mmap_seekable_impl(tls *libc.TLS, self uintptr) (r uintptr) {
 func _mmap_mmap_move_impl(tls *libc.TLS, self uintptr, dest TPy_ssize_t, src TPy_ssize_t, cnt TPy_ssize_t) (r uintptr) {
 
 	if (*Tmmap_object)(unsafe.Pointer(self)).Fmap_handle == libc.UintptrFromInt32(0) {
-		XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+223683)
+		XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+223591)
 		return libc.UintptrFromInt32(0)
 	}
 	if !(_is_writable(tls, self) != 0) {
@@ -46155,7 +46155,7 @@ func _mmap_mmap_move_impl(tls *libc.TLS, self uintptr, dest TPy_ssize_t, src TPy
 			goto bounds
 		}
 		if (*Tmmap_object)(unsafe.Pointer(self)).Fmap_handle == libc.UintptrFromInt32(0) {
-			XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+223683)
+			XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+223591)
 			return libc.UintptrFromInt32(0)
 		}
 		if Xsafe_memmove(tls, (*Tmmap_object)(unsafe.Pointer(self)).Fdata+uintptr(dest), (*Tmmap_object)(unsafe.Pointer(self)).Fdata+uintptr(src), uint64(cnt)) < 0 {
@@ -46165,7 +46165,7 @@ func _mmap_mmap_move_impl(tls *libc.TLS, self uintptr, dest TPy_ssize_t, src TPy
 		goto bounds
 	bounds:
 		;
-		XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+224002)
+		XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+223910)
 		return libc.UintptrFromInt32(0)
 	}
 	return r
@@ -46191,7 +46191,7 @@ func _mmap_mmap___enter___impl(tls *libc.TLS, self uintptr) (r uintptr) {
 	var v1, v2, v4 uintptr
 	_, _, _, _ = cur_refcnt, v1, v2, v4
 	if (*Tmmap_object)(unsafe.Pointer(self)).Fmap_handle == libc.UintptrFromInt32(0) {
-		XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+223683)
+		XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+223591)
 		return libc.UintptrFromInt32(0)
 	}
 	v1 = self
@@ -46224,24 +46224,24 @@ func _mmap__repr__method_lock_held(tls *libc.TLS, op uintptr) (r uintptr) {
 		v1 = (*TPyObject)(unsafe.Pointer(op)).Fob_type
 		goto _2
 	_2:
-		return XPyUnicode_FromFormat(tls, __ccgo_ts+224045, libc.VaList(bp+8, (*TPyTypeObject)(unsafe.Pointer(v1)).Ftp_name))
+		return XPyUnicode_FromFormat(tls, __ccgo_ts+223953, libc.VaList(bp+8, (*TPyTypeObject)(unsafe.Pointer(v1)).Ftp_name))
 	} else {
 		switch (*Tmmap_object)(unsafe.Pointer(mobj)).Faccess {
 		case int32(EACCESS_DEFAULT):
-			access_str = __ccgo_ts + 224062
+			access_str = __ccgo_ts + 223970
 		case int32(EACCESS_READ):
-			access_str = __ccgo_ts + 224077
+			access_str = __ccgo_ts + 223985
 		case int32(EACCESS_WRITE):
-			access_str = __ccgo_ts + 224089
+			access_str = __ccgo_ts + 223997
 		case int32(EACCESS_COPY):
-			access_str = __ccgo_ts + 224102
+			access_str = __ccgo_ts + 224010
 		default:
 			libc.X__builtin_unreachable(tls)
 		}
 		v1 = (*TPyObject)(unsafe.Pointer(op)).Fob_type
 		goto _4
 	_4:
-		return XPyUnicode_FromFormat(tls, __ccgo_ts+224114, libc.VaList(bp+8, (*TPyTypeObject)(unsafe.Pointer(v1)).Ftp_name, access_str, (*Tmmap_object)(unsafe.Pointer(mobj)).Fsize, (*Tmmap_object)(unsafe.Pointer(mobj)).Fpos, (*Tmmap_object)(unsafe.Pointer(mobj)).Foffset))
+		return XPyUnicode_FromFormat(tls, __ccgo_ts+224022, libc.VaList(bp+8, (*TPyTypeObject)(unsafe.Pointer(v1)).Ftp_name, access_str, (*Tmmap_object)(unsafe.Pointer(mobj)).Fsize, (*Tmmap_object)(unsafe.Pointer(mobj)).Fpos, (*Tmmap_object)(unsafe.Pointer(mobj)).Foffset))
 	}
 	return r
 }
@@ -46303,7 +46303,7 @@ var _mmap_object_methods = [19]TPyMethodDef{
 		Fml_doc:   uintptr(unsafe.Pointer(&_mmap_mmap_flush__doc__)),
 	},
 	4: {
-		Fml_name:  __ccgo_ts + 223641,
+		Fml_name:  __ccgo_ts + 223549,
 		Fml_flags: int32(MMETH_FASTCALL),
 		Fml_doc:   uintptr(unsafe.Pointer(&_mmap_mmap_move__doc__)),
 	},
@@ -46313,7 +46313,7 @@ var _mmap_object_methods = [19]TPyMethodDef{
 		Fml_doc:   uintptr(unsafe.Pointer(&_mmap_mmap_read__doc__)),
 	},
 	6: {
-		Fml_name:  __ccgo_ts + 224177,
+		Fml_name:  __ccgo_ts + 224085,
 		Fml_flags: int32(MMETH_NOARGS),
 		Fml_doc:   uintptr(unsafe.Pointer(&_mmap_mmap_read_byte__doc__)),
 	},
@@ -46328,12 +46328,12 @@ var _mmap_object_methods = [19]TPyMethodDef{
 		Fml_doc:   uintptr(unsafe.Pointer(&_mmap_mmap_resize__doc__)),
 	},
 	9: {
-		Fml_name:  __ccgo_ts + 223636,
+		Fml_name:  __ccgo_ts + 223544,
 		Fml_flags: int32(MMETH_FASTCALL),
 		Fml_doc:   uintptr(unsafe.Pointer(&_mmap_mmap_seek__doc__)),
 	},
 	10: {
-		Fml_name:  __ccgo_ts + 224187,
+		Fml_name:  __ccgo_ts + 224095,
 		Fml_flags: int32(MMETH_NOARGS),
 		Fml_doc:   uintptr(unsafe.Pointer(&_mmap_mmap_seekable__doc__)),
 	},
@@ -46343,7 +46343,7 @@ var _mmap_object_methods = [19]TPyMethodDef{
 		Fml_doc:   uintptr(unsafe.Pointer(&_mmap_mmap_size__doc__)),
 	},
 	12: {
-		Fml_name:  __ccgo_ts + 224196,
+		Fml_name:  __ccgo_ts + 224104,
 		Fml_flags: int32(MMETH_NOARGS),
 		Fml_doc:   uintptr(unsafe.Pointer(&_mmap_mmap_tell__doc__)),
 	},
@@ -46353,7 +46353,7 @@ var _mmap_object_methods = [19]TPyMethodDef{
 		Fml_doc:   uintptr(unsafe.Pointer(&_mmap_mmap_write__doc__)),
 	},
 	14: {
-		Fml_name:  __ccgo_ts + 224201,
+		Fml_name:  __ccgo_ts + 224109,
 		Fml_flags: int32(MMETH_O),
 		Fml_doc:   uintptr(unsafe.Pointer(&_mmap_mmap_write_byte__doc__)),
 	},
@@ -46414,7 +46414,7 @@ func _mmap_buffer_getbuf_lock_held(tls *libc.TLS, op uintptr, view uintptr, flag
 	_ = self
 	self = op
 	if (*Tmmap_object)(unsafe.Pointer(self)).Fmap_handle == libc.UintptrFromInt32(0) {
-		XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+223683)
+		XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+223591)
 		return -int32(1)
 	}
 	if XPyBuffer_FillInfo(tls, view, op, (*Tmmap_object)(unsafe.Pointer(self)).Fdata, (*Tmmap_object)(unsafe.Pointer(self)).Fsize, libc.BoolInt32((*Tmmap_object)(unsafe.Pointer(self)).Faccess == int32(EACCESS_READ)), flags) < 0 {
@@ -46443,7 +46443,7 @@ func _mmap_length_lock_held(tls *libc.TLS, op uintptr) (r TPy_ssize_t) {
 	_ = self
 	self = op
 	if (*Tmmap_object)(unsafe.Pointer(self)).Fmap_handle == libc.UintptrFromInt32(0) {
-		XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+223683)
+		XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+223591)
 		return int64(-int32(1))
 	}
 	return (*Tmmap_object)(unsafe.Pointer(self)).Fsize
@@ -46464,11 +46464,11 @@ func _mmap_item_lock_held(tls *libc.TLS, op uintptr, i TPy_ssize_t) (r uintptr) 
 	_ = self
 	self = op
 	if (*Tmmap_object)(unsafe.Pointer(self)).Fmap_handle == libc.UintptrFromInt32(0) {
-		XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+223683)
+		XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+223591)
 		return libc.UintptrFromInt32(0)
 	}
 	if i < 0 || i >= (*Tmmap_object)(unsafe.Pointer(self)).Fsize {
-		XPyErr_SetString(tls, XPyExc_IndexError, __ccgo_ts+224212)
+		XPyErr_SetString(tls, XPyExc_IndexError, __ccgo_ts+224120)
 		return libc.UintptrFromInt32(0)
 	}
 	if Xsafe_byte_copy(tls, bp, (*Tmmap_object)(unsafe.Pointer(self)).Fdata+uintptr(i)) < 0 {
@@ -46497,7 +46497,7 @@ func _mmap_subscript_lock_held(tls *libc.TLS, op uintptr, item uintptr) (r uintp
 	_, _, _, _, _, _, _ = i, result, result_buf, self, slicelen, v1, v3
 	self = op
 	if (*Tmmap_object)(unsafe.Pointer(self)).Fmap_handle == libc.UintptrFromInt32(0) {
-		XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+223683)
+		XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+223591)
 		return libc.UintptrFromInt32(0)
 	}
 	if XPyIndex_Check(tls, item) != 0 {
@@ -46509,11 +46509,11 @@ func _mmap_subscript_lock_held(tls *libc.TLS, op uintptr, item uintptr) (r uintp
 			i = i + (*Tmmap_object)(unsafe.Pointer(self)).Fsize
 		}
 		if i < 0 || i >= (*Tmmap_object)(unsafe.Pointer(self)).Fsize {
-			XPyErr_SetString(tls, XPyExc_IndexError, __ccgo_ts+224212)
+			XPyErr_SetString(tls, XPyExc_IndexError, __ccgo_ts+224120)
 			return libc.UintptrFromInt32(0)
 		}
 		if (*Tmmap_object)(unsafe.Pointer(self)).Fmap_handle == libc.UintptrFromInt32(0) {
-			XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+223683)
+			XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+223591)
 			return libc.UintptrFromInt32(0)
 		}
 		if Xsafe_byte_copy(tls, bp, (*Tmmap_object)(unsafe.Pointer(self)).Fdata+uintptr(i)) < 0 {
@@ -46533,7 +46533,7 @@ func _mmap_subscript_lock_held(tls *libc.TLS, op uintptr, item uintptr) (r uintp
 			}
 			slicelen = XPySlice_AdjustIndices(tls, (*Tmmap_object)(unsafe.Pointer(self)).Fsize, bp+8, bp+16, **(**TPy_ssize_t)(__ccgo_up(bp + 24)))
 			if (*Tmmap_object)(unsafe.Pointer(self)).Fmap_handle == libc.UintptrFromInt32(0) {
-				XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+223683)
+				XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+223591)
 				return libc.UintptrFromInt32(0)
 			}
 			if slicelen <= 0 {
@@ -46556,7 +46556,7 @@ func _mmap_subscript_lock_held(tls *libc.TLS, op uintptr, item uintptr) (r uintp
 				}
 			}
 		} else {
-			XPyErr_SetString(tls, XPyExc_TypeError, __ccgo_ts+224236)
+			XPyErr_SetString(tls, XPyExc_TypeError, __ccgo_ts+224144)
 			return libc.UintptrFromInt32(0)
 		}
 	}
@@ -46577,15 +46577,15 @@ func _mmap_ass_item_lock_held(tls *libc.TLS, op uintptr, i TPy_ssize_t, v uintpt
 	_, _, _, _, _ = buf, flags, self, v1, v3
 	self = op
 	if (*Tmmap_object)(unsafe.Pointer(self)).Fmap_handle == libc.UintptrFromInt32(0) {
-		XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+223683)
+		XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+223591)
 		return -int32(1)
 	}
 	if i < 0 || i >= (*Tmmap_object)(unsafe.Pointer(self)).Fsize {
-		XPyErr_SetString(tls, XPyExc_IndexError, __ccgo_ts+224212)
+		XPyErr_SetString(tls, XPyExc_IndexError, __ccgo_ts+224120)
 		return -int32(1)
 	}
 	if v == libc.UintptrFromInt32(0) {
-		XPyErr_SetString(tls, XPyExc_TypeError, __ccgo_ts+224266)
+		XPyErr_SetString(tls, XPyExc_TypeError, __ccgo_ts+224174)
 		return -int32(1)
 	}
 	v1 = (*TPyObject)(unsafe.Pointer(v)).Fob_type
@@ -46597,7 +46597,7 @@ _2:
 _4:
 	;
 	if !(v3 != 0 && XPyBytes_Size(tls, v) == int64(1)) {
-		XPyErr_SetString(tls, XPyExc_IndexError, __ccgo_ts+224308)
+		XPyErr_SetString(tls, XPyExc_IndexError, __ccgo_ts+224216)
 		return -int32(1)
 	}
 	if !(_is_writable(tls, self) != 0) {
@@ -46631,7 +46631,7 @@ func _mmap_ass_subscript_lock_held(tls *libc.TLS, op uintptr, item uintptr, valu
 	_, _, _, _, _, _, _ = i, result, self, slicelen, v, v1, v3
 	self = op
 	if (*Tmmap_object)(unsafe.Pointer(self)).Fmap_handle == libc.UintptrFromInt32(0) {
-		XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+223683)
+		XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+223591)
 		return -int32(1)
 	}
 	if !(_is_writable(tls, self) != 0) {
@@ -46646,15 +46646,15 @@ func _mmap_ass_subscript_lock_held(tls *libc.TLS, op uintptr, item uintptr, valu
 			i = i + (*Tmmap_object)(unsafe.Pointer(self)).Fsize
 		}
 		if i < 0 || i >= (*Tmmap_object)(unsafe.Pointer(self)).Fsize {
-			XPyErr_SetString(tls, XPyExc_IndexError, __ccgo_ts+224212)
+			XPyErr_SetString(tls, XPyExc_IndexError, __ccgo_ts+224120)
 			return -int32(1)
 		}
 		if value == libc.UintptrFromInt32(0) {
-			XPyErr_SetString(tls, XPyExc_TypeError, __ccgo_ts+224349)
+			XPyErr_SetString(tls, XPyExc_TypeError, __ccgo_ts+224257)
 			return -int32(1)
 		}
 		if !(XPyIndex_Check(tls, value) != 0) {
-			XPyErr_SetString(tls, XPyExc_TypeError, __ccgo_ts+224384)
+			XPyErr_SetString(tls, XPyExc_TypeError, __ccgo_ts+224292)
 			return -int32(1)
 		}
 		v = XPyNumber_AsSsize_t(tls, value, XPyExc_TypeError)
@@ -46662,11 +46662,11 @@ func _mmap_ass_subscript_lock_held(tls *libc.TLS, op uintptr, item uintptr, valu
 			return -int32(1)
 		}
 		if v < 0 || v > int64(255) {
-			XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+224415)
+			XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+224323)
 			return -int32(1)
 		}
 		if (*Tmmap_object)(unsafe.Pointer(self)).Fmap_handle == libc.UintptrFromInt32(0) {
-			XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+223683)
+			XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+223591)
 			return -int32(1)
 		}
 		**(**int8)(__ccgo_up(bp)) = int8(v)
@@ -46687,19 +46687,19 @@ func _mmap_ass_subscript_lock_held(tls *libc.TLS, op uintptr, item uintptr, valu
 			}
 			slicelen = XPySlice_AdjustIndices(tls, (*Tmmap_object)(unsafe.Pointer(self)).Fsize, bp+8, bp+16, **(**TPy_ssize_t)(__ccgo_up(bp + 24)))
 			if value == libc.UintptrFromInt32(0) {
-				XPyErr_SetString(tls, XPyExc_TypeError, __ccgo_ts+224456)
+				XPyErr_SetString(tls, XPyExc_TypeError, __ccgo_ts+224364)
 				return -int32(1)
 			}
 			if XPyObject_GetBuffer(tls, value, bp+32, MPyBUF_SIMPLE) < 0 {
 				return -int32(1)
 			}
 			if (**(**TPy_buffer)(__ccgo_up(bp + 32))).Flen1 != slicelen {
-				XPyErr_SetString(tls, XPyExc_IndexError, __ccgo_ts+224499)
+				XPyErr_SetString(tls, XPyExc_IndexError, __ccgo_ts+224407)
 				XPyBuffer_Release(tls, bp+32)
 				return -int32(1)
 			}
 			if (*Tmmap_object)(unsafe.Pointer(self)).Fmap_handle == libc.UintptrFromInt32(0) {
-				XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+223683)
+				XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+223591)
 				XPyBuffer_Release(tls, bp+32)
 				return -int32(1)
 			}
@@ -46719,7 +46719,7 @@ func _mmap_ass_subscript_lock_held(tls *libc.TLS, op uintptr, item uintptr, valu
 			XPyBuffer_Release(tls, bp+32)
 			return result
 		} else {
-			XPyErr_SetString(tls, XPyExc_TypeError, __ccgo_ts+224535)
+			XPyErr_SetString(tls, XPyExc_TypeError, __ccgo_ts+224443)
 			return -int32(1)
 		}
 	}
@@ -46810,7 +46810,7 @@ func init() {
 }
 
 var _mmap_object_spec = TPyType_Spec{
-	Fname:      __ccgo_ts + 224564,
+	Fname:      __ccgo_ts + 224472,
 	Fbasicsize: int32(96),
 	Fflags:     uint32(uint32(libc.Int32FromInt32(MPy_TPFLAGS_HAVE_STACKLESS_EXTENSION)|libc.Int32FromInt32(0)) | libc.Uint32FromUint32(1)<<libc.Int32FromInt32(10) | libc.Uint32FromUint32(1)<<libc.Int32FromInt32(14) | libc.Uint32FromUint32(1)<<libc.Int32FromInt32(8)),
 	Fslots:     uintptr(unsafe.Pointer(&_mmap_object_slots)),
@@ -46839,10 +46839,10 @@ func _new_mmap_object(tls *libc.TLS, type1 uintptr, args uintptr, kwdict uintptr
 	dwErr = uint32(0)
 	fh = uintptr(0)
 	**(**int32)(__ccgo_up(bp + 28)) = int32(EACCESS_DEFAULT)
-	if !(XPyArg_ParseTupleAndKeywords(tls, args, kwdict, __ccgo_ts+224589, uintptr(unsafe.Pointer(&_keywords2)), libc.VaList(bp+48, bp+24, bp, bp+16, bp+28, bp+8)) != 0) {
+	if !(XPyArg_ParseTupleAndKeywords(tls, args, kwdict, __ccgo_ts+224497, uintptr(unsafe.Pointer(&_keywords2)), libc.VaList(bp+48, bp+24, bp, bp+16, bp+28, bp+8)) != 0) {
 		return libc.UintptrFromInt32(0)
 	}
-	if XPySys_Audit(tls, __ccgo_ts+224596, __ccgo_ts+224609, libc.VaList(bp+48, **(**int32)(__ccgo_up(bp + 24)), **(**TPy_ssize_t)(__ccgo_up(bp)), **(**int32)(__ccgo_up(bp + 28)), **(**int64)(__ccgo_up(bp + 8)))) < 0 {
+	if XPySys_Audit(tls, __ccgo_ts+224504, __ccgo_ts+224517, libc.VaList(bp+48, **(**int32)(__ccgo_up(bp + 24)), **(**TPy_ssize_t)(__ccgo_up(bp)), **(**int32)(__ccgo_up(bp + 28)), **(**int64)(__ccgo_up(bp + 8)))) < 0 {
 		return libc.UintptrFromInt32(0)
 	}
 	switch **(**int32)(__ccgo_up(bp + 28)) {
@@ -46858,14 +46858,14 @@ func _new_mmap_object(tls *libc.TLS, type1 uintptr, args uintptr, kwdict uintptr
 		flProtect = uint32(MPAGE_WRITECOPY)
 		dwDesiredAccess = uint32(MFILE_MAP_COPY)
 	default:
-		return XPyErr_Format(tls, XPyExc_ValueError, __ccgo_ts+224614, 0)
+		return XPyErr_Format(tls, XPyExc_ValueError, __ccgo_ts+224522, 0)
 	}
 	if **(**TPy_ssize_t)(__ccgo_up(bp)) < 0 {
-		XPyErr_SetString(tls, XPyExc_OverflowError, __ccgo_ts+224645)
+		XPyErr_SetString(tls, XPyExc_OverflowError, __ccgo_ts+224553)
 		return libc.UintptrFromInt32(0)
 	}
 	if **(**int64)(__ccgo_up(bp + 8)) < 0 {
-		XPyErr_SetString(tls, XPyExc_OverflowError, __ccgo_ts+224683)
+		XPyErr_SetString(tls, XPyExc_OverflowError, __ccgo_ts+224591)
 		return libc.UintptrFromInt32(0)
 	}
 
@@ -46937,7 +46937,7 @@ func _new_mmap_object(tls *libc.TLS, type1 uintptr, args uintptr, kwdict uintptr
 			}
 			size = int64(**(**TDWORD)(__ccgo_up(bp + 32)))<<int32(32) + int64(low)
 			if size == 0 {
-				XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+224721)
+				XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+224629)
 				v1 = m_obj
 				v2 = libc.BoolInt32(int32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
 				goto _17
@@ -46956,7 +46956,7 @@ func _new_mmap_object(tls *libc.TLS, type1 uintptr, args uintptr, kwdict uintptr
 				return libc.UintptrFromInt32(0)
 			}
 			if **(**int64)(__ccgo_up(bp + 8)) >= size {
-				XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+224747)
+				XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+224655)
 				v1 = m_obj
 				v2 = libc.BoolInt32(int32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
 				goto _23
@@ -46975,7 +46975,7 @@ func _new_mmap_object(tls *libc.TLS, type1 uintptr, args uintptr, kwdict uintptr
 				return libc.UintptrFromInt32(0)
 			}
 			if size-**(**int64)(__ccgo_up(bp + 8)) > int64(9223372036854775807) {
-				XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+224785)
+				XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+224693)
 				v1 = m_obj
 				v2 = libc.BoolInt32(int32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
 				goto _29
@@ -47034,7 +47034,7 @@ func _new_mmap_object(tls *libc.TLS, type1 uintptr, args uintptr, kwdict uintptr
 			v1 = (*TPyObject)(unsafe.Pointer(**(**uintptr)(__ccgo_up(bp + 16)))).Fob_type
 			goto _44
 		_44:
-			return XPyErr_Format(tls, XPyExc_TypeError, __ccgo_ts+224810, libc.VaList(bp+48, (*TPyTypeObject)(unsafe.Pointer(v1)).Ftp_name))
+			return XPyErr_Format(tls, XPyExc_TypeError, __ccgo_ts+224718, libc.VaList(bp+48, (*TPyTypeObject)(unsafe.Pointer(v1)).Ftp_name))
 		}
 		(*Tmmap_object)(unsafe.Pointer(m_obj)).Ftagname = XPyUnicode_AsWideCharString(tls, **(**uintptr)(__ccgo_up(bp + 16)), libc.UintptrFromInt32(0))
 		if (*Tmmap_object)(unsafe.Pointer(m_obj)).Ftagname == libc.UintptrFromInt32(0) {
@@ -47069,7 +47069,7 @@ func _new_mmap_object(tls *libc.TLS, type1 uintptr, args uintptr, kwdict uintptr
 			return m_obj
 		} else {
 			dwErr = libc.XGetLastError(tls)
-			libc.XCloseHandle(tls, (*Tmmap_object)(unsafe.Pointer(m_obj)).Fmap_handle)
+			_ccgo_CloseHandle(tls, (*Tmmap_object)(unsafe.Pointer(m_obj)).Fmap_handle)
 			(*Tmmap_object)(unsafe.Pointer(m_obj)).Fmap_handle = libc.UintptrFromInt32(0)
 		}
 	} else {
@@ -47097,8 +47097,8 @@ _54:
 var _keywords2 = [6]uintptr{
 	0: __ccgo_ts + 36842,
 	1: __ccgo_ts + 43349,
-	2: __ccgo_ts + 224574,
-	3: __ccgo_ts + 224582,
+	2: __ccgo_ts + 224482,
+	3: __ccgo_ts + 224490,
 	4: __ccgo_ts + 30396,
 	5: libc.UintptrFromInt32(0),
 }
@@ -47134,22 +47134,22 @@ _4:
 	if rc < 0 {
 		return -int32(1)
 	}
-	if XPyModule_AddIntConstant(tls, module, __ccgo_ts+224857, _my_getpagesize(tls)) < 0 {
+	if XPyModule_AddIntConstant(tls, module, __ccgo_ts+224765, _my_getpagesize(tls)) < 0 {
 		return -int32(1)
 	}
-	if XPyModule_AddIntConstant(tls, module, __ccgo_ts+224866, _my_getallocationgranularity(tls)) < 0 {
+	if XPyModule_AddIntConstant(tls, module, __ccgo_ts+224774, _my_getallocationgranularity(tls)) < 0 {
 		return -int32(1)
 	}
-	if XPyModule_AddIntConstant(tls, module, __ccgo_ts+224062, int32(EACCESS_DEFAULT)) < 0 {
+	if XPyModule_AddIntConstant(tls, module, __ccgo_ts+223970, int32(EACCESS_DEFAULT)) < 0 {
 		return -int32(1)
 	}
-	if XPyModule_AddIntConstant(tls, module, __ccgo_ts+224077, int32(EACCESS_READ)) < 0 {
+	if XPyModule_AddIntConstant(tls, module, __ccgo_ts+223985, int32(EACCESS_READ)) < 0 {
 		return -int32(1)
 	}
-	if XPyModule_AddIntConstant(tls, module, __ccgo_ts+224089, int32(EACCESS_WRITE)) < 0 {
+	if XPyModule_AddIntConstant(tls, module, __ccgo_ts+223997, int32(EACCESS_WRITE)) < 0 {
 		return -int32(1)
 	}
-	if XPyModule_AddIntConstant(tls, module, __ccgo_ts+224102, int32(EACCESS_COPY)) < 0 {
+	if XPyModule_AddIntConstant(tls, module, __ccgo_ts+224010, int32(EACCESS_COPY)) < 0 {
 		return -int32(1)
 	}
 	return 0
@@ -47290,7 +47290,7 @@ func _seq2set(tls *libc.TLS, seq uintptr, set uintptr, fd2obj uintptr) (r int32)
 	o = libc.UintptrFromInt32(0)
 	(**(**Tpylist)(__ccgo_up(fd2obj))).Fobj = libc.UintptrFromInt32(0)
 	(*Tfd_set1)(unsafe.Pointer(set)).Ffd_count = uint32(0)
-	fast_seq = XPySequence_Fast(tls, seq, __ccgo_ts+224888)
+	fast_seq = XPySequence_Fast(tls, seq, __ccgo_ts+224796)
 	if !(fast_seq != 0) {
 		return -int32(1)
 	}
@@ -47377,7 +47377,7 @@ func _seq2set(tls *libc.TLS, seq uintptr, set uintptr, fd2obj uintptr) (r int32)
 		}
 
 		if index >= libc.Uint32FromInt32(MFD_SETSIZE1) {
-			XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+224920)
+			XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+224828)
 			goto finally
 		}
 		(**(**Tpylist)(__ccgo_up(fd2obj + uintptr(index)*24))).Fobj = o
@@ -47539,7 +47539,7 @@ func _select_select_impl(tls *libc.TLS, module uintptr, rlist uintptr, wlist uin
 	} else {
 		if X_PyTime_FromSecondsObject(tls, bp+49256, timeout_obj, int32(E_PyTime_ROUND_TIMEOUT)) < 0 {
 			if XPyErr_ExceptionMatches(tls, XPyExc_TypeError) != 0 {
-				XPyErr_SetString(tls, XPyExc_TypeError, __ccgo_ts+224958)
+				XPyErr_SetString(tls, XPyExc_TypeError, __ccgo_ts+224866)
 			}
 			return libc.UintptrFromInt32(0)
 		}
@@ -47547,7 +47547,7 @@ func _select_select_impl(tls *libc.TLS, module uintptr, rlist uintptr, wlist uin
 			return libc.UintptrFromInt32(0)
 		}
 		if (**(**Ttimeval)(__ccgo_up(bp + 49248))).Ftv_sec < 0 {
-			XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+224990)
+			XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+224898)
 			return libc.UintptrFromInt32(0)
 		}
 		tvp = bp + 49248
@@ -75437,7 +75437,7 @@ func __PyLong_NetIfindex_Converter(tls *libc.TLS, obj uintptr, ptr uintptr) (r i
 		return 0
 	}
 	if uint64(bytes) > uint64(4) {
-		XPyErr_SetString(tls, XPyExc_OverflowError, __ccgo_ts+225019)
+		XPyErr_SetString(tls, XPyExc_OverflowError, __ccgo_ts+224927)
 		return 0
 	}
 	return int32(1)
@@ -75569,9 +75569,9 @@ var __kwtuple163 = struct {
 }
 
 var __keywords191 = [5]uintptr{
-	0: __ccgo_ts + 225058,
+	0: __ccgo_ts + 224966,
 	1: __ccgo_ts + 2992,
-	2: __ccgo_ts + 225065,
+	2: __ccgo_ts + 224973,
 	3: __ccgo_ts + 36842,
 	4: libc.UintptrFromInt32(0),
 }
@@ -75671,7 +75671,7 @@ _2:
 	goto _4
 _4:
 	if !(v3 != 0) {
-		X_PyArg_BadArgument(tls, __ccgo_ts+225071, __ccgo_ts+23361, __ccgo_ts+15107, arg)
+		X_PyArg_BadArgument(tls, __ccgo_ts+224979, __ccgo_ts+23361, __ccgo_ts+15107, arg)
 		goto exit
 	}
 	ip_addr = XPyUnicode_AsUTF8AndSize(tls, arg, bp)
@@ -75767,7 +75767,7 @@ exit:
 }
 
 func _select_error(tls *libc.TLS) (r uintptr) {
-	XPyErr_SetString(tls, XPyExc_OSError, __ccgo_ts+225081)
+	XPyErr_SetString(tls, XPyExc_OSError, __ccgo_ts+224989)
 	return libc.UintptrFromInt32(0)
 }
 
@@ -75789,7 +75789,7 @@ func _set_herror(tls *libc.TLS, state uintptr, h_error int32) (r uintptr) {
 	var v2 int32
 	var v5 Tuint32_t
 	_, _, _, _, _ = v, v1, v2, v5, v6
-	v = XPy_BuildValue(tls, __ccgo_ts+225108, libc.VaList(bp+8, h_error, __ccgo_ts+225113))
+	v = XPy_BuildValue(tls, __ccgo_ts+225016, libc.VaList(bp+8, h_error, __ccgo_ts+225021))
 	if v != libc.UintptrFromInt32(0) {
 		XPyErr_SetObject(tls, (*Tsocket_state)(unsafe.Pointer(state)).Fsocket_herror, v)
 		v1 = v
@@ -75817,7 +75817,7 @@ func _set_gaierror(tls *libc.TLS, state uintptr, error1 int32) (r uintptr) {
 	var v2 int32
 	var v5 Tuint32_t
 	_, _, _, _, _ = v, v1, v2, v5, v6
-	v = XPy_BuildValue(tls, __ccgo_ts+225108, libc.VaList(bp+8, error1, __ccgo_ts+225128))
+	v = XPy_BuildValue(tls, __ccgo_ts+225016, libc.VaList(bp+8, error1, __ccgo_ts+225036))
 	if v != libc.UintptrFromInt32(0) {
 		XPyErr_SetObject(tls, (*Tsocket_state)(unsafe.Pointer(state)).Fsocket_gaierror, v)
 		v1 = v
@@ -76118,12 +76118,12 @@ func _setipaddr(tls *libc.TLS, state uintptr, name uintptr, addr_ret uintptr, ad
 			siz = int32(16)
 		default:
 			_freeaddrinfo(tls, **(**uintptr)(__ccgo_up(bp + 48)))
-			XPyErr_SetString(tls, XPyExc_OSError, __ccgo_ts+225147)
+			XPyErr_SetString(tls, XPyExc_OSError, __ccgo_ts+225055)
 			return -int32(1)
 		}
 		if (*Taddrinfo)(unsafe.Pointer(**(**uintptr)(__ccgo_up(bp + 48)))).Fai_next != 0 {
 			_freeaddrinfo(tls, **(**uintptr)(__ccgo_up(bp + 48)))
-			XPyErr_SetString(tls, XPyExc_OSError, __ccgo_ts+225174)
+			XPyErr_SetString(tls, XPyExc_OSError, __ccgo_ts+225082)
 			return -int32(1)
 		}
 		if (*Taddrinfo)(unsafe.Pointer(**(**uintptr)(__ccgo_up(bp + 48)))).Fai_addrlen < addr_ret_size {
@@ -76134,9 +76134,9 @@ func _setipaddr(tls *libc.TLS, state uintptr, name uintptr, addr_ret uintptr, ad
 		return siz
 	}
 
-	if libc.Xstrcmp(tls, name, __ccgo_ts+225212) == 0 || libc.Xstrcmp(tls, name, __ccgo_ts+225228) == 0 {
+	if libc.Xstrcmp(tls, name, __ccgo_ts+225120) == 0 || libc.Xstrcmp(tls, name, __ccgo_ts+225136) == 0 {
 		if af != int32(2) && af != 0 {
-			XPyErr_SetString(tls, XPyExc_OSError, __ccgo_ts+225240)
+			XPyErr_SetString(tls, XPyExc_OSError, __ccgo_ts+225148)
 			return -int32(1)
 		}
 		sin = addr_ret
@@ -76185,7 +76185,7 @@ func _setipaddr(tls *libc.TLS, state uintptr, name uintptr, addr_ret uintptr, ad
 	case int32(MAF_INET6):
 		return int32(16)
 	default:
-		XPyErr_SetString(tls, XPyExc_OSError, __ccgo_ts+225266)
+		XPyErr_SetString(tls, XPyExc_OSError, __ccgo_ts+225174)
 		return -int32(1)
 	}
 	return r
@@ -76225,7 +76225,7 @@ func _setbdaddr(tls *libc.TLS, name uintptr, bdaddr uintptr) (r int32) {
 	var _ uint32
 	var _ int8
 	_ = n
-	n = libc.Xsscanf(tls, name, __ccgo_ts+225289, libc.VaList(bp+40, bp+20, bp+16, bp+12, bp+8, bp+4, bp, bp+24))
+	n = libc.Xsscanf(tls, name, __ccgo_ts+225197, libc.VaList(bp+40, bp+20, bp+16, bp+12, bp+8, bp+4, bp, bp+24))
 	if n == int32(6) && **(**uint32)(__ccgo_up(bp))|**(**uint32)(__ccgo_up(bp + 4))|**(**uint32)(__ccgo_up(bp + 8))|**(**uint32)(__ccgo_up(bp + 12))|**(**uint32)(__ccgo_up(bp + 16))|**(**uint32)(__ccgo_up(bp + 20)) < uint32(256) {
 		**(**Tbdaddr_t)(__ccgo_up(bdaddr)) = uint64(**(**uint32)(__ccgo_up(bp)) & libc.Uint32FromInt32(0xFF))
 		**(**Tbdaddr_t)(__ccgo_up(bdaddr)) |= uint64(**(**uint32)(__ccgo_up(bp + 4))&libc.Uint32FromInt32(0xFF)) << libc.Int32FromInt32(8)
@@ -76235,7 +76235,7 @@ func _setbdaddr(tls *libc.TLS, name uintptr, bdaddr uintptr) (r int32) {
 		**(**Tbdaddr_t)(__ccgo_up(bdaddr)) |= uint64(**(**uint32)(__ccgo_up(bp + 20))&libc.Uint32FromInt32(0xFF)) << libc.Int32FromInt32(40)
 		return int32(6)
 	} else {
-		XPyErr_SetString(tls, XPyExc_OSError, __ccgo_ts+225309)
+		XPyErr_SetString(tls, XPyExc_OSError, __ccgo_ts+225217)
 		return -int32(1)
 	}
 	return r
@@ -76258,7 +76258,7 @@ func _makebdaddr(tls *libc.TLS, bdaddr uintptr) (r uintptr) {
 		;
 		i = i + 1
 	}
-	return XPyUnicode_FromFormat(tls, __ccgo_ts+225331, libc.VaList(bp+8, octets[int32(5)], octets[int32(4)], octets[int32(3)], octets[int32(2)], octets[int32(1)], octets[0]))
+	return XPyUnicode_FromFormat(tls, __ccgo_ts+225239, libc.VaList(bp+8, octets[int32(5)], octets[int32(4)], octets[int32(3)], octets[int32(2)], octets[int32(1)], octets[0]))
 }
 
 func Xunicode_fsdecode(tls *libc.TLS, arg uintptr) (r uintptr) {
@@ -76309,7 +76309,7 @@ func _makesockaddr(tls *libc.TLS, sockfd TSOCKET_T, addr uintptr, addrlen Tsize_
 		addrobj1 = _make_ipv6_addr(tls, a1)
 		ret1 = libc.UintptrFromInt32(0)
 		if addrobj1 != 0 {
-			ret1 = XPy_BuildValue(tls, __ccgo_ts+225361, libc.VaList(bp+16, addrobj1, int32(libc.Xntohs(tls, (*Tsockaddr_in6)(unsafe.Pointer(a1)).Fsin6_port)), _ntohl(tls, (*Tsockaddr_in6)(unsafe.Pointer(a1)).Fsin6_flowinfo), (*Tsockaddr_in6)(unsafe.Pointer(a1)).F__ccgo4_24.Fsin6_scope_id))
+			ret1 = XPy_BuildValue(tls, __ccgo_ts+225269, libc.VaList(bp+16, addrobj1, int32(libc.Xntohs(tls, (*Tsockaddr_in6)(unsafe.Pointer(a1)).Fsin6_port)), _ntohl(tls, (*Tsockaddr_in6)(unsafe.Pointer(a1)).Fsin6_flowinfo), (*Tsockaddr_in6)(unsafe.Pointer(a1)).F__ccgo4_24.Fsin6_scope_id))
 			v1 = addrobj1
 			v2 = libc.BoolInt32(int32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
 			goto _9
@@ -76351,7 +76351,7 @@ func _makesockaddr(tls *libc.TLS, sockfd TSOCKET_T, addr uintptr, addrlen Tsize_
 			}
 			return ret2
 		default:
-			XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+225366)
+			XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+225274)
 			return libc.UintptrFromInt32(0)
 		}
 		fallthrough
@@ -76386,12 +76386,12 @@ func _makesockaddr(tls *libc.TLS, sockfd TSOCKET_T, addr uintptr, addrlen Tsize_
 		}
 		serviceId = XPyUnicode_FromWideChar(tls, **(**uintptr)(__ccgo_up(bp)), int64(-int32(1)))
 		res = _RpcStringFreeW(tls, bp)
-		return XPy_BuildValue(tls, __ccgo_ts+213489, libc.VaList(bp+16, vmId, serviceId))
+		return XPy_BuildValue(tls, __ccgo_ts+213397, libc.VaList(bp+16, vmId, serviceId))
 
 		fallthrough
 	default:
 
-		return XPy_BuildValue(tls, __ccgo_ts+225393, libc.VaList(bp+16, int32((*Tsockaddr)(unsafe.Pointer(addr)).Fsa_family), addr+2, uint64(14)))
+		return XPy_BuildValue(tls, __ccgo_ts+225301, libc.VaList(bp+16, int32((*Tsockaddr)(unsafe.Pointer(addr)).Fsa_family), addr+2, uint64(14)))
 	}
 	return r
 }
@@ -76532,9 +76532,9 @@ _4:
 				_39:
 					len1 = uint64(v38)
 				} else {
-					obj2 = XPyUnicode_AsEncodedString(tls, obj, __ccgo_ts+225397, libc.UintptrFromInt32(0))
+					obj2 = XPyUnicode_AsEncodedString(tls, obj, __ccgo_ts+225305, libc.UintptrFromInt32(0))
 					if !(obj2 != 0) {
-						XPyErr_SetString(tls, XPyExc_TypeError, __ccgo_ts+225402)
+						XPyErr_SetString(tls, XPyExc_TypeError, __ccgo_ts+225310)
 						return 0
 					}
 					(*Tmaybe_idna)(unsafe.Pointer(data1)).Fobj = obj2
@@ -76555,7 +76555,7 @@ _4:
 				v1 = (*TPyObject)(unsafe.Pointer(obj)).Fob_type
 				goto _47
 			_47:
-				XPyErr_Format(tls, XPyExc_TypeError, __ccgo_ts+225430, libc.VaList(bp+8, (*TPyTypeObject)(unsafe.Pointer(v1)).Ftp_name))
+				XPyErr_Format(tls, XPyExc_TypeError, __ccgo_ts+225338, libc.VaList(bp+8, (*TPyTypeObject)(unsafe.Pointer(v1)).Ftp_name))
 				return 0
 			}
 		}
@@ -76580,7 +76580,7 @@ _4:
 			}
 		_51:
 		}
-		XPyErr_SetString(tls, XPyExc_TypeError, __ccgo_ts+225471)
+		XPyErr_SetString(tls, XPyExc_TypeError, __ccgo_ts+225379)
 		return 0
 	}
 	return int32(MPy_CLEANUP_SUPPORTED)
@@ -76618,12 +76618,12 @@ func _getsockaddrarg(tls *libc.TLS, s uintptr, args uintptr, addrbuf uintptr, le
 			v5 = (*TPyObject)(unsafe.Pointer(args)).Fob_type
 			goto _6
 		_6:
-			XPyErr_Format(tls, XPyExc_TypeError, __ccgo_ts+225513, libc.VaList(bp+96, caller, (*TPyTypeObject)(unsafe.Pointer(v5)).Ftp_name))
+			XPyErr_Format(tls, XPyExc_TypeError, __ccgo_ts+225421, libc.VaList(bp+96, caller, (*TPyTypeObject)(unsafe.Pointer(v5)).Ftp_name))
 			return 0
 		}
-		if !(XPyArg_ParseTuple(tls, args, __ccgo_ts+225561, libc.VaList(bp+96, __ccgo_fp(_idna_converter), bp, bp+16)) != 0) {
+		if !(XPyArg_ParseTuple(tls, args, __ccgo_ts+225469, libc.VaList(bp+96, __ccgo_fp(_idna_converter), bp, bp+16)) != 0) {
 			if XPyErr_ExceptionMatches(tls, XPyExc_OverflowError) != 0 {
-				XPyErr_Format(tls, XPyExc_OverflowError, __ccgo_ts+225609, libc.VaList(bp+96, caller))
+				XPyErr_Format(tls, XPyExc_OverflowError, __ccgo_ts+225517, libc.VaList(bp+96, caller))
 			}
 			return 0
 		}
@@ -76635,7 +76635,7 @@ func _getsockaddrarg(tls *libc.TLS, s uintptr, args uintptr, addrbuf uintptr, le
 			return 0
 		}
 		if **(**int32)(__ccgo_up(bp + 16)) < 0 || **(**int32)(__ccgo_up(bp + 16)) > int32(0xffff) {
-			XPyErr_Format(tls, XPyExc_OverflowError, __ccgo_ts+225609, libc.VaList(bp+96, caller))
+			XPyErr_Format(tls, XPyExc_OverflowError, __ccgo_ts+225517, libc.VaList(bp+96, caller))
 			return 0
 		}
 		(*Tsockaddr_in)(unsafe.Pointer(addr)).Fsin_family = int16(2)
@@ -76658,12 +76658,12 @@ func _getsockaddrarg(tls *libc.TLS, s uintptr, args uintptr, addrbuf uintptr, le
 			v5 = (*TPyObject)(unsafe.Pointer(args)).Fob_type
 			goto _13
 		_13:
-			XPyErr_Format(tls, XPyExc_TypeError, __ccgo_ts+225637, libc.VaList(bp+96, caller, (*TPyTypeObject)(unsafe.Pointer(v5)).Ftp_name))
+			XPyErr_Format(tls, XPyExc_TypeError, __ccgo_ts+225545, libc.VaList(bp+96, caller, (*TPyTypeObject)(unsafe.Pointer(v5)).Ftp_name))
 			return 0
 		}
-		if !(XPyArg_ParseTuple(tls, args, __ccgo_ts+225686, libc.VaList(bp+96, __ccgo_fp(_idna_converter), bp+24, bp+40, bp+44, bp+48)) != 0) {
+		if !(XPyArg_ParseTuple(tls, args, __ccgo_ts+225594, libc.VaList(bp+96, __ccgo_fp(_idna_converter), bp+24, bp+40, bp+44, bp+48)) != 0) {
 			if XPyErr_ExceptionMatches(tls, XPyExc_OverflowError) != 0 {
-				XPyErr_Format(tls, XPyExc_OverflowError, __ccgo_ts+225609, libc.VaList(bp+96, caller))
+				XPyErr_Format(tls, XPyExc_OverflowError, __ccgo_ts+225517, libc.VaList(bp+96, caller))
 			}
 			return 0
 		}
@@ -76675,11 +76675,11 @@ func _getsockaddrarg(tls *libc.TLS, s uintptr, args uintptr, addrbuf uintptr, le
 			return 0
 		}
 		if **(**int32)(__ccgo_up(bp + 40)) < 0 || **(**int32)(__ccgo_up(bp + 40)) > int32(0xffff) {
-			XPyErr_Format(tls, XPyExc_OverflowError, __ccgo_ts+225609, libc.VaList(bp+96, caller))
+			XPyErr_Format(tls, XPyExc_OverflowError, __ccgo_ts+225517, libc.VaList(bp+96, caller))
 			return 0
 		}
 		if **(**uint32)(__ccgo_up(bp + 44)) > uint32(0xfffff) {
-			XPyErr_Format(tls, XPyExc_OverflowError, __ccgo_ts+225762, libc.VaList(bp+96, caller))
+			XPyErr_Format(tls, XPyExc_OverflowError, __ccgo_ts+225670, libc.VaList(bp+96, caller))
 			return 0
 		}
 		(*Tsockaddr_in6)(unsafe.Pointer(addr1)).Fsin6_family = int16((*TPySocketSockObject)(unsafe.Pointer(s)).Fsock_family)
@@ -76694,8 +76694,8 @@ func _getsockaddrarg(tls *libc.TLS, s uintptr, args uintptr, addrbuf uintptr, le
 			addr2 = addrbuf
 			libc.Xmemset(tls, addr2, 0, uint64(40))
 			*(*TUSHORT)(unsafe.Pointer(addr2)) = uint16(MAF_BTH)
-			if !(XPyArg_ParseTuple(tls, args, __ccgo_ts+225796, libc.VaList(bp+96, bp+56, bp+64)) != 0) {
-				XPyErr_Format(tls, XPyExc_OSError, __ccgo_ts+225799, libc.VaList(bp+96, caller))
+			if !(XPyArg_ParseTuple(tls, args, __ccgo_ts+225704, libc.VaList(bp+96, bp+56, bp+64)) != 0) {
+				XPyErr_Format(tls, XPyExc_OSError, __ccgo_ts+225707, libc.VaList(bp+96, caller))
 				return 0
 			}
 			*(*TULONG)(unsafe.Add(unsafe.Pointer(addr2), 32)) = **(**uint32)(__ccgo_up(bp + 64))
@@ -76705,7 +76705,7 @@ func _getsockaddrarg(tls *libc.TLS, s uintptr, args uintptr, addrbuf uintptr, le
 			**(**int32)(__ccgo_up(len_ret)) = int32(40)
 			return int32(1)
 		default:
-			XPyErr_Format(tls, XPyExc_OSError, __ccgo_ts+225818, libc.VaList(bp+96, caller))
+			XPyErr_Format(tls, XPyExc_OSError, __ccgo_ts+225726, libc.VaList(bp+96, caller))
 			return 0
 		}
 		fallthrough
@@ -76728,44 +76728,44 @@ func _getsockaddrarg(tls *libc.TLS, s uintptr, args uintptr, addrbuf uintptr, le
 				v5 = (*TPyObject)(unsafe.Pointer(args)).Fob_type
 				goto _19
 			_19:
-				XPyErr_Format(tls, XPyExc_TypeError, __ccgo_ts+225851, libc.VaList(bp+96, caller, (*TPyTypeObject)(unsafe.Pointer(v5)).Ftp_name))
+				XPyErr_Format(tls, XPyExc_TypeError, __ccgo_ts+225759, libc.VaList(bp+96, caller, (*TPyTypeObject)(unsafe.Pointer(v5)).Ftp_name))
 				return 0
 			}
-			if !(XPyArg_ParseTuple(tls, args, __ccgo_ts+225901, libc.VaList(bp+96, bp+72, bp+80)) != 0) {
+			if !(XPyArg_ParseTuple(tls, args, __ccgo_ts+225809, libc.VaList(bp+96, bp+72, bp+80)) != 0) {
 				return 0
 			}
 			guid_str = XPyUnicode_AsWideCharString(tls, **(**uintptr)(__ccgo_up(bp + 72)), libc.UintptrFromInt32(0))
 			if guid_str == libc.UintptrFromInt32(0) {
-				XPyErr_Format(tls, XPyExc_ValueError, __ccgo_ts+225962, libc.VaList(bp+96, caller))
+				XPyErr_Format(tls, XPyExc_ValueError, __ccgo_ts+225870, libc.VaList(bp+96, caller))
 				return 0
 			}
 			rc = _UuidFromStringW(tls, guid_str, addr3+4)
 			XPyMem_Free(tls, guid_str)
 			if rc != 0 {
-				XPyErr_Format(tls, XPyExc_ValueError, __ccgo_ts+225962, libc.VaList(bp+96, caller))
+				XPyErr_Format(tls, XPyExc_ValueError, __ccgo_ts+225870, libc.VaList(bp+96, caller))
 				return 0
 			}
 			guid_str = XPyUnicode_AsWideCharString(tls, **(**uintptr)(__ccgo_up(bp + 80)), libc.UintptrFromInt32(0))
 			if guid_str == libc.UintptrFromInt32(0) {
-				XPyErr_Format(tls, XPyExc_ValueError, __ccgo_ts+226019, libc.VaList(bp+96, caller))
+				XPyErr_Format(tls, XPyExc_ValueError, __ccgo_ts+225927, libc.VaList(bp+96, caller))
 				return 0
 			}
 			rc = _UuidFromStringW(tls, guid_str, addr3+20)
 			XPyMem_Free(tls, guid_str)
 			if rc != 0 {
-				XPyErr_Format(tls, XPyExc_ValueError, __ccgo_ts+226019, libc.VaList(bp+96, caller))
+				XPyErr_Format(tls, XPyExc_ValueError, __ccgo_ts+225927, libc.VaList(bp+96, caller))
 				return 0
 			}
 			**(**int32)(__ccgo_up(len_ret)) = int32(36)
 			return int32(1)
 		default:
-			XPyErr_Format(tls, XPyExc_OSError, __ccgo_ts+226081, libc.VaList(bp+96, caller, (*TPySocketSockObject)(unsafe.Pointer(s)).Fsock_proto))
+			XPyErr_Format(tls, XPyExc_OSError, __ccgo_ts+225989, libc.VaList(bp+96, caller, (*TPySocketSockObject)(unsafe.Pointer(s)).Fsock_proto))
 			return 0
 		}
 
 		fallthrough
 	default:
-		XPyErr_Format(tls, XPyExc_OSError, __ccgo_ts+226122, libc.VaList(bp+96, caller))
+		XPyErr_Format(tls, XPyExc_OSError, __ccgo_ts+226030, libc.VaList(bp+96, caller))
 		return 0
 	}
 	return r
@@ -76785,7 +76785,7 @@ func _getsockaddrlen(tls *libc.TLS, s uintptr, len_ret uintptr) (r int32) {
 			**(**Tsocklen_t)(__ccgo_up(len_ret)) = int32(40)
 			return int32(1)
 		default:
-			XPyErr_SetString(tls, XPyExc_OSError, __ccgo_ts+226139)
+			XPyErr_SetString(tls, XPyExc_OSError, __ccgo_ts+226047)
 			return 0
 		}
 		fallthrough
@@ -76795,7 +76795,7 @@ func _getsockaddrlen(tls *libc.TLS, s uintptr, len_ret uintptr) (r int32) {
 
 		fallthrough
 	default:
-		XPyErr_SetString(tls, XPyExc_OSError, __ccgo_ts+226175)
+		XPyErr_SetString(tls, XPyExc_OSError, __ccgo_ts+226083)
 		return 0
 	}
 	return r
@@ -76846,7 +76846,7 @@ func _sock_accept(tls *libc.TLS, self uintptr, _unused_ignored uintptr) (r uintp
 		return libc.UintptrFromInt32(0)
 	}
 	newfd = (**(**Tsock_accept)(__ccgo_up(bp + 136))).Fresult
-	if !(libc.XSetHandleInformation(tls, uintptr(newfd), uint32(MHANDLE_FLAG_INHERIT), uint32(0)) != 0) {
+	if !(_ccgo_SetHandleInformation(tls, uintptr(newfd), uint32(MHANDLE_FLAG_INHERIT), uint32(0)) != 0) {
 		XPyErr_SetFromWindowsErr(tls, 0)
 		libc.Xclosesocket(tls, newfd)
 		goto finally
@@ -76956,14 +76956,14 @@ func _socket_parse_timeout(tls *libc.TLS, timeout uintptr, timeout_obj uintptr) 
 		return -int32(1)
 	}
 	if **(**TPyTime_t)(__ccgo_up(timeout)) < 0 {
-		XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+226202)
+		XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+226110)
 		return -int32(1)
 	}
 	overflow = overflow | libc.BoolInt32(X_PyTime_AsTimeval(tls, **(**TPyTime_t)(__ccgo_up(timeout)), bp, int32(E_PyTime_ROUND_TIMEOUT)) < 0)
 	ms = X_PyTime_AsMilliseconds(tls, **(**TPyTime_t)(__ccgo_up(timeout)), int32(E_PyTime_ROUND_TIMEOUT))
 	overflow = overflow | libc.BoolInt32(ms > int64(M__INT_MAX__))
 	if overflow != 0 {
-		XPyErr_SetString(tls, XPyExc_OverflowError, __ccgo_ts+226229)
+		XPyErr_SetString(tls, XPyExc_OverflowError, __ccgo_ts+226137)
 		return -int32(1)
 	}
 	return 0
@@ -77038,7 +77038,7 @@ func _sock_setsockopt(tls *libc.TLS, self uintptr, args uintptr) (r uintptr) {
 	_, _, _ = res, s, v1
 	s = self
 
-	if XPyArg_ParseTuple(tls, args, __ccgo_ts+226264, libc.VaList(bp+120, bp, bp+4, bp+88)) != 0 {
+	if XPyArg_ParseTuple(tls, args, __ccgo_ts+226172, libc.VaList(bp+120, bp, bp+4, bp+88)) != 0 {
 		if uint32(**(**int32)(__ccgo_up(bp + 4))) == libc.Uint32FromUint32(0x80000000)|uint32(libc.Int32FromInt32(MIOC_VENDOR))|uint32(libc.Int32FromInt32(23)) {
 			res = _WSAIoctl(tls, _get_sock_fd(tls, s), uint32(libc.Uint32FromUint32(0x80000000)|uint32(libc.Int32FromInt32(MIOC_VENDOR))|uint32(libc.Int32FromInt32(23))), bp+88, uint32(4), libc.UintptrFromInt32(0), uint32(0), bp+104, libc.UintptrFromInt32(0), libc.UintptrFromInt32(0))
 			if res >= 0 {
@@ -77054,18 +77054,18 @@ func _sock_setsockopt(tls *libc.TLS, self uintptr, args uintptr) (r uintptr) {
 	v1 = (*TPyObject)(unsafe.Pointer(uintptr(unsafe.Pointer(&X_Py_NoneStruct)))).Fob_type
 	goto _2
 _2:
-	if XPyArg_ParseTuple(tls, args, __ccgo_ts+226279, libc.VaList(bp+120, bp, bp+4, v1, bp+96, bp+92)) != 0 {
+	if XPyArg_ParseTuple(tls, args, __ccgo_ts+226187, libc.VaList(bp+120, bp, bp+4, v1, bp+96, bp+92)) != 0 {
 		res = libc.Xsetsockopt(tls, _get_sock_fd(tls, s), **(**int32)(__ccgo_up(bp)), **(**int32)(__ccgo_up(bp + 4)), libc.UintptrFromInt32(0), int32(**(**uint32)(__ccgo_up(bp + 92))))
 		goto done
 	}
 	XPyErr_Clear(tls)
 
-	if !(XPyArg_ParseTuple(tls, args, __ccgo_ts+226296, libc.VaList(bp+120, bp, bp+4, bp+8)) != 0) {
+	if !(XPyArg_ParseTuple(tls, args, __ccgo_ts+226204, libc.VaList(bp+120, bp, bp+4, bp+8)) != 0) {
 		return libc.UintptrFromInt32(0)
 	}
 	if (**(**TPy_buffer)(__ccgo_up(bp + 8))).Flen1 > int64(M__INT_MAX__) {
 		XPyBuffer_Release(tls, bp+8)
-		XPyErr_Format(tls, XPyExc_OverflowError, __ccgo_ts+226312, libc.VaList(bp+120, int32(M__INT_MAX__)))
+		XPyErr_Format(tls, XPyExc_OverflowError, __ccgo_ts+226220, libc.VaList(bp+120, int32(M__INT_MAX__)))
 		return libc.UintptrFromInt32(0)
 	}
 	res = libc.Xsetsockopt(tls, _get_sock_fd(tls, s), **(**int32)(__ccgo_up(bp)), **(**int32)(__ccgo_up(bp + 4)), (**(**TPy_buffer)(__ccgo_up(bp + 8))).Fbuf, int32((**(**TPy_buffer)(__ccgo_up(bp + 8))).Flen1))
@@ -77095,7 +77095,7 @@ func _sock_getsockopt(tls *libc.TLS, self uintptr, args uintptr) (r uintptr) {
 	s = self
 	**(**Tsocklen_t)(__ccgo_up(bp + 16)) = 0
 	**(**int32)(__ccgo_up(bp + 20)) = 0
-	if !(XPyArg_ParseTuple(tls, args, __ccgo_ts+226350, libc.VaList(bp+40, bp, bp+4, bp+16)) != 0) {
+	if !(XPyArg_ParseTuple(tls, args, __ccgo_ts+226258, libc.VaList(bp+40, bp, bp+4, bp+16)) != 0) {
 		return libc.UintptrFromInt32(0)
 	}
 	if **(**Tsocklen_t)(__ccgo_up(bp + 16)) == 0 {
@@ -77110,7 +77110,7 @@ func _sock_getsockopt(tls *libc.TLS, self uintptr, args uintptr) (r uintptr) {
 		return XPyLong_FromLong(tls, int32(**(**int32)(__ccgo_up(bp + 20))))
 	}
 	if **(**Tsocklen_t)(__ccgo_up(bp + 16)) <= 0 || **(**Tsocklen_t)(__ccgo_up(bp + 16)) > int32(1024) {
-		XPyErr_SetString(tls, XPyExc_OSError, __ccgo_ts+226366)
+		XPyErr_SetString(tls, XPyExc_OSError, __ccgo_ts+226274)
 		return libc.UintptrFromInt32(0)
 	}
 	**(**uintptr)(__ccgo_up(bp + 8)) = XPyBytes_FromStringAndSize(tls, libc.UintptrFromInt32(0), int64(**(**Tsocklen_t)(__ccgo_up(bp + 16))))
@@ -77155,7 +77155,7 @@ func _sock_bind(tls *libc.TLS, self uintptr, addro uintptr) (r uintptr) {
 	if !(_getsockaddrarg(tls, s, addro, bp, bp+128, __ccgo_ts+207396) != 0) {
 		return libc.UintptrFromInt32(0)
 	}
-	if XPySys_Audit(tls, __ccgo_ts+226397, __ccgo_ts+8926, libc.VaList(bp+144, s, addro)) < 0 {
+	if XPySys_Audit(tls, __ccgo_ts+226305, __ccgo_ts+8926, libc.VaList(bp+144, s, addro)) < 0 {
 		return libc.UintptrFromInt32(0)
 	}
 	_save = XPyEval_SaveThread(tls)
@@ -77291,10 +77291,10 @@ func _sock_connect(tls *libc.TLS, self uintptr, addro uintptr) (r uintptr) {
 	var _ int32
 	_, _ = res, s
 	s = self
-	if !(_getsockaddrarg(tls, s, addro, bp, bp+128, __ccgo_ts+226409) != 0) {
+	if !(_getsockaddrarg(tls, s, addro, bp, bp+128, __ccgo_ts+226317) != 0) {
 		return libc.UintptrFromInt32(0)
 	}
-	if XPySys_Audit(tls, __ccgo_ts+226417, __ccgo_ts+8926, libc.VaList(bp+144, s, addro)) < 0 {
+	if XPySys_Audit(tls, __ccgo_ts+226325, __ccgo_ts+8926, libc.VaList(bp+144, s, addro)) < 0 {
 		return libc.UintptrFromInt32(0)
 	}
 	res = _internal_connect(tls, s, bp, **(**int32)(__ccgo_up(bp + 128)), int32(1))
@@ -77313,10 +77313,10 @@ func _sock_connect_ex(tls *libc.TLS, self uintptr, addro uintptr) (r uintptr) {
 	var _ int32
 	_, _ = res, s
 	s = self
-	if !(_getsockaddrarg(tls, s, addro, bp, bp+128, __ccgo_ts+226432) != 0) {
+	if !(_getsockaddrarg(tls, s, addro, bp, bp+128, __ccgo_ts+226340) != 0) {
 		return libc.UintptrFromInt32(0)
 	}
-	if XPySys_Audit(tls, __ccgo_ts+226417, __ccgo_ts+8926, libc.VaList(bp+144, s, addro)) < 0 {
+	if XPySys_Audit(tls, __ccgo_ts+226325, __ccgo_ts+8926, libc.VaList(bp+144, s, addro)) < 0 {
 		return libc.UintptrFromInt32(0)
 	}
 	res = _internal_connect(tls, s, bp, **(**int32)(__ccgo_up(bp + 128)), 0)
@@ -77387,7 +77387,7 @@ func _sock_listen(tls *libc.TLS, self uintptr, args uintptr) (r uintptr) {
 	s = self
 
 	**(**int32)(__ccgo_up(bp)) = int32(128)
-	if !(XPyArg_ParseTuple(tls, args, __ccgo_ts+226443, libc.VaList(bp+16, bp)) != 0) {
+	if !(XPyArg_ParseTuple(tls, args, __ccgo_ts+226351, libc.VaList(bp+16, bp)) != 0) {
 		return libc.UintptrFromInt32(0)
 	}
 	_save = XPyEval_SaveThread(tls)
@@ -77455,11 +77455,11 @@ func _sock_recv(tls *libc.TLS, self uintptr, args uintptr) (r uintptr) {
 	_, _, _, _, _, _ = outlen, s, v1, v3, v4, v7
 	s = self
 	**(**int32)(__ccgo_up(bp + 8)) = 0
-	if !(XPyArg_ParseTuple(tls, args, __ccgo_ts+226453, libc.VaList(bp+32, bp, bp+8)) != 0) {
+	if !(XPyArg_ParseTuple(tls, args, __ccgo_ts+226361, libc.VaList(bp+32, bp, bp+8)) != 0) {
 		return libc.UintptrFromInt32(0)
 	}
 	if **(**TPy_ssize_t)(__ccgo_up(bp)) < 0 {
-		XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+226462)
+		XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+226370)
 		return libc.UintptrFromInt32(0)
 	}
 
@@ -77511,14 +77511,14 @@ func _sock_recv_into(tls *libc.TLS, self uintptr, args uintptr, kwds uintptr) (r
 	**(**int32)(__ccgo_up(bp)) = 0
 	**(**TPy_ssize_t)(__ccgo_up(bp + 88)) = 0
 
-	if !(XPyArg_ParseTupleAndKeywords(tls, args, kwds, __ccgo_ts+226490, uintptr(unsafe.Pointer(&_kwlist51)), libc.VaList(bp+104, bp+8, bp+88, bp)) != 0) {
+	if !(XPyArg_ParseTupleAndKeywords(tls, args, kwds, __ccgo_ts+226398, uintptr(unsafe.Pointer(&_kwlist51)), libc.VaList(bp+104, bp+8, bp+88, bp)) != 0) {
 		return libc.UintptrFromInt32(0)
 	}
 	buf = (**(**TPy_buffer)(__ccgo_up(bp + 8))).Fbuf
 	buflen = (**(**TPy_buffer)(__ccgo_up(bp + 8))).Flen1
 	if **(**TPy_ssize_t)(__ccgo_up(bp + 88)) < 0 {
 		XPyBuffer_Release(tls, bp+8)
-		XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+226506)
+		XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+226414)
 		return libc.UintptrFromInt32(0)
 	}
 	if **(**TPy_ssize_t)(__ccgo_up(bp + 88)) == 0 {
@@ -77528,7 +77528,7 @@ func _sock_recv_into(tls *libc.TLS, self uintptr, args uintptr, kwds uintptr) (r
 
 	if buflen < **(**TPy_ssize_t)(__ccgo_up(bp + 88)) {
 		XPyBuffer_Release(tls, bp+8)
-		XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+226539)
+		XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+226447)
 		return libc.UintptrFromInt32(0)
 	}
 
@@ -77629,11 +77629,11 @@ func _sock_recvfrom(tls *libc.TLS, self uintptr, args uintptr) (r uintptr) {
 	**(**uintptr)(__ccgo_up(bp + 8)) = libc.UintptrFromInt32(0)
 	ret = libc.UintptrFromInt32(0)
 	**(**int32)(__ccgo_up(bp + 16)) = 0
-	if !(XPyArg_ParseTuple(tls, args, __ccgo_ts+226576, libc.VaList(bp+40, bp+24, bp+16)) != 0) {
+	if !(XPyArg_ParseTuple(tls, args, __ccgo_ts+226484, libc.VaList(bp+40, bp+24, bp+16)) != 0) {
 		return libc.UintptrFromInt32(0)
 	}
 	if **(**TPy_ssize_t)(__ccgo_up(bp + 24)) < 0 {
-		XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+226589)
+		XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+226497)
 		return libc.UintptrFromInt32(0)
 	}
 	**(**uintptr)(__ccgo_up(bp)) = XPyBytes_FromStringAndSize(tls, libc.UintptrFromInt32(0), **(**TPy_ssize_t)(__ccgo_up(bp + 24)))
@@ -77711,14 +77711,14 @@ func _sock_recvfrom_into(tls *libc.TLS, self uintptr, args uintptr, kwds uintptr
 	**(**int32)(__ccgo_up(bp)) = 0
 	**(**TPy_ssize_t)(__ccgo_up(bp + 88)) = 0
 	**(**uintptr)(__ccgo_up(bp + 96)) = libc.UintptrFromInt32(0)
-	if !(XPyArg_ParseTupleAndKeywords(tls, args, kwds, __ccgo_ts+226621, uintptr(unsafe.Pointer(&_kwlist52)), libc.VaList(bp+112, bp+8, bp+88, bp)) != 0) {
+	if !(XPyArg_ParseTupleAndKeywords(tls, args, kwds, __ccgo_ts+226529, uintptr(unsafe.Pointer(&_kwlist52)), libc.VaList(bp+112, bp+8, bp+88, bp)) != 0) {
 		return libc.UintptrFromInt32(0)
 	}
 	buf = (**(**TPy_buffer)(__ccgo_up(bp + 8))).Fbuf
 	buflen = (**(**TPy_buffer)(__ccgo_up(bp + 8))).Flen1
 	if **(**TPy_ssize_t)(__ccgo_up(bp + 88)) < 0 {
 		XPyBuffer_Release(tls, bp+8)
-		XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+226641)
+		XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+226549)
 		return libc.UintptrFromInt32(0)
 	}
 	if **(**TPy_ssize_t)(__ccgo_up(bp + 88)) == 0 {
@@ -77727,7 +77727,7 @@ func _sock_recvfrom_into(tls *libc.TLS, self uintptr, args uintptr, kwds uintptr
 	} else {
 		if **(**TPy_ssize_t)(__ccgo_up(bp + 88)) > buflen {
 			XPyBuffer_Release(tls, bp+8)
-			XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+226678)
+			XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+226586)
 			return libc.UintptrFromInt32(0)
 		}
 	}
@@ -77756,7 +77756,7 @@ func _sock_recvfrom_into(tls *libc.TLS, self uintptr, args uintptr, kwds uintptr
 	}
 	XPyBuffer_Release(tls, bp+8)
 
-	return XPy_BuildValue(tls, __ccgo_ts+226726, libc.VaList(bp+112, readlen, **(**uintptr)(__ccgo_up(bp + 96))))
+	return XPy_BuildValue(tls, __ccgo_ts+226634, libc.VaList(bp+112, readlen, **(**uintptr)(__ccgo_up(bp + 96))))
 }
 
 var _kwlist52 = [4]uintptr{
@@ -77793,7 +77793,7 @@ func _sock_send(tls *libc.TLS, self uintptr, args uintptr) (r uintptr) {
 	_ = s
 	s = self
 	**(**int32)(__ccgo_up(bp)) = 0
-	if !(XPyArg_ParseTuple(tls, args, __ccgo_ts+226729, libc.VaList(bp+128, bp+8, bp)) != 0) {
+	if !(XPyArg_ParseTuple(tls, args, __ccgo_ts+226637, libc.VaList(bp+128, bp+8, bp)) != 0) {
 		return libc.UintptrFromInt32(0)
 	}
 	if !(libc.Bool(int32(1) != 0) || (*TPySocketSockObject)(unsafe.Pointer(s)).Fsock_timeout <= 0) {
@@ -77830,7 +77830,7 @@ func _sock_sendall(tls *libc.TLS, self uintptr, args uintptr) (r uintptr) {
 	deadline = 0
 	deadline_initialized = 0
 	res = libc.UintptrFromInt32(0)
-	if !(XPyArg_ParseTuple(tls, args, __ccgo_ts+226739, libc.VaList(bp+128, bp+8, bp)) != 0) {
+	if !(XPyArg_ParseTuple(tls, args, __ccgo_ts+226647, libc.VaList(bp+128, bp+8, bp)) != 0) {
 		return libc.UintptrFromInt32(0)
 	}
 	buf = (**(**TPy_buffer)(__ccgo_up(bp + 8))).Fbuf
@@ -77925,26 +77925,26 @@ func _sock_sendto(tls *libc.TLS, self uintptr, args uintptr) (r uintptr) {
 	arglen = XPyTuple_Size(tls, args)
 	switch arglen {
 	case int64(2):
-		if !(XPyArg_ParseTuple(tls, args, __ccgo_ts+226752, libc.VaList(bp+272, bp, bp+80)) != 0) {
+		if !(XPyArg_ParseTuple(tls, args, __ccgo_ts+226660, libc.VaList(bp+272, bp, bp+80)) != 0) {
 			return libc.UintptrFromInt32(0)
 		}
 	case int64(3):
-		if !(XPyArg_ParseTuple(tls, args, __ccgo_ts+226763, libc.VaList(bp+272, bp, bp+220, bp+80)) != 0) {
+		if !(XPyArg_ParseTuple(tls, args, __ccgo_ts+226671, libc.VaList(bp+272, bp, bp+220, bp+80)) != 0) {
 			return libc.UintptrFromInt32(0)
 		}
 	default:
-		XPyErr_Format(tls, XPyExc_TypeError, __ccgo_ts+226775, libc.VaList(bp+272, arglen))
+		XPyErr_Format(tls, XPyExc_TypeError, __ccgo_ts+226683, libc.VaList(bp+272, arglen))
 		return libc.UintptrFromInt32(0)
 	}
 	if !(libc.Bool(int32(1) != 0) || (*TPySocketSockObject)(unsafe.Pointer(s)).Fsock_timeout <= 0) {
 		XPyBuffer_Release(tls, bp)
 		return _select_error(tls)
 	}
-	if !(_getsockaddrarg(tls, s, **(**uintptr)(__ccgo_up(bp + 80)), bp+88, bp+216, __ccgo_ts+226819) != 0) {
+	if !(_getsockaddrarg(tls, s, **(**uintptr)(__ccgo_up(bp + 80)), bp+88, bp+216, __ccgo_ts+226727) != 0) {
 		XPyBuffer_Release(tls, bp)
 		return libc.UintptrFromInt32(0)
 	}
-	if XPySys_Audit(tls, __ccgo_ts+226826, __ccgo_ts+8926, libc.VaList(bp+272, s, **(**uintptr)(__ccgo_up(bp + 80)))) < 0 {
+	if XPySys_Audit(tls, __ccgo_ts+226734, __ccgo_ts+8926, libc.VaList(bp+272, s, **(**uintptr)(__ccgo_up(bp + 80)))) < 0 {
 		XPyBuffer_Release(tls, bp)
 		return libc.UintptrFromInt32(0)
 	}
@@ -77992,13 +77992,13 @@ func _sock_ioctl(tls *libc.TLS, self uintptr, arg uintptr) (r uintptr) {
 	_ = s
 	s = self
 	**(**uint32)(__ccgo_up(bp)) = uint32(libc.Uint32FromUint32(0x80000000) | uint32(libc.Int32FromInt32(MIOC_VENDOR)) | uint32(libc.Int32FromInt32(1)))
-	if !(XPyArg_ParseTuple(tls, arg, __ccgo_ts+226840, libc.VaList(bp+48, bp, bp+8)) != 0) {
+	if !(XPyArg_ParseTuple(tls, arg, __ccgo_ts+226748, libc.VaList(bp+48, bp, bp+8)) != 0) {
 		return libc.UintptrFromInt32(0)
 	}
 	switch **(**uint32)(__ccgo_up(bp)) {
 	case uint32(libc.Uint32FromUint32(0x80000000) | uint32(libc.Int32FromInt32(MIOC_VENDOR)) | uint32(libc.Int32FromInt32(1))):
 		**(**uint32)(__ccgo_up(bp + 20)) = uint32(ERCVALL_ON)
-		if !(XPyArg_ParseTuple(tls, arg, __ccgo_ts+226849, libc.VaList(bp+48, bp, bp+20)) != 0) {
+		if !(XPyArg_ParseTuple(tls, arg, __ccgo_ts+226757, libc.VaList(bp+48, bp, bp+20)) != 0) {
 			return libc.UintptrFromInt32(0)
 		}
 		if _WSAIoctl(tls, _get_sock_fd(tls, s), **(**uint32)(__ccgo_up(bp)), bp+20, uint32(4), libc.UintptrFromInt32(0), uint32(0), bp+16, libc.UintptrFromInt32(0), libc.UintptrFromInt32(0)) == -int32(1) {
@@ -78006,7 +78006,7 @@ func _sock_ioctl(tls *libc.TLS, self uintptr, arg uintptr) (r uintptr) {
 		}
 		return XPyLong_FromUnsignedLong(tls, **(**TDWORD)(__ccgo_up(bp + 16)))
 	case uint32(libc.Uint32FromUint32(0x80000000) | uint32(libc.Int32FromInt32(MIOC_VENDOR)) | uint32(libc.Int32FromInt32(4))):
-		if !(XPyArg_ParseTuple(tls, arg, __ccgo_ts+226858, libc.VaList(bp+48, bp, bp+24, bp+24+4, bp+24+8)) != 0) {
+		if !(XPyArg_ParseTuple(tls, arg, __ccgo_ts+226766, libc.VaList(bp+48, bp, bp+24, bp+24+4, bp+24+8)) != 0) {
 			return libc.UintptrFromInt32(0)
 		}
 		if _WSAIoctl(tls, _get_sock_fd(tls, s), **(**uint32)(__ccgo_up(bp)), bp+24, uint32(12), libc.UintptrFromInt32(0), uint32(0), bp+16, libc.UintptrFromInt32(0), libc.UintptrFromInt32(0)) == -int32(1) {
@@ -78014,7 +78014,7 @@ func _sock_ioctl(tls *libc.TLS, self uintptr, arg uintptr) (r uintptr) {
 		}
 		return XPyLong_FromUnsignedLong(tls, **(**TDWORD)(__ccgo_up(bp + 16)))
 	case uint32(libc.Uint32FromUint32(0x80000000) | uint32(libc.Int32FromInt32(MIOC_VENDOR)) | uint32(libc.Int32FromInt32(16))):
-		if !(XPyArg_ParseTuple(tls, arg, __ccgo_ts+226849, libc.VaList(bp+48, bp, bp+36)) != 0) {
+		if !(XPyArg_ParseTuple(tls, arg, __ccgo_ts+226757, libc.VaList(bp+48, bp, bp+36)) != 0) {
 			return libc.UintptrFromInt32(0)
 		}
 		if _WSAIoctl(tls, _get_sock_fd(tls, s), **(**uint32)(__ccgo_up(bp)), bp+36, uint32(4), libc.UintptrFromInt32(0), uint32(0), bp+16, libc.UintptrFromInt32(0), libc.UintptrFromInt32(0)) == -int32(1) {
@@ -78022,7 +78022,7 @@ func _sock_ioctl(tls *libc.TLS, self uintptr, arg uintptr) (r uintptr) {
 		}
 		return XPyLong_FromUnsignedLong(tls, **(**TDWORD)(__ccgo_up(bp + 16)))
 	default:
-		XPyErr_Format(tls, XPyExc_ValueError, __ccgo_ts+226871, libc.VaList(bp+48, **(**uint32)(__ccgo_up(bp))))
+		XPyErr_Format(tls, XPyExc_ValueError, __ccgo_ts+226779, libc.VaList(bp+48, **(**uint32)(__ccgo_up(bp))))
 		return libc.UintptrFromInt32(0)
 	}
 	return r
@@ -78051,7 +78051,7 @@ func _sock_share(tls *libc.TLS, self uintptr, arg uintptr) (r uintptr) {
 
 var _sock_methods = [27]TPyMethodDef{
 	0: {
-		Fml_name:  __ccgo_ts + 226897,
+		Fml_name:  __ccgo_ts + 226805,
 		Fml_flags: int32(MMETH_NOARGS),
 		Fml_doc:   uintptr(unsafe.Pointer(&_accept_doc)),
 	},
@@ -78066,17 +78066,17 @@ var _sock_methods = [27]TPyMethodDef{
 		Fml_doc:   uintptr(unsafe.Pointer(&__socket_socket_close__doc__)),
 	},
 	3: {
-		Fml_name:  __ccgo_ts + 226409,
+		Fml_name:  __ccgo_ts + 226317,
 		Fml_flags: int32(MMETH_O),
 		Fml_doc:   uintptr(unsafe.Pointer(&_connect_doc)),
 	},
 	4: {
-		Fml_name:  __ccgo_ts + 226432,
+		Fml_name:  __ccgo_ts + 226340,
 		Fml_flags: int32(MMETH_O),
 		Fml_doc:   uintptr(unsafe.Pointer(&_connect_ex_doc)),
 	},
 	5: {
-		Fml_name:  __ccgo_ts + 226905,
+		Fml_name:  __ccgo_ts + 226813,
 		Fml_flags: int32(MMETH_NOARGS),
 		Fml_doc:   uintptr(unsafe.Pointer(&_detach_doc)),
 	},
@@ -78086,32 +78086,32 @@ var _sock_methods = [27]TPyMethodDef{
 		Fml_doc:   uintptr(unsafe.Pointer(&_fileno_doc)),
 	},
 	7: {
-		Fml_name:  __ccgo_ts + 226912,
+		Fml_name:  __ccgo_ts + 226820,
 		Fml_flags: int32(MMETH_NOARGS),
 		Fml_doc:   uintptr(unsafe.Pointer(&_getpeername_doc)),
 	},
 	8: {
-		Fml_name:  __ccgo_ts + 226924,
+		Fml_name:  __ccgo_ts + 226832,
 		Fml_flags: int32(MMETH_NOARGS),
 		Fml_doc:   uintptr(unsafe.Pointer(&_getsockname_doc)),
 	},
 	9: {
-		Fml_name:  __ccgo_ts + 226936,
+		Fml_name:  __ccgo_ts + 226844,
 		Fml_flags: int32(MMETH_VARARGS),
 		Fml_doc:   uintptr(unsafe.Pointer(&_getsockopt_doc)),
 	},
 	10: {
-		Fml_name:  __ccgo_ts + 226947,
+		Fml_name:  __ccgo_ts + 226855,
 		Fml_flags: int32(MMETH_VARARGS),
 		Fml_doc:   uintptr(unsafe.Pointer(&_sock_ioctl_doc)),
 	},
 	11: {
-		Fml_name:  __ccgo_ts + 226953,
+		Fml_name:  __ccgo_ts + 226861,
 		Fml_flags: int32(MMETH_VARARGS),
 		Fml_doc:   uintptr(unsafe.Pointer(&_sock_share_doc)),
 	},
 	12: {
-		Fml_name:  __ccgo_ts + 226959,
+		Fml_name:  __ccgo_ts + 226867,
 		Fml_flags: int32(MMETH_VARARGS),
 		Fml_doc:   uintptr(unsafe.Pointer(&_listen_doc)),
 	},
@@ -78121,17 +78121,17 @@ var _sock_methods = [27]TPyMethodDef{
 		Fml_doc:   uintptr(unsafe.Pointer(&_recv_doc)),
 	},
 	14: {
-		Fml_name:  __ccgo_ts + 226966,
+		Fml_name:  __ccgo_ts + 226874,
 		Fml_flags: libc.Int32FromInt32(MMETH_VARARGS) | libc.Int32FromInt32(MMETH_KEYWORDS),
 		Fml_doc:   uintptr(unsafe.Pointer(&_recv_into_doc)),
 	},
 	15: {
-		Fml_name:  __ccgo_ts + 226976,
+		Fml_name:  __ccgo_ts + 226884,
 		Fml_flags: int32(MMETH_VARARGS),
 		Fml_doc:   uintptr(unsafe.Pointer(&_recvfrom_doc)),
 	},
 	16: {
-		Fml_name:  __ccgo_ts + 226985,
+		Fml_name:  __ccgo_ts + 226893,
 		Fml_flags: libc.Int32FromInt32(MMETH_VARARGS) | libc.Int32FromInt32(MMETH_KEYWORDS),
 		Fml_doc:   uintptr(unsafe.Pointer(&_recvfrom_into_doc)),
 	},
@@ -78141,42 +78141,42 @@ var _sock_methods = [27]TPyMethodDef{
 		Fml_doc:   uintptr(unsafe.Pointer(&_send_doc2)),
 	},
 	18: {
-		Fml_name:  __ccgo_ts + 226999,
+		Fml_name:  __ccgo_ts + 226907,
 		Fml_flags: int32(MMETH_VARARGS),
 		Fml_doc:   uintptr(unsafe.Pointer(&_sendall_doc)),
 	},
 	19: {
-		Fml_name:  __ccgo_ts + 226819,
+		Fml_name:  __ccgo_ts + 226727,
 		Fml_flags: int32(MMETH_VARARGS),
 		Fml_doc:   uintptr(unsafe.Pointer(&_sendto_doc)),
 	},
 	20: {
-		Fml_name:  __ccgo_ts + 227007,
+		Fml_name:  __ccgo_ts + 226915,
 		Fml_flags: int32(MMETH_O),
 		Fml_doc:   uintptr(unsafe.Pointer(&_setblocking_doc)),
 	},
 	21: {
-		Fml_name:  __ccgo_ts + 227019,
+		Fml_name:  __ccgo_ts + 226927,
 		Fml_flags: int32(MMETH_NOARGS),
 		Fml_doc:   uintptr(unsafe.Pointer(&_getblocking_doc)),
 	},
 	22: {
-		Fml_name:  __ccgo_ts + 227031,
+		Fml_name:  __ccgo_ts + 226939,
 		Fml_flags: int32(MMETH_O),
 		Fml_doc:   uintptr(unsafe.Pointer(&_settimeout_doc)),
 	},
 	23: {
-		Fml_name:  __ccgo_ts + 227042,
+		Fml_name:  __ccgo_ts + 226950,
 		Fml_flags: int32(MMETH_NOARGS),
 		Fml_doc:   uintptr(unsafe.Pointer(&_gettimeout_doc)),
 	},
 	24: {
-		Fml_name:  __ccgo_ts + 227053,
+		Fml_name:  __ccgo_ts + 226961,
 		Fml_flags: int32(MMETH_VARARGS),
 		Fml_doc:   uintptr(unsafe.Pointer(&_setsockopt_doc)),
 	},
 	25: {
-		Fml_name:  __ccgo_ts + 227064,
+		Fml_name:  __ccgo_ts + 226972,
 		Fml_flags: int32(MMETH_O),
 		Fml_doc:   uintptr(unsafe.Pointer(&_shutdown_doc)),
 	},
@@ -78218,25 +78218,25 @@ func init() {
 //	/* SockObject members */
 var _sock_memberlist = [4]TPyMemberDef{
 	0: {
-		Fname:   __ccgo_ts + 225058,
+		Fname:   __ccgo_ts + 224966,
 		Ftype1:  int32(MPy_T_INT),
 		Foffset: int64(uint64(libc.UintptrFromInt32(0) + 24)),
 		Fflags:  int32(MPy_READONLY),
-		Fdoc:    __ccgo_ts + 227073,
+		Fdoc:    __ccgo_ts + 226981,
 	},
 	1: {
 		Fname:   __ccgo_ts + 2992,
 		Ftype1:  int32(MPy_T_INT),
 		Foffset: int64(uint64(libc.UintptrFromInt32(0) + 28)),
 		Fflags:  int32(MPy_READONLY),
-		Fdoc:    __ccgo_ts + 227091,
+		Fdoc:    __ccgo_ts + 226999,
 	},
 	2: {
-		Fname:   __ccgo_ts + 225065,
+		Fname:   __ccgo_ts + 224973,
 		Ftype1:  int32(MPy_T_INT),
 		Foffset: int64(uint64(libc.UintptrFromInt32(0) + 32)),
 		Fflags:  int32(MPy_READONLY),
-		Fdoc:    __ccgo_ts + 227107,
+		Fdoc:    __ccgo_ts + 227015,
 	},
 	3: {},
 }
@@ -78244,7 +78244,7 @@ var _sock_memberlist = [4]TPyMemberDef{
 var _sock_getsetlist = [2]TPyGetSetDef{
 	0: {
 		Fname: __ccgo_ts + 190822,
-		Fdoc:  __ccgo_ts + 227127,
+		Fdoc:  __ccgo_ts + 227035,
 	},
 	1: {},
 }
@@ -78264,10 +78264,10 @@ func _sock_finalize(tls *libc.TLS, self uintptr) {
 
 	exc = XPyErr_GetRaisedException(tls)
 	if _get_sock_fd(tls, s) != uint64(^libc.Int32FromInt32(0)) {
-		if XPyErr_ResourceWarning(tls, s, int64(1), __ccgo_ts+227146, libc.VaList(bp+8, s)) != 0 {
+		if XPyErr_ResourceWarning(tls, s, int64(1), __ccgo_ts+227054, libc.VaList(bp+8, s)) != 0 {
 
 			if XPyErr_ExceptionMatches(tls, XPyExc_Warning) != 0 {
-				XPyErr_FormatUnraisable(tls, __ccgo_ts+227158, libc.VaList(bp+8, s))
+				XPyErr_FormatUnraisable(tls, __ccgo_ts+227066, libc.VaList(bp+8, s))
 			}
 		}
 
@@ -78344,13 +78344,13 @@ func _sock_repr(tls *libc.TLS, self uintptr) (r uintptr) {
 	} else {
 		if _get_sock_fd(tls, s) > uint64(2147483647) {
 
-			XPyErr_SetString(tls, XPyExc_OverflowError, __ccgo_ts+227203)
+			XPyErr_SetString(tls, XPyExc_OverflowError, __ccgo_ts+227111)
 			return libc.UintptrFromInt32(0)
 		} else {
 			sock_fd = int32(_get_sock_fd(tls, s))
 		}
 	}
-	return XPyUnicode_FromFormat(tls, __ccgo_ts+227267, libc.VaList(bp+8, sock_fd, (*TPySocketSockObject)(unsafe.Pointer(s)).Fsock_family, (*TPySocketSockObject)(unsafe.Pointer(s)).Fsock_type, (*TPySocketSockObject)(unsafe.Pointer(s)).Fsock_proto))
+	return XPyUnicode_FromFormat(tls, __ccgo_ts+227175, libc.VaList(bp+8, sock_fd, (*TPySocketSockObject)(unsafe.Pointer(s)).Fsock_family, (*TPySocketSockObject)(unsafe.Pointer(s)).Fsock_type, (*TPySocketSockObject)(unsafe.Pointer(s)).Fsock_proto))
 }
 
 func _sock_new(tls *libc.TLS, type1 uintptr, args uintptr, kwds uintptr) (r uintptr) {
@@ -78388,7 +78388,7 @@ _2:
 	state = _find_module_state_by_def(tls, v1)
 
 	if fdobj == libc.UintptrFromInt32(0) || fdobj == uintptr(unsafe.Pointer(&X_Py_NoneStruct)) {
-		if XPySys_Audit(tls, __ccgo_ts+227321, __ccgo_ts+227336, libc.VaList(bp+784, self1, family, type1, proto)) < 0 {
+		if XPySys_Audit(tls, __ccgo_ts+227229, __ccgo_ts+227244, libc.VaList(bp+784, self1, family, type1, proto)) < 0 {
 			return -int32(1)
 		}
 	}
@@ -78410,14 +78410,14 @@ _2:
 			goto _8
 		_8:
 			if uint64(v7) != uint64(628) {
-				XPyErr_Format(tls, XPyExc_ValueError, __ccgo_ts+227341, libc.VaList(bp+784, uint64(628)))
+				XPyErr_Format(tls, XPyExc_ValueError, __ccgo_ts+227249, libc.VaList(bp+784, uint64(628)))
 				return -int32(1)
 			}
 			v1 = fdobj + 32
 			goto _12
 		_12:
 			libc.Xmemcpy(tls, bp, v1, uint64(628))
-			if XPySys_Audit(tls, __ccgo_ts+227321, __ccgo_ts+227336, libc.VaList(bp+784, self1, (**(**TWSAPROTOCOL_INFOW)(__ccgo_up(bp))).FiAddressFamily, (**(**TWSAPROTOCOL_INFOW)(__ccgo_up(bp))).FiSocketType, (**(**TWSAPROTOCOL_INFOW)(__ccgo_up(bp))).FiProtocol)) < 0 {
+			if XPySys_Audit(tls, __ccgo_ts+227229, __ccgo_ts+227244, libc.VaList(bp+784, self1, (**(**TWSAPROTOCOL_INFOW)(__ccgo_up(bp))).FiAddressFamily, (**(**TWSAPROTOCOL_INFOW)(__ccgo_up(bp))).FiSocketType, (**(**TWSAPROTOCOL_INFOW)(__ccgo_up(bp))).FiProtocol)) < 0 {
 				return -int32(1)
 			}
 			_save = XPyEval_SaveThread(tls)
@@ -78427,7 +78427,7 @@ _2:
 				_set_error1(tls)
 				return -int32(1)
 			}
-			if !(libc.XSetHandleInformation(tls, uintptr(fd), uint32(MHANDLE_FLAG_INHERIT), uint32(0)) != 0) {
+			if !(_ccgo_SetHandleInformation(tls, uintptr(fd), uint32(MHANDLE_FLAG_INHERIT), uint32(0)) != 0) {
 				XPyErr_SetFromWindowsErr(tls, 0)
 				libc.Xclosesocket(tls, fd)
 				return -int32(1)
@@ -78441,7 +78441,7 @@ _2:
 				return -int32(1)
 			}
 			if fd == uint64(^libc.Int32FromInt32(0)) {
-				XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+227403)
+				XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+227311)
 				return -int32(1)
 			}
 			**(**Tsocklen_t)(__ccgo_up(bp + 760)) = int32(128)
@@ -78543,7 +78543,7 @@ func init() {
 }
 
 var _sock_spec = TPyType_Spec{
-	Fname:      __ccgo_ts + 227428,
+	Fname:      __ccgo_ts + 227336,
 	Fbasicsize: int32(72),
 	Fflags:     uint32(uint32(libc.Int32FromInt32(MPy_TPFLAGS_HAVE_STACKLESS_EXTENSION)|libc.Int32FromInt32(0)) | libc.Uint32FromUint32(1)<<libc.Int32FromInt32(10) | libc.Uint32FromUint32(1)<<libc.Int32FromInt32(14) | libc.Uint32FromUint32(1)<<libc.Int32FromInt32(8)),
 	Fslots:     uintptr(unsafe.Pointer(&_sock_slots)),
@@ -78559,7 +78559,7 @@ func _socket_gethostname(tls *libc.TLS, self uintptr, unused uintptr) (r uintptr
 	var _ [16]Twchar_t
 	var _ TDWORD
 	_, _, _ = name, result, v1
-	if XPySys_Audit(tls, __ccgo_ts+227443, libc.UintptrFromInt32(0), 0) < 0 {
+	if XPySys_Audit(tls, __ccgo_ts+227351, libc.UintptrFromInt32(0), 0) < 0 {
 		return libc.UintptrFromInt32(0)
 	}
 	**(**TDWORD)(__ccgo_up(bp + 32)) = uint32(libc.Uint64FromInt64(32) / libc.Uint64FromInt64(2))
@@ -78607,10 +78607,10 @@ func _socket_gethostbyname(tls *libc.TLS, self uintptr, args uintptr) (r uintptr
 	var _ uintptr
 	_, _, _ = rc, ret, state
 	ret = libc.UintptrFromInt32(0)
-	if !(XPyArg_ParseTuple(tls, args, __ccgo_ts+227462, libc.VaList(bp+32, __ccgo_ts+225397, bp)) != 0) {
+	if !(XPyArg_ParseTuple(tls, args, __ccgo_ts+227370, libc.VaList(bp+32, __ccgo_ts+225305, bp)) != 0) {
 		return libc.UintptrFromInt32(0)
 	}
-	if XPySys_Audit(tls, __ccgo_ts+227479, __ccgo_ts+41785, libc.VaList(bp+32, args)) < 0 {
+	if XPySys_Audit(tls, __ccgo_ts+227387, __ccgo_ts+41785, libc.VaList(bp+32, args)) < 0 {
 		goto finally
 	}
 	state = _get_module_state4(tls, self)
@@ -78740,7 +78740,7 @@ func _gethost_common(tls *libc.TLS, state uintptr, h uintptr, addr uintptr, alen
 				libc.Xmemcpy(tls, addr, bp+32, uint64(28))
 			}
 		default:
-			XPyErr_SetString(tls, XPyExc_OSError, __ccgo_ts+225147)
+			XPyErr_SetString(tls, XPyExc_OSError, __ccgo_ts+225055)
 			return libc.UintptrFromInt32(0)
 		}
 		if tmp == libc.UintptrFromInt32(0) {
@@ -78774,7 +78774,7 @@ func _gethost_common(tls *libc.TLS, state uintptr, h uintptr, addr uintptr, alen
 	if name == libc.UintptrFromInt32(0) {
 		goto err
 	}
-	rtn_tuple = XPy_BuildValue(tls, __ccgo_ts+227500, libc.VaList(bp+72, name, name_list, addr_list))
+	rtn_tuple = XPy_BuildValue(tls, __ccgo_ts+227408, libc.VaList(bp+72, name, name_list, addr_list))
 	goto err
 err:
 	;
@@ -78826,10 +78826,10 @@ func _socket_gethostbyname_ex(tls *libc.TLS, self uintptr, args uintptr) (r uint
 	var _ uintptr
 	_, _, _, _, _ = _save, h, ret, sa, state
 	ret = libc.UintptrFromInt32(0)
-	if !(XPyArg_ParseTuple(tls, args, __ccgo_ts+227504, libc.VaList(bp+144, __ccgo_ts+225397, bp)) != 0) {
+	if !(XPyArg_ParseTuple(tls, args, __ccgo_ts+227412, libc.VaList(bp+144, __ccgo_ts+225305, bp)) != 0) {
 		return libc.UintptrFromInt32(0)
 	}
-	if XPySys_Audit(tls, __ccgo_ts+227479, __ccgo_ts+41785, libc.VaList(bp+144, args)) < 0 {
+	if XPySys_Audit(tls, __ccgo_ts+227387, __ccgo_ts+41785, libc.VaList(bp+144, args)) < 0 {
 		goto finally
 	}
 	state = _get_module_state4(tls, self)
@@ -78862,10 +78862,10 @@ func _socket_gethostbyaddr(tls *libc.TLS, self uintptr, args uintptr) (r uintptr
 	_, _, _, _, _, _, _, _ = _save, af, al, ap, h, ret, sa, state
 	sa = bp
 	ret = libc.UintptrFromInt32(0)
-	if !(XPyArg_ParseTuple(tls, args, __ccgo_ts+227524, libc.VaList(bp+144, __ccgo_ts+225397, bp+128)) != 0) {
+	if !(XPyArg_ParseTuple(tls, args, __ccgo_ts+227432, libc.VaList(bp+144, __ccgo_ts+225305, bp+128)) != 0) {
 		return libc.UintptrFromInt32(0)
 	}
-	if XPySys_Audit(tls, __ccgo_ts+227541, __ccgo_ts+41785, libc.VaList(bp+144, args)) < 0 {
+	if XPySys_Audit(tls, __ccgo_ts+227449, __ccgo_ts+41785, libc.VaList(bp+144, args)) < 0 {
 		goto finally
 	}
 	af = 0
@@ -78884,7 +78884,7 @@ func _socket_gethostbyaddr(tls *libc.TLS, self uintptr, args uintptr) (r uintptr
 		ap = sa + 8
 		al = int32(16)
 	default:
-		XPyErr_SetString(tls, XPyExc_OSError, __ccgo_ts+225147)
+		XPyErr_SetString(tls, XPyExc_OSError, __ccgo_ts+225055)
 		goto finally
 	}
 	_save = XPyEval_SaveThread(tls)
@@ -78909,17 +78909,17 @@ func _socket_getservbyname(tls *libc.TLS, self uintptr, args uintptr) (r uintptr
 	var _ uintptr
 	_, _ = _save, sp
 	**(**uintptr)(__ccgo_up(bp + 8)) = libc.UintptrFromInt32(0)
-	if !(XPyArg_ParseTuple(tls, args, __ccgo_ts+227562, libc.VaList(bp+24, bp, bp+8)) != 0) {
+	if !(XPyArg_ParseTuple(tls, args, __ccgo_ts+227470, libc.VaList(bp+24, bp, bp+8)) != 0) {
 		return libc.UintptrFromInt32(0)
 	}
-	if XPySys_Audit(tls, __ccgo_ts+227580, __ccgo_ts+171593, libc.VaList(bp+24, **(**uintptr)(__ccgo_up(bp)), **(**uintptr)(__ccgo_up(bp + 8)))) < 0 {
+	if XPySys_Audit(tls, __ccgo_ts+227488, __ccgo_ts+171593, libc.VaList(bp+24, **(**uintptr)(__ccgo_up(bp)), **(**uintptr)(__ccgo_up(bp + 8)))) < 0 {
 		return libc.UintptrFromInt32(0)
 	}
 	_save = XPyEval_SaveThread(tls)
 	sp = libc.Xgetservbyname(tls, **(**uintptr)(__ccgo_up(bp)), **(**uintptr)(__ccgo_up(bp + 8)))
 	XPyEval_RestoreThread(tls, _save)
 	if sp == libc.UintptrFromInt32(0) {
-		XPyErr_SetString(tls, XPyExc_OSError, __ccgo_ts+227601)
+		XPyErr_SetString(tls, XPyExc_OSError, __ccgo_ts+227509)
 		return libc.UintptrFromInt32(0)
 	}
 	return XPyLong_FromLong(tls, int32(libc.Xntohs(tls, uint16((*Tservent)(unsafe.Pointer(sp)).Fs_port))))
@@ -78936,21 +78936,21 @@ func _socket_getservbyport(tls *libc.TLS, self uintptr, args uintptr) (r uintptr
 	var _ uintptr
 	_, _ = _save, sp
 	**(**uintptr)(__ccgo_up(bp + 8)) = libc.UintptrFromInt32(0)
-	if !(XPyArg_ParseTuple(tls, args, __ccgo_ts+227625, libc.VaList(bp+24, bp, bp+8)) != 0) {
+	if !(XPyArg_ParseTuple(tls, args, __ccgo_ts+227533, libc.VaList(bp+24, bp, bp+8)) != 0) {
 		return libc.UintptrFromInt32(0)
 	}
 	if **(**int32)(__ccgo_up(bp)) < 0 || **(**int32)(__ccgo_up(bp)) > int32(0xffff) {
-		XPyErr_SetString(tls, XPyExc_OverflowError, __ccgo_ts+227643)
+		XPyErr_SetString(tls, XPyExc_OverflowError, __ccgo_ts+227551)
 		return libc.UintptrFromInt32(0)
 	}
-	if XPySys_Audit(tls, __ccgo_ts+227680, __ccgo_ts+2824, libc.VaList(bp+24, **(**int32)(__ccgo_up(bp)), **(**uintptr)(__ccgo_up(bp + 8)))) < 0 {
+	if XPySys_Audit(tls, __ccgo_ts+227588, __ccgo_ts+2824, libc.VaList(bp+24, **(**int32)(__ccgo_up(bp)), **(**uintptr)(__ccgo_up(bp + 8)))) < 0 {
 		return libc.UintptrFromInt32(0)
 	}
 	_save = XPyEval_SaveThread(tls)
 	sp = _getservbyport(tls, int32(libc.Xhtons(tls, uint16(int16(**(**int32)(__ccgo_up(bp)))))), **(**uintptr)(__ccgo_up(bp + 8)))
 	XPyEval_RestoreThread(tls, _save)
 	if sp == libc.UintptrFromInt32(0) {
-		XPyErr_SetString(tls, XPyExc_OSError, __ccgo_ts+227701)
+		XPyErr_SetString(tls, XPyExc_OSError, __ccgo_ts+227609)
 		return libc.UintptrFromInt32(0)
 	}
 	return XPyUnicode_FromString(tls, (*Tservent)(unsafe.Pointer(sp)).Fs_name)
@@ -78965,14 +78965,14 @@ func _socket_getprotobyname(tls *libc.TLS, self uintptr, args uintptr) (r uintpt
 	var _save, sp uintptr
 	var _ uintptr
 	_, _ = _save, sp
-	if !(XPyArg_ParseTuple(tls, args, __ccgo_ts+227722, libc.VaList(bp+16, bp)) != 0) {
+	if !(XPyArg_ParseTuple(tls, args, __ccgo_ts+227630, libc.VaList(bp+16, bp)) != 0) {
 		return libc.UintptrFromInt32(0)
 	}
 	_save = XPyEval_SaveThread(tls)
 	sp = _getprotobyname(tls, **(**uintptr)(__ccgo_up(bp)))
 	XPyEval_RestoreThread(tls, _save)
 	if sp == libc.UintptrFromInt32(0) {
-		XPyErr_SetString(tls, XPyExc_OSError, __ccgo_ts+227739)
+		XPyErr_SetString(tls, XPyExc_OSError, __ccgo_ts+227647)
 		return libc.UintptrFromInt32(0)
 	}
 	return XPyLong_FromLong(tls, int32((*Tprotoent)(unsafe.Pointer(sp)).Fp_proto))
@@ -79015,7 +79015,7 @@ func _socket_dup(tls *libc.TLS, self uintptr, fdobj uintptr) (r uintptr) {
 	if newfd == uint64(^libc.Int32FromInt32(0)) {
 		return _set_error1(tls)
 	}
-	if !(libc.XSetHandleInformation(tls, uintptr(newfd), uint32(MHANDLE_FLAG_INHERIT), uint32(0)) != 0) {
+	if !(_ccgo_SetHandleInformation(tls, uintptr(newfd), uint32(MHANDLE_FLAG_INHERIT), uint32(0)) != 0) {
 		XPyErr_SetFromWindowsErr(tls, 0)
 		libc.Xclosesocket(tls, newfd)
 		return libc.UintptrFromInt32(0)
@@ -79053,12 +79053,12 @@ func __socket_inet_aton_impl(tls *libc.TLS, module uintptr, ip_addr uintptr) (r 
 	/*[clinic end generated code: output=f2c2f772eb721b6e input=3a52dec207bf8956]*/
 	var _ uint32
 
-	if libc.Xstrcmp(tls, ip_addr, __ccgo_ts+225212) == 0 {
+	if libc.Xstrcmp(tls, ip_addr, __ccgo_ts+225120) == 0 {
 		**(**uint32)(__ccgo_up(bp)) = uint32(libc.Uint32FromUint32(0xffffffff))
 	} else {
 		**(**uint32)(__ccgo_up(bp)) = uint32(_inet_addr(tls, ip_addr))
 		if **(**uint32)(__ccgo_up(bp)) == uint32(0xffffffff) {
-			XPyErr_SetString(tls, XPyExc_OSError, __ccgo_ts+227758)
+			XPyErr_SetString(tls, XPyExc_OSError, __ccgo_ts+227666)
 			return libc.UintptrFromInt32(0)
 		}
 	}
@@ -79071,7 +79071,7 @@ func __socket_inet_ntoa_impl(tls *libc.TLS, module uintptr, packed_ip uintptr) (
 	/*[clinic end generated code: output=3077324c50af0935 input=2850d4f57e4db345]*/
 	var _ Tin_addr
 	if uint64((*TPy_buffer)(unsafe.Pointer(packed_ip)).Flen1) != uint64(4) {
-		XPyErr_SetString(tls, XPyExc_OSError, __ccgo_ts+227804)
+		XPyErr_SetString(tls, XPyExc_OSError, __ccgo_ts+227712)
 		XPyBuffer_Release(tls, packed_ip)
 		return libc.UintptrFromInt32(0)
 	}
@@ -79088,7 +79088,7 @@ func _socket_inet_pton(tls *libc.TLS, self uintptr, args uintptr) (r uintptr) {
 	var _ uintptr
 	var _ [16]int8
 	_ = retval
-	if !(XPyArg_ParseTuple(tls, args, __ccgo_ts+227841, libc.VaList(bp+40, bp, bp+8)) != 0) {
+	if !(XPyArg_ParseTuple(tls, args, __ccgo_ts+227749, libc.VaList(bp+40, bp, bp+8)) != 0) {
 		return libc.UintptrFromInt32(0)
 	}
 	retval = _inet_pton(tls, **(**int32)(__ccgo_up(bp)), **(**uintptr)(__ccgo_up(bp + 8)), bp+16)
@@ -79097,7 +79097,7 @@ func _socket_inet_pton(tls *libc.TLS, self uintptr, args uintptr) (r uintptr) {
 		return libc.UintptrFromInt32(0)
 	} else {
 		if retval == 0 {
-			XPyErr_SetString(tls, XPyExc_OSError, __ccgo_ts+227854)
+			XPyErr_SetString(tls, XPyExc_OSError, __ccgo_ts+227762)
 			return libc.UintptrFromInt32(0)
 		} else {
 			if **(**int32)(__ccgo_up(bp)) == int32(2) {
@@ -79106,7 +79106,7 @@ func _socket_inet_pton(tls *libc.TLS, self uintptr, args uintptr) (r uintptr) {
 				if **(**int32)(__ccgo_up(bp)) == int32(MAF_INET6) {
 					return XPyBytes_FromStringAndSize(tls, bp+16, int64(16))
 				} else {
-					XPyErr_SetString(tls, XPyExc_OSError, __ccgo_ts+225266)
+					XPyErr_SetString(tls, XPyExc_OSError, __ccgo_ts+225174)
 					return libc.UintptrFromInt32(0)
 				}
 			}
@@ -79123,24 +79123,24 @@ func _socket_inet_ntop(tls *libc.TLS, self uintptr, args uintptr) (r uintptr) {
 	var _ [65]int8
 	var _ TPy_buffer
 	_ = retval
-	if !(XPyArg_ParseTuple(tls, args, __ccgo_ts+227900, libc.VaList(bp+168, bp, bp+8)) != 0) {
+	if !(XPyArg_ParseTuple(tls, args, __ccgo_ts+227808, libc.VaList(bp+168, bp, bp+8)) != 0) {
 		return libc.UintptrFromInt32(0)
 	}
 	if **(**int32)(__ccgo_up(bp)) == int32(2) {
 		if uint64((**(**TPy_buffer)(__ccgo_up(bp + 8))).Flen1) != uint64(4) {
-			XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+227914)
+			XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+227822)
 			XPyBuffer_Release(tls, bp+8)
 			return libc.UintptrFromInt32(0)
 		}
 	} else {
 		if **(**int32)(__ccgo_up(bp)) == int32(MAF_INET6) {
 			if uint64((**(**TPy_buffer)(__ccgo_up(bp + 8))).Flen1) != uint64(16) {
-				XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+227914)
+				XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+227822)
 				XPyBuffer_Release(tls, bp+8)
 				return libc.UintptrFromInt32(0)
 			}
 		} else {
-			XPyErr_Format(tls, XPyExc_ValueError, __ccgo_ts+227957, libc.VaList(bp+168, **(**int32)(__ccgo_up(bp))))
+			XPyErr_Format(tls, XPyExc_ValueError, __ccgo_ts+227865, libc.VaList(bp+168, **(**int32)(__ccgo_up(bp))))
 			XPyBuffer_Release(tls, bp+8)
 			return libc.UintptrFromInt32(0)
 		}
@@ -79190,7 +79190,7 @@ func _socket_getaddrinfo(tls *libc.TLS, self uintptr, args uintptr, kwargs uintp
 	**(**int32)(__ccgo_up(bp + 88)) = v1
 	**(**int32)(__ccgo_up(bp + 84)) = v1
 	**(**int32)(__ccgo_up(bp + 80)) = 0
-	if !(XPyArg_ParseTupleAndKeywords(tls, args, kwargs, __ccgo_ts+227993, uintptr(unsafe.Pointer(&_kwnames)), libc.VaList(bp+104, bp+56, bp+64, bp+80, bp+84, bp+88, bp+92)) != 0) {
+	if !(XPyArg_ParseTupleAndKeywords(tls, args, kwargs, __ccgo_ts+227901, uintptr(unsafe.Pointer(&_kwnames)), libc.VaList(bp+104, bp+56, bp+64, bp+80, bp+84, bp+88, bp+92)) != 0) {
 		return libc.UintptrFromInt32(0)
 	}
 	if **(**uintptr)(__ccgo_up(bp + 56)) == uintptr(unsafe.Pointer(&X_Py_NoneStruct)) {
@@ -79204,7 +79204,7 @@ func _socket_getaddrinfo(tls *libc.TLS, self uintptr, args uintptr, kwargs uintp
 		goto _6
 	_6:
 		if v1 != 0 {
-			idna = XPyUnicode_AsEncodedString(tls, **(**uintptr)(__ccgo_up(bp + 56)), __ccgo_ts+225397, libc.UintptrFromInt32(0))
+			idna = XPyUnicode_AsEncodedString(tls, **(**uintptr)(__ccgo_up(bp + 56)), __ccgo_ts+225305, libc.UintptrFromInt32(0))
 			if !(idna != 0) {
 				return libc.UintptrFromInt32(0)
 			}
@@ -79223,7 +79223,7 @@ func _socket_getaddrinfo(tls *libc.TLS, self uintptr, args uintptr, kwargs uintp
 			if v1 != 0 {
 				hptr = XPyBytes_AsString(tls, **(**uintptr)(__ccgo_up(bp + 56)))
 			} else {
-				XPyErr_SetString(tls, XPyExc_TypeError, __ccgo_ts+228013)
+				XPyErr_SetString(tls, XPyExc_TypeError, __ccgo_ts+227921)
 				return libc.UintptrFromInt32(0)
 			}
 		}
@@ -79288,13 +79288,13 @@ func _socket_getaddrinfo(tls *libc.TLS, self uintptr, args uintptr, kwargs uintp
 				if **(**uintptr)(__ccgo_up(bp + 64)) == uintptr(unsafe.Pointer(&X_Py_NoneStruct)) {
 					pptr = libc.UintptrFromInt32(0)
 				} else {
-					XPyErr_SetString(tls, XPyExc_OSError, __ccgo_ts+228061)
+					XPyErr_SetString(tls, XPyExc_OSError, __ccgo_ts+227969)
 					goto err
 				}
 			}
 		}
 	}
-	if XPySys_Audit(tls, __ccgo_ts+228084, __ccgo_ts+228103, libc.VaList(bp+104, **(**uintptr)(__ccgo_up(bp + 56)), **(**uintptr)(__ccgo_up(bp + 64)), **(**int32)(__ccgo_up(bp + 80)), **(**int32)(__ccgo_up(bp + 84)), **(**int32)(__ccgo_up(bp + 88)))) < 0 {
+	if XPySys_Audit(tls, __ccgo_ts+227992, __ccgo_ts+228011, libc.VaList(bp+104, **(**uintptr)(__ccgo_up(bp + 56)), **(**uintptr)(__ccgo_up(bp + 64)), **(**int32)(__ccgo_up(bp + 80)), **(**int32)(__ccgo_up(bp + 84)), **(**int32)(__ccgo_up(bp + 88)))) < 0 {
 		goto err
 	}
 	libc.Xmemset(tls, bp, 0, uint64(48))
@@ -79329,7 +79329,7 @@ func _socket_getaddrinfo(tls *libc.TLS, self uintptr, args uintptr, kwargs uintp
 		} else {
 			v3 = __ccgo_ts + 2
 		}
-		single = XPy_BuildValue(tls, __ccgo_ts+228109, libc.VaList(bp+104, (*Taddrinfo)(unsafe.Pointer(res)).Fai_family, (*Taddrinfo)(unsafe.Pointer(res)).Fai_socktype, (*Taddrinfo)(unsafe.Pointer(res)).Fai_protocol, v3, addr))
+		single = XPy_BuildValue(tls, __ccgo_ts+228017, libc.VaList(bp+104, (*Taddrinfo)(unsafe.Pointer(res)).Fai_family, (*Taddrinfo)(unsafe.Pointer(res)).Fai_socktype, (*Taddrinfo)(unsafe.Pointer(res)).Fai_protocol, v3, addr))
 		v3 = addr
 		v1 = libc.BoolInt32(int32(*(*Tuint32_t)(unsafe.Pointer(v3))) < 0)
 		goto _33
@@ -79485,11 +79485,11 @@ err:
 }
 
 var _kwnames = [7]uintptr{
-	0: __ccgo_ts + 227983,
-	1: __ccgo_ts + 227988,
-	2: __ccgo_ts + 225058,
+	0: __ccgo_ts + 227891,
+	1: __ccgo_ts + 227896,
+	2: __ccgo_ts + 224966,
 	3: __ccgo_ts + 2992,
-	4: __ccgo_ts + 225065,
+	4: __ccgo_ts + 224973,
 	5: __ccgo_ts + 48855,
 }
 
@@ -79522,7 +79522,7 @@ func _socket_getnameinfo(tls *libc.TLS, self uintptr, args uintptr) (r uintptr) 
 	v1 = v2
 	**(**uint32)(__ccgo_up(bp + 28)) = v1
 	**(**int32)(__ccgo_up(bp + 8)) = int32(v1)
-	if !(XPyArg_ParseTuple(tls, args, __ccgo_ts+228115, libc.VaList(bp+1160, bp, bp+8)) != 0) {
+	if !(XPyArg_ParseTuple(tls, args, __ccgo_ts+228023, libc.VaList(bp+1160, bp, bp+8)) != 0) {
 		return libc.UintptrFromInt32(0)
 	}
 	v3 = (*TPyObject)(unsafe.Pointer(**(**uintptr)(__ccgo_up(bp)))).Fob_type
@@ -79533,17 +79533,17 @@ _4:
 	goto _6
 _6:
 	if !(v5 != 0) {
-		XPyErr_SetString(tls, XPyExc_TypeError, __ccgo_ts+228130)
+		XPyErr_SetString(tls, XPyExc_TypeError, __ccgo_ts+228038)
 		return libc.UintptrFromInt32(0)
 	}
-	if !(XPyArg_ParseTuple(tls, **(**uintptr)(__ccgo_up(bp)), __ccgo_ts+228171, libc.VaList(bp+1160, bp+16, bp+24, bp+28, bp+32)) != 0) {
+	if !(XPyArg_ParseTuple(tls, **(**uintptr)(__ccgo_up(bp)), __ccgo_ts+228079, libc.VaList(bp+1160, bp+16, bp+24, bp+28, bp+32)) != 0) {
 		return libc.UintptrFromInt32(0)
 	}
 	if **(**uint32)(__ccgo_up(bp + 28)) > uint32(0xfffff) {
-		XPyErr_SetString(tls, XPyExc_OverflowError, __ccgo_ts+228218)
+		XPyErr_SetString(tls, XPyExc_OverflowError, __ccgo_ts+228126)
 		return libc.UintptrFromInt32(0)
 	}
-	if XPySys_Audit(tls, __ccgo_ts+228261, __ccgo_ts+28020, libc.VaList(bp+1160, **(**uintptr)(__ccgo_up(bp)))) < 0 {
+	if XPySys_Audit(tls, __ccgo_ts+228169, __ccgo_ts+28020, libc.VaList(bp+1160, **(**uintptr)(__ccgo_up(bp)))) < 0 {
 		return libc.UintptrFromInt32(0)
 	}
 	XPyOS_snprintf(tls, bp+1061, uint64(32), __ccgo_ts+17653, libc.VaList(bp+1160, **(**int32)(__ccgo_up(bp + 24))))
@@ -79561,7 +79561,7 @@ _6:
 		goto fail
 	}
 	if (*Taddrinfo)(unsafe.Pointer(**(**uintptr)(__ccgo_up(bp + 1144)))).Fai_next != 0 {
-		XPyErr_SetString(tls, XPyExc_OSError, __ccgo_ts+228280)
+		XPyErr_SetString(tls, XPyExc_OSError, __ccgo_ts+228188)
 		goto fail
 	}
 	switch (*Taddrinfo)(unsafe.Pointer(**(**uintptr)(__ccgo_up(bp + 1144)))).Fai_family {
@@ -79574,7 +79574,7 @@ _6:
 		goto _8
 	_8:
 		if v7 != int64(2) {
-			XPyErr_SetString(tls, XPyExc_OSError, __ccgo_ts+228320)
+			XPyErr_SetString(tls, XPyExc_OSError, __ccgo_ts+228228)
 			goto fail
 		}
 	case int32(MAF_INET6):
@@ -79595,7 +79595,7 @@ _6:
 	if name == libc.UintptrFromInt32(0) {
 		goto fail
 	}
-	ret = XPy_BuildValue(tls, __ccgo_ts+228350, libc.VaList(bp+1160, name, bp+1061))
+	ret = XPy_BuildValue(tls, __ccgo_ts+228258, libc.VaList(bp+1160, name, bp+1061))
 	goto fail
 fail:
 	;
@@ -79700,7 +79700,7 @@ func _socket_if_nameindex(tls *libc.TLS, self uintptr, arg uintptr) (r uintptr) 
 
 			return XPyErr_SetFromWindowsErr(tls, ret)
 		}
-		tuple = XPy_BuildValue(tls, __ccgo_ts+228353, libc.VaList(bp+1888, (**(**TMIB_IF_ROW2)(__ccgo_up(bp + 8))).FInterfaceIndex, bp+1360))
+		tuple = XPy_BuildValue(tls, __ccgo_ts+228261, libc.VaList(bp+1888, (**(**TMIB_IF_ROW2)(__ccgo_up(bp + 8))).FInterfaceIndex, bp+1360))
 		if tuple == libc.UintptrFromInt32(0) || XPyList_Append(tls, list, tuple) == -int32(1) {
 			v2 = tuple
 			if v2 != libc.UintptrFromInt32(0) {
@@ -79793,37 +79793,37 @@ func __socket_if_indextoname_impl(tls *libc.TLS, module uintptr, index TNET_IFIN
 
 var _socket_methods = [25]TPyMethodDef{
 	0: {
-		Fml_name:  __ccgo_ts + 228356,
+		Fml_name:  __ccgo_ts + 228264,
 		Fml_flags: int32(MMETH_VARARGS),
 		Fml_doc:   uintptr(unsafe.Pointer(&_gethostbyname_doc)),
 	},
 	1: {
-		Fml_name:  __ccgo_ts + 228370,
+		Fml_name:  __ccgo_ts + 228278,
 		Fml_flags: int32(MMETH_VARARGS),
 		Fml_doc:   uintptr(unsafe.Pointer(&_ghbn_ex_doc)),
 	},
 	2: {
-		Fml_name:  __ccgo_ts + 228387,
+		Fml_name:  __ccgo_ts + 228295,
 		Fml_flags: int32(MMETH_VARARGS),
 		Fml_doc:   uintptr(unsafe.Pointer(&_gethostbyaddr_doc)),
 	},
 	3: {
-		Fml_name:  __ccgo_ts + 228401,
+		Fml_name:  __ccgo_ts + 228309,
 		Fml_flags: int32(MMETH_NOARGS),
 		Fml_doc:   uintptr(unsafe.Pointer(&_gethostname_doc)),
 	},
 	4: {
-		Fml_name:  __ccgo_ts + 228413,
+		Fml_name:  __ccgo_ts + 228321,
 		Fml_flags: int32(MMETH_VARARGS),
 		Fml_doc:   uintptr(unsafe.Pointer(&_getservbyname_doc)),
 	},
 	5: {
-		Fml_name:  __ccgo_ts + 228427,
+		Fml_name:  __ccgo_ts + 228335,
 		Fml_flags: int32(MMETH_VARARGS),
 		Fml_doc:   uintptr(unsafe.Pointer(&_getservbyport_doc)),
 	},
 	6: {
-		Fml_name:  __ccgo_ts + 228441,
+		Fml_name:  __ccgo_ts + 228349,
 		Fml_flags: int32(MMETH_VARARGS),
 		Fml_doc:   uintptr(unsafe.Pointer(&_getprotobyname_doc)),
 	},
@@ -79833,82 +79833,82 @@ var _socket_methods = [25]TPyMethodDef{
 		Fml_doc:   uintptr(unsafe.Pointer(&_close_doc2)),
 	},
 	8: {
-		Fml_name:  __ccgo_ts + 228456,
+		Fml_name:  __ccgo_ts + 228364,
 		Fml_flags: int32(MMETH_O),
 		Fml_doc:   uintptr(unsafe.Pointer(&_dup_doc)),
 	},
 	9: {
-		Fml_name:  __ccgo_ts + 228460,
+		Fml_name:  __ccgo_ts + 228368,
 		Fml_flags: int32(MMETH_O),
 		Fml_doc:   uintptr(unsafe.Pointer(&__socket_ntohs__doc__)),
 	},
 	10: {
-		Fml_name:  __ccgo_ts + 228466,
+		Fml_name:  __ccgo_ts + 228374,
 		Fml_flags: int32(MMETH_O),
 		Fml_doc:   uintptr(unsafe.Pointer(&__socket_ntohl__doc__)),
 	},
 	11: {
-		Fml_name:  __ccgo_ts + 228472,
+		Fml_name:  __ccgo_ts + 228380,
 		Fml_flags: int32(MMETH_O),
 		Fml_doc:   uintptr(unsafe.Pointer(&__socket_htons__doc__)),
 	},
 	12: {
-		Fml_name:  __ccgo_ts + 228478,
+		Fml_name:  __ccgo_ts + 228386,
 		Fml_flags: int32(MMETH_O),
 		Fml_doc:   uintptr(unsafe.Pointer(&__socket_htonl__doc__)),
 	},
 	13: {
-		Fml_name:  __ccgo_ts + 225071,
+		Fml_name:  __ccgo_ts + 224979,
 		Fml_flags: int32(MMETH_O),
 		Fml_doc:   uintptr(unsafe.Pointer(&__socket_inet_aton__doc__)),
 	},
 	14: {
-		Fml_name:  __ccgo_ts + 228484,
+		Fml_name:  __ccgo_ts + 228392,
 		Fml_flags: int32(MMETH_O),
 		Fml_doc:   uintptr(unsafe.Pointer(&__socket_inet_ntoa__doc__)),
 	},
 	15: {
-		Fml_name:  __ccgo_ts + 228494,
+		Fml_name:  __ccgo_ts + 228402,
 		Fml_flags: int32(MMETH_VARARGS),
 		Fml_doc:   uintptr(unsafe.Pointer(&_inet_pton_doc)),
 	},
 	16: {
-		Fml_name:  __ccgo_ts + 228504,
+		Fml_name:  __ccgo_ts + 228412,
 		Fml_flags: int32(MMETH_VARARGS),
 		Fml_doc:   uintptr(unsafe.Pointer(&_inet_ntop_doc)),
 	},
 	17: {
-		Fml_name:  __ccgo_ts + 228514,
+		Fml_name:  __ccgo_ts + 228422,
 		Fml_flags: libc.Int32FromInt32(MMETH_VARARGS) | libc.Int32FromInt32(MMETH_KEYWORDS),
 		Fml_doc:   uintptr(unsafe.Pointer(&_getaddrinfo_doc)),
 	},
 	18: {
-		Fml_name:  __ccgo_ts + 228526,
+		Fml_name:  __ccgo_ts + 228434,
 		Fml_flags: int32(MMETH_VARARGS),
 		Fml_doc:   uintptr(unsafe.Pointer(&_getnameinfo_doc)),
 	},
 	19: {
-		Fml_name:  __ccgo_ts + 228538,
+		Fml_name:  __ccgo_ts + 228446,
 		Fml_flags: int32(MMETH_NOARGS),
 		Fml_doc:   uintptr(unsafe.Pointer(&_getdefaulttimeout_doc)),
 	},
 	20: {
-		Fml_name:  __ccgo_ts + 228556,
+		Fml_name:  __ccgo_ts + 228464,
 		Fml_flags: int32(MMETH_O),
 		Fml_doc:   uintptr(unsafe.Pointer(&_setdefaulttimeout_doc)),
 	},
 	21: {
-		Fml_name:  __ccgo_ts + 228574,
+		Fml_name:  __ccgo_ts + 228482,
 		Fml_flags: int32(MMETH_NOARGS),
 		Fml_doc:   uintptr(unsafe.Pointer(&_if_nameindex_doc)),
 	},
 	22: {
-		Fml_name:  __ccgo_ts + 228587,
+		Fml_name:  __ccgo_ts + 228495,
 		Fml_flags: int32(MMETH_O),
 		Fml_doc:   uintptr(unsafe.Pointer(&__socket_if_nametoindex__doc__)),
 	},
 	23: {
-		Fml_name:  __ccgo_ts + 228602,
+		Fml_name:  __ccgo_ts + 228510,
 		Fml_flags: int32(MMETH_O),
 		Fml_doc:   uintptr(unsafe.Pointer(&__socket_if_indextoname__doc__)),
 	},
@@ -79959,13 +79959,13 @@ func _os_init(tls *libc.TLS) (r int32) {
 		XPy_AtExit(tls, __ccgo_fp(_os_cleanup))
 		return int32(1)
 	case libc.Int32FromInt32(MWSABASEERR) + libc.Int32FromInt32(91):
-		XPyErr_SetString(tls, XPyExc_ImportError, __ccgo_ts+228617)
+		XPyErr_SetString(tls, XPyExc_ImportError, __ccgo_ts+228525)
 	case libc.Int32FromInt32(MWSABASEERR) + libc.Int32FromInt32(92):
 		fallthrough
 	case libc.Int32FromInt32(MWSABASEERR) + libc.Int32FromInt32(22):
-		XPyErr_SetString(tls, XPyExc_ImportError, __ccgo_ts+228654)
+		XPyErr_SetString(tls, XPyExc_ImportError, __ccgo_ts+228562)
 	default:
-		XPyErr_Format(tls, XPyExc_ImportError, __ccgo_ts+228705, libc.VaList(bp+416, ret))
+		XPyErr_Format(tls, XPyExc_ImportError, __ccgo_ts+228613, libc.VaList(bp+416, ret))
 		break
 	}
 	return 0
@@ -79975,7 +79975,7 @@ func _sock_capi_traverse(tls *libc.TLS, capsule uintptr, __ccgo_fp_visit Tvisitp
 	var capi uintptr
 	var vret int32
 	_, _ = capi, vret
-	capi = XPyCapsule_GetPointer(tls, capsule, __ccgo_ts+228738)
+	capi = XPyCapsule_GetPointer(tls, capsule, __ccgo_ts+228646)
 	if (*TPySocketModule_APIObject)(unsafe.Pointer(capi)).FSock_Type != 0 {
 		vret = (*(*func(*libc.TLS, uintptr, uintptr) int32)(unsafe.Pointer(&struct{ uintptr }{__ccgo_fp_visit})))(tls, (*TPySocketModule_APIObject)(unsafe.Pointer(capi)).FSock_Type, arg)
 		if vret != 0 {
@@ -79990,7 +79990,7 @@ func _sock_capi_clear(tls *libc.TLS, capsule uintptr) (r int32) {
 	var v2 int32
 	var v5 Tuint32_t
 	_, _, _, _, _, _, _ = _tmp_old_op, _tmp_op_ptr, capi, v1, v2, v5, v6
-	capi = XPyCapsule_GetPointer(tls, capsule, __ccgo_ts+228738)
+	capi = XPyCapsule_GetPointer(tls, capsule, __ccgo_ts+228646)
 	_tmp_op_ptr = capi
 	_tmp_old_op = **(**uintptr)(__ccgo_up(_tmp_op_ptr))
 	if _tmp_old_op != libc.UintptrFromInt32(0) {
@@ -80071,7 +80071,7 @@ _17:
 func _sock_capi_destroy(tls *libc.TLS, capsule uintptr) {
 	var capi uintptr
 	_ = capi
-	capi = XPyCapsule_GetPointer(tls, capsule, __ccgo_ts+228738)
+	capi = XPyCapsule_GetPointer(tls, capsule, __ccgo_ts+228646)
 	_sock_capi_free(tls, capi)
 }
 
@@ -80137,18 +80137,18 @@ func _socket_exec(tls *libc.TLS, m uintptr) (r int32) {
 	}
 	state = _get_module_state4(tls, m)
 	__Py_atomic_store_int64_relaxed(tls, state+24, int64(-libc.Int32FromInt32(1))*int64(libc.Int32FromInt32(1000)*libc.Int32FromInt32(1000)*libc.Int32FromInt32(1000)))
-	(*Tsocket_state)(unsafe.Pointer(state)).Fsocket_herror = XPyErr_NewException(tls, __ccgo_ts+228751, XPyExc_OSError, libc.UintptrFromInt32(0))
+	(*Tsocket_state)(unsafe.Pointer(state)).Fsocket_herror = XPyErr_NewException(tls, __ccgo_ts+228659, XPyExc_OSError, libc.UintptrFromInt32(0))
 	if (*Tsocket_state)(unsafe.Pointer(state)).Fsocket_herror == libc.UintptrFromInt32(0) {
 		goto error
 	}
-	if XPyModule_AddObjectRef(tls, m, __ccgo_ts+228765, (*Tsocket_state)(unsafe.Pointer(state)).Fsocket_herror) < 0 {
+	if XPyModule_AddObjectRef(tls, m, __ccgo_ts+228673, (*Tsocket_state)(unsafe.Pointer(state)).Fsocket_herror) < 0 {
 		goto error
 	}
-	(*Tsocket_state)(unsafe.Pointer(state)).Fsocket_gaierror = XPyErr_NewException(tls, __ccgo_ts+228772, XPyExc_OSError, libc.UintptrFromInt32(0))
+	(*Tsocket_state)(unsafe.Pointer(state)).Fsocket_gaierror = XPyErr_NewException(tls, __ccgo_ts+228680, XPyExc_OSError, libc.UintptrFromInt32(0))
 	if (*Tsocket_state)(unsafe.Pointer(state)).Fsocket_gaierror == libc.UintptrFromInt32(0) {
 		goto error
 	}
-	if XPyModule_AddObjectRef(tls, m, __ccgo_ts+228788, (*Tsocket_state)(unsafe.Pointer(state)).Fsocket_gaierror) < 0 {
+	if XPyModule_AddObjectRef(tls, m, __ccgo_ts+228696, (*Tsocket_state)(unsafe.Pointer(state)).Fsocket_gaierror) < 0 {
 		goto error
 	}
 	if XPyModule_AddObjectRef(tls, m, __ccgo_ts+85220, XPyExc_OSError) < 0 {
@@ -80162,14 +80162,14 @@ func _socket_exec(tls *libc.TLS, m uintptr) (r int32) {
 		goto error
 	}
 	(*Tsocket_state)(unsafe.Pointer(state)).Fsock_type = sock_type
-	if XPyModule_AddObjectRef(tls, m, __ccgo_ts+228797, sock_type) < 0 {
+	if XPyModule_AddObjectRef(tls, m, __ccgo_ts+228705, sock_type) < 0 {
 		goto error
 	}
 	if XPyModule_AddType(tls, m, (*Tsocket_state)(unsafe.Pointer(state)).Fsock_type) < 0 {
 		goto error
 	}
 	has_ipv6 = uintptr(unsafe.Pointer(&X_Py_TrueStruct))
-	if XPyModule_AddObjectRef(tls, m, __ccgo_ts+228808, has_ipv6) < 0 {
+	if XPyModule_AddObjectRef(tls, m, __ccgo_ts+228716, has_ipv6) < 0 {
 		goto error
 	}
 
@@ -80177,7 +80177,7 @@ func _socket_exec(tls *libc.TLS, m uintptr) (r int32) {
 	if capi == libc.UintptrFromInt32(0) {
 		goto error
 	}
-	capsule = XPyCapsule_New(tls, capi, __ccgo_ts+228738, __ccgo_fp(_sock_capi_destroy))
+	capsule = XPyCapsule_New(tls, capi, __ccgo_ts+228646, __ccgo_fp(_sock_capi_destroy))
 	if capsule == libc.UintptrFromInt32(0) {
 		_sock_capi_free(tls, capi)
 		goto error
@@ -80186,542 +80186,542 @@ func _socket_exec(tls *libc.TLS, m uintptr) (r int32) {
 		_sock_capi_free(tls, capi)
 		goto error
 	}
-	if XPyModule_Add(tls, m, __ccgo_ts+228817, capsule) < 0 {
+	if XPyModule_Add(tls, m, __ccgo_ts+228725, capsule) < 0 {
 		goto error
 	}
 
-	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+228822, 0) < 0 {
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+228730, 0) < 0 {
 		goto error
 	}
-	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+228832, int32(2)) < 0 {
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+228740, int32(2)) < 0 {
 		goto error
 	}
-	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+228840, int32(6)) < 0 {
-		goto error
-	}
-
-	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+228847, int32(16)) < 0 {
-		goto error
-	}
-	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+228860, int32(MAF_INET6)) < 0 {
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+228748, int32(6)) < 0 {
 		goto error
 	}
 
-	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+228869, int32(12)) < 0 {
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+228755, int32(16)) < 0 {
+		goto error
+	}
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+228768, int32(MAF_INET6)) < 0 {
 		goto error
 	}
 
-	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+228879, int32(11)) < 0 {
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+228777, int32(12)) < 0 {
 		goto error
 	}
 
-	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+228886, int32(MAF_IRDA)) < 0 {
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+228787, int32(11)) < 0 {
 		goto error
 	}
 
-	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+228894, int32(MAF_HYPERV)) < 0 {
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+228794, int32(MAF_IRDA)) < 0 {
 		goto error
 	}
 
-	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+228904, int32(MHV_PROTOCOL_RAW)) < 0 {
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+228802, int32(MAF_HYPERV)) < 0 {
 		goto error
 	}
 
-	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+228920, int32(MHVSOCKET_CONNECT_TIMEOUT)) < 0 {
-		goto error
-	}
-	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+228945, int32(MHVSOCKET_CONNECT_TIMEOUT_MAX)) < 0 {
-		goto error
-	}
-	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+228974, int32(MHVSOCKET_CONNECTED_SUSPEND)) < 0 {
-		goto error
-	}
-	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+229001, int32(MHVSOCKET_ADDRESS_FLAG_PASSTHRU)) < 0 {
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+228812, int32(MHV_PROTOCOL_RAW)) < 0 {
 		goto error
 	}
 
-	if XPyModule_AddStringConstant(tls, m, __ccgo_ts+229032, __ccgo_ts+229045) < 0 {
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+228828, int32(MHVSOCKET_CONNECT_TIMEOUT)) < 0 {
 		goto error
 	}
-	if XPyModule_AddStringConstant(tls, m, __ccgo_ts+229082, __ccgo_ts+229045) < 0 {
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+228853, int32(MHVSOCKET_CONNECT_TIMEOUT_MAX)) < 0 {
 		goto error
 	}
-	if XPyModule_AddStringConstant(tls, m, __ccgo_ts+229099, __ccgo_ts+229117) < 0 {
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+228882, int32(MHVSOCKET_CONNECTED_SUSPEND)) < 0 {
 		goto error
 	}
-	if XPyModule_AddStringConstant(tls, m, __ccgo_ts+229154, __ccgo_ts+229171) < 0 {
-		goto error
-	}
-	if XPyModule_AddStringConstant(tls, m, __ccgo_ts+229208, __ccgo_ts+229225) < 0 {
-		goto error
-	}
-	if XPyModule_AddStringConstant(tls, m, __ccgo_ts+229262, __ccgo_ts+229277) < 0 {
-		goto error
-	}
-	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+229314, int32(MAF_BTH)) < 0 {
-		goto error
-	}
-	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+229327, int32(MBTHPROTO_RFCOMM)) < 0 {
-		goto error
-	}
-	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+229342, int32(MBTHPROTO_RFCOMM)) < 0 {
-		goto error
-	}
-	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+229353, int32(MSO_BTH_ENCRYPT)) < 0 {
-		goto error
-	}
-	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+229368, libc.Int32FromUint32(MSO_BTH_MTU)) < 0 {
-		goto error
-	}
-	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+229379, libc.Int32FromUint32(MSO_BTH_MTU_MAX)) < 0 {
-		goto error
-	}
-	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+229394, libc.Int32FromUint32(MSO_BTH_MTU_MIN)) < 0 {
-		goto error
-	}
-	if XPyModule_AddStringConstant(tls, m, __ccgo_ts+229409, __ccgo_ts+229420) < 0 {
-		goto error
-	}
-	if XPyModule_AddStringConstant(tls, m, __ccgo_ts+229438, __ccgo_ts+229451) < 0 {
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+228909, int32(MHVSOCKET_ADDRESS_FLAG_PASSTHRU)) < 0 {
 		goto error
 	}
 
-	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+229469, int32(1)) < 0 {
+	if XPyModule_AddStringConstant(tls, m, __ccgo_ts+228940, __ccgo_ts+228953) < 0 {
 		goto error
 	}
-	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+229481, int32(2)) < 0 {
+	if XPyModule_AddStringConstant(tls, m, __ccgo_ts+228990, __ccgo_ts+228953) < 0 {
 		goto error
 	}
-
-	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+229492, int32(3)) < 0 {
+	if XPyModule_AddStringConstant(tls, m, __ccgo_ts+229007, __ccgo_ts+229025) < 0 {
 		goto error
 	}
-	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+229501, int32(5)) < 0 {
+	if XPyModule_AddStringConstant(tls, m, __ccgo_ts+229062, __ccgo_ts+229079) < 0 {
 		goto error
 	}
-	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+229516, int32(4)) < 0 {
+	if XPyModule_AddStringConstant(tls, m, __ccgo_ts+229116, __ccgo_ts+229133) < 0 {
 		goto error
 	}
-	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+229525, int32(0x0001)) < 0 {
+	if XPyModule_AddStringConstant(tls, m, __ccgo_ts+229170, __ccgo_ts+229185) < 0 {
 		goto error
 	}
-	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+229534, int32(0x0002)) < 0 {
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+229222, int32(MAF_BTH)) < 0 {
 		goto error
 	}
-	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+229548, int32(0x0004)) < 0 {
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+229235, int32(MBTHPROTO_RFCOMM)) < 0 {
 		goto error
 	}
-	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+229561, int32(^libc.Int32FromInt32(0x0004))) < 0 {
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+229250, int32(MBTHPROTO_RFCOMM)) < 0 {
 		goto error
 	}
-	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+229581, int32(0x0008)) < 0 {
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+229261, int32(MSO_BTH_ENCRYPT)) < 0 {
 		goto error
 	}
-	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+229594, int32(0x0010)) < 0 {
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+229276, libc.Int32FromUint32(MSO_BTH_MTU)) < 0 {
 		goto error
 	}
-	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+229607, int32(0x0020)) < 0 {
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+229287, libc.Int32FromUint32(MSO_BTH_MTU_MAX)) < 0 {
 		goto error
 	}
-	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+229620, int32(0x0040)) < 0 {
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+229302, libc.Int32FromUint32(MSO_BTH_MTU_MIN)) < 0 {
 		goto error
 	}
-	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+229635, int32(0x0080)) < 0 {
+	if XPyModule_AddStringConstant(tls, m, __ccgo_ts+229317, __ccgo_ts+229328) < 0 {
 		goto error
 	}
-	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+229645, int32(0x0100)) < 0 {
-		goto error
-	}
-	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+229658, int32(0x1001)) < 0 {
-		goto error
-	}
-	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+229668, int32(0x1002)) < 0 {
-		goto error
-	}
-	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+229678, int32(0x1003)) < 0 {
-		goto error
-	}
-	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+229690, int32(0x1004)) < 0 {
-		goto error
-	}
-	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+229702, int32(0x1005)) < 0 {
-		goto error
-	}
-	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+229714, int32(0x1006)) < 0 {
-		goto error
-	}
-	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+229726, int32(0x1007)) < 0 {
-		goto error
-	}
-	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+229735, int32(0x1008)) < 0 {
+	if XPyModule_AddStringConstant(tls, m, __ccgo_ts+229346, __ccgo_ts+229359) < 0 {
 		goto error
 	}
 
-	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+229743, int32(0x7fffffff)) < 0 {
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+229377, int32(1)) < 0 {
+		goto error
+	}
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+229389, int32(2)) < 0 {
 		goto error
 	}
 
-	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+229753, int32(0x1)) < 0 {
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+229400, int32(3)) < 0 {
 		goto error
 	}
-	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+229761, int32(0x2)) < 0 {
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+229409, int32(5)) < 0 {
 		goto error
 	}
-	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+229770, int32(0x4)) < 0 {
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+229424, int32(4)) < 0 {
 		goto error
 	}
-	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+229784, int32(MMSG_WAITALL)) < 0 {
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+229433, int32(0x0001)) < 0 {
 		goto error
 	}
-
-	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+229796, int32(0xffff)) < 0 {
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+229442, int32(0x0002)) < 0 {
 		goto error
 	}
-	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+229807, 0) < 0 {
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+229456, int32(0x0004)) < 0 {
 		goto error
 	}
-	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+229814, int32(6)) < 0 {
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+229469, int32(^libc.Int32FromInt32(0x0004))) < 0 {
 		goto error
 	}
-	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+229822, int32(17)) < 0 {
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+229489, int32(0x0008)) < 0 {
 		goto error
 	}
-	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+229830, 0) < 0 {
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+229502, int32(0x0010)) < 0 {
 		goto error
 	}
-	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+229841, MIPPROTO_HOPOPTS) < 0 {
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+229515, int32(0x0020)) < 0 {
 		goto error
 	}
-	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+229857, int32(1)) < 0 {
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+229528, int32(0x0040)) < 0 {
 		goto error
 	}
-	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+229870, int32(2)) < 0 {
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+229543, int32(0x0080)) < 0 {
 		goto error
 	}
-	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+229883, int32(3)) < 0 {
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+229553, int32(0x0100)) < 0 {
 		goto error
 	}
-	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+229895, int32(MIPPROTO_IPV4)) < 0 {
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+229566, int32(0x1001)) < 0 {
 		goto error
 	}
-	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+229908, int32(MIPPROTO_IPV6)) < 0 {
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+229576, int32(0x1002)) < 0 {
 		goto error
 	}
-	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+229921, int32(6)) < 0 {
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+229586, int32(0x1003)) < 0 {
 		goto error
 	}
-	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+229933, int32(MIPPROTO_EGP)) < 0 {
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+229598, int32(0x1004)) < 0 {
 		goto error
 	}
-	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+229945, int32(12)) < 0 {
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+229610, int32(0x1005)) < 0 {
 		goto error
 	}
-	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+229957, int32(17)) < 0 {
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+229622, int32(0x1006)) < 0 {
 		goto error
 	}
-	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+229969, int32(22)) < 0 {
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+229634, int32(0x1007)) < 0 {
 		goto error
 	}
-	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+229981, int32(77)) < 0 {
-		goto error
-	}
-	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+229992, int32(MIPPROTO_ROUTING)) < 0 {
-		goto error
-	}
-	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+230008, int32(MIPPROTO_FRAGMENT)) < 0 {
-		goto error
-	}
-	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+230025, int32(MIPPROTO_ESP)) < 0 {
-		goto error
-	}
-	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+230037, int32(MIPPROTO_AH)) < 0 {
-		goto error
-	}
-	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+230048, int32(MIPPROTO_ICMPV6)) < 0 {
-		goto error
-	}
-	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+230063, int32(MIPPROTO_NONE)) < 0 {
-		goto error
-	}
-	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+230076, int32(MIPPROTO_DSTOPTS)) < 0 {
-		goto error
-	}
-	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+230092, int32(MIPPROTO_PIM)) < 0 {
-		goto error
-	}
-	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+230104, int32(MIPPROTO_SCTP)) < 0 {
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+229643, int32(0x1008)) < 0 {
 		goto error
 	}
 
-	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+230117, int32(255)) < 0 {
-		goto error
-	}
-	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+230129, int32(256)) < 0 {
-		goto error
-	}
-	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+230141, int32(MIPPROTO_ICLFXBM)) < 0 {
-		goto error
-	}
-	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+230157, int32(MIPPROTO_ST)) < 0 {
-		goto error
-	}
-	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+230168, int32(MIPPROTO_CBT)) < 0 {
-		goto error
-	}
-	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+230180, int32(MIPPROTO_IGP)) < 0 {
-		goto error
-	}
-	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+230192, int32(MIPPROTO_RDP)) < 0 {
-		goto error
-	}
-	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+230204, int32(MIPPROTO_PGM)) < 0 {
-		goto error
-	}
-	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+230216, int32(MIPPROTO_L2TP)) < 0 {
-		goto error
-	}
-	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+230104, int32(MIPPROTO_SCTP)) < 0 {
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+229651, int32(0x7fffffff)) < 0 {
 		goto error
 	}
 
-	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+230229, int32(1024)) < 0 {
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+229661, int32(0x1)) < 0 {
 		goto error
 	}
-	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+230245, int32(5000)) < 0 {
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+229669, int32(0x2)) < 0 {
 		goto error
 	}
-
-	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+230265, int32(libc.Uint32FromInt32(0x00000000))) < 0 {
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+229678, int32(0x4)) < 0 {
 		goto error
 	}
-	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+230276, int32(libc.Uint32FromUint32(0xffffffff))) < 0 {
-		goto error
-	}
-	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+230293, int32(0x7f000001)) < 0 {
-		goto error
-	}
-	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+230309, libc.Int32FromUint32(0xe0000000)) < 0 {
-		goto error
-	}
-	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+230329, libc.Int32FromUint32(0xe0000001)) < 0 {
-		goto error
-	}
-	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+230351, libc.Int32FromUint32(0xe00000ff)) < 0 {
-		goto error
-	}
-	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+230374, libc.Int32FromUint32(0xffffffff)) < 0 {
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+229692, int32(MMSG_WAITALL)) < 0 {
 		goto error
 	}
 
-	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+230386, int32(1)) < 0 {
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+229704, int32(0xffff)) < 0 {
 		goto error
 	}
-	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+230397, int32(MIP_HDRINCL)) < 0 {
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+229715, 0) < 0 {
 		goto error
 	}
-	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+230408, int32(3)) < 0 {
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+229722, int32(6)) < 0 {
 		goto error
 	}
-	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+230415, int32(4)) < 0 {
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+229730, int32(17)) < 0 {
 		goto error
 	}
-	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+230422, int32(MIP_RECVERR)) < 0 {
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+229738, 0) < 0 {
 		goto error
 	}
-	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+230433, int32(MIP_RECVTOS)) < 0 {
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+229749, MIPPROTO_HOPOPTS) < 0 {
 		goto error
 	}
-	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+230444, int32(MIP_RECVTTL)) < 0 {
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+229765, int32(1)) < 0 {
 		goto error
 	}
-	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+230455, int32(MIP_RECVDSTADDR)) < 0 {
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+229778, int32(2)) < 0 {
 		goto error
 	}
-	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+230470, int32(9)) < 0 {
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+229791, int32(3)) < 0 {
 		goto error
 	}
-	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+230486, int32(10)) < 0 {
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+229803, int32(MIPPROTO_IPV4)) < 0 {
 		goto error
 	}
-	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+230503, int32(11)) < 0 {
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+229816, int32(MIPPROTO_IPV6)) < 0 {
 		goto error
 	}
-	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+230521, int32(12)) < 0 {
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+229829, int32(6)) < 0 {
 		goto error
 	}
-	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+230539, int32(13)) < 0 {
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+229841, int32(MIPPROTO_EGP)) < 0 {
 		goto error
 	}
-	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+230558, int32(MIP_PKTINFO)) < 0 {
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+229853, int32(12)) < 0 {
 		goto error
 	}
-	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+230569, int32(MIP_UNBLOCK_SOURCE)) < 0 {
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+229865, int32(17)) < 0 {
 		goto error
 	}
-	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+230587, int32(MIP_BLOCK_SOURCE)) < 0 {
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+229877, int32(22)) < 0 {
 		goto error
 	}
-	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+230603, int32(MIP_ADD_SOURCE_MEMBERSHIP)) < 0 {
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+229889, int32(77)) < 0 {
 		goto error
 	}
-	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+230628, int32(MIP_DROP_SOURCE_MEMBERSHIP)) < 0 {
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+229900, int32(MIPPROTO_ROUTING)) < 0 {
 		goto error
 	}
-
-	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+230654, int32(MIPV6_ADD_MEMBERSHIP)) < 0 {
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+229916, int32(MIPPROTO_FRAGMENT)) < 0 {
 		goto error
 	}
-	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+230670, int32(MIPV6_DROP_MEMBERSHIP)) < 0 {
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+229933, int32(MIPPROTO_ESP)) < 0 {
 		goto error
 	}
-	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+230687, int32(MIPV6_MULTICAST_HOPS)) < 0 {
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+229945, int32(MIPPROTO_AH)) < 0 {
 		goto error
 	}
-	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+230707, int32(MIPV6_MULTICAST_IF)) < 0 {
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+229956, int32(MIPPROTO_ICMPV6)) < 0 {
 		goto error
 	}
-	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+230725, int32(MIPV6_MULTICAST_LOOP)) < 0 {
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+229971, int32(MIPPROTO_NONE)) < 0 {
 		goto error
 	}
-	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+230745, int32(MIPV6_UNICAST_HOPS)) < 0 {
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+229984, int32(MIPPROTO_DSTOPTS)) < 0 {
 		goto error
 	}
-
-	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+230763, int32(MIPV6_V6ONLY)) < 0 {
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+230000, int32(MIPPROTO_PIM)) < 0 {
 		goto error
 	}
-
-	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+230775, int32(MIPV6_CHECKSUM)) < 0 {
-		goto error
-	}
-	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+230789, int32(MIPV6_DONTFRAG)) < 0 {
-		goto error
-	}
-	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+230803, int32(MIPV6_HOPLIMIT)) < 0 {
-		goto error
-	}
-	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+230817, int32(MIPV6_HOPOPTS)) < 0 {
-		goto error
-	}
-	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+230830, int32(MIPV6_PKTINFO)) < 0 {
-		goto error
-	}
-	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+230843, int32(MIPV6_RECVERR)) < 0 {
-		goto error
-	}
-	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+230856, int32(MIPV6_RECVRTHDR)) < 0 {
-		goto error
-	}
-	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+230871, int32(MIPV6_RECVTCLASS)) < 0 {
-		goto error
-	}
-	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+230887, int32(MIPV6_RTHDR)) < 0 {
-		goto error
-	}
-	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+230898, int32(MIPV6_TCLASS)) < 0 {
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+230012, int32(MIPPROTO_SCTP)) < 0 {
 		goto error
 	}
 
-	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+230910, int32(0x0001)) < 0 {
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+230025, int32(255)) < 0 {
 		goto error
 	}
-	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+230922, int32(MTCP_MAXSEG)) < 0 {
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+230037, int32(256)) < 0 {
 		goto error
 	}
-	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+230933, int32(MTCP_KEEPALIVE)) < 0 {
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+230049, int32(MIPPROTO_ICLFXBM)) < 0 {
 		goto error
 	}
-
-	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+230946, int32(MTCP_KEEPINTVL)) < 0 {
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+230065, int32(MIPPROTO_ST)) < 0 {
 		goto error
 	}
-	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+230960, int32(MTCP_KEEPCNT)) < 0 {
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+230076, int32(MIPPROTO_CBT)) < 0 {
 		goto error
 	}
-	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+230972, int32(libc.Uint32FromUint32(0x80000000)|uint32(libc.Int32FromInt32(MIOC_VENDOR))|uint32(libc.Int32FromInt32(23)))) < 0 {
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+230088, int32(MIPPROTO_IGP)) < 0 {
 		goto error
 	}
-	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+230985, int32(MTCP_FASTOPEN)) < 0 {
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+230100, int32(MIPPROTO_RDP)) < 0 {
 		goto error
 	}
-
-	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+230998, int32(libc.Int32FromInt32(MWSABASEERR)+libc.Int32FromInt32(1002))) < 0 {
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+230112, int32(MIPPROTO_PGM)) < 0 {
 		goto error
 	}
-	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+231008, int32(libc.Int32FromInt32(MWSABASEERR)+libc.Int32FromInt32(22))) < 0 {
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+230124, int32(MIPPROTO_L2TP)) < 0 {
 		goto error
 	}
-	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+231021, int32(libc.Int32FromInt32(MWSABASEERR)+libc.Int32FromInt32(1003))) < 0 {
-		goto error
-	}
-	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+231030, int32(libc.Int32FromInt32(MWSABASEERR)+libc.Int32FromInt32(47))) < 0 {
-		goto error
-	}
-	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+231041, int32(8)) < 0 {
-		goto error
-	}
-	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+231052, int32(MEAI_NODATA)) < 0 {
-		goto error
-	}
-	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+231063, int32(libc.Int32FromInt32(MWSABASEERR)+libc.Int32FromInt32(1001))) < 0 {
-		goto error
-	}
-	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+231074, int32(libc.Int32FromInt32(MWSABASEERR)+libc.Int32FromInt32(109))) < 0 {
-		goto error
-	}
-	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+231086, int32(libc.Int32FromInt32(MWSABASEERR)+libc.Int32FromInt32(44))) < 0 {
-		goto error
-	}
-	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+231099, int32(MAI_PASSIVE)) < 0 {
-		goto error
-	}
-	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+231110, int32(MAI_CANONNAME)) < 0 {
-		goto error
-	}
-	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+231123, int32(MAI_NUMERICHOST)) < 0 {
-		goto error
-	}
-	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+231138, int32(MAI_NUMERICSERV)) < 0 {
-		goto error
-	}
-	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+231153, int32(MAI_ALL)) < 0 {
-		goto error
-	}
-	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+231160, int32(MAI_ADDRCONFIG)) < 0 {
-		goto error
-	}
-	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+231174, int32(MAI_V4MAPPED)) < 0 {
-		goto error
-	}
-	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+231186, int32(MNI_MAXHOST)) < 0 {
-		goto error
-	}
-	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+231197, int32(MNI_MAXSERV)) < 0 {
-		goto error
-	}
-	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+231208, int32(MNI_NOFQDN)) < 0 {
-		goto error
-	}
-	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+231218, int32(MNI_NUMERICHOST)) < 0 {
-		goto error
-	}
-	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+231233, int32(MNI_NAMEREQD)) < 0 {
-		goto error
-	}
-	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+231245, int32(MNI_NUMERICSERV)) < 0 {
-		goto error
-	}
-	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+231260, int32(MNI_DGRAM)) < 0 {
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+230012, int32(MIPPROTO_SCTP)) < 0 {
 		goto error
 	}
 
-	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+231269, MSD_RECEIVE) < 0 {
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+230137, int32(1024)) < 0 {
 		goto error
 	}
-	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+231277, int32(MSD_SEND)) < 0 {
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+230153, int32(5000)) < 0 {
 		goto error
 	}
-	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+231285, int32(MSD_BOTH)) < 0 {
+
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+230173, int32(libc.Uint32FromInt32(0x00000000))) < 0 {
+		goto error
+	}
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+230184, int32(libc.Uint32FromUint32(0xffffffff))) < 0 {
+		goto error
+	}
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+230201, int32(0x7f000001)) < 0 {
+		goto error
+	}
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+230217, libc.Int32FromUint32(0xe0000000)) < 0 {
+		goto error
+	}
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+230237, libc.Int32FromUint32(0xe0000001)) < 0 {
+		goto error
+	}
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+230259, libc.Int32FromUint32(0xe00000ff)) < 0 {
+		goto error
+	}
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+230282, libc.Int32FromUint32(0xffffffff)) < 0 {
+		goto error
+	}
+
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+230294, int32(1)) < 0 {
+		goto error
+	}
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+230305, int32(MIP_HDRINCL)) < 0 {
+		goto error
+	}
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+230316, int32(3)) < 0 {
+		goto error
+	}
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+230323, int32(4)) < 0 {
+		goto error
+	}
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+230330, int32(MIP_RECVERR)) < 0 {
+		goto error
+	}
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+230341, int32(MIP_RECVTOS)) < 0 {
+		goto error
+	}
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+230352, int32(MIP_RECVTTL)) < 0 {
+		goto error
+	}
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+230363, int32(MIP_RECVDSTADDR)) < 0 {
+		goto error
+	}
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+230378, int32(9)) < 0 {
+		goto error
+	}
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+230394, int32(10)) < 0 {
+		goto error
+	}
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+230411, int32(11)) < 0 {
+		goto error
+	}
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+230429, int32(12)) < 0 {
+		goto error
+	}
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+230447, int32(13)) < 0 {
+		goto error
+	}
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+230466, int32(MIP_PKTINFO)) < 0 {
+		goto error
+	}
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+230477, int32(MIP_UNBLOCK_SOURCE)) < 0 {
+		goto error
+	}
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+230495, int32(MIP_BLOCK_SOURCE)) < 0 {
+		goto error
+	}
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+230511, int32(MIP_ADD_SOURCE_MEMBERSHIP)) < 0 {
+		goto error
+	}
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+230536, int32(MIP_DROP_SOURCE_MEMBERSHIP)) < 0 {
+		goto error
+	}
+
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+230562, int32(MIPV6_ADD_MEMBERSHIP)) < 0 {
+		goto error
+	}
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+230578, int32(MIPV6_DROP_MEMBERSHIP)) < 0 {
+		goto error
+	}
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+230595, int32(MIPV6_MULTICAST_HOPS)) < 0 {
+		goto error
+	}
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+230615, int32(MIPV6_MULTICAST_IF)) < 0 {
+		goto error
+	}
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+230633, int32(MIPV6_MULTICAST_LOOP)) < 0 {
+		goto error
+	}
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+230653, int32(MIPV6_UNICAST_HOPS)) < 0 {
+		goto error
+	}
+
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+230671, int32(MIPV6_V6ONLY)) < 0 {
+		goto error
+	}
+
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+230683, int32(MIPV6_CHECKSUM)) < 0 {
+		goto error
+	}
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+230697, int32(MIPV6_DONTFRAG)) < 0 {
+		goto error
+	}
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+230711, int32(MIPV6_HOPLIMIT)) < 0 {
+		goto error
+	}
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+230725, int32(MIPV6_HOPOPTS)) < 0 {
+		goto error
+	}
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+230738, int32(MIPV6_PKTINFO)) < 0 {
+		goto error
+	}
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+230751, int32(MIPV6_RECVERR)) < 0 {
+		goto error
+	}
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+230764, int32(MIPV6_RECVRTHDR)) < 0 {
+		goto error
+	}
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+230779, int32(MIPV6_RECVTCLASS)) < 0 {
+		goto error
+	}
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+230795, int32(MIPV6_RTHDR)) < 0 {
+		goto error
+	}
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+230806, int32(MIPV6_TCLASS)) < 0 {
+		goto error
+	}
+
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+230818, int32(0x0001)) < 0 {
+		goto error
+	}
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+230830, int32(MTCP_MAXSEG)) < 0 {
+		goto error
+	}
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+230841, int32(MTCP_KEEPALIVE)) < 0 {
+		goto error
+	}
+
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+230854, int32(MTCP_KEEPINTVL)) < 0 {
+		goto error
+	}
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+230868, int32(MTCP_KEEPCNT)) < 0 {
+		goto error
+	}
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+230880, int32(libc.Uint32FromUint32(0x80000000)|uint32(libc.Int32FromInt32(MIOC_VENDOR))|uint32(libc.Int32FromInt32(23)))) < 0 {
+		goto error
+	}
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+230893, int32(MTCP_FASTOPEN)) < 0 {
+		goto error
+	}
+
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+230906, int32(libc.Int32FromInt32(MWSABASEERR)+libc.Int32FromInt32(1002))) < 0 {
+		goto error
+	}
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+230916, int32(libc.Int32FromInt32(MWSABASEERR)+libc.Int32FromInt32(22))) < 0 {
+		goto error
+	}
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+230929, int32(libc.Int32FromInt32(MWSABASEERR)+libc.Int32FromInt32(1003))) < 0 {
+		goto error
+	}
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+230938, int32(libc.Int32FromInt32(MWSABASEERR)+libc.Int32FromInt32(47))) < 0 {
+		goto error
+	}
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+230949, int32(8)) < 0 {
+		goto error
+	}
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+230960, int32(MEAI_NODATA)) < 0 {
+		goto error
+	}
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+230971, int32(libc.Int32FromInt32(MWSABASEERR)+libc.Int32FromInt32(1001))) < 0 {
+		goto error
+	}
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+230982, int32(libc.Int32FromInt32(MWSABASEERR)+libc.Int32FromInt32(109))) < 0 {
+		goto error
+	}
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+230994, int32(libc.Int32FromInt32(MWSABASEERR)+libc.Int32FromInt32(44))) < 0 {
+		goto error
+	}
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+231007, int32(MAI_PASSIVE)) < 0 {
+		goto error
+	}
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+231018, int32(MAI_CANONNAME)) < 0 {
+		goto error
+	}
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+231031, int32(MAI_NUMERICHOST)) < 0 {
+		goto error
+	}
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+231046, int32(MAI_NUMERICSERV)) < 0 {
+		goto error
+	}
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+231061, int32(MAI_ALL)) < 0 {
+		goto error
+	}
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+231068, int32(MAI_ADDRCONFIG)) < 0 {
+		goto error
+	}
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+231082, int32(MAI_V4MAPPED)) < 0 {
+		goto error
+	}
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+231094, int32(MNI_MAXHOST)) < 0 {
+		goto error
+	}
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+231105, int32(MNI_MAXSERV)) < 0 {
+		goto error
+	}
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+231116, int32(MNI_NOFQDN)) < 0 {
+		goto error
+	}
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+231126, int32(MNI_NUMERICHOST)) < 0 {
+		goto error
+	}
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+231141, int32(MNI_NAMEREQD)) < 0 {
+		goto error
+	}
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+231153, int32(MNI_NUMERICSERV)) < 0 {
+		goto error
+	}
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+231168, int32(MNI_DGRAM)) < 0 {
+		goto error
+	}
+
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+231177, MSD_RECEIVE) < 0 {
+		goto error
+	}
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+231185, int32(MSD_SEND)) < 0 {
+		goto error
+	}
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+231193, int32(MSD_BOTH)) < 0 {
 		goto error
 	}
 	codes = [3]TDWORD{
@@ -80730,9 +80730,9 @@ func _socket_exec(tls *libc.TLS, m uintptr) (r int32) {
 		2: uint32(libc.Uint32FromUint32(0x80000000) | uint32(libc.Int32FromInt32(MIOC_VENDOR)) | uint32(libc.Int32FromInt32(16))),
 	}
 	names = [3]uintptr{
-		0: __ccgo_ts + 231295,
-		1: __ccgo_ts + 231306,
-		2: __ccgo_ts + 231325,
+		0: __ccgo_ts + 231203,
+		1: __ccgo_ts + 231214,
+		2: __ccgo_ts + 231233,
 	}
 	i = 0
 	for {
@@ -80747,16 +80747,16 @@ func _socket_exec(tls *libc.TLS, m uintptr) (r int32) {
 		;
 		i = i + 1
 	}
-	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+231348, int32(ERCVALL_OFF)) < 0 {
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+231256, int32(ERCVALL_OFF)) < 0 {
 		goto error
 	}
-	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+231359, int32(ERCVALL_ON)) < 0 {
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+231267, int32(ERCVALL_ON)) < 0 {
 		goto error
 	}
-	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+231369, int32(ERCVALL_SOCKETLEVELONLY)) < 0 {
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+231277, int32(ERCVALL_SOCKETLEVELONLY)) < 0 {
 		goto error
 	}
-	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+231392, int32(ERCVALL_IPLEVEL)) < 0 {
+	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+231300, int32(ERCVALL_IPLEVEL)) < 0 {
 		goto error
 	}
 
@@ -92929,7 +92929,7 @@ func __overlapped_CreateIoCompletionPort_impl(tls *libc.TLS, module uintptr, Fil
 	if ret == libc.UintptrFromInt32(0) {
 		return _SetFromWindowsErr(tls, uint32(0))
 	}
-	return XPy_BuildValue(tls, __ccgo_ts+223484, libc.VaList(bp+8, ret))
+	return XPy_BuildValue(tls, __ccgo_ts+223392, libc.VaList(bp+8, ret))
 }
 
 func __overlapped_GetQueuedCompletionStatus_impl(tls *libc.TLS, module uintptr, CompletionPort THANDLE, Milliseconds TDWORD) (r uintptr) {
@@ -92963,7 +92963,7 @@ func __overlapped_GetQueuedCompletionStatus_impl(tls *libc.TLS, module uintptr, 
 			return _SetFromWindowsErr(tls, err)
 		}
 	}
-	return XPy_BuildValue(tls, __ccgo_ts+231403, libc.VaList(bp+32, err, **(**TDWORD)(__ccgo_up(bp)), **(**TULONG_PTR)(__ccgo_up(bp + 8)), **(**uintptr)(__ccgo_up(bp + 16))))
+	return XPy_BuildValue(tls, __ccgo_ts+231311, libc.VaList(bp+32, err, **(**TDWORD)(__ccgo_up(bp)), **(**TULONG_PTR)(__ccgo_up(bp + 8)), **(**uintptr)(__ccgo_up(bp + 16))))
 }
 
 func __overlapped_PostQueuedCompletionStatus_impl(tls *libc.TLS, module uintptr, CompletionPort THANDLE, NumberOfBytes TDWORD, CompletionKey TULONG_PTR, Overlapped uintptr) (r uintptr) {
@@ -93017,7 +93017,7 @@ func __overlapped_RegisterWaitWithQueue_impl(tls *libc.TLS, module uintptr, Obje
 		XPyMem_RawFree(tls, pdata)
 		return libc.UintptrFromInt32(0)
 	}
-	return XPy_BuildValue(tls, __ccgo_ts+223484, libc.VaList(bp+16, **(**THANDLE)(__ccgo_up(bp))))
+	return XPy_BuildValue(tls, __ccgo_ts+223392, libc.VaList(bp+16, **(**THANDLE)(__ccgo_up(bp))))
 }
 
 func __overlapped_UnregisterWait_impl(tls *libc.TLS, module uintptr, WaitHandle THANDLE) (r uintptr) {
@@ -93056,7 +93056,7 @@ func __overlapped_CreateEvent_impl(tls *libc.TLS, module uintptr, EventAttribute
 	var _save uintptr
 	_, _ = Event, _save
 	if EventAttributes != uintptr(unsafe.Pointer(&X_Py_NoneStruct)) {
-		XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+231408)
+		XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+231316)
 		return libc.UintptrFromInt32(0)
 	}
 	_save = XPyEval_SaveThread(tls)
@@ -93065,7 +93065,7 @@ func __overlapped_CreateEvent_impl(tls *libc.TLS, module uintptr, EventAttribute
 	if Event == libc.UintptrFromInt32(0) {
 		return _SetFromWindowsErr(tls, uint32(0))
 	}
-	return XPy_BuildValue(tls, __ccgo_ts+223484, libc.VaList(bp+8, Event))
+	return XPy_BuildValue(tls, __ccgo_ts+223392, libc.VaList(bp+8, Event))
 }
 
 func __overlapped_SetEvent_impl(tls *libc.TLS, module uintptr, Handle THANDLE) (r uintptr) {
@@ -93118,7 +93118,7 @@ func __overlapped_BindLocal_impl(tls *libc.TLS, module uintptr, Socket THANDLE, 
 			(**(**Tsockaddr_in6)(__ccgo_up(bp + 16))).Fsin6_addr = _ccgo_in6addr_any
 			ret = libc.BoolInt32(libc.Xbind(tls, uint64(Socket), bp+16, int32(28)) != -int32(1))
 		} else {
-			XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+231437)
+			XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+231345)
 			return libc.UintptrFromInt32(0)
 		}
 	}
@@ -93143,7 +93143,7 @@ func __overlapped_FormatMessage_impl(tls *libc.TLS, module uintptr, code TDWORD)
 		}
 		res = XPyUnicode_FromWideChar(tls, **(**uintptr)(__ccgo_up(bp)), int64(n))
 	} else {
-		res = XPyUnicode_FromFormat(tls, __ccgo_ts+231469, libc.VaList(bp+16, code))
+		res = XPyUnicode_FromFormat(tls, __ccgo_ts+231377, libc.VaList(bp+16, code))
 	}
 	libc.XLocalFree(tls, **(**uintptr)(__ccgo_up(bp)))
 	return res
@@ -93169,7 +93169,7 @@ func __overlapped_Overlapped_impl(tls *libc.TLS, type1 uintptr, event THANDLE) (
 	self = X_PyObject_New(tls, type1)
 	if self == libc.UintptrFromInt32(0) {
 		if event != libc.UintptrFromInt32(0) {
-			libc.XCloseHandle(tls, event)
+			_ccgo_CloseHandle(tls, event)
 		}
 		return libc.UintptrFromInt32(0)
 	}
@@ -93361,12 +93361,12 @@ func _Overlapped_dealloc(tls *libc.TLS, op2 uintptr) {
 			fallthrough
 		case uint32(995):
 		default:
-			XPyErr_Format(tls, XPyExc_RuntimeError, __ccgo_ts+231491, libc.VaList(bp+16, self))
-			XPyErr_FormatUnraisable(tls, __ccgo_ts+231561, libc.VaList(bp+16, self))
+			XPyErr_Format(tls, XPyExc_RuntimeError, __ccgo_ts+231399, libc.VaList(bp+16, self))
+			XPyErr_FormatUnraisable(tls, __ccgo_ts+231469, libc.VaList(bp+16, self))
 		}
 	}
 	if (*TOverlappedObject)(unsafe.Pointer(self)).Foverlapped.FhEvent != libc.UintptrFromInt32(0) {
-		libc.XCloseHandle(tls, (*TOverlappedObject)(unsafe.Pointer(self)).Foverlapped.FhEvent)
+		_ccgo_CloseHandle(tls, (*TOverlappedObject)(unsafe.Pointer(self)).Foverlapped.FhEvent)
 	}
 	_Overlapped_clear(tls, self)
 	_SetLastError(tls, olderr)
@@ -93449,7 +93449,7 @@ func _unparse_address(tls *libc.TLS, Address TLPSOCKADDR, Length TDWORD) (r uint
 		addrobj1 = _make_ipv6_addr1(tls, a1)
 		ret1 = libc.UintptrFromInt32(0)
 		if addrobj1 != 0 {
-			ret1 = XPy_BuildValue(tls, __ccgo_ts+225361, libc.VaList(bp+8, addrobj1, int32(libc.Xntohs(tls, (*Tsockaddr_in6)(unsafe.Pointer(a1)).Fsin6_port)), _ntohl(tls, (*Tsockaddr_in6)(unsafe.Pointer(a1)).Fsin6_flowinfo), (*Tsockaddr_in6)(unsafe.Pointer(a1)).F__ccgo4_24.Fsin6_scope_id))
+			ret1 = XPy_BuildValue(tls, __ccgo_ts+225269, libc.VaList(bp+8, addrobj1, int32(libc.Xntohs(tls, (*Tsockaddr_in6)(unsafe.Pointer(a1)).Fsin6_port)), _ntohl(tls, (*Tsockaddr_in6)(unsafe.Pointer(a1)).Fsin6_flowinfo), (*Tsockaddr_in6)(unsafe.Pointer(a1)).F__ccgo4_24.Fsin6_scope_id))
 			v1 = addrobj1
 			v2 = libc.BoolInt32(int32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
 			goto _9
@@ -93467,7 +93467,7 @@ func _unparse_address(tls *libc.TLS, Address TLPSOCKADDR, Length TDWORD) (r uint
 		}
 		return ret1
 	default:
-		XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+231622)
+		XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+231530)
 		return libc.UintptrFromInt32(0)
 	}
 	return r
@@ -93510,11 +93510,11 @@ func __overlapped_Overlapped_getresult_impl(tls *libc.TLS, self1 uintptr, wait T
 	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = _save, _tmp_old_op, _tmp_old_op1, _tmp_op_ptr, _tmp_op_ptr1, cur_refcnt, err, ret, self, tuple, v1, v10, v17, v2, v20, v3, v5, v7, v8
 	**(**TDWORD)(__ccgo_up(bp)) = uint32(0)
 	if (*TOverlappedObject)(unsafe.Pointer(self1)).Ftype1 == uint32(ETYPE_NONE) {
-		XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+231667)
+		XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+231575)
 		return libc.UintptrFromInt32(0)
 	}
 	if (*TOverlappedObject)(unsafe.Pointer(self1)).Ftype1 == uint32(ETYPE_NOT_STARTED) {
-		XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+231695)
+		XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+231603)
 		return libc.UintptrFromInt32(0)
 	}
 	_save = XPyEval_SaveThread(tls)
@@ -93830,7 +93830,7 @@ func __overlapped_Overlapped_ReadFile_impl(tls *libc.TLS, self uintptr, handle T
 	var v1 uint32
 	_, _, _ = buf, v1, v2
 	if (*TOverlappedObject)(unsafe.Pointer(self)).Ftype1 != uint32(ETYPE_NONE) {
-		XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+231721)
+		XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+231629)
 		return libc.UintptrFromInt32(0)
 	}
 	if size > uint32(libc.Int32FromInt32(1)) {
@@ -93854,11 +93854,11 @@ _3:
 func __overlapped_Overlapped_ReadFileInto_impl(tls *libc.TLS, self uintptr, handle THANDLE, bufobj uintptr) (r uintptr) {
 
 	if (*TOverlappedObject)(unsafe.Pointer(self)).Ftype1 != uint32(ETYPE_NONE) {
-		XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+231721)
+		XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+231629)
 		return libc.UintptrFromInt32(0)
 	}
 	if (*TPy_buffer)(unsafe.Pointer(bufobj)).Flen1 > int64(libc.Uint32FromInt32(2147483647)*libc.Uint32FromUint32(2)+libc.Uint32FromUint32(1)) {
-		XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+231749)
+		XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+231657)
 		return libc.UintptrFromInt32(0)
 	}
 	_steal_buffer(tls, self+64, bufobj)
@@ -93913,7 +93913,7 @@ func __overlapped_Overlapped_WSARecv_impl(tls *libc.TLS, self uintptr, handle TH
 	var v1 uint32
 	_, _, _ = buf, v1, v2
 	if (*TOverlappedObject)(unsafe.Pointer(self)).Ftype1 != uint32(ETYPE_NONE) {
-		XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+231721)
+		XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+231629)
 		return libc.UintptrFromInt32(0)
 	}
 	if size > uint32(libc.Int32FromInt32(1)) {
@@ -93937,11 +93937,11 @@ _3:
 func __overlapped_Overlapped_WSARecvInto_impl(tls *libc.TLS, self uintptr, handle THANDLE, bufobj uintptr, flags TDWORD) (r uintptr) {
 
 	if (*TOverlappedObject)(unsafe.Pointer(self)).Ftype1 != uint32(ETYPE_NONE) {
-		XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+231721)
+		XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+231629)
 		return libc.UintptrFromInt32(0)
 	}
 	if (*TPy_buffer)(unsafe.Pointer(bufobj)).Flen1 > int64(libc.Uint32FromInt32(2147483647)*libc.Uint32FromUint32(2)+libc.Uint32FromUint32(1)) {
-		XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+231749)
+		XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+231657)
 		return libc.UintptrFromInt32(0)
 	}
 	_steal_buffer(tls, self+64, bufobj)
@@ -93961,11 +93961,11 @@ func __overlapped_Overlapped_WriteFile_impl(tls *libc.TLS, self uintptr, handle 
 	var _ TDWORD
 	_, _, _, _, _ = _save, err, ret, v1, v2
 	if (*TOverlappedObject)(unsafe.Pointer(self)).Ftype1 != uint32(ETYPE_NONE) {
-		XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+231721)
+		XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+231629)
 		return libc.UintptrFromInt32(0)
 	}
 	if (*TPy_buffer)(unsafe.Pointer(bufobj)).Flen1 > int64(libc.Uint32FromInt32(2147483647)*libc.Uint32FromUint32(2)+libc.Uint32FromUint32(1)) {
-		XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+231749)
+		XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+231657)
 		return libc.UintptrFromInt32(0)
 	}
 	_steal_buffer(tls, self+64, bufobj)
@@ -94005,11 +94005,11 @@ func __overlapped_Overlapped_WSASend_impl(tls *libc.TLS, self uintptr, handle TH
 	var _ TWSABUF
 	_, _, _, _, _ = _save, err, ret, v1, v2
 	if (*TOverlappedObject)(unsafe.Pointer(self)).Ftype1 != uint32(ETYPE_NONE) {
-		XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+231721)
+		XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+231629)
 		return libc.UintptrFromInt32(0)
 	}
 	if (*TPy_buffer)(unsafe.Pointer(bufobj)).Flen1 > int64(libc.Uint32FromInt32(2147483647)*libc.Uint32FromUint32(2)+libc.Uint32FromUint32(1)) {
-		XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+231749)
+		XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+231657)
 		return libc.UintptrFromInt32(0)
 	}
 	_steal_buffer(tls, self+64, bufobj)
@@ -94051,7 +94051,7 @@ func __overlapped_Overlapped_AcceptEx_impl(tls *libc.TLS, self uintptr, ListenSo
 	var _ TDWORD
 	_, _, _, _, _, _, _, _ = _save, buf, err, ret, size, v1, v3, v4
 	if (*TOverlappedObject)(unsafe.Pointer(self)).Ftype1 != uint32(ETYPE_NONE) {
-		XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+231721)
+		XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+231629)
 		return libc.UintptrFromInt32(0)
 	}
 	size = uint32(libc.Uint64FromInt64(28) + libc.Uint64FromInt32(16))
@@ -94109,7 +94109,7 @@ _4:
 _2:
 	switch v1 {
 	case int64(2):
-		if !(XPyArg_ParseTuple(tls, obj, __ccgo_ts+231766, libc.VaList(bp+40, bp+8, bp+16)) != 0) {
+		if !(XPyArg_ParseTuple(tls, obj, __ccgo_ts+231674, libc.VaList(bp+40, bp+8, bp+16)) != 0) {
 			return -int32(1)
 		}
 		Host = XPyUnicode_AsWideCharString(tls, **(**uintptr)(__ccgo_up(bp + 8)), libc.UintptrFromInt32(0))
@@ -94126,7 +94126,7 @@ _2:
 		XPyMem_Free(tls, Host)
 		return **(**int32)(__ccgo_up(bp))
 	case int64(4):
-		if !(XPyArg_ParseTuple(tls, obj, __ccgo_ts+231769, libc.VaList(bp+40, bp+8, bp+16, bp+20, bp+24)) != 0) {
+		if !(XPyArg_ParseTuple(tls, obj, __ccgo_ts+231677, libc.VaList(bp+40, bp+8, bp+16, bp+20, bp+24)) != 0) {
 			return -int32(1)
 		}
 		Host = XPyUnicode_AsWideCharString(tls, **(**uintptr)(__ccgo_up(bp + 8)), libc.UintptrFromInt32(0))
@@ -94145,7 +94145,7 @@ _2:
 		XPyMem_Free(tls, Host)
 		return **(**int32)(__ccgo_up(bp))
 	default:
-		XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+231821)
+		XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+231729)
 		return -int32(1)
 	}
 	return r
@@ -94163,7 +94163,7 @@ func __overlapped_Overlapped_ConnectEx_impl(tls *libc.TLS, self uintptr, Connect
 	_, _, _, _, _, _, _ = Address, Length, _save, err, ret, v1, v2
 	Address = bp
 	if (*TOverlappedObject)(unsafe.Pointer(self)).Ftype1 != uint32(ETYPE_NONE) {
-		XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+231721)
+		XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+231629)
 		return libc.UintptrFromInt32(0)
 	}
 	Length = int32(28)
@@ -94204,7 +94204,7 @@ func __overlapped_Overlapped_DisconnectEx_impl(tls *libc.TLS, self uintptr, Sock
 	var v2 int32
 	_, _, _, _, _ = _save, err, ret, v1, v2
 	if (*TOverlappedObject)(unsafe.Pointer(self)).Ftype1 != uint32(ETYPE_NONE) {
-		XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+231721)
+		XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+231629)
 		return libc.UintptrFromInt32(0)
 	}
 	(*TOverlappedObject)(unsafe.Pointer(self)).Ftype1 = uint32(ETYPE_DISCONNECT)
@@ -94240,7 +94240,7 @@ func __overlapped_Overlapped_TransmitFile_impl(tls *libc.TLS, self uintptr, Sock
 	var v2 int32
 	_, _, _, _, _ = _save, err, ret, v1, v2
 	if (*TOverlappedObject)(unsafe.Pointer(self)).Ftype1 != uint32(ETYPE_NONE) {
-		XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+231721)
+		XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+231629)
 		return libc.UintptrFromInt32(0)
 	}
 	(*TOverlappedObject)(unsafe.Pointer(self)).Ftype1 = uint32(ETYPE_TRANSMIT_FILE)
@@ -94278,7 +94278,7 @@ func __overlapped_Overlapped_ConnectNamedPipe_impl(tls *libc.TLS, self uintptr, 
 	var v2 uint32
 	_, _, _, _, _ = _save, err, ret, v1, v2
 	if (*TOverlappedObject)(unsafe.Pointer(self)).Ftype1 != uint32(ETYPE_NONE) {
-		XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+231721)
+		XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+231629)
 		return libc.UintptrFromInt32(0)
 	}
 	(*TOverlappedObject)(unsafe.Pointer(self)).Ftype1 = uint32(ETYPE_CONNECT_NAMED_PIPE)
@@ -94322,7 +94322,7 @@ func __overlapped_Overlapped_ConnectPipe_impl(tls *libc.TLS, self uintptr, Addre
 	if PipeHandle == uintptr(int64(-libc.Int32FromInt32(1))) {
 		return _SetFromWindowsErr(tls, uint32(0))
 	}
-	return XPy_BuildValue(tls, __ccgo_ts+223484, libc.VaList(bp+8, PipeHandle))
+	return XPy_BuildValue(tls, __ccgo_ts+223392, libc.VaList(bp+8, PipeHandle))
 }
 
 func _Overlapped_getaddress(tls *libc.TLS, op uintptr, _unused_closure uintptr) (r uintptr) {
@@ -94515,11 +94515,11 @@ func __overlapped_Overlapped_WSASendTo_impl(tls *libc.TLS, self uintptr, handle 
 		return libc.UintptrFromInt32(0)
 	}
 	if (*TOverlappedObject)(unsafe.Pointer(self)).Ftype1 != uint32(ETYPE_NONE) {
-		XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+231721)
+		XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+231629)
 		return libc.UintptrFromInt32(0)
 	}
 	if (*TPy_buffer)(unsafe.Pointer(bufobj)).Flen1 > int64(libc.Uint32FromInt32(2147483647)*libc.Uint32FromUint32(2)+libc.Uint32FromUint32(1)) {
-		XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+231749)
+		XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+231657)
 		return libc.UintptrFromInt32(0)
 	}
 	_steal_buffer(tls, self+64, bufobj)
@@ -94563,7 +94563,7 @@ func __overlapped_Overlapped_WSARecvFrom_impl(tls *libc.TLS, self uintptr, handl
 	var _ TWSABUF
 	_, _, _, _, _, _, _, _ = _save, buf, err, ret, v1, v2, v4, v5
 	if (*TOverlappedObject)(unsafe.Pointer(self)).Ftype1 != uint32(ETYPE_NONE) {
-		XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+231721)
+		XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+231629)
 		return libc.UintptrFromInt32(0)
 	}
 	if size > uint32(libc.Int32FromInt32(1)) {
@@ -94635,15 +94635,15 @@ func __overlapped_Overlapped_WSARecvFromInto_impl(tls *libc.TLS, self uintptr, h
 	var _ TWSABUF
 	_, _, _, _, _ = _save, err, ret, v1, v2
 	if (*TOverlappedObject)(unsafe.Pointer(self)).Ftype1 != uint32(ETYPE_NONE) {
-		XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+231721)
+		XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+231629)
 		return libc.UintptrFromInt32(0)
 	}
 	if (*TPy_buffer)(unsafe.Pointer(bufobj)).Flen1 > int64(libc.Uint32FromInt32(2147483647)*libc.Uint32FromUint32(2)+libc.Uint32FromUint32(1)) {
-		XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+231749)
+		XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+231657)
 		return libc.UintptrFromInt32(0)
 	}
 	if (*TPy_buffer)(unsafe.Pointer(bufobj)).Flen1 < int64(size) {
-		XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+226678)
+		XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+226586)
 		return libc.UintptrFromInt32(0)
 	}
 	(**(**TWSABUF)(__ccgo_up(bp + 8))).Fbuf = (*TPy_buffer)(unsafe.Pointer(bufobj)).Fbuf
@@ -94695,7 +94695,7 @@ func __overlapped_CreateIoCompletionPort(tls *libc.TLS, module uintptr, args uin
 	var _ TDWORD
 	_, _, _, _ = CompletionKey, ExistingCompletionPort, FileHandle, return_value
 	return_value = libc.UintptrFromInt32(0)
-	if !(libc.Bool(!false) && int64(libc.Int32FromInt32(4)) <= nargs && nargs <= int64(libc.Int32FromInt32(4)) || X_PyArg_CheckPositional(tls, __ccgo_ts+231855, nargs, int64(libc.Int32FromInt32(4)), int64(libc.Int32FromInt32(4))) != 0) {
+	if !(libc.Bool(!false) && int64(libc.Int32FromInt32(4)) <= nargs && nargs <= int64(libc.Int32FromInt32(4)) || X_PyArg_CheckPositional(tls, __ccgo_ts+231763, nargs, int64(libc.Int32FromInt32(4)), int64(libc.Int32FromInt32(4))) != 0) {
 		goto exit
 	}
 	FileHandle = XPyLong_AsVoidPtr(tls, **(**uintptr)(__ccgo_up(args)))
@@ -94729,7 +94729,7 @@ func __overlapped_GetQueuedCompletionStatus(tls *libc.TLS, module uintptr, args 
 	var _ TDWORD
 	_, _ = CompletionPort, return_value
 	return_value = libc.UintptrFromInt32(0)
-	if !(libc.Bool(!false) && int64(libc.Int32FromInt32(2)) <= nargs && nargs <= int64(libc.Int32FromInt32(2)) || X_PyArg_CheckPositional(tls, __ccgo_ts+231878, nargs, int64(libc.Int32FromInt32(2)), int64(libc.Int32FromInt32(2))) != 0) {
+	if !(libc.Bool(!false) && int64(libc.Int32FromInt32(2)) <= nargs && nargs <= int64(libc.Int32FromInt32(2)) || X_PyArg_CheckPositional(tls, __ccgo_ts+231786, nargs, int64(libc.Int32FromInt32(2)), int64(libc.Int32FromInt32(2))) != 0) {
 		goto exit
 	}
 	CompletionPort = XPyLong_AsVoidPtr(tls, **(**uintptr)(__ccgo_up(args)))
@@ -94756,7 +94756,7 @@ func __overlapped_PostQueuedCompletionStatus(tls *libc.TLS, module uintptr, args
 	var _ TDWORD
 	_, _, _, _ = CompletionKey, CompletionPort, Overlapped, return_value
 	return_value = libc.UintptrFromInt32(0)
-	if !(libc.Bool(!false) && int64(libc.Int32FromInt32(4)) <= nargs && nargs <= int64(libc.Int32FromInt32(4)) || X_PyArg_CheckPositional(tls, __ccgo_ts+231904, nargs, int64(libc.Int32FromInt32(4)), int64(libc.Int32FromInt32(4))) != 0) {
+	if !(libc.Bool(!false) && int64(libc.Int32FromInt32(4)) <= nargs && nargs <= int64(libc.Int32FromInt32(4)) || X_PyArg_CheckPositional(tls, __ccgo_ts+231812, nargs, int64(libc.Int32FromInt32(4)), int64(libc.Int32FromInt32(4))) != 0) {
 		goto exit
 	}
 	CompletionPort = XPyLong_AsVoidPtr(tls, **(**uintptr)(__ccgo_up(args)))
@@ -94790,7 +94790,7 @@ func __overlapped_RegisterWaitWithQueue(tls *libc.TLS, module uintptr, args uint
 	var _ TDWORD
 	_, _, _, _ = CompletionPort, Object, Overlapped, return_value
 	return_value = libc.UintptrFromInt32(0)
-	if !(libc.Bool(!false) && int64(libc.Int32FromInt32(4)) <= nargs && nargs <= int64(libc.Int32FromInt32(4)) || X_PyArg_CheckPositional(tls, __ccgo_ts+231931, nargs, int64(libc.Int32FromInt32(4)), int64(libc.Int32FromInt32(4))) != 0) {
+	if !(libc.Bool(!false) && int64(libc.Int32FromInt32(4)) <= nargs && nargs <= int64(libc.Int32FromInt32(4)) || X_PyArg_CheckPositional(tls, __ccgo_ts+231839, nargs, int64(libc.Int32FromInt32(4)), int64(libc.Int32FromInt32(4))) != 0) {
 		goto exit
 	}
 	Object = XPyLong_AsVoidPtr(tls, **(**uintptr)(__ccgo_up(args)))
@@ -94838,7 +94838,7 @@ func __overlapped_UnregisterWaitEx(tls *libc.TLS, module uintptr, args uintptr, 
 	var return_value uintptr
 	_, _, _ = Event, WaitHandle, return_value
 	return_value = libc.UintptrFromInt32(0)
-	if !(libc.Bool(!false) && int64(libc.Int32FromInt32(2)) <= nargs && nargs <= int64(libc.Int32FromInt32(2)) || X_PyArg_CheckPositional(tls, __ccgo_ts+231953, nargs, int64(libc.Int32FromInt32(2)), int64(libc.Int32FromInt32(2))) != 0) {
+	if !(libc.Bool(!false) && int64(libc.Int32FromInt32(2)) <= nargs && nargs <= int64(libc.Int32FromInt32(2)) || X_PyArg_CheckPositional(tls, __ccgo_ts+231861, nargs, int64(libc.Int32FromInt32(2)), int64(libc.Int32FromInt32(2))) != 0) {
 		goto exit
 	}
 	WaitHandle = XPyLong_AsVoidPtr(tls, **(**uintptr)(__ccgo_up(args)))
@@ -94865,7 +94865,7 @@ func __overlapped_CreateEvent(tls *libc.TLS, module uintptr, args uintptr, nargs
 	_, _, _, _, _, _, _, _ = EventAttributes, InitialState, ManualReset, Name, flags, return_value, v1, v3
 	return_value = libc.UintptrFromInt32(0)
 	Name = libc.UintptrFromInt32(0)
-	if !(libc.Bool(!false) && int64(libc.Int32FromInt32(4)) <= nargs && nargs <= int64(libc.Int32FromInt32(4)) || X_PyArg_CheckPositional(tls, __ccgo_ts+231970, nargs, int64(libc.Int32FromInt32(4)), int64(libc.Int32FromInt32(4))) != 0) {
+	if !(libc.Bool(!false) && int64(libc.Int32FromInt32(4)) <= nargs && nargs <= int64(libc.Int32FromInt32(4)) || X_PyArg_CheckPositional(tls, __ccgo_ts+231878, nargs, int64(libc.Int32FromInt32(4)), int64(libc.Int32FromInt32(4))) != 0) {
 		goto exit
 	}
 	EventAttributes = **(**uintptr)(__ccgo_up(args))
@@ -94893,7 +94893,7 @@ func __overlapped_CreateEvent(tls *libc.TLS, module uintptr, args uintptr, nargs
 				goto exit
 			}
 		} else {
-			X_PyArg_BadArgument(tls, __ccgo_ts+231970, __ccgo_ts+231982, __ccgo_ts+48940, **(**uintptr)(__ccgo_up(args + 3*8)))
+			X_PyArg_BadArgument(tls, __ccgo_ts+231878, __ccgo_ts+231890, __ccgo_ts+48940, **(**uintptr)(__ccgo_up(args + 3*8)))
 			goto exit
 		}
 	}
@@ -94949,7 +94949,7 @@ func __overlapped_BindLocal(tls *libc.TLS, module uintptr, args uintptr, nargs T
 	var return_value uintptr
 	_, _, _ = Family, Socket, return_value
 	return_value = libc.UintptrFromInt32(0)
-	if !(libc.Bool(!false) && int64(libc.Int32FromInt32(2)) <= nargs && nargs <= int64(libc.Int32FromInt32(2)) || X_PyArg_CheckPositional(tls, __ccgo_ts+231993, nargs, int64(libc.Int32FromInt32(2)), int64(libc.Int32FromInt32(2))) != 0) {
+	if !(libc.Bool(!false) && int64(libc.Int32FromInt32(2)) <= nargs && nargs <= int64(libc.Int32FromInt32(2)) || X_PyArg_CheckPositional(tls, __ccgo_ts+231901, nargs, int64(libc.Int32FromInt32(2)), int64(libc.Int32FromInt32(2))) != 0) {
 		goto exit
 	}
 	Socket = XPyLong_AsVoidPtr(tls, **(**uintptr)(__ccgo_up(args)))
@@ -95072,13 +95072,13 @@ var __kwtuple164 = struct {
 }
 
 var __keywords192 = [2]uintptr{
-	0: __ccgo_ts + 232003,
+	0: __ccgo_ts + 231911,
 	1: libc.UintptrFromInt32(0),
 }
 
 var __parser192 = T_PyArg_Parser{
 	Fkeywords: uintptr(unsafe.Pointer(&__keywords192)),
-	Ffname:    __ccgo_ts + 232009,
+	Ffname:    __ccgo_ts + 231917,
 	Fkwtuple:  uintptr(unsafe.Pointer(&__kwtuple164)) + 16,
 }
 
@@ -95094,7 +95094,7 @@ func __overlapped_Overlapped_getresult(tls *libc.TLS, self uintptr, args uintptr
 	_, _ = return_value, wait
 	return_value = libc.UintptrFromInt32(0)
 	wait = MFALSE
-	if !(libc.Bool(!false) && int64(libc.Int32FromInt32(0)) <= nargs && nargs <= int64(libc.Int32FromInt32(1)) || X_PyArg_CheckPositional(tls, __ccgo_ts+232020, nargs, int64(libc.Int32FromInt32(0)), int64(libc.Int32FromInt32(1))) != 0) {
+	if !(libc.Bool(!false) && int64(libc.Int32FromInt32(0)) <= nargs && nargs <= int64(libc.Int32FromInt32(1)) || X_PyArg_CheckPositional(tls, __ccgo_ts+231928, nargs, int64(libc.Int32FromInt32(0)), int64(libc.Int32FromInt32(1))) != 0) {
 		goto exit
 	}
 	if nargs < int64(1) {
@@ -95125,7 +95125,7 @@ func __overlapped_Overlapped_ReadFile(tls *libc.TLS, self uintptr, args uintptr,
 	var _ TDWORD
 	_, _ = handle, return_value
 	return_value = libc.UintptrFromInt32(0)
-	if !(libc.Bool(!false) && int64(libc.Int32FromInt32(2)) <= nargs && nargs <= int64(libc.Int32FromInt32(2)) || X_PyArg_CheckPositional(tls, __ccgo_ts+232030, nargs, int64(libc.Int32FromInt32(2)), int64(libc.Int32FromInt32(2))) != 0) {
+	if !(libc.Bool(!false) && int64(libc.Int32FromInt32(2)) <= nargs && nargs <= int64(libc.Int32FromInt32(2)) || X_PyArg_CheckPositional(tls, __ccgo_ts+231938, nargs, int64(libc.Int32FromInt32(2)), int64(libc.Int32FromInt32(2))) != 0) {
 		goto exit
 	}
 	handle = XPyLong_AsVoidPtr(tls, **(**uintptr)(__ccgo_up(args)))
@@ -95152,7 +95152,7 @@ func __overlapped_Overlapped_ReadFileInto(tls *libc.TLS, self uintptr, args uint
 	_, _ = handle, return_value
 	return_value = libc.UintptrFromInt32(0)
 	**(**TPy_buffer)(__ccgo_up(bp)) = TPy_buffer{}
-	if !(libc.Bool(!false) && int64(libc.Int32FromInt32(2)) <= nargs && nargs <= int64(libc.Int32FromInt32(2)) || X_PyArg_CheckPositional(tls, __ccgo_ts+232039, nargs, int64(libc.Int32FromInt32(2)), int64(libc.Int32FromInt32(2))) != 0) {
+	if !(libc.Bool(!false) && int64(libc.Int32FromInt32(2)) <= nargs && nargs <= int64(libc.Int32FromInt32(2)) || X_PyArg_CheckPositional(tls, __ccgo_ts+231947, nargs, int64(libc.Int32FromInt32(2)), int64(libc.Int32FromInt32(2))) != 0) {
 		goto exit
 	}
 	handle = XPyLong_AsVoidPtr(tls, **(**uintptr)(__ccgo_up(args)))
@@ -95182,7 +95182,7 @@ func __overlapped_Overlapped_WSARecv(tls *libc.TLS, self uintptr, args uintptr, 
 	_, _ = handle, return_value
 	return_value = libc.UintptrFromInt32(0)
 	**(**TDWORD)(__ccgo_up(bp + 4)) = uint32(0)
-	if !(libc.Bool(!false) && int64(libc.Int32FromInt32(2)) <= nargs && nargs <= int64(libc.Int32FromInt32(3)) || X_PyArg_CheckPositional(tls, __ccgo_ts+232052, nargs, int64(libc.Int32FromInt32(2)), int64(libc.Int32FromInt32(3))) != 0) {
+	if !(libc.Bool(!false) && int64(libc.Int32FromInt32(2)) <= nargs && nargs <= int64(libc.Int32FromInt32(3)) || X_PyArg_CheckPositional(tls, __ccgo_ts+231960, nargs, int64(libc.Int32FromInt32(2)), int64(libc.Int32FromInt32(3))) != 0) {
 		goto exit
 	}
 	handle = XPyLong_AsVoidPtr(tls, **(**uintptr)(__ccgo_up(args)))
@@ -95219,7 +95219,7 @@ func __overlapped_Overlapped_WSARecvInto(tls *libc.TLS, self uintptr, args uintp
 	_, _ = handle, return_value
 	return_value = libc.UintptrFromInt32(0)
 	**(**TPy_buffer)(__ccgo_up(bp)) = TPy_buffer{}
-	if !(libc.Bool(!false) && int64(libc.Int32FromInt32(3)) <= nargs && nargs <= int64(libc.Int32FromInt32(3)) || X_PyArg_CheckPositional(tls, __ccgo_ts+232060, nargs, int64(libc.Int32FromInt32(3)), int64(libc.Int32FromInt32(3))) != 0) {
+	if !(libc.Bool(!false) && int64(libc.Int32FromInt32(3)) <= nargs && nargs <= int64(libc.Int32FromInt32(3)) || X_PyArg_CheckPositional(tls, __ccgo_ts+231968, nargs, int64(libc.Int32FromInt32(3)), int64(libc.Int32FromInt32(3))) != 0) {
 		goto exit
 	}
 	handle = XPyLong_AsVoidPtr(tls, **(**uintptr)(__ccgo_up(args)))
@@ -95253,7 +95253,7 @@ func __overlapped_Overlapped_WriteFile(tls *libc.TLS, self uintptr, args uintptr
 	_, _ = handle, return_value
 	return_value = libc.UintptrFromInt32(0)
 	**(**TPy_buffer)(__ccgo_up(bp)) = TPy_buffer{}
-	if !(libc.Bool(!false) && int64(libc.Int32FromInt32(2)) <= nargs && nargs <= int64(libc.Int32FromInt32(2)) || X_PyArg_CheckPositional(tls, __ccgo_ts+232072, nargs, int64(libc.Int32FromInt32(2)), int64(libc.Int32FromInt32(2))) != 0) {
+	if !(libc.Bool(!false) && int64(libc.Int32FromInt32(2)) <= nargs && nargs <= int64(libc.Int32FromInt32(2)) || X_PyArg_CheckPositional(tls, __ccgo_ts+231980, nargs, int64(libc.Int32FromInt32(2)), int64(libc.Int32FromInt32(2))) != 0) {
 		goto exit
 	}
 	handle = XPyLong_AsVoidPtr(tls, **(**uintptr)(__ccgo_up(args)))
@@ -95283,7 +95283,7 @@ func __overlapped_Overlapped_WSASend(tls *libc.TLS, self uintptr, args uintptr, 
 	_, _ = handle, return_value
 	return_value = libc.UintptrFromInt32(0)
 	**(**TPy_buffer)(__ccgo_up(bp)) = TPy_buffer{}
-	if !(libc.Bool(!false) && int64(libc.Int32FromInt32(3)) <= nargs && nargs <= int64(libc.Int32FromInt32(3)) || X_PyArg_CheckPositional(tls, __ccgo_ts+232082, nargs, int64(libc.Int32FromInt32(3)), int64(libc.Int32FromInt32(3))) != 0) {
+	if !(libc.Bool(!false) && int64(libc.Int32FromInt32(3)) <= nargs && nargs <= int64(libc.Int32FromInt32(3)) || X_PyArg_CheckPositional(tls, __ccgo_ts+231990, nargs, int64(libc.Int32FromInt32(3)), int64(libc.Int32FromInt32(3))) != 0) {
 		goto exit
 	}
 	handle = XPyLong_AsVoidPtr(tls, **(**uintptr)(__ccgo_up(args)))
@@ -95311,7 +95311,7 @@ func __overlapped_Overlapped_AcceptEx(tls *libc.TLS, self uintptr, args uintptr,
 	var return_value uintptr
 	_, _, _ = AcceptSocket, ListenSocket, return_value
 	return_value = libc.UintptrFromInt32(0)
-	if !(libc.Bool(!false) && int64(libc.Int32FromInt32(2)) <= nargs && nargs <= int64(libc.Int32FromInt32(2)) || X_PyArg_CheckPositional(tls, __ccgo_ts+232090, nargs, int64(libc.Int32FromInt32(2)), int64(libc.Int32FromInt32(2))) != 0) {
+	if !(libc.Bool(!false) && int64(libc.Int32FromInt32(2)) <= nargs && nargs <= int64(libc.Int32FromInt32(2)) || X_PyArg_CheckPositional(tls, __ccgo_ts+231998, nargs, int64(libc.Int32FromInt32(2)), int64(libc.Int32FromInt32(2))) != 0) {
 		goto exit
 	}
 	ListenSocket = XPyLong_AsVoidPtr(tls, **(**uintptr)(__ccgo_up(args)))
@@ -95337,7 +95337,7 @@ func __overlapped_Overlapped_ConnectEx(tls *libc.TLS, self uintptr, args uintptr
 	var v3 int32
 	_, _, _, _, _, _ = AddressObj, ConnectSocket, flags, return_value, v1, v3
 	return_value = libc.UintptrFromInt32(0)
-	if !(libc.Bool(!false) && int64(libc.Int32FromInt32(2)) <= nargs && nargs <= int64(libc.Int32FromInt32(2)) || X_PyArg_CheckPositional(tls, __ccgo_ts+232099, nargs, int64(libc.Int32FromInt32(2)), int64(libc.Int32FromInt32(2))) != 0) {
+	if !(libc.Bool(!false) && int64(libc.Int32FromInt32(2)) <= nargs && nargs <= int64(libc.Int32FromInt32(2)) || X_PyArg_CheckPositional(tls, __ccgo_ts+232007, nargs, int64(libc.Int32FromInt32(2)), int64(libc.Int32FromInt32(2))) != 0) {
 		goto exit
 	}
 	ConnectSocket = XPyLong_AsVoidPtr(tls, **(**uintptr)(__ccgo_up(args)))
@@ -95352,7 +95352,7 @@ _2:
 	goto _4
 _4:
 	if !(v3 != 0) {
-		X_PyArg_BadArgument(tls, __ccgo_ts+232099, __ccgo_ts+16387, __ccgo_ts+2124, **(**uintptr)(__ccgo_up(args + 1*8)))
+		X_PyArg_BadArgument(tls, __ccgo_ts+232007, __ccgo_ts+16387, __ccgo_ts+2124, **(**uintptr)(__ccgo_up(args + 1*8)))
 		goto exit
 	}
 	AddressObj = **(**uintptr)(__ccgo_up(args + 1*8))
@@ -95374,7 +95374,7 @@ func __overlapped_Overlapped_DisconnectEx(tls *libc.TLS, self uintptr, args uint
 	var _ TDWORD
 	_, _ = Socket, return_value
 	return_value = libc.UintptrFromInt32(0)
-	if !(libc.Bool(!false) && int64(libc.Int32FromInt32(2)) <= nargs && nargs <= int64(libc.Int32FromInt32(2)) || X_PyArg_CheckPositional(tls, __ccgo_ts+232109, nargs, int64(libc.Int32FromInt32(2)), int64(libc.Int32FromInt32(2))) != 0) {
+	if !(libc.Bool(!false) && int64(libc.Int32FromInt32(2)) <= nargs && nargs <= int64(libc.Int32FromInt32(2)) || X_PyArg_CheckPositional(tls, __ccgo_ts+232017, nargs, int64(libc.Int32FromInt32(2)), int64(libc.Int32FromInt32(2))) != 0) {
 		goto exit
 	}
 	Socket = XPyLong_AsVoidPtr(tls, **(**uintptr)(__ccgo_up(args)))
@@ -95404,7 +95404,7 @@ func __overlapped_Overlapped_TransmitFile(tls *libc.TLS, self uintptr, args uint
 	var _ TDWORD
 	_, _, _ = File, Socket, return_value
 	return_value = libc.UintptrFromInt32(0)
-	if !(libc.Bool(!false) && int64(libc.Int32FromInt32(7)) <= nargs && nargs <= int64(libc.Int32FromInt32(7)) || X_PyArg_CheckPositional(tls, __ccgo_ts+232122, nargs, int64(libc.Int32FromInt32(7)), int64(libc.Int32FromInt32(7))) != 0) {
+	if !(libc.Bool(!false) && int64(libc.Int32FromInt32(7)) <= nargs && nargs <= int64(libc.Int32FromInt32(7)) || X_PyArg_CheckPositional(tls, __ccgo_ts+232030, nargs, int64(libc.Int32FromInt32(7)), int64(libc.Int32FromInt32(7))) != 0) {
 		goto exit
 	}
 	Socket = XPyLong_AsVoidPtr(tls, **(**uintptr)(__ccgo_up(args)))
@@ -95470,7 +95470,7 @@ _2:
 	goto _4
 _4:
 	if !(v3 != 0) {
-		X_PyArg_BadArgument(tls, __ccgo_ts+232135, __ccgo_ts+23361, __ccgo_ts+15107, arg)
+		X_PyArg_BadArgument(tls, __ccgo_ts+232043, __ccgo_ts+23361, __ccgo_ts+15107, arg)
 		goto exit
 	}
 	Address = XPyUnicode_AsWideCharString(tls, arg, libc.UintptrFromInt32(0))
@@ -95492,7 +95492,7 @@ func __overlapped_WSAConnect(tls *libc.TLS, module uintptr, args uintptr, nargs 
 	var v3 int32
 	_, _, _, _, _, _ = AddressObj, ConnectSocket, flags, return_value, v1, v3
 	return_value = libc.UintptrFromInt32(0)
-	if !(libc.Bool(!false) && int64(libc.Int32FromInt32(2)) <= nargs && nargs <= int64(libc.Int32FromInt32(2)) || X_PyArg_CheckPositional(tls, __ccgo_ts+232147, nargs, int64(libc.Int32FromInt32(2)), int64(libc.Int32FromInt32(2))) != 0) {
+	if !(libc.Bool(!false) && int64(libc.Int32FromInt32(2)) <= nargs && nargs <= int64(libc.Int32FromInt32(2)) || X_PyArg_CheckPositional(tls, __ccgo_ts+232055, nargs, int64(libc.Int32FromInt32(2)), int64(libc.Int32FromInt32(2))) != 0) {
 		goto exit
 	}
 	ConnectSocket = XPyLong_AsVoidPtr(tls, **(**uintptr)(__ccgo_up(args)))
@@ -95507,7 +95507,7 @@ _2:
 	goto _4
 _4:
 	if !(v3 != 0) {
-		X_PyArg_BadArgument(tls, __ccgo_ts+232147, __ccgo_ts+16387, __ccgo_ts+2124, **(**uintptr)(__ccgo_up(args + 1*8)))
+		X_PyArg_BadArgument(tls, __ccgo_ts+232055, __ccgo_ts+16387, __ccgo_ts+2124, **(**uintptr)(__ccgo_up(args + 1*8)))
 		goto exit
 	}
 	AddressObj = **(**uintptr)(__ccgo_up(args + 1*8))
@@ -95531,7 +95531,7 @@ func __overlapped_Overlapped_WSASendTo(tls *libc.TLS, self uintptr, args uintptr
 	_, _, _, _, _, _ = AddressObj, flags, handle, return_value, v1, v3
 	return_value = libc.UintptrFromInt32(0)
 	**(**TPy_buffer)(__ccgo_up(bp)) = TPy_buffer{}
-	if !(libc.Bool(!false) && int64(libc.Int32FromInt32(4)) <= nargs && nargs <= int64(libc.Int32FromInt32(4)) || X_PyArg_CheckPositional(tls, __ccgo_ts+232158, nargs, int64(libc.Int32FromInt32(4)), int64(libc.Int32FromInt32(4))) != 0) {
+	if !(libc.Bool(!false) && int64(libc.Int32FromInt32(4)) <= nargs && nargs <= int64(libc.Int32FromInt32(4)) || X_PyArg_CheckPositional(tls, __ccgo_ts+232066, nargs, int64(libc.Int32FromInt32(4)), int64(libc.Int32FromInt32(4))) != 0) {
 		goto exit
 	}
 	handle = XPyLong_AsVoidPtr(tls, **(**uintptr)(__ccgo_up(args)))
@@ -95552,7 +95552,7 @@ _2:
 	goto _4
 _4:
 	if !(v3 != 0) {
-		X_PyArg_BadArgument(tls, __ccgo_ts+232158, __ccgo_ts+231982, __ccgo_ts+2124, **(**uintptr)(__ccgo_up(args + 3*8)))
+		X_PyArg_BadArgument(tls, __ccgo_ts+232066, __ccgo_ts+231890, __ccgo_ts+2124, **(**uintptr)(__ccgo_up(args + 3*8)))
 		goto exit
 	}
 	AddressObj = **(**uintptr)(__ccgo_up(args + 3*8))
@@ -95576,7 +95576,7 @@ func __overlapped_Overlapped_WSARecvFrom(tls *libc.TLS, self uintptr, args uintp
 	_, _ = handle, return_value
 	return_value = libc.UintptrFromInt32(0)
 	**(**TDWORD)(__ccgo_up(bp + 4)) = uint32(0)
-	if !(libc.Bool(!false) && int64(libc.Int32FromInt32(2)) <= nargs && nargs <= int64(libc.Int32FromInt32(3)) || X_PyArg_CheckPositional(tls, __ccgo_ts+232168, nargs, int64(libc.Int32FromInt32(2)), int64(libc.Int32FromInt32(3))) != 0) {
+	if !(libc.Bool(!false) && int64(libc.Int32FromInt32(2)) <= nargs && nargs <= int64(libc.Int32FromInt32(3)) || X_PyArg_CheckPositional(tls, __ccgo_ts+232076, nargs, int64(libc.Int32FromInt32(2)), int64(libc.Int32FromInt32(3))) != 0) {
 		goto exit
 	}
 	handle = XPyLong_AsVoidPtr(tls, **(**uintptr)(__ccgo_up(args)))
@@ -95615,7 +95615,7 @@ func __overlapped_Overlapped_WSARecvFromInto(tls *libc.TLS, self uintptr, args u
 	return_value = libc.UintptrFromInt32(0)
 	**(**TPy_buffer)(__ccgo_up(bp)) = TPy_buffer{}
 	**(**TDWORD)(__ccgo_up(bp + 84)) = uint32(0)
-	if !(libc.Bool(!false) && int64(libc.Int32FromInt32(3)) <= nargs && nargs <= int64(libc.Int32FromInt32(4)) || X_PyArg_CheckPositional(tls, __ccgo_ts+232180, nargs, int64(libc.Int32FromInt32(3)), int64(libc.Int32FromInt32(4))) != 0) {
+	if !(libc.Bool(!false) && int64(libc.Int32FromInt32(3)) <= nargs && nargs <= int64(libc.Int32FromInt32(4)) || X_PyArg_CheckPositional(tls, __ccgo_ts+232088, nargs, int64(libc.Int32FromInt32(3)), int64(libc.Int32FromInt32(4))) != 0) {
 		goto exit
 	}
 	handle = XPyLong_AsVoidPtr(tls, **(**uintptr)(__ccgo_up(args)))
@@ -95649,7 +95649,7 @@ exit:
 
 var _Overlapped_methods = [18]TPyMethodDef{
 	0: {
-		Fml_name:  __ccgo_ts + 232020,
+		Fml_name:  __ccgo_ts + 231928,
 		Fml_flags: int32(MMETH_FASTCALL),
 		Fml_doc:   uintptr(unsafe.Pointer(&__overlapped_Overlapped_getresult__doc__)),
 	},
@@ -95659,77 +95659,77 @@ var _Overlapped_methods = [18]TPyMethodDef{
 		Fml_doc:   uintptr(unsafe.Pointer(&__overlapped_Overlapped_cancel__doc__)),
 	},
 	2: {
-		Fml_name:  __ccgo_ts + 232030,
+		Fml_name:  __ccgo_ts + 231938,
 		Fml_flags: int32(MMETH_FASTCALL),
 		Fml_doc:   uintptr(unsafe.Pointer(&__overlapped_Overlapped_ReadFile__doc__)),
 	},
 	3: {
-		Fml_name:  __ccgo_ts + 232039,
+		Fml_name:  __ccgo_ts + 231947,
 		Fml_flags: int32(MMETH_FASTCALL),
 		Fml_doc:   uintptr(unsafe.Pointer(&__overlapped_Overlapped_ReadFileInto__doc__)),
 	},
 	4: {
-		Fml_name:  __ccgo_ts + 232052,
+		Fml_name:  __ccgo_ts + 231960,
 		Fml_flags: int32(MMETH_FASTCALL),
 		Fml_doc:   uintptr(unsafe.Pointer(&__overlapped_Overlapped_WSARecv__doc__)),
 	},
 	5: {
-		Fml_name:  __ccgo_ts + 232060,
+		Fml_name:  __ccgo_ts + 231968,
 		Fml_flags: int32(MMETH_FASTCALL),
 		Fml_doc:   uintptr(unsafe.Pointer(&__overlapped_Overlapped_WSARecvInto__doc__)),
 	},
 	6: {
-		Fml_name:  __ccgo_ts + 232168,
+		Fml_name:  __ccgo_ts + 232076,
 		Fml_flags: int32(MMETH_FASTCALL),
 		Fml_doc:   uintptr(unsafe.Pointer(&__overlapped_Overlapped_WSARecvFrom__doc__)),
 	},
 	7: {
-		Fml_name:  __ccgo_ts + 232180,
+		Fml_name:  __ccgo_ts + 232088,
 		Fml_flags: int32(MMETH_FASTCALL),
 		Fml_doc:   uintptr(unsafe.Pointer(&__overlapped_Overlapped_WSARecvFromInto__doc__)),
 	},
 	8: {
-		Fml_name:  __ccgo_ts + 232072,
+		Fml_name:  __ccgo_ts + 231980,
 		Fml_flags: int32(MMETH_FASTCALL),
 		Fml_doc:   uintptr(unsafe.Pointer(&__overlapped_Overlapped_WriteFile__doc__)),
 	},
 	9: {
-		Fml_name:  __ccgo_ts + 232082,
+		Fml_name:  __ccgo_ts + 231990,
 		Fml_flags: int32(MMETH_FASTCALL),
 		Fml_doc:   uintptr(unsafe.Pointer(&__overlapped_Overlapped_WSASend__doc__)),
 	},
 	10: {
-		Fml_name:  __ccgo_ts + 232090,
+		Fml_name:  __ccgo_ts + 231998,
 		Fml_flags: int32(MMETH_FASTCALL),
 		Fml_doc:   uintptr(unsafe.Pointer(&__overlapped_Overlapped_AcceptEx__doc__)),
 	},
 	11: {
-		Fml_name:  __ccgo_ts + 232099,
+		Fml_name:  __ccgo_ts + 232007,
 		Fml_flags: int32(MMETH_FASTCALL),
 		Fml_doc:   uintptr(unsafe.Pointer(&__overlapped_Overlapped_ConnectEx__doc__)),
 	},
 	12: {
-		Fml_name:  __ccgo_ts + 232109,
+		Fml_name:  __ccgo_ts + 232017,
 		Fml_flags: int32(MMETH_FASTCALL),
 		Fml_doc:   uintptr(unsafe.Pointer(&__overlapped_Overlapped_DisconnectEx__doc__)),
 	},
 	13: {
-		Fml_name:  __ccgo_ts + 232122,
+		Fml_name:  __ccgo_ts + 232030,
 		Fml_flags: int32(MMETH_FASTCALL),
 		Fml_doc:   uintptr(unsafe.Pointer(&__overlapped_Overlapped_TransmitFile__doc__)),
 	},
 	14: {
-		Fml_name:  __ccgo_ts + 232196,
+		Fml_name:  __ccgo_ts + 232104,
 		Fml_flags: int32(MMETH_O),
 		Fml_doc:   uintptr(unsafe.Pointer(&__overlapped_Overlapped_ConnectNamedPipe__doc__)),
 	},
 	15: {
-		Fml_name:  __ccgo_ts + 232168,
+		Fml_name:  __ccgo_ts + 232076,
 		Fml_flags: int32(MMETH_FASTCALL),
 		Fml_doc:   uintptr(unsafe.Pointer(&__overlapped_Overlapped_WSARecvFrom__doc__)),
 	},
 	16: {
-		Fml_name:  __ccgo_ts + 232158,
+		Fml_name:  __ccgo_ts + 232066,
 		Fml_flags: int32(MMETH_FASTCALL),
 		Fml_doc:   uintptr(unsafe.Pointer(&__overlapped_Overlapped_WSASendTo__doc__)),
 	},
@@ -95763,26 +95763,26 @@ var _Overlapped_members = [3]TPyMemberDef{
 		Ftype1:  int32(MPy_T_ULONG),
 		Foffset: int64(uint64(libc.UintptrFromInt32(0) + 56)),
 		Fflags:  int32(MPy_READONLY),
-		Fdoc:    __ccgo_ts + 232213,
+		Fdoc:    __ccgo_ts + 232121,
 	},
 	1: {
-		Fname:   __ccgo_ts + 232003,
+		Fname:   __ccgo_ts + 231911,
 		Ftype1:  int32(MPy_T_ULONGLONG),
 		Foffset: int64(uint64(libc.UintptrFromInt32(0)+16) + uint64(libc.UintptrFromInt32(0)+24)),
 		Fflags:  int32(MPy_READONLY),
-		Fdoc:    __ccgo_ts + 232239,
+		Fdoc:    __ccgo_ts + 232147,
 	},
 	2: {},
 }
 
 var _Overlapped_getsets = [3]TPyGetSetDef{
 	0: {
-		Fname: __ccgo_ts + 232263,
-		Fdoc:  __ccgo_ts + 232271,
+		Fname: __ccgo_ts + 232171,
+		Fdoc:  __ccgo_ts + 232179,
 	},
 	1: {
-		Fname: __ccgo_ts + 232303,
-		Fdoc:  __ccgo_ts + 232311,
+		Fname: __ccgo_ts + 232211,
+		Fdoc:  __ccgo_ts + 232219,
 	},
 	2: {},
 }
@@ -95830,7 +95830,7 @@ func init() {
 }
 
 var _overlapped_type_spec = TPyType_Spec{
-	Fname:      __ccgo_ts + 232344,
+	Fname:      __ccgo_ts + 232252,
 	Fbasicsize: int32(184),
 	Fflags:     uint32(uint32(libc.Int32FromInt32(MPy_TPFLAGS_HAVE_STACKLESS_EXTENSION)|libc.Int32FromInt32(0)) | libc.Uint32FromUint32(1)<<libc.Int32FromInt32(8)),
 	Fslots:     uintptr(unsafe.Pointer(&_overlapped_type_slots)),
@@ -95838,67 +95838,67 @@ var _overlapped_type_spec = TPyType_Spec{
 
 var _overlapped_functions = [14]TPyMethodDef{
 	0: {
-		Fml_name:  __ccgo_ts + 231855,
+		Fml_name:  __ccgo_ts + 231763,
 		Fml_flags: int32(MMETH_FASTCALL),
 		Fml_doc:   uintptr(unsafe.Pointer(&__overlapped_CreateIoCompletionPort__doc__)),
 	},
 	1: {
-		Fml_name:  __ccgo_ts + 231878,
+		Fml_name:  __ccgo_ts + 231786,
 		Fml_flags: int32(MMETH_FASTCALL),
 		Fml_doc:   uintptr(unsafe.Pointer(&__overlapped_GetQueuedCompletionStatus__doc__)),
 	},
 	2: {
-		Fml_name:  __ccgo_ts + 231904,
+		Fml_name:  __ccgo_ts + 231812,
 		Fml_flags: int32(MMETH_FASTCALL),
 		Fml_doc:   uintptr(unsafe.Pointer(&__overlapped_PostQueuedCompletionStatus__doc__)),
 	},
 	3: {
-		Fml_name:  __ccgo_ts + 232367,
+		Fml_name:  __ccgo_ts + 232275,
 		Fml_flags: int32(MMETH_O),
 		Fml_doc:   uintptr(unsafe.Pointer(&__overlapped_FormatMessage__doc__)),
 	},
 	4: {
-		Fml_name:  __ccgo_ts + 231993,
+		Fml_name:  __ccgo_ts + 231901,
 		Fml_flags: int32(MMETH_FASTCALL),
 		Fml_doc:   uintptr(unsafe.Pointer(&__overlapped_BindLocal__doc__)),
 	},
 	5: {
-		Fml_name:  __ccgo_ts + 231931,
+		Fml_name:  __ccgo_ts + 231839,
 		Fml_flags: int32(MMETH_FASTCALL),
 		Fml_doc:   uintptr(unsafe.Pointer(&__overlapped_RegisterWaitWithQueue__doc__)),
 	},
 	6: {
-		Fml_name:  __ccgo_ts + 232381,
+		Fml_name:  __ccgo_ts + 232289,
 		Fml_flags: int32(MMETH_O),
 		Fml_doc:   uintptr(unsafe.Pointer(&__overlapped_UnregisterWait__doc__)),
 	},
 	7: {
-		Fml_name:  __ccgo_ts + 231953,
+		Fml_name:  __ccgo_ts + 231861,
 		Fml_flags: int32(MMETH_FASTCALL),
 		Fml_doc:   uintptr(unsafe.Pointer(&__overlapped_UnregisterWaitEx__doc__)),
 	},
 	8: {
-		Fml_name:  __ccgo_ts + 231970,
+		Fml_name:  __ccgo_ts + 231878,
 		Fml_flags: int32(MMETH_FASTCALL),
 		Fml_doc:   uintptr(unsafe.Pointer(&__overlapped_CreateEvent__doc__)),
 	},
 	9: {
-		Fml_name:  __ccgo_ts + 232396,
+		Fml_name:  __ccgo_ts + 232304,
 		Fml_flags: int32(MMETH_O),
 		Fml_doc:   uintptr(unsafe.Pointer(&__overlapped_SetEvent__doc__)),
 	},
 	10: {
-		Fml_name:  __ccgo_ts + 232405,
+		Fml_name:  __ccgo_ts + 232313,
 		Fml_flags: int32(MMETH_O),
 		Fml_doc:   uintptr(unsafe.Pointer(&__overlapped_ResetEvent__doc__)),
 	},
 	11: {
-		Fml_name:  __ccgo_ts + 232135,
+		Fml_name:  __ccgo_ts + 232043,
 		Fml_flags: int32(MMETH_O),
 		Fml_doc:   uintptr(unsafe.Pointer(&__overlapped_Overlapped_ConnectPipe__doc__)),
 	},
 	12: {
-		Fml_name:  __ccgo_ts + 232147,
+		Fml_name:  __ccgo_ts + 232055,
 		Fml_flags: int32(MMETH_FASTCALL),
 		Fml_doc:   uintptr(unsafe.Pointer(&__overlapped_WSAConnect__doc__)),
 	},
@@ -95975,40 +95975,40 @@ _10:
 	if rc < 0 {
 		return -int32(1)
 	}
-	if XPyModule_Add(tls, module, __ccgo_ts+232416, XPy_BuildValue(tls, __ccgo_ts+232433, libc.VaList(bp+8, int32(997)))) < 0 {
+	if XPyModule_Add(tls, module, __ccgo_ts+232324, XPy_BuildValue(tls, __ccgo_ts+232341, libc.VaList(bp+8, int32(997)))) < 0 {
 		return -int32(1)
 	}
-	if XPyModule_Add(tls, module, __ccgo_ts+232435, XPy_BuildValue(tls, __ccgo_ts+232433, libc.VaList(bp+8, int32(64)))) < 0 {
+	if XPyModule_Add(tls, module, __ccgo_ts+232343, XPy_BuildValue(tls, __ccgo_ts+232341, libc.VaList(bp+8, int32(64)))) < 0 {
 		return -int32(1)
 	}
-	if XPyModule_Add(tls, module, __ccgo_ts+232457, XPy_BuildValue(tls, __ccgo_ts+232433, libc.VaList(bp+8, int32(995)))) < 0 {
+	if XPyModule_Add(tls, module, __ccgo_ts+232365, XPy_BuildValue(tls, __ccgo_ts+232341, libc.VaList(bp+8, int32(995)))) < 0 {
 		return -int32(1)
 	}
-	if XPyModule_Add(tls, module, __ccgo_ts+232481, XPy_BuildValue(tls, __ccgo_ts+232433, libc.VaList(bp+8, int32(121)))) < 0 {
+	if XPyModule_Add(tls, module, __ccgo_ts+232389, XPy_BuildValue(tls, __ccgo_ts+232341, libc.VaList(bp+8, int32(121)))) < 0 {
 		return -int32(1)
 	}
-	if XPyModule_Add(tls, module, __ccgo_ts+232499, XPy_BuildValue(tls, __ccgo_ts+232433, libc.VaList(bp+8, int32(231)))) < 0 {
+	if XPyModule_Add(tls, module, __ccgo_ts+232407, XPy_BuildValue(tls, __ccgo_ts+232341, libc.VaList(bp+8, int32(231)))) < 0 {
 		return -int32(1)
 	}
-	if XPyModule_Add(tls, module, __ccgo_ts+232515, XPy_BuildValue(tls, __ccgo_ts+232433, libc.VaList(bp+8, int32(1234)))) < 0 {
+	if XPyModule_Add(tls, module, __ccgo_ts+232423, XPy_BuildValue(tls, __ccgo_ts+232341, libc.VaList(bp+8, int32(1234)))) < 0 {
 		return -int32(1)
 	}
-	if XPyModule_Add(tls, module, __ccgo_ts+232538, XPy_BuildValue(tls, __ccgo_ts+232433, libc.VaList(bp+8, uint32(MINFINITE)))) < 0 {
+	if XPyModule_Add(tls, module, __ccgo_ts+232446, XPy_BuildValue(tls, __ccgo_ts+232341, libc.VaList(bp+8, uint32(MINFINITE)))) < 0 {
 		return -int32(1)
 	}
-	if XPyModule_Add(tls, module, __ccgo_ts+232547, XPy_BuildValue(tls, __ccgo_ts+223484, libc.VaList(bp+8, uintptr(int64(-libc.Int32FromInt32(1)))))) < 0 {
+	if XPyModule_Add(tls, module, __ccgo_ts+232455, XPy_BuildValue(tls, __ccgo_ts+223392, libc.VaList(bp+8, uintptr(int64(-libc.Int32FromInt32(1)))))) < 0 {
 		return -int32(1)
 	}
-	if XPyModule_Add(tls, module, __ccgo_ts+20740, XPy_BuildValue(tls, __ccgo_ts+223484, libc.VaList(bp+8, libc.UintptrFromInt32(0)))) < 0 {
+	if XPyModule_Add(tls, module, __ccgo_ts+20740, XPy_BuildValue(tls, __ccgo_ts+223392, libc.VaList(bp+8, libc.UintptrFromInt32(0)))) < 0 {
 		return -int32(1)
 	}
-	if XPyModule_Add(tls, module, __ccgo_ts+232568, XPy_BuildValue(tls, __ccgo_ts+232433, libc.VaList(bp+8, int32(0x700B)))) < 0 {
+	if XPyModule_Add(tls, module, __ccgo_ts+232476, XPy_BuildValue(tls, __ccgo_ts+232341, libc.VaList(bp+8, int32(0x700B)))) < 0 {
 		return -int32(1)
 	}
-	if XPyModule_Add(tls, module, __ccgo_ts+232593, XPy_BuildValue(tls, __ccgo_ts+232433, libc.VaList(bp+8, int32(MSO_UPDATE_CONNECT_CONTEXT)))) < 0 {
+	if XPyModule_Add(tls, module, __ccgo_ts+232501, XPy_BuildValue(tls, __ccgo_ts+232341, libc.VaList(bp+8, int32(MSO_UPDATE_CONNECT_CONTEXT)))) < 0 {
 		return -int32(1)
 	}
-	if XPyModule_Add(tls, module, __ccgo_ts+232619, XPy_BuildValue(tls, __ccgo_ts+232433, libc.VaList(bp+8, int32(0x02)))) < 0 {
+	if XPyModule_Add(tls, module, __ccgo_ts+232527, XPy_BuildValue(tls, __ccgo_ts+232341, libc.VaList(bp+8, int32(0x02)))) < 0 {
 		return -int32(1)
 	}
 	return 0
@@ -96476,7 +96476,7 @@ func _winsound_PlaySound(tls *libc.TLS, module uintptr, args uintptr, kwargs uin
 	var _ uintptr
 	_ = return_value
 	return_value = libc.UintptrFromInt32(0)
-	if !(XPyArg_ParseTupleAndKeywords(tls, args, kwargs, __ccgo_ts+232641, uintptr(unsafe.Pointer(&__keywords193)), libc.VaList(bp+24, bp, bp+8)) != 0) {
+	if !(XPyArg_ParseTupleAndKeywords(tls, args, kwargs, __ccgo_ts+232549, uintptr(unsafe.Pointer(&__keywords193)), libc.VaList(bp+24, bp, bp+8)) != 0) {
 		goto exit
 	}
 	return_value = _winsound_PlaySound_impl(tls, module, **(**uintptr)(__ccgo_up(bp)), **(**int32)(__ccgo_up(bp + 8)))
@@ -96488,7 +96488,7 @@ exit:
 }
 
 var __keywords193 = [3]uintptr{
-	0: __ccgo_ts + 232635,
+	0: __ccgo_ts + 232543,
 	1: __ccgo_ts + 48855,
 	2: libc.UintptrFromInt32(0),
 }
@@ -96501,7 +96501,7 @@ func _winsound_Beep(tls *libc.TLS, module uintptr, args uintptr, kwargs uintptr)
 	var _ int32
 	_ = return_value
 	return_value = libc.UintptrFromInt32(0)
-	if !(XPyArg_ParseTupleAndKeywords(tls, args, kwargs, __ccgo_ts+232673, uintptr(unsafe.Pointer(&__keywords194)), libc.VaList(bp+16, bp, bp+4)) != 0) {
+	if !(XPyArg_ParseTupleAndKeywords(tls, args, kwargs, __ccgo_ts+232581, uintptr(unsafe.Pointer(&__keywords194)), libc.VaList(bp+16, bp, bp+4)) != 0) {
 		goto exit
 	}
 	return_value = _winsound_Beep_impl(tls, module, **(**int32)(__ccgo_up(bp)), **(**int32)(__ccgo_up(bp + 4)))
@@ -96513,8 +96513,8 @@ exit:
 }
 
 var __keywords194 = [3]uintptr{
-	0: __ccgo_ts + 232654,
-	1: __ccgo_ts + 232664,
+	0: __ccgo_ts + 232562,
+	1: __ccgo_ts + 232572,
 	2: libc.UintptrFromInt32(0),
 }
 
@@ -96526,7 +96526,7 @@ func _winsound_MessageBeep(tls *libc.TLS, module uintptr, args uintptr, kwargs u
 	_ = return_value
 	return_value = libc.UintptrFromInt32(0)
 	**(**int32)(__ccgo_up(bp)) = 0x00000000
-	if !(XPyArg_ParseTupleAndKeywords(tls, args, kwargs, __ccgo_ts+232681, uintptr(unsafe.Pointer(&__keywords195)), libc.VaList(bp+16, bp)) != 0) {
+	if !(XPyArg_ParseTupleAndKeywords(tls, args, kwargs, __ccgo_ts+232589, uintptr(unsafe.Pointer(&__keywords195)), libc.VaList(bp+16, bp)) != 0) {
 		goto exit
 	}
 	return_value = _winsound_MessageBeep_impl(tls, module, **(**int32)(__ccgo_up(bp)))
@@ -96558,7 +96558,7 @@ func _winsound_PlaySound_impl(tls *libc.TLS, module uintptr, sound uintptr, flag
 		if flags1&int32(MSND_MEMORY) != 0 {
 			if flags1&int32(MSND_ASYNC) != 0 {
 
-				XPyErr_SetString(tls, XPyExc_RuntimeError, __ccgo_ts+232696)
+				XPyErr_SetString(tls, XPyExc_RuntimeError, __ccgo_ts+232604)
 				return libc.UintptrFromInt32(0)
 			}
 			if XPyObject_GetBuffer(tls, sound, bp, MPyBUF_SIMPLE) < 0 {
@@ -96579,7 +96579,7 @@ func _winsound_PlaySound_impl(tls *libc.TLS, module uintptr, sound uintptr, flag
 			_6:
 				type_name = XPyType_GetQualName(tls, v5)
 				if type_name != libc.UintptrFromInt32(0) {
-					XPyErr_Format(tls, XPyExc_TypeError, __ccgo_ts+232735, libc.VaList(bp+88, type_name))
+					XPyErr_Format(tls, XPyExc_TypeError, __ccgo_ts+232643, libc.VaList(bp+88, type_name))
 					X_Py_DecRef(tls, type_name)
 				}
 				return libc.UintptrFromInt32(0)
@@ -96597,7 +96597,7 @@ func _winsound_PlaySound_impl(tls *libc.TLS, module uintptr, sound uintptr, flag
 				goto _10
 			_10:
 				if v3 != 0 {
-					XPyErr_Format(tls, XPyExc_TypeError, __ccgo_ts+232785, 0)
+					XPyErr_Format(tls, XPyExc_TypeError, __ccgo_ts+232693, 0)
 					X_Py_DecRef(tls, obj)
 					return libc.UintptrFromInt32(0)
 				}
@@ -96620,7 +96620,7 @@ func _winsound_PlaySound_impl(tls *libc.TLS, module uintptr, sound uintptr, flag
 		}
 	}
 	if !(ok != 0) {
-		XPyErr_SetString(tls, XPyExc_RuntimeError, __ccgo_ts+232824)
+		XPyErr_SetString(tls, XPyExc_RuntimeError, __ccgo_ts+232732)
 		return libc.UintptrFromInt32(0)
 	}
 	return XPy_GetConstantBorrowed(tls, uint32(MPy_CONSTANT_NONE))
@@ -96632,14 +96632,14 @@ func _winsound_Beep_impl(tls *libc.TLS, module uintptr, frequency int32, duratio
 	var ok TBOOL
 	_, _ = _save, ok
 	if frequency < int32(37) || frequency > int32(32767) {
-		XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+232845)
+		XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+232753)
 		return libc.UintptrFromInt32(0)
 	}
 	_save = XPyEval_SaveThread(tls)
 	ok = _Beep(tls, uint32(frequency), uint32(duration))
 	XPyEval_RestoreThread(tls, _save)
 	if !(ok != 0) {
-		XPyErr_SetString(tls, XPyExc_RuntimeError, __ccgo_ts+232880)
+		XPyErr_SetString(tls, XPyExc_RuntimeError, __ccgo_ts+232788)
 		return libc.UintptrFromInt32(0)
 	}
 	return XPy_GetConstantBorrowed(tls, uint32(MPy_CONSTANT_NONE))
@@ -96662,17 +96662,17 @@ func _winsound_MessageBeep_impl(tls *libc.TLS, module uintptr, type1 int32) (r u
 
 var _sound_methods = [4]TPyMethodDef{
 	0: {
-		Fml_name:  __ccgo_ts + 232895,
+		Fml_name:  __ccgo_ts + 232803,
 		Fml_flags: libc.Int32FromInt32(MMETH_VARARGS) | libc.Int32FromInt32(MMETH_KEYWORDS),
 		Fml_doc:   uintptr(unsafe.Pointer(&_winsound_PlaySound__doc__)),
 	},
 	1: {
-		Fml_name:  __ccgo_ts + 232905,
+		Fml_name:  __ccgo_ts + 232813,
 		Fml_flags: libc.Int32FromInt32(MMETH_VARARGS) | libc.Int32FromInt32(MMETH_KEYWORDS),
 		Fml_doc:   uintptr(unsafe.Pointer(&_winsound_Beep__doc__)),
 	},
 	2: {
-		Fml_name:  __ccgo_ts + 232910,
+		Fml_name:  __ccgo_ts + 232818,
 		Fml_flags: libc.Int32FromInt32(MMETH_VARARGS) | libc.Int32FromInt32(MMETH_KEYWORDS),
 		Fml_doc:   uintptr(unsafe.Pointer(&_winsound_MessageBeep__doc__)),
 	},
@@ -96687,70 +96687,70 @@ func init() {
 }
 
 func _exec_module(tls *libc.TLS, module uintptr) (r int32) {
-	if XPyModule_AddIntConstant(tls, module, __ccgo_ts+232922, int32(MSND_ASYNC)) < 0 {
+	if XPyModule_AddIntConstant(tls, module, __ccgo_ts+232830, int32(MSND_ASYNC)) < 0 {
 		return -int32(1)
 	}
-	if XPyModule_AddIntConstant(tls, module, __ccgo_ts+232932, int32(MSND_NODEFAULT)) < 0 {
+	if XPyModule_AddIntConstant(tls, module, __ccgo_ts+232840, int32(MSND_NODEFAULT)) < 0 {
 		return -int32(1)
 	}
-	if XPyModule_AddIntConstant(tls, module, __ccgo_ts+232946, int32(MSND_NOSTOP)) < 0 {
+	if XPyModule_AddIntConstant(tls, module, __ccgo_ts+232854, int32(MSND_NOSTOP)) < 0 {
 		return -int32(1)
 	}
-	if XPyModule_AddIntConstant(tls, module, __ccgo_ts+232957, int32(0x00002000)) < 0 {
+	if XPyModule_AddIntConstant(tls, module, __ccgo_ts+232865, int32(0x00002000)) < 0 {
 		return -int32(1)
 	}
-	if XPyModule_AddIntConstant(tls, module, __ccgo_ts+232968, int32(0x00010000)) < 0 {
+	if XPyModule_AddIntConstant(tls, module, __ccgo_ts+232876, int32(0x00010000)) < 0 {
 		return -int32(1)
 	}
-	if XPyModule_AddIntConstant(tls, module, __ccgo_ts+232978, int32(0x00020000)) < 0 {
+	if XPyModule_AddIntConstant(tls, module, __ccgo_ts+232886, int32(0x00020000)) < 0 {
 		return -int32(1)
 	}
-	if XPyModule_AddIntConstant(tls, module, __ccgo_ts+232991, int32(MSND_MEMORY)) < 0 {
+	if XPyModule_AddIntConstant(tls, module, __ccgo_ts+232899, int32(MSND_MEMORY)) < 0 {
 		return -int32(1)
 	}
-	if XPyModule_AddIntConstant(tls, module, __ccgo_ts+233002, int32(MSND_PURGE)) < 0 {
+	if XPyModule_AddIntConstant(tls, module, __ccgo_ts+232910, int32(MSND_PURGE)) < 0 {
 		return -int32(1)
 	}
-	if XPyModule_AddIntConstant(tls, module, __ccgo_ts+233012, int32(MSND_LOOP)) < 0 {
+	if XPyModule_AddIntConstant(tls, module, __ccgo_ts+232920, int32(MSND_LOOP)) < 0 {
 		return -int32(1)
 	}
-	if XPyModule_AddIntConstant(tls, module, __ccgo_ts+233021, int32(MSND_APPLICATION)) < 0 {
+	if XPyModule_AddIntConstant(tls, module, __ccgo_ts+232929, int32(MSND_APPLICATION)) < 0 {
 		return -int32(1)
 	}
-	if XPyModule_AddIntConstant(tls, module, __ccgo_ts+233037, int32(0x00080000)) < 0 {
+	if XPyModule_AddIntConstant(tls, module, __ccgo_ts+232945, int32(0x00080000)) < 0 {
 		return -int32(1)
 	}
-	if XPyModule_AddIntConstant(tls, module, __ccgo_ts+233048, MSND_SYNC) < 0 {
+	if XPyModule_AddIntConstant(tls, module, __ccgo_ts+232956, MSND_SYNC) < 0 {
 		return -int32(1)
 	}
-	if XPyModule_AddIntConstant(tls, module, __ccgo_ts+233057, int32(0x00200000)) < 0 {
+	if XPyModule_AddIntConstant(tls, module, __ccgo_ts+232965, int32(0x00200000)) < 0 {
 		return -int32(1)
 	}
-	if XPyModule_AddIntConstant(tls, module, __ccgo_ts+233068, 0x00000000) < 0 {
+	if XPyModule_AddIntConstant(tls, module, __ccgo_ts+232976, 0x00000000) < 0 {
 		return -int32(1)
 	}
-	if XPyModule_AddIntConstant(tls, module, __ccgo_ts+233074, int32(0x00000040)) < 0 {
+	if XPyModule_AddIntConstant(tls, module, __ccgo_ts+232982, int32(0x00000040)) < 0 {
 		return -int32(1)
 	}
-	if XPyModule_AddIntConstant(tls, module, __ccgo_ts+233090, int32(0x00000030)) < 0 {
+	if XPyModule_AddIntConstant(tls, module, __ccgo_ts+232998, int32(0x00000030)) < 0 {
 		return -int32(1)
 	}
-	if XPyModule_AddIntConstant(tls, module, __ccgo_ts+233109, int32(0x00000010)) < 0 {
+	if XPyModule_AddIntConstant(tls, module, __ccgo_ts+233017, int32(0x00000010)) < 0 {
 		return -int32(1)
 	}
-	if XPyModule_AddIntConstant(tls, module, __ccgo_ts+233121, int32(0x00000020)) < 0 {
+	if XPyModule_AddIntConstant(tls, module, __ccgo_ts+233029, int32(0x00000020)) < 0 {
 		return -int32(1)
 	}
-	if XPyModule_AddIntConstant(tls, module, __ccgo_ts+233137, int32(0x00000010)) < 0 {
+	if XPyModule_AddIntConstant(tls, module, __ccgo_ts+233045, int32(0x00000010)) < 0 {
 		return -int32(1)
 	}
-	if XPyModule_AddIntConstant(tls, module, __ccgo_ts+233150, int32(0x00000040)) < 0 {
+	if XPyModule_AddIntConstant(tls, module, __ccgo_ts+233058, int32(0x00000040)) < 0 {
 		return -int32(1)
 	}
-	if XPyModule_AddIntConstant(tls, module, __ccgo_ts+233169, int32(0x00000010)) < 0 {
+	if XPyModule_AddIntConstant(tls, module, __ccgo_ts+233077, int32(0x00000010)) < 0 {
 		return -int32(1)
 	}
-	if XPyModule_AddIntConstant(tls, module, __ccgo_ts+233181, int32(0x00000030)) < 0 {
+	if XPyModule_AddIntConstant(tls, module, __ccgo_ts+233089, int32(0x00000030)) < 0 {
 		return -int32(1)
 	}
 	return 0
@@ -96934,7 +96934,7 @@ _2:
 
 	copy1 = XPyList_GetSlice(tls, (*Tatexit_state)(unsafe.Pointer(state)).Fcallbacks, 0, v1)
 	if copy1 == libc.UintptrFromInt32(0) {
-		XPyErr_FormatUnraisable(tls, __ccgo_ts+233196, 0)
+		XPyErr_FormatUnraisable(tls, __ccgo_ts+233104, 0)
 		return
 	}
 	i = 0
@@ -96961,7 +96961,7 @@ _2:
 		}
 		res = XPyObject_Call(tls, func1, args, v10)
 		if res == libc.UintptrFromInt32(0) {
-			XPyErr_FormatUnraisable(tls, __ccgo_ts+233245, libc.VaList(bp+8, func1))
+			XPyErr_FormatUnraisable(tls, __ccgo_ts+233153, libc.VaList(bp+8, func1))
 		} else {
 			v10 = res
 			v12 = libc.BoolInt32(int32(*(*Tuint32_t)(unsafe.Pointer(v10))) < 0)
@@ -97024,12 +97024,12 @@ _4:
 	goto _2
 _2:
 	if v1 == 0 {
-		XPyErr_SetString(tls, XPyExc_TypeError, __ccgo_ts+233285)
+		XPyErr_SetString(tls, XPyExc_TypeError, __ccgo_ts+233193)
 		return libc.UintptrFromInt32(0)
 	}
 	func1 = **(**uintptr)(__ccgo_up(args + 32))
 	if !(XPyCallable_Check(tls, func1) != 0) {
-		XPyErr_SetString(tls, XPyExc_TypeError, __ccgo_ts+233332)
+		XPyErr_SetString(tls, XPyExc_TypeError, __ccgo_ts+233240)
 		return libc.UintptrFromInt32(0)
 	}
 	tuple = args
@@ -97306,22 +97306,22 @@ var _atexit_methods = [6]TPyMethodDef{
 		Fml_doc:   uintptr(unsafe.Pointer(&_atexit_register__doc__)),
 	},
 	1: {
-		Fml_name:  __ccgo_ts + 233368,
+		Fml_name:  __ccgo_ts + 233276,
 		Fml_flags: int32(MMETH_NOARGS),
 		Fml_doc:   uintptr(unsafe.Pointer(&_atexit_clear__doc__)),
 	},
 	2: {
-		Fml_name:  __ccgo_ts + 233375,
+		Fml_name:  __ccgo_ts + 233283,
 		Fml_flags: int32(MMETH_O),
 		Fml_doc:   uintptr(unsafe.Pointer(&_atexit_unregister__doc__)),
 	},
 	3: {
-		Fml_name:  __ccgo_ts + 233386,
+		Fml_name:  __ccgo_ts + 233294,
 		Fml_flags: int32(MMETH_NOARGS),
 		Fml_doc:   uintptr(unsafe.Pointer(&_atexit_run_exitfuncs__doc__)),
 	},
 	4: {
-		Fml_name:  __ccgo_ts + 233401,
+		Fml_name:  __ccgo_ts + 233309,
 		Fml_flags: int32(MMETH_NOARGS),
 		Fml_doc:   uintptr(unsafe.Pointer(&_atexit_ncallbacks__doc__)),
 	},
@@ -97387,19 +97387,19 @@ type Tfault_handler_t = struct {
 var _faulthandler_handlers = [4]Tfault_handler_t{
 	0: {
 		Fsignum: int32(MSIGILL),
-		Fname:   __ccgo_ts + 233413,
+		Fname:   __ccgo_ts + 233321,
 	},
 	1: {
 		Fsignum: int32(MSIGFPE),
-		Fname:   __ccgo_ts + 233433,
+		Fname:   __ccgo_ts + 233341,
 	},
 	2: {
 		Fsignum: int32(MSIGABRT),
-		Fname:   __ccgo_ts + 233458,
+		Fname:   __ccgo_ts + 233366,
 	},
 	3: {
 		Fsignum: int32(MSIGSEGV),
-		Fname:   __ccgo_ts + 233466,
+		Fname:   __ccgo_ts + 233374,
 	},
 }
 
@@ -97421,7 +97421,7 @@ func _faulthandler_get_fileno(tls *libc.TLS, file_ptr uintptr) (r int32) {
 			return -int32(1)
 		}
 		if file == uintptr(unsafe.Pointer(&X_Py_NoneStruct)) {
-			XPyErr_SetString(tls, XPyExc_RuntimeError, __ccgo_ts+233485)
+			XPyErr_SetString(tls, XPyExc_RuntimeError, __ccgo_ts+233393)
 			v1 = file
 			v2 = libc.BoolInt32(int32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
 			goto _3
@@ -97464,7 +97464,7 @@ func _faulthandler_get_fileno(tls *libc.TLS, file_ptr uintptr) (r int32) {
 				return -int32(1)
 			}
 			if fd < 0 {
-				XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+233504)
+				XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+233412)
 				return -int32(1)
 			}
 			**(**uintptr)(__ccgo_up(file_ptr)) = libc.UintptrFromInt32(0)
@@ -97534,7 +97534,7 @@ _32:
 _33:
 	;
 	if fd == -int32(1) {
-		XPyErr_SetString(tls, XPyExc_RuntimeError, __ccgo_ts+233540)
+		XPyErr_SetString(tls, XPyExc_RuntimeError, __ccgo_ts+233448)
 		v1 = file
 		v2 = libc.BoolInt32(int32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
 		goto _38
@@ -97573,7 +97573,7 @@ _2:
 	tstate = v1
 	if tstate == libc.UintptrFromInt32(0) {
 
-		XPyErr_SetString(tls, XPyExc_RuntimeError, __ccgo_ts+233585)
+		XPyErr_SetString(tls, XPyExc_RuntimeError, __ccgo_ts+233493)
 		return libc.UintptrFromInt32(0)
 	}
 	return tstate
@@ -97592,7 +97592,7 @@ func _faulthandler_dump_traceback(tls *libc.TLS, fd int32, all_threads int32, in
 		X_Py_DumpTracebackThreads(tls, fd, libc.UintptrFromInt32(0), tstate)
 	} else {
 		if all_threads == int32(MFT_IGNORE_ALL_THREADS) {
-			X_Py_write_noraise(tls, fd, __ccgo_ts+233624, libc.Xstrlen(tls, __ccgo_ts+233624))
+			X_Py_write_noraise(tls, fd, __ccgo_ts+233532, libc.Xstrlen(tls, __ccgo_ts+233532))
 		}
 		if tstate != libc.UintptrFromInt32(0) {
 			X_Py_DumpTraceback(tls, fd, tstate)
@@ -97628,7 +97628,7 @@ func _faulthandler_dump_traceback_py(tls *libc.TLS, self uintptr, args uintptr, 
 	_, _, _, _, _, _, _, _, _, _ = errmsg, fd, interp, tstate, tstate1, v1, v2, v3, v6, v7
 	**(**uintptr)(__ccgo_up(bp)) = libc.UintptrFromInt32(0)
 	**(**int32)(__ccgo_up(bp + 8)) = int32(1)
-	if !(XPyArg_ParseTupleAndKeywords(tls, args, kwargs, __ccgo_ts+233677, uintptr(unsafe.Pointer(&_kwlist53)), libc.VaList(bp+24, bp, bp+8)) != 0) {
+	if !(XPyArg_ParseTupleAndKeywords(tls, args, kwargs, __ccgo_ts+233585, uintptr(unsafe.Pointer(&_kwlist53)), libc.VaList(bp+24, bp, bp+8)) != 0) {
 		return libc.UintptrFromInt32(0)
 	}
 	fd = _faulthandler_get_fileno(tls, bp)
@@ -97731,7 +97731,7 @@ func _faulthandler_dump_c_stack_py(tls *libc.TLS, self uintptr, args uintptr, kw
 	var _ uintptr
 	_, _, _, _, _, _ = fd, v1, v2, v3, v6, v7
 	**(**uintptr)(__ccgo_up(bp)) = libc.UintptrFromInt32(0)
-	if !(XPyArg_ParseTupleAndKeywords(tls, args, kwargs, __ccgo_ts+233696, uintptr(unsafe.Pointer(&_kwlist54)), libc.VaList(bp+16, bp)) != 0) {
+	if !(XPyArg_ParseTupleAndKeywords(tls, args, kwargs, __ccgo_ts+233604, uintptr(unsafe.Pointer(&_kwlist54)), libc.VaList(bp+16, bp)) != 0) {
 		return libc.UintptrFromInt32(0)
 	}
 	fd = _faulthandler_get_fileno(tls, bp)
@@ -97818,13 +97818,13 @@ func _faulthandler_fatal_error(tls *libc.TLS, signum int32) {
 	if found != 0 {
 		X_Py_write_noraise(tls, fd, __ccgo_ts+159346, libc.Xstrlen(tls, __ccgo_ts+159346))
 		X_Py_write_noraise(tls, fd, (*Tfault_handler_t)(unsafe.Pointer(handler)).Fname, libc.Xstrlen(tls, (*Tfault_handler_t)(unsafe.Pointer(handler)).Fname))
-		X_Py_write_noraise(tls, fd, __ccgo_ts+233712, libc.Xstrlen(tls, __ccgo_ts+233712))
+		X_Py_write_noraise(tls, fd, __ccgo_ts+233620, libc.Xstrlen(tls, __ccgo_ts+233620))
 	} else {
 		**(**[23]int8)(__ccgo_up(bp)) = [23]int8{}
 		libc.X__builtin_snprintf(tls, bp, uint64(23), __ccgo_ts+17653, libc.VaList(bp+32, signum))
-		X_Py_write_noraise(tls, fd, __ccgo_ts+233715, libc.Xstrlen(tls, __ccgo_ts+233715))
+		X_Py_write_noraise(tls, fd, __ccgo_ts+233623, libc.Xstrlen(tls, __ccgo_ts+233623))
 		X_Py_write_noraise(tls, fd, bp, libc.Xstrlen(tls, bp))
-		X_Py_write_noraise(tls, fd, __ccgo_ts+233712, libc.Xstrlen(tls, __ccgo_ts+233712))
+		X_Py_write_noraise(tls, fd, __ccgo_ts+233620, libc.Xstrlen(tls, __ccgo_ts+233620))
 	}
 	_faulthandler_dump_traceback(tls, fd, _deduce_all_threads(tls), X_PyRuntime.Ffaulthandler.Ffatal_error.Finterp)
 	_faulthandler_dump_c_stack(tls, fd)
@@ -97863,28 +97863,28 @@ func _faulthandler_exc_handler(tls *libc.TLS, exc_info uintptr) (r TLONG) {
 
 		return MEXCEPTION_CONTINUE_SEARCH
 	}
-	X_Py_write_noraise(tls, fd, __ccgo_ts+233759, libc.Xstrlen(tls, __ccgo_ts+233759))
+	X_Py_write_noraise(tls, fd, __ccgo_ts+233667, libc.Xstrlen(tls, __ccgo_ts+233667))
 	switch code {
 
 	case libc.Uint32FromUint32(0xC0000005):
-		X_Py_write_noraise(tls, fd, __ccgo_ts+233785, libc.Xstrlen(tls, __ccgo_ts+233785))
+		X_Py_write_noraise(tls, fd, __ccgo_ts+233693, libc.Xstrlen(tls, __ccgo_ts+233693))
 	case libc.Uint32FromUint32(0xC000008E):
-		X_Py_write_noraise(tls, fd, __ccgo_ts+233802, libc.Xstrlen(tls, __ccgo_ts+233802))
+		X_Py_write_noraise(tls, fd, __ccgo_ts+233710, libc.Xstrlen(tls, __ccgo_ts+233710))
 	case libc.Uint32FromUint32(0xC0000091):
-		X_Py_write_noraise(tls, fd, __ccgo_ts+233823, libc.Xstrlen(tls, __ccgo_ts+233823))
+		X_Py_write_noraise(tls, fd, __ccgo_ts+233731, libc.Xstrlen(tls, __ccgo_ts+233731))
 	case libc.Uint32FromUint32(0xC0000094):
-		X_Py_write_noraise(tls, fd, __ccgo_ts+233838, libc.Xstrlen(tls, __ccgo_ts+233838))
+		X_Py_write_noraise(tls, fd, __ccgo_ts+233746, libc.Xstrlen(tls, __ccgo_ts+233746))
 	case libc.Uint32FromUint32(0xC0000095):
-		X_Py_write_noraise(tls, fd, __ccgo_ts+233857, libc.Xstrlen(tls, __ccgo_ts+233857))
+		X_Py_write_noraise(tls, fd, __ccgo_ts+233765, libc.Xstrlen(tls, __ccgo_ts+233765))
 	case libc.Uint32FromUint32(0xC0000006):
-		X_Py_write_noraise(tls, fd, __ccgo_ts+233874, libc.Xstrlen(tls, __ccgo_ts+233874))
+		X_Py_write_noraise(tls, fd, __ccgo_ts+233782, libc.Xstrlen(tls, __ccgo_ts+233782))
 	case libc.Uint32FromUint32(0xC00000FD):
-		X_Py_write_noraise(tls, fd, __ccgo_ts+233885, libc.Xstrlen(tls, __ccgo_ts+233885))
+		X_Py_write_noraise(tls, fd, __ccgo_ts+233793, libc.Xstrlen(tls, __ccgo_ts+233793))
 	default:
-		X_Py_write_noraise(tls, fd, __ccgo_ts+233900, libc.Xstrlen(tls, __ccgo_ts+233900))
+		X_Py_write_noraise(tls, fd, __ccgo_ts+233808, libc.Xstrlen(tls, __ccgo_ts+233808))
 		X_Py_DumpHexadecimal(tls, fd, uint64(code), int64(8))
 	}
-	X_Py_write_noraise(tls, fd, __ccgo_ts+233712, libc.Xstrlen(tls, __ccgo_ts+233712))
+	X_Py_write_noraise(tls, fd, __ccgo_ts+233620, libc.Xstrlen(tls, __ccgo_ts+233620))
 	if code == libc.Uint32FromUint32(0xC0000005) {
 
 		i = uint64(0)
@@ -97955,7 +97955,7 @@ func _faulthandler_py_enable(tls *libc.TLS, self uintptr, args uintptr, kwargs u
 	**(**uintptr)(__ccgo_up(bp)) = libc.UintptrFromInt32(0)
 	**(**int32)(__ccgo_up(bp + 8)) = int32(1)
 	**(**int32)(__ccgo_up(bp + 12)) = int32(1)
-	if !(XPyArg_ParseTupleAndKeywords(tls, args, kwargs, __ccgo_ts+233916, uintptr(unsafe.Pointer(&_kwlist55)), libc.VaList(bp+24, bp, bp+8, bp+12)) != 0) {
+	if !(XPyArg_ParseTupleAndKeywords(tls, args, kwargs, __ccgo_ts+233824, uintptr(unsafe.Pointer(&_kwlist55)), libc.VaList(bp+24, bp, bp+8, bp+12)) != 0) {
 		return libc.UintptrFromInt32(0)
 	}
 	fd = _faulthandler_get_fileno(tls, bp)
@@ -98016,7 +98016,7 @@ func _faulthandler_py_enable(tls *libc.TLS, self uintptr, args uintptr, kwargs u
 var _kwlist55 = [4]uintptr{
 	0: __ccgo_ts + 117201,
 	1: __ccgo_ts + 194785,
-	2: __ccgo_ts + 233908,
+	2: __ccgo_ts + 233816,
 	3: libc.UintptrFromInt32(0),
 }
 
@@ -98156,9 +98156,9 @@ func _format_timeout(tls *libc.TLS, us TPyTime_t) (r uintptr) {
 	hour = min / uint32(60)
 	min = min % uint32(60)
 	if us != 0 {
-		XPyOS_snprintf(tls, bp, uint64(100), __ccgo_ts+233928, libc.VaList(bp+112, hour, min, sec, uint32(us)))
+		XPyOS_snprintf(tls, bp, uint64(100), __ccgo_ts+233836, libc.VaList(bp+112, hour, min, sec, uint32(us)))
 	} else {
-		XPyOS_snprintf(tls, bp, uint64(100), __ccgo_ts+233961, libc.VaList(bp+112, hour, min, sec))
+		XPyOS_snprintf(tls, bp, uint64(100), __ccgo_ts+233869, libc.VaList(bp+112, hour, min, sec))
 	}
 	return X_PyMem_Strdup(tls, bp)
 }
@@ -98180,7 +98180,7 @@ func _faulthandler_dump_traceback_later(tls *libc.TLS, self uintptr, args uintpt
 	**(**int32)(__ccgo_up(bp + 16)) = 0
 	**(**uintptr)(__ccgo_up(bp + 24)) = libc.UintptrFromInt32(0)
 	**(**int32)(__ccgo_up(bp + 32)) = 0
-	if !(XPyArg_ParseTupleAndKeywords(tls, args, kwargs, __ccgo_ts+233996, uintptr(unsafe.Pointer(&_kwlist56)), libc.VaList(bp+48, bp, bp+16, bp+24, bp+32)) != 0) {
+	if !(XPyArg_ParseTupleAndKeywords(tls, args, kwargs, __ccgo_ts+233904, uintptr(unsafe.Pointer(&_kwlist56)), libc.VaList(bp+48, bp, bp+16, bp+24, bp+32)) != 0) {
 		return libc.UintptrFromInt32(0)
 	}
 	if X_PyTime_FromSecondsObject(tls, bp+8, **(**uintptr)(__ccgo_up(bp)), int32(E_PyTime_ROUND_TIMEOUT)) < 0 {
@@ -98188,7 +98188,7 @@ func _faulthandler_dump_traceback_later(tls *libc.TLS, self uintptr, args uintpt
 	}
 	timeout_us = X_PyTime_AsMicroseconds(tls, **(**TPyTime_t)(__ccgo_up(bp + 8)), int32(E_PyTime_ROUND_TIMEOUT))
 	if timeout_us <= 0 {
-		XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+234023)
+		XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+233931)
 		return libc.UintptrFromInt32(0)
 	}
 
@@ -98330,7 +98330,7 @@ func _faulthandler_dump_traceback_later(tls *libc.TLS, self uintptr, args uintpt
 		}
 		XPyMem_Free(tls, header)
 		X_PyRuntime.Ffaulthandler.Fthread.Fheader = libc.UintptrFromInt32(0)
-		XPyErr_SetString(tls, XPyExc_RuntimeError, __ccgo_ts+234054)
+		XPyErr_SetString(tls, XPyExc_RuntimeError, __ccgo_ts+233962)
 		return libc.UintptrFromInt32(0)
 	}
 	return uintptr(unsafe.Pointer(&X_Py_NoneStruct))
@@ -98338,7 +98338,7 @@ func _faulthandler_dump_traceback_later(tls *libc.TLS, self uintptr, args uintpt
 
 var _kwlist56 = [5]uintptr{
 	0: __ccgo_ts + 190822,
-	1: __ccgo_ts + 233989,
+	1: __ccgo_ts + 233897,
 	2: __ccgo_ts + 117201,
 	3: __ccgo_ts + 166742,
 	4: libc.UintptrFromInt32(0),
@@ -98382,7 +98382,7 @@ func _faulthandler_sigsegv(tls *libc.TLS, self uintptr, args uintptr) (r uintptr
 	var _ int32
 	_ = _save
 	**(**int32)(__ccgo_up(bp)) = 0
-	if !(XPyArg_ParseTuple(tls, args, __ccgo_ts+234086, libc.VaList(bp+16, bp)) != 0) {
+	if !(XPyArg_ParseTuple(tls, args, __ccgo_ts+233994, libc.VaList(bp+16, bp)) != 0) {
 		return libc.UintptrFromInt32(0)
 	}
 	if **(**int32)(__ccgo_up(bp)) != 0 {
@@ -98396,7 +98396,7 @@ func _faulthandler_sigsegv(tls *libc.TLS, self uintptr, args uintptr) (r uintptr
 }
 
 func _faulthandler_fatal_error_thread(tls *libc.TLS, plock uintptr) {
-	X_Py_FatalErrorFunc(tls, uintptr(unsafe.Pointer(&___func__137)), __ccgo_ts+234098)
+	X_Py_FatalErrorFunc(tls, uintptr(unsafe.Pointer(&___func__137)), __ccgo_ts+234006)
 }
 
 var ___func__137 = [32]int8{'f', 'a', 'u', 'l', 't', 'h', 'a', 'n', 'd', 'l', 'e', 'r', '_', 'f', 'a', 't', 'a', 'l', '_', 'e', 'r', 'r', 'o', 'r', '_', 't', 'h', 'r', 'e', 'a', 'd'}
@@ -98414,7 +98414,7 @@ func _faulthandler_fatal_error_c_thread(tls *libc.TLS, self uintptr, args uintpt
 	tid = int32(XPyThread_start_new_thread(tls, __ccgo_fp(_faulthandler_fatal_error_thread), lock))
 	if tid == -int32(1) {
 		XPyThread_free_lock(tls, lock)
-		XPyErr_SetString(tls, XPyExc_RuntimeError, __ccgo_ts+234112)
+		XPyErr_SetString(tls, XPyExc_RuntimeError, __ccgo_ts+234020)
 		return libc.UintptrFromInt32(0)
 	}
 
@@ -98450,7 +98450,7 @@ func _faulthandler_raise_exception(tls *libc.TLS, self uintptr, args uintptr) (r
 	var _ uint32
 	var _ uint32
 	**(**uint32)(__ccgo_up(bp + 4)) = uint32(0)
-	if !(XPyArg_ParseTuple(tls, args, __ccgo_ts+234139, libc.VaList(bp+16, bp, bp+4)) != 0) {
+	if !(XPyArg_ParseTuple(tls, args, __ccgo_ts+234047, libc.VaList(bp+16, bp, bp+4)) != 0) {
 		return libc.UintptrFromInt32(0)
 	}
 	_faulthandler_suppress_crash_report(tls)
@@ -98464,67 +98464,67 @@ var _module_methods2 = [14]TPyMethodDef{
 	0: {
 		Fml_name:  __ccgo_ts + 175613,
 		Fml_flags: libc.Int32FromInt32(MMETH_VARARGS) | libc.Int32FromInt32(MMETH_KEYWORDS),
-		Fml_doc:   __ccgo_ts + 234160,
+		Fml_doc:   __ccgo_ts + 234068,
 	},
 	1: {
 		Fml_name:  __ccgo_ts + 175620,
 		Fml_flags: int32(MMETH_NOARGS),
-		Fml_doc:   __ccgo_ts + 234244,
+		Fml_doc:   __ccgo_ts + 234152,
 	},
 	2: {
 		Fml_name:  __ccgo_ts + 170797,
 		Fml_flags: int32(MMETH_NOARGS),
-		Fml_doc:   __ccgo_ts + 234295,
+		Fml_doc:   __ccgo_ts + 234203,
 	},
 	3: {
-		Fml_name:  __ccgo_ts + 234355,
+		Fml_name:  __ccgo_ts + 234263,
 		Fml_flags: libc.Int32FromInt32(MMETH_VARARGS) | libc.Int32FromInt32(MMETH_KEYWORDS),
-		Fml_doc:   __ccgo_ts + 234370,
+		Fml_doc:   __ccgo_ts + 234278,
 	},
 	4: {
-		Fml_name:  __ccgo_ts + 234531,
+		Fml_name:  __ccgo_ts + 234439,
 		Fml_flags: libc.Int32FromInt32(MMETH_VARARGS) | libc.Int32FromInt32(MMETH_KEYWORDS),
-		Fml_doc:   __ccgo_ts + 234544,
+		Fml_doc:   __ccgo_ts + 234452,
 	},
 	5: {
-		Fml_name:  __ccgo_ts + 234630,
+		Fml_name:  __ccgo_ts + 234538,
 		Fml_flags: libc.Int32FromInt32(MMETH_VARARGS) | libc.Int32FromInt32(MMETH_KEYWORDS),
-		Fml_doc:   __ccgo_ts + 234651,
+		Fml_doc:   __ccgo_ts + 234559,
 	},
 	6: {
-		Fml_name:  __ccgo_ts + 234887,
+		Fml_name:  __ccgo_ts + 234795,
 		Fml_flags: int32(MMETH_NOARGS),
-		Fml_doc:   __ccgo_ts + 234915,
+		Fml_doc:   __ccgo_ts + 234823,
 	},
 	7: {
-		Fml_name:  __ccgo_ts + 235011,
+		Fml_name:  __ccgo_ts + 234919,
 		Fml_flags: int32(MMETH_NOARGS),
-		Fml_doc:   __ccgo_ts + 235022,
+		Fml_doc:   __ccgo_ts + 234930,
 	},
 	8: {
-		Fml_name:  __ccgo_ts + 235125,
+		Fml_name:  __ccgo_ts + 235033,
 		Fml_flags: int32(MMETH_VARARGS),
-		Fml_doc:   __ccgo_ts + 235134,
+		Fml_doc:   __ccgo_ts + 235042,
 	},
 	9: {
-		Fml_name:  __ccgo_ts + 235202,
+		Fml_name:  __ccgo_ts + 235110,
 		Fml_flags: int32(MMETH_NOARGS),
-		Fml_doc:   __ccgo_ts + 235224,
+		Fml_doc:   __ccgo_ts + 235132,
 	},
 	10: {
-		Fml_name:  __ccgo_ts + 235302,
+		Fml_name:  __ccgo_ts + 235210,
 		Fml_flags: int32(MMETH_NOARGS),
-		Fml_doc:   __ccgo_ts + 235311,
+		Fml_doc:   __ccgo_ts + 235219,
 	},
 	11: {
-		Fml_name:  __ccgo_ts + 235360,
+		Fml_name:  __ccgo_ts + 235268,
 		Fml_flags: int32(MMETH_NOARGS),
-		Fml_doc:   __ccgo_ts + 235368,
+		Fml_doc:   __ccgo_ts + 235276,
 	},
 	12: {
-		Fml_name:  __ccgo_ts + 235415,
+		Fml_name:  __ccgo_ts + 235323,
 		Fml_flags: int32(MMETH_VARARGS),
-		Fml_doc:   __ccgo_ts + 235432,
+		Fml_doc:   __ccgo_ts + 235340,
 	},
 	13: {},
 }
@@ -98548,20 +98548,20 @@ func init() {
 
 func _PyExec_faulthandler(tls *libc.TLS, module uintptr) (r int32) {
 
-	if XPyModule_AddIntConstant(tls, module, __ccgo_ts+235514, int32(libc.Uint32FromUint32(0xC0000005))) != 0 {
+	if XPyModule_AddIntConstant(tls, module, __ccgo_ts+235422, int32(libc.Uint32FromUint32(0xC0000005))) != 0 {
 		return -int32(1)
 	}
-	if XPyModule_AddIntConstant(tls, module, __ccgo_ts+235542, int32(libc.Uint32FromUint32(0xC0000094))) != 0 {
+	if XPyModule_AddIntConstant(tls, module, __ccgo_ts+235450, int32(libc.Uint32FromUint32(0xC0000094))) != 0 {
 		return -int32(1)
 	}
-	if XPyModule_AddIntConstant(tls, module, __ccgo_ts+235572, int32(libc.Uint32FromUint32(0xC00000FD))) != 0 {
+	if XPyModule_AddIntConstant(tls, module, __ccgo_ts+235480, int32(libc.Uint32FromUint32(0xC00000FD))) != 0 {
 		return -int32(1)
 	}
 
-	if XPyModule_AddIntConstant(tls, module, __ccgo_ts+235598, int32(MEXCEPTION_NONCONTINUABLE)) != 0 {
+	if XPyModule_AddIntConstant(tls, module, __ccgo_ts+235506, int32(MEXCEPTION_NONCONTINUABLE)) != 0 {
 		return -int32(1)
 	}
-	if XPyModule_AddIntConstant(tls, module, __ccgo_ts+235624, int32(libc.Uint32FromUint32(0xC0000025))) != 0 {
+	if XPyModule_AddIntConstant(tls, module, __ccgo_ts+235532, int32(libc.Uint32FromUint32(0xC0000025))) != 0 {
 		return -int32(1)
 	}
 	return 0
@@ -98659,7 +98659,7 @@ func X_PyFaulthandler_Init(tls *libc.TLS, enable int32) (r TPyStatus) {
 			return TPyStatus{
 				F_type:   int32(E_PyStatus_TYPE_ERROR),
 				Ffunc1:   uintptr(unsafe.Pointer(&___func__138)),
-				Ferr_msg: __ccgo_ts + 235660,
+				Ferr_msg: __ccgo_ts + 235568,
 			}
 		}
 	}
@@ -100061,11 +100061,11 @@ _7:
 _8:
 	;
 	if **(**int32)(__ccgo_up(bp)) > 0 || long_value > int32(M__INT_MAX__) {
-		XPyErr_SetString(tls, XPyExc_OverflowError, __ccgo_ts+235690)
+		XPyErr_SetString(tls, XPyExc_OverflowError, __ccgo_ts+235598)
 		return 0
 	}
 	if **(**int32)(__ccgo_up(bp)) < 0 || long_value < int32(-libc.Int32FromInt32(M__INT_MAX__)-libc.Int32FromInt32(1)) {
-		XPyErr_SetString(tls, XPyExc_OverflowError, __ccgo_ts+235717)
+		XPyErr_SetString(tls, XPyExc_OverflowError, __ccgo_ts+235625)
 		return 0
 	}
 	**(**int32)(__ccgo_up(p)) = long_value
@@ -100087,7 +100087,7 @@ func _dir_fd_converter(tls *libc.TLS, o uintptr, p uintptr) (r int32) {
 			v1 = (*TPyObject)(unsafe.Pointer(o)).Fob_type
 			goto _2
 		_2:
-			XPyErr_Format(tls, XPyExc_TypeError, __ccgo_ts+235741, libc.VaList(bp+8, X_PyType_Name(tls, v1)))
+			XPyErr_Format(tls, XPyExc_TypeError, __ccgo_ts+235649, libc.VaList(bp+8, X_PyType_Name(tls, v1)))
 			return 0
 		}
 	}
@@ -100436,7 +100436,7 @@ _11:
 					v2 = (*TPyObject)(unsafe.Pointer(res1)).Fob_type
 					goto _49
 				_49:
-					XPyErr_Format(tls, XPyExc_TypeError, __ccgo_ts+235788, libc.VaList(bp+32, X_PyType_Name(tls, v1), X_PyType_Name(tls, v2)))
+					XPyErr_Format(tls, XPyExc_TypeError, __ccgo_ts+235696, libc.VaList(bp+32, X_PyType_Name(tls, v1), X_PyType_Name(tls, v2)))
 					v1 = res1
 					v6 = libc.BoolInt32(int32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
 					goto _52
@@ -100499,7 +100499,7 @@ _11:
 			} else {
 				v4 = __ccgo_ts + 28662
 			}
-			XPyErr_Format(tls, XPyExc_ValueError, __ccgo_ts+235852, libc.VaList(bp+32, v1, v2, v4))
+			XPyErr_Format(tls, XPyExc_ValueError, __ccgo_ts+235760, libc.VaList(bp+32, v1, v2, v4))
 			goto error_exit
 		}
 		if !((*Tpath_t)(unsafe.Pointer(path)).Fnonstrict != 0) && libc.Xwcslen(tls, wide) != uint64(**(**TPy_ssize_t)(__ccgo_up(bp + 16))) {
@@ -100518,7 +100518,7 @@ _11:
 			} else {
 				v4 = __ccgo_ts + 28662
 			}
-			XPyErr_Format(tls, XPyExc_ValueError, __ccgo_ts+235880, libc.VaList(bp+32, v1, v2, v4))
+			XPyErr_Format(tls, XPyExc_ValueError, __ccgo_ts+235788, libc.VaList(bp+32, v1, v2, v4))
 			goto error_exit
 		}
 		(*Tpath_t)(unsafe.Pointer(path)).Fwide = wide
@@ -100585,15 +100585,15 @@ error_format:
 		v4 = __ccgo_ts + 28662
 	}
 	if (*Tpath_t)(unsafe.Pointer(path)).Fallow_fd != 0 && (*Tpath_t)(unsafe.Pointer(path)).Fnullable != 0 {
-		v8 = __ccgo_ts + 235914
+		v8 = __ccgo_ts + 235822
 	} else {
 		if (*Tpath_t)(unsafe.Pointer(path)).Fallow_fd != 0 {
-			v12 = __ccgo_ts + 235958
+			v12 = __ccgo_ts + 235866
 		} else {
 			if (*Tpath_t)(unsafe.Pointer(path)).Fnullable != 0 {
-				v14 = __ccgo_ts + 235996
+				v14 = __ccgo_ts + 235904
 			} else {
-				v14 = __ccgo_ts + 236031
+				v14 = __ccgo_ts + 235939
 			}
 			v12 = v14
 		}
@@ -100602,7 +100602,7 @@ error_format:
 	v16 = (*TPyObject)(unsafe.Pointer(**(**uintptr)(__ccgo_up(bp + 8)))).Fob_type
 	goto _86
 _86:
-	XPyErr_Format(tls, XPyExc_TypeError, __ccgo_ts+236060, libc.VaList(bp+32, v1, v2, v4, v8, X_PyType_Name(tls, v16)))
+	XPyErr_Format(tls, XPyExc_TypeError, __ccgo_ts+235968, libc.VaList(bp+32, v1, v2, v4, v8, X_PyType_Name(tls, v16)))
 	goto error_exit
 _78:
 	;
@@ -100638,7 +100638,7 @@ _92:
 		} else {
 			v4 = __ccgo_ts + 28662
 		}
-		XPyErr_Format(tls, XPyExc_ValueError, __ccgo_ts+235880, libc.VaList(bp+32, v1, v2, v4))
+		XPyErr_Format(tls, XPyExc_ValueError, __ccgo_ts+235788, libc.VaList(bp+32, v1, v2, v4))
 		goto error_exit
 	}
 	if (*Tpath_t)(unsafe.Pointer(path)).Fmake_wide != 0 {
@@ -100681,7 +100681,7 @@ _92:
 			} else {
 				v4 = __ccgo_ts + 28662
 			}
-			XPyErr_Format(tls, XPyExc_ValueError, __ccgo_ts+235852, libc.VaList(bp+32, v1, v2, v4))
+			XPyErr_Format(tls, XPyExc_ValueError, __ccgo_ts+235760, libc.VaList(bp+32, v1, v2, v4))
 			goto error_exit
 		}
 		if !((*Tpath_t)(unsafe.Pointer(path)).Fnonstrict != 0) && libc.Xwcslen(tls, wide) != uint64(**(**TPy_ssize_t)(__ccgo_up(bp + 16))) {
@@ -100700,7 +100700,7 @@ _92:
 			} else {
 				v4 = __ccgo_ts + 28662
 			}
-			XPyErr_Format(tls, XPyExc_ValueError, __ccgo_ts+235880, libc.VaList(bp+32, v1, v2, v4))
+			XPyErr_Format(tls, XPyExc_ValueError, __ccgo_ts+235788, libc.VaList(bp+32, v1, v2, v4))
 			goto error_exit
 		}
 		(*Tpath_t)(unsafe.Pointer(path)).Fwide = wide
@@ -100818,7 +100818,7 @@ func _argument_unavailable_error(tls *libc.TLS, function_name uintptr, argument_
 	} else {
 		v2 = __ccgo_ts + 2
 	}
-	XPyErr_Format(tls, XPyExc_NotImplementedError, __ccgo_ts+236092, libc.VaList(bp+8, v1, v2, argument_name))
+	XPyErr_Format(tls, XPyExc_NotImplementedError, __ccgo_ts+236000, libc.VaList(bp+8, v1, v2, argument_name))
 }
 
 func _dir_fd_unavailable(tls *libc.TLS, o uintptr, p uintptr) (r int32) {
@@ -100829,7 +100829,7 @@ func _dir_fd_unavailable(tls *libc.TLS, o uintptr, p uintptr) (r int32) {
 		return 0
 	}
 	if **(**int32)(__ccgo_up(bp)) != -int32(100) {
-		_argument_unavailable_error(tls, libc.UintptrFromInt32(0), __ccgo_ts+236128)
+		_argument_unavailable_error(tls, libc.UintptrFromInt32(0), __ccgo_ts+236036)
 		return 0
 	}
 	**(**int32)(__ccgo_up(p)) = **(**int32)(__ccgo_up(bp))
@@ -100840,7 +100840,7 @@ func _fd_specified(tls *libc.TLS, function_name uintptr, fd int32) (r int32) {
 	if fd == -int32(1) {
 		return 0
 	}
-	_argument_unavailable_error(tls, function_name, __ccgo_ts+236135)
+	_argument_unavailable_error(tls, function_name, __ccgo_ts+236043)
 	return int32(1)
 }
 
@@ -100848,7 +100848,7 @@ func _follow_symlinks_specified(tls *libc.TLS, function_name uintptr, follow_sym
 	if follow_symlinks != 0 {
 		return 0
 	}
-	_argument_unavailable_error(tls, function_name, __ccgo_ts+236138)
+	_argument_unavailable_error(tls, function_name, __ccgo_ts+236046)
 	return int32(1)
 }
 
@@ -100856,7 +100856,7 @@ func _path_and_dir_fd_invalid(tls *libc.TLS, function_name uintptr, path uintptr
 	bp := tls.Alloc(16)
 	defer tls.Free(16)
 	if !((*Tpath_t)(unsafe.Pointer(path)).Fwide != 0) && dir_fd != -int32(100) && !((*Tpath_t)(unsafe.Pointer(path)).Fnarrow != 0) {
-		XPyErr_Format(tls, XPyExc_ValueError, __ccgo_ts+236154, libc.VaList(bp+8, function_name))
+		XPyErr_Format(tls, XPyExc_ValueError, __ccgo_ts+236062, libc.VaList(bp+8, function_name))
 		return int32(1)
 	}
 	return 0
@@ -100866,7 +100866,7 @@ func _dir_fd_and_fd_invalid(tls *libc.TLS, function_name uintptr, dir_fd int32, 
 	bp := tls.Alloc(16)
 	defer tls.Free(16)
 	if dir_fd != -int32(100) && fd != -int32(1) {
-		XPyErr_Format(tls, XPyExc_ValueError, __ccgo_ts+236201, libc.VaList(bp+8, function_name))
+		XPyErr_Format(tls, XPyExc_ValueError, __ccgo_ts+236109, libc.VaList(bp+8, function_name))
 		return int32(1)
 	}
 	return 0
@@ -100876,7 +100876,7 @@ func _fd_and_follow_symlinks_invalid(tls *libc.TLS, function_name uintptr, fd in
 	bp := tls.Alloc(16)
 	defer tls.Free(16)
 	if fd >= 0 && !(follow_symlinks != 0) {
-		XPyErr_Format(tls, XPyExc_ValueError, __ccgo_ts+236238, libc.VaList(bp+8, function_name))
+		XPyErr_Format(tls, XPyExc_ValueError, __ccgo_ts+236146, libc.VaList(bp+8, function_name))
 		return int32(1)
 	}
 	return 0
@@ -100886,7 +100886,7 @@ func _dir_fd_and_follow_symlinks_invalid(tls *libc.TLS, function_name uintptr, d
 	bp := tls.Alloc(16)
 	defer tls.Free(16)
 	if dir_fd != -int32(100) && !(follow_symlinks != 0) {
-		XPyErr_Format(tls, XPyExc_ValueError, __ccgo_ts+236285, libc.VaList(bp+8, function_name))
+		XPyErr_Format(tls, XPyExc_ValueError, __ccgo_ts+236193, libc.VaList(bp+8, function_name))
 		return int32(1)
 	}
 	return 0
@@ -101190,7 +101190,7 @@ func _win32_wchdir(tls *libc.TLS, path TLPCWSTR) (r TBOOL) {
 			return MFALSE
 		}
 	}
-	is_unc_like_path = libc.BoolInt32(libc.Xwcsncmp(tls, new_path, __ccgo_ts+236336, uint64(2)) == 0 || libc.Xwcsncmp(tls, new_path, __ccgo_ts+236342, uint64(2)) == 0)
+	is_unc_like_path = libc.BoolInt32(libc.Xwcsncmp(tls, new_path, __ccgo_ts+236244, uint64(2)) == 0 || libc.Xwcsncmp(tls, new_path, __ccgo_ts+236250, uint64(2)) == 0)
 	if !(is_unc_like_path != 0) {
 		(**(**[4]Twchar_t)(__ccgo_up(bp + 520)))[int32(1)] = **(**Twchar_t)(__ccgo_up(new_path))
 		result = _SetEnvironmentVariableW(tls, bp+520, new_path)
@@ -101273,7 +101273,7 @@ func _update_st_mode_from_path(tls *libc.TLS, path uintptr, attr TDWORD, result 
 
 		fileExtension = libc.Xwcsrchr(tls, path, uint16('.'))
 		if fileExtension != 0 {
-			if libc.X_wcsicmp(tls, fileExtension, __ccgo_ts+236348) == 0 || libc.X_wcsicmp(tls, fileExtension, __ccgo_ts+236358) == 0 || libc.X_wcsicmp(tls, fileExtension, __ccgo_ts+236368) == 0 || libc.X_wcsicmp(tls, fileExtension, __ccgo_ts+236378) == 0 {
+			if libc.X_wcsicmp(tls, fileExtension, __ccgo_ts+236256) == 0 || libc.X_wcsicmp(tls, fileExtension, __ccgo_ts+236266) == 0 || libc.X_wcsicmp(tls, fileExtension, __ccgo_ts+236276) == 0 || libc.X_wcsicmp(tls, fileExtension, __ccgo_ts+236286) == 0 {
 				v1 = result + 16
 				*(*uint16)(unsafe.Pointer(v1)) = uint16(int32(*(*uint16)(unsafe.Pointer(v1))) | libc.Int32FromInt32(0111))
 			}
@@ -101416,7 +101416,7 @@ func _win32_xstat_slow_impl(tls *libc.TLS, path uintptr, result uintptr, travers
 
 					} else {
 						if !(isUnhandledTag != 0) {
-							libc.XCloseHandle(tls, hFile)
+							_ccgo_CloseHandle(tls, hFile)
 							return _win32_xstat_slow_impl(tls, path, result, int32(MTRUE))
 						}
 					}
@@ -101458,7 +101458,7 @@ cleanup:
 			v1 = uint32(0)
 		}
 		error1 = v1
-		if !(libc.XCloseHandle(tls, hFile) != 0) {
+		if !(_ccgo_CloseHandle(tls, hFile) != 0) {
 			retval = -int32(1)
 		} else {
 			if retval != 0 {
@@ -101478,10 +101478,10 @@ func _win32_xstat_impl(tls *libc.TLS, path uintptr, result uintptr, traverse TBO
 	var _ TFILE_STAT_BASIC_INFORMATION
 	_, _ = hMod, v1
 	if _GetFileInformationByName_init < libc.Int32FromInt32(0) {
-		hMod = _ccgo_LoadLibraryW(tls, __ccgo_ts+236388)
+		hMod = _ccgo_LoadLibraryW(tls, __ccgo_ts+236296)
 		_GetFileInformationByName_init = 0
 		if hMod != 0 {
-			_GetFileInformationByName = _ccgo_GetProcAddress(tls, hMod, __ccgo_ts+236444)
+			_GetFileInformationByName = _ccgo_GetProcAddress(tls, hMod, __ccgo_ts+236352)
 			if _GetFileInformationByName != 0 {
 				_GetFileInformationByName_init = int32(1)
 			} else {
@@ -101553,91 +101553,91 @@ func _win32_stat(tls *libc.TLS, path uintptr, result uintptr) (r int32) {
 
 var _stat_result_fields = [22]TPyStructSequence_Field{
 	0: {
-		Fname: __ccgo_ts + 236469,
-		Fdoc:  __ccgo_ts + 236477,
+		Fname: __ccgo_ts + 236377,
+		Fdoc:  __ccgo_ts + 236385,
 	},
 	1: {
-		Fname: __ccgo_ts + 236493,
-		Fdoc:  __ccgo_ts + 236500,
+		Fname: __ccgo_ts + 236401,
+		Fdoc:  __ccgo_ts + 236408,
 	},
 	2: {
-		Fname: __ccgo_ts + 236506,
-		Fdoc:  __ccgo_ts + 236513,
+		Fname: __ccgo_ts + 236414,
+		Fdoc:  __ccgo_ts + 236421,
 	},
 	3: {
-		Fname: __ccgo_ts + 236520,
-		Fdoc:  __ccgo_ts + 236529,
+		Fname: __ccgo_ts + 236428,
+		Fdoc:  __ccgo_ts + 236437,
 	},
 	4: {
-		Fname: __ccgo_ts + 236550,
-		Fdoc:  __ccgo_ts + 236557,
+		Fname: __ccgo_ts + 236458,
+		Fdoc:  __ccgo_ts + 236465,
 	},
 	5: {
-		Fname: __ccgo_ts + 236574,
-		Fdoc:  __ccgo_ts + 236581,
+		Fname: __ccgo_ts + 236482,
+		Fdoc:  __ccgo_ts + 236489,
 	},
 	6: {
-		Fname: __ccgo_ts + 236599,
-		Fdoc:  __ccgo_ts + 236607,
+		Fname: __ccgo_ts + 236507,
+		Fdoc:  __ccgo_ts + 236515,
 	},
 	7: {
-		Fdoc: __ccgo_ts + 236628,
+		Fdoc: __ccgo_ts + 236536,
 	},
 	8: {
-		Fdoc: __ccgo_ts + 236656,
+		Fdoc: __ccgo_ts + 236564,
 	},
 	9: {
-		Fdoc: __ccgo_ts + 236690,
+		Fdoc: __ccgo_ts + 236598,
 	},
 	10: {
-		Fname: __ccgo_ts + 236718,
-		Fdoc:  __ccgo_ts + 236727,
+		Fname: __ccgo_ts + 236626,
+		Fdoc:  __ccgo_ts + 236635,
 	},
 	11: {
-		Fname: __ccgo_ts + 236747,
-		Fdoc:  __ccgo_ts + 236756,
+		Fname: __ccgo_ts + 236655,
+		Fdoc:  __ccgo_ts + 236664,
 	},
 	12: {
-		Fname: __ccgo_ts + 236782,
-		Fdoc:  __ccgo_ts + 236791,
+		Fname: __ccgo_ts + 236690,
+		Fdoc:  __ccgo_ts + 236699,
 	},
 	13: {
-		Fname: __ccgo_ts + 236811,
-		Fdoc:  __ccgo_ts + 236823,
+		Fname: __ccgo_ts + 236719,
+		Fdoc:  __ccgo_ts + 236731,
 	},
 	14: {
-		Fname: __ccgo_ts + 236858,
-		Fdoc:  __ccgo_ts + 236870,
+		Fname: __ccgo_ts + 236766,
+		Fdoc:  __ccgo_ts + 236778,
 	},
 	15: {
-		Fname: __ccgo_ts + 236911,
-		Fdoc:  __ccgo_ts + 236923,
+		Fname: __ccgo_ts + 236819,
+		Fdoc:  __ccgo_ts + 236831,
 	},
 	16: {
-		Fname: __ccgo_ts + 236958,
-		Fdoc:  __ccgo_ts + 236966,
+		Fname: __ccgo_ts + 236866,
+		Fdoc:  __ccgo_ts + 236874,
 	},
 	17: {
-		Fname: __ccgo_ts + 236996,
-		Fdoc:  __ccgo_ts + 237009,
+		Fname: __ccgo_ts + 236904,
+		Fdoc:  __ccgo_ts + 236917,
 	},
 	18: {
-		Fname: __ccgo_ts + 237026,
-		Fdoc:  __ccgo_ts + 237042,
+		Fname: __ccgo_ts + 236934,
+		Fdoc:  __ccgo_ts + 236950,
 	},
 	19: {
-		Fname: __ccgo_ts + 237074,
-		Fdoc:  __ccgo_ts + 237093,
+		Fname: __ccgo_ts + 236982,
+		Fdoc:  __ccgo_ts + 237001,
 	},
 	20: {
-		Fname: __ccgo_ts + 237121,
-		Fdoc:  __ccgo_ts + 237136,
+		Fname: __ccgo_ts + 237029,
+		Fdoc:  __ccgo_ts + 237044,
 	},
 	21: {},
 }
 
 var _stat_result_desc = TPyStructSequence_Desc{
-	Fname:          __ccgo_ts + 237156,
+	Fname:          __ccgo_ts + 237064,
 	Fdoc:           uintptr(unsafe.Pointer(&_stat_result__doc__)),
 	Ffields:        uintptr(unsafe.Pointer(&_stat_result_fields)),
 	Fn_in_sequence: int32(10),
@@ -101645,43 +101645,43 @@ var _stat_result_desc = TPyStructSequence_Desc{
 
 var _statvfs_result_fields = [12]TPyStructSequence_Field{
 	0: {
-		Fname: __ccgo_ts + 237168,
+		Fname: __ccgo_ts + 237076,
 	},
 	1: {
-		Fname: __ccgo_ts + 237176,
+		Fname: __ccgo_ts + 237084,
 	},
 	2: {
-		Fname: __ccgo_ts + 237185,
+		Fname: __ccgo_ts + 237093,
 	},
 	3: {
-		Fname: __ccgo_ts + 237194,
+		Fname: __ccgo_ts + 237102,
 	},
 	4: {
-		Fname: __ccgo_ts + 237202,
+		Fname: __ccgo_ts + 237110,
 	},
 	5: {
-		Fname: __ccgo_ts + 237211,
+		Fname: __ccgo_ts + 237119,
 	},
 	6: {
-		Fname: __ccgo_ts + 237219,
+		Fname: __ccgo_ts + 237127,
 	},
 	7: {
-		Fname: __ccgo_ts + 237227,
+		Fname: __ccgo_ts + 237135,
 	},
 	8: {
-		Fname: __ccgo_ts + 237236,
+		Fname: __ccgo_ts + 237144,
 	},
 	9: {
-		Fname: __ccgo_ts + 237243,
+		Fname: __ccgo_ts + 237151,
 	},
 	10: {
-		Fname: __ccgo_ts + 237253,
+		Fname: __ccgo_ts + 237161,
 	},
 	11: {},
 }
 
 var _statvfs_result_desc = TPyStructSequence_Desc{
-	Fname:          __ccgo_ts + 237260,
+	Fname:          __ccgo_ts + 237168,
 	Fdoc:           uintptr(unsafe.Pointer(&_statvfs_result__doc__)),
 	Ffields:        uintptr(unsafe.Pointer(&_statvfs_result_fields)),
 	Fn_in_sequence: int32(10),
@@ -102421,7 +102421,7 @@ func _os_lstat_impl(tls *libc.TLS, module uintptr, path uintptr, dir_fd int32) (
 	var follow_symlinks int32
 	_ = follow_symlinks
 	follow_symlinks = 0
-	return _posix_do_stat(tls, module, __ccgo_ts+237275, path, dir_fd, follow_symlinks)
+	return _posix_do_stat(tls, module, __ccgo_ts+237183, path, dir_fd, follow_symlinks)
 }
 
 func _os_access_impl(tls *libc.TLS, module uintptr, path uintptr, mode int32, dir_fd int32, effective_ids int32, follow_symlinks int32) (r int32) {
@@ -102430,11 +102430,11 @@ func _os_access_impl(tls *libc.TLS, module uintptr, path uintptr, mode int32, di
 	var attr TDWORD
 	var return_value int32
 	_, _, _ = _save, attr, return_value
-	if _follow_symlinks_specified(tls, __ccgo_ts+224582, follow_symlinks) != 0 {
+	if _follow_symlinks_specified(tls, __ccgo_ts+224490, follow_symlinks) != 0 {
 		return -int32(1)
 	}
 	if effective_ids != 0 {
-		_argument_unavailable_error(tls, __ccgo_ts+224582, __ccgo_ts+237281)
+		_argument_unavailable_error(tls, __ccgo_ts+224490, __ccgo_ts+237189)
 		return -int32(1)
 	}
 	_save = XPyEval_SaveThread(tls)
@@ -102452,7 +102452,7 @@ func _os_chdir_impl(tls *libc.TLS, module uintptr, path uintptr) (r uintptr) {
 	var _save uintptr
 	var result int32
 	_, _ = _save, result
-	if XPySys_Audit(tls, __ccgo_ts+237295, __ccgo_ts+28020, libc.VaList(bp+8, (*Tpath_t)(unsafe.Pointer(path)).Fobject)) < 0 {
+	if XPySys_Audit(tls, __ccgo_ts+237203, __ccgo_ts+28020, libc.VaList(bp+8, (*Tpath_t)(unsafe.Pointer(path)).Fobject)) < 0 {
 		return libc.UintptrFromInt32(0)
 	}
 	_save = XPyEval_SaveThread(tls)
@@ -102519,7 +102519,7 @@ func _os_chmod_impl(tls *libc.TLS, module uintptr, path uintptr, mode int32, dir
 	} else {
 		v1 = dir_fd
 	}
-	if XPySys_Audit(tls, __ccgo_ts+237304, __ccgo_ts+206361, libc.VaList(bp+8, (*Tpath_t)(unsafe.Pointer(path)).Fobject, mode, v1)) < 0 {
+	if XPySys_Audit(tls, __ccgo_ts+237212, __ccgo_ts+206361, libc.VaList(bp+8, (*Tpath_t)(unsafe.Pointer(path)).Fobject, mode, v1)) < 0 {
 		return libc.UintptrFromInt32(0)
 	}
 	result = 0
@@ -102531,7 +102531,7 @@ func _os_chmod_impl(tls *libc.TLS, module uintptr, path uintptr, mode int32, dir
 			hfile = libc.XCreateFileW(tls, (*Tpath_t)(unsafe.Pointer(path)).Fwide, uint32(libc.Int32FromInt32(MFILE_READ_ATTRIBUTES)|libc.Int32FromInt32(MFILE_WRITE_ATTRIBUTES)), uint32(0), libc.UintptrFromInt32(0), uint32(MOPEN_EXISTING), uint32(MFILE_FLAG_BACKUP_SEMANTICS), libc.UintptrFromInt32(0))
 			if hfile != uintptr(int64(-libc.Int32FromInt32(1))) {
 				result = _win32_hchmod(tls, hfile, mode)
-				libc.XCloseHandle(tls, hfile)
+				_ccgo_CloseHandle(tls, hfile)
 			}
 		} else {
 			result = _win32_lchmod(tls, (*Tpath_t)(unsafe.Pointer(path)).Fwide, mode)
@@ -102551,7 +102551,7 @@ func _os_fchmod_impl(tls *libc.TLS, module uintptr, fd int32, mode int32) (r uin
 	var _save uintptr
 	var res int32
 	_, _ = _save, res
-	if XPySys_Audit(tls, __ccgo_ts+237304, __ccgo_ts+237313, libc.VaList(bp+8, fd, mode, -int32(1))) < 0 {
+	if XPySys_Audit(tls, __ccgo_ts+237212, __ccgo_ts+237221, libc.VaList(bp+8, fd, mode, -int32(1))) < 0 {
 		return libc.UintptrFromInt32(0)
 	}
 	res = 0
@@ -102571,7 +102571,7 @@ func _os_lchmod_impl(tls *libc.TLS, module uintptr, path uintptr, mode int32) (r
 	var _save uintptr
 	var res int32
 	_, _ = _save, res
-	if XPySys_Audit(tls, __ccgo_ts+237304, __ccgo_ts+206361, libc.VaList(bp+8, (*Tpath_t)(unsafe.Pointer(path)).Fobject, mode, -int32(1))) < 0 {
+	if XPySys_Audit(tls, __ccgo_ts+237212, __ccgo_ts+206361, libc.VaList(bp+8, (*Tpath_t)(unsafe.Pointer(path)).Fobject, mode, -int32(1))) < 0 {
 		return libc.UintptrFromInt32(0)
 	}
 	_save = XPyEval_SaveThread(tls)
@@ -102675,12 +102675,12 @@ func _os_link_impl(tls *libc.TLS, module uintptr, src uintptr, dst uintptr, src_
 	_, _, _, _ = _save, result, v1, v2
 	result = MFALSE
 	if src_dir_fd != -int32(100) || dst_dir_fd != -int32(100) {
-		_argument_unavailable_error(tls, __ccgo_ts+237317, __ccgo_ts+237322)
+		_argument_unavailable_error(tls, __ccgo_ts+237225, __ccgo_ts+237230)
 		return libc.UintptrFromInt32(0)
 	}
 
 	if follow_symlinks == int32(1) {
-		_argument_unavailable_error(tls, __ccgo_ts+237317, __ccgo_ts+237348)
+		_argument_unavailable_error(tls, __ccgo_ts+237225, __ccgo_ts+237256)
 		return libc.UintptrFromInt32(0)
 	}
 	if src_dir_fd == -int32(100) {
@@ -102693,7 +102693,7 @@ func _os_link_impl(tls *libc.TLS, module uintptr, src uintptr, dst uintptr, src_
 	} else {
 		v2 = dst_dir_fd
 	}
-	if XPySys_Audit(tls, __ccgo_ts+237369, __ccgo_ts+237377, libc.VaList(bp+8, (*Tpath_t)(unsafe.Pointer(src)).Fobject, (*Tpath_t)(unsafe.Pointer(dst)).Fobject, v1, v2)) < 0 {
+	if XPySys_Audit(tls, __ccgo_ts+237277, __ccgo_ts+237285, libc.VaList(bp+8, (*Tpath_t)(unsafe.Pointer(src)).Fobject, (*Tpath_t)(unsafe.Pointer(dst)).Fobject, v1, v2)) < 0 {
 		return libc.UintptrFromInt32(0)
 	}
 	_save = XPyEval_SaveThread(tls)
@@ -102734,7 +102734,7 @@ func __listdir_windows_no_opendir(tls *libc.TLS, path uintptr, _list uintptr) (r
 	_4:
 		return_bytes = v3
 	}
-	wnamebuf = _join_path_filenameW(tls, po_wchars, __ccgo_ts+237382, int32(1))
+	wnamebuf = _join_path_filenameW(tls, po_wchars, __ccgo_ts+237290, int32(1))
 	if wnamebuf == libc.UintptrFromInt32(0) {
 		goto exit
 	}
@@ -102775,7 +102775,7 @@ func __listdir_windows_no_opendir(tls *libc.TLS, path uintptr, _list uintptr) (r
 	}
 	for cond := true; cond; cond = result == int32(MTRUE) {
 
-		if libc.Xwcscmp(tls, bp+16+44, __ccgo_ts+174069) != 0 && libc.Xwcscmp(tls, bp+16+44, __ccgo_ts+237390) != 0 {
+		if libc.Xwcscmp(tls, bp+16+44, __ccgo_ts+174069) != 0 && libc.Xwcscmp(tls, bp+16+44, __ccgo_ts+237298) != 0 {
 			**(**uintptr)(__ccgo_up(bp + 8)) = XPyUnicode_FromWideChar(tls, bp+16+44, int64(libc.Xwcslen(tls, bp+16+44)))
 			if return_bytes != 0 && **(**uintptr)(__ccgo_up(bp + 8)) != 0 {
 				_tmp_dst_ptr = bp + 8
@@ -102942,7 +102942,7 @@ func _os_listdir_impl(tls *libc.TLS, module uintptr, path uintptr) (r uintptr) {
 	} else {
 		v1 = uintptr(unsafe.Pointer(&X_Py_NoneStruct))
 	}
-	if XPySys_Audit(tls, __ccgo_ts+237396, __ccgo_ts+41785, libc.VaList(bp+8, v1)) < 0 {
+	if XPySys_Audit(tls, __ccgo_ts+237304, __ccgo_ts+41785, libc.VaList(bp+8, v1)) < 0 {
 		return libc.UintptrFromInt32(0)
 	}
 	return __listdir_windows_no_opendir(tls, path, libc.UintptrFromInt32(0))
@@ -102960,7 +102960,7 @@ func _os_listdrives_impl(tls *libc.TLS, module uintptr) (r uintptr) {
 	_, _, _, _, _, _, _, _, _ = _save, buflen, nullchar, result, str, v1, v2, v5, v6
 	buflen = uint32(libc.Uint64FromInt64(512) / libc.Uint64FromInt64(2))
 	result = libc.UintptrFromInt32(0)
-	if XPySys_Audit(tls, __ccgo_ts+237407, libc.UintptrFromInt32(0), 0) < 0 {
+	if XPySys_Audit(tls, __ccgo_ts+237315, libc.UintptrFromInt32(0), 0) < 0 {
 		return libc.UintptrFromInt32(0)
 	}
 	_save = XPyEval_SaveThread(tls)
@@ -103030,7 +103030,7 @@ func _os_listvolumes_impl(tls *libc.TLS, module uintptr) (r uintptr) {
 	if !(**(**uintptr)(__ccgo_up(bp)) != 0) {
 		return libc.UintptrFromInt32(0)
 	}
-	if XPySys_Audit(tls, __ccgo_ts+237421, libc.UintptrFromInt32(0), 0) < 0 {
+	if XPySys_Audit(tls, __ccgo_ts+237329, libc.UintptrFromInt32(0), 0) < 0 {
 		v1 = **(**uintptr)(__ccgo_up(bp))
 		v2 = libc.BoolInt32(int32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
 		goto _3
@@ -103171,7 +103171,7 @@ func _os_listmounts_impl(tls *libc.TLS, module uintptr, volume uintptr) (r uintp
 	if attributes == uint32(-libc.Int32FromInt32(1)) && libc.XGetLastError(tls) == uint32(1005) {
 		return XPyErr_SetFromWindowsErr(tls, int32(1005))
 	}
-	if XPySys_Audit(tls, __ccgo_ts+237436, __ccgo_ts+41785, libc.VaList(bp+536, (*Tpath_t)(unsafe.Pointer(volume)).Fobject)) < 0 {
+	if XPySys_Audit(tls, __ccgo_ts+237344, __ccgo_ts+41785, libc.VaList(bp+536, (*Tpath_t)(unsafe.Pointer(volume)).Fobject)) < 0 {
 		return libc.UintptrFromInt32(0)
 	}
 	for int32(1) != 0 {
@@ -103281,7 +103281,7 @@ func _os__path_isdevdrive_impl(tls *libc.TLS, module uintptr, path uintptr) (r1 
 				if !(libc.XDeviceIoControl(tls, hVolume, uint32(libc.Int32FromInt32(MFILE_DEVICE_FILE_SYSTEM)<<libc.Int32FromInt32(16)|libc.Int32FromInt32(MFILE_ANY_ACCESS)<<libc.Int32FromInt32(14)|libc.Int32FromInt32(143)<<libc.Int32FromInt32(2)|libc.Int32FromInt32(MMETHOD_BUFFERED)), bp+520, uint32(16), bp+520, uint32(16), libc.UintptrFromInt32(0), libc.UintptrFromInt32(0)) != 0) {
 					err = int32(libc.XGetLastError(tls))
 				}
-				libc.XCloseHandle(tls, hVolume)
+				_ccgo_CloseHandle(tls, hVolume)
 				if err == int32(87) {
 
 					r = uintptr(unsafe.Pointer(&X_Py_FalseStruct))
@@ -103369,7 +103369,7 @@ func _os__getfullpathname_impl(tls *libc.TLS, module uintptr, path uintptr) (r u
 	var _ uintptr
 	_, _, _, _, _, _, _ = _tmp_dst_ptr, _tmp_old_dst, flags, v1, v3, v5, v9
 	if X_PyOS_getfullpathname(tls, (*Tpath_t)(unsafe.Pointer(path)).Fwide, bp) < 0 {
-		return _win32_error_object(tls, __ccgo_ts+237450, (*Tpath_t)(unsafe.Pointer(path)).Fobject)
+		return _win32_error_object(tls, __ccgo_ts+237358, (*Tpath_t)(unsafe.Pointer(path)).Fobject)
 	}
 	if **(**uintptr)(__ccgo_up(bp)) == libc.UintptrFromInt32(0) {
 		return XPyErr_NoMemory(tls)
@@ -103427,7 +103427,7 @@ func _os__getfinalpathname_impl(tls *libc.TLS, module uintptr, path uintptr) (r 
 	hFile = libc.XCreateFileW(tls, (*Tpath_t)(unsafe.Pointer(path)).Fwide, uint32(0), uint32(0), libc.UintptrFromInt32(0), uint32(MOPEN_EXISTING), uint32(MFILE_FLAG_BACKUP_SEMANTICS), libc.UintptrFromInt32(0))
 	XPyEval_RestoreThread(tls, _save)
 	if hFile == uintptr(int64(-libc.Int32FromInt32(1))) {
-		return _win32_error_object(tls, __ccgo_ts+237467, (*Tpath_t)(unsafe.Pointer(path)).Fobject)
+		return _win32_error_object(tls, __ccgo_ts+237375, (*Tpath_t)(unsafe.Pointer(path)).Fobject)
 	}
 
 	for int32(1) != 0 {
@@ -103435,7 +103435,7 @@ func _os__getfinalpathname_impl(tls *libc.TLS, module uintptr, path uintptr) (r 
 		result_length = int32(_GetFinalPathNameByHandleW(tls, hFile, target_path, uint32(buf_size), uint32(MVOLUME_NAME_DOS)))
 		XPyEval_RestoreThread(tls, _save1)
 		if !(result_length != 0) {
-			**(**uintptr)(__ccgo_up(bp + 520)) = _win32_error_object(tls, __ccgo_ts+237479, (*Tpath_t)(unsafe.Pointer(path)).Fobject)
+			**(**uintptr)(__ccgo_up(bp + 520)) = _win32_error_object(tls, __ccgo_ts+237387, (*Tpath_t)(unsafe.Pointer(path)).Fobject)
 			goto cleanup
 		}
 		if result_length < buf_size {
@@ -103490,7 +103490,7 @@ cleanup:
 	if target_path != bp {
 		XPyMem_Free(tls, target_path)
 	}
-	libc.XCloseHandle(tls, hFile)
+	_ccgo_CloseHandle(tls, hFile)
 	return **(**uintptr)(__ccgo_up(bp + 520))
 }
 
@@ -103537,7 +103537,7 @@ func _os__getvolumepathname_impl(tls *libc.TLS, module uintptr, path uintptr) (r
 	}
 	buflen = uint64(v1)
 	if buflen > uint64(4294967295) {
-		XPyErr_SetString(tls, XPyExc_OverflowError, __ccgo_ts+237505)
+		XPyErr_SetString(tls, XPyExc_OverflowError, __ccgo_ts+237413)
 		return libc.UintptrFromInt32(0)
 	}
 	if buflen > libc.Uint64FromInt64(9223372036854775807)/libc.Uint64FromInt64(2) {
@@ -103553,7 +103553,7 @@ func _os__getvolumepathname_impl(tls *libc.TLS, module uintptr, path uintptr) (r
 	ret = _GetVolumePathNameW(tls, (*Tpath_t)(unsafe.Pointer(path)).Fwide, mountpath, uint32(buflen))
 	XPyEval_RestoreThread(tls, _save)
 	if !(ret != 0) {
-		**(**uintptr)(__ccgo_up(bp)) = _win32_error_object(tls, __ccgo_ts+237519, (*Tpath_t)(unsafe.Pointer(path)).Fobject)
+		**(**uintptr)(__ccgo_up(bp)) = _win32_error_object(tls, __ccgo_ts+237427, (*Tpath_t)(unsafe.Pointer(path)).Fobject)
 		goto exit
 	}
 	**(**uintptr)(__ccgo_up(bp)) = XPyUnicode_FromWideChar(tls, mountpath, int64(libc.Xwcslen(tls, mountpath)))
@@ -103624,7 +103624,7 @@ func _os__path_splitroot_impl(tls *libc.TLS, module uintptr, path uintptr) (r ui
 	} else {
 		if **(**uintptr)(__ccgo_up(bp)) != buffer {
 			rootLen = uint64((int64(**(**uintptr)(__ccgo_up(bp))) - int64(buffer)) / 2)
-			result = XPy_BuildValue(tls, __ccgo_ts+213489, libc.VaList(bp+16, XPyUnicode_FromWideChar(tls, (*Tpath_t)(unsafe.Pointer(path)).Fwide, int64(rootLen)), XPyUnicode_FromWideChar(tls, (*Tpath_t)(unsafe.Pointer(path)).Fwide+uintptr(rootLen)*2, int64(-int32(1)))))
+			result = XPy_BuildValue(tls, __ccgo_ts+213397, libc.VaList(bp+16, XPyUnicode_FromWideChar(tls, (*Tpath_t)(unsafe.Pointer(path)).Fwide, int64(rootLen)), XPyUnicode_FromWideChar(tls, (*Tpath_t)(unsafe.Pointer(path)).Fwide+uintptr(rootLen)*2, int64(-int32(1)))))
 		} else {
 			result = XPy_BuildValue(tls, __ccgo_ts+24659, libc.VaList(bp+16, (*Tpath_t)(unsafe.Pointer(path)).Fobject, __ccgo_ts+2))
 		}
@@ -103680,10 +103680,10 @@ func __testFileTypeByName(tls *libc.TLS, path TLPCWSTR, testedType int32) (r TBO
 	var _ T_Py_stat_struct
 	_, _, _, _, _, _, _, _ = diskDevice, flags, hMod, hfile, rc, result, result1, v1
 	if _GetFileInformationByName_init1 < libc.Int32FromInt32(0) {
-		hMod = _ccgo_LoadLibraryW(tls, __ccgo_ts+236388)
+		hMod = _ccgo_LoadLibraryW(tls, __ccgo_ts+236296)
 		_GetFileInformationByName_init1 = 0
 		if hMod != 0 {
-			_GetFileInformationByName1 = _ccgo_GetProcAddress(tls, hMod, __ccgo_ts+236444)
+			_GetFileInformationByName1 = _ccgo_GetProcAddress(tls, hMod, __ccgo_ts+236352)
 			if _GetFileInformationByName1 != 0 {
 				_GetFileInformationByName_init1 = int32(1)
 			} else {
@@ -103742,7 +103742,7 @@ _2:
 	hfile = libc.XCreateFileW(tls, path, uint32(libc.Int32FromInt32(MFILE_READ_ATTRIBUTES)), uint32(0), libc.UintptrFromInt32(0), uint32(MOPEN_EXISTING), flags, libc.UintptrFromInt32(0))
 	if hfile != uintptr(int64(-libc.Int32FromInt32(1))) {
 		result1 = __testFileTypeByHandle(tls, hfile, testedType, MFALSE)
-		libc.XCloseHandle(tls, hfile)
+		_ccgo_CloseHandle(tls, hfile)
 		return result1
 	}
 	switch libc.XGetLastError(tls) {
@@ -103787,10 +103787,10 @@ func __testFileExistsByName(tls *libc.TLS, path TLPCWSTR, followLinks TBOOL) (r 
 	var _ TFILE_STAT_BASIC_INFORMATION
 	_, _, _, _, _, _ = flags, hMod, hfile, result, v1, v5
 	if _GetFileInformationByName_init2 < libc.Int32FromInt32(0) {
-		hMod = _ccgo_LoadLibraryW(tls, __ccgo_ts+236388)
+		hMod = _ccgo_LoadLibraryW(tls, __ccgo_ts+236296)
 		_GetFileInformationByName_init2 = 0
 		if hMod != 0 {
-			_GetFileInformationByName2 = _ccgo_GetProcAddress(tls, hMod, __ccgo_ts+236444)
+			_GetFileInformationByName2 = _ccgo_GetProcAddress(tls, hMod, __ccgo_ts+236352)
 			if _GetFileInformationByName2 != 0 {
 				_GetFileInformationByName_init2 = int32(1)
 			} else {
@@ -103847,18 +103847,18 @@ _2:
 	hfile = libc.XCreateFileW(tls, path, uint32(libc.Int32FromInt32(MFILE_READ_ATTRIBUTES)), uint32(0), libc.UintptrFromInt32(0), uint32(MOPEN_EXISTING), flags, libc.UintptrFromInt32(0))
 	if hfile != uintptr(int64(-libc.Int32FromInt32(1))) {
 		if followLinks != 0 {
-			libc.XCloseHandle(tls, hfile)
+			_ccgo_CloseHandle(tls, hfile)
 			return int32(MTRUE)
 		}
 
 		result = __testFileTypeByHandle(tls, hfile, int32(32), MFALSE)
-		libc.XCloseHandle(tls, hfile)
+		_ccgo_CloseHandle(tls, hfile)
 		if !(result != 0) {
 			return int32(MTRUE)
 		}
 		hfile = libc.XCreateFileW(tls, path, uint32(libc.Int32FromInt32(MFILE_READ_ATTRIBUTES)), uint32(0), libc.UintptrFromInt32(0), uint32(MOPEN_EXISTING), uint32(MFILE_FLAG_BACKUP_SEMANTICS), libc.UintptrFromInt32(0))
 		if hfile != uintptr(int64(-libc.Int32FromInt32(1))) {
-			libc.XCloseHandle(tls, hfile)
+			_ccgo_CloseHandle(tls, hfile)
 			return int32(MTRUE)
 		}
 	}
@@ -104199,14 +104199,14 @@ func _os_mkdir_impl(tls *libc.TLS, module uintptr, path uintptr, mode int32, dir
 	} else {
 		v1 = dir_fd
 	}
-	if XPySys_Audit(tls, __ccgo_ts+237538, __ccgo_ts+206361, libc.VaList(bp+40, (*Tpath_t)(unsafe.Pointer(path)).Fobject, mode, v1)) < 0 {
+	if XPySys_Audit(tls, __ccgo_ts+237446, __ccgo_ts+206361, libc.VaList(bp+40, (*Tpath_t)(unsafe.Pointer(path)).Fobject, mode, v1)) < 0 {
 		return libc.UintptrFromInt32(0)
 	}
 	_save = XPyEval_SaveThread(tls)
 	if mode == int32(0700) {
 		pSecAttr = bp
 
-		if !(_ConvertStringSecurityDescriptorToSecurityDescriptorW(tls, __ccgo_ts+237547, uint32(MSDDL_REVISION_1), bp+8, bp+24) != 0) {
+		if !(_ConvertStringSecurityDescriptorToSecurityDescriptorW(tls, __ccgo_ts+237455, uint32(MSDDL_REVISION_1), bp+8, bp+24) != 0) {
 			error1 = int32(libc.XGetLastError(tls))
 		}
 	}
@@ -104236,7 +104236,7 @@ func _internal_rename(tls *libc.TLS, src uintptr, dst uintptr, src_dir_fd int32,
 	if is_replace != 0 {
 		v1 = __ccgo_ts + 819
 	} else {
-		v1 = __ccgo_ts + 237651
+		v1 = __ccgo_ts + 237559
 	}
 	function_name = v1
 	if is_replace != 0 {
@@ -104247,7 +104247,7 @@ func _internal_rename(tls *libc.TLS, src uintptr, dst uintptr, src_dir_fd int32,
 	flags = v2
 	dir_fd_specified = libc.BoolInt32(src_dir_fd != -int32(100) || dst_dir_fd != -int32(100))
 	if dir_fd_specified != 0 {
-		_argument_unavailable_error(tls, function_name, __ccgo_ts+237322)
+		_argument_unavailable_error(tls, function_name, __ccgo_ts+237230)
 		return libc.UintptrFromInt32(0)
 	}
 	if src_dir_fd == -int32(100) {
@@ -104260,7 +104260,7 @@ func _internal_rename(tls *libc.TLS, src uintptr, dst uintptr, src_dir_fd int32,
 	} else {
 		v3 = dst_dir_fd
 	}
-	if XPySys_Audit(tls, __ccgo_ts+237658, __ccgo_ts+237377, libc.VaList(bp+8, (*Tpath_t)(unsafe.Pointer(src)).Fobject, (*Tpath_t)(unsafe.Pointer(dst)).Fobject, v2, v3)) < 0 {
+	if XPySys_Audit(tls, __ccgo_ts+237566, __ccgo_ts+237285, libc.VaList(bp+8, (*Tpath_t)(unsafe.Pointer(src)).Fobject, (*Tpath_t)(unsafe.Pointer(dst)).Fobject, v2, v3)) < 0 {
 		return libc.UintptrFromInt32(0)
 	}
 	_save = XPyEval_SaveThread(tls)
@@ -104294,7 +104294,7 @@ func _os_rmdir_impl(tls *libc.TLS, module uintptr, path uintptr, dir_fd int32) (
 	} else {
 		v1 = dir_fd
 	}
-	if XPySys_Audit(tls, __ccgo_ts+237668, __ccgo_ts+65233, libc.VaList(bp+8, (*Tpath_t)(unsafe.Pointer(path)).Fobject, v1)) < 0 {
+	if XPySys_Audit(tls, __ccgo_ts+237576, __ccgo_ts+65233, libc.VaList(bp+8, (*Tpath_t)(unsafe.Pointer(path)).Fobject, v1)) < 0 {
 		return libc.UintptrFromInt32(0)
 	}
 	_save = XPyEval_SaveThread(tls)
@@ -104314,7 +104314,7 @@ func _os_system_impl(tls *libc.TLS, module uintptr, command uintptr) (r int32) {
 	var _save uintptr
 	var result int32
 	_, _ = _save, result
-	if XPySys_Audit(tls, __ccgo_ts+237677, __ccgo_ts+237687, libc.VaList(bp+8, command)) < 0 {
+	if XPySys_Audit(tls, __ccgo_ts+237585, __ccgo_ts+237595, libc.VaList(bp+8, command)) < 0 {
 		return -int32(1)
 	}
 	_save = XPyEval_SaveThread(tls)
@@ -104379,7 +104379,7 @@ func _os_unlink_impl(tls *libc.TLS, module uintptr, path uintptr, dir_fd int32) 
 	} else {
 		v1 = dir_fd
 	}
-	if XPySys_Audit(tls, __ccgo_ts+237691, __ccgo_ts+65233, libc.VaList(bp+8, (*Tpath_t)(unsafe.Pointer(path)).Fobject, v1)) < 0 {
+	if XPySys_Audit(tls, __ccgo_ts+237599, __ccgo_ts+65233, libc.VaList(bp+8, (*Tpath_t)(unsafe.Pointer(path)).Fobject, v1)) < 0 {
 		return libc.UintptrFromInt32(0)
 	}
 	_save = XPyEval_SaveThread(tls)
@@ -104399,30 +104399,30 @@ func _os_remove_impl(tls *libc.TLS, module uintptr, path uintptr, dir_fd int32) 
 
 var _uname_result_fields = [6]TPyStructSequence_Field{
 	0: {
-		Fname: __ccgo_ts + 237701,
-		Fdoc:  __ccgo_ts + 237709,
+		Fname: __ccgo_ts + 237609,
+		Fdoc:  __ccgo_ts + 237617,
 	},
 	1: {
-		Fname: __ccgo_ts + 237731,
-		Fdoc:  __ccgo_ts + 237740,
+		Fname: __ccgo_ts + 237639,
+		Fdoc:  __ccgo_ts + 237648,
 	},
 	2: {
 		Fname: __ccgo_ts + 51537,
-		Fdoc:  __ccgo_ts + 237792,
+		Fdoc:  __ccgo_ts + 237700,
 	},
 	3: {
 		Fname: __ccgo_ts + 155880,
-		Fdoc:  __ccgo_ts + 237817,
+		Fdoc:  __ccgo_ts + 237725,
 	},
 	4: {
-		Fname: __ccgo_ts + 237842,
-		Fdoc:  __ccgo_ts + 237850,
+		Fname: __ccgo_ts + 237750,
+		Fdoc:  __ccgo_ts + 237758,
 	},
 	5: {},
 }
 
 var _uname_result_desc = TPyStructSequence_Desc{
-	Fname:          __ccgo_ts + 237870,
+	Fname:          __ccgo_ts + 237778,
 	Fdoc:           uintptr(unsafe.Pointer(&_uname_result__doc__)),
 	Ffields:        uintptr(unsafe.Pointer(&_uname_result_fields)),
 	Fn_in_sequence: int32(5),
@@ -104475,7 +104475,7 @@ _4:
 		v12 = (*TPyObject)(unsafe.Pointer(divmod)).Fob_type
 		goto _13
 	_13:
-		XPyErr_Format(tls, XPyExc_TypeError, __ccgo_ts+237886, libc.VaList(bp+8, X_PyType_Name(tls, v10), X_PyType_Name(tls, v12)))
+		XPyErr_Format(tls, XPyExc_TypeError, __ccgo_ts+237794, libc.VaList(bp+8, X_PyType_Name(tls, v10), X_PyType_Name(tls, v12)))
 		goto exit
 	}
 	**(**Ttime_t)(__ccgo_up(s)) = X_PyLong_AsTime_t(tls, **(**uintptr)(__ccgo_up(divmod + 32)))
@@ -104528,7 +104528,7 @@ func _os_utime_impl(tls *libc.TLS, module uintptr, path uintptr, times uintptr, 
 	_, _, _, _, _ = _save, hFile, v1, v3, v5
 	libc.Xmemset(tls, bp+16, 0, uint64(40))
 	if times != uintptr(unsafe.Pointer(&X_Py_NoneStruct)) && ns != 0 {
-		XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+237940)
+		XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+237848)
 		return libc.UintptrFromInt32(0)
 	}
 	if times != uintptr(unsafe.Pointer(&X_Py_NoneStruct)) {
@@ -104540,7 +104540,7 @@ func _os_utime_impl(tls *libc.TLS, module uintptr, path uintptr, times uintptr, 
 	_2:
 		;
 		if !(v1 != 0) || XPyTuple_Size(tls, times) != int64(2) {
-			XPyErr_SetString(tls, XPyExc_TypeError, __ccgo_ts+237999)
+			XPyErr_SetString(tls, XPyExc_TypeError, __ccgo_ts+237907)
 			return libc.UintptrFromInt32(0)
 		}
 		(**(**Tutime_t)(__ccgo_up(bp + 16))).Fnow = 0
@@ -104563,7 +104563,7 @@ func _os_utime_impl(tls *libc.TLS, module uintptr, path uintptr, times uintptr, 
 		_7:
 			;
 			if !(v1 != 0) || XPyTuple_Size(tls, ns) != int64(2) {
-				XPyErr_SetString(tls, XPyExc_TypeError, __ccgo_ts+238057)
+				XPyErr_SetString(tls, XPyExc_TypeError, __ccgo_ts+237965)
 				return libc.UintptrFromInt32(0)
 			}
 			(**(**Tutime_t)(__ccgo_up(bp + 16))).Fnow = 0
@@ -104577,14 +104577,14 @@ func _os_utime_impl(tls *libc.TLS, module uintptr, path uintptr, times uintptr, 
 			(**(**Tutime_t)(__ccgo_up(bp + 16))).Fnow = int32(1)
 		}
 	}
-	if _follow_symlinks_specified(tls, __ccgo_ts+238097, follow_symlinks) != 0 {
+	if _follow_symlinks_specified(tls, __ccgo_ts+238005, follow_symlinks) != 0 {
 		return libc.UintptrFromInt32(0)
 	}
-	if _path_and_dir_fd_invalid(tls, __ccgo_ts+238097, path, dir_fd) != 0 || _dir_fd_and_fd_invalid(tls, __ccgo_ts+238097, dir_fd, (*Tpath_t)(unsafe.Pointer(path)).Ffd) != 0 || _fd_and_follow_symlinks_invalid(tls, __ccgo_ts+238097, (*Tpath_t)(unsafe.Pointer(path)).Ffd, follow_symlinks) != 0 {
+	if _path_and_dir_fd_invalid(tls, __ccgo_ts+238005, path, dir_fd) != 0 || _dir_fd_and_fd_invalid(tls, __ccgo_ts+238005, dir_fd, (*Tpath_t)(unsafe.Pointer(path)).Ffd) != 0 || _fd_and_follow_symlinks_invalid(tls, __ccgo_ts+238005, (*Tpath_t)(unsafe.Pointer(path)).Ffd, follow_symlinks) != 0 {
 		return libc.UintptrFromInt32(0)
 	}
 	if dir_fd != -int32(100) && !(follow_symlinks != 0) {
-		XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+238103)
+		XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+238011)
 		return libc.UintptrFromInt32(0)
 	}
 	if ns != 0 {
@@ -104597,7 +104597,7 @@ func _os_utime_impl(tls *libc.TLS, module uintptr, path uintptr, times uintptr, 
 	} else {
 		v1 = dir_fd
 	}
-	if XPySys_Audit(tls, __ccgo_ts+238174, __ccgo_ts+238183, libc.VaList(bp+88, (*Tpath_t)(unsafe.Pointer(path)).Fobject, times, v3, v1)) < 0 {
+	if XPySys_Audit(tls, __ccgo_ts+238082, __ccgo_ts+238091, libc.VaList(bp+88, (*Tpath_t)(unsafe.Pointer(path)).Fobject, times, v3, v1)) < 0 {
 		return libc.UintptrFromInt32(0)
 	}
 	_save = XPyEval_SaveThread(tls)
@@ -104616,10 +104616,10 @@ func _os_utime_impl(tls *libc.TLS, module uintptr, path uintptr, times uintptr, 
 	}
 	if !(libc.XSetFileTime(tls, hFile, libc.UintptrFromInt32(0), bp, bp+8) != 0) {
 		_path_error(tls, path)
-		libc.XCloseHandle(tls, hFile)
+		_ccgo_CloseHandle(tls, hFile)
 		return libc.UintptrFromInt32(0)
 	}
-	libc.XCloseHandle(tls, hFile)
+	_ccgo_CloseHandle(tls, hFile)
 	return uintptr(unsafe.Pointer(&X_Py_NoneStruct))
 }
 
@@ -104742,7 +104742,7 @@ _5:
 	_9:
 	}
 	if v10 || !(v8 != 0) {
-		XPyErr_Format(tls, XPyExc_TypeError, __ccgo_ts+238188, 0)
+		XPyErr_Format(tls, XPyExc_TypeError, __ccgo_ts+238096, 0)
 		goto error
 	}
 	pos = 0
@@ -104776,10 +104776,10 @@ _5:
 		_15:
 		}
 		if v10 || XPyUnicode_FindChar(tls, **(**uintptr)(__ccgo_up(bp + 16)), uint32('='), int64(1), v14, int32(1)) != int64(-int32(1)) {
-			XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+238229)
+			XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+238137)
 			goto error
 		}
-		keyval = XPyUnicode_FromFormat(tls, __ccgo_ts+238263, libc.VaList(bp+40, **(**uintptr)(__ccgo_up(bp + 16)), **(**uintptr)(__ccgo_up(bp + 24))))
+		keyval = XPyUnicode_FromFormat(tls, __ccgo_ts+238171, libc.VaList(bp+40, **(**uintptr)(__ccgo_up(bp + 16)), **(**uintptr)(__ccgo_up(bp + 24))))
 		if !(keyval != 0) {
 			goto error
 		}
@@ -105135,7 +105135,7 @@ _2:
 _4:
 	interp = v3
 	if !(X_PyInterpreterState_HasFeature(tls, interp, libc.Uint32FromUint32(1)<<libc.Int32FromInt32(16)) != 0) {
-		XPyErr_SetString(tls, XPyExc_RuntimeError, __ccgo_ts+238269)
+		XPyErr_SetString(tls, XPyExc_RuntimeError, __ccgo_ts+238177)
 		return libc.UintptrFromInt32(0)
 	}
 
@@ -105157,12 +105157,12 @@ _8:
 	_12:
 	}
 	if v13 && !(v11 != 0) {
-		XPyErr_SetString(tls, XPyExc_TypeError, __ccgo_ts+238317)
+		XPyErr_SetString(tls, XPyExc_TypeError, __ccgo_ts+238225)
 		return libc.UintptrFromInt32(0)
 	}
 	**(**TPy_ssize_t)(__ccgo_up(bp)) = XPySequence_Size(tls, argv)
 	if **(**TPy_ssize_t)(__ccgo_up(bp)) < int64(1) {
-		XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+238355)
+		XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+238263)
 		return libc.UintptrFromInt32(0)
 	}
 	argvlist = _parse_arglist(tls, argv, bp)
@@ -105170,11 +105170,11 @@ _8:
 		return libc.UintptrFromInt32(0)
 	}
 	if !(**(**Twchar_t)(__ccgo_up(**(**uintptr)(__ccgo_up(argvlist)))) != 0) {
-		XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+238387)
+		XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+238295)
 		_free_string_array(tls, argvlist, **(**TPy_ssize_t)(__ccgo_up(bp)))
 		return libc.UintptrFromInt32(0)
 	}
-	if XPySys_Audit(tls, __ccgo_ts+238431, __ccgo_ts+161282, libc.VaList(bp+16, (*Tpath_t)(unsafe.Pointer(path)).Fobject, argv, uintptr(unsafe.Pointer(&X_Py_NoneStruct)))) < 0 {
+	if XPySys_Audit(tls, __ccgo_ts+238339, __ccgo_ts+161282, libc.VaList(bp+16, (*Tpath_t)(unsafe.Pointer(path)).Fobject, argv, uintptr(unsafe.Pointer(&X_Py_NoneStruct)))) < 0 {
 		_free_string_array(tls, argvlist, **(**TPy_ssize_t)(__ccgo_up(bp)))
 		return libc.UintptrFromInt32(0)
 	}
@@ -105206,7 +105206,7 @@ _2:
 _4:
 	interp = v3
 	if !(X_PyInterpreterState_HasFeature(tls, interp, libc.Uint32FromUint32(1)<<libc.Int32FromInt32(16)) != 0) {
-		XPyErr_SetString(tls, XPyExc_RuntimeError, __ccgo_ts+238269)
+		XPyErr_SetString(tls, XPyExc_RuntimeError, __ccgo_ts+238177)
 		return libc.UintptrFromInt32(0)
 	}
 
@@ -105228,16 +105228,16 @@ _8:
 	_12:
 	}
 	if v13 && !(v11 != 0) {
-		XPyErr_SetString(tls, XPyExc_TypeError, __ccgo_ts+238439)
+		XPyErr_SetString(tls, XPyExc_TypeError, __ccgo_ts+238347)
 		goto fail_0
 	}
 	**(**TPy_ssize_t)(__ccgo_up(bp)) = XPySequence_Size(tls, argv)
 	if **(**TPy_ssize_t)(__ccgo_up(bp)) < int64(1) {
-		XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+238476)
+		XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+238384)
 		return libc.UintptrFromInt32(0)
 	}
 	if !(XPyMapping_Check(tls, env) != 0) {
-		XPyErr_SetString(tls, XPyExc_TypeError, __ccgo_ts+238507)
+		XPyErr_SetString(tls, XPyExc_TypeError, __ccgo_ts+238415)
 		goto fail_0
 	}
 	argvlist = _parse_arglist(tls, argv, bp)
@@ -105245,14 +105245,14 @@ _8:
 		goto fail_0
 	}
 	if !(**(**Twchar_t)(__ccgo_up(**(**uintptr)(__ccgo_up(argvlist)))) != 0) {
-		XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+238552)
+		XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+238460)
 		goto fail_0
 	}
 	envlist = _parse_envlist(tls, env, bp+8)
 	if envlist == libc.UintptrFromInt32(0) {
 		goto fail_0
 	}
-	if XPySys_Audit(tls, __ccgo_ts+238431, __ccgo_ts+161282, libc.VaList(bp+24, (*Tpath_t)(unsafe.Pointer(path)).Fobject, argv, env)) < 0 {
+	if XPySys_Audit(tls, __ccgo_ts+238339, __ccgo_ts+161282, libc.VaList(bp+24, (*Tpath_t)(unsafe.Pointer(path)).Fobject, argv, env)) < 0 {
 		goto fail_1
 	}
 	__wexecve(tls, (*Tpath_t)(unsafe.Pointer(path)).Fwide, argvlist, envlist)
@@ -105303,12 +105303,12 @@ _4:
 		if v3 != 0 {
 			argc = XPyTuple_Size(tls, argv)
 		} else {
-			XPyErr_SetString(tls, XPyExc_TypeError, __ccgo_ts+238595)
+			XPyErr_SetString(tls, XPyExc_TypeError, __ccgo_ts+238503)
 			return libc.UintptrFromInt32(0)
 		}
 	}
 	if argc == 0 {
-		XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+238634)
+		XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+238542)
 		return libc.UintptrFromInt32(0)
 	}
 	if uint64(argc+libc.Int64FromInt32(1)) > libc.Uint64FromInt64(9223372036854775807)/libc.Uint64FromInt64(8) {
@@ -105353,7 +105353,7 @@ _4:
 			_free_string_array(tls, argvlist, int64(i))
 
 			if XPyErr_ExceptionMatches(tls, XPyExc_TypeError) != 0 {
-				XPyErr_SetString(tls, XPyExc_TypeError, __ccgo_ts+238665)
+				XPyErr_SetString(tls, XPyExc_TypeError, __ccgo_ts+238573)
 			}
 			return libc.UintptrFromInt32(0)
 		}
@@ -105374,7 +105374,7 @@ _4:
 		;
 		if i == 0 && !(**(**Twchar_t)(__ccgo_up(**(**uintptr)(__ccgo_up(argvlist)))) != 0) {
 			_free_string_array(tls, argvlist, int64(i+int32(1)))
-			XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+238706)
+			XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+238614)
 			return libc.UintptrFromInt32(0)
 		}
 		goto _10
@@ -105386,7 +105386,7 @@ _4:
 	if mode == int32(M_OLD_P_OVERLAY) {
 		mode = int32(M_P_OVERLAY)
 	}
-	if XPySys_Audit(tls, __ccgo_ts+238751, __ccgo_ts+238760, libc.VaList(bp+8, mode, (*Tpath_t)(unsafe.Pointer(path)).Fobject, argv, uintptr(unsafe.Pointer(&X_Py_NoneStruct)))) < 0 {
+	if XPySys_Audit(tls, __ccgo_ts+238659, __ccgo_ts+238668, libc.VaList(bp+8, mode, (*Tpath_t)(unsafe.Pointer(path)).Fobject, argv, uintptr(unsafe.Pointer(&X_Py_NoneStruct)))) < 0 {
 		_free_string_array(tls, argvlist, argc)
 		return libc.UintptrFromInt32(0)
 	}
@@ -105438,16 +105438,16 @@ _4:
 		if v3 != 0 {
 			argc = XPyTuple_Size(tls, argv)
 		} else {
-			XPyErr_SetString(tls, XPyExc_TypeError, __ccgo_ts+238765)
+			XPyErr_SetString(tls, XPyExc_TypeError, __ccgo_ts+238673)
 			goto fail_0
 		}
 	}
 	if argc == 0 {
-		XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+238805)
+		XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+238713)
 		goto fail_0
 	}
 	if !(XPyMapping_Check(tls, env) != 0) {
-		XPyErr_SetString(tls, XPyExc_TypeError, __ccgo_ts+238837)
+		XPyErr_SetString(tls, XPyExc_TypeError, __ccgo_ts+238745)
 		goto fail_0
 	}
 	if uint64(argc+libc.Int64FromInt32(1)) > libc.Uint64FromInt64(9223372036854775807)/libc.Uint64FromInt64(8) {
@@ -105510,7 +105510,7 @@ _4:
 		;
 		if i == 0 && !(**(**Twchar_t)(__ccgo_up(**(**uintptr)(__ccgo_up(argvlist)))) != 0) {
 			lastarg = i + int64(1)
-			XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+238706)
+			XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+238614)
 			goto fail_1
 		}
 		goto _10
@@ -105527,7 +105527,7 @@ _4:
 	if mode == int32(M_OLD_P_OVERLAY) {
 		mode = int32(M_P_OVERLAY)
 	}
-	if XPySys_Audit(tls, __ccgo_ts+238751, __ccgo_ts+238760, libc.VaList(bp+16, mode, (*Tpath_t)(unsafe.Pointer(path)).Fobject, argv, env)) < 0 {
+	if XPySys_Audit(tls, __ccgo_ts+238659, __ccgo_ts+238668, libc.VaList(bp+16, mode, (*Tpath_t)(unsafe.Pointer(path)).Fobject, argv, env)) < 0 {
 		goto fail_2
 	}
 	_save = XPyEval_SaveThread(tls)
@@ -107457,11 +107457,11 @@ func _win32_getppid_fast(tls *libc.TLS) (r TULONG) {
 
 		return _cached_ppid
 	}
-	ntdll = libc.XGetModuleHandleW(tls, __ccgo_ts+238878)
+	ntdll = libc.XGetModuleHandleW(tls, __ccgo_ts+238786)
 	if !(ntdll != 0) {
 		return uint32(0)
 	}
-	pNtQueryInformationProcess = _ccgo_GetProcAddress(tls, ntdll, __ccgo_ts+238898)
+	pNtQueryInformationProcess = _ccgo_GetProcAddress(tls, ntdll, __ccgo_ts+238806)
 	if !(pNtQueryInformationProcess != 0) {
 		return uint32(0)
 	}
@@ -107544,7 +107544,7 @@ func _os_kill_impl(tls *libc.TLS, module uintptr, pid Tpid_t, signal TPy_ssize_t
 	var res TBOOL
 	var sig TDWORD
 	_, _, _ = handle, res, sig
-	if XPySys_Audit(tls, __ccgo_ts+238924, __ccgo_ts+2818, libc.VaList(bp+8, pid, signal)) < 0 {
+	if XPySys_Audit(tls, __ccgo_ts+238832, __ccgo_ts+2818, libc.VaList(bp+8, pid, signal)) < 0 {
 		return libc.UintptrFromInt32(0)
 	}
 	sig = uint32(signal)
@@ -107561,7 +107561,7 @@ func _os_kill_impl(tls *libc.TLS, module uintptr, pid Tpid_t, signal TPy_ssize_t
 		return XPyErr_SetFromWindowsErr(tls, 0)
 	}
 	res = _TerminateProcess(tls, handle, sig)
-	libc.XCloseHandle(tls, handle)
+	_ccgo_CloseHandle(tls, handle)
 	if res == 0 {
 		return XPyErr_SetFromWindowsErr(tls, 0)
 	}
@@ -107605,7 +107605,7 @@ func _os_waitpid_impl(tls *libc.TLS, module uintptr, pid Tintptr_t, options int3
 	}
 	ustatus = uint64(uint32(**(**int32)(__ccgo_up(bp))))
 
-	return XPy_BuildValue(tls, __ccgo_ts+238932, libc.VaList(bp+16, res, ustatus<<int32(8)))
+	return XPy_BuildValue(tls, __ccgo_ts+238840, libc.VaList(bp+16, res, ustatus<<int32(8)))
 }
 
 func _os_readlink_impl(tls *libc.TLS, module uintptr, path uintptr, dir_fd int32) (r uintptr) {
@@ -107633,7 +107633,7 @@ func _os_readlink_impl(tls *libc.TLS, module uintptr, path uintptr, dir_fd int32
 	if reparse_point_handle != uintptr(int64(-libc.Int32FromInt32(1))) {
 
 		io_result = uint32(libc.XDeviceIoControl(tls, reparse_point_handle, uint32(libc.Int32FromInt32(MFILE_DEVICE_FILE_SYSTEM)<<libc.Int32FromInt32(16)|libc.Int32FromInt32(MFILE_ANY_ACCESS)<<libc.Int32FromInt32(14)|libc.Int32FromInt32(42)<<libc.Int32FromInt32(2)|libc.Int32FromInt32(MMETHOD_BUFFERED)), uintptr(0), uint32(0), bp+4, uint32(16384), bp, uintptr(0)))
-		libc.XCloseHandle(tls, reparse_point_handle)
+		_ccgo_CloseHandle(tls, reparse_point_handle)
 	}
 	XPyEval_RestoreThread(tls, _save)
 	if io_result == uint32(0) {
@@ -107661,11 +107661,11 @@ func _os_readlink_impl(tls *libc.TLS, module uintptr, path uintptr, dir_fd int32
 				FPathBuffer           [1]TWCHAR
 			})(unsafe.Add(unsafe.Pointer(rdb), 8))).FSubstituteNameLength) / uint64(2))
 		} else {
-			XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+238935)
+			XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+238843)
 		}
 	}
 	if name != 0 {
-		if nameLen > int64(4) && libc.Xwcsncmp(tls, name, __ccgo_ts+238955, uint64(4)) == 0 {
+		if nameLen > int64(4) && libc.Xwcsncmp(tls, name, __ccgo_ts+238863, uint64(4)) == 0 {
 
 			**(**Twchar_t)(__ccgo_up(name + 1*2)) = uint16('\\')
 		}
@@ -107758,7 +107758,7 @@ func __joinW(tls *libc.TLS, dest_path uintptr, root uintptr, rest uintptr) (r in
 	if _wcscpy_s(tls, dest_path, uint64(MMAX_PATH), root) != 0 {
 		return -int32(1)
 	}
-	if **(**TWCHAR)(__ccgo_up(dest_path)) != 0 && _wcscat_s(tls, dest_path, uint64(MMAX_PATH), __ccgo_ts+238965) != 0 {
+	if **(**TWCHAR)(__ccgo_up(dest_path)) != 0 && _wcscat_s(tls, dest_path, uint64(MMAX_PATH), __ccgo_ts+238873) != 0 {
 		return -int32(1)
 	}
 	return _wcscat_s(tls, dest_path, uint64(MMAX_PATH), rest)
@@ -107799,7 +107799,7 @@ func _os_symlink_impl(tls *libc.TLS, module uintptr, src uintptr, dst uintptr, t
 	} else {
 		v1 = dir_fd
 	}
-	if XPySys_Audit(tls, __ccgo_ts+238969, __ccgo_ts+174057, libc.VaList(bp+8, (*Tpath_t)(unsafe.Pointer(src)).Fobject, (*Tpath_t)(unsafe.Pointer(dst)).Fobject, v1)) < 0 {
+	if XPySys_Audit(tls, __ccgo_ts+238877, __ccgo_ts+174057, libc.VaList(bp+8, (*Tpath_t)(unsafe.Pointer(src)).Fobject, (*Tpath_t)(unsafe.Pointer(dst)).Fobject, v1)) < 0 {
 		return libc.UintptrFromInt32(0)
 	}
 	if _windows_has_symlink_unprivileged_flag != 0 {
@@ -107834,30 +107834,30 @@ var _windows_has_symlink_unprivileged_flag = int32(MTRUE)
 
 var _times_result_fields = [6]TPyStructSequence_Field{
 	0: {
-		Fname: __ccgo_ts + 238980,
-		Fdoc:  __ccgo_ts + 238985,
+		Fname: __ccgo_ts + 238888,
+		Fdoc:  __ccgo_ts + 238893,
 	},
 	1: {
-		Fname: __ccgo_ts + 238995,
-		Fdoc:  __ccgo_ts + 239002,
+		Fname: __ccgo_ts + 238903,
+		Fdoc:  __ccgo_ts + 238910,
 	},
 	2: {
-		Fname: __ccgo_ts + 239014,
-		Fdoc:  __ccgo_ts + 239028,
+		Fname: __ccgo_ts + 238922,
+		Fdoc:  __ccgo_ts + 238936,
 	},
 	3: {
-		Fname: __ccgo_ts + 239050,
-		Fdoc:  __ccgo_ts + 239066,
+		Fname: __ccgo_ts + 238958,
+		Fdoc:  __ccgo_ts + 238974,
 	},
 	4: {
-		Fname: __ccgo_ts + 239090,
-		Fdoc:  __ccgo_ts + 239098,
+		Fname: __ccgo_ts + 238998,
+		Fdoc:  __ccgo_ts + 239006,
 	},
 	5: {},
 }
 
 var _times_result_desc = TPyStructSequence_Desc{
-	Fname:          __ccgo_ts + 239148,
+	Fname:          __ccgo_ts + 239056,
 	Fdoc:           uintptr(unsafe.Pointer(&_times_result__doc__)),
 	Ffields:        uintptr(unsafe.Pointer(&_times_result_fields)),
 	Fn_in_sequence: int32(5),
@@ -108235,8 +108235,8 @@ func _os_pipe_impl(tls *libc.TLS, module uintptr) (r uintptr) {
 		fds[0] = X_Py_open_osfhandle_noraise(tls, **(**THANDLE)(__ccgo_up(bp)), libc.Int32FromInt32(M_O_RDONLY)|libc.Int32FromInt32(M_O_NOINHERIT))
 		fds[int32(1)] = X_Py_open_osfhandle_noraise(tls, **(**THANDLE)(__ccgo_up(bp + 8)), libc.Int32FromInt32(M_O_WRONLY)|libc.Int32FromInt32(M_O_NOINHERIT))
 		if fds[0] == -int32(1) || fds[int32(1)] == -int32(1) {
-			libc.XCloseHandle(tls, **(**THANDLE)(__ccgo_up(bp)))
-			libc.XCloseHandle(tls, **(**THANDLE)(__ccgo_up(bp + 8)))
+			_ccgo_CloseHandle(tls, **(**THANDLE)(__ccgo_up(bp)))
+			_ccgo_CloseHandle(tls, **(**THANDLE)(__ccgo_up(bp + 8)))
 			ok = 0
 		}
 	}
@@ -108244,7 +108244,7 @@ func _os_pipe_impl(tls *libc.TLS, module uintptr) (r uintptr) {
 	if !(ok != 0) {
 		return XPyErr_SetFromWindowsErr(tls, 0)
 	}
-	return XPy_BuildValue(tls, __ccgo_ts+239161, libc.VaList(bp+48, fds[0], fds[int32(1)]))
+	return XPy_BuildValue(tls, __ccgo_ts+239069, libc.VaList(bp+48, fds[0], fds[int32(1)]))
 }
 
 func _os_ftruncate_impl(tls *libc.TLS, module uintptr, fd int32, length TPy_off_t) (r uintptr) {
@@ -108256,7 +108256,7 @@ func _os_ftruncate_impl(tls *libc.TLS, module uintptr, fd int32, length TPy_off_
 	var v2 bool
 	_, _, _, _, _, _ = _save, async_err, result, v1, v2, v4
 	async_err = 0
-	if XPySys_Audit(tls, __ccgo_ts+239166, __ccgo_ts+2818, libc.VaList(bp+8, fd, length)) < 0 {
+	if XPySys_Audit(tls, __ccgo_ts+239074, __ccgo_ts+2818, libc.VaList(bp+8, fd, length)) < 0 {
 		return libc.UintptrFromInt32(0)
 	}
 	for {
@@ -108295,7 +108295,7 @@ func _os_truncate_impl(tls *libc.TLS, module uintptr, path uintptr, length TPy_o
 	if (*Tpath_t)(unsafe.Pointer(path)).Ffd != -int32(1) {
 		return _os_ftruncate_impl(tls, module, (*Tpath_t)(unsafe.Pointer(path)).Ffd, length)
 	}
-	if XPySys_Audit(tls, __ccgo_ts+239166, __ccgo_ts+239178, libc.VaList(bp+8, (*Tpath_t)(unsafe.Pointer(path)).Fobject, length)) < 0 {
+	if XPySys_Audit(tls, __ccgo_ts+239074, __ccgo_ts+239086, libc.VaList(bp+8, (*Tpath_t)(unsafe.Pointer(path)).Fobject, length)) < 0 {
 		return libc.UintptrFromInt32(0)
 	}
 	_save = XPyEval_SaveThread(tls)
@@ -108337,13 +108337,13 @@ _2:
 	_4:
 	}
 	if v5 || XPyUnicode_FindChar(tls, name, uint32('='), int64(1), v3, int32(1)) != int64(-int32(1)) {
-		XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+238229)
+		XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+238137)
 		return libc.UintptrFromInt32(0)
 	}
 	if value != libc.UintptrFromInt32(0) {
-		unicode = XPyUnicode_FromFormat(tls, __ccgo_ts+238263, libc.VaList(bp+16, name, value))
+		unicode = XPyUnicode_FromFormat(tls, __ccgo_ts+238171, libc.VaList(bp+16, name, value))
 	} else {
-		unicode = XPyUnicode_FromFormat(tls, __ccgo_ts+239181, libc.VaList(bp+16, name))
+		unicode = XPyUnicode_FromFormat(tls, __ccgo_ts+239089, libc.VaList(bp+16, name))
 	}
 	if unicode == libc.UintptrFromInt32(0) {
 		return libc.UintptrFromInt32(0)
@@ -108368,7 +108368,7 @@ _9:
 		return libc.UintptrFromInt32(0)
 	}
 	if **(**TPy_ssize_t)(__ccgo_up(bp)) > int64(M_MAX_ENV) {
-		XPyErr_Format(tls, XPyExc_ValueError, __ccgo_ts+239185, libc.VaList(bp+16, int32(M_MAX_ENV)))
+		XPyErr_Format(tls, XPyExc_ValueError, __ccgo_ts+239093, libc.VaList(bp+16, int32(M_MAX_ENV)))
 		XPyMem_Free(tls, env)
 		return libc.UintptrFromInt32(0)
 	}
@@ -108392,7 +108392,7 @@ func _os_putenv_impl(tls *libc.TLS, module uintptr, name uintptr, value uintptr)
 	bp := tls.Alloc(32)
 	defer tls.Free(32)
 
-	if XPySys_Audit(tls, __ccgo_ts+239239, __ccgo_ts+8926, libc.VaList(bp+8, name, value)) < 0 {
+	if XPySys_Audit(tls, __ccgo_ts+239147, __ccgo_ts+8926, libc.VaList(bp+8, name, value)) < 0 {
 		return libc.UintptrFromInt32(0)
 	}
 	return _win32_putenv(tls, name, value)
@@ -108402,7 +108402,7 @@ func _os_unsetenv_impl(tls *libc.TLS, module uintptr, name uintptr) (r uintptr) 
 	bp := tls.Alloc(16)
 	defer tls.Free(16)
 
-	if XPySys_Audit(tls, __ccgo_ts+239249, __ccgo_ts+28020, libc.VaList(bp+8, name)) < 0 {
+	if XPySys_Audit(tls, __ccgo_ts+239157, __ccgo_ts+28020, libc.VaList(bp+8, name)) < 0 {
 		return libc.UintptrFromInt32(0)
 	}
 	return _win32_putenv(tls, name, libc.UintptrFromInt32(0))
@@ -108414,7 +108414,7 @@ func _os_strerror_impl(tls *libc.TLS, module uintptr, code int32) (r uintptr) {
 	_ = message
 	message = libc.Xstrerror(tls, code)
 	if message == libc.UintptrFromInt32(0) {
-		XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+239261)
+		XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+239169)
 		return libc.UintptrFromInt32(0)
 	}
 	return XPyUnicode_DecodeLocale(tls, message, __ccgo_ts+75071)
@@ -108465,7 +108465,7 @@ func _os__getdiskusage_impl(tls *libc.TLS, module uintptr, path uintptr) (r uint
 	goto success
 success:
 	;
-	return XPy_BuildValue(tls, __ccgo_ts+239294, libc.VaList(bp+32, *(*TULONGLONG)(unsafe.Pointer(bp + 8)), *(*TULONGLONG)(unsafe.Pointer(bp + 16))))
+	return XPy_BuildValue(tls, __ccgo_ts+239202, libc.VaList(bp+32, *(*TULONGLONG)(unsafe.Pointer(bp + 8)), *(*TULONGLONG)(unsafe.Pointer(bp + 16))))
 	return r
 }
 
@@ -108520,7 +108520,7 @@ _4:
 	_8:
 		;
 		if arg == libc.UintptrFromInt32(0) {
-			XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+239299)
+			XPyErr_SetString(tls, XPyExc_ValueError, __ccgo_ts+239207)
 			return 0
 		}
 	} else {
@@ -108534,7 +108534,7 @@ _4:
 	}
 	success = 0
 	if !(XPyIndex_Check(tls, arg) != 0) {
-		XPyErr_SetString(tls, XPyExc_TypeError, __ccgo_ts+239331)
+		XPyErr_SetString(tls, XPyExc_TypeError, __ccgo_ts+239239)
 	} else {
 		value = XPyLong_AsInt(tls, arg)
 		if !(value == -int32(1) && XPyErr_Occurred(tls) != 0) {
@@ -108663,9 +108663,9 @@ func _check_ShellExecute(tls *libc.TLS) (r int32) {
 	if -int32(1) == _has_ShellExecute {
 		_save = XPyEval_SaveThread(tls)
 
-		hShell32 = _ccgo_LoadLibraryW(tls, __ccgo_ts+239379)
+		hShell32 = _ccgo_LoadLibraryW(tls, __ccgo_ts+239287)
 		if hShell32 != 0 {
-			**(**TFARPROC)(__ccgo_up(uintptr(unsafe.Pointer(&_Py_ShellExecuteW)))) = _ccgo_GetProcAddress(tls, hShell32, __ccgo_ts+239395)
+			**(**TFARPROC)(__ccgo_up(uintptr(unsafe.Pointer(&_Py_ShellExecuteW)))) = _ccgo_GetProcAddress(tls, hShell32, __ccgo_ts+239303)
 			_has_ShellExecute = libc.BoolInt32(_Py_ShellExecuteW != libc.UintptrFromInt32(0))
 		} else {
 			_has_ShellExecute = 0
@@ -108684,9 +108684,9 @@ func _os_startfile_impl(tls *libc.TLS, module uintptr, filepath uintptr, operati
 	_, _, _ = _save, rc, v1
 	if !(_check_ShellExecute(tls) != 0) {
 
-		return XPyErr_Format(tls, XPyExc_NotImplementedError, __ccgo_ts+239409, 0)
+		return XPyErr_Format(tls, XPyExc_NotImplementedError, __ccgo_ts+239317, 0)
 	}
-	if XPySys_Audit(tls, __ccgo_ts+239450, __ccgo_ts+239463, libc.VaList(bp+8, (*Tpath_t)(unsafe.Pointer(filepath)).Fobject, operation)) < 0 {
+	if XPySys_Audit(tls, __ccgo_ts+239358, __ccgo_ts+239371, libc.VaList(bp+8, (*Tpath_t)(unsafe.Pointer(filepath)).Fobject, operation)) < 0 {
 		return libc.UintptrFromInt32(0)
 	}
 	if (*Tpath_t)(unsafe.Pointer(cwd)).Fobject != 0 {
@@ -108694,14 +108694,14 @@ func _os_startfile_impl(tls *libc.TLS, module uintptr, filepath uintptr, operati
 	} else {
 		v1 = uintptr(unsafe.Pointer(&X_Py_NoneStruct))
 	}
-	if XPySys_Audit(tls, __ccgo_ts+239466, __ccgo_ts+239481, libc.VaList(bp+8, (*Tpath_t)(unsafe.Pointer(filepath)).Fobject, operation, arguments, v1, show_cmd)) < 0 {
+	if XPySys_Audit(tls, __ccgo_ts+239374, __ccgo_ts+239389, libc.VaList(bp+8, (*Tpath_t)(unsafe.Pointer(filepath)).Fobject, operation, arguments, v1, show_cmd)) < 0 {
 		return libc.UintptrFromInt32(0)
 	}
 	_save = XPyEval_SaveThread(tls)
 	rc = (*(*func(*libc.TLS, THWND, TLPCWSTR, TLPCWSTR, TLPCWSTR, TLPCWSTR, TINT) THINSTANCE)(unsafe.Pointer(&struct{ uintptr }{_Py_ShellExecuteW})))(tls, libc.UintptrFromInt32(0), operation, (*Tpath_t)(unsafe.Pointer(filepath)).Fwide, arguments, (*Tpath_t)(unsafe.Pointer(cwd)).Fwide, show_cmd)
 	XPyEval_RestoreThread(tls, _save)
 	if rc <= libc.UintptrFromInt32(32) {
-		_win32_error_object(tls, __ccgo_ts+239487, (*Tpath_t)(unsafe.Pointer(filepath)).Fobject)
+		_win32_error_object(tls, __ccgo_ts+239395, (*Tpath_t)(unsafe.Pointer(filepath)).Fobject)
 		return libc.UintptrFromInt32(0)
 	}
 	return uintptr(unsafe.Pointer(&X_Py_NoneStruct))
@@ -108764,18 +108764,18 @@ var _TerminalSize_docstring = [61]int8{'A', ' ', 't', 'u', 'p', 'l', 'e', ' ', '
 
 var _TerminalSize_fields = [3]TPyStructSequence_Field{
 	0: {
-		Fname: __ccgo_ts + 239497,
-		Fdoc:  __ccgo_ts + 239505,
+		Fname: __ccgo_ts + 239405,
+		Fdoc:  __ccgo_ts + 239413,
 	},
 	1: {
-		Fname: __ccgo_ts + 239548,
-		Fdoc:  __ccgo_ts + 239554,
+		Fname: __ccgo_ts + 239456,
+		Fdoc:  __ccgo_ts + 239462,
 	},
 	2: {},
 }
 
 var _TerminalSize_desc = TPyStructSequence_Desc{
-	Fname:          __ccgo_ts + 239598,
+	Fname:          __ccgo_ts + 239506,
 	Fdoc:           uintptr(unsafe.Pointer(&_TerminalSize_docstring)),
 	Ffields:        uintptr(unsafe.Pointer(&_TerminalSize_fields)),
 	Fn_in_sequence: int32(2),
@@ -108913,7 +108913,7 @@ func _os_set_handle_inheritable_impl(tls *libc.TLS, module uintptr, handle Tintp
 		v1 = 0
 	}
 	flags = uint32(v1)
-	if !(libc.XSetHandleInformation(tls, uintptr(handle), uint32(MHANDLE_FLAG_INHERIT), flags) != 0) {
+	if !(_ccgo_SetHandleInformation(tls, uintptr(handle), uint32(MHANDLE_FLAG_INHERIT), flags) != 0) {
 		XPyErr_SetFromWindowsErr(tls, 0)
 		return libc.UintptrFromInt32(0)
 	}
@@ -109354,7 +109354,7 @@ func _DirEntry_repr(tls *libc.TLS, op uintptr) (r uintptr) {
 	var self uintptr
 	_ = self
 	self = op
-	return XPyUnicode_FromFormat(tls, __ccgo_ts+239615, libc.VaList(bp+8, (*TDirEntry)(unsafe.Pointer(self)).Fname))
+	return XPyUnicode_FromFormat(tls, __ccgo_ts+239523, libc.VaList(bp+8, (*TDirEntry)(unsafe.Pointer(self)).Fname))
 }
 
 func _os_DirEntry___fspath___impl(tls *libc.TLS, self uintptr) (r uintptr) {
@@ -109383,14 +109383,14 @@ var _DirEntry_members = [3]TPyMemberDef{
 		Ftype1:  int32(MPy_T_OBJECT_EX),
 		Foffset: int64(uint64(libc.UintptrFromInt32(0) + 16)),
 		Fflags:  int32(MPy_READONLY),
-		Fdoc:    __ccgo_ts + 239629,
+		Fdoc:    __ccgo_ts + 239537,
 	},
 	1: {
 		Fname:   __ccgo_ts + 28662,
 		Ftype1:  int32(MPy_T_OBJECT_EX),
 		Foffset: int64(uint64(libc.UintptrFromInt32(0) + 24)),
 		Fflags:  int32(MPy_READONLY),
-		Fdoc:    __ccgo_ts + 239694,
+		Fdoc:    __ccgo_ts + 239602,
 	},
 	2: {},
 }
@@ -109499,8 +109499,8 @@ var __kwtuple165 = struct {
 
 var __keywords196 = [4]uintptr{
 	0: __ccgo_ts + 28662,
-	1: __ccgo_ts + 236128,
-	2: __ccgo_ts + 236138,
+	1: __ccgo_ts + 236036,
+	2: __ccgo_ts + 236046,
 	3: libc.UintptrFromInt32(0),
 }
 
@@ -109535,7 +109535,7 @@ func _os_lstat(tls *libc.TLS, module uintptr, args uintptr, nargs TPy_ssize_t, k
 	}
 	noptargs = nargs + v1 - int64(1)
 	**(**Tpath_t)(__ccgo_up(bp + 16)) = Tpath_t{
-		Ffunction_name: __ccgo_ts + 237275,
+		Ffunction_name: __ccgo_ts + 237183,
 		Fargument_name: __ccgo_ts + 28662,
 		Fmake_wide:     int32(1),
 		Ffd:            -int32(1),
@@ -109599,13 +109599,13 @@ var __kwtuple166 = struct {
 
 var __keywords197 = [3]uintptr{
 	0: __ccgo_ts + 28662,
-	1: __ccgo_ts + 236128,
+	1: __ccgo_ts + 236036,
 	2: libc.UintptrFromInt32(0),
 }
 
 var __parser194 = T_PyArg_Parser{
 	Fkeywords: uintptr(unsafe.Pointer(&__keywords197)),
-	Ffname:    __ccgo_ts + 237275,
+	Ffname:    __ccgo_ts + 237183,
 	Fkwtuple:  uintptr(unsafe.Pointer(&__kwtuple166)) + 16,
 }
 
@@ -109635,7 +109635,7 @@ func _os_access(tls *libc.TLS, module uintptr, args uintptr, nargs TPy_ssize_t, 
 	}
 	noptargs = nargs + v1 - int64(2)
 	**(**Tpath_t)(__ccgo_up(bp + 40)) = Tpath_t{
-		Ffunction_name: __ccgo_ts + 224582,
+		Ffunction_name: __ccgo_ts + 224490,
 		Fargument_name: __ccgo_ts + 28662,
 		Fmake_wide:     int32(1),
 		Ffd:            -int32(1),
@@ -109735,15 +109735,15 @@ var __kwtuple167 = struct {
 var __keywords198 = [6]uintptr{
 	0: __ccgo_ts + 28662,
 	1: __ccgo_ts + 36919,
-	2: __ccgo_ts + 236128,
-	3: __ccgo_ts + 237281,
-	4: __ccgo_ts + 236138,
+	2: __ccgo_ts + 236036,
+	3: __ccgo_ts + 237189,
+	4: __ccgo_ts + 236046,
 	5: libc.UintptrFromInt32(0),
 }
 
 var __parser195 = T_PyArg_Parser{
 	Fkeywords: uintptr(unsafe.Pointer(&__keywords198)),
-	Ffname:    __ccgo_ts + 224582,
+	Ffname:    __ccgo_ts + 224490,
 	Fkwtuple:  uintptr(unsafe.Pointer(&__kwtuple167)) + 16,
 }
 
@@ -109756,7 +109756,7 @@ func _os_chdir(tls *libc.TLS, module uintptr, args uintptr, nargs TPy_ssize_t, k
 	_, _ = return_value, v1
 	return_value = libc.UintptrFromInt32(0)
 	**(**Tpath_t)(__ccgo_up(bp + 8)) = Tpath_t{
-		Ffunction_name: __ccgo_ts + 239775,
+		Ffunction_name: __ccgo_ts + 239683,
 		Fargument_name: __ccgo_ts + 28662,
 		Fmake_wide:     int32(1),
 		Ffd:            -int32(1),
@@ -109814,7 +109814,7 @@ var __keywords199 = [2]uintptr{
 
 var __parser196 = T_PyArg_Parser{
 	Fkeywords: uintptr(unsafe.Pointer(&__keywords199)),
-	Ffname:    __ccgo_ts + 239775,
+	Ffname:    __ccgo_ts + 239683,
 	Fkwtuple:  uintptr(unsafe.Pointer(&__kwtuple168)) + 16,
 }
 
@@ -109844,7 +109844,7 @@ func _os_chmod(tls *libc.TLS, module uintptr, args uintptr, nargs TPy_ssize_t, k
 	}
 	noptargs = nargs + v1 - int64(2)
 	**(**Tpath_t)(__ccgo_up(bp + 32)) = Tpath_t{
-		Ffunction_name: __ccgo_ts + 239781,
+		Ffunction_name: __ccgo_ts + 239689,
 		Fargument_name: __ccgo_ts + 28662,
 		Fmake_wide:     int32(1),
 		Fallow_fd:      int32(1),
@@ -109928,14 +109928,14 @@ var __kwtuple169 = struct {
 var __keywords200 = [5]uintptr{
 	0: __ccgo_ts + 28662,
 	1: __ccgo_ts + 36919,
-	2: __ccgo_ts + 236128,
-	3: __ccgo_ts + 236138,
+	2: __ccgo_ts + 236036,
+	3: __ccgo_ts + 236046,
 	4: libc.UintptrFromInt32(0),
 }
 
 var __parser197 = T_PyArg_Parser{
 	Fkeywords: uintptr(unsafe.Pointer(&__keywords200)),
-	Ffname:    __ccgo_ts + 239781,
+	Ffname:    __ccgo_ts + 239689,
 	Fkwtuple:  uintptr(unsafe.Pointer(&__kwtuple169)) + 16,
 }
 
@@ -110000,14 +110000,14 @@ var __kwtuple170 = struct {
 }
 
 var __keywords201 = [3]uintptr{
-	0: __ccgo_ts + 236135,
+	0: __ccgo_ts + 236043,
 	1: __ccgo_ts + 36919,
 	2: libc.UintptrFromInt32(0),
 }
 
 var __parser198 = T_PyArg_Parser{
 	Fkeywords: uintptr(unsafe.Pointer(&__keywords201)),
-	Ffname:    __ccgo_ts + 239787,
+	Ffname:    __ccgo_ts + 239695,
 	Fkwtuple:  uintptr(unsafe.Pointer(&__kwtuple170)) + 16,
 }
 
@@ -110021,7 +110021,7 @@ func _os_lchmod(tls *libc.TLS, module uintptr, args uintptr, nargs TPy_ssize_t, 
 	_, _, _ = mode, return_value, v1
 	return_value = libc.UintptrFromInt32(0)
 	**(**Tpath_t)(__ccgo_up(bp + 16)) = Tpath_t{
-		Ffunction_name: __ccgo_ts + 239794,
+		Ffunction_name: __ccgo_ts + 239702,
 		Fargument_name: __ccgo_ts + 28662,
 		Fmake_wide:     int32(1),
 		Ffd:            -int32(1),
@@ -110085,7 +110085,7 @@ var __keywords202 = [3]uintptr{
 
 var __parser199 = T_PyArg_Parser{
 	Fkeywords: uintptr(unsafe.Pointer(&__keywords202)),
-	Ffname:    __ccgo_ts + 239794,
+	Ffname:    __ccgo_ts + 239702,
 	Fkwtuple:  uintptr(unsafe.Pointer(&__kwtuple171)) + 16,
 }
 
@@ -110147,13 +110147,13 @@ var __kwtuple172 = struct {
 }
 
 var __keywords203 = [2]uintptr{
-	0: __ccgo_ts + 236135,
+	0: __ccgo_ts + 236043,
 	1: libc.UintptrFromInt32(0),
 }
 
 var __parser200 = T_PyArg_Parser{
 	Fkeywords: uintptr(unsafe.Pointer(&__keywords203)),
-	Ffname:    __ccgo_ts + 239801,
+	Ffname:    __ccgo_ts + 239709,
 	Fkwtuple:  uintptr(unsafe.Pointer(&__kwtuple172)) + 16,
 }
 
@@ -110193,13 +110193,13 @@ func _os_link(tls *libc.TLS, module uintptr, args uintptr, nargs TPy_ssize_t, kw
 	}
 	noptargs = nargs + v1 - int64(2)
 	**(**Tpath_t)(__ccgo_up(bp + 40)) = Tpath_t{
-		Ffunction_name: __ccgo_ts + 237317,
-		Fargument_name: __ccgo_ts + 239807,
+		Ffunction_name: __ccgo_ts + 237225,
+		Fargument_name: __ccgo_ts + 239715,
 		Fmake_wide:     int32(1),
 		Ffd:            -int32(1),
 	}
 	**(**Tpath_t)(__ccgo_up(bp + 136)) = Tpath_t{
-		Ffunction_name: __ccgo_ts + 237317,
+		Ffunction_name: __ccgo_ts + 237225,
 		Fargument_name: __ccgo_ts + 207521,
 		Fmake_wide:     int32(1),
 		Ffd:            -int32(1),
@@ -110292,17 +110292,17 @@ var __kwtuple173 = struct {
 }
 
 var __keywords204 = [6]uintptr{
-	0: __ccgo_ts + 239807,
+	0: __ccgo_ts + 239715,
 	1: __ccgo_ts + 207521,
-	2: __ccgo_ts + 239811,
-	3: __ccgo_ts + 239822,
-	4: __ccgo_ts + 236138,
+	2: __ccgo_ts + 239719,
+	3: __ccgo_ts + 239730,
+	4: __ccgo_ts + 236046,
 	5: libc.UintptrFromInt32(0),
 }
 
 var __parser201 = T_PyArg_Parser{
 	Fkeywords: uintptr(unsafe.Pointer(&__keywords204)),
-	Ffname:    __ccgo_ts + 237317,
+	Ffname:    __ccgo_ts + 237225,
 	Fkwtuple:  uintptr(unsafe.Pointer(&__kwtuple173)) + 16,
 }
 
@@ -110330,7 +110330,7 @@ func _os_listdir(tls *libc.TLS, module uintptr, args uintptr, nargs TPy_ssize_t,
 	}
 	noptargs = nargs + v1 - 0
 	**(**Tpath_t)(__ccgo_up(bp + 8)) = Tpath_t{
-		Ffunction_name: __ccgo_ts + 239833,
+		Ffunction_name: __ccgo_ts + 239741,
 		Fargument_name: __ccgo_ts + 28662,
 		Fnullable:      int32(1),
 		Fmake_wide:     int32(1),
@@ -110395,7 +110395,7 @@ var __keywords205 = [2]uintptr{
 
 var __parser202 = T_PyArg_Parser{
 	Fkeywords: uintptr(unsafe.Pointer(&__keywords205)),
-	Ffname:    __ccgo_ts + 239833,
+	Ffname:    __ccgo_ts + 239741,
 	Fkwtuple:  uintptr(unsafe.Pointer(&__kwtuple174)) + 16,
 }
 
@@ -110416,8 +110416,8 @@ func _os_listmounts(tls *libc.TLS, module uintptr, args uintptr, nargs TPy_ssize
 	_, _ = return_value, v1
 	return_value = libc.UintptrFromInt32(0)
 	**(**Tpath_t)(__ccgo_up(bp + 8)) = Tpath_t{
-		Ffunction_name: __ccgo_ts + 239848,
-		Fargument_name: __ccgo_ts + 239841,
+		Ffunction_name: __ccgo_ts + 239756,
+		Fargument_name: __ccgo_ts + 239749,
 		Fmake_wide:     int32(1),
 		Ffd:            -int32(1),
 	}
@@ -110468,13 +110468,13 @@ var __kwtuple175 = struct {
 }
 
 var __keywords206 = [2]uintptr{
-	0: __ccgo_ts + 239841,
+	0: __ccgo_ts + 239749,
 	1: libc.UintptrFromInt32(0),
 }
 
 var __parser203 = T_PyArg_Parser{
 	Fkeywords: uintptr(unsafe.Pointer(&__keywords206)),
-	Ffname:    __ccgo_ts + 239848,
+	Ffname:    __ccgo_ts + 239756,
 	Fkwtuple:  uintptr(unsafe.Pointer(&__kwtuple175)) + 16,
 }
 
@@ -110487,7 +110487,7 @@ func _os__path_isdevdrive(tls *libc.TLS, module uintptr, args uintptr, nargs TPy
 	_, _ = return_value, v1
 	return_value = libc.UintptrFromInt32(0)
 	**(**Tpath_t)(__ccgo_up(bp + 8)) = Tpath_t{
-		Ffunction_name: __ccgo_ts + 239859,
+		Ffunction_name: __ccgo_ts + 239767,
 		Fargument_name: __ccgo_ts + 28662,
 		Fmake_wide:     int32(1),
 		Ffd:            -int32(1),
@@ -110545,7 +110545,7 @@ var __keywords207 = [2]uintptr{
 
 var __parser204 = T_PyArg_Parser{
 	Fkeywords: uintptr(unsafe.Pointer(&__keywords207)),
-	Ffname:    __ccgo_ts + 239859,
+	Ffname:    __ccgo_ts + 239767,
 	Fkwtuple:  uintptr(unsafe.Pointer(&__kwtuple176)) + 16,
 }
 
@@ -110559,7 +110559,7 @@ func _os__getfullpathname(tls *libc.TLS, module uintptr, arg uintptr) (r uintptr
 	_ = return_value
 	return_value = libc.UintptrFromInt32(0)
 	**(**Tpath_t)(__ccgo_up(bp)) = Tpath_t{
-		Ffunction_name: __ccgo_ts + 239876,
+		Ffunction_name: __ccgo_ts + 239784,
 		Fargument_name: __ccgo_ts + 28662,
 		Fmake_wide:     int32(1),
 		Ffd:            -int32(1),
@@ -110583,7 +110583,7 @@ func _os__getfinalpathname(tls *libc.TLS, module uintptr, arg uintptr) (r uintpt
 	_ = return_value
 	return_value = libc.UintptrFromInt32(0)
 	**(**Tpath_t)(__ccgo_up(bp)) = Tpath_t{
-		Ffunction_name: __ccgo_ts + 239893,
+		Ffunction_name: __ccgo_ts + 239801,
 		Fargument_name: __ccgo_ts + 28662,
 		Fmake_wide:     int32(1),
 		Ffd:            -int32(1),
@@ -110607,7 +110607,7 @@ func _os__findfirstfile(tls *libc.TLS, module uintptr, arg uintptr) (r uintptr) 
 	_ = return_value
 	return_value = libc.UintptrFromInt32(0)
 	**(**Tpath_t)(__ccgo_up(bp)) = Tpath_t{
-		Ffunction_name: __ccgo_ts + 239911,
+		Ffunction_name: __ccgo_ts + 239819,
 		Fargument_name: __ccgo_ts + 28662,
 		Fmake_wide:     int32(1),
 		Ffd:            -int32(1),
@@ -110632,7 +110632,7 @@ func _os__getvolumepathname(tls *libc.TLS, module uintptr, args uintptr, nargs T
 	_, _ = return_value, v1
 	return_value = libc.UintptrFromInt32(0)
 	**(**Tpath_t)(__ccgo_up(bp + 8)) = Tpath_t{
-		Ffunction_name: __ccgo_ts + 237519,
+		Ffunction_name: __ccgo_ts + 237427,
 		Fargument_name: __ccgo_ts + 28662,
 		Fmake_wide:     int32(1),
 		Ffd:            -int32(1),
@@ -110690,7 +110690,7 @@ var __keywords208 = [2]uintptr{
 
 var __parser205 = T_PyArg_Parser{
 	Fkeywords: uintptr(unsafe.Pointer(&__keywords208)),
-	Ffname:    __ccgo_ts + 237519,
+	Ffname:    __ccgo_ts + 237427,
 	Fkwtuple:  uintptr(unsafe.Pointer(&__kwtuple177)) + 16,
 }
 
@@ -110703,7 +110703,7 @@ func _os__path_splitroot(tls *libc.TLS, module uintptr, args uintptr, nargs TPy_
 	_, _ = return_value, v1
 	return_value = libc.UintptrFromInt32(0)
 	**(**Tpath_t)(__ccgo_up(bp + 8)) = Tpath_t{
-		Ffunction_name: __ccgo_ts + 239926,
+		Ffunction_name: __ccgo_ts + 239834,
 		Fargument_name: __ccgo_ts + 28662,
 		Fmake_wide:     int32(1),
 		Ffd:            -int32(1),
@@ -110761,7 +110761,7 @@ var __keywords209 = [2]uintptr{
 
 var __parser206 = T_PyArg_Parser{
 	Fkeywords: uintptr(unsafe.Pointer(&__keywords209)),
-	Ffname:    __ccgo_ts + 239926,
+	Ffname:    __ccgo_ts + 239834,
 	Fkwtuple:  uintptr(unsafe.Pointer(&__kwtuple178)) + 16,
 }
 
@@ -110775,7 +110775,7 @@ func _os__path_exists(tls *libc.TLS, module uintptr, args uintptr, nargs TPy_ssi
 	_, _, _ = _return_value, return_value, v1
 	return_value = libc.UintptrFromInt32(0)
 	**(**Tpath_t)(__ccgo_up(bp + 8)) = Tpath_t{
-		Ffunction_name:        __ccgo_ts + 239942,
+		Ffunction_name:        __ccgo_ts + 239850,
 		Fargument_name:        __ccgo_ts + 28662,
 		Fmake_wide:            int32(1),
 		Fsuppress_value_error: int32(1),
@@ -110839,7 +110839,7 @@ var __keywords210 = [2]uintptr{
 
 var __parser207 = T_PyArg_Parser{
 	Fkeywords: uintptr(unsafe.Pointer(&__keywords210)),
-	Ffname:    __ccgo_ts + 239942,
+	Ffname:    __ccgo_ts + 239850,
 	Fkwtuple:  uintptr(unsafe.Pointer(&__kwtuple179)) + 16,
 }
 
@@ -110853,7 +110853,7 @@ func _os__path_lexists(tls *libc.TLS, module uintptr, args uintptr, nargs TPy_ss
 	_, _, _ = _return_value, return_value, v1
 	return_value = libc.UintptrFromInt32(0)
 	**(**Tpath_t)(__ccgo_up(bp + 8)) = Tpath_t{
-		Ffunction_name:        __ccgo_ts + 239955,
+		Ffunction_name:        __ccgo_ts + 239863,
 		Fargument_name:        __ccgo_ts + 28662,
 		Fmake_wide:            int32(1),
 		Fsuppress_value_error: int32(1),
@@ -110917,7 +110917,7 @@ var __keywords211 = [2]uintptr{
 
 var __parser208 = T_PyArg_Parser{
 	Fkeywords: uintptr(unsafe.Pointer(&__keywords211)),
-	Ffname:    __ccgo_ts + 239955,
+	Ffname:    __ccgo_ts + 239863,
 	Fkwtuple:  uintptr(unsafe.Pointer(&__kwtuple180)) + 16,
 }
 
@@ -110931,7 +110931,7 @@ func _os__path_isdir(tls *libc.TLS, module uintptr, args uintptr, nargs TPy_ssiz
 	_, _, _ = _return_value, return_value, v1
 	return_value = libc.UintptrFromInt32(0)
 	**(**Tpath_t)(__ccgo_up(bp + 8)) = Tpath_t{
-		Ffunction_name:        __ccgo_ts + 239969,
+		Ffunction_name:        __ccgo_ts + 239877,
 		Fargument_name:        __ccgo_ts + 28662,
 		Fmake_wide:            int32(1),
 		Fsuppress_value_error: int32(1),
@@ -110995,7 +110995,7 @@ var __keywords212 = [2]uintptr{
 
 var __parser209 = T_PyArg_Parser{
 	Fkeywords: uintptr(unsafe.Pointer(&__keywords212)),
-	Ffname:    __ccgo_ts + 239969,
+	Ffname:    __ccgo_ts + 239877,
 	Fkwtuple:  uintptr(unsafe.Pointer(&__kwtuple181)) + 16,
 }
 
@@ -111009,7 +111009,7 @@ func _os__path_isfile(tls *libc.TLS, module uintptr, args uintptr, nargs TPy_ssi
 	_, _, _ = _return_value, return_value, v1
 	return_value = libc.UintptrFromInt32(0)
 	**(**Tpath_t)(__ccgo_up(bp + 8)) = Tpath_t{
-		Ffunction_name:        __ccgo_ts + 239981,
+		Ffunction_name:        __ccgo_ts + 239889,
 		Fargument_name:        __ccgo_ts + 28662,
 		Fmake_wide:            int32(1),
 		Fsuppress_value_error: int32(1),
@@ -111073,7 +111073,7 @@ var __keywords213 = [2]uintptr{
 
 var __parser210 = T_PyArg_Parser{
 	Fkeywords: uintptr(unsafe.Pointer(&__keywords213)),
-	Ffname:    __ccgo_ts + 239981,
+	Ffname:    __ccgo_ts + 239889,
 	Fkwtuple:  uintptr(unsafe.Pointer(&__kwtuple182)) + 16,
 }
 
@@ -111087,7 +111087,7 @@ func _os__path_islink(tls *libc.TLS, module uintptr, args uintptr, nargs TPy_ssi
 	_, _, _ = _return_value, return_value, v1
 	return_value = libc.UintptrFromInt32(0)
 	**(**Tpath_t)(__ccgo_up(bp + 8)) = Tpath_t{
-		Ffunction_name:        __ccgo_ts + 239994,
+		Ffunction_name:        __ccgo_ts + 239902,
 		Fargument_name:        __ccgo_ts + 28662,
 		Fmake_wide:            int32(1),
 		Fsuppress_value_error: int32(1),
@@ -111151,7 +111151,7 @@ var __keywords214 = [2]uintptr{
 
 var __parser211 = T_PyArg_Parser{
 	Fkeywords: uintptr(unsafe.Pointer(&__keywords214)),
-	Ffname:    __ccgo_ts + 239994,
+	Ffname:    __ccgo_ts + 239902,
 	Fkwtuple:  uintptr(unsafe.Pointer(&__kwtuple183)) + 16,
 }
 
@@ -111165,7 +111165,7 @@ func _os__path_isjunction(tls *libc.TLS, module uintptr, args uintptr, nargs TPy
 	_, _, _ = _return_value, return_value, v1
 	return_value = libc.UintptrFromInt32(0)
 	**(**Tpath_t)(__ccgo_up(bp + 8)) = Tpath_t{
-		Ffunction_name:        __ccgo_ts + 240007,
+		Ffunction_name:        __ccgo_ts + 239915,
 		Fargument_name:        __ccgo_ts + 28662,
 		Fmake_wide:            int32(1),
 		Fsuppress_value_error: int32(1),
@@ -111229,7 +111229,7 @@ var __keywords215 = [2]uintptr{
 
 var __parser212 = T_PyArg_Parser{
 	Fkeywords: uintptr(unsafe.Pointer(&__keywords215)),
-	Ffname:    __ccgo_ts + 240007,
+	Ffname:    __ccgo_ts + 239915,
 	Fkwtuple:  uintptr(unsafe.Pointer(&__kwtuple184)) + 16,
 }
 
@@ -111242,7 +111242,7 @@ func _os__path_splitroot_ex(tls *libc.TLS, module uintptr, args uintptr, nargs T
 	_, _ = return_value, v1
 	return_value = libc.UintptrFromInt32(0)
 	**(**Tpath_t)(__ccgo_up(bp + 8)) = Tpath_t{
-		Ffunction_name: __ccgo_ts + 240026,
+		Ffunction_name: __ccgo_ts + 239934,
 		Fargument_name: __ccgo_ts + 28662,
 		Fnonstrict:     int32(1),
 		Fmake_wide:     int32(1),
@@ -111295,13 +111295,13 @@ var __kwtuple185 = struct {
 }
 
 var __keywords216 = [2]uintptr{
-	0: __ccgo_ts + 240024,
+	0: __ccgo_ts + 239932,
 	1: libc.UintptrFromInt32(0),
 }
 
 var __parser213 = T_PyArg_Parser{
 	Fkeywords: uintptr(unsafe.Pointer(&__keywords216)),
-	Ffname:    __ccgo_ts + 240026,
+	Ffname:    __ccgo_ts + 239934,
 	Fkwtuple:  uintptr(unsafe.Pointer(&__kwtuple185)) + 16,
 }
 
@@ -111314,7 +111314,7 @@ func _os__path_normpath(tls *libc.TLS, module uintptr, args uintptr, nargs TPy_s
 	_, _ = return_value, v1
 	return_value = libc.UintptrFromInt32(0)
 	**(**Tpath_t)(__ccgo_up(bp + 8)) = Tpath_t{
-		Ffunction_name: __ccgo_ts + 240045,
+		Ffunction_name: __ccgo_ts + 239953,
 		Fargument_name: __ccgo_ts + 28662,
 		Fnonstrict:     int32(1),
 		Fmake_wide:     int32(1),
@@ -111373,7 +111373,7 @@ var __keywords217 = [2]uintptr{
 
 var __parser214 = T_PyArg_Parser{
 	Fkeywords: uintptr(unsafe.Pointer(&__keywords217)),
-	Ffname:    __ccgo_ts + 240045,
+	Ffname:    __ccgo_ts + 239953,
 	Fkwtuple:  uintptr(unsafe.Pointer(&__kwtuple186)) + 16,
 }
 
@@ -111403,7 +111403,7 @@ func _os_mkdir(tls *libc.TLS, module uintptr, args uintptr, nargs TPy_ssize_t, k
 	}
 	noptargs = nargs + v1 - int64(1)
 	**(**Tpath_t)(__ccgo_up(bp + 24)) = Tpath_t{
-		Ffunction_name: __ccgo_ts + 240060,
+		Ffunction_name: __ccgo_ts + 239968,
 		Fargument_name: __ccgo_ts + 28662,
 		Fmake_wide:     int32(1),
 		Ffd:            -int32(1),
@@ -111487,13 +111487,13 @@ var __kwtuple187 = struct {
 var __keywords218 = [4]uintptr{
 	0: __ccgo_ts + 28662,
 	1: __ccgo_ts + 36919,
-	2: __ccgo_ts + 236128,
+	2: __ccgo_ts + 236036,
 	3: libc.UintptrFromInt32(0),
 }
 
 var __parser215 = T_PyArg_Parser{
 	Fkeywords: uintptr(unsafe.Pointer(&__keywords218)),
-	Ffname:    __ccgo_ts + 240060,
+	Ffname:    __ccgo_ts + 239968,
 	Fkwtuple:  uintptr(unsafe.Pointer(&__kwtuple187)) + 16,
 }
 
@@ -111524,13 +111524,13 @@ func _os_rename(tls *libc.TLS, module uintptr, args uintptr, nargs TPy_ssize_t, 
 	}
 	noptargs = nargs + v1 - int64(2)
 	**(**Tpath_t)(__ccgo_up(bp + 32)) = Tpath_t{
-		Ffunction_name: __ccgo_ts + 237651,
-		Fargument_name: __ccgo_ts + 239807,
+		Ffunction_name: __ccgo_ts + 237559,
+		Fargument_name: __ccgo_ts + 239715,
 		Fmake_wide:     int32(1),
 		Ffd:            -int32(1),
 	}
 	**(**Tpath_t)(__ccgo_up(bp + 128)) = Tpath_t{
-		Ffunction_name: __ccgo_ts + 237651,
+		Ffunction_name: __ccgo_ts + 237559,
 		Fargument_name: __ccgo_ts + 207521,
 		Fmake_wide:     int32(1),
 		Ffd:            -int32(1),
@@ -111610,16 +111610,16 @@ var __kwtuple188 = struct {
 }
 
 var __keywords219 = [5]uintptr{
-	0: __ccgo_ts + 239807,
+	0: __ccgo_ts + 239715,
 	1: __ccgo_ts + 207521,
-	2: __ccgo_ts + 239811,
-	3: __ccgo_ts + 239822,
+	2: __ccgo_ts + 239719,
+	3: __ccgo_ts + 239730,
 	4: libc.UintptrFromInt32(0),
 }
 
 var __parser216 = T_PyArg_Parser{
 	Fkeywords: uintptr(unsafe.Pointer(&__keywords219)),
-	Ffname:    __ccgo_ts + 237651,
+	Ffname:    __ccgo_ts + 237559,
 	Fkwtuple:  uintptr(unsafe.Pointer(&__kwtuple188)) + 16,
 }
 
@@ -111651,7 +111651,7 @@ func _os_replace(tls *libc.TLS, module uintptr, args uintptr, nargs TPy_ssize_t,
 	noptargs = nargs + v1 - int64(2)
 	**(**Tpath_t)(__ccgo_up(bp + 32)) = Tpath_t{
 		Ffunction_name: __ccgo_ts + 819,
-		Fargument_name: __ccgo_ts + 239807,
+		Fargument_name: __ccgo_ts + 239715,
 		Fmake_wide:     int32(1),
 		Ffd:            -int32(1),
 	}
@@ -111736,10 +111736,10 @@ var __kwtuple189 = struct {
 }
 
 var __keywords220 = [5]uintptr{
-	0: __ccgo_ts + 239807,
+	0: __ccgo_ts + 239715,
 	1: __ccgo_ts + 207521,
-	2: __ccgo_ts + 239811,
-	3: __ccgo_ts + 239822,
+	2: __ccgo_ts + 239719,
+	3: __ccgo_ts + 239730,
 	4: libc.UintptrFromInt32(0),
 }
 
@@ -111774,7 +111774,7 @@ func _os_rmdir(tls *libc.TLS, module uintptr, args uintptr, nargs TPy_ssize_t, k
 	}
 	noptargs = nargs + v1 - int64(1)
 	**(**Tpath_t)(__ccgo_up(bp + 16)) = Tpath_t{
-		Ffunction_name: __ccgo_ts + 240066,
+		Ffunction_name: __ccgo_ts + 239974,
 		Fargument_name: __ccgo_ts + 28662,
 		Fmake_wide:     int32(1),
 		Ffd:            -int32(1),
@@ -111838,13 +111838,13 @@ var __kwtuple190 = struct {
 
 var __keywords221 = [3]uintptr{
 	0: __ccgo_ts + 28662,
-	1: __ccgo_ts + 236128,
+	1: __ccgo_ts + 236036,
 	2: libc.UintptrFromInt32(0),
 }
 
 var __parser218 = T_PyArg_Parser{
 	Fkeywords: uintptr(unsafe.Pointer(&__keywords221)),
-	Ffname:    __ccgo_ts + 240066,
+	Ffname:    __ccgo_ts + 239974,
 	Fkwtuple:  uintptr(unsafe.Pointer(&__kwtuple190)) + 16,
 }
 
@@ -111875,7 +111875,7 @@ _3:
 	goto _5
 _5:
 	if !(v4 != 0) {
-		X_PyArg_BadArgument(tls, __ccgo_ts+238995, __ccgo_ts+240080, __ccgo_ts+15107, **(**uintptr)(__ccgo_up(args)))
+		X_PyArg_BadArgument(tls, __ccgo_ts+238903, __ccgo_ts+239988, __ccgo_ts+15107, **(**uintptr)(__ccgo_up(args)))
 		goto exit
 	}
 	command = XPyUnicode_AsWideCharString(tls, **(**uintptr)(__ccgo_up(args)), libc.UintptrFromInt32(0))
@@ -111921,13 +111921,13 @@ var __kwtuple191 = struct {
 }
 
 var __keywords222 = [2]uintptr{
-	0: __ccgo_ts + 240072,
+	0: __ccgo_ts + 239980,
 	1: libc.UintptrFromInt32(0),
 }
 
 var __parser219 = T_PyArg_Parser{
 	Fkeywords: uintptr(unsafe.Pointer(&__keywords222)),
-	Ffname:    __ccgo_ts + 238995,
+	Ffname:    __ccgo_ts + 238903,
 	Fkwtuple:  uintptr(unsafe.Pointer(&__kwtuple191)) + 16,
 }
 
@@ -111973,7 +111973,7 @@ func _os_unlink(tls *libc.TLS, module uintptr, args uintptr, nargs TPy_ssize_t, 
 	}
 	noptargs = nargs + v1 - int64(1)
 	**(**Tpath_t)(__ccgo_up(bp + 16)) = Tpath_t{
-		Ffunction_name: __ccgo_ts + 240099,
+		Ffunction_name: __ccgo_ts + 240007,
 		Fargument_name: __ccgo_ts + 28662,
 		Fmake_wide:     int32(1),
 		Ffd:            -int32(1),
@@ -112037,13 +112037,13 @@ var __kwtuple192 = struct {
 
 var __keywords223 = [3]uintptr{
 	0: __ccgo_ts + 28662,
-	1: __ccgo_ts + 236128,
+	1: __ccgo_ts + 236036,
 	2: libc.UintptrFromInt32(0),
 }
 
 var __parser220 = T_PyArg_Parser{
 	Fkeywords: uintptr(unsafe.Pointer(&__keywords223)),
-	Ffname:    __ccgo_ts + 240099,
+	Ffname:    __ccgo_ts + 240007,
 	Fkwtuple:  uintptr(unsafe.Pointer(&__kwtuple192)) + 16,
 }
 
@@ -112136,7 +112136,7 @@ var __kwtuple193 = struct {
 
 var __keywords224 = [3]uintptr{
 	0: __ccgo_ts + 28662,
-	1: __ccgo_ts + 236128,
+	1: __ccgo_ts + 236036,
 	2: libc.UintptrFromInt32(0),
 }
 
@@ -112172,7 +112172,7 @@ func _os_utime(tls *libc.TLS, module uintptr, args uintptr, nargs TPy_ssize_t, k
 	}
 	noptargs = nargs + v1 - int64(1)
 	**(**Tpath_t)(__ccgo_up(bp + 40)) = Tpath_t{
-		Ffunction_name: __ccgo_ts + 238097,
+		Ffunction_name: __ccgo_ts + 238005,
 		Fargument_name: __ccgo_ts + 28662,
 		Fmake_wide:     int32(1),
 		Ffd:            -int32(1),
@@ -112275,16 +112275,16 @@ var __kwtuple194 = struct {
 
 var __keywords225 = [6]uintptr{
 	0: __ccgo_ts + 28662,
-	1: __ccgo_ts + 240106,
-	2: __ccgo_ts + 240112,
-	3: __ccgo_ts + 236128,
-	4: __ccgo_ts + 236138,
+	1: __ccgo_ts + 240014,
+	2: __ccgo_ts + 240020,
+	3: __ccgo_ts + 236036,
+	4: __ccgo_ts + 236046,
 	5: libc.UintptrFromInt32(0),
 }
 
 var __parser222 = T_PyArg_Parser{
 	Fkeywords: uintptr(unsafe.Pointer(&__keywords225)),
-	Ffname:    __ccgo_ts + 238097,
+	Ffname:    __ccgo_ts + 238005,
 	Fkwtuple:  uintptr(unsafe.Pointer(&__kwtuple194)) + 16,
 }
 
@@ -112344,13 +112344,13 @@ var __kwtuple195 = struct {
 }
 
 var __keywords226 = [2]uintptr{
-	0: __ccgo_ts + 240115,
+	0: __ccgo_ts + 240023,
 	1: libc.UintptrFromInt32(0),
 }
 
 var __parser223 = T_PyArg_Parser{
 	Fkeywords: uintptr(unsafe.Pointer(&__keywords226)),
-	Ffname:    __ccgo_ts + 240122,
+	Ffname:    __ccgo_ts + 240030,
 	Fkwtuple:  uintptr(unsafe.Pointer(&__kwtuple195)) + 16,
 }
 
@@ -112362,12 +112362,12 @@ func _os_execv(tls *libc.TLS, module uintptr, args uintptr, nargs TPy_ssize_t) (
 	_, _ = argv, return_value
 	return_value = libc.UintptrFromInt32(0)
 	**(**Tpath_t)(__ccgo_up(bp)) = Tpath_t{
-		Ffunction_name: __ccgo_ts + 240128,
+		Ffunction_name: __ccgo_ts + 240036,
 		Fargument_name: __ccgo_ts + 28662,
 		Fmake_wide:     int32(1),
 		Ffd:            -int32(1),
 	}
-	if !(libc.Bool(!false) && int64(libc.Int32FromInt32(2)) <= nargs && nargs <= int64(libc.Int32FromInt32(2)) || X_PyArg_CheckPositional(tls, __ccgo_ts+240128, nargs, int64(libc.Int32FromInt32(2)), int64(libc.Int32FromInt32(2))) != 0) {
+	if !(libc.Bool(!false) && int64(libc.Int32FromInt32(2)) <= nargs && nargs <= int64(libc.Int32FromInt32(2)) || X_PyArg_CheckPositional(tls, __ccgo_ts+240036, nargs, int64(libc.Int32FromInt32(2)), int64(libc.Int32FromInt32(2))) != 0) {
 		goto exit
 	}
 	if !(_path_converter(tls, **(**uintptr)(__ccgo_up(args)), bp) != 0) {
@@ -112380,4 +112380,68 @@ exit:
 	;
 	_path_cleanup(tls, bp)
 	return return_value
+}
+
+func _os_execve(tls *libc.TLS, module uintptr, args uintptr, nargs TPy_ssize_t, kwnames uintptr) (r uintptr) {
+	bp := tls.Alloc(128)
+	defer tls.Free(128)
+	var argv, env, return_value, v1 uintptr
+	var _ [3]uintptr
+	var _ Tpath_t
+	_, _, _, _ = argv, env, return_value, v1
+	return_value = libc.UintptrFromInt32(0)
+	**(**Tpath_t)(__ccgo_up(bp + 24)) = Tpath_t{
+		Ffunction_name: __ccgo_ts + 240046,
+		Fargument_name: __ccgo_ts + 28662,
+		Fmake_wide:     int32(1),
+		Ffd:            -int32(1),
+	}
+	if libc.Bool(libc.Bool(true) && libc.Bool(libc.UintptrFromInt32(0) == libc.UintptrFromInt32(0))) && kwnames == libc.UintptrFromInt32(0) && int64(libc.Int32FromInt32(3)) <= nargs && (libc.Bool(0 != 0) || nargs <= int64(libc.Int32FromInt32(3))) && args != libc.UintptrFromInt32(0) {
+		v1 = args
+	} else {
+		v1 = X_PyArg_UnpackKeywords(tls, args, nargs, libc.UintptrFromInt32(0), kwnames, uintptr(unsafe.Pointer(&__parser224)), int32(3), int32(3), 0, 0, bp)
+	}
+	args = v1
+	if !(args != 0) {
+		goto exit
+	}
+	if !(_path_converter(tls, **(**uintptr)(__ccgo_up(args)), bp+24) != 0) {
+		goto exit
+	}
+	argv = **(**uintptr)(__ccgo_up(args + 1*8))
+	env = **(**uintptr)(__ccgo_up(args + 2*8))
+	return_value = _os_execve_impl(tls, module, bp+24, argv, env)
+	goto exit
+exit:
+	;
+	_path_cleanup(tls, bp+24)
+	return return_value
+}
+
+var __kwtuple196 = struct {
+	F_this_is_not_used TPyGC_Head
+	Fob_base           TPyVarObject
+	Fob_hash           TPy_hash_t
+	Fob_item           [3]uintptr
+}{
+	Fob_base: TPyVarObject{
+		Fob_base: TPyObject{
+			F__ccgo0_0: *(*struct {
+				F__ccgo1_0 [0]struct {
+					Fob_refcnt   Tuint32_t
+					Fob_overflow Tuint16_t
+					Fob_flags    Tuint16_t
+				}
+				Fob_refcnt_full Tint64_t
+			})(unsafe.Pointer(&[1]uint64{0x50000c0000000})),
+			Fob_type: uintptr(unsafe.Pointer(&XPyTuple_Type)),
+		},
+		Fob_size: int64(libc.Int32FromInt32(3)),
+	},
+	Fob_hash: int64(-int32(1)),
+	Fob_item: [3]uintptr{
+		0: uintptr(unsafe.Pointer(&X_PyRuntime)) + 13248 + 20712 + 1232 + 31960,
+		1: uintptr(unsafe.Pointer(&X_PyRuntime)) + 13248 + 20712 + 1232 + 13344,
+		2: uintptr(unsafe.Pointer(&X_PyRuntime)) + 13248 + 20712 + 1232 + 20152,
+	},
 }
