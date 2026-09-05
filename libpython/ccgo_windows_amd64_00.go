@@ -10,6 +10,7 @@ import (
 	"unsafe"
 
 	"modernc.org/libc"
+	"modernc.org/libz"
 )
 
 var _ = math.Pi
@@ -17,6 +18,8 @@ var _ = math.Pi
 var _ reflect.Type
 
 var _ unsafe.Pointer
+
+var _ = libz.Xcrc32
 
 const MALIGNOF_LONG = 4
 
@@ -543,6 +546,8 @@ const MHAVE_WINDOWS_CONSOLE_IO = 1
 const MHAVE_WMEMCMP = 1
 
 const MHAVE_WS2TCPIP_H = 1
+
+const MHAVE_ZLIB_COPY = 1
 
 const MHAVE___UINT128_T = 1
 
@@ -1802,7 +1807,7 @@ const MS_IXOTH = 1
 
 const MS_IXUSR = 64
 
-const MTIME = "08:46:52"
+const MTIME = "11:41:42"
 
 const MTMP_MAX = 2147483647
 
