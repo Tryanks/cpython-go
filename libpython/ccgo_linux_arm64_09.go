@@ -22062,7 +22062,7 @@ _2:
 	goto _4
 _4:
 	if !(v3 != 0) {
-		X_PyArg_BadArgument(tls, __ccgo_ts+263735, __ccgo_ts+75062, __ccgo_ts+17494, **(**uintptr)(__ccgo_up(args)))
+		X_PyArg_BadArgument(tls, __ccgo_ts+263735, __ccgo_ts+75062, __ccgo_ts+17509, **(**uintptr)(__ccgo_up(args)))
 		goto exit
 	}
 	data = **(**uintptr)(__ccgo_up(args))
@@ -79976,7 +79976,7 @@ var __kwtuple285 = struct {
 var __keywords331 = [7]uintptr{
 	0: __ccgo_ts + 86067,
 	1: __ccgo_ts + 48867,
-	2: __ccgo_ts + 21277,
+	2: __ccgo_ts + 21291,
 	3: __ccgo_ts + 274106,
 	4: __ccgo_ts + 274113,
 	5: __ccgo_ts + 274124,

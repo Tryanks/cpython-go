@@ -487,10 +487,10 @@ func __types_exec(tls *libc.TLS, m uintptr) (r int32) {
 	if XPyModule_AddObjectRef(tls, m, __ccgo_ts+279576, uintptr(unsafe.Pointer(&XPyModule_Type))) < 0 {
 		return -int32(1)
 	}
-	if XPyModule_AddObjectRef(tls, m, __ccgo_ts+54342, uintptr(unsafe.Pointer(&X_PyNone_Type))) < 0 {
+	if XPyModule_AddObjectRef(tls, m, __ccgo_ts+54361, uintptr(unsafe.Pointer(&X_PyNone_Type))) < 0 {
 		return -int32(1)
 	}
-	if XPyModule_AddObjectRef(tls, m, __ccgo_ts+54351, uintptr(unsafe.Pointer(&X_PyNotImplemented_Type))) < 0 {
+	if XPyModule_AddObjectRef(tls, m, __ccgo_ts+54342, uintptr(unsafe.Pointer(&X_PyNotImplemented_Type))) < 0 {
 		return -int32(1)
 	}
 	if XPyModule_AddObjectRef(tls, m, __ccgo_ts+279587, uintptr(unsafe.Pointer(&X_PyNamespace_Type))) < 0 {
@@ -10839,7 +10839,7 @@ var __kwtuple300 = struct {
 }
 
 var __keywords346 = [3]uintptr{
-	0: __ccgo_ts + 21277,
+	0: __ccgo_ts + 21291,
 	1: __ccgo_ts + 30332,
 	2: libc.UintptrFromInt32(0),
 }
@@ -29035,9 +29035,9 @@ func XPyExpat_unsignedCharToPrintable(tls *libc.TLS, c uint8) (r uintptr) {
 	case int32(81):
 		return __ccgo_ts + 49553
 	case int32(82):
-		return __ccgo_ts + 224586
+		return __ccgo_ts + 224678
 	case int32(83):
-		return __ccgo_ts + 224625
+		return __ccgo_ts + 224717
 	case int32(84):
 		return __ccgo_ts + 226059
 	case int32(85):
@@ -29045,7 +29045,7 @@ func XPyExpat_unsignedCharToPrintable(tls *libc.TLS, c uint8) (r uintptr) {
 	case int32(86):
 		return __ccgo_ts + 287251
 	case int32(87):
-		return __ccgo_ts + 224646
+		return __ccgo_ts + 224578
 	case int32(88):
 		return __ccgo_ts + 287253
 	case int32(89):

@@ -42439,7 +42439,7 @@ var __keywords54 = [9]uintptr{
 	1: __ccgo_ts + 84472,
 	2: __ccgo_ts + 29024,
 	3: __ccgo_ts + 30308,
-	4: __ccgo_ts + 52116,
+	4: __ccgo_ts + 52106,
 	5: __ccgo_ts + 84546,
 	6: __ccgo_ts + 84555,
 	7: __ccgo_ts + 15105,
@@ -44185,7 +44185,7 @@ _9:
 
 			rc = _update_registry(tls, interp, registry, text, category, 0)
 		} else {
-			if X_PyUnicode_EqualToASCIIString(tls, action, __ccgo_ts+52116) != 0 {
+			if X_PyUnicode_EqualToASCIIString(tls, action, __ccgo_ts+52106) != 0 {
 
 				if registry != libc.UintptrFromInt32(0) && registry != uintptr(unsafe.Pointer(&X_Py_NoneStruct)) {
 					rc = _update_registry(tls, interp, registry, text, category, 0)
@@ -50816,7 +50816,7 @@ func _init_identifiers(tls *libc.TLS, state uintptr) (r int32) {
 	if v1 == libc.UintptrFromInt32(0) {
 		return -int32(1)
 	}
-	v1 = XPyUnicode_InternFromString(tls, __ccgo_ts+52116)
+	v1 = XPyUnicode_InternFromString(tls, __ccgo_ts+52106)
 	(*Tast_state)(unsafe.Pointer(state)).Fmodule = v1
 	if v1 == libc.UintptrFromInt32(0) {
 		return -int32(1)
@@ -51588,7 +51588,7 @@ var _Import_fields = [1]uintptr{
 }
 
 var _ImportFrom_fields = [3]uintptr{
-	0: __ccgo_ts + 52116,
+	0: __ccgo_ts + 52106,
 	1: __ccgo_ts + 86025,
 	2: __ccgo_ts + 86019,
 }
@@ -57371,7 +57371,7 @@ _1756:
 		;
 		return 0
 	}
-	cond = libc.BoolUint8(XPyDict_SetItemString(tls, ImportFrom_annotations, __ccgo_ts+52116, type78) == 0)
+	cond = libc.BoolUint8(XPyDict_SetItemString(tls, ImportFrom_annotations, __ccgo_ts+52106, type78) == 0)
 	v1 = type78
 	v2 = libc.BoolInt32(libc.Int32FromUint32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
 	goto _1767

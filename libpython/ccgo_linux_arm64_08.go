@@ -14457,7 +14457,7 @@ _5:
 		;
 		return
 	}
-	if XPyObject_SetAttrString(tls, error1, __ccgo_ts+21277, code) == -int32(1) {
+	if XPyObject_SetAttrString(tls, error1, __ccgo_ts+21291, code) == -int32(1) {
 		v1 = error1
 		v3 = libc.BoolInt32(libc.Int32FromUint32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
 		goto _16
@@ -18335,7 +18335,7 @@ func __elementtree_Element_set(tls *libc.TLS, self uintptr, args uintptr, nargs 
 	var key, return_value, value uintptr
 	_, _, _ = key, return_value, value
 	return_value = libc.UintptrFromInt32(0)
-	if !(libc.Bool(!false) && int64(libc.Int32FromInt32(2)) <= nargs && nargs <= int64(libc.Int32FromInt32(2)) || X_PyArg_CheckPositional(tls, __ccgo_ts+57309, nargs, int64(libc.Int32FromInt32(2)), int64(libc.Int32FromInt32(2))) != 0) {
+	if !(libc.Bool(!false) && int64(libc.Int32FromInt32(2)) <= nargs && nargs <= int64(libc.Int32FromInt32(2)) || X_PyArg_CheckPositional(tls, __ccgo_ts+57299, nargs, int64(libc.Int32FromInt32(2)), int64(libc.Int32FromInt32(2))) != 0) {
 		goto exit
 	}
 	key = **(**uintptr)(__ccgo_up(args))
@@ -18807,7 +18807,7 @@ var _element_methods = [22]TPyMethodDef{
 		Fml_doc:   uintptr(unsafe.Pointer(&__elementtree_Element_get__doc__)),
 	},
 	2: {
-		Fml_name:  __ccgo_ts + 57309,
+		Fml_name:  __ccgo_ts + 57299,
 		Fml_flags: int32(MMETH_FASTCALL),
 		Fml_doc:   uintptr(unsafe.Pointer(&__elementtree_Element_set__doc__)),
 	},
@@ -56117,7 +56117,7 @@ var _hangul_syllables = [28][3]uintptr{
 		2: __ccgo_ts + 49563,
 	},
 	5: {
-		0: __ccgo_ts + 224586,
+		0: __ccgo_ts + 224678,
 		1: __ccgo_ts + 173461,
 		2: __ccgo_ts + 225990,
 	},
@@ -56137,7 +56137,7 @@ var _hangul_syllables = [28][3]uintptr{
 		2: __ccgo_ts + 49543,
 	},
 	9: {
-		0: __ccgo_ts + 224625,
+		0: __ccgo_ts + 224717,
 		1: __ccgo_ts + 226008,
 		2: __ccgo_ts + 226011,
 	},
@@ -56188,7 +56188,7 @@ var _hangul_syllables = [28][3]uintptr{
 	},
 	19: {
 		1: __ccgo_ts + 226073,
-		2: __ccgo_ts + 224625,
+		2: __ccgo_ts + 224717,
 	},
 	20: {
 		1: __ccgo_ts + 49533,

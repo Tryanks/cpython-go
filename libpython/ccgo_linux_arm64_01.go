@@ -14561,7 +14561,7 @@ func _code_new(tls *libc.TLS, type1 uintptr, args uintptr, kwargs uintptr) (r ui
 	base_tp = uintptr(unsafe.Pointer(&XPyCode_Type))
 	freevars = libc.UintptrFromInt32(0)
 	cellvars = libc.UintptrFromInt32(0)
-	if (type1 == base_tp || (*TPyTypeObject)(unsafe.Pointer(type1)).Ftp_init == (*TPyTypeObject)(unsafe.Pointer(base_tp)).Ftp_init) && !(kwargs == libc.UintptrFromInt32(0) || X_PyArg_NoKeywords(tls, __ccgo_ts+21277, kwargs) != 0) {
+	if (type1 == base_tp || (*TPyTypeObject)(unsafe.Pointer(type1)).Ftp_init == (*TPyTypeObject)(unsafe.Pointer(base_tp)).Ftp_init) && !(kwargs == libc.UintptrFromInt32(0) || X_PyArg_NoKeywords(tls, __ccgo_ts+21291, kwargs) != 0) {
 		goto exit
 	}
 	if v5 = libc.Bool(!false); v5 {
@@ -14591,7 +14591,7 @@ func _code_new(tls *libc.TLS, type1 uintptr, args uintptr, kwargs uintptr) (r ui
 		goto _12
 	_12:
 	}
-	if !(v15 || X_PyArg_CheckPositional(tls, __ccgo_ts+21277, v11, int64(libc.Int32FromInt32(16)), int64(libc.Int32FromInt32(18))) != 0) {
+	if !(v15 || X_PyArg_CheckPositional(tls, __ccgo_ts+21291, v11, int64(libc.Int32FromInt32(16)), int64(libc.Int32FromInt32(18))) != 0) {
 		goto exit
 	}
 	argcount = XPyLong_AsInt(tls, **(**uintptr)(__ccgo_up(args + 32)))
@@ -14626,7 +14626,7 @@ _17:
 	goto _19
 _19:
 	if !(v18 != 0) {
-		X_PyArg_BadArgument(tls, __ccgo_ts+21277, __ccgo_ts+21296, __ccgo_ts+17494, **(**uintptr)(__ccgo_up(args + 32 + 6*8)))
+		X_PyArg_BadArgument(tls, __ccgo_ts+21291, __ccgo_ts+21296, __ccgo_ts+17509, **(**uintptr)(__ccgo_up(args + 32 + 6*8)))
 		goto exit
 	}
 	code = **(**uintptr)(__ccgo_up(args + 32 + 6*8))
@@ -14638,7 +14638,7 @@ _21:
 	goto _23
 _23:
 	if !(v18 != 0) {
-		X_PyArg_BadArgument(tls, __ccgo_ts+21277, __ccgo_ts+21307, __ccgo_ts+2169, **(**uintptr)(__ccgo_up(args + 32 + 7*8)))
+		X_PyArg_BadArgument(tls, __ccgo_ts+21291, __ccgo_ts+21307, __ccgo_ts+2169, **(**uintptr)(__ccgo_up(args + 32 + 7*8)))
 		goto exit
 	}
 	consts = **(**uintptr)(__ccgo_up(args + 32 + 7*8))
@@ -14650,7 +14650,7 @@ _25:
 	goto _27
 _27:
 	if !(v18 != 0) {
-		X_PyArg_BadArgument(tls, __ccgo_ts+21277, __ccgo_ts+21318, __ccgo_ts+2169, **(**uintptr)(__ccgo_up(args + 32 + 8*8)))
+		X_PyArg_BadArgument(tls, __ccgo_ts+21291, __ccgo_ts+21318, __ccgo_ts+2169, **(**uintptr)(__ccgo_up(args + 32 + 8*8)))
 		goto exit
 	}
 	names = **(**uintptr)(__ccgo_up(args + 32 + 8*8))
@@ -14662,7 +14662,7 @@ _29:
 	goto _31
 _31:
 	if !(v18 != 0) {
-		X_PyArg_BadArgument(tls, __ccgo_ts+21277, __ccgo_ts+21329, __ccgo_ts+2169, **(**uintptr)(__ccgo_up(args + 32 + 9*8)))
+		X_PyArg_BadArgument(tls, __ccgo_ts+21291, __ccgo_ts+21329, __ccgo_ts+2169, **(**uintptr)(__ccgo_up(args + 32 + 9*8)))
 		goto exit
 	}
 	varnames = **(**uintptr)(__ccgo_up(args + 32 + 9*8))
@@ -14674,7 +14674,7 @@ _33:
 	goto _35
 _35:
 	if !(v18 != 0) {
-		X_PyArg_BadArgument(tls, __ccgo_ts+21277, __ccgo_ts+21341, __ccgo_ts+15148, **(**uintptr)(__ccgo_up(args + 32 + 10*8)))
+		X_PyArg_BadArgument(tls, __ccgo_ts+21291, __ccgo_ts+21341, __ccgo_ts+15148, **(**uintptr)(__ccgo_up(args + 32 + 10*8)))
 		goto exit
 	}
 	filename = **(**uintptr)(__ccgo_up(args + 32 + 10*8))
@@ -14686,7 +14686,7 @@ _37:
 	goto _39
 _39:
 	if !(v18 != 0) {
-		X_PyArg_BadArgument(tls, __ccgo_ts+21277, __ccgo_ts+21353, __ccgo_ts+15148, **(**uintptr)(__ccgo_up(args + 32 + 11*8)))
+		X_PyArg_BadArgument(tls, __ccgo_ts+21291, __ccgo_ts+21353, __ccgo_ts+15148, **(**uintptr)(__ccgo_up(args + 32 + 11*8)))
 		goto exit
 	}
 	name = **(**uintptr)(__ccgo_up(args + 32 + 11*8))
@@ -14698,7 +14698,7 @@ _41:
 	goto _43
 _43:
 	if !(v18 != 0) {
-		X_PyArg_BadArgument(tls, __ccgo_ts+21277, __ccgo_ts+21365, __ccgo_ts+15148, **(**uintptr)(__ccgo_up(args + 32 + 12*8)))
+		X_PyArg_BadArgument(tls, __ccgo_ts+21291, __ccgo_ts+21365, __ccgo_ts+15148, **(**uintptr)(__ccgo_up(args + 32 + 12*8)))
 		goto exit
 	}
 	qualname = **(**uintptr)(__ccgo_up(args + 32 + 12*8))
@@ -14714,7 +14714,7 @@ _45:
 	goto _47
 _47:
 	if !(v18 != 0) {
-		X_PyArg_BadArgument(tls, __ccgo_ts+21277, __ccgo_ts+21377, __ccgo_ts+17494, **(**uintptr)(__ccgo_up(args + 32 + 14*8)))
+		X_PyArg_BadArgument(tls, __ccgo_ts+21291, __ccgo_ts+21377, __ccgo_ts+17509, **(**uintptr)(__ccgo_up(args + 32 + 14*8)))
 		goto exit
 	}
 	linetable = **(**uintptr)(__ccgo_up(args + 32 + 14*8))
@@ -14726,7 +14726,7 @@ _49:
 	goto _51
 _51:
 	if !(v18 != 0) {
-		X_PyArg_BadArgument(tls, __ccgo_ts+21277, __ccgo_ts+21389, __ccgo_ts+17494, **(**uintptr)(__ccgo_up(args + 32 + 15*8)))
+		X_PyArg_BadArgument(tls, __ccgo_ts+21291, __ccgo_ts+21389, __ccgo_ts+17509, **(**uintptr)(__ccgo_up(args + 32 + 15*8)))
 		goto exit
 	}
 	exceptiontable = **(**uintptr)(__ccgo_up(args + 32 + 15*8))
@@ -14748,7 +14748,7 @@ _57:
 	goto _59
 _59:
 	if !(v18 != 0) {
-		X_PyArg_BadArgument(tls, __ccgo_ts+21277, __ccgo_ts+21401, __ccgo_ts+2169, **(**uintptr)(__ccgo_up(args + 32 + 16*8)))
+		X_PyArg_BadArgument(tls, __ccgo_ts+21291, __ccgo_ts+21401, __ccgo_ts+2169, **(**uintptr)(__ccgo_up(args + 32 + 16*8)))
 		goto exit
 	}
 	freevars = **(**uintptr)(__ccgo_up(args + 32 + 16*8))
@@ -14770,7 +14770,7 @@ _65:
 	goto _67
 _67:
 	if !(v18 != 0) {
-		X_PyArg_BadArgument(tls, __ccgo_ts+21277, __ccgo_ts+21413, __ccgo_ts+2169, **(**uintptr)(__ccgo_up(args + 32 + 17*8)))
+		X_PyArg_BadArgument(tls, __ccgo_ts+21291, __ccgo_ts+21413, __ccgo_ts+2169, **(**uintptr)(__ccgo_up(args + 32 + 17*8)))
 		goto exit
 	}
 	cellvars = **(**uintptr)(__ccgo_up(args + 32 + 17*8))
@@ -14925,7 +14925,7 @@ func _code_replace(tls *libc.TLS, self uintptr, args uintptr, nargs TPy_ssize_t,
 		goto _17
 	_17:
 		if !(v16 != 0) {
-			X_PyArg_BadArgument(tls, __ccgo_ts+864, __ccgo_ts+21648, __ccgo_ts+17494, **(**uintptr)(__ccgo_up(args + 7*8)))
+			X_PyArg_BadArgument(tls, __ccgo_ts+864, __ccgo_ts+21648, __ccgo_ts+17509, **(**uintptr)(__ccgo_up(args + 7*8)))
 			goto exit
 		}
 		co_code = **(**uintptr)(__ccgo_up(args + 7*8))
@@ -15096,7 +15096,7 @@ func _code_replace(tls *libc.TLS, self uintptr, args uintptr, nargs TPy_ssize_t,
 		goto _62
 	_62:
 		if !(v16 != 0) {
-			X_PyArg_BadArgument(tls, __ccgo_ts+864, __ccgo_ts+21842, __ccgo_ts+17494, **(**uintptr)(__ccgo_up(args + 16*8)))
+			X_PyArg_BadArgument(tls, __ccgo_ts+864, __ccgo_ts+21842, __ccgo_ts+17509, **(**uintptr)(__ccgo_up(args + 16*8)))
 			goto exit
 		}
 		co_linetable = **(**uintptr)(__ccgo_up(args + 16*8))
@@ -15114,7 +15114,7 @@ _65:
 	goto _67
 _67:
 	if !(v16 != 0) {
-		X_PyArg_BadArgument(tls, __ccgo_ts+864, __ccgo_ts+21866, __ccgo_ts+17494, **(**uintptr)(__ccgo_up(args + 17*8)))
+		X_PyArg_BadArgument(tls, __ccgo_ts+864, __ccgo_ts+21866, __ccgo_ts+17509, **(**uintptr)(__ccgo_up(args + 17*8)))
 		goto exit
 	}
 	co_exceptiontable = **(**uintptr)(__ccgo_up(args + 17*8))
@@ -26571,7 +26571,7 @@ var __keywords19 = [2]uintptr{
 
 var __parser19 = T_PyArg_Parser{
 	Fkeywords: uintptr(unsafe.Pointer(&__keywords19)),
-	Ffname:    __ccgo_ts + 24191,
+	Ffname:    __ccgo_ts + 24095,
 	Fkwtuple:  uintptr(unsafe.Pointer(&__kwtuple19)) + 16,
 }
 
@@ -26697,7 +26697,7 @@ var __keywords20 = [5]uintptr{
 
 var __parser20 = T_PyArg_Parser{
 	Fkeywords: uintptr(unsafe.Pointer(&__keywords20)),
-	Ffname:    __ccgo_ts + 24204,
+	Ffname:    __ccgo_ts + 24108,
 	Fkwtuple:  uintptr(unsafe.Pointer(&__kwtuple20)) + 16,
 }
 
@@ -29792,7 +29792,7 @@ func _SystemExit_traverse(tls *libc.TLS, op uintptr, __ccgo_fp_visit Tvisitproc,
 
 var _SystemExit_members = [2]TPyMemberDef{
 	0: {
-		Fname:   __ccgo_ts + 21277,
+		Fname:   __ccgo_ts + 21291,
 		Ftype1:  int32(M_Py_T_OBJECT),
 		Foffset: libc.Int64FromUint64(uint64(libc.UintptrFromInt32(0) + 72)),
 		Fdoc:    __ccgo_ts + 27658,
@@ -35930,7 +35930,7 @@ func _check_unicode_error_attribute(tls *libc.TLS, attr uintptr, name uintptr, a
 	}
 	if !(v1 != 0) {
 		if as_bytes != 0 {
-			v10 = __ccgo_ts + 17494
+			v10 = __ccgo_ts + 17509
 		} else {
 			v10 = __ccgo_ts + 30888
 		}
@@ -38485,7 +38485,7 @@ var _static_exceptions = [68]Tstatic_exception{
 	},
 	13: {
 		Fexc:  uintptr(unsafe.Pointer(&X_PyExc_MemoryError)),
-		Fname: __ccgo_ts + 26803,
+		Fname: __ccgo_ts + 26843,
 	},
 	14: {
 		Fexc:  uintptr(unsafe.Pointer(&__PyExc_NameError)),
@@ -38637,7 +38637,7 @@ var _static_exceptions = [68]Tstatic_exception{
 	},
 	51: {
 		Fexc:  uintptr(unsafe.Pointer(&X_PyExc_IncompleteInputError)),
-		Fname: __ccgo_ts + 26830,
+		Fname: __ccgo_ts + 26803,
 	},
 	52: {
 		Fexc:  uintptr(unsafe.Pointer(&__PyExc_IndexError)),
@@ -58171,7 +58171,7 @@ var __kwtuple22 = struct {
 }
 
 var __keywords22 = [7]uintptr{
-	0: __ccgo_ts + 21277,
+	0: __ccgo_ts + 21291,
 	1: __ccgo_ts + 40876,
 	2: __ccgo_ts + 2159,
 	3: __ccgo_ts + 40884,
@@ -69845,7 +69845,7 @@ var __kwtuple27 = struct {
 }
 
 var __keywords27 = [4]uintptr{
-	0: __ccgo_ts + 17494,
+	0: __ccgo_ts + 17509,
 	1: __ccgo_ts + 43372,
 	2: __ccgo_ts + 43382,
 	3: libc.UintptrFromInt32(0),
