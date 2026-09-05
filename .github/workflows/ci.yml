@@ -68,9 +68,7 @@ jobs:
           result = unittest.TextTestRunner(verbosity=2).run(unittest.TestSuite([case]));
           assert result.wasSuccessful()"
   windows-arm64:
-    # Experimental: generated and cross-built, not yet validated on hardware.
     runs-on: windows-11-arm
-    continue-on-error: true
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-go@v5

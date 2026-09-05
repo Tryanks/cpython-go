@@ -21,7 +21,7 @@ runtime; `subprocess` works via `syscall.ForkExec`).
 | linux/amd64   | yes       | yes              | not run yet        |
 | linux/arm64   | yes       | yes              | 43 of 72 modules fully pass |
 | windows/amd64 | yes       | yes              | in progress        |
-| windows/arm64 | yes       | experimental CI job | not run yet     |
+| windows/arm64 | yes       | yes              | not run yet        |
 
 Other architectures are parked; see TODO.md. Windows details: docs/windows.md.
 
