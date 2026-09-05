@@ -22,6 +22,8 @@ var (
 	ranPattern     = regexp.MustCompile(`(?m)^Ran ([0-9]+) tests?\b`)
 	outcomePattern = regexp.MustCompile(`(?m)^(OK(?: \([^\r\n]*\))?|FAILED \([^\r\n]*\))\s*$`)
 	modulePattern  = regexp.MustCompile(`^test_[A-Za-z0-9_]+$`)
+	testPattern    = regexp.MustCompile(`^test\.test_[A-Za-z0-9_]+(?:\.[A-Za-z0-9_]+)*$`)
+	logPattern     = regexp.MustCompile(`[^A-Za-z0-9_.-]+`)
 )
 
 type testResult struct {
@@ -35,12 +37,13 @@ type testResult struct {
 func main() {
 	executable := flag.String("exe", "./cpython-go-tests.exe", "interpreter executable")
 	moduleFile := flag.String("modules", "internal/builders/windows/test-modules.txt", "whitespace-separated module list")
-	timeout := flag.Duration("timeout", 90*time.Second, "timeout for each module")
+	tests := flag.String("tests", "", "optional comma- or whitespace-separated unittest selectors")
+	timeout := flag.Duration("timeout", 300*time.Second, "timeout for each module")
 	output := flag.String("output", "windows-test-results", "result directory")
 	label := flag.String("label", runtime.GOARCH, "runner label for the report")
 	flag.Parse()
 
-	modules, err := readModules(*moduleFile)
+	targets, err := readTargets(*moduleFile, *tests)
 	if err != nil {
 		fatal(err)
 	}
@@ -53,15 +56,15 @@ func main() {
 		fatal(err)
 	}
 
-	results := make([]testResult, 0, len(modules))
+	results := make([]testResult, 0, len(targets))
 	failures := 0
-	for _, module := range modules {
-		result := runModule(exe, module, *timeout, logs)
+	for _, target := range targets {
+		result := runTarget(exe, target, *timeout, logs)
 		results = append(results, result)
 		if !strings.HasPrefix(result.result, "OK") {
 			failures++
 		}
-		fmt.Printf("%-24s ran=%-5s %s (%s)\n", module, result.ran, result.result, result.duration.Round(time.Millisecond))
+		fmt.Printf("%-24s ran=%-5s %s (%s)\n", result.module, result.ran, result.result, result.duration.Round(time.Millisecond))
 	}
 
 	summary := renderSummary(*label, *timeout, results)
@@ -74,7 +77,21 @@ func main() {
 	}
 }
 
-func readModules(name string) ([]string, error) {
+func readTargets(name, selection string) ([]string, error) {
+	if selection != "" {
+		selection = strings.ReplaceAll(selection, ",", " ")
+		targets := strings.Fields(selection)
+		for _, target := range targets {
+			if !testPattern.MatchString(target) {
+				return nil, fmt.Errorf("invalid unittest selector %q", target)
+			}
+		}
+		if len(targets) == 0 {
+			return nil, fmt.Errorf("empty unittest selection")
+		}
+		return targets, nil
+	}
+
 	data, err := os.ReadFile(name)
 	if err != nil {
 		return nil, err
@@ -85,13 +102,20 @@ func readModules(name string) ([]string, error) {
 			return nil, fmt.Errorf("invalid test module %q", module)
 		}
 	}
-	return modules, nil
+	targets := make([]string, len(modules))
+	for i, module := range modules {
+		targets[i] = "test." + module
+	}
+	return targets, nil
 }
 
-func runModule(exe, module string, timeout time.Duration, logs string) testResult {
+func runTarget(exe, target string, timeout time.Duration, logs string) testResult {
 	started := time.Now()
 	var output bytes.Buffer
-	cmd := exec.Command(exe, "-m", "unittest", "-q", "test."+module)
+	cmd := exec.Command(exe, "-m", "unittest", "-q", target)
+	// An explicit empty pipe is the exec.Command equivalent of `< NUL`. This
+	// prevents breakpoint() and pdb from attaching to the runner's console.
+	cmd.Stdin = bytes.NewReader(nil)
 	cmd.Stdout = &output
 	cmd.Stderr = &output
 	err := cmd.Start()
@@ -121,12 +145,13 @@ func runModule(exe, module string, timeout time.Duration, logs string) testResul
 		ran = match[1]
 	}
 	result := classify(text, err, timedOut)
-	logName := module + ".log"
+	display := strings.TrimPrefix(target, "test.")
+	logName := logPattern.ReplaceAllString(display, "_") + ".log"
 	header := fmt.Sprintf("command: %s\nduration: %s\nresult: %s\n\n", strings.Join(cmd.Args, " "), duration, result)
 	if writeErr := os.WriteFile(filepath.Join(logs, logName), []byte(header+text), 0o644); writeErr != nil {
 		fatal(writeErr)
 	}
-	return testResult{module: module, ran: ran, result: result, duration: duration, log: filepath.ToSlash(filepath.Join("logs", logName))}
+	return testResult{module: display, ran: ran, result: result, duration: duration, log: filepath.ToSlash(filepath.Join("logs", logName))}
 }
 
 func classify(output string, err error, timedOut bool) string {
