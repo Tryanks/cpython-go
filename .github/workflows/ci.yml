@@ -44,11 +44,22 @@ jobs:
           assert pickle.loads(pickle.dumps({'runtime': 314})) == {'runtime': 314};
           assert re.fullmatch('[a-z]+', 'runtime') and datetime.date(2026, 9, 5).isoformat() == '2026-09-05';
           print('runtime-ok')"
-      - name: Exercise subprocess
+      - name: Exercise subprocess process wait
+        timeout-minutes: 1
         run: >-
           ./cpython-go.exe -c "import subprocess, sys;
-          output = subprocess.check_output([sys.executable, '-c', 'print(46)'], text=True);
-          assert output.strip() == '46'; print('subprocess-ok')"
+          print('executable', repr(sys.executable), flush=True);
+          result = subprocess.run([sys.executable, '-c', 'print(46)'], timeout=15);
+          print('subprocess-returncode', result.returncode, flush=True);
+          assert result.returncode == 0"
+      - name: Exercise subprocess pipe
+        timeout-minutes: 1
+        run: >-
+          ./cpython-go.exe -c "import subprocess, sys;
+          process = subprocess.Popen([sys.executable, '-c', 'print(47)'], stdout=subprocess.PIPE, text=True);
+          print('pipe-child', process.pid, flush=True);
+          output = process.stdout.read(3); print('pipe-data', repr(output), flush=True);
+          assert process.wait(timeout=15) == 0 and output == '47\n'; print('subprocess-ok')"
       - name: Run unittest smoke test
         run: >-
           ./cpython-go.exe -c "import unittest;
