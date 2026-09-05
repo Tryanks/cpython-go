@@ -6019,7 +6019,7 @@ func _signal_pthread_sigmask_impl(tls *libc.TLS, module uintptr, how int32, _mas
 	var err int32
 	var _ Tsigset_t
 	_ = err
-	err = libc.Xpthread_sigmask(tls, how, bp, bp+128)
+	err = _ccgo_pthread_sigmask(tls, how, bp, bp+128)
 	if err != 0 {
 		**(**int32)(__ccgo_up(libc.X__errno_location(tls))) = err
 		XPyErr_SetFromErrno(tls, XPyExc_OSError)
@@ -6039,7 +6039,7 @@ func _signal_sigpending_impl(tls *libc.TLS, module uintptr) (r uintptr) {
 	var err int32
 	var _ Tsigset_t
 	_ = err
-	err = libc.Xsigpending(tls, bp)
+	err = _ccgo_sigpending(tls, bp)
 	if err != 0 {
 		return XPyErr_SetFromErrno(tls, XPyExc_OSError)
 	}
@@ -6056,7 +6056,7 @@ func _signal_sigwait_impl(tls *libc.TLS, module uintptr, _sigset Tsigset_t) (r u
 	var _ int32
 	_, _ = _save, err
 	_save = XPyEval_SaveThread(tls)
-	err = libc.Xsigwait(tls, bp, bp+128)
+	err = _ccgo_sigwait(tls, bp, bp+128)
 	XPyEval_RestoreThread(tls, _save)
 	if err != 0 {
 		**(**int32)(__ccgo_up(libc.X__errno_location(tls))) = err
@@ -6178,7 +6178,7 @@ func _signal_sigwaitinfo_impl(tls *libc.TLS, module uintptr, _sigset Tsigset_t) 
 	async_err = 0
 	for {
 		_save = XPyEval_SaveThread(tls)
-		err = libc.Xsigwaitinfo(tls, bp, bp+128)
+		err = _ccgo_sigwaitinfo(tls, bp, bp+128)
 		XPyEval_RestoreThread(tls, _save)
 		goto _3
 	_3:
@@ -6228,7 +6228,7 @@ func _signal_sigtimedwait_impl(tls *libc.TLS, module uintptr, _sigset Tsigset_t,
 			return libc.UintptrFromInt32(0)
 		}
 		_save = XPyEval_SaveThread(tls)
-		res = libc.Xsigtimedwait(tls, bp, bp+136, bp+264)
+		res = _ccgo_sigtimedwait(tls, bp, bp+136, bp+264)
 		XPyEval_RestoreThread(tls, _save)
 		if res != -int32(1) {
 			break
@@ -67333,15 +67333,15 @@ type TScannerObject = struct {
 }
 
 func _sre_isalnum(tls *libc.TLS, ch uint32) (r int32) {
-	return libc.Int32FromUint32(libc.Uint32FromInt32(libc.Xisalnum(tls, libc.Int32FromUint32(ch))))
+	return libc.Int32FromUint32(libc.Uint32FromInt32(_ccgo_isalnum(tls, libc.Int32FromUint32(ch))))
 }
 
 func _sre_tolower(tls *libc.TLS, ch uint32) (r uint32) {
-	return libc.Uint32FromInt32(libc.Xtolower(tls, libc.Int32FromUint32(ch)))
+	return libc.Uint32FromInt32(_ccgo_tolower(tls, libc.Int32FromUint32(ch)))
 }
 
 func _sre_toupper(tls *libc.TLS, ch uint32) (r uint32) {
-	return libc.Uint32FromInt32(libc.Xtoupper(tls, libc.Int32FromUint32(ch)))
+	return libc.Uint32FromInt32(_ccgo_toupper(tls, libc.Int32FromUint32(ch)))
 }
 
 func _sre_lower_ascii(tls *libc.TLS, ch uint32) (r uint32) {

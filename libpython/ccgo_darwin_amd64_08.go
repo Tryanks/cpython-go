@@ -75697,7 +75697,7 @@ func _socket_getservbyname(tls *libc.TLS, self uintptr, args uintptr) (r uintptr
 		return libc.UintptrFromInt32(0)
 	}
 	_save = XPyEval_SaveThread(tls)
-	sp = libc.Xgetservbyname(tls, **(**uintptr)(__ccgo_up(bp)), **(**uintptr)(__ccgo_up(bp + 8)))
+	sp = _ccgo_getservbyname(tls, **(**uintptr)(__ccgo_up(bp)), **(**uintptr)(__ccgo_up(bp + 8)))
 	XPyEval_RestoreThread(tls, _save)
 	if sp == libc.UintptrFromInt32(0) {
 		XPyErr_SetString(tls, XPyExc_OSError, __ccgo_ts+235873)
@@ -80968,7 +80968,7 @@ func _faulthandler_thread(tls *libc.TLS, unused uintptr) {
 
 	**(**Tsigset_t)(__ccgo_up(bp)) = ^libc.Uint32FromInt32(0)
 	_ = libc.Int32FromInt32(0)
-	libc.Xpthread_sigmask(tls, int32(MSIG_SETMASK), bp, libc.UintptrFromInt32(0))
+	_ccgo_pthread_sigmask(tls, int32(MSIG_SETMASK), bp, libc.UintptrFromInt32(0))
 	for cond := true; cond; cond = ok != 0 && X_PyRuntime.Ffaulthandler.Fthread.Frepeat != 0 {
 		st = XPyThread_acquire_lock_timed(tls, X_PyRuntime.Ffaulthandler.Fthread.Fcancel_event, X_PyRuntime.Ffaulthandler.Fthread.Ftimeout_us, 0)
 		if st == int32(EPY_LOCK_ACQUIRED) {

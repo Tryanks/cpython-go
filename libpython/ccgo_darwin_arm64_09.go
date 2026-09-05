@@ -6070,7 +6070,7 @@ func _signal_pthread_sigmask_impl(tls *libc.TLS, module uintptr, how int32, _mas
 	var err int32
 	var _ Tsigset_t
 	_ = err
-	err = libc.Xpthread_sigmask(tls, how, bp, bp+4)
+	err = _ccgo_pthread_sigmask(tls, how, bp, bp+4)
 	if err != 0 {
 		**(**int32)(__ccgo_up(libc.X__error(tls))) = err
 		XPyErr_SetFromErrno(tls, XPyExc_OSError)
@@ -67101,7 +67101,7 @@ _9:
 	if v8 != 0 {
 		v7 = libc.BoolInt32(!!(uint64(**(**t__uint32_t)(__ccgo_up(uintptr(unsafe.Pointer(&libc.X_DefaultRuneLocale)) + 60 + uintptr(v3)*4)))&v4 != 0))
 	} else {
-		v7 = libc.BoolInt32(!!(libc.X__maskrune(tls, v3, v4) != 0))
+		v7 = libc.BoolInt32(!!(_ccgo___maskrune(tls, v3, v4) != 0))
 	}
 	v5 = v7
 	goto _6
@@ -67115,7 +67115,7 @@ _2:
 func _sre_tolower(tls *libc.TLS, ch uint32) (r uint32) {
 	var v1 Twint_t
 	_ = v1
-	v1 = libc.X__tolower(tls, _btowc(tls, libc.Int32FromUint32(ch)))
+	v1 = _ccgo___tolower(tls, _btowc(tls, libc.Int32FromUint32(ch)))
 	goto _2
 _2:
 	return libc.Uint32FromInt32(v1)
@@ -67124,7 +67124,7 @@ _2:
 func _sre_toupper(tls *libc.TLS, ch uint32) (r uint32) {
 	var v1 Twint_t
 	_ = v1
-	v1 = libc.X__toupper(tls, _btowc(tls, libc.Int32FromUint32(ch)))
+	v1 = _ccgo___toupper(tls, _btowc(tls, libc.Int32FromUint32(ch)))
 	goto _2
 _2:
 	return libc.Uint32FromInt32(v1)

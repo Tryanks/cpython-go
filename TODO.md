@@ -39,26 +39,45 @@ is parked here.
   _testmultiphase...) are not built (--disable-test-modules), so tests that
   need them error out.
 - Threads: real thread identity is emulated on libc.TLS goroutines;
-  pthread_kill / signal masks / sigwait are stubs.
+  pthread_kill remains a stub. Signal masks and waits are emulated per TLS,
+  with inherited-mask fallback for newly-created TLS goroutines.
 
-## Known test failures (CPython test suite, darwin/arm64 79/107 and linux/arm64 43/72 modules fully pass)
+## Known test failures (CPython test suite, darwin/arm64 83/107 and linux/arm64 44/72 modules fully pass)
 
-- darwin: test_socket hits modernc `Xinet_ntoa` TODO (route it); test_logging
-  hangs (~15 min, then SIGALRM watchdog is overridden); test_subprocess and
-  test_fcntl end without a summary line (crash/exit to diagnose).
+- darwin: test_socket has eight delayed-signal errors plus one ancillary-data
+  flags failure; interface-name and `/etc/services` lookups now work.
+  test_logging hangs (~15 min, then SIGALRM watchdog is overridden);
+  test_subprocess and test_fcntl end without a summary line (crash/exit to
+  diagnose).
 
 - test_io, test_subprocess: hang in blocking pipe reads waiting for EOF
   (fd inherited by a subprocess through ForkExec; not yet diagnosed).
-- test_signal/test_unittest: pending-signal semantics (sigpending, sigwait,
-  masks, ITIMER_VIRTUAL/PROF) and delayed delivery of external signals.
+- test_signal: masks, pending signals, sigwait, and all three interval timers
+  are implemented. Its only Darwin failure is an isolated child that cannot
+  import the test package without a test-inclusive embedded stdlib. Delayed
+  delivery from handlers during timed socket operations remains incomplete.
+- test_unittest/test_gc: isolated or sanitized children cannot import the test
+  package without a test-inclusive embedded stdlib.
 - Returned-local reference leaks are fixed on darwin/arm64 (see
   docs/refleak.md); regenerate the other targets from the updated C patch.
   test_weakref's isolated atexit child needs the test-inclusive stdlib.
-- test_math: gamma() is ~30 ulps off (Go math.Gamma vs libm tgamma).
-- test_locale: collation is ordinal (strcoll/wcscoll).
+- test_math: Darwin's CPython `m_tgamma` path, using Go-backed math primitives,
+  is 27-787 ulps beyond the test-file tolerances at six cases. Replacing it
+  requires a C patch plus regeneration. Linux's same wrapper over transpiled
+  musl primitives passes all 89 tests and must not be rerouted.
+- Locale collation emulates en_US.UTF-8 primary/base, accent, and case levels
+  for Latin-1 and Latin Extended-A. ISO-8859-1 byte ctype folding is supported
+  for `re.LOCALE`; `test_locale` and `test_re` pass on Darwin and Linux arm64.
 - test_datetime (3): StaticTypes/ExtensionModule tests (test modules absent).
-- test_json/test_re/test_argparse:
-  one or a few failures each, not yet triaged.
+- test_ast: the 500k structural-depth cases are iterative from the ccgo TLS
+  stack model's perspective and need an explicit compiler depth guard.
+- test_inspect: source for frozen `_collections_abc` is unavailable through
+  its aliased `collections.abc` name; one subprocess-origin assertion also
+  differs because the child uses the embedded stdlib.
+- test_sys: `_stdlib_dir` describes the embedded home while the externally
+  supplied test `PYTHONPATH` makes `os.__file__` point at the source checkout;
+  the other failure requires omitted `_testcapi` modules.
+- test_json/test_argparse: one or a few failures each, not yet triaged.
 - Tests that spawn `sys.executable -I/-E` need the test package inside the
   binary: build with `-tags cpython_test` after `make stdlib-tests`
   (package-style test discovery inside the zip still fails for some suites).
