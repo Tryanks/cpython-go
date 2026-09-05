@@ -27888,9 +27888,9 @@ func XPyExpat_unsignedCharToPrintable(tls *libc.TLS, c uint8) (r uintptr) {
 	case int32(81):
 		return __ccgo_ts + 50033
 	case int32(82):
-		return __ccgo_ts + 224993
+		return __ccgo_ts + 224988
 	case int32(83):
-		return __ccgo_ts + 225032
+		return __ccgo_ts + 225027
 	case int32(84):
 		return __ccgo_ts + 226374
 	case int32(85):
@@ -27898,7 +27898,7 @@ func XPyExpat_unsignedCharToPrintable(tls *libc.TLS, c uint8) (r uintptr) {
 	case int32(86):
 		return __ccgo_ts + 283945
 	case int32(87):
-		return __ccgo_ts + 224893
+		return __ccgo_ts + 225048
 	case int32(88):
 		return __ccgo_ts + 283947
 	case int32(89):

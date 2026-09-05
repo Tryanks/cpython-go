@@ -83200,7 +83200,7 @@ _11:
 }
 
 var _keywords12 = [4]uintptr{
-	0: __ccgo_ts + 40578,
+	0: __ccgo_ts + 40591,
 	1: __ccgo_ts + 272905,
 	2: __ccgo_ts + 272912,
 	3: libc.UintptrFromInt32(0),
@@ -86311,10 +86311,10 @@ func __types_exec(tls *libc.TLS, m uintptr) (r int32) {
 	if XPyModule_AddObjectRef(tls, m, __ccgo_ts+276207, uintptr(unsafe.Pointer(&XPyModule_Type))) < 0 {
 		return -int32(1)
 	}
-	if XPyModule_AddObjectRef(tls, m, __ccgo_ts+54933, uintptr(unsafe.Pointer(&X_PyNone_Type))) < 0 {
+	if XPyModule_AddObjectRef(tls, m, __ccgo_ts+54952, uintptr(unsafe.Pointer(&X_PyNone_Type))) < 0 {
 		return -int32(1)
 	}
-	if XPyModule_AddObjectRef(tls, m, __ccgo_ts+54942, uintptr(unsafe.Pointer(&X_PyNotImplemented_Type))) < 0 {
+	if XPyModule_AddObjectRef(tls, m, __ccgo_ts+54933, uintptr(unsafe.Pointer(&X_PyNotImplemented_Type))) < 0 {
 		return -int32(1)
 	}
 	if XPyModule_AddObjectRef(tls, m, __ccgo_ts+276218, uintptr(unsafe.Pointer(&X_PyNamespace_Type))) < 0 {

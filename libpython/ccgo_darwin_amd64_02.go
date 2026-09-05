@@ -26996,7 +26996,7 @@ func _range_new(tls *libc.TLS, type1 uintptr, args uintptr, kw uintptr) (r uintp
 	var tuple uintptr
 	var v1, v3 TPy_ssize_t
 	_, _, _ = tuple, v1, v3
-	if !(kw == libc.UintptrFromInt32(0) || X_PyArg_NoKeywords(tls, __ccgo_ts+57555, kw) != 0) {
+	if !(kw == libc.UintptrFromInt32(0) || X_PyArg_NoKeywords(tls, __ccgo_ts+57589, kw) != 0) {
 		return libc.UintptrFromInt32(0)
 	}
 	tuple = args
@@ -27016,7 +27016,7 @@ func _range_vectorcall(tls *libc.TLS, rangetype uintptr, args uintptr, nargsf Ts
 	goto _2
 _2:
 	nargs = v1
-	if !(kwnames == libc.UintptrFromInt32(0) || X_PyArg_NoKwnames(tls, __ccgo_ts+57555, kwnames) != 0) {
+	if !(kwnames == libc.UintptrFromInt32(0) || X_PyArg_NoKwnames(tls, __ccgo_ts+57589, kwnames) != 0) {
 		return libc.UintptrFromInt32(0)
 	}
 	return _range_from_array(tls, rangetype, args, nargs)

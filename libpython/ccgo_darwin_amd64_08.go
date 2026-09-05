@@ -60338,7 +60338,7 @@ var _hangul_syllables = [28][3]uintptr{
 		2: __ccgo_ts + 50043,
 	},
 	5: {
-		0: __ccgo_ts + 224993,
+		0: __ccgo_ts + 224988,
 		1: __ccgo_ts + 174914,
 		2: __ccgo_ts + 226305,
 	},
@@ -60358,7 +60358,7 @@ var _hangul_syllables = [28][3]uintptr{
 		2: __ccgo_ts + 50023,
 	},
 	9: {
-		0: __ccgo_ts + 225032,
+		0: __ccgo_ts + 225027,
 		1: __ccgo_ts + 226323,
 		2: __ccgo_ts + 226326,
 	},
@@ -60409,7 +60409,7 @@ var _hangul_syllables = [28][3]uintptr{
 	},
 	19: {
 		1: __ccgo_ts + 226388,
-		2: __ccgo_ts + 225032,
+		2: __ccgo_ts + 225027,
 	},
 	20: {
 		1: __ccgo_ts + 50013,
