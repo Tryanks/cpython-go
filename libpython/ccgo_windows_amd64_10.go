@@ -20013,7 +20013,7 @@ func __winapi_CreateFileMapping_impl(tls *libc.TLS, module uintptr, file_handle 
 	var v6 Tuint32_t
 	_, _, _, _, _, _, _, _ = _save, handle, temp, v1, v2, v3, v6, v7
 	_save = XPyEval_SaveThread(tls)
-	handle = libc.XCreateFileMappingW(tls, file_handle, security_attributes, protect, max_size_high, max_size_low, name)
+	handle = _ccgo_CreateFileMappingW(tls, file_handle, security_attributes, protect, max_size_high, max_size_low, name)
 	XPyEval_RestoreThread(tls, _save)
 	if handle == libc.UintptrFromInt32(0) {
 		temp = XPyUnicode_FromWideChar(tls, name, int64(-int32(1)))

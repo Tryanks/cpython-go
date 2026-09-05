@@ -91433,7 +91433,7 @@ func _time_mktime(tls *libc.TLS, module uintptr, tm_tuple uintptr) (r uintptr) {
 		return libc.UintptrFromInt32(0)
 	}
 	(**(**Ttm)(__ccgo_up(bp))).Ftm_wday = -int32(1)
-	tt = libc.Xmktime(tls, bp)
+	tt = _ccgo_mktime(tls, bp)
 
 	if tt == int64(-libc.Int32FromInt32(1)) && (**(**Ttm)(__ccgo_up(bp))).Ftm_wday == -int32(1) {
 		XPyErr_SetString(tls, XPyExc_OverflowError, __ccgo_ts+277184)
@@ -91849,7 +91849,7 @@ func _init_timezone(tls *libc.TLS, m uintptr) (r int32) {
 	var v5 Tuint32_t
 	var _ TTIME_ZONE_INFORMATION
 	_, _, _, _, _, _ = otz0, otz1, v1, v2, v5, v6
-	libc.Xtzset(tls)
+	_ccgo_tzset(tls)
 	if XPyModule_AddIntConstant(tls, m, __ccgo_ts+277338, **(**int32)(__ccgo_up(___timezone(tls)))) < 0 {
 		return -int32(1)
 	}

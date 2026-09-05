@@ -37132,7 +37132,7 @@ func _mmap_mmap_resize_impl(tls *libc.TLS, self uintptr, new_size TPy_ssize_t) (
 		}
 	}
 
-	(*Tmmap_object)(unsafe.Pointer(self)).Fmap_handle = libc.XCreateFileMappingW(tls, (*Tmmap_object)(unsafe.Pointer(self)).Ffile_handle, libc.UintptrFromInt32(0), uint32(MPAGE_READWRITE), uint32(*(*TLONG)(unsafe.Add(unsafe.Pointer(&**(**TLARGE_INTEGER)(__ccgo_up(bp + 8))), 4))), *(*TDWORD)(unsafe.Pointer(&**(**TLARGE_INTEGER)(__ccgo_up(bp + 8)))), (*Tmmap_object)(unsafe.Pointer(self)).Ftagname)
+	(*Tmmap_object)(unsafe.Pointer(self)).Fmap_handle = _ccgo_CreateFileMappingW(tls, (*Tmmap_object)(unsafe.Pointer(self)).Ffile_handle, libc.UintptrFromInt32(0), uint32(MPAGE_READWRITE), uint32(*(*TLONG)(unsafe.Add(unsafe.Pointer(&**(**TLARGE_INTEGER)(__ccgo_up(bp + 8))), 4))), *(*TDWORD)(unsafe.Pointer(&**(**TLARGE_INTEGER)(__ccgo_up(bp + 8)))), (*Tmmap_object)(unsafe.Pointer(self)).Ftagname)
 	error1 = _ccgo_GetLastError(tls)
 
 	if error1 == uint32(183) {
@@ -38179,7 +38179,7 @@ func _new_mmap_object(tls *libc.TLS, type1 uintptr, args uintptr, kwdict uintptr
 	off_hi = uint32(**(**int64)(__ccgo_up(bp + 8)) >> libc.Int32FromInt32(32))
 	off_lo = uint32(**(**int64)(__ccgo_up(bp + 8)) & libc.Int64FromUint32(0xFFFFFFFF))
 
-	(*Tmmap_object)(unsafe.Pointer(m_obj)).Fmap_handle = libc.XCreateFileMappingW(tls, (*Tmmap_object)(unsafe.Pointer(m_obj)).Ffile_handle, libc.UintptrFromInt32(0), flProtect, size_hi, size_lo, (*Tmmap_object)(unsafe.Pointer(m_obj)).Ftagname)
+	(*Tmmap_object)(unsafe.Pointer(m_obj)).Fmap_handle = _ccgo_CreateFileMappingW(tls, (*Tmmap_object)(unsafe.Pointer(m_obj)).Ffile_handle, libc.UintptrFromInt32(0), flProtect, size_hi, size_lo, (*Tmmap_object)(unsafe.Pointer(m_obj)).Ftagname)
 	if (*Tmmap_object)(unsafe.Pointer(m_obj)).Fmap_handle != libc.UintptrFromInt32(0) {
 		(*Tmmap_object)(unsafe.Pointer(m_obj)).Fdata = libc.XMapViewOfFile(tls, (*Tmmap_object)(unsafe.Pointer(m_obj)).Fmap_handle, dwDesiredAccess, off_hi, off_lo, uint64((*Tmmap_object)(unsafe.Pointer(m_obj)).Fsize))
 		if (*Tmmap_object)(unsafe.Pointer(m_obj)).Fdata != libc.UintptrFromInt32(0) {

@@ -1710,6 +1710,14 @@ func _gmtime_s(tls *libc.TLS, dst, source uintptr) int32 {
 	return int32(callUCRTWithErrno(tls, "_gmtime64_s", dst, source))
 }
 
+func _ccgo_mktime(tls *libc.TLS, tm uintptr) int64 {
+	return int64(callUCRTWithErrno(tls, "_mktime64", tm))
+}
+
+func _ccgo_tzset(tls *libc.TLS) {
+	_, _ = callProc(dllUCRT, "_tzset")
+}
+
 func _clock(tls *libc.TLS) int32 {
 	r, _ := callProc(dllUCRT, "clock")
 	return int32(r)
@@ -1747,7 +1755,20 @@ var (
 	windowsSignals = map[int32]uintptr{}
 )
 
+func supportedWindowsSignal(number int32) bool {
+	switch number {
+	case 2, 4, 8, 11, 15, 21, 22: // SIGINT, SIGILL, SIGFPE, SIGSEGV, SIGTERM, SIGBREAK, SIGABRT
+		return true
+	default:
+		return false
+	}
+}
+
 func _signal(tls *libc.TLS, number int32, handler uintptr) uintptr {
+	if !supportedWindowsSignal(number) {
+		setErrno(tls, int32(errno.EINVAL))
+		return ^uintptr(0) // SIG_ERR
+	}
 	signalMu.Lock()
 	defer signalMu.Unlock()
 	previous := windowsSignals[number]
@@ -1978,6 +1999,30 @@ func _ccgo_CreateFileMappingA(tls *libc.TLS, file, securityAttributes uintptr, p
 	if result == 0 {
 		setWinError(tls, err, errorInvalidParam)
 	}
+	return result
+}
+
+// CreateFileMappingW is one of the unusual Win32 calls whose last-error value
+// is meaningful on success (ERROR_ALREADY_EXISTS). mmap.resize reads it
+// unconditionally, so overwrite stale CRT errno as well as the independent
+// Win32 slot on every call.
+func _ccgo_CreateFileMappingW(tls *libc.TLS, file, securityAttributes uintptr, protect, maximumSizeHigh, maximumSizeLow uint32, name uintptr) uintptr {
+	result, err := callProc(
+		dllKernel32,
+		"CreateFileMappingW",
+		file,
+		securityAttributes,
+		uintptr(protect),
+		uintptr(maximumSizeHigh),
+		uintptr(maximumSizeLow),
+		name,
+	)
+	value := winErrno(err, 0)
+	if result == 0 && value == 0 {
+		value = errorInvalidParam
+	}
+	tls.SetLastError(value)
+	setErrno(tls, int32(value))
 	return result
 }
 
@@ -3017,6 +3062,10 @@ func _ccgo_abort(tls *libc.TLS) {
 }
 
 func _ccgo_raise(tls *libc.TLS, number int32) int32 {
+	if !supportedWindowsSignal(number) {
+		setErrno(tls, int32(errno.EINVAL))
+		return -1
+	}
 	signalMu.Lock()
 	handler := windowsSignals[number]
 	signalMu.Unlock()
@@ -3025,6 +3074,10 @@ func _ccgo_raise(tls *libc.TLS, number int32) int32 {
 	case 1: // SIG_IGN
 		return 0
 	case 0: // SIG_DFL
+		if number == 21 { // UCRT raise() does not accept SIGBREAK.
+			setErrno(tls, int32(errno.EINVAL))
+			return -1
+		}
 		return int32(callUCRTWithErrno(tls, "raise", uintptr(number)))
 	default:
 		(*(*func(*libc.TLS, int32))(unsafe.Pointer(&struct{ uintptr }{handler})))(tls, number)
