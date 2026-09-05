@@ -512,3 +512,20 @@ diff --color -ruN a/Modules/_decimal/_decimal.c b/Modules/_decimal/_decimal.c
 @@ -3437 +3437 @@
 -         if (*dest == '\xff') *dest = '\0';
 +         if ((unsigned char)*dest == 0xff) *dest = '\0';
+
+mpdecimal.c: use configure's uint128 result rather than the compiler builtin
+macro.  ccgo's Windows frontend exposes __SIZEOF_INT128__ even though the Go
+target cannot lower __uint128_t; HAVE_UINT128_T is deliberately unset for the
+portable ANSI64 implementation.
+diff --color -ruN a/Modules/_decimal/libmpdec/mpdecimal.c b/Modules/_decimal/libmpdec/mpdecimal.c
+--- a/Modules/_decimal/libmpdec/mpdecimal.c
++++ b/Modules/_decimal/libmpdec/mpdecimal.c
+@@ -8670 +8670 @@
+-#if defined(CONFIG_64) && defined(__SIZEOF_INT128__)
++#if defined(CONFIG_64) && defined(HAVE_UINT128_T)
+@@ -8754 +8754 @@
+-#if defined(CONFIG_64) && defined(__SIZEOF_INT128__)
++#if defined(CONFIG_64) && defined(HAVE_UINT128_T)
+@@ -8878 +8878 @@
+-#if defined(CONFIG_64) && defined(__SIZEOF_INT128__)
++#if defined(CONFIG_64) && defined(HAVE_UINT128_T)

@@ -68,6 +68,101 @@ func setErrno(tls *libc.TLS, value int32) {
 	*(*int32)(unsafe.Pointer(libc.X_errno(tls))) = value
 }
 
+// MinGW exposes strtoll as a static inline wrapper around _strtoi64. ccgo can
+// retain calls to that wrapper without emitting its body, so provide the C
+// conversion semantics needed by bundled libmpdec directly.
+func _strtoll(tls *libc.TLS, nptr, endptr uintptr, base int32) int64 {
+	original := nptr
+	p := nptr
+	for {
+		switch *(*byte)(unsafe.Pointer(p)) {
+		case ' ', '\t', '\n', '\r', '\v', '\f':
+			p++
+			continue
+		}
+		break
+	}
+
+	negative := false
+	switch *(*byte)(unsafe.Pointer(p)) {
+	case '-':
+		negative = true
+		p++
+	case '+':
+		p++
+	}
+
+	if base != 0 && (base < 2 || base > 36) {
+		setErrno(tls, int32(errno.EINVAL))
+		if endptr != 0 {
+			*(*uintptr)(unsafe.Pointer(endptr)) = original
+		}
+		return 0
+	}
+
+	digit := func(ch byte) uint64 {
+		switch {
+		case ch >= '0' && ch <= '9':
+			return uint64(ch - '0')
+		case ch >= 'a' && ch <= 'z':
+			return uint64(ch-'a') + 10
+		case ch >= 'A' && ch <= 'Z':
+			return uint64(ch-'A') + 10
+		default:
+			return 36
+		}
+	}
+
+	if base == 0 {
+		base = 10
+		if *(*byte)(unsafe.Pointer(p)) == '0' {
+			base = 8
+			if next := *(*byte)(unsafe.Pointer(p + 1)); (next == 'x' || next == 'X') && digit(*(*byte)(unsafe.Pointer(p + 2))) < 16 {
+				base = 16
+				p += 2
+			}
+		}
+	} else if base == 16 && *(*byte)(unsafe.Pointer(p)) == '0' {
+		if next := *(*byte)(unsafe.Pointer(p + 1)); (next == 'x' || next == 'X') && digit(*(*byte)(unsafe.Pointer(p + 2))) < 16 {
+			p += 2
+		}
+	}
+
+	digits := p
+	limit := uint64(math.MaxInt64)
+	if negative {
+		limit++
+	}
+	var value uint64
+	overflow := false
+	for d := digit(*(*byte)(unsafe.Pointer(p))); d < uint64(base); d = digit(*(*byte)(unsafe.Pointer(p))) {
+		if value > (limit-d)/uint64(base) {
+			overflow = true
+		} else {
+			value = value*uint64(base) + d
+		}
+		p++
+	}
+	if p == digits {
+		p = original
+		value = 0
+	}
+	if endptr != 0 {
+		*(*uintptr)(unsafe.Pointer(endptr)) = p
+	}
+	if overflow {
+		setErrno(tls, int32(errno.ERANGE))
+		if negative {
+			return math.MinInt64
+		}
+		return math.MaxInt64
+	}
+	if negative {
+		return -int64(value)
+	}
+	return int64(value)
+}
+
 func cBytes(p uintptr, n uint64) []byte {
 	if n == 0 {
 		return nil
