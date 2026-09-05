@@ -1610,13 +1610,6 @@ func _ccgo_getaddrinfo(tls *libc.TLS, node, service, hints, result uintptr) int3
 	if family != unix.AF_UNSPEC && family != unix.AF_INET && family != unix.AF_INET6 {
 		return 5 // EAI_FAMILY
 	}
-	// The interpreter is configured with --disable-ipv6 (no sockaddr_in6
-	// parsing in socketmodule), so an unspecified family must not yield
-	// AF_INET6 entries that bind()/connect() would then reject.
-	// ponytail: drop this once IPv6 is enabled in generator.go.
-	if family == unix.AF_UNSPEC {
-		family = unix.AF_INET
-	}
 	port := 0
 	if service != 0 {
 		name := libc.GoString(service)

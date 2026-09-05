@@ -63,6 +63,9 @@ var (
 		// transpiled code has no C stack, so route it to a virtual one kept
 		// per libc.TLS in libpython/libc_darwin.go.
 		"-D__builtin_frame_address(x)=ccgo_frame_address()",
+		// libmpdec's ANSI implementation avoids x86 inline assembly and
+		// __uint128_t, neither of which ccgo can transpile reliably.
+		"-DANSI=1",
 		"-U__SIZEOF_INT128__",
 		"-eval-all-macros",
 		"-extended-errors",
@@ -106,6 +109,8 @@ var (
 		// x87 control-word inline asm (Python/pymath.c) cannot be transpiled.
 		"ac_cv_gcc_asm_for_x87=no",
 		"ac_cv_gcc_asm_for_mc68881=no",
+		"ac_cv_gcc_asm_for_x64=no",
+		"ac_cv_type___uint128_t=no",
 		// HACL* SIMD (SSE/AVX2 intrinsics) cannot be transpiled.
 		"ax_cv_check_cflags__Werror__mavx2=no",
 		"ax_cv_check_cflags__Werror__msse__msse2__msse3__msse4_1__msse4_2=no",
@@ -118,7 +123,6 @@ var (
 		"py_cv_module__curses=n/a",
 		"py_cv_module__curses_panel=n/a",
 		"py_cv_module__dbm=n/a",
-		"py_cv_module__decimal=n/a",
 		"py_cv_module__gdbm=n/a",
 		"py_cv_module__hashlib=n/a",
 		"py_cv_module__lzma=n/a",
@@ -188,10 +192,11 @@ var (
 		},
 	}
 	configureArgs = []string{
-		"--disable-ipv6",
+		"--enable-ipv6",
 		"--disable-shared",
 		"--disable-test-modules",
 		"--with-static-libpython",
+		"--with-system-libmpdec=no",
 		"--without-computed-gotos",
 		"--without-ensurepip",
 		"--without-mimalloc",

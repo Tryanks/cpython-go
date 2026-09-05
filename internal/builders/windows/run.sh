@@ -115,11 +115,12 @@ export WINDRES="${host}-windres"
 		--build=aarch64-unknown-linux-gnu \
 		--prefix=/usr/local \
 		--with-build-python=/usr/local/bin/python3.14 \
-		--disable-ipv6 \
+		--enable-ipv6 \
 		--disable-shared \
 		--disable-test-modules \
 		--disable-experimental-jit \
 		--with-static-libpython \
+		--with-system-libmpdec=no \
 		--without-computed-gotos \
 		--without-ensurepip \
 		--without-mimalloc \

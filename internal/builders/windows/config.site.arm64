@@ -18,6 +18,8 @@ ac_cv_func_dlopen=no
 ac_cv_lib_dl_dlopen=no
 ac_cv_gcc_asm_for_x87=no
 ac_cv_gcc_asm_for_mc68881=no
+ac_cv_gcc_asm_for_x64=no
+ac_cv_type___uint128_t=no
 ax_cv_check_cflags__Werror__mavx2=no
 ax_cv_check_cflags__Werror__msse__msse2__msse3__msse4_1__msse4_2=no
 
@@ -30,7 +32,6 @@ py_cv_module__ctypes=n/a
 py_cv_module__curses=n/a
 py_cv_module__curses_panel=n/a
 py_cv_module__dbm=n/a
-py_cv_module__decimal=n/a
 py_cv_module__gdbm=n/a
 py_cv_module__hashlib=n/a
 py_cv_module__lzma=n/a
