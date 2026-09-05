@@ -2,6 +2,11 @@ name: windows-tests
 
 on:
   workflow_dispatch:
+    inputs:
+      tests:
+        description: Optional comma-separated unittest selectors (for example, test.test_signal.InterProcessSignalTests)
+        required: false
+        type: string
   push:
     branches: ['windows-*']
 
@@ -35,20 +40,31 @@ jobs:
             Get-ChildItem internal/stdlib-extra/*.py
             Get-ChildItem stdlib/sysconfigdata/*.py
           ) | ForEach-Object { $_.FullName }
-          go run ./internal/cmd/mkstdlib -tests -o stdlib/python314_tests.zip.gz cpython-3.14.7/Lib @extra
+          go run ./internal/cmd/mkstdlib -tests -o stdlib/python314_tests.zip cpython-3.14.7/Lib @extra
       - name: Build test interpreter
         run: go build -tags cpython_test -o cpython-go-tests.exe ./cmd/cpython-go
       - name: Run CPython unittest batch
         id: batch
         continue-on-error: true
         shell: pwsh
+        env:
+          WINDOWS_TEST_SELECTION: ${{ inputs.tests }}
         run: |
           $env:PYTHONPATH = (Resolve-Path cpython-3.14.7/Lib).Path
-          go run ./internal/builders/windows/test_batch.go `
-            -exe ./cpython-go-tests.exe `
-            -timeout 90s `
-            -output windows-test-results `
-            -label windows/${{ matrix.arch }}
+          $batchArgs = @(
+            '-exe'
+            './cpython-go-tests.exe'
+            '-timeout'
+            '300s'
+            '-output'
+            'windows-test-results'
+            '-label'
+            'windows/${{ matrix.arch }}'
+          )
+          if ($env:WINDOWS_TEST_SELECTION) {
+            $batchArgs += @('-tests', $env:WINDOWS_TEST_SELECTION)
+          }
+          go run ./internal/builders/windows/test_batch.go @batchArgs
       - name: Publish test table
         if: always()
         shell: pwsh

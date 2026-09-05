@@ -13945,7 +13945,7 @@ _2:
 	(*Tproc_handle_t)(unsafe.Pointer(handle)).Fpid = pid
 	(*Tproc_handle_t)(unsafe.Pointer(handle)).FhProcess = _OpenProcess(tls, uint32(libc.Int32FromInt32(MPROCESS_VM_READ)|libc.Int32FromInt32(MPROCESS_VM_WRITE)|libc.Int32FromInt32(MPROCESS_VM_OPERATION)|libc.Int32FromInt32(MPROCESS_QUERY_INFORMATION)), MFALSE, uint32(pid))
 	if (*Tproc_handle_t)(unsafe.Pointer(handle)).FhProcess == libc.UintptrFromInt32(0) {
-		error1 = libc.XGetLastError(tls)
+		error1 = _ccgo_GetLastError(tls)
 		XPyErr_SetFromWindowsErr(tls, int32(error1))
 		v4 = libc.BoolInt32(XPyErr_Occurred(tls) != 0 && XPyErr_ExceptionMatches(tls, XPyExc_PermissionError) != 0)
 		goto _5
@@ -14004,9 +14004,9 @@ func _analyze_pe(tls *libc.TLS, mod_path uintptr, remote_base uintptr, secname u
 	var i, v1 int32
 	var mapView, name, pDOSHeader, pNTHeaders, pSection_header, runtime_addr, tstate1, tstate2, tstate3, v3, v5, v6, v8 uintptr
 	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = error1, error11, error2, hFile, hMap, i, mapView, name, pDOSHeader, pNTHeaders, pSection_header, runtime_addr, tstate1, tstate2, tstate3, v1, v3, v5, v6, v8
-	hFile = libc.XCreateFileW(tls, mod_path, libc.Uint32FromUint32(0x80000000), uint32(MFILE_SHARE_READ), libc.UintptrFromInt32(0), uint32(MOPEN_EXISTING), uint32(MFILE_ATTRIBUTE_NORMAL), libc.UintptrFromInt32(0))
+	hFile = _ccgo_CreateFileW(tls, mod_path, libc.Uint32FromUint32(0x80000000), uint32(MFILE_SHARE_READ), libc.UintptrFromInt32(0), uint32(MOPEN_EXISTING), uint32(MFILE_ATTRIBUTE_NORMAL), libc.UintptrFromInt32(0))
 	if hFile == uintptr(int64(-libc.Int32FromInt32(1))) {
-		error1 = libc.XGetLastError(tls)
+		error1 = _ccgo_GetLastError(tls)
 		XPyErr_SetFromWindowsErr(tls, int32(error1))
 		v1 = libc.BoolInt32(XPyErr_Occurred(tls) != 0 && XPyErr_ExceptionMatches(tls, XPyExc_PermissionError) != 0)
 		goto _2
@@ -14037,7 +14037,7 @@ func _analyze_pe(tls *libc.TLS, mod_path uintptr, remote_base uintptr, secname u
 	}
 	hMap = _ccgo_CreateFileMappingA(tls, hFile, libc.UintptrFromInt32(0), uint32(MPAGE_READONLY), uint32(0), uint32(0), uintptr(0))
 	if !(hMap != 0) {
-		error11 = libc.XGetLastError(tls)
+		error11 = _ccgo_GetLastError(tls)
 		XPyErr_SetFromWindowsErr(tls, int32(error11))
 		v1 = libc.BoolInt32(XPyErr_Occurred(tls) != 0 && XPyErr_ExceptionMatches(tls, XPyExc_PermissionError) != 0)
 		goto _11
@@ -14069,7 +14069,7 @@ func _analyze_pe(tls *libc.TLS, mod_path uintptr, remote_base uintptr, secname u
 	}
 	mapView = libc.XMapViewOfFile(tls, hMap, uint32(MSECTION_MAP_READ), uint32(0), uint32(0), uint64(0))
 	if !(mapView != 0) {
-		error2 = libc.XGetLastError(tls)
+		error2 = _ccgo_GetLastError(tls)
 		XPyErr_SetFromWindowsErr(tls, int32(error2))
 		v1 = libc.BoolInt32(XPyErr_Occurred(tls) != 0 && XPyErr_ExceptionMatches(tls, XPyExc_PermissionError) != 0)
 		goto _20
@@ -14148,11 +14148,11 @@ func _search_windows_map_for_section(tls *libc.TLS, handle uintptr, secname uint
 	var v1 int32
 	var _ TMODULEENTRY32W
 	_, _, _, _, _, _, _, _, _, _, _, _, _, _ = candidate, error1, error11, error2, hProcSnap, runtime_addr, tstate1, tstate2, tstate3, v1, v3, v5, v6, v8
-	for cond := true; cond; cond = hProcSnap == uintptr(int64(-libc.Int32FromInt32(1))) && libc.XGetLastError(tls) == uint32(24) {
+	for cond := true; cond; cond = hProcSnap == uintptr(int64(-libc.Int32FromInt32(1))) && _ccgo_GetLastError(tls) == uint32(24) {
 		hProcSnap = _CreateToolhelp32Snapshot(tls, uint32(MTH32CS_SNAPMODULE), uint32((*Tproc_handle_t)(unsafe.Pointer(handle)).Fpid))
 	}
 	if hProcSnap == uintptr(int64(-libc.Int32FromInt32(1))) {
-		error1 = libc.XGetLastError(tls)
+		error1 = _ccgo_GetLastError(tls)
 		XPyErr_SetFromWindowsErr(tls, int32(error1))
 		v1 = libc.BoolInt32(XPyErr_Occurred(tls) != 0 && XPyErr_ExceptionMatches(tls, XPyExc_PermissionError) != 0)
 		goto _2
@@ -14184,7 +14184,7 @@ func _search_windows_map_for_section(tls *libc.TLS, handle uintptr, secname uint
 	(**(**TMODULEENTRY32W)(__ccgo_up(bp))).FdwSize = uint32(1080)
 	runtime_addr = libc.UintptrFromInt32(0)
 	if !(_Module32FirstW(tls, hProcSnap, bp) != 0) {
-		error11 = libc.XGetLastError(tls)
+		error11 = _ccgo_GetLastError(tls)
 		XPyErr_SetFromWindowsErr(tls, int32(error11))
 		v1 = libc.BoolInt32(XPyErr_Occurred(tls) != 0 && XPyErr_ExceptionMatches(tls, XPyExc_PermissionError) != 0)
 		goto _11
@@ -14240,7 +14240,7 @@ func _search_windows_map_for_section(tls *libc.TLS, handle uintptr, secname uint
 		}
 	}
 	if runtime_addr == libc.UintptrFromInt32(0) && !(XPyErr_Occurred(tls) != 0) {
-		error2 = libc.XGetLastError(tls)
+		error2 = _ccgo_GetLastError(tls)
 		if error2 != uint32(18) {
 			XPyErr_SetFromWindowsErr(tls, int32(error2))
 			v1 = libc.BoolInt32(XPyErr_Occurred(tls) != 0 && XPyErr_ExceptionMatches(tls, XPyExc_PermissionError) != 0)
@@ -14311,7 +14311,7 @@ func __Py_RemoteDebug_ReadRemoteMemory(tls *libc.TLS, handle uintptr, remote_add
 	result = uint64(0)
 	for cond := true; cond; cond = result < len1 {
 		if !(_ReadProcessMemory(tls, (*Tproc_handle_t)(unsafe.Pointer(handle)).FhProcess, uintptr(remote_address+result), dst+uintptr(result), len1-result, bp) != 0) {
-			error1 = libc.XGetLastError(tls)
+			error1 = _ccgo_GetLastError(tls)
 			if !(_is_process_alive(tls, (*Tproc_handle_t)(unsafe.Pointer(handle)).FhProcess) != 0) {
 				__set_errno(tls, int32(MESRCH))
 				XPyErr_SetFromErrno(tls, XPyExc_OSError)
