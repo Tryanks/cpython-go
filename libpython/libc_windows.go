@@ -2570,10 +2570,69 @@ func _PostQueuedCompletionStatus(tls *libc.TLS, port uintptr, bytes uint32, key 
 	return boolProc(tls, dllKernel32, "PostQueuedCompletionStatus", port, uintptr(bytes), uintptr(key), overlapped)
 }
 
-func _RegisterWaitForSingleObject(tls *libc.TLS, result, object, callback, context uintptr, milliseconds, flags uint32) int32 {
-	// A transpiled Go function pointer is not a native Win32 callback.
-	_SetLastError(tls, errorCallNotImpl)
+type windowsRegisteredWait struct {
+	callback uintptr
+	context  uintptr
+	flags    uint32
+}
+
+var (
+	windowsRegisteredWaitMu   sync.Mutex
+	windowsRegisteredWaits    = map[uintptr]windowsRegisteredWait{}
+	windowsRegisteredWaitNext atomic.Uintptr
+	windowsWaitCallback       = syscall.NewCallback(windowsRegisteredWaitCallback)
+)
+
+func windowsRegisteredWaitCallback(token, timerOrWaitFired uintptr) uintptr {
+	windowsRegisteredWaitMu.Lock()
+	state, ok := windowsRegisteredWaits[token]
+	if ok && state.flags&0x8 != 0 { // WT_EXECUTEONLYONCE
+		delete(windowsRegisteredWaits, token)
+	}
+	windowsRegisteredWaitMu.Unlock()
+	if !ok {
+		return 0
+	}
+
+	// ccgo function pointers are Go function values, not native addresses. The
+	// native thread-pool callback above is a fixed Go trampoline; dispatch the
+	// original translated callback from Go with a TLS owned by this callback.
+	dtls := libc.NewTLS()
+	defer dtls.Close()
+	callback := *(*func(*libc.TLS, uintptr, uint8))(unsafe.Pointer(&struct{ uintptr }{state.callback}))
+	callback(dtls, state.context, uint8(timerOrWaitFired))
 	return 0
+}
+
+func _RegisterWaitForSingleObject(tls *libc.TLS, result, object, callback, context uintptr, milliseconds, flags uint32) int32 {
+	if result == 0 || callback == 0 {
+		setWinError(tls, windows.ERROR_INVALID_PARAMETER, errorInvalidParam)
+		return 0
+	}
+
+	token := windowsRegisteredWaitNext.Add(1)
+	windowsRegisteredWaitMu.Lock()
+	windowsRegisteredWaits[token] = windowsRegisteredWait{callback: callback, context: context, flags: flags}
+	windowsRegisteredWaitMu.Unlock()
+
+	r, err := callProc(
+		dllKernel32,
+		"RegisterWaitForSingleObject",
+		result,
+		object,
+		windowsWaitCallback,
+		token,
+		uintptr(milliseconds),
+		uintptr(flags),
+	)
+	if r == 0 {
+		windowsRegisteredWaitMu.Lock()
+		delete(windowsRegisteredWaits, token)
+		windowsRegisteredWaitMu.Unlock()
+		setWinError(tls, err, errorInvalidParam)
+		return 0
+	}
+	return 1
 }
 
 func _UnregisterWait(tls *libc.TLS, wait uintptr) int32 {
