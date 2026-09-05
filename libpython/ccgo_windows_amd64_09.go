@@ -85777,10 +85777,10 @@ _10:
 	kernelbase = libc.XGetModuleHandleW(tls, __ccgo_ts+172190)
 	if kernelbase != libc.UintptrFromInt32(0) {
 		if _pGetThreadDescription1 == libc.UintptrFromInt32(0) {
-			_pGetThreadDescription1 = libc.XGetProcAddress(tls, kernelbase, __ccgo_ts+172220)
+			_pGetThreadDescription1 = _ccgo_GetProcAddress(tls, kernelbase, __ccgo_ts+172220)
 		}
 		if _pSetThreadDescription == libc.UintptrFromInt32(0) {
-			_pSetThreadDescription = libc.XGetProcAddress(tls, kernelbase, __ccgo_ts+264042)
+			_pSetThreadDescription = _ccgo_GetProcAddress(tls, kernelbase, __ccgo_ts+264042)
 		}
 	}
 	if _pGetThreadDescription1 == libc.UintptrFromInt32(0) {

@@ -46,7 +46,7 @@ to native callback/function-pointer boundaries.
 - `__wfopen` — real: converts UTF-16 to a Go/UTF-8 path and uses `libc.Xfopen`, preserving modernc's `FILE` and descriptor tables.
 - `__wgetcwd` — real: writes or allocates a NUL-terminated UTF-16 working directory; short buffers report `ERANGE`.
 - `_wgetenv` — real, routed: reads Go's live process environment and returns stable UTF-16 storage.
-- `_wopen` — real, routed: converts the UTF-16 path before entering modernc's narrow open and private descriptor table.
+- `_wopen` — real, routed: converts the UTF-16 path, maps UCRT `_O_*` flags to `x/sys/windows` values, and then enters modernc's narrow open and private descriptor table.
 - `__wputenv_s` — partial: validates the UCRT contract and updates Go's process environment, which interoperates with modernc; it does not update a separately cached UCRT `_wenviron` array.
 - `__wspawnv` — partial: implements `_P_WAIT`, `_P_NOWAIT`, `_P_NOWAITO`, `_P_OVERLAY`, and `_P_DETACH` with `os/exec`; asynchronous results are synthetic handles understood by `__cwait`.
 - `__wspawnve` — partial: same mode/handle ceiling as `__wspawnv`, with the supplied environment.
@@ -82,6 +82,9 @@ to native callback/function-pointer boundaries.
 
 ## kernel32.dll
 
+- `FreeLibrary` — real, routed: direct release with LastError propagation.
+- `GetProcAddress` — stub, routed: returns null/`ERROR_PROC_NOT_FOUND` because a native `FARPROC` cannot be invoked through ccgo's Go function-pointer representation; optional Windows APIs take their fallback paths and native `.pyd` loading remains unsupported.
+- `LoadLibraryW` — real, routed: direct load with LastError propagation.
 - `OutputDebugStringW` — intentional no-op: debugger output is advisory and fatal diagnostics continue to use stderr.
 - `_AcquireSRWLockExclusive` — real: direct `AcquireSRWLockExclusive` call.
 - `_AddDllDirectory` — real: direct call; failure returns zero and mirrors LastError.

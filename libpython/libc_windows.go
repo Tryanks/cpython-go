@@ -28,6 +28,7 @@ const (
 	errorNotEnoughMemory = 8
 	errorInvalidParam    = 87
 	errorCallNotImpl     = 120
+	errorProcNotFound    = 127
 )
 
 var (
@@ -336,6 +337,34 @@ func _ccgo_OutputDebugStringW(tls *libc.TLS, text uintptr) {
 	// fatal-error reporting on the process' real stderr intact.
 }
 
+// LoadLibraryW and FreeLibrary are needed by CPython's optional Windows API
+// probes. Native procedure addresses cannot be invoked through ccgo's Go
+// function-pointer representation, so GetProcAddress reports an unavailable
+// optional API instead of handing generated code an address that would crash
+// when called. Built-in modules use their statically linked init functions.
+func _ccgo_LoadLibraryW(tls *libc.TLS, filename uintptr) uintptr {
+	if filename == 0 {
+		setWinError(tls, windows.ERROR_INVALID_PARAMETER, errorInvalidParam)
+		return 0
+	}
+	r, err := callProc(dllKernel32, "LoadLibraryW", filename)
+	if r == 0 {
+		setWinError(tls, err, errorInvalidFunction)
+	}
+	return r
+}
+
+func _ccgo_GetProcAddress(tls *libc.TLS, module, name uintptr) uintptr {
+	// A FARPROC is a native machine-code address, whereas ccgo-translated C
+	// calls require a Go function value registered through __ccgo_fp.
+	setWinError(tls, windows.ERROR_PROC_NOT_FOUND, errorProcNotFound)
+	return 0
+}
+
+func _ccgo_FreeLibrary(tls *libc.TLS, module uintptr) int32 {
+	return boolProc(tls, dllKernel32, "FreeLibrary", module)
+}
+
 var (
 	windowsWideStringMu    sync.Mutex
 	windowsWideStringCache = map[string]uintptr{}
@@ -376,7 +405,8 @@ func _ccgo__wgetenv(tls *libc.TLS, name uintptr) uintptr {
 }
 
 // modernc's _wopen passes UTF-16 storage to its narrow GoString helper, which
-// truncates ordinary paths after their first byte. Convert explicitly and use
+// truncates ordinary paths after their first byte. Convert explicitly, map
+// UCRT's _O_* bit values to the values used by x/sys/windows.Open, and use
 // modernc's own descriptor table through Xopen.
 func _ccgo__wopen(tls *libc.TLS, pathname uintptr, flags int32, args uintptr) int32 {
 	if pathname == 0 {
@@ -389,7 +419,31 @@ func _ccgo__wopen(tls *libc.TLS, pathname uintptr, flags int32, args uintptr) in
 		return -1
 	}
 	defer libc.Xfree(tls, path)
-	return libc.Xopen(tls, path, flags, args)
+
+	const (
+		ucrtOAppend    = 0x0008
+		ucrtONoinherit = 0x0080
+		ucrtOCreat     = 0x0100
+		ucrtOTrunc     = 0x0200
+		ucrtOExcl      = 0x0400
+	)
+	windowsFlags := flags & 0x3
+	if flags&ucrtOAppend != 0 {
+		windowsFlags |= windows.O_APPEND
+	}
+	if flags&ucrtONoinherit != 0 {
+		windowsFlags |= windows.O_CLOEXEC
+	}
+	if flags&ucrtOCreat != 0 {
+		windowsFlags |= windows.O_CREAT
+	}
+	if flags&ucrtOTrunc != 0 {
+		windowsFlags |= windows.O_TRUNC
+	}
+	if flags&ucrtOExcl != 0 {
+		windowsFlags |= windows.O_EXCL
+	}
+	return libc.Xopen(tls, path, windowsFlags, args)
 }
 
 func tmZone(tmv *Ttm) (string, int) {

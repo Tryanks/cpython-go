@@ -12721,7 +12721,7 @@ func _winreg_DisableReflectionKey_impl(tls *libc.TLS, module uintptr, key THKEY)
 	_save = XPyEval_SaveThread(tls)
 	hMod = libc.XGetModuleHandleW(tls, __ccgo_ts+272347)
 	if hMod != 0 {
-		pfn = libc.XGetProcAddress(tls, hMod, __ccgo_ts+272373)
+		pfn = _ccgo_GetProcAddress(tls, hMod, __ccgo_ts+272373)
 	}
 	XPyEval_RestoreThread(tls, _save)
 	if !(pfn != 0) {
@@ -12753,7 +12753,7 @@ func _winreg_EnableReflectionKey_impl(tls *libc.TLS, module uintptr, key THKEY) 
 	_save = XPyEval_SaveThread(tls)
 	hMod = libc.XGetModuleHandleW(tls, __ccgo_ts+272347)
 	if hMod != 0 {
-		pfn = libc.XGetProcAddress(tls, hMod, __ccgo_ts+272457)
+		pfn = _ccgo_GetProcAddress(tls, hMod, __ccgo_ts+272457)
 	}
 	XPyEval_RestoreThread(tls, _save)
 	if !(pfn != 0) {
@@ -12786,7 +12786,7 @@ func _winreg_QueryReflectionKey_impl(tls *libc.TLS, module uintptr, key THKEY) (
 	_save = XPyEval_SaveThread(tls)
 	hMod = libc.XGetModuleHandleW(tls, __ccgo_ts+272347)
 	if hMod != 0 {
-		pfn = libc.XGetProcAddress(tls, hMod, __ccgo_ts+272506)
+		pfn = _ccgo_GetProcAddress(tls, hMod, __ccgo_ts+272506)
 	}
 	XPyEval_RestoreThread(tls, _save)
 	if !(pfn != 0) {

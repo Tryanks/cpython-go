@@ -181,3 +181,11 @@ until the Windows libc supplement is added.
   `_PyPathConfig_UpdateGlobal` dereferenced null while appending the Windows
   path delimiter. modernc's `Xwcschr` returns null instead of the terminator
   address for `wcschr(text, L'\0')`; routed it to a correct UTF-16 scan.
+- Run 33950554823: path publication completed and CPython reached the optional
+  `GetFileInformationByName` probe, where modernc's `XLoadLibraryW` hit a TODO
+  panic. Routed `LoadLibraryW` and the paired `FreeLibrary`; routed
+  `GetProcAddress` to a deterministic unavailable result because a native
+  `FARPROC` cannot be called as a ccgo Go function pointer. This makes optional
+  API probes use CPython's supported fallback paths. Also corrected the routed
+  `_wopen` shim to translate UCRT `_O_*` bits before calling modernc's
+  `x/sys/windows`-backed descriptor implementation.

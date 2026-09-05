@@ -425,7 +425,10 @@ var shimmedVars = map[string][]string{
 // shimmedLibc lists, per GOOS, the libc.X<name> calls rewritten to
 // _ccgo_<name> (defined in libpython/libc_<goos>.go). Keep sorted.
 var shimmedLibc = map[string][]string{"windows": {
+	"FreeLibrary",
+	"GetProcAddress",
 	"GetShortPathNameW",
+	"LoadLibraryW",
 	"OutputDebugStringW",
 	"SetErrorMode",
 	"_wgetenv",

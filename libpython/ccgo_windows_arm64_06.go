@@ -33645,7 +33645,7 @@ func X_Py_DumpTraceback_Init(tls *libc.TLS) {
 	}
 	kernelbase = libc.XGetModuleHandleW(tls, __ccgo_ts+172190)
 	if kernelbase != libc.UintptrFromInt32(0) {
-		_pGetThreadDescription = libc.XGetProcAddress(tls, kernelbase, __ccgo_ts+172220)
+		_pGetThreadDescription = _ccgo_GetProcAddress(tls, kernelbase, __ccgo_ts+172220)
 	}
 }
 
@@ -49329,13 +49329,13 @@ func X_PyImport_FindSharedFuncptrWindows(tls *libc.TLS, prefix uintptr, shortnam
 		if import_python != 0 && libc.X_stricmp(tls, bp+784, import_python) != 0 {
 			XPyErr_Format(tls, XPyExc_ImportError, __ccgo_ts+174346, libc.VaList(bp+1048, import_python))
 			_save1 = XPyEval_SaveThread(tls)
-			libc.XFreeLibrary(tls, hDLL)
+			_ccgo_FreeLibrary(tls, hDLL)
 			XPyEval_RestoreThread(tls, _save1)
 			return libc.UintptrFromInt32(0)
 		}
 	}
 	_save2 = XPyEval_SaveThread(tls)
-	p = libc.XGetProcAddress(tls, hDLL, bp)
+	p = _ccgo_GetProcAddress(tls, hDLL, bp)
 	XPyEval_RestoreThread(tls, _save2)
 	return p
 }

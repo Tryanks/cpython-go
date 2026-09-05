@@ -101478,14 +101478,14 @@ func _win32_xstat_impl(tls *libc.TLS, path uintptr, result uintptr, traverse TBO
 	var _ TFILE_STAT_BASIC_INFORMATION
 	_, _ = hMod, v1
 	if _GetFileInformationByName_init < libc.Int32FromInt32(0) {
-		hMod = libc.XLoadLibraryW(tls, __ccgo_ts+236388)
+		hMod = _ccgo_LoadLibraryW(tls, __ccgo_ts+236388)
 		_GetFileInformationByName_init = 0
 		if hMod != 0 {
-			_GetFileInformationByName = libc.XGetProcAddress(tls, hMod, __ccgo_ts+236444)
+			_GetFileInformationByName = _ccgo_GetProcAddress(tls, hMod, __ccgo_ts+236444)
 			if _GetFileInformationByName != 0 {
 				_GetFileInformationByName_init = int32(1)
 			} else {
-				libc.XFreeLibrary(tls, hMod)
+				_ccgo_FreeLibrary(tls, hMod)
 			}
 		}
 	}
@@ -103680,14 +103680,14 @@ func __testFileTypeByName(tls *libc.TLS, path TLPCWSTR, testedType int32) (r TBO
 	var _ T_Py_stat_struct
 	_, _, _, _, _, _, _, _ = diskDevice, flags, hMod, hfile, rc, result, result1, v1
 	if _GetFileInformationByName_init1 < libc.Int32FromInt32(0) {
-		hMod = libc.XLoadLibraryW(tls, __ccgo_ts+236388)
+		hMod = _ccgo_LoadLibraryW(tls, __ccgo_ts+236388)
 		_GetFileInformationByName_init1 = 0
 		if hMod != 0 {
-			_GetFileInformationByName1 = libc.XGetProcAddress(tls, hMod, __ccgo_ts+236444)
+			_GetFileInformationByName1 = _ccgo_GetProcAddress(tls, hMod, __ccgo_ts+236444)
 			if _GetFileInformationByName1 != 0 {
 				_GetFileInformationByName_init1 = int32(1)
 			} else {
-				libc.XFreeLibrary(tls, hMod)
+				_ccgo_FreeLibrary(tls, hMod)
 			}
 		}
 	}
@@ -103787,14 +103787,14 @@ func __testFileExistsByName(tls *libc.TLS, path TLPCWSTR, followLinks TBOOL) (r 
 	var _ TFILE_STAT_BASIC_INFORMATION
 	_, _, _, _, _, _ = flags, hMod, hfile, result, v1, v5
 	if _GetFileInformationByName_init2 < libc.Int32FromInt32(0) {
-		hMod = libc.XLoadLibraryW(tls, __ccgo_ts+236388)
+		hMod = _ccgo_LoadLibraryW(tls, __ccgo_ts+236388)
 		_GetFileInformationByName_init2 = 0
 		if hMod != 0 {
-			_GetFileInformationByName2 = libc.XGetProcAddress(tls, hMod, __ccgo_ts+236444)
+			_GetFileInformationByName2 = _ccgo_GetProcAddress(tls, hMod, __ccgo_ts+236444)
 			if _GetFileInformationByName2 != 0 {
 				_GetFileInformationByName_init2 = int32(1)
 			} else {
-				libc.XFreeLibrary(tls, hMod)
+				_ccgo_FreeLibrary(tls, hMod)
 			}
 		}
 	}
@@ -107461,7 +107461,7 @@ func _win32_getppid_fast(tls *libc.TLS) (r TULONG) {
 	if !(ntdll != 0) {
 		return uint32(0)
 	}
-	pNtQueryInformationProcess = libc.XGetProcAddress(tls, ntdll, __ccgo_ts+238898)
+	pNtQueryInformationProcess = _ccgo_GetProcAddress(tls, ntdll, __ccgo_ts+238898)
 	if !(pNtQueryInformationProcess != 0) {
 		return uint32(0)
 	}
@@ -108663,9 +108663,9 @@ func _check_ShellExecute(tls *libc.TLS) (r int32) {
 	if -int32(1) == _has_ShellExecute {
 		_save = XPyEval_SaveThread(tls)
 
-		hShell32 = libc.XLoadLibraryW(tls, __ccgo_ts+239379)
+		hShell32 = _ccgo_LoadLibraryW(tls, __ccgo_ts+239379)
 		if hShell32 != 0 {
-			**(**TFARPROC)(__ccgo_up(uintptr(unsafe.Pointer(&_Py_ShellExecuteW)))) = libc.XGetProcAddress(tls, hShell32, __ccgo_ts+239395)
+			**(**TFARPROC)(__ccgo_up(uintptr(unsafe.Pointer(&_Py_ShellExecuteW)))) = _ccgo_GetProcAddress(tls, hShell32, __ccgo_ts+239395)
 			_has_ShellExecute = libc.BoolInt32(_Py_ShellExecuteW != libc.UintptrFromInt32(0))
 		} else {
 			_has_ShellExecute = 0
