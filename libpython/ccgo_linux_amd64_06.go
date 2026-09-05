@@ -21196,7 +21196,7 @@ var __Py_stdlib_module_names = [297]uintptr{
 	118: __ccgo_ts + 166468,
 	119: __ccgo_ts + 166477,
 	120: __ccgo_ts + 166483,
-	121: __ccgo_ts + 21258,
+	121: __ccgo_ts + 21291,
 	122: __ccgo_ts + 166487,
 	123: __ccgo_ts + 166494,
 	124: __ccgo_ts + 166501,
@@ -70527,116 +70527,4 @@ func init() {
 	*(*uintptr)(unsafe.Add(p, 24)) = __ccgo_fp(_Writer_traverse)
 	*(*uintptr)(unsafe.Add(p, 40)) = __ccgo_fp(_Writer_clear)
 	*(*uintptr)(unsafe.Add(p, 56)) = __ccgo_fp(_Writer_dealloc)
-}
-
-func _csv_writer(tls *libc.TLS, module uintptr, args uintptr, keyword_args uintptr) (r uintptr) {
-	bp := tls.Alloc(48)
-	defer tls.Free(48)
-	var cur_refcnt, v10 Tuint32_t
-	var module_state, self, v1, v2, v4 uintptr
-	var v7 int32
-	var _ uintptr
-	var _ uintptr
-	_, _, _, _, _, _, _, _ = cur_refcnt, module_state, self, v1, v10, v2, v4, v7
-	**(**uintptr)(__ccgo_up(bp + 8)) = libc.UintptrFromInt32(0)
-	module_state = _get_csv_state(tls, module)
-	self = X_PyObject_GC_New(tls, (*T_csvstate)(unsafe.Pointer(module_state)).Fwriter_type)
-	if !(self != 0) {
-		return libc.UintptrFromInt32(0)
-	}
-	(*TWriterObj)(unsafe.Pointer(self)).Fdialect = libc.UintptrFromInt32(0)
-	(*TWriterObj)(unsafe.Pointer(self)).Fwrite = libc.UintptrFromInt32(0)
-	(*TWriterObj)(unsafe.Pointer(self)).Frec = libc.UintptrFromInt32(0)
-	(*TWriterObj)(unsafe.Pointer(self)).Frec_size = 0
-	(*TWriterObj)(unsafe.Pointer(self)).Frec_len = 0
-	(*TWriterObj)(unsafe.Pointer(self)).Fnum_fields = 0
-	v1 = (*T_csvstate)(unsafe.Pointer(module_state)).Ferror_obj
-	v2 = v1
-	cur_refcnt = *(*Tuint32_t)(unsafe.Pointer(v2))
-	if uint64(cur_refcnt) >= libc.Uint64FromUint64(3)<<libc.Int32FromInt32(30) {
-		goto _3
-	}
-	*(*Tuint32_t)(unsafe.Pointer(v2)) = cur_refcnt + uint32(1)
-_3:
-	;
-	v4 = v1
-	goto _5
-_5:
-	(*TWriterObj)(unsafe.Pointer(self)).Ferror_obj = v4
-	if !(XPyArg_UnpackTuple(tls, args, __ccgo_ts+182965, int64(1), int64(2), libc.VaList(bp+24, bp, bp+8)) != 0) {
-		v1 = self
-		v7 = libc.BoolInt32(libc.Int32FromUint32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
-		goto _8
-	_8:
-		if v7 != 0 {
-			goto _9
-		}
-		v2 = v1
-		*(*Tuint32_t)(unsafe.Pointer(v2)) = *(*Tuint32_t)(unsafe.Pointer(v2)) - 1
-		v10 = *(*Tuint32_t)(unsafe.Pointer(v2))
-		if v10 == libc.Uint32FromInt32(0) {
-			X_Py_Dealloc(tls, v1)
-		}
-	_9:
-		;
-		return libc.UintptrFromInt32(0)
-	}
-	if XPyObject_GetOptionalAttr(tls, **(**uintptr)(__ccgo_up(bp)), (*T_csvstate)(unsafe.Pointer(module_state)).Fstr_write, self+16) < 0 {
-		v1 = self
-		v7 = libc.BoolInt32(libc.Int32FromUint32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
-		goto _14
-	_14:
-		if v7 != 0 {
-			goto _15
-		}
-		v2 = v1
-		*(*Tuint32_t)(unsafe.Pointer(v2)) = *(*Tuint32_t)(unsafe.Pointer(v2)) - 1
-		v10 = *(*Tuint32_t)(unsafe.Pointer(v2))
-		if v10 == libc.Uint32FromInt32(0) {
-			X_Py_Dealloc(tls, v1)
-		}
-	_15:
-		;
-		return libc.UintptrFromInt32(0)
-	}
-	if (*TWriterObj)(unsafe.Pointer(self)).Fwrite == libc.UintptrFromInt32(0) || !(XPyCallable_Check(tls, (*TWriterObj)(unsafe.Pointer(self)).Fwrite) != 0) {
-		XPyErr_SetString(tls, XPyExc_TypeError, __ccgo_ts+182972)
-		v1 = self
-		v7 = libc.BoolInt32(libc.Int32FromUint32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
-		goto _20
-	_20:
-		if v7 != 0 {
-			goto _21
-		}
-		v2 = v1
-		*(*Tuint32_t)(unsafe.Pointer(v2)) = *(*Tuint32_t)(unsafe.Pointer(v2)) - 1
-		v10 = *(*Tuint32_t)(unsafe.Pointer(v2))
-		if v10 == libc.Uint32FromInt32(0) {
-			X_Py_Dealloc(tls, v1)
-		}
-	_21:
-		;
-		return libc.UintptrFromInt32(0)
-	}
-	(*TWriterObj)(unsafe.Pointer(self)).Fdialect = __call_dialect(tls, module_state, **(**uintptr)(__ccgo_up(bp + 8)), keyword_args)
-	if (*TWriterObj)(unsafe.Pointer(self)).Fdialect == libc.UintptrFromInt32(0) {
-		v1 = self
-		v7 = libc.BoolInt32(libc.Int32FromUint32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
-		goto _26
-	_26:
-		if v7 != 0 {
-			goto _27
-		}
-		v2 = v1
-		*(*Tuint32_t)(unsafe.Pointer(v2)) = *(*Tuint32_t)(unsafe.Pointer(v2)) - 1
-		v10 = *(*Tuint32_t)(unsafe.Pointer(v2))
-		if v10 == libc.Uint32FromInt32(0) {
-			X_Py_Dealloc(tls, v1)
-		}
-	_27:
-		;
-		return libc.UintptrFromInt32(0)
-	}
-	XPyObject_GC_Track(tls, self)
-	return self
 }

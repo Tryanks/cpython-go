@@ -21,6 +21,115 @@ var _ unsafe.Pointer
 
 var _ = libz.Xcrc32
 
+func __contextvars_Context_copy_impl(tls *libc.TLS, self uintptr) (r uintptr) {
+	/*[clinic end generated code: output=30ba8896c4707a15 input=ebafdbdd9c72d592]*/
+	var res, vars, v1, v6 uintptr
+	var v2 int32
+	var v5 Tuint32_t
+	_, _, _, _, _, _ = res, vars, v1, v2, v5, v6
+	vars = _context_get_vars(tls, self)
+	res = _context_new_from_vars(tls, vars)
+	v1 = vars
+	v2 = libc.BoolInt32(libc.Int32FromUint32(*(*Tuint32_t)(unsafe.Pointer(v1))) < 0)
+	goto _3
+_3:
+	if v2 != 0 {
+		goto _4
+	}
+	v6 = v1
+	*(*Tuint32_t)(unsafe.Pointer(v6)) = *(*Tuint32_t)(unsafe.Pointer(v6)) - 1
+	v5 = *(*Tuint32_t)(unsafe.Pointer(v6))
+	if v5 == libc.Uint32FromInt32(0) {
+		X_Py_Dealloc(tls, v1)
+	}
+_4:
+	;
+	return res
+}
+
+func _context_run(tls *libc.TLS, self uintptr, args1 uintptr, nargs1 TPy_ssize_t, kwnames1 uintptr) (r uintptr) {
+	bp := tls.Alloc(16)
+	defer tls.Free(16)
+	var call_result, res, tp, ts, v1, v17, v19, v20, v3, v4, v5, v7, v8, v9 uintptr
+	var flags uint64
+	var func1, v13 Tvectorcallfunc
+	var nargs, offset, v15 TPy_ssize_t
+	var v11, v21 int32
+	var v24 Tuint32_t
+	var v6 Tsize_t
+	var _ Tvectorcallfunc
+	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = call_result, flags, func1, nargs, offset, res, tp, ts, v1, v11, v13, v15, v17, v19, v20, v21, v24, v3, v4, v5, v6, v7, v8, v9
+	v1 = (*_ccgo_tls_tstate(tls))
+	goto _2
+_2:
+	ts = v1
+	if nargs1 < int64(1) {
+		X_PyErr_SetString(tls, ts, XPyExc_TypeError, __ccgo_ts+133756)
+		return libc.UintptrFromInt32(0)
+	}
+	if __PyContext_Enter(tls, ts, self) != 0 {
+		return libc.UintptrFromInt32(0)
+	}
+	v1 = ts
+	v3 = **(**uintptr)(__ccgo_up(args1))
+	v4 = args1 + uintptr(1)*8
+	v6 = libc.Uint64FromInt64(nargs1 - int64(1))
+	v5 = kwnames1
+	v7 = v3
+	v8 = (*TPyObject)(unsafe.Pointer(v7)).Fob_type
+	goto _10
+_10:
+	tp = v8
+	flags = (*TPyTypeObject)(unsafe.Pointer(tp)).Ftp_flags
+	v11 = libc.BoolInt32(flags&(libc.Uint64FromUint64(1)<<libc.Int32FromInt32(11)) != uint64(0))
+	goto _12
+_12:
+	if !(v11 != 0) {
+		v13 = libc.UintptrFromInt32(0)
+		goto _14
+	}
+	offset = (*TPyTypeObject)(unsafe.Pointer(tp)).Ftp_vectorcall_offset
+	libc.Xmemcpy(tls, bp, v7+uintptr(offset), uint64(8))
+	v13 = **(**Tvectorcallfunc)(__ccgo_up(bp))
+	goto _14
+_14:
+	func1 = v13
+	if func1 == libc.UintptrFromInt32(0) {
+		v15 = libc.Int64FromUint64(v6 & ^(libc.Uint64FromInt32(libc.Int32FromInt32(1)) << (libc.Uint64FromInt32(8)*libc.Uint64FromInt64(8) - libc.Uint64FromInt32(1))))
+		goto _16
+	_16:
+		nargs = v15
+		v9 = X_PyObject_MakeTpCall(tls, v1, v3, v4, nargs, v5)
+		goto _18
+	}
+	res = (*(*func(*libc.TLS, uintptr, uintptr, Tsize_t, uintptr) uintptr)(unsafe.Pointer(&struct{ uintptr }{func1})))(tls, v3, v4, v6, v5)
+	v9 = X_Py_CheckFunctionResult(tls, v1, v3, res, libc.UintptrFromInt32(0))
+	goto _18
+_18:
+	call_result = v9
+	if __PyContext_Exit(tls, ts, self) != 0 {
+		v17 = call_result
+		if v17 != libc.UintptrFromInt32(0) {
+			v19 = v17
+			v21 = libc.BoolInt32(libc.Int32FromUint32(*(*Tuint32_t)(unsafe.Pointer(v19))) < 0)
+			goto _22
+		_22:
+			if v21 != 0 {
+				goto _23
+			}
+			v20 = v19
+			*(*Tuint32_t)(unsafe.Pointer(v20)) = *(*Tuint32_t)(unsafe.Pointer(v20)) - 1
+			v24 = *(*Tuint32_t)(unsafe.Pointer(v20))
+			if v24 == libc.Uint32FromInt32(0) {
+				X_Py_Dealloc(tls, v19)
+			}
+		_23:
+		}
+		return libc.UintptrFromInt32(0)
+	}
+	return call_result
+}
+
 var _PyContext_methods = [7]TPyMethodDef{
 	0: {
 		Fml_name:  __ccgo_ts + 25392,
@@ -515,7 +624,7 @@ var _PyContextVar_methods = [5]TPyMethodDef{
 		Fml_doc:   uintptr(unsafe.Pointer(&__contextvars_ContextVar_get__doc__)),
 	},
 	1: {
-		Fml_name:  __ccgo_ts + 57299,
+		Fml_name:  __ccgo_ts + 57309,
 		Fml_flags: int32(MMETH_O),
 		Fml_doc:   uintptr(unsafe.Pointer(&__contextvars_ContextVar_set__doc__)),
 	},
@@ -28286,7 +28395,7 @@ func _hamt_py_set(tls *libc.TLS, op uintptr, args uintptr) (r uintptr) {
 	var _ uintptr
 	var _ uintptr
 	_ = self
-	if !(XPyArg_UnpackTuple(tls, args, __ccgo_ts+57299, int64(2), int64(2), libc.VaList(bp+24, bp, bp+8)) != 0) {
+	if !(XPyArg_UnpackTuple(tls, args, __ccgo_ts+57309, int64(2), int64(2), libc.VaList(bp+24, bp, bp+8)) != 0) {
 		return libc.UintptrFromInt32(0)
 	}
 	self = op
@@ -28380,7 +28489,7 @@ func _hamt_py_keys(tls *libc.TLS, op uintptr, _unused_args uintptr) (r uintptr) 
 
 var _PyHamt_methods = [7]TPyMethodDef{
 	0: {
-		Fml_name:  __ccgo_ts + 57299,
+		Fml_name:  __ccgo_ts + 57309,
 		Fml_flags: int32(MMETH_VARARGS),
 	},
 	1: {
@@ -48176,7 +48285,7 @@ var __PyBranchesIterator = TPyTypeObject{
 			Fob_type: uintptr(unsafe.Pointer(&XPyType_Type)),
 		},
 	},
-	Ftp_name:      __ccgo_ts + 21263,
+	Ftp_name:      __ccgo_ts + 21258,
 	Ftp_basicsize: int64(32),
 	Ftp_flags:     libc.Uint64FromInt32(libc.Int32FromInt32(MPy_TPFLAGS_HAVE_STACKLESS_EXTENSION)|libc.Int32FromInt32(0)) | libc.Uint64FromUint64(1)<<libc.Int32FromInt32(10),
 }
