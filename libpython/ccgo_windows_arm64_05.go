@@ -482,7 +482,7 @@ func X_PyErr_ProgramDecodedTextObject(tls *libc.TLS, filename uintptr, lineno in
 			encoding = __ccgo_ts + 10583
 		}
 
-		if libc.Xlseek(tls, fd, 0, MSEEK_SET) == int64(-libc.Int32FromInt32(1)) {
+		if _ccgo_lseek(tls, fd, 0, MSEEK_SET) == int64(-libc.Int32FromInt32(1)) {
 			libc.Xfclose(tls, fp)
 			XPyMem_Free(tls, found_encoding)
 			return libc.UintptrFromInt32(0)
@@ -14078,7 +14078,7 @@ func _PyCOND_TIMEDWAIT(tls *libc.TLS, cv uintptr, cs uintptr, us int64) (r int32
 	_ = success
 	success = _SleepConditionVariableSRW(tls, cv, cs, uint32(us/libc.Int64FromInt32(1000)), uint32(0))
 	if !(success != 0) {
-		if libc.XGetLastError(tls) == uint32(1460) {
+		if _ccgo_GetLastError(tls) == uint32(1460) {
 			return int32(1)
 		}
 		return -int32(1)
@@ -14481,7 +14481,7 @@ _2:
 func XPyEval_RestoreThread(tls *libc.TLS, tstate1 uintptr) {
 	var err int32
 	_ = err
-	err = int32(libc.XGetLastError(tls))
+	err = int32(_ccgo_GetLastError(tls))
 	if tstate1 == libc.UintptrFromInt32(0) {
 		X_Py_FatalErrorFunc(tls, uintptr(unsafe.Pointer(&___func__118)), __ccgo_ts+121252)
 	}
@@ -28271,7 +28271,7 @@ func XPy_GETENV(tls *libc.TLS, name uintptr) (r uintptr) {
 	if XPy_IgnoreEnvironmentFlag != 0 {
 		return libc.UintptrFromInt32(0)
 	}
-	return libc.Xgetenv(tls, name)
+	return _ccgo_getenv(tls, name)
 }
 
 func XPyStatus_Ok(tls *libc.TLS) (r TPyStatus) {
@@ -30498,9 +30498,9 @@ func _config_read(tls *libc.TLS, config uintptr, compute_path_config int32) (r T
 
 func _config_init_stdio(tls *libc.TLS, config uintptr) {
 
-	libc.X_setmode(tls, libc.Xfileno(tls, libc.X__acrt_iob_func(tls, uint32(0))), int32(M_O_BINARY))
-	libc.X_setmode(tls, libc.Xfileno(tls, libc.X__acrt_iob_func(tls, uint32(1))), int32(M_O_BINARY))
-	libc.X_setmode(tls, libc.Xfileno(tls, libc.X__acrt_iob_func(tls, uint32(2))), int32(M_O_BINARY))
+	_ccgo__setmode(tls, libc.Xfileno(tls, libc.X__acrt_iob_func(tls, uint32(0))), int32(M_O_BINARY))
+	_ccgo__setmode(tls, libc.Xfileno(tls, libc.X__acrt_iob_func(tls, uint32(1))), int32(M_O_BINARY))
+	_ccgo__setmode(tls, libc.Xfileno(tls, libc.X__acrt_iob_func(tls, uint32(2))), int32(M_O_BINARY))
 	if !((*TPyConfig)(unsafe.Pointer(config)).Fbuffered_stdio != 0) {
 		libc.Xsetvbuf(tls, libc.X__acrt_iob_func(tls, uint32(0)), libc.UintptrFromInt32(0), int32(M_IONBF), uint64(MBUFSIZ))
 		libc.Xsetvbuf(tls, libc.X__acrt_iob_func(tls, uint32(1)), libc.UintptrFromInt32(0), int32(M_IONBF), uint64(MBUFSIZ))
@@ -48180,7 +48180,7 @@ func X_PySemaphore_Init(tls *libc.TLS, sema uintptr) {
 	defer tls.Free(16)
 	(*T_PySemaphore)(unsafe.Pointer(sema)).Fplatform_sem = _CreateSemaphoreA(tls, libc.UintptrFromInt32(0), 0, int32(10), libc.UintptrFromInt32(0))
 	if !((*T_PySemaphore)(unsafe.Pointer(sema)).Fplatform_sem != 0) {
-		X_Py_FatalErrorFormat(tls, uintptr(unsafe.Pointer(&___func__82)), __ccgo_ts+156338, libc.VaList(bp+8, libc.XGetLastError(tls)))
+		X_Py_FatalErrorFormat(tls, uintptr(unsafe.Pointer(&___func__82)), __ccgo_ts+156338, libc.VaList(bp+8, _ccgo_GetLastError(tls)))
 	}
 }
 
@@ -48236,7 +48236,7 @@ func __PySemaphore_PlatformWait(tls *libc.TLS, sema uintptr, timeout TPyTime_t) 
 			if wait == uint32(258) {
 				res = int32(EPy_PARK_TIMEOUT)
 			} else {
-				X_Py_FatalErrorFormat(tls, uintptr(unsafe.Pointer(&___func__83)), __ccgo_ts+156386, libc.VaList(bp+24, wait, libc.XGetLastError(tls), (*T_PySemaphore)(unsafe.Pointer(sema)).Fplatform_sem))
+				X_Py_FatalErrorFormat(tls, uintptr(unsafe.Pointer(&___func__83)), __ccgo_ts+156386, libc.VaList(bp+24, wait, _ccgo_GetLastError(tls), (*T_PySemaphore)(unsafe.Pointer(sema)).Fplatform_sem))
 			}
 		}
 	}
@@ -48279,7 +48279,7 @@ func X_PySemaphore_Wakeup(tls *libc.TLS, sema uintptr) {
 	bp := tls.Alloc(32)
 	defer tls.Free(32)
 	if !(_ReleaseSemaphore(tls, (*T_PySemaphore)(unsafe.Pointer(sema)).Fplatform_sem, int32(1), libc.UintptrFromInt32(0)) != 0) {
-		X_Py_FatalErrorFormat(tls, uintptr(unsafe.Pointer(&___func__84)), __ccgo_ts+156446, libc.VaList(bp+8, libc.XGetLastError(tls), (*T_PySemaphore)(unsafe.Pointer(sema)).Fplatform_sem))
+		X_Py_FatalErrorFormat(tls, uintptr(unsafe.Pointer(&___func__84)), __ccgo_ts+156446, libc.VaList(bp+8, _ccgo_GetLastError(tls), (*T_PySemaphore)(unsafe.Pointer(sema)).Fplatform_sem))
 	}
 }
 
@@ -61511,7 +61511,7 @@ func XPy_GetSepA(tls *libc.TLS, name uintptr) (r int8) {
 	if int32(_sep) != int32('\000') {
 		return _sep
 	}
-	msystem = libc.Xgetenv(tls, __ccgo_ts+156512)
+	msystem = _ccgo_getenv(tls, __ccgo_ts+156512)
 	if msystem != libc.UintptrFromInt32(0) && libc.Xstrcmp(tls, msystem, __ccgo_ts+2) != 0 {
 		_sep = int8('/')
 	} else {
@@ -61539,7 +61539,7 @@ func XPy_NormalizeSepsA(tls *libc.TLS, name uintptr) {
 	sep = XPy_GetSepA(tls, name)
 	altsep = _Py_GetAltSepA(tls, name)
 	if int32(**(**int8)(__ccgo_up(name))) != int32('\000') && int32(**(**int8)(__ccgo_up(name + 1))) == int32(':') {
-		**(**int8)(__ccgo_up(name)) = int8(libc.Xtoupper(tls, int32(**(**int8)(__ccgo_up(name)))))
+		**(**int8)(__ccgo_up(name)) = int8(_ccgo_toupper(tls, int32(**(**int8)(__ccgo_up(name)))))
 	}
 	seps = libc.Xstrchr(tls, name, int32(altsep))
 	for seps != 0 {
@@ -61558,7 +61558,7 @@ func XPy_GetSepW(tls *libc.TLS, name uintptr) (r Twchar_t) {
 	if int32(_sep1) != int32('\000') {
 		return _sep1
 	}
-	msystem = libc.Xgetenv(tls, __ccgo_ts+156512)
+	msystem = _ccgo_getenv(tls, __ccgo_ts+156512)
 	if msystem != libc.UintptrFromInt32(0) && libc.Xstrcmp(tls, msystem, __ccgo_ts+2) != 0 {
 		_sep1 = uint16('/')
 	} else {
@@ -62740,7 +62740,7 @@ func X_Py_GetEnv(tls *libc.TLS, use_environment int32, name uintptr) (r uintptr)
 	if !(use_environment != 0) {
 		return libc.UintptrFromInt32(0)
 	}
-	var1 = libc.Xgetenv(tls, name)
+	var1 = _ccgo_getenv(tls, name)
 	if var1 != 0 && int32(**(**int8)(__ccgo_up(var1))) != int32('\000') {
 		return var1
 	} else {

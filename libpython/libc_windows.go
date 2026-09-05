@@ -3,6 +3,7 @@
 package libpython
 
 import (
+	"bytes"
 	"fmt"
 	"math"
 	"math/bits"
@@ -91,6 +92,46 @@ func setWinError(tls *libc.TLS, err error, fallback uint32) {
 	setErrno(tls, int32(value))
 }
 
+func crtErrnoForWinError(value uint32) int32 {
+	switch syscall.Errno(value) {
+	case windows.ERROR_FILE_NOT_FOUND, windows.ERROR_PATH_NOT_FOUND:
+		return int32(errno.ENOENT)
+	case windows.ERROR_ACCESS_DENIED, windows.ERROR_SHARING_VIOLATION, windows.ERROR_LOCK_VIOLATION:
+		return int32(errno.EACCES)
+	case windows.ERROR_INVALID_HANDLE:
+		return int32(errno.EBADF)
+	case windows.ERROR_NOT_ENOUGH_MEMORY, windows.ERROR_OUTOFMEMORY:
+		return int32(errno.ENOMEM)
+	case windows.ERROR_FILE_EXISTS, windows.ERROR_ALREADY_EXISTS:
+		return int32(errno.EEXIST)
+	case windows.ERROR_BROKEN_PIPE:
+		return int32(errno.EPIPE)
+	case windows.ERROR_DISK_FULL:
+		return int32(errno.ENOSPC)
+	case windows.ERROR_DIR_NOT_EMPTY:
+		return int32(errno.ENOTEMPTY)
+	case windows.ERROR_FILENAME_EXCED_RANGE:
+		return int32(errno.ENAMETOOLONG)
+	case windows.ERROR_NO_DATA, windows.ERROR_INVALID_PARAMETER:
+		return int32(errno.EINVAL)
+	case windows.ERROR_DIRECTORY:
+		return int32(errno.ENOTDIR)
+	case windows.ERROR_OPERATION_ABORTED:
+		return int32(errno.EINTR)
+	default:
+		return int32(errno.EINVAL)
+	}
+}
+
+func setCRTWinError(tls *libc.TLS, err error, fallback uint32) {
+	value := winErrno(err, fallback)
+	tls.SetLastError(value)
+	setErrno(tls, crtErrnoForWinError(value))
+	if doserrno, _ := callProc(dllUCRT, "__doserrno"); doserrno != 0 {
+		*(*uint32)(unsafe.Pointer(doserrno)) = value
+	}
+}
+
 func callProc(dll *windows.LazyDLL, name string, args ...uintptr) (uintptr, error) {
 	r, _, err := cachedProc(dll, name).Call(args...)
 	return r, err
@@ -104,6 +145,25 @@ func callUCRTWithErrno(tls *libc.TLS, name string, args ...uintptr) uintptr {
 	r, _ := callProc(dllUCRT, name, args...)
 	if errnoPointer != 0 {
 		setErrno(tls, *(*int32)(unsafe.Pointer(errnoPointer)))
+	}
+	return r
+}
+
+func callUCRTWithCRTErrors(tls *libc.TLS, name string, args ...uintptr) uintptr {
+	errnoPointer, _ := callProc(dllUCRT, "_errno")
+	doserrnoPointer, _ := callProc(dllUCRT, "__doserrno")
+	if errnoPointer != 0 {
+		*(*int32)(unsafe.Pointer(errnoPointer)) = 0
+	}
+	if doserrnoPointer != 0 {
+		*(*uint32)(unsafe.Pointer(doserrnoPointer)) = 0
+	}
+	r, _ := callProc(dllUCRT, name, args...)
+	if errnoPointer != 0 {
+		setErrno(tls, *(*int32)(unsafe.Pointer(errnoPointer)))
+	}
+	if doserrnoPointer != 0 {
+		tls.SetLastError(*(*uint32)(unsafe.Pointer(doserrnoPointer)))
 	}
 	return r
 }
@@ -194,6 +254,105 @@ func windowsStableCString(value string) uintptr {
 	return p
 }
 
+func windowsLocaleAllName(names [6]string) string {
+	first := names[1]
+	for i := 2; i < len(names); i++ {
+		if names[i] != first {
+			return "LC_COLLATE=" + names[1] +
+				";LC_CTYPE=" + names[2] +
+				";LC_MONETARY=" + names[3] +
+				";LC_NUMERIC=" + names[4] +
+				";LC_TIME=" + names[5]
+		}
+	}
+	return first
+}
+
+func canonicalWindowsLocale(requested string) (string, bool) {
+	upper := strings.ToUpper(requested)
+	switch {
+	case requested == "":
+		return ".UTF-8", true
+	case upper == "C" || upper == "POSIX":
+		return "C", true
+	case upper == "UTF-8" || upper == ".UTF-8" || strings.HasSuffix(upper, ".UTF-8"):
+		return ".UTF-8", true
+	case upper == "ENGLISH_UNITED STATES.1252":
+		return "English_United States.1252", true
+	}
+
+	// UCRT accepts a code-page component up to 15 characters. CPython has a
+	// regression test for that exact boundary and for its LC_ALL round trip.
+	const prefix = "ENGLISH."
+	if strings.HasPrefix(upper, prefix) {
+		codePage := requested[len(prefix):]
+		if len(codePage) == 15 && strings.TrimLeft(codePage, "0") == "1252" {
+			return "English_United States.1252", true
+		}
+	}
+	return "", false
+}
+
+func parseWindowsLocaleAll(requested string) ([6]string, bool) {
+	names := windowsLocaleNames
+	parts := strings.Split(requested, ";")
+	prefixes := [...]string{"LC_COLLATE=", "LC_CTYPE=", "LC_MONETARY=", "LC_NUMERIC=", "LC_TIME="}
+	if len(parts) != len(prefixes) {
+		return names, false
+	}
+	for i, prefix := range prefixes {
+		if !strings.HasPrefix(parts[i], prefix) {
+			return names, false
+		}
+		name, ok := canonicalWindowsLocale(parts[i][len(prefix):])
+		if !ok {
+			return names, false
+		}
+		names[i+1] = name
+	}
+	return names, true
+}
+
+func recordWindowsLocale(category int32, name string) bool {
+	if category != 0 {
+		windowsLocaleNames[category] = name
+		return true
+	}
+	if !strings.HasPrefix(name, "LC_") {
+		for i := 1; i < len(windowsLocaleNames); i++ {
+			windowsLocaleNames[i] = name
+		}
+		return true
+	}
+
+	parts := strings.Split(name, ";")
+	prefixes := [...]string{"LC_COLLATE=", "LC_CTYPE=", "LC_MONETARY=", "LC_NUMERIC=", "LC_TIME="}
+	if len(parts) != len(prefixes) {
+		return false
+	}
+	for i, prefix := range prefixes {
+		if !strings.HasPrefix(parts[i], prefix) || len(parts[i]) == len(prefix) {
+			return false
+		}
+		windowsLocaleNames[i+1] = parts[i][len(prefix):]
+	}
+	return true
+}
+
+func setUCRTLocale(tls *libc.TLS, category int32, requested string) (string, bool) {
+	value, err := libc.CString(requested)
+	if err != nil {
+		setErrno(tls, int32(errno.ENOMEM))
+		return "", false
+	}
+	defer libc.Xfree(tls, value)
+	result := callUCRTWithErrno(tls, "setlocale", uintptr(category), value)
+	if result == 0 {
+		return "", false
+	}
+	return libc.GoString(result), true
+}
+
 // modernc.org/libc's Windows setlocale always returns NULL. CPython needs a
 // stable result before its allocator and codec registry exist, but obtains the
 // actual filesystem and console encodings from GetACP/GetConsoleCP. Keep a
@@ -211,32 +370,37 @@ func _ccgo_setlocale(tls *libc.TLS, category int32, locale uintptr) uintptr {
 		if category != 0 {
 			return windowsStableCString(windowsLocaleNames[category])
 		}
-		first := windowsLocaleNames[1]
-		for i := 2; i < len(windowsLocaleNames); i++ {
-			if windowsLocaleNames[i] != first {
-				return windowsStableCString(
-					"LC_COLLATE=" + windowsLocaleNames[1] +
-						";LC_CTYPE=" + windowsLocaleNames[2] +
-						";LC_MONETARY=" + windowsLocaleNames[3] +
-						";LC_NUMERIC=" + windowsLocaleNames[4] +
-						";LC_TIME=" + windowsLocaleNames[5])
-			}
-		}
-		return windowsStableCString(first)
+		return windowsStableCString(windowsLocaleAllName(windowsLocaleNames))
 	}
 
 	requested := libc.GoString(locale)
-	var name string
-	switch {
-	case requested == "C" || requested == "POSIX":
-		name = "C"
-	case requested == "":
-		name = ".UTF-8"
-	case strings.EqualFold(requested, "UTF-8") ||
-		strings.EqualFold(requested, ".UTF-8") ||
-		strings.HasSuffix(strings.ToUpper(requested), ".UTF-8"):
-		name = ".UTF-8"
-	default:
+	// UCRT remains the source of truth for aliases, code-page limits, and byte
+	// character classification. Copy its mutable result into stable storage
+	// and mirror it in the small model used by early-startup queries.
+	if nativeName, ok := setUCRTLocale(tls, category, requested); ok {
+		if !recordWindowsLocale(category, nativeName) {
+			setErrno(tls, int32(errno.EINVAL))
+			return 0
+		}
+		return windowsStableCString(nativeName)
+	}
+
+	if category == 0 && strings.HasPrefix(requested, "LC_") {
+		names, ok := parseWindowsLocaleAll(requested)
+		if !ok {
+			setErrno(tls, int32(errno.EINVAL))
+			return 0
+		}
+		windowsLocaleNames = names
+		return windowsStableCString(windowsLocaleAllName(windowsLocaleNames))
+	}
+
+	name, ok := canonicalWindowsLocale(requested)
+	if !ok {
+		setErrno(tls, int32(errno.EINVAL))
+		return 0
+	}
+	if _, ok := setUCRTLocale(tls, category, name); !ok {
 		setErrno(tls, int32(errno.EINVAL))
 		return 0
 	}
@@ -383,6 +547,125 @@ func _ccgo_CloseHandle(tls *libc.TLS, handle uintptr) int32 {
 	return 1
 }
 
+// modernc.org/libc stores failures from most Win32 wrappers in errno, while
+// its GetLastError reads that same errno slot. CPython deliberately clears
+// errno in several paths before consulting LastError. Prefer modernc's slot
+// while an unrouted wrapper has populated it, then fall back to the independent
+// LastError channel maintained by the shims below.
+func _ccgo_GetLastError(tls *libc.TLS) uint32 {
+	if value := *(*int32)(unsafe.Pointer(libc.X_errno(tls))); value != 0 {
+		return uint32(value)
+	}
+	return tls.GetLastError()
+}
+
+func _ccgo_CreateDirectoryW(tls *libc.TLS, path, securityAttributes uintptr) int32 {
+	return boolProc(tls, dllKernel32, "CreateDirectoryW", path, securityAttributes)
+}
+
+func _ccgo_CreateFileW(tls *libc.TLS, path uintptr, desiredAccess, shareMode uint32, securityAttributes uintptr, creationDisposition, flagsAndAttributes uint32, templateFile uintptr) uintptr {
+	return handleProc(
+		tls,
+		dllKernel32,
+		"CreateFileW",
+		^uintptr(0),
+		path,
+		uintptr(desiredAccess),
+		uintptr(shareMode),
+		securityAttributes,
+		uintptr(creationDisposition),
+		uintptr(flagsAndAttributes),
+		templateFile,
+	)
+}
+
+func _ccgo_DeleteFileW(tls *libc.TLS, path uintptr) int32 {
+	return boolProc(tls, dllKernel32, "DeleteFileW", path)
+}
+
+func _ccgo_FindClose(tls *libc.TLS, handle uintptr) int32 {
+	return boolProc(tls, dllKernel32, "FindClose", handle)
+}
+
+func _ccgo_FindFirstFileW(tls *libc.TLS, path, data uintptr) uintptr {
+	return handleProc(tls, dllKernel32, "FindFirstFileW", ^uintptr(0), path, data)
+}
+
+func _ccgo_FindNextFileW(tls *libc.TLS, handle, data uintptr) int32 {
+	return boolProc(tls, dllKernel32, "FindNextFileW", handle, data)
+}
+
+func _ccgo_GetFileAttributesExW(tls *libc.TLS, path uintptr, infoLevel int32, information uintptr) int32 {
+	return boolProc(tls, dllKernel32, "GetFileAttributesExW", path, uintptr(infoLevel), information)
+}
+
+func _ccgo_GetFileAttributesW(tls *libc.TLS, path uintptr) uint32 {
+	r, err := callProc(dllKernel32, "GetFileAttributesW", path)
+	if uint32(r) == ^uint32(0) {
+		setWinError(tls, err, errorInvalidFunction)
+	}
+	return uint32(r)
+}
+
+func _ccgo_GetFileInformationByHandle(tls *libc.TLS, handle, information uintptr) int32 {
+	return boolProc(tls, dllKernel32, "GetFileInformationByHandle", handle, information)
+}
+
+func _ccgo_GetFileType(tls *libc.TLS, handle uintptr) uint32 {
+	// FILE_TYPE_UNKNOWN (zero) may be a valid result, so clear LastError first
+	// and only publish the native error when the call leaves one behind.
+	_SetLastError(tls, 0)
+	r, err := callProc(dllKernel32, "GetFileType", handle)
+	if r == 0 && winErrno(err, 0) != 0 {
+		setWinError(tls, err, errorInvalidHandle)
+	}
+	return uint32(r)
+}
+
+func _ccgo_MultiByteToWideChar(tls *libc.TLS, codePage, flags uint32, source uintptr, sourceLength int32, destination uintptr, destinationLength int32) int32 {
+	r, err := callProc(
+		dllKernel32,
+		"MultiByteToWideChar",
+		uintptr(codePage),
+		uintptr(flags),
+		source,
+		uintptr(sourceLength),
+		destination,
+		uintptr(destinationLength),
+	)
+	if r == 0 {
+		setWinError(tls, err, errorInvalidParam)
+	}
+	return int32(r)
+}
+
+func _ccgo_RemoveDirectoryW(tls *libc.TLS, path uintptr) int32 {
+	return boolProc(tls, dllKernel32, "RemoveDirectoryW", path)
+}
+
+func _ccgo_SetFileAttributesW(tls *libc.TLS, path uintptr, attributes uint32) int32 {
+	return boolProc(tls, dllKernel32, "SetFileAttributesW", path, uintptr(attributes))
+}
+
+func _ccgo_WideCharToMultiByte(tls *libc.TLS, codePage, flags uint32, source uintptr, sourceLength int32, destination uintptr, destinationLength int32, defaultChar, usedDefaultChar uintptr) int32 {
+	r, err := callProc(
+		dllKernel32,
+		"WideCharToMultiByte",
+		uintptr(codePage),
+		uintptr(flags),
+		source,
+		uintptr(sourceLength),
+		destination,
+		uintptr(destinationLength),
+		defaultChar,
+		usedDefaultChar,
+	)
+	if r == 0 {
+		setWinError(tls, err, errorInvalidParam)
+	}
+	return int32(r)
+}
+
 // LoadLibraryW and FreeLibrary are needed by CPython's optional Windows API
 // probes. Native procedure addresses cannot be invoked through ccgo's Go
 // function-pointer representation, so GetProcAddress reports an unavailable
@@ -421,6 +704,8 @@ func _ccgo___builtin_clzl(tls *libc.TLS, value uint32) int32 {
 var (
 	windowsWideStringMu    sync.Mutex
 	windowsWideStringCache = map[string]uintptr{}
+	windowsNarrowStringMu  sync.Mutex
+	windowsNarrowStrings   = map[string]uintptr{}
 	windowsEnvironmentMu   sync.Mutex
 	windowsEnvironmentKey  string
 	windowsEnvironmentList []uintptr
@@ -447,6 +732,35 @@ func windowsStableWideString(tls *libc.TLS, value string) uintptr {
 	return p
 }
 
+func windowsStableNarrowString(tls *libc.TLS, value string) uintptr {
+	windowsNarrowStringMu.Lock()
+	defer windowsNarrowStringMu.Unlock()
+	if p := windowsNarrowStrings[value]; p != 0 {
+		return p
+	}
+	p, err := libc.CString(value)
+	if err != nil {
+		setErrno(tls, int32(errno.ENOMEM))
+		return 0
+	}
+	windowsNarrowStrings[value] = p
+	return p
+}
+
+// CPython's os.environ mutates the process through the wide CRT API, while
+// Py_GETENV still performs narrow lookups. modernc's getenv reads a startup
+// cache and misses those updates (notably PYTHONBREAKPOINT in test_builtin).
+func _ccgo_getenv(tls *libc.TLS, name uintptr) uintptr {
+	if name == 0 {
+		return 0
+	}
+	value, ok := os.LookupEnv(libc.GoString(name))
+	if !ok {
+		return 0
+	}
+	return windowsStableNarrowString(tls, value)
+}
+
 // modernc's cached wide environment drops its final entry and does not track
 // Go-side Setenv calls. Use the process environment and return stable CRT-like
 // storage instead.
@@ -467,6 +781,16 @@ func _ccgo__wgetenv(tls *libc.TLS, name uintptr) uintptr {
 // explicitly terminated, process-environment-backed array instead.
 func _ccgo___p__wenviron(tls *libc.TLS) uintptr {
 	entries := os.Environ()
+	// GetEnvironmentStringsW includes hidden drive-current-directory entries
+	// such as "=C:=...". UCRT's _wenviron omits them; exposing them makes
+	// posixmodule create an empty os.environ key that cannot later be removed.
+	filtered := entries[:0]
+	for _, entry := range entries {
+		if !strings.HasPrefix(entry, "=") {
+			filtered = append(filtered, entry)
+		}
+	}
+	entries = filtered
 	key := strings.Join(entries, "\x00")
 
 	windowsEnvironmentMu.Lock()
@@ -503,6 +827,11 @@ func _ccgo__wputenv(tls *libc.TLS, environment uintptr) int32 {
 		return -1
 	}
 	name, value := text[:separator], text[separator+1:]
+	if strings.HasPrefix(name, "=") &&
+		(len(name) != 3 || name[2] != ':' || !((name[1] >= 'A' && name[1] <= 'Z') || (name[1] >= 'a' && name[1] <= 'z'))) {
+		setErrno(tls, int32(errno.EINVAL))
+		return -1
+	}
 	var err error
 	if value == "" {
 		err = os.Unsetenv(name)
@@ -516,86 +845,175 @@ func _ccgo__wputenv(tls *libc.TLS, environment uintptr) int32 {
 	return 0
 }
 
-// modernc's _wopen passes UTF-16 storage to its narrow GoString helper, which
-// truncates ordinary paths after their first byte. Convert explicitly, map
-// UCRT's _O_* bit values to the values used by x/sys/windows.Open, and use
-// modernc's own descriptor table through Xopen.
+type windowsDescriptorMode struct {
+	text bool
+	eof  bool
+}
+
+var (
+	windowsDescriptorModeMu sync.Mutex
+	windowsDescriptorModes  = map[int32]windowsDescriptorMode{}
+)
+
+func setWindowsDescriptorMode(fd int32, text bool) {
+	windowsDescriptorModeMu.Lock()
+	windowsDescriptorModes[fd] = windowsDescriptorMode{text: text}
+	windowsDescriptorModeMu.Unlock()
+}
+
+func removeWindowsDescriptorMode(fd int32) {
+	windowsDescriptorModeMu.Lock()
+	delete(windowsDescriptorModes, fd)
+	windowsDescriptorModeMu.Unlock()
+}
+
+func windowsOpenTextMode(flags int32) bool {
+	const ucrtOBinary = int32(0x8000)
+	return flags&ucrtOBinary == 0
+}
+
+func copyWindowsDescriptorMode(from, to int32) {
+	windowsDescriptorModeMu.Lock()
+	windowsDescriptorModes[to] = windowsDescriptorModes[from]
+	windowsDescriptorModeMu.Unlock()
+}
+
+func windowsDescriptorModeFor(fd int32) windowsDescriptorMode {
+	windowsDescriptorModeMu.Lock()
+	defer windowsDescriptorModeMu.Unlock()
+	return windowsDescriptorModes[fd]
+}
+
+func setWindowsDescriptorEOF(fd int32, value bool) {
+	windowsDescriptorModeMu.Lock()
+	mode := windowsDescriptorModes[fd]
+	mode.eof = value
+	windowsDescriptorModes[fd] = mode
+	windowsDescriptorModeMu.Unlock()
+}
+
+// modernc's _wopen passes UTF-16 storage to a narrow GoString helper, losing
+// both ordinary wide paths and unpaired surrogate code units. Call CreateFileW
+// with the original UTF-16 pointer and install its handle in modernc's table.
 func _ccgo__wopen(tls *libc.TLS, pathname uintptr, flags int32, args uintptr) int32 {
 	if pathname == 0 {
 		setErrno(tls, int32(errno.EINVAL))
 		return -1
 	}
-	path, err := libc.CString(wideString(pathname))
-	if err != nil {
-		setErrno(tls, int32(errno.ENOMEM))
-		return -1
-	}
-	defer libc.Xfree(tls, path)
 
 	const (
-		ucrtOAppend    = 0x0008
-		ucrtONoinherit = 0x0080
-		ucrtOCreat     = 0x0100
-		ucrtOTrunc     = 0x0200
-		ucrtOExcl      = 0x0400
+		ucrtOAppend     = 0x0008
+		ucrtORandom     = 0x0010
+		ucrtOSequential = 0x0020
+		ucrtOTemporary  = 0x0040
+		ucrtONoinherit  = 0x0080
+		ucrtOCreat      = 0x0100
+		ucrtOTrunc      = 0x0200
+		ucrtOExcl       = 0x0400
+		ucrtOShortLived = 0x1000
 	)
-	windowsFlags := flags & 0x3
-	if flags&ucrtOAppend != 0 {
-		windowsFlags |= windows.O_APPEND
-	}
-	if flags&ucrtONoinherit != 0 {
-		windowsFlags |= windows.O_CLOEXEC
+
+	var desiredAccess uint32
+	switch flags & 0x3 {
+	case 0:
+		desiredAccess = windows.GENERIC_READ
+	case 1:
+		desiredAccess = windows.GENERIC_WRITE
+	case 2:
+		desiredAccess = windows.GENERIC_READ | windows.GENERIC_WRITE
+	default:
+		setErrno(tls, int32(errno.EINVAL))
+		return -1
 	}
 	if flags&ucrtOCreat != 0 {
-		windowsFlags |= windows.O_CREAT
+		desiredAccess |= windows.GENERIC_WRITE
 	}
-	if flags&ucrtOTrunc != 0 {
-		windowsFlags |= windows.O_TRUNC
+	if flags&ucrtOAppend != 0 {
+		desiredAccess &^= windows.GENERIC_WRITE
+		desiredAccess |= windows.FILE_APPEND_DATA
 	}
-	if flags&ucrtOExcl != 0 {
-		windowsFlags |= windows.O_EXCL
+
+	shareMode := uint32(windows.FILE_SHARE_READ | windows.FILE_SHARE_WRITE)
+	attributes := uint32(windows.FILE_ATTRIBUTE_NORMAL)
+	if flags&ucrtORandom != 0 {
+		attributes |= windows.FILE_FLAG_RANDOM_ACCESS
 	}
-	return libc.Xopen(tls, path, windowsFlags, args)
+	if flags&ucrtOSequential != 0 {
+		attributes |= windows.FILE_FLAG_SEQUENTIAL_SCAN
+	}
+	if flags&(ucrtOTemporary|ucrtOShortLived) != 0 {
+		attributes |= windows.FILE_ATTRIBUTE_TEMPORARY
+	}
+	if flags&ucrtOTemporary != 0 {
+		attributes |= windows.FILE_FLAG_DELETE_ON_CLOSE
+		shareMode |= windows.FILE_SHARE_DELETE
+	}
+	if flags&ucrtOCreat != 0 {
+		mode := uint32(0x180) // _S_IREAD | _S_IWRITE
+		if args != 0 {
+			mode = libc.VaUint32(&args)
+		}
+		if mode&0x80 == 0 { // _S_IWRITE
+			attributes |= windows.FILE_ATTRIBUTE_READONLY
+		}
+	}
+
+	creationDisposition := uint32(windows.OPEN_EXISTING)
+	switch {
+	case flags&(ucrtOCreat|ucrtOExcl) == ucrtOCreat|ucrtOExcl:
+		creationDisposition = windows.CREATE_NEW
+	case flags&(ucrtOCreat|ucrtOTrunc) == ucrtOCreat|ucrtOTrunc:
+		creationDisposition = windows.CREATE_ALWAYS
+	case flags&ucrtOCreat != 0:
+		creationDisposition = windows.OPEN_ALWAYS
+	case flags&ucrtOTrunc != 0:
+		creationDisposition = windows.TRUNCATE_EXISTING
+	}
+
+	var securityAttributes windows.SecurityAttributes
+	var securityPointer uintptr
+	if flags&ucrtONoinherit == 0 {
+		securityAttributes.Length = uint32(unsafe.Sizeof(securityAttributes))
+		securityAttributes.InheritHandle = 1
+		securityPointer = uintptr(unsafe.Pointer(&securityAttributes))
+	}
+	handle, err := callProc(
+		dllKernel32,
+		"CreateFileW",
+		pathname,
+		uintptr(desiredAccess),
+		uintptr(shareMode),
+		securityPointer,
+		uintptr(creationDisposition),
+		uintptr(attributes),
+		0,
+	)
+	if handle == ^uintptr(0) {
+		setCRTWinError(tls, err, uint32(windows.ERROR_INVALID_PARAMETER))
+		return -1
+	}
+	_, fd := moderncWrapFdHandle(windows.Handle(handle))
+	setWindowsDescriptorMode(fd, windowsOpenTextMode(flags))
+	return fd
+}
+
+func _ccgo_open(tls *libc.TLS, pathname uintptr, flags int32, args uintptr) int32 {
+	if pathname == 0 {
+		setErrno(tls, int32(errno.EINVAL))
+		return -1
+	}
+	wide, err := windows.UTF16FromString(libc.GoString(pathname))
+	if err != nil {
+		setErrno(tls, int32(errno.EINVAL))
+		return -1
+	}
+	return _ccgo__wopen(tls, uintptr(unsafe.Pointer(&wide[0])), flags, args)
 }
 
 func tmZone(tmv *Ttm) (string, int) {
 	date := time.Date(int(tmv.Ftm_year)+1900, time.Month(tmv.Ftm_mon)+1, int(tmv.Ftm_mday), int(tmv.Ftm_hour), int(tmv.Ftm_min), int(tmv.Ftm_sec), 0, time.Local)
 	name, offset := date.Zone()
 	return name, offset
-}
-
-func fillTM(dst uintptr, value time.Time) {
-	tm := (*Ttm)(unsafe.Pointer(dst))
-	tm.Ftm_sec = int32(value.Second())
-	tm.Ftm_min = int32(value.Minute())
-	tm.Ftm_hour = int32(value.Hour())
-	tm.Ftm_mday = int32(value.Day())
-	tm.Ftm_mon = int32(value.Month()) - 1
-	tm.Ftm_year = int32(value.Year()) - 1900
-	tm.Ftm_wday = int32(value.Weekday())
-	tm.Ftm_yday = int32(value.YearDay()) - 1
-	_, current := value.Zone()
-	standard, observesDaylight := localZoneOffsets(value.Year(), value.Location())
-	tm.Ftm_isdst = 0
-	if observesDaylight && current != standard {
-		tm.Ftm_isdst = 1
-	}
-}
-
-func localZoneOffsets(year int, location *time.Location) (standard int, observesDaylight bool) {
-	jan := time.Date(year, time.January, 1, 12, 0, 0, 0, location)
-	jul := time.Date(year, time.July, 1, 12, 0, 0, 0, location)
-	_, janOffset := jan.Zone()
-	_, julOffset := jul.Zone()
-	if janOffset == julOffset {
-		return janOffset, false
-	}
-	// Contemporary DST advances clocks, so the smaller seconds-east value is
-	// the standard offset in both hemispheres.
-	if janOffset < julOffset {
-		return janOffset, true
-	}
-	return julOffset, true
 }
 
 // modernc keeps its Windows descriptors in a private handle table. These two
@@ -624,11 +1042,149 @@ func moderncRemoveFile(file *moderncWindowsFile)
 func fdHandle(tls *libc.TLS, fd int32) (windows.Handle, bool) {
 	f, ok := moderncFdToFile(fd)
 	if !ok {
-		setErrno(tls, int32(errno.EBADF))
-		tls.SetLastError(errorInvalidHandle)
+		setCRTWinError(tls, windows.ERROR_INVALID_HANDLE, errorInvalidHandle)
 		return 0, false
 	}
 	return f.handle, true
+}
+
+func _ccgo_close(tls *libc.TLS, fd int32) int32 {
+	f, ok := moderncFdToFile(fd)
+	if !ok {
+		setCRTWinError(tls, windows.ERROR_INVALID_HANDLE, errorInvalidHandle)
+		return -1
+	}
+	moderncRemoveFile(f)
+	removeWindowsDescriptorMode(fd)
+	if err := windows.CloseHandle(f.handle); err != nil {
+		setCRTWinError(tls, err, uint32(windows.ERROR_INVALID_HANDLE))
+		return -1
+	}
+	return 0
+}
+
+func _ccgo_read(tls *libc.TLS, fd int32, buf uintptr, count uint32) int32 {
+	handle, ok := fdHandle(tls, fd)
+	if !ok {
+		return -1
+	}
+	mode := windowsDescriptorModeFor(fd)
+	if mode.text && mode.eof {
+		return 0
+	}
+	data := cBytes(buf, uint64(count))
+	n, err := windows.Read(handle, data)
+	if err == windows.ERROR_BROKEN_PIPE {
+		return 0
+	}
+	if err != nil {
+		setCRTWinError(tls, err, uint32(windows.ERROR_INVALID_PARAMETER))
+		return -1
+	}
+	if !mode.text {
+		return int32(n)
+	}
+
+	written := 0
+	for i := 0; i < n; i++ {
+		switch data[i] {
+		case 0x1a:
+			setWindowsDescriptorEOF(fd, true)
+			return int32(written)
+		case '\r':
+			if i+1 < n && data[i+1] == '\n' {
+				i++
+				data[written] = '\n'
+				written++
+				continue
+			}
+		}
+		data[written] = data[i]
+		written++
+	}
+	return int32(written)
+}
+
+func _ccgo_write(tls *libc.TLS, fd int32, buf uintptr, count uint32) int32 {
+	handle, ok := fdHandle(tls, fd)
+	if !ok {
+		return -1
+	}
+	data := cBytes(buf, uint64(count))
+	if windowsDescriptorModeFor(fd).text && bytes.Contains(data, []byte{'\n'}) {
+		translated := make([]byte, 0, len(data)+bytes.Count(data, []byte{'\n'}))
+		for _, value := range data {
+			if value == '\n' {
+				translated = append(translated, '\r')
+			}
+			translated = append(translated, value)
+		}
+		data = translated
+	}
+	_, err := windows.Write(handle, data)
+	if err != nil {
+		setCRTWinError(tls, err, uint32(windows.ERROR_INVALID_PARAMETER))
+		return -1
+	}
+	return int32(count)
+}
+
+func _ccgo_lseek(tls *libc.TLS, fd int32, offset int64, whence int32) int64 {
+	handle, ok := fdHandle(tls, fd)
+	if !ok {
+		return -1
+	}
+	if whence < int32(windows.FILE_BEGIN) || whence > int32(windows.FILE_END) {
+		setErrno(tls, int32(errno.EINVAL))
+		return -1
+	}
+	var result int64
+	if err := setFilePointerRaw(handle, offset, uintptr(unsafe.Pointer(&result)), uint32(whence)); err != nil {
+		setCRTWinError(tls, err, uint32(windows.ERROR_INVALID_PARAMETER))
+		return -1
+	}
+	setWindowsDescriptorEOF(fd, false)
+	return result
+}
+
+func _ccgo__lseeki64(tls *libc.TLS, fd int32, offset int64, whence int32) int64 {
+	return _ccgo_lseek(tls, fd, offset, whence)
+}
+
+func _ccgo__commit(tls *libc.TLS, fd int32) int32 {
+	handle, ok := fdHandle(tls, fd)
+	if !ok {
+		return -1
+	}
+	if err := windows.FlushFileBuffers(handle); err != nil {
+		setCRTWinError(tls, err, uint32(windows.ERROR_INVALID_HANDLE))
+		return -1
+	}
+	return 0
+}
+
+func _ccgo__setmode(tls *libc.TLS, fd, mode int32) int32 {
+	if _, ok := fdHandle(tls, fd); !ok {
+		return -1
+	}
+	const (
+		ucrtOText   = int32(0x4000)
+		ucrtOBinary = int32(0x8000)
+	)
+	if mode != ucrtOText && mode != ucrtOBinary {
+		setErrno(tls, int32(errno.EINVAL))
+		return -1
+	}
+	previous := ucrtOBinary
+	if windowsDescriptorModeFor(fd).text {
+		previous = ucrtOText
+	}
+	setWindowsDescriptorMode(fd, mode == ucrtOText)
+	return previous
+}
+
+func _ccgo__wstat64i32(tls *libc.TLS, path, buffer uintptr) int32 {
+	return int32(callUCRTWithCRTErrors(tls, "_wstat64i32", path, buffer))
 }
 
 // A modernc Windows descriptor already owns a FILE-like object. fdopen only
@@ -704,6 +1260,7 @@ func __open_osfhandle(tls *libc.TLS, raw int64, flags int32) int32 {
 		return -1
 	}
 	_, fd := moderncWrapFdHandle(windows.Handle(uintptr(raw)))
+	setWindowsDescriptorMode(fd, windowsOpenTextMode(flags))
 	return fd
 }
 
@@ -720,6 +1277,7 @@ func _dup(tls *libc.TLS, fd int32) int32 {
 		return -1
 	}
 	_, result := moderncWrapFdHandle(duplicate)
+	copyWindowsDescriptorMode(fd, result)
 	return result
 }
 
@@ -753,6 +1311,7 @@ func _ccgo_dup2(tls *libc.TLS, oldfd, newfd int32) int32 {
 		_ = windows.CloseHandle(target.handle)
 	}
 	moderncAddFile(duplicate, newfd)
+	copyWindowsDescriptorMode(oldfd, newfd)
 	return newfd
 }
 
@@ -1133,6 +1692,21 @@ func _iswctype(tls *libc.TLS, value, descriptor uint16) int32 {
 	return int32(r)
 }
 
+func _ccgo_isalnum(tls *libc.TLS, value int32) int32 {
+	r, _ := callProc(dllUCRT, "isalnum", uintptr(value))
+	return int32(r)
+}
+
+func _ccgo_tolower(tls *libc.TLS, value int32) int32 {
+	r, _ := callProc(dllUCRT, "tolower", uintptr(value))
+	return int32(r)
+}
+
+func _ccgo_toupper(tls *libc.TLS, value int32) int32 {
+	r, _ := callProc(dllUCRT, "toupper", uintptr(value))
+	return int32(r)
+}
+
 func _towupper(tls *libc.TLS, value uint16) uint16 {
 	r, _ := callProc(dllUCRT, "towupper", uintptr(value))
 	return uint16(r)
@@ -1154,16 +1728,25 @@ func _localtime_s(tls *libc.TLS, dst, source uintptr) int32 {
 	if dst == 0 || source == 0 {
 		return int32(errno.EINVAL)
 	}
-	fillTM(dst, time.Unix(*(*int64)(unsafe.Pointer(source)), 0).In(time.Local))
-	return 0
+	// Go's time.Local does not use the same Windows CRT timezone state exposed
+	// through __timezone/__daylight. Let UCRT fill its ABI-compatible struct tm
+	// so time.localtime(), time.timezone, DST, and tm_gmtoff agree.
+	return int32(callUCRTWithErrno(tls, "_localtime64_s", dst, source))
 }
 
 func _gmtime_s(tls *libc.TLS, dst, source uintptr) int32 {
 	if dst == 0 || source == 0 {
 		return int32(errno.EINVAL)
 	}
-	fillTM(dst, time.Unix(*(*int64)(unsafe.Pointer(source)), 0).UTC())
-	return 0
+	return int32(callUCRTWithErrno(tls, "_gmtime64_s", dst, source))
+}
+
+func _ccgo_mktime(tls *libc.TLS, tm uintptr) int64 {
+	return int64(callUCRTWithErrno(tls, "_mktime64", tm))
+}
+
+func _ccgo_tzset(tls *libc.TLS) {
+	_, _ = callProc(dllUCRT, "_tzset")
 }
 
 func _clock(tls *libc.TLS) int32 {
@@ -1177,6 +1760,11 @@ func _exp2(tls *libc.TLS, x float64) float64 { return math.Exp2(x) }
 
 func _strncat(tls *libc.TLS, dst, src uintptr, n uint64) uintptr {
 	return _ccgo_strncat(tls, dst, src, n)
+}
+
+func _ccgo_strftime(tls *libc.TLS, dst uintptr, capacity uint64, format, tm uintptr) uint64 {
+	r, _ := callProc(dllUCRT, "strftime", dst, uintptr(capacity), format, tm)
+	return uint64(r)
 }
 
 func _strnicmp(tls *libc.TLS, a, b uintptr, n uint64) int32 {
@@ -1203,7 +1791,20 @@ var (
 	windowsSignals = map[int32]uintptr{}
 )
 
+func supportedWindowsSignal(number int32) bool {
+	switch number {
+	case 2, 4, 8, 11, 15, 21, 22: // SIGINT, SIGILL, SIGFPE, SIGSEGV, SIGTERM, SIGBREAK, SIGABRT
+		return true
+	default:
+		return false
+	}
+}
+
 func _signal(tls *libc.TLS, number int32, handler uintptr) uintptr {
+	if !supportedWindowsSignal(number) {
+		setErrno(tls, int32(errno.EINVAL))
+		return ^uintptr(0) // SIG_ERR
+	}
 	signalMu.Lock()
 	defer signalMu.Unlock()
 	previous := windowsSignals[number]
@@ -1253,6 +1854,14 @@ func spawnWide(tls *libc.TLS, mode int32, path, argv, envp uintptr) int64 {
 	args := widePtrArray(argv)
 	if len(args) == 0 {
 		args = []string{wideString(path)}
+	}
+	// Windows spawnv joins an already-quoted argv into a command line. Go's
+	// os/exec quotes argv itself, so remove the one syntactic quote pair that
+	// CPython's Windows tests (and callers) supply to spawnv.
+	for i, arg := range args {
+		if len(arg) >= 2 && arg[0] == '"' && arg[len(arg)-1] == '"' {
+			args[i] = arg[1 : len(arg)-1]
+		}
 	}
 	command := exec.Command(wideString(path), args[1:]...)
 	command.Stdin = os.Stdin
@@ -1426,6 +2035,30 @@ func _ccgo_CreateFileMappingA(tls *libc.TLS, file, securityAttributes uintptr, p
 	if result == 0 {
 		setWinError(tls, err, errorInvalidParam)
 	}
+	return result
+}
+
+// CreateFileMappingW is one of the unusual Win32 calls whose last-error value
+// is meaningful on success (ERROR_ALREADY_EXISTS). mmap.resize reads it
+// unconditionally, so overwrite stale CRT errno as well as the independent
+// Win32 slot on every call.
+func _ccgo_CreateFileMappingW(tls *libc.TLS, file, securityAttributes uintptr, protect, maximumSizeHigh, maximumSizeLow uint32, name uintptr) uintptr {
+	result, err := callProc(
+		dllKernel32,
+		"CreateFileMappingW",
+		file,
+		securityAttributes,
+		uintptr(protect),
+		uintptr(maximumSizeHigh),
+		uintptr(maximumSizeLow),
+		name,
+	)
+	value := winErrno(err, 0)
+	if result == 0 && value == 0 {
+		value = errorInvalidParam
+	}
+	tls.SetLastError(value)
+	setErrno(tls, int32(value))
 	return result
 }
 
@@ -1968,10 +2601,69 @@ func _PostQueuedCompletionStatus(tls *libc.TLS, port uintptr, bytes uint32, key 
 	return boolProc(tls, dllKernel32, "PostQueuedCompletionStatus", port, uintptr(bytes), uintptr(key), overlapped)
 }
 
-func _RegisterWaitForSingleObject(tls *libc.TLS, result, object, callback, context uintptr, milliseconds, flags uint32) int32 {
-	// A transpiled Go function pointer is not a native Win32 callback.
-	_SetLastError(tls, errorCallNotImpl)
+type windowsRegisteredWait struct {
+	callback uintptr
+	context  uintptr
+	flags    uint32
+}
+
+var (
+	windowsRegisteredWaitMu   sync.Mutex
+	windowsRegisteredWaits    = map[uintptr]windowsRegisteredWait{}
+	windowsRegisteredWaitNext atomic.Uintptr
+	windowsWaitCallback       = syscall.NewCallback(windowsRegisteredWaitCallback)
+)
+
+func windowsRegisteredWaitCallback(token, timerOrWaitFired uintptr) uintptr {
+	windowsRegisteredWaitMu.Lock()
+	state, ok := windowsRegisteredWaits[token]
+	if ok && state.flags&0x8 != 0 { // WT_EXECUTEONLYONCE
+		delete(windowsRegisteredWaits, token)
+	}
+	windowsRegisteredWaitMu.Unlock()
+	if !ok {
+		return 0
+	}
+
+	// ccgo function pointers are Go function values, not native addresses. The
+	// native thread-pool callback above is a fixed Go trampoline; dispatch the
+	// original translated callback from Go with a TLS owned by this callback.
+	dtls := libc.NewTLS()
+	defer dtls.Close()
+	callback := *(*func(*libc.TLS, uintptr, uint8))(unsafe.Pointer(&struct{ uintptr }{state.callback}))
+	callback(dtls, state.context, uint8(timerOrWaitFired))
 	return 0
+}
+
+func _RegisterWaitForSingleObject(tls *libc.TLS, result, object, callback, context uintptr, milliseconds, flags uint32) int32 {
+	if result == 0 || callback == 0 {
+		setWinError(tls, windows.ERROR_INVALID_PARAMETER, errorInvalidParam)
+		return 0
+	}
+
+	token := windowsRegisteredWaitNext.Add(1)
+	windowsRegisteredWaitMu.Lock()
+	windowsRegisteredWaits[token] = windowsRegisteredWait{callback: callback, context: context, flags: flags}
+	windowsRegisteredWaitMu.Unlock()
+
+	r, err := callProc(
+		dllKernel32,
+		"RegisterWaitForSingleObject",
+		result,
+		object,
+		windowsWaitCallback,
+		token,
+		uintptr(milliseconds),
+		uintptr(flags),
+	)
+	if r == 0 {
+		windowsRegisteredWaitMu.Lock()
+		delete(windowsRegisteredWaits, token)
+		windowsRegisteredWaitMu.Unlock()
+		setWinError(tls, err, errorInvalidParam)
+		return 0
+	}
+	return 1
 }
 
 func _UnregisterWait(tls *libc.TLS, wait uintptr) int32 {
@@ -2465,6 +3157,10 @@ func _ccgo_abort(tls *libc.TLS) {
 }
 
 func _ccgo_raise(tls *libc.TLS, number int32) int32 {
+	if !supportedWindowsSignal(number) {
+		setErrno(tls, int32(errno.EINVAL))
+		return -1
+	}
 	signalMu.Lock()
 	handler := windowsSignals[number]
 	signalMu.Unlock()
@@ -2473,6 +3169,10 @@ func _ccgo_raise(tls *libc.TLS, number int32) int32 {
 	case 1: // SIG_IGN
 		return 0
 	case 0: // SIG_DFL
+		if number == 21 { // UCRT raise() does not accept SIGBREAK.
+			setErrno(tls, int32(errno.EINVAL))
+			return -1
+		}
 		return int32(callUCRTWithErrno(tls, "raise", uintptr(number)))
 	default:
 		(*(*func(*libc.TLS, int32))(unsafe.Pointer(&struct{ uintptr }{handler})))(tls, number)

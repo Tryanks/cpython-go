@@ -23,8 +23,8 @@ built: other modules that need external C libraries (`_ssl`, `_ctypes`,
 | darwin/amd64  | yes       | yes (local)      | 51 of 75 modules fully pass |
 | linux/amd64   | yes       | yes              | 48 of 75 modules fully pass |
 | linux/arm64   | yes       | yes              | 44 of 72 modules fully pass |
-| windows/amd64 | yes       | yes              | 38 of 71 modules fully pass |
-| windows/arm64 | yes       | yes              | 38 of 71 modules fully pass |
+| windows/amd64 | yes       | yes              | 55 of 71 modules fully pass |
+| windows/arm64 | yes       | yes              | 55 of 71 modules fully pass |
 
 Other architectures are parked; see TODO.md. Windows details: docs/windows.md;
 the Windows CPython test batch runs from `.github/workflows/windows-tests.yml`

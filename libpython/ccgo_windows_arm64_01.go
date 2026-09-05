@@ -146,7 +146,7 @@ func _fp_setreadl(tls *libc.TLS, tok uintptr, enc uintptr) (r int32) {
 			v1 = pos
 		}
 	}
-	if v2 || libc.Xlseek(tls, fd, int64(v1), MSEEK_SET) == int64(-libc.Int32FromInt32(1)) {
+	if v2 || _ccgo_lseek(tls, fd, int64(v1), MSEEK_SET) == int64(-libc.Int32FromInt32(1)) {
 		XPyErr_SetFromErrnoWithFilename(tls, XPyExc_OSError, libc.UintptrFromInt32(0))
 		return 0
 	}
@@ -2078,7 +2078,7 @@ func _my_fgets(tls *libc.TLS, tstate uintptr, buf uintptr, len1 int32, fp uintpt
 		}
 		err = **(**int32)(__ccgo_up(libc.X_errno(tls)))
 
-		if libc.XGetLastError(tls) == uint32(995) {
+		if _ccgo_GetLastError(tls) == uint32(995) {
 			hInterruptEvent = X_PyOS_SigintEvent(tls)
 			switch libc.XWaitForSingleObjectEx(tls, hInterruptEvent, uint32(10), MFALSE) {
 			case libc.Uint32FromInt32(0x00000000) + libc.Uint32FromInt32(0):
@@ -2138,18 +2138,18 @@ func X_PyOS_WindowsConsoleReadline(tls *libc.TLS, tstate uintptr, hStdIn THANDLE
 			(*(*func(*libc.TLS) int32)(unsafe.Pointer(&struct{ uintptr }{XPyOS_InputHook})))(tls)
 		}
 		if !(libc.XReadConsoleW(tls, hStdIn, wbuf+uintptr(total_read)*2, wbuflen-total_read, bp, libc.UintptrFromInt32(0)) != 0) {
-			err = int32(libc.XGetLastError(tls))
+			err = int32(_ccgo_GetLastError(tls))
 			goto exit
 		}
 		if v3 = **(**TDWORD)(__ccgo_up(bp)) == uint32(-libc.Int32FromInt32(1)); v3 {
-			v1 = int32(libc.XGetLastError(tls))
+			v1 = int32(_ccgo_GetLastError(tls))
 			err = v1
 		}
 		if v3 && v1 == int32(995) {
 			break
 		}
 		if **(**TDWORD)(__ccgo_up(bp)) == uint32(0) {
-			err = int32(libc.XGetLastError(tls))
+			err = int32(_ccgo_GetLastError(tls))
 			if err != int32(995) {
 				goto exit
 			}
@@ -2204,7 +2204,7 @@ func X_PyOS_WindowsConsoleReadline(tls *libc.TLS, tstate uintptr, hStdIn THANDLE
 		}
 		goto exit
 	}
-	u8len = uint32(libc.XWideCharToMultiByte(tls, uint32(MCP_UTF8), uint32(0), wbuf, int32(total_read), libc.UintptrFromInt32(0), 0, libc.UintptrFromInt32(0), libc.UintptrFromInt32(0)))
+	u8len = uint32(_ccgo_WideCharToMultiByte(tls, uint32(MCP_UTF8), uint32(0), wbuf, int32(total_read), libc.UintptrFromInt32(0), 0, libc.UintptrFromInt32(0), libc.UintptrFromInt32(0)))
 	buf = XPyMem_RawMalloc(tls, uint64(u8len+uint32(1)))
 	if buf == libc.UintptrFromInt32(0) {
 		XPyEval_RestoreThread(tls, tstate)
@@ -2212,7 +2212,7 @@ func X_PyOS_WindowsConsoleReadline(tls *libc.TLS, tstate uintptr, hStdIn THANDLE
 		XPyEval_SaveThread(tls)
 		goto exit
 	}
-	u8len = uint32(libc.XWideCharToMultiByte(tls, uint32(MCP_UTF8), uint32(0), wbuf, int32(total_read), buf, int32(u8len), libc.UintptrFromInt32(0), libc.UintptrFromInt32(0)))
+	u8len = uint32(_ccgo_WideCharToMultiByte(tls, uint32(MCP_UTF8), uint32(0), wbuf, int32(total_read), buf, int32(u8len), libc.UintptrFromInt32(0), libc.UintptrFromInt32(0)))
 	**(**int8)(__ccgo_up(buf + uintptr(u8len))) = int8('\000')
 	goto exit
 exit:
@@ -2249,7 +2249,7 @@ func XPyOS_StdioReadline(tls *libc.TLS, sys_stdin uintptr, sys_stdout uintptr, p
 			libc.Xfflush(tls, sys_stdout)
 			if prompt != 0 {
 				if int32(X_get_console_type(tls, hStdErr)) == int32('w') {
-					wlen = libc.XMultiByteToWideChar(tls, uint32(MCP_UTF8), uint32(0), prompt, -int32(1), libc.UintptrFromInt32(0), 0)
+					wlen = _ccgo_MultiByteToWideChar(tls, uint32(MCP_UTF8), uint32(0), prompt, -int32(1), libc.UintptrFromInt32(0), 0)
 					if wlen != 0 {
 						wbuf = XPyMem_RawMalloc(tls, uint64(wlen)*uint64(2))
 						if wbuf == libc.UintptrFromInt32(0) {
@@ -2258,7 +2258,7 @@ func XPyOS_StdioReadline(tls *libc.TLS, sys_stdin uintptr, sys_stdout uintptr, p
 							XPyEval_SaveThread(tls)
 							return libc.UintptrFromInt32(0)
 						}
-						wlen = libc.XMultiByteToWideChar(tls, uint32(MCP_UTF8), uint32(0), prompt, -int32(1), wbuf, wlen)
+						wlen = _ccgo_MultiByteToWideChar(tls, uint32(MCP_UTF8), uint32(0), prompt, -int32(1), wbuf, wlen)
 						if wlen != 0 {
 							libc.Xfflush(tls, libc.X__acrt_iob_func(tls, uint32(2)))
 

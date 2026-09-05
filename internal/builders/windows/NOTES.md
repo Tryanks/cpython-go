@@ -294,3 +294,199 @@ below.
   one process at a time on both Windows runners. The wrapper records test
   count/outcome/crash/timeout, emits a Markdown job summary, and uploads every
   module log.
+
+## September 2026 Windows batch polish
+
+The starting point was run 33962400678: 38 of 71 selected modules were OK on
+both amd64 and arm64, with no Go panic. The failures that looked broad were
+mostly four shared runtime seams: Win32 LastError was being lost, wide CRT
+descriptors used narrow-path semantics, locale/time calls mixed Go and UCRT
+state, and unsupported signal input entered UCRT's invalid-parameter fail-fast
+handler.
+
+### CI feedback loop
+
+- Commits `4a29d2d` and `192af3f` added an optional comma-separated `tests`
+  workflow-dispatch input, qualified module/class/method selection in
+  `test_batch.go`, a 300-second per-target timeout, explicit closed stdin, and
+  safe selector log names. They also corrected the workflow to build the
+  current `stdlib/python314_tests.zip` format. Normal CI runs 33971443313 and
+  33971779041 passed.
+- Every test target still runs in its own process. A timeout kills the complete
+  process tree with `taskkill /T /F`; summaries and complete logs remain
+  per-architecture artifacts.
+
+### Root causes and targeted validation
+
+- Commit `dcdb9d3` gave routed file APIs an independent LastError channel.
+  Modernc stored many Win32 errors only in CRT errno, while CPython clears
+  errno before reading LastError. Run 33971998793 changed `test_pathlib` from
+  15 errors to OK, `test_os` from 18 failures/26 errors to 11 failures/21
+  errors, `test_shutil` from 6 errors to 3, and `test_codecs` from 8 errors to
+  1 on both architectures.
+- Commit `22f358a` delegated locale state and byte classification to UCRT while
+  retaining stable copied locale strings for CPython startup and restore.
+  Run 33972400158 made `test_re`, `test_pickle`, `test_locale`, and
+  `test_decimal` pass on both architectures. `test_time` was reduced to one
+  failure and one error; `test_socket` retained one missing-extension error.
+- Commit `cd17799` replaced the wide-open path with direct `CreateFileW`, added
+  UCRT-compatible Win32-to-CRT error mapping, tracked descriptor text/binary
+  state, filtered hidden drive environment entries, and normalized one layer
+  of syntactic spawn quoting. Run 33973019517 made `test_shutil`,
+  `test_tempfile`, `test_zipfile`, `test_importlib`, and `test_zipimport` pass
+  on both architectures. `test_os` retained only three tests importing absent
+  `_ctypes`; `test_codecs` retained only its `_ctypes` code-page probe.
+- Signal class run 33973021359 localized exit `0xc0000409` to
+  `RaiseSignalTest`. Method run 33973166248 proved that only
+  `RaiseSignalTest.test_invalid_argument` crashed on either architecture;
+  handler, SIGINT, and `_thread.interrupt_main` cases passed. Commit `d336473`
+  validates supported Windows signal numbers before calling UCRT. Run
+  33973388386 then passed all 57 applicable `test_signal` tests on both
+  architectures.
+- The mmap failures were stale-error false positives: CPython reads LastError
+  after successful `CreateFileMappingW`, but the prior wrapper left errno 2 or
+  1224 behind. The routed wrapper overwrites both error channels on every call.
+  Run 33973388386 passed all 51 applicable `test_mmap` tests on both
+  architectures.
+- `test_time` mixed Go timezone names/ranges with UCRT globals. Routing
+  `tzset`, 64-bit `mktime`, `localtime`/`gmtime`, and finally `strftime` to
+  UCRT made run 33973636346 pass all 64 applicable tests on amd64 and arm64.
+- Asyncio submodule run 33973670388 showed that no individual submodule hung:
+  all 34 selectors completed in about two minutes per architecture. The
+  process-wait failures and leaked-handle warnings all started at the deliberate
+  `_RegisterWaitForSingleObject` `ERROR_CALL_NOT_IMPLEMENTED` stub. Commit
+  `9647460` replaces it with a fixed native Go trampoline and opaque-token
+  dispatch to the translated one-shot callback, using callback-local libc TLS.
+  Run 33974289225 passed the three formerly failing submodules and the complete
+  2,509-test `test_asyncio` package on both architectures (2m08s amd64, 2m20s
+  arm64).
+- Budget run 33973417556 confirmed the 300-second limit. `test_statistics`
+  passed on both architectures; `test_hashlib` passed in 3m32s on amd64 but
+  still exceeded five minutes on arm64; `test_math` completed with ordinary
+  libm-accuracy failures. `test_io` still exceeded five minutes without
+  emitting a result. Qualified-class diagnostic run 33974733196 is not valid
+  timing evidence for `test_io`: direct class loading bypasses that module's
+  `load_tests` hook and its namespace injection, producing immediate fixture
+  `AttributeError`s. A future bisection must load the module first and filter
+  the resulting suite. The former `test_builtin` hang entered pdb at
+  `TestBreakpoint.test_envar_good_path_other`: wide `_wputenv` updated the live
+  process, but modernc's narrow `getenv` read a stale startup cache and ignored
+  `PYTHONBREAKPOINT=sys.exit`. Commit `a98943e` routes narrow `getenv` to the
+  same live environment. Run 33974657928 passed all 12 breakpoint tests and
+  the complete 147-test `test_builtin` module on both architectures.
+
+### Routed and implemented surface
+
+The sorted Windows route list gained `CreateDirectoryW`, `CreateFileMappingW`,
+`CreateFileW`, `DeleteFileW`, `FindClose`, `FindFirstFileW`, `FindNextFileW`,
+`GetFileAttributesExW`, `GetFileAttributesW`, `GetFileInformationByHandle`,
+`GetFileType`, `GetLastError`, `MultiByteToWideChar`, `RemoveDirectoryW`,
+`SetFileAttributesW`, `WideCharToMultiByte`, `_commit`, `_lseeki64`, `_setmode`,
+`_wstat64i32`, `close`, `getenv`, `isalnum`, `lseek`, `mktime`, `open`, `read`,
+`strftime`, `tolower`, `toupper`, `tzset`, and `write`.
+
+The matching calls were rewritten in every amd64 and arm64 shard. `_commit`
+also appears as a function value, so that reference was rewritten explicitly
+on both architectures. No CPython source/configuration input changed and no
+Docker regeneration was needed for these routing-only edits; both generated
+architectures were cross-compiled after each route group.
+
+### Full batch comparison
+
+Run 33974641629 tested commit `a98943e` with the 300-second limit. It finished
+with 55 of 71 modules OK on both architectures, up from 38 of 71 on each in
+run 33962400678. Seventeen modules became OK on each architecture and no
+previously passing module regressed. The workflow conclusion is failure by
+design whenever any table row is not OK; both jobs built, ran all 71 targets,
+published the table, and uploaded their artifacts.
+
+| Module | amd64 before | amd64 after | arm64 before | arm64 after |
+|---|---|---|---|---|
+| `test_int` | OK (skipped=5) | OK (skipped=5) | OK (skipped=5) | OK (skipped=5) |
+| `test_dict` | OK (skipped=1) | OK (skipped=1) | OK (skipped=1) | OK (skipped=1) |
+| `test_list` | OK (skipped=1) | OK (skipped=1) | OK (skipped=1) | OK (skipped=1) |
+| `test_grammar` | OK | OK | OK | OK |
+| `test_json` | OK (skipped=3) | OK (skipped=3) | OK (skipped=3) | OK (skipped=3) |
+| `test_re` | FAILED (failures=1, skipped=4) | OK (skipped=4) | FAILED (failures=1, skipped=4) | OK (skipped=4) |
+| `test_string` | OK | OK | OK | OK |
+| `test_float` | OK (skipped=2) | OK (skipped=1) | OK (skipped=2) | OK (skipped=1) |
+| `test_math` | TIMEOUT | FAILED (failures=2) | TIMEOUT | FAILED (failures=1, skipped=1) |
+| `test_set` | OK | OK | OK | OK |
+| `test_tuple` | OK | OK | OK | OK |
+| `test_itertools` | OK (skipped=8) | OK (skipped=8) | OK (skipped=8) | OK (skipped=8) |
+| `test_functools` | OK (skipped=1) | OK (skipped=1) | OK (skipped=1) | OK (skipped=1) |
+| `test_collections` | OK | OK | OK | OK |
+| `test_datetime` | OK (skipped=108) | OK (skipped=120) | OK (skipped=108) | OK (skipped=120) |
+| `test_os` | FAILED (failures=18, errors=26, skipped=137) | FAILED (errors=3, skipped=138) | FAILED (failures=17, errors=26, skipped=137) | FAILED (errors=3, skipped=137) |
+| `test_io` | TIMEOUT | TIMEOUT | TIMEOUT | CRASH: exit status 1 |
+| `test_pickle` | FAILED (errors=1, skipped=62) | OK (skipped=52) | FAILED (errors=1, skipped=62) | OK (skipped=52) |
+| `test_struct` | OK (skipped=2) | OK (skipped=2) | OK (skipped=2) | OK (skipped=2) |
+| `test_time` | FAILED (failures=1, errors=1, skipped=25) | OK (skipped=24) | FAILED (failures=1, errors=1, skipped=25) | OK (skipped=24) |
+| `test_hashlib` | TIMEOUT | OK (skipped=5) | TIMEOUT | TIMEOUT |
+| `test_random` | FAILED (errors=1, skipped=3) | FAILED (errors=1, skipped=3) | FAILED (errors=1, skipped=3) | FAILED (errors=1, skipped=3) |
+| `test_fractions` | OK | OK | OK | OK |
+| `test_enum` | OK (skipped=4) | OK (skipped=4) | OK (skipped=4) | OK (skipped=4) |
+| `test_dataclasses` | OK (skipped=1) | OK (skipped=1) | OK (skipped=1) | OK (skipped=1) |
+| `test_typing` | OK | OK | OK | OK |
+| `test_subprocess` | FAILED (errors=1) | FAILED (errors=1) | FAILED (errors=1) | FAILED (errors=1) |
+| `test_sys` | FAILED (failures=3, skipped=36) | FAILED (failures=3, skipped=36) | FAILED (failures=3, skipped=36) | FAILED (failures=3, skipped=36) |
+| `test_builtin` | TIMEOUT | OK (skipped=7) | TIMEOUT | OK (skipped=7) |
+| `test_exceptions` | OK (skipped=12) | OK (skipped=12) | OK (skipped=12) | OK (skipped=12) |
+| `test_generators` | OK (skipped=1) | OK (skipped=1) | OK (skipped=1) | OK (skipped=1) |
+| `test_gc` | OK (skipped=8) | OK (skipped=8) | OK (skipped=8) | OK (skipped=8) |
+| `test_weakref` | OK (skipped=2) | OK (skipped=2) | OK (skipped=2) | OK (skipped=2) |
+| `test_operator` | OK | OK | OK | OK |
+| `test_copy` | OK | OK | OK | OK |
+| `test_argparse` | OK | OK | OK | OK |
+| `test_logging` | FAILED (errors=5, skipped=21) | FAILED (errors=4, skipped=20) | FAILED (errors=5, skipped=21) | FAILED (errors=4, skipped=20) |
+| `test_csv` | OK (skipped=4) | OK (skipped=4) | OK (skipped=4) | OK (skipped=4) |
+| `test_codecs` | FAILED (errors=8, skipped=13) | FAILED (errors=1, skipped=11) | FAILED (errors=8, skipped=13) | FAILED (errors=1, skipped=11) |
+| `test_unittest` | FAILED (failures=1, skipped=50) | FAILED (failures=1, skipped=50) | FAILED (failures=1, skipped=50) | FAILED (failures=1, skipped=50) |
+| `test_sort` | OK | OK | OK | OK |
+| `test_long` | OK | OK | OK | OK |
+| `test_array` | OK (skipped=43) | OK (skipped=43) | OK (skipped=43) | OK (skipped=43) |
+| `test_memoryview` | OK (skipped=20) | OK (skipped=20) | OK (skipped=20) | OK (skipped=20) |
+| `test_zipimport` | FAILED (errors=1, skipped=43) | OK (skipped=4) | FAILED (errors=1, skipped=43) | OK (skipped=4) |
+| `test_importlib` | FAILED (errors=12, skipped=55) | OK (skipped=38) | FAILED (errors=12, skipped=55) | OK (skipped=38) |
+| `test_locale` | FAILED (errors=1, skipped=9) | OK (skipped=1) | FAILED (errors=1, skipped=9) | OK (skipped=1) |
+| `test_select` | OK (skipped=6) | OK (skipped=6) | OK (skipped=6) | OK (skipped=6) |
+| `test_mmap` | FAILED (errors=4, skipped=7) | OK (skipped=7) | TIMEOUT | OK (skipped=7) |
+| `test_threading` | FAILED (failures=1, skipped=28) | FAILED (failures=1, skipped=28) | FAILED (failures=1, skipped=28) | FAILED (failures=1, skipped=28) |
+| `test_socket` | FAILED (errors=2, skipped=510) | FAILED (errors=1, skipped=508) | FAILED (errors=2, skipped=510) | FAILED (errors=1, skipped=508) |
+| `test_signal` | CRASH: exit status 0xc0000409 | OK (skipped=43) | CRASH: exit status 0xc0000409 | OK (skipped=43) |
+| `test_asyncio` | TIMEOUT | OK (skipped=169) | TIMEOUT | OK (skipped=169) |
+| `test_statistics` | OK | OK | TIMEOUT | OK |
+| `test_decimal` | FAILED (errors=1, skipped=198) | OK (skipped=199) | FAILED (errors=1, skipped=198) | OK (skipped=199) |
+| `test_pathlib` | FAILED (errors=15, skipped=387) | OK (skipped=387) | FAILED (errors=15, skipped=387) | OK (skipped=387) |
+| `test_shutil` | FAILED (errors=6, skipped=69) | OK (skipped=57) | FAILED (errors=6, skipped=69) | OK (skipped=57) |
+| `test_tempfile` | FAILED (failures=5, errors=7, skipped=3) | OK (skipped=3) | FAILED (failures=5, errors=7, skipped=3) | OK (skipped=3) |
+| `test_zipfile` | FAILED (errors=3, skipped=155) | OK (skipped=102) | FAILED (errors=3, skipped=155) | OK (skipped=102) |
+| `test_email` | OK (skipped=6) | OK (skipped=6) | OK (skipped=6) | OK (skipped=6) |
+| `test_xml_etree` | OK (skipped=5) | OK (skipped=5) | OK (skipped=5) | OK (skipped=5) |
+| `test_queue` | OK (skipped=6) | OK (skipped=6) | OK (skipped=6) | OK (skipped=6) |
+| `test_inspect` | FAILED (failures=1, errors=1, skipped=8) | FAILED (failures=1, errors=1, skipped=8) | FAILED (failures=1, errors=1, skipped=8) | FAILED (failures=1, errors=1, skipped=8) |
+| `test_ast` | FAILED (failures=1, skipped=1) | FAILED (failures=1, skipped=1) | FAILED (failures=1, skipped=1) | FAILED (failures=1, skipped=1) |
+| `test_coroutines` | OK (skipped=3) | OK (skipped=3) | OK (skipped=3) | OK (skipped=3) |
+| `test_uuid` | OK (skipped=73) | OK (skipped=73) | OK (skipped=73) | OK (skipped=73) |
+| `test_winapi` | FAILED (errors=1) | OK | FAILED (errors=1) | OK |
+| `test_winreg` | FAILED (errors=1, skipped=4) | FAILED (errors=1, skipped=4) | OK (skipped=7) | OK (skipped=7) |
+| `test_winconsoleio` | FAILED (errors=1) | FAILED (errors=1) | FAILED (errors=1) | FAILED (errors=1) |
+| `test_winsound` | OK | OK | OK | OK |
+| `test_msvcrt` | FAILED (errors=1) | FAILED (errors=1) | FAILED (errors=1) | FAILED (errors=1) |
+
+The remaining failures group cleanly:
+
+- absent optional built-ins account for `_ctypes` in `test_os`,
+  `test_subprocess`, `test_codecs`, and `test_msvcrt`; `_multiprocessing` in
+  `test_logging` and `test_socket`; `_testcapi` in `test_threading`; and
+  `_testconsole` in `test_winconsoleio`;
+- resource/budget behavior accounts for `test_io` (amd64 timeout; arm64
+  `MemoryError` while formatting its first underlying error) and the arm64-only
+  `test_hashlib` timeout;
+- Go/libm numerical fidelity accounts for `test_math` and the mocked boundary
+  path in `test_random.gammavariate`;
+- packaged-stdlib/build-mode expectations account for `test_sys`,
+  `test_unittest`, and `test_inspect`; and
+- the deep AST recursion expectation and amd64 registry-reflection API remain
+  in `test_ast` and `test_winreg`, respectively. Arm64 skips the reflection
+  coverage and passes `test_winreg`.

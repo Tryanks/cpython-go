@@ -88748,7 +88748,7 @@ _2:
 	**(**uintptr)(__ccgo_up(bp)) = libc.UintptrFromInt32(0)
 	err = uint32(ierr)
 	if err == uint32(0) {
-		err = libc.XGetLastError(tls)
+		err = _ccgo_GetLastError(tls)
 	}
 	len1 = int32(libc.XFormatMessageW(tls, uint32(libc.Int32FromInt32(MFORMAT_MESSAGE_ALLOCATE_BUFFER)|libc.Int32FromInt32(MFORMAT_MESSAGE_FROM_SYSTEM)|libc.Int32FromInt32(MFORMAT_MESSAGE_IGNORE_INSERTS)), libc.UintptrFromInt32(0), err, uint32(int32(uint16(libc.Int32FromInt32(MSUBLANG_DEFAULT)))<<libc.Int32FromInt32(10)|int32(uint16(libc.Int32FromInt32(MLANG_NEUTRAL)))), bp, uint32(0), libc.UintptrFromInt32(0)))
 	if len1 == 0 {
@@ -88844,7 +88844,7 @@ func XPyErr_SetExcFromWindowsErrWithFilename(tls *libc.TLS, exc uintptr, ierr in
 	name = libc.UintptrFromInt32(0)
 	if filename != 0 {
 		if uint32(ierr) == uint32(0) {
-			ierr = int32(libc.XGetLastError(tls))
+			ierr = int32(_ccgo_GetLastError(tls))
 		}
 		name = XPyUnicode_DecodeFSDefault(tls, filename)
 		if name == libc.UintptrFromInt32(0) {
@@ -88888,7 +88888,7 @@ func XPyErr_SetFromWindowsErrWithFilename(tls *libc.TLS, ierr int32, filename ui
 	name = libc.UintptrFromInt32(0)
 	if filename != 0 {
 		if uint32(ierr) == uint32(0) {
-			ierr = int32(libc.XGetLastError(tls))
+			ierr = int32(_ccgo_GetLastError(tls))
 		}
 		name = XPyUnicode_DecodeFSDefault(tls, filename)
 		if name == libc.UintptrFromInt32(0) {
