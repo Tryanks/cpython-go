@@ -67197,15 +67197,15 @@ type TScannerObject = struct {
 }
 
 func _sre_isalnum(tls *libc.TLS, ch uint32) (r int32) {
-	return libc.Int32FromUint32(libc.Uint32FromInt32(libc.Xisalnum(tls, libc.Int32FromUint32(ch))))
+	return libc.Int32FromUint32(libc.Uint32FromInt32(_ccgo_isalnum(tls, libc.Int32FromUint32(ch))))
 }
 
 func _sre_tolower(tls *libc.TLS, ch uint32) (r uint32) {
-	return libc.Uint32FromInt32(libc.Xtolower(tls, libc.Int32FromUint32(ch)))
+	return libc.Uint32FromInt32(_ccgo_tolower(tls, libc.Int32FromUint32(ch)))
 }
 
 func _sre_toupper(tls *libc.TLS, ch uint32) (r uint32) {
-	return libc.Uint32FromInt32(libc.Xtoupper(tls, libc.Int32FromUint32(ch)))
+	return libc.Uint32FromInt32(_ccgo_toupper(tls, libc.Int32FromUint32(ch)))
 }
 
 func _sre_lower_ascii(tls *libc.TLS, ch uint32) (r uint32) {

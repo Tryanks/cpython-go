@@ -8426,7 +8426,7 @@ func __locale_setlocale_impl(tls *libc.TLS, module uintptr, category int32, loca
 	_, _ = result, result_object
 	if locale != 0 {
 
-		result = libc.Xsetlocale(tls, category, locale)
+		result = _ccgo_setlocale(tls, category, locale)
 		if !(result != 0) {
 
 			XPyErr_SetString(tls, (*T_locale_state)(unsafe.Pointer(_get_locale_state(tls, module))).FError, __ccgo_ts+281500)
@@ -8438,7 +8438,7 @@ func __locale_setlocale_impl(tls *libc.TLS, module uintptr, category int32, loca
 		}
 	} else {
 
-		result = libc.Xsetlocale(tls, category, libc.UintptrFromInt32(0))
+		result = _ccgo_setlocale(tls, category, libc.UintptrFromInt32(0))
 		if !(result != 0) {
 			XPyErr_SetString(tls, (*T_locale_state)(unsafe.Pointer(_get_locale_state(tls, module))).FError, __ccgo_ts+281527)
 			return libc.UintptrFromInt32(0)
@@ -8478,7 +8478,7 @@ func _locale_decode_monetary(tls *libc.TLS, dict uintptr, lc uintptr) (r int32) 
 	oldloc = libc.UintptrFromInt32(0)
 	loc = libc.UintptrFromInt32(0)
 	if change_locale != 0 {
-		oldloc = libc.Xsetlocale(tls, MLC_CTYPE, libc.UintptrFromInt32(0))
+		oldloc = _ccgo_setlocale(tls, MLC_CTYPE, libc.UintptrFromInt32(0))
 		if !(oldloc != 0) {
 			XPyErr_SetString(tls, XPyExc_RuntimeWarning, __ccgo_ts+174668)
 			return -int32(1)
@@ -8488,13 +8488,13 @@ func _locale_decode_monetary(tls *libc.TLS, dict uintptr, lc uintptr) (r int32) 
 			XPyErr_NoMemory(tls)
 			return -int32(1)
 		}
-		loc = libc.Xsetlocale(tls, int32(MLC_MONETARY), libc.UintptrFromInt32(0))
+		loc = _ccgo_setlocale(tls, int32(MLC_MONETARY), libc.UintptrFromInt32(0))
 		if loc != libc.UintptrFromInt32(0) && libc.Xstrcmp(tls, loc, oldloc) == 0 {
 			loc = libc.UintptrFromInt32(0)
 		}
 		if loc != libc.UintptrFromInt32(0) {
 
-			libc.Xsetlocale(tls, MLC_CTYPE, loc)
+			_ccgo_setlocale(tls, MLC_CTYPE, loc)
 		}
 	}
 	res = -int32(1)
@@ -8651,7 +8651,7 @@ _46:
 done:
 	;
 	if loc != libc.UintptrFromInt32(0) {
-		libc.Xsetlocale(tls, MLC_CTYPE, oldloc)
+		_ccgo_setlocale(tls, MLC_CTYPE, oldloc)
 	}
 	XPyMem_Free(tls, oldloc)
 	return res
@@ -9705,7 +9705,7 @@ func _change_locale(tls *libc.TLS, category int32, oldloc uintptr) (r int32) {
 	var loc uintptr
 	_ = loc
 
-	**(**uintptr)(__ccgo_up(oldloc)) = libc.Xsetlocale(tls, MLC_CTYPE, libc.UintptrFromInt32(0))
+	**(**uintptr)(__ccgo_up(oldloc)) = _ccgo_setlocale(tls, MLC_CTYPE, libc.UintptrFromInt32(0))
 	if !(**(**uintptr)(__ccgo_up(oldloc)) != 0) {
 		XPyErr_SetString(tls, XPyExc_RuntimeError, __ccgo_ts+174668)
 		return -int32(1)
@@ -9716,13 +9716,13 @@ func _change_locale(tls *libc.TLS, category int32, oldloc uintptr) (r int32) {
 		return -int32(1)
 	}
 
-	loc = libc.Xsetlocale(tls, category, libc.UintptrFromInt32(0))
+	loc = _ccgo_setlocale(tls, category, libc.UintptrFromInt32(0))
 	if loc == libc.UintptrFromInt32(0) || libc.Xstrcmp(tls, loc, **(**uintptr)(__ccgo_up(oldloc))) == 0 {
 		XPyMem_Free(tls, **(**uintptr)(__ccgo_up(oldloc)))
 		**(**uintptr)(__ccgo_up(oldloc)) = libc.UintptrFromInt32(0)
 		return 0
 	}
-	libc.Xsetlocale(tls, MLC_CTYPE, loc)
+	_ccgo_setlocale(tls, MLC_CTYPE, loc)
 	return int32(1)
 }
 
@@ -9731,7 +9731,7 @@ func _change_locale(tls *libc.TLS, category int32, oldloc uintptr) (r int32) {
 //	/* Restore the old LC_CTYPE locale. */
 func _restore_locale(tls *libc.TLS, oldloc uintptr) {
 	if oldloc != libc.UintptrFromInt32(0) {
-		libc.Xsetlocale(tls, MLC_CTYPE, oldloc)
+		_ccgo_setlocale(tls, MLC_CTYPE, oldloc)
 		XPyMem_Free(tls, oldloc)
 	}
 }

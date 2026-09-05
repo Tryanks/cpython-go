@@ -23,23 +23,6 @@ import (
 	"modernc.org/libc/errno"
 )
 
-func wideLen(p uintptr) uint64 {
-	for n := uint64(0); ; n++ {
-		if *(*int32)(unsafe.Pointer(p + uintptr(n)*4)) == 0 {
-			return n
-		}
-	}
-}
-
-func wideRunes(p uintptr) []rune {
-	n := wideLen(p)
-	r := make([]rune, n)
-	for i := range r {
-		r[i] = rune(*(*int32)(unsafe.Pointer(p + uintptr(i)*4)))
-	}
-	return r
-}
-
 func cStrings(p uintptr) []string {
 	var r []string
 	for ; ; p += 8 {

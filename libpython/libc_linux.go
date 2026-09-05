@@ -7,9 +7,11 @@ package libpython
 import (
 	"fmt"
 	"os"
+	"strings"
 	"sync"
 	"syscall"
 	"time"
+	"unicode"
 	"unsafe"
 
 	"golang.org/x/sys/unix"
@@ -28,6 +30,86 @@ func linuxErrno(tls *libc.TLS, err error) int32 {
 		*(*int32)(unsafe.Pointer(libc.X__errno_location(tls))) = int32(e)
 	}
 	return -1
+}
+
+var (
+	linuxLocaleMu      sync.Mutex
+	linuxLocaleNames   = [7]string{"C", "C", "C", "C", "C", "C", "C"}
+	linuxLocaleStrings = map[string]uintptr{}
+)
+
+func linuxLocaleCString(s string) uintptr {
+	if p := linuxLocaleStrings[s]; p != 0 {
+		return p
+	}
+	p, _ := libc.CString(s)
+	linuxLocaleStrings[s] = p
+	return p
+}
+
+func linuxLocaleSupported(name string) bool {
+	u := strings.ToUpper(name)
+	return name == "C" || name == "POSIX" || u == "UTF-8" ||
+		strings.HasSuffix(u, ".UTF-8") || strings.HasSuffix(u, ".UTF8") ||
+		strings.HasSuffix(u, ".ISO8859-1") || strings.HasSuffix(u, ".ISO88591")
+}
+
+func _ccgo_setlocale(tls *libc.TLS, category int32, locale uintptr) uintptr {
+	if category < 0 || category >= int32(len(linuxLocaleNames)) {
+		setErrno(tls, int32(errno.EINVAL))
+		return 0
+	}
+	linuxLocaleMu.Lock()
+	defer linuxLocaleMu.Unlock()
+	if locale == 0 {
+		return linuxLocaleCString(linuxLocaleNames[category])
+	}
+	name := libc.GoString(locale)
+	if name == "" {
+		name = "en_US.UTF-8"
+	}
+	if !linuxLocaleSupported(name) {
+		return 0
+	}
+	if name == "POSIX" {
+		name = "C"
+	}
+	if category == 6 { // Linux LC_ALL
+		for i := range linuxLocaleNames {
+			linuxLocaleNames[i] = name
+		}
+	} else {
+		linuxLocaleNames[category] = name
+	}
+	return linuxLocaleCString(name)
+}
+
+func linuxLatin1CType() bool {
+	linuxLocaleMu.Lock()
+	defer linuxLocaleMu.Unlock()
+	u := strings.ToUpper(linuxLocaleNames[0]) // Linux LC_CTYPE
+	return strings.HasSuffix(u, ".ISO8859-1") || strings.HasSuffix(u, ".ISO88591")
+}
+
+func _ccgo_isalnum(tls *libc.TLS, c int32) int32 {
+	if linuxLatin1CType() && c >= 0 && c <= 255 && (unicode.IsLetter(rune(c)) || unicode.IsDigit(rune(c))) {
+		return 1
+	}
+	return libc.Xisalnum(tls, c)
+}
+
+func _ccgo_tolower(tls *libc.TLS, c int32) int32 {
+	if linuxLatin1CType() && c >= 0 && c <= 255 {
+		return int32(unicode.ToLower(rune(c)))
+	}
+	return libc.Xtolower(tls, c)
+}
+
+func _ccgo_toupper(tls *libc.TLS, c int32) int32 {
+	if linuxLatin1CType() && c >= 0 && c <= 255 {
+		return int32(unicode.ToUpper(rune(c)))
+	}
+	return libc.Xtoupper(tls, c)
 }
 
 func _seteuid(tls *libc.TLS, uid uint32) int32 { return linuxErrno(tls, syscall.Seteuid(int(uid))) }

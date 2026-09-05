@@ -14,6 +14,23 @@ import (
 	"modernc.org/libc"
 )
 
+func wideLen(p uintptr) uint64 {
+	for n := uint64(0); ; n++ {
+		if *(*int32)(unsafe.Pointer(p + uintptr(n)*4)) == 0 {
+			return n
+		}
+	}
+}
+
+func wideRunes(p uintptr) []rune {
+	n := wideLen(p)
+	r := make([]rune, n)
+	for i := range r {
+		r[i] = rune(*(*int32)(unsafe.Pointer(p + uintptr(i)*4)))
+	}
+	return r
+}
+
 // localeCollationKey approximates en_US.UTF-8 collation in three levels:
 // base letters (case-insensitive), accents, then case.  Its decomposition
 // table intentionally stops at Latin-1 and Latin Extended-A; characters
