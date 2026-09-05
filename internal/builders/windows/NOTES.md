@@ -170,6 +170,12 @@ below.
   `_ccgo_frame_address` reports positions in the virtual modernc TLS stack;
   those disjoint ranges disabled the guard. `_GetCurrentThreadStackLimits`
   now publishes the matching virtual 8 MiB range, with a deep-JSON CI smoke.
+- The next complete batch showed that 26 apparent module crashes shared one
+  child-process startup bug in modernc's `Xwcsncmp`: `-X faulthandler` compares
+  a four-code-unit option with a 12-code-unit prefix and modernc sliced both
+  strings to 12. The routed comparison follows C bounds semantics. The batch's
+  only remaining `TODOTODO` was modernc's `%c` scanf conversion in CPython's
+  fixed Bluetooth-address parser; that sole `sscanf` call is routed as well.
 
 - Run 33949767829 (`main`): the executable built, then `print(45)` failed in
   `_PyPreConfig_Read` because modernc's Windows `Xsetlocale` always returned

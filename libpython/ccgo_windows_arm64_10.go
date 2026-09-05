@@ -16611,7 +16611,7 @@ func __winapi_CreateJunction_impl(tls *libc.TLS, module uintptr, src_path TLPCWS
 	if src_path == libc.UintptrFromInt32(0) || dst_path == libc.UintptrFromInt32(0) {
 		return XPyErr_SetFromWindowsErr(tls, int32(87))
 	}
-	if libc.Xwcsncmp(tls, src_path, __ccgo_ts+238864, uint64(prefix_len)) == 0 {
+	if _ccgo_wcsncmp(tls, src_path, __ccgo_ts+238864, uint64(prefix_len)) == 0 {
 		return XPyErr_SetFromWindowsErr(tls, int32(87))
 	}
 	if XPySys_Audit(tls, __ccgo_ts+275715, __ccgo_ts+275738, libc.VaList(bp+152, src_path, dst_path)) < 0 {
@@ -25711,7 +25711,7 @@ func _getpath_realpath(tls *libc.TLS, _unused_self uintptr, args uintptr) (r uin
 	} else {
 		if len1 <= int32(MMAXPATHLEN) {
 			p = bp + 8
-			if 0 == libc.Xwcsncmp(tls, p, __ccgo_ts+156520, uint64(4)) {
+			if 0 == _ccgo_wcsncmp(tls, p, __ccgo_ts+156520, uint64(4)) {
 				if libc.XGetFileAttributesW(tls, p+4*2) != uint32(-libc.Int32FromInt32(1)) {
 					p = p + uintptr(4)*2
 					len1 = len1 - int32(4)

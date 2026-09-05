@@ -488,6 +488,7 @@ var shimmedLibc = map[string][]string{"windows": {
 	"snprintf",
 	"socket",
 	"sprintf",
+	"sscanf",
 	"strncat",
 	"time",
 	"umask",
@@ -496,6 +497,7 @@ var shimmedLibc = map[string][]string{"windows": {
 	"vsnprintf",
 	"vsprintf",
 	"wcschr",
+	"wcsncmp",
 	"wcstombs",
 }, "darwin": {
 	"__builtin___snprintf_chk",

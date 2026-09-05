@@ -25,6 +25,9 @@ than claims of complete Windows compatibility.
 - `mbstowcs` — real for the routed fixed locale: strict UTF-8 to UTF-16 conversion, including sizing and bounded output.
 - `wcstombs` — real for the routed fixed locale: strict UTF-16 to UTF-8 conversion without splitting a multibyte output sequence.
 - `wcschr` — real, routed: returns the address of a requested UTF-16 code unit, including the terminating null (modernc incorrectly returned null when searching for `L'\0'`).
+- `wcsncmp` — real, routed: compares at most the requested UTF-16 code units,
+  stopping at the terminator without slicing either input past its length.
+  This fixes child startup with short `-X` options.
 - `___daylight` — real: returns UCRT's `_daylight` storage through `__daylight`.
 - `___doserrno` — real: returns UCRT's per-thread DOS-error storage through `__doserrno`.
 - `___sys_errlist` — real: returns UCRT's error-string table through `__sys_errlist`.
@@ -91,6 +94,9 @@ than claims of complete Windows compatibility.
   Windows 64-bit `time_t` result.
 - `ungetc` — real for modernc's unbuffered streams, routed: rewinds the stream
   by one byte, which covers CPython's tokenizer encoding probe.
+- `sscanf` — real for the generated Windows call, routed: parses CPython's
+  `%X:%X:%X:%X:%X:%X%c` Bluetooth-address format and rejects trailing input
+  without entering modernc's unsupported `%c` conversion.
 - `_strncat` — real: appends at most `n` bytes and always writes the required terminator for valid C inputs.
 - `_strnicmp` — real: forwards to UCRT `_strnicmp`.
 - `_swprintf` — partial: consumes the ccgo `va_list` through the shared C formatter and writes UTF-16; CPython's current `cp%u` call is covered, but the formatter does not implement every Microsoft wide-printf extension.

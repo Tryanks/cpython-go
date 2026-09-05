@@ -76225,7 +76225,7 @@ func _setbdaddr(tls *libc.TLS, name uintptr, bdaddr uintptr) (r int32) {
 	var _ uint32
 	var _ int8
 	_ = n
-	n = libc.Xsscanf(tls, name, __ccgo_ts+225197, libc.VaList(bp+40, bp+20, bp+16, bp+12, bp+8, bp+4, bp, bp+24))
+	n = _ccgo_sscanf(tls, name, __ccgo_ts+225197, libc.VaList(bp+40, bp+20, bp+16, bp+12, bp+8, bp+4, bp, bp+24))
 	if n == int32(6) && **(**uint32)(__ccgo_up(bp))|**(**uint32)(__ccgo_up(bp + 4))|**(**uint32)(__ccgo_up(bp + 8))|**(**uint32)(__ccgo_up(bp + 12))|**(**uint32)(__ccgo_up(bp + 16))|**(**uint32)(__ccgo_up(bp + 20)) < uint32(256) {
 		**(**Tbdaddr_t)(__ccgo_up(bdaddr)) = uint64(**(**uint32)(__ccgo_up(bp)) & libc.Uint32FromInt32(0xFF))
 		**(**Tbdaddr_t)(__ccgo_up(bdaddr)) |= uint64(**(**uint32)(__ccgo_up(bp + 4))&libc.Uint32FromInt32(0xFF)) << libc.Int32FromInt32(8)
@@ -101088,7 +101088,7 @@ func _win32_wchdir(tls *libc.TLS, path TLPCWSTR) (r TBOOL) {
 			return MFALSE
 		}
 	}
-	is_unc_like_path = libc.BoolInt32(libc.Xwcsncmp(tls, new_path, __ccgo_ts+236244, uint64(2)) == 0 || libc.Xwcsncmp(tls, new_path, __ccgo_ts+236250, uint64(2)) == 0)
+	is_unc_like_path = libc.BoolInt32(_ccgo_wcsncmp(tls, new_path, __ccgo_ts+236244, uint64(2)) == 0 || _ccgo_wcsncmp(tls, new_path, __ccgo_ts+236250, uint64(2)) == 0)
 	if !(is_unc_like_path != 0) {
 		(**(**[4]Twchar_t)(__ccgo_up(bp + 520)))[int32(1)] = **(**Twchar_t)(__ccgo_up(new_path))
 		result = _SetEnvironmentVariableW(tls, bp+520, new_path)
@@ -107563,7 +107563,7 @@ func _os_readlink_impl(tls *libc.TLS, module uintptr, path uintptr, dir_fd int32
 		}
 	}
 	if name != 0 {
-		if nameLen > int64(4) && libc.Xwcsncmp(tls, name, __ccgo_ts+238863, uint64(4)) == 0 {
+		if nameLen > int64(4) && _ccgo_wcsncmp(tls, name, __ccgo_ts+238863, uint64(4)) == 0 {
 
 			**(**Twchar_t)(__ccgo_up(name + 1*2)) = uint16('\\')
 		}

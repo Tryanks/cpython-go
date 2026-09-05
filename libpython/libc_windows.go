@@ -3,6 +3,7 @@
 package libpython
 
 import (
+	"fmt"
 	"math"
 	"math/bits"
 	"os"
@@ -333,6 +334,24 @@ func _ccgo_wcschr(tls *libc.TLS, src uintptr, value uint16) uintptr {
 		}
 		src += 2
 	}
+}
+
+func _ccgo_wcsncmp(tls *libc.TLS, left, right uintptr, count uint64) int32 {
+	for index := uint64(0); index < count; index++ {
+		offset := uintptr(index * 2)
+		leftValue := *(*uint16)(unsafe.Pointer(left + offset))
+		rightValue := *(*uint16)(unsafe.Pointer(right + offset))
+		if leftValue < rightValue {
+			return -1
+		}
+		if leftValue > rightValue {
+			return 1
+		}
+		if leftValue == 0 {
+			return 0
+		}
+	}
+	return 0
 }
 
 // CPython's tokenizer uses a single-byte pushback after probing source
@@ -2674,6 +2693,35 @@ func _ccgo_shutdown(tls *libc.TLS, socket uint64, how int32) int32 {
 		return socketError
 	}
 	return 0
+}
+
+func _ccgo_sscanf(tls *libc.TLS, input, format, args uintptr) int32 {
+	// This is the sole sscanf call in the generated Windows archive. CPython
+	// uses it to parse a six-byte Bluetooth address and a seventh conversion
+	// to reject trailing input. modernc's scanner panics on the final %c.
+	if libc.GoString(format) != "%X:%X:%X:%X:%X:%X%c" {
+		setErrno(tls, int32(errno.EINVAL))
+		return 0
+	}
+	var values [6]uint32
+	var trailing rune
+	converted, _ := fmt.Sscanf(
+		libc.GoString(input),
+		"%X:%X:%X:%X:%X:%X%c",
+		&values[0], &values[1], &values[2],
+		&values[3], &values[4], &values[5], &trailing,
+	)
+	for index := range values {
+		destination := libc.VaUintptr(&args)
+		if index < converted {
+			*(*uint32)(unsafe.Pointer(destination)) = values[index]
+		}
+	}
+	trailingDestination := libc.VaUintptr(&args)
+	if converted == 7 {
+		*(*int8)(unsafe.Pointer(trailingDestination)) = int8(trailing)
+	}
+	return int32(converted)
 }
 
 func _ccgo_getsockopt(tls *libc.TLS, socket uint64, level, option int32, value, valueLength uintptr) int32 {

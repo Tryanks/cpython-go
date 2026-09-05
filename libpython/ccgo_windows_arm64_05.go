@@ -71782,7 +71782,7 @@ func X_Py_get_xoption(tls *libc.TLS, xoptions uintptr, name uintptr) (r uintptr)
 		} else {
 			len1 = libc.Xwcslen(tls, option)
 		}
-		if libc.Xwcsncmp(tls, option, name, len1) == 0 && int32(**(**Twchar_t)(__ccgo_up(name + uintptr(len1)*2))) == int32('\000') {
+		if _ccgo_wcsncmp(tls, option, name, len1) == 0 && int32(**(**Twchar_t)(__ccgo_up(name + uintptr(len1)*2))) == int32('\000') {
 			return option
 		}
 		goto _1

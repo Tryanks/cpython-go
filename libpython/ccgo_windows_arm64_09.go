@@ -2426,7 +2426,7 @@ var _DirEntryType_spec = TPyType_Spec{
 }
 
 func _is_extended_path(tls *libc.TLS, path uintptr) (r int32) {
-	return libc.BoolInt32(libc.Xwcsncmp(tls, path, __ccgo_ts+156520, uint64(4)) == 0)
+	return libc.BoolInt32(_ccgo_wcsncmp(tls, path, __ccgo_ts+156520, uint64(4)) == 0)
 }
 
 func _join_path_filenameW(tls *libc.TLS, path_wide uintptr, filename uintptr, normalize int32) (r uintptr) {
