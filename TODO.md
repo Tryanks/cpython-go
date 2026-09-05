@@ -5,9 +5,11 @@ is parked here.
 
 ## Platforms
 
-- windows/amd64, windows/arm64 — in progress, see docs/windows.md
-  (llvm-mingw cross generation from a Linux container + MSYS2 patch set +
-  a Win32 supplement in libpython/libc_windows.go).
+- windows: amd64 runs (CI-validated smoke: threads, subprocess, hashlib,
+  pickle, unittest); arm64 is generated and cross-builds, pending hardware
+  validation. Missing: Winsock (modernc TODOs), native .pyd loading
+  (GetProcAddress cannot produce ccgo function pointers), full locale
+  emulation. See docs/windows.md and internal/builders/windows/RUNTIME.md.
 - linux/386, linux/arm, linux/ppc64le, linux/riscv64, linux/s390x — parked.
   `internal/builders/linux/run.sh <arch>` generates them under qemu-user
   (works for all but loong64, which has no container image); expect hours per

@@ -69,10 +69,14 @@ go run ./cmd/cpython-go -c 'import json, re, os; print(json.dumps({"a": [1, 2]})
   possible under the Go runtime: subprocess uses syscall.ForkExec
   (libpython/fork_exec.go); os.fork raises. Modules needing external C
   libraries are not built.
-- Platform scope: darwin, linux, windows × amd64, arm64. darwin/{arm64,amd64}
-  and linux/{amd64,arm64} are generated (Linux via OrbStack containers,
-  internal/builders/linux/run.sh); windows is next. Everything else is parked
-  in TODO.md.
+- Platform scope: darwin, linux, windows × amd64, arm64 — all six generated.
+  Linux via OrbStack containers (internal/builders/linux/run.sh); Windows via
+  an llvm-mingw container (internal/builders/windows/run.sh --ccgo <arch>)
+  with the MSYS2 mingw patch set; windows/amd64 runtime validated on GitHub
+  Actions. Everything else is parked in TODO.md.
+- A ccgo miscompilation (by-value union parameter returned after modifying a
+  member) leaked one reference per returned local; worked around in
+  PyStackRef_MakeHeapSafe (docs/refleak.md).
 
 ## Milestone 2
 

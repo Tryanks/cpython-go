@@ -14,15 +14,16 @@ Not built: modules that need external C libraries (`zlib`, `_ssl`, `_sqlite3`,
 `readline`, `_curses`, `_tkinter`); `os.fork` (impossible under the Go
 runtime; `subprocess` works via `syscall.ForkExec`).
 
-| GOOS/GOARCH   | Generated | Smoke tests | CPython test suite |
-|---------------|-----------|-------------|--------------------|
-| darwin/arm64  | yes       | yes         | most modules pass  |
-| darwin/amd64  | yes       | yes         | not run yet        |
-| linux/amd64   | yes       | yes         | not run yet        |
-| linux/arm64   | yes       | yes         | most modules pass  |
-| windows/amd64, windows/arm64 | planned (see TODO.md) | | |
+| GOOS/GOARCH   | Generated | Smoke tests (CI) | CPython test suite |
+|---------------|-----------|------------------|--------------------|
+| darwin/arm64  | yes       | yes              | most modules pass  |
+| darwin/amd64  | yes       | yes (local)      | most modules pass  |
+| linux/amd64   | yes       | yes              | not run yet        |
+| linux/arm64   | yes       | yes              | 43 of 72 modules fully pass |
+| windows/amd64 | yes       | yes              | in progress        |
+| windows/arm64 | yes       | experimental CI job | not run yet     |
 
-Other architectures and FreeBSD are parked; see TODO.md.
+Other architectures are parked; see TODO.md. Windows details: docs/windows.md.
 
 ## Use
 
