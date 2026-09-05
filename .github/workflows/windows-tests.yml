@@ -40,7 +40,7 @@ jobs:
             Get-ChildItem internal/stdlib-extra/*.py
             Get-ChildItem stdlib/sysconfigdata/*.py
           ) | ForEach-Object { $_.FullName }
-          go run ./internal/cmd/mkstdlib -tests -o stdlib/python314_tests.zip.gz cpython-3.14.7/Lib @extra
+          go run ./internal/cmd/mkstdlib -tests -o stdlib/python314_tests.zip cpython-3.14.7/Lib @extra
       - name: Build test interpreter
         run: go build -tags cpython_test -o cpython-go-tests.exe ./cmd/cpython-go
       - name: Run CPython unittest batch
