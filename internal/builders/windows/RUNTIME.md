@@ -44,6 +44,8 @@ to native callback/function-pointer boundaries.
 - `__wexecve` — partial by platform: same spawn/wait/exit ceiling as `__wexecv`, with the supplied environment.
 - `__wfopen` — real: converts UTF-16 to a Go/UTF-8 path and uses `libc.Xfopen`, preserving modernc's `FILE` and descriptor tables.
 - `__wgetcwd` — real: writes or allocates a NUL-terminated UTF-16 working directory; short buffers report `ERANGE`.
+- `_wgetenv` — real, routed: reads Go's live process environment and returns stable UTF-16 storage.
+- `_wopen` — real, routed: converts the UTF-16 path before entering modernc's narrow open and private descriptor table.
 - `__wputenv_s` — partial: validates the UCRT contract and updates Go's process environment, which interoperates with modernc; it does not update a separately cached UCRT `_wenviron` array.
 - `__wspawnv` — partial: implements `_P_WAIT`, `_P_NOWAIT`, `_P_NOWAITO`, `_P_OVERLAY`, and `_P_DETACH` with `os/exec`; asynchronous results are synthetic handles understood by `__cwait`.
 - `__wspawnve` — partial: same mode/handle ceiling as `__wspawnv`, with the supplied environment.
@@ -239,8 +241,8 @@ to native callback/function-pointer boundaries.
 
 ## pathcch.dll, bcrypt.dll, and winmm.dll
 
-- `_PathCchCombineEx` — real: direct call returning HRESULT and writing the UTF-16 output buffer.
-- `_PathCchSkipRoot` — real: direct call returning HRESULT and writing a pointer into the input path.
+- `_PathCchCombineEx` — partial: pure-Go Windows path joining and cleaning with HRESULT/buffer behavior; `PATHCCH_ALLOW_LONG_PATHS` is accepted, while uncommon PathCch flags are ignored.
+- `_PathCchSkipRoot` — real for drive, rooted, UNC, and extended-device paths: pure-Go root parsing writes a pointer into the input path and avoids a runtime `pathcch.dll` dependency.
 - `_BCryptGenRandom` — real: direct call returning NTSTATUS.
 - `_PlaySoundW` — real: direct call with LastError propagation on failure.
 

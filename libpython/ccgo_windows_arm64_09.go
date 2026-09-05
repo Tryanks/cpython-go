@@ -34341,7 +34341,7 @@ _5:
 		if opener == uintptr(unsafe.Pointer(&X_Py_NoneStruct)) {
 			for {
 				_save = XPyEval_SaveThread(tls)
-				(*Tfileio)(unsafe.Pointer(self)).Ffd = libc.X_wopen(tls, widename, flags1, libc.VaList(bp+16, int32(0666)))
+				(*Tfileio)(unsafe.Pointer(self)).Ffd = _ccgo__wopen(tls, widename, flags1, libc.VaList(bp+16, int32(0666)))
 				XPyEval_RestoreThread(tls, _save)
 				goto _19
 			_19:

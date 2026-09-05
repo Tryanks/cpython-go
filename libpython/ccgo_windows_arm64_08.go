@@ -100848,7 +100848,7 @@ func _convertenviron(tls *libc.TLS) (r uintptr) {
 		return libc.UintptrFromInt32(0)
 	}
 
-	libc.X_wgetenv(tls, __ccgo_ts+148384)
+	_ccgo__wgetenv(tls, __ccgo_ts+148384)
 	e = **(**uintptr)(__ccgo_up(libc.X__p__wenviron(tls)))
 	if e == libc.UintptrFromInt32(0) {
 		return d
@@ -107939,7 +107939,7 @@ func _os_open_impl(tls *libc.TLS, module uintptr, path uintptr, flags int32, mod
 	}
 	for {
 		_save = XPyEval_SaveThread(tls)
-		fd = libc.X_wopen(tls, (*Tpath_t)(unsafe.Pointer(path)).Fwide, flags, libc.VaList(bp+8, mode))
+		fd = _ccgo__wopen(tls, (*Tpath_t)(unsafe.Pointer(path)).Fwide, flags, libc.VaList(bp+8, mode))
 		XPyEval_RestoreThread(tls, _save)
 		goto _3
 	_3:
@@ -108231,7 +108231,7 @@ func _os_truncate_impl(tls *libc.TLS, module uintptr, path uintptr, length TPy_o
 		return libc.UintptrFromInt32(0)
 	}
 	_save = XPyEval_SaveThread(tls)
-	fd = libc.X_wopen(tls, (*Tpath_t)(unsafe.Pointer(path)).Fwide, libc.Int32FromInt32(M_O_WRONLY)|libc.Int32FromInt32(M_O_BINARY)|libc.Int32FromInt32(M_O_NOINHERIT), 0)
+	fd = _ccgo__wopen(tls, (*Tpath_t)(unsafe.Pointer(path)).Fwide, libc.Int32FromInt32(M_O_WRONLY)|libc.Int32FromInt32(M_O_BINARY)|libc.Int32FromInt32(M_O_NOINHERIT), 0)
 	if fd < 0 {
 		result = -int32(1)
 	} else {

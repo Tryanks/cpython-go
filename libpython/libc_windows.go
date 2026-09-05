@@ -7,6 +7,7 @@ import (
 	"math/bits"
 	"os"
 	"os/exec"
+	"path/filepath"
 	"strings"
 	"sync"
 	"sync/atomic"
@@ -36,7 +37,6 @@ var (
 	dllWS2      = windows.NewLazySystemDLL("ws2_32.dll")
 	dllIPHlp    = windows.NewLazySystemDLL("iphlpapi.dll")
 	dllRPCRT4   = windows.NewLazySystemDLL("rpcrt4.dll")
-	dllPathCch  = windows.NewLazySystemDLL("pathcch.dll")
 	dllBCrypt   = windows.NewLazySystemDLL("bcrypt.dll")
 	dllWinMM    = windows.NewLazySystemDLL("winmm.dll")
 	dllUCRT     = windows.NewLazySystemDLL("ucrtbase.dll")
@@ -321,6 +321,62 @@ func _ccgo_wcstombs(tls *libc.TLS, dst, src uintptr, limit uint64) uint64 {
 func _ccgo_OutputDebugStringW(tls *libc.TLS, text uintptr) {
 	// Debugger output is advisory. Avoid modernc's TODO panic while keeping
 	// fatal-error reporting on the process' real stderr intact.
+}
+
+var (
+	windowsWideStringMu    sync.Mutex
+	windowsWideStringCache = map[string]uintptr{}
+)
+
+func windowsStableWideString(tls *libc.TLS, value string) uintptr {
+	windowsWideStringMu.Lock()
+	defer windowsWideStringMu.Unlock()
+	if p := windowsWideStringCache[value]; p != 0 {
+		return p
+	}
+	encoded := utf16.Encode([]rune(value))
+	p := libc.Xmalloc(tls, uint64((len(encoded)+1)*2))
+	if p == 0 {
+		setErrno(tls, int32(errno.ENOMEM))
+		return 0
+	}
+	if len(encoded) != 0 {
+		copy(unsafe.Slice((*uint16)(unsafe.Pointer(p)), len(encoded)), encoded)
+	}
+	*(*uint16)(unsafe.Pointer(p + uintptr(len(encoded))*2)) = 0
+	windowsWideStringCache[value] = p
+	return p
+}
+
+// modernc's cached wide environment drops its final entry and does not track
+// Go-side Setenv calls. Use the process environment and return stable CRT-like
+// storage instead.
+func _ccgo__wgetenv(tls *libc.TLS, name uintptr) uintptr {
+	if name == 0 {
+		return 0
+	}
+	value, ok := os.LookupEnv(wideString(name))
+	if !ok {
+		return 0
+	}
+	return windowsStableWideString(tls, value)
+}
+
+// modernc's _wopen passes UTF-16 storage to its narrow GoString helper, which
+// truncates ordinary paths after their first byte. Convert explicitly and use
+// modernc's own descriptor table through Xopen.
+func _ccgo__wopen(tls *libc.TLS, pathname uintptr, flags int32, args uintptr) int32 {
+	if pathname == 0 {
+		setErrno(tls, int32(errno.EINVAL))
+		return -1
+	}
+	path, err := libc.CString(wideString(pathname))
+	if err != nil {
+		setErrno(tls, int32(errno.ENOMEM))
+		return -1
+	}
+	defer libc.Xfree(tls, path)
+	return libc.Xopen(tls, path, flags, args)
 }
 
 func tmZone(tmv *Ttm) (string, int) {
@@ -1678,14 +1734,135 @@ func _GetNamedPipeHandleStateW(tls *libc.TLS, pipe, state, instances, maxCollect
 	return 1
 }
 
+const (
+	hresultInvalidArgument   = -2147024809 // HRESULT_FROM_WIN32(ERROR_INVALID_PARAMETER)
+	hresultInsufficientSpace = -2147024774 // HRESULT_FROM_WIN32(ERROR_INSUFFICIENT_BUFFER)
+)
+
+func winPathSeparator(c uint16) bool { return c == '\\' || c == '/' }
+
+func asciiLetter(c uint16) bool {
+	return c >= 'A' && c <= 'Z' || c >= 'a' && c <= 'z'
+}
+
+func asciiWideEqualFold(value []uint16, text string) bool {
+	if len(value) != len(text) {
+		return false
+	}
+	for i, c := range value {
+		want := uint16(text[i])
+		if c >= 'a' && c <= 'z' {
+			c -= 'a' - 'A'
+		}
+		if want >= 'a' && want <= 'z' {
+			want -= 'a' - 'A'
+		}
+		if c != want {
+			return false
+		}
+	}
+	return true
+}
+
+func uncRootEnd(path []uint16, start int) (int, bool) {
+	serverStart := start
+	for start < len(path) && !winPathSeparator(path[start]) {
+		start++
+	}
+	if start == serverStart || start == len(path) {
+		return 0, false
+	}
+	for start < len(path) && winPathSeparator(path[start]) {
+		start++
+	}
+	shareStart := start
+	for start < len(path) && !winPathSeparator(path[start]) {
+		start++
+	}
+	if start == shareStart {
+		return 0, false
+	}
+	if start < len(path) {
+		start++
+	}
+	return start, true
+}
+
+func winRootEnd(path []uint16) (int, bool) {
+	if len(path) == 0 {
+		return 0, false
+	}
+	if len(path) >= 4 && winPathSeparator(path[0]) && winPathSeparator(path[1]) &&
+		(path[2] == '?' || path[2] == '.') && winPathSeparator(path[3]) {
+		if len(path) >= 8 && asciiWideEqualFold(path[4:7], "UNC") && winPathSeparator(path[7]) {
+			return uncRootEnd(path, 8)
+		}
+		if len(path) >= 6 && asciiLetter(path[4]) && path[5] == ':' {
+			if len(path) >= 7 && winPathSeparator(path[6]) {
+				return 7, true
+			}
+			return 6, true
+		}
+		end := 4
+		for end < len(path) && !winPathSeparator(path[end]) {
+			end++
+		}
+		if end == 4 {
+			return 0, false
+		}
+		if end < len(path) {
+			end++
+		}
+		return end, true
+	}
+	if len(path) >= 2 && winPathSeparator(path[0]) && winPathSeparator(path[1]) {
+		return uncRootEnd(path, 2)
+	}
+	if len(path) >= 2 && asciiLetter(path[0]) && path[1] == ':' {
+		if len(path) >= 3 && winPathSeparator(path[2]) {
+			return 3, true
+		}
+		return 2, true
+	}
+	if winPathSeparator(path[0]) {
+		return 1, true
+	}
+	return 0, false
+}
+
 func _PathCchCombineEx(tls *libc.TLS, output uintptr, capacity uint64, first, second uintptr, flags uint32) int32 {
-	r, _ := callProc(dllPathCch, "PathCchCombineEx", output, uintptr(capacity), first, second, uintptr(flags))
-	return int32(r)
+	if output == 0 || capacity == 0 || first == 0 || second == 0 {
+		return hresultInvalidArgument
+	}
+	base, more := wideString(first), wideString(second)
+	var combined string
+	if filepath.IsAbs(more) || filepath.VolumeName(more) != "" {
+		combined = filepath.Clean(more)
+	} else if base == "" {
+		combined = more
+	} else if more == "" {
+		combined = base
+	} else {
+		combined = filepath.Join(base, more)
+	}
+	if _, ok := writeWide(output, capacity, combined); !ok {
+		*(*uint16)(unsafe.Pointer(output)) = 0
+		return hresultInsufficientSpace
+	}
+	return 0
 }
 
 func _PathCchSkipRoot(tls *libc.TLS, path, result uintptr) int32 {
-	r, _ := callProc(dllPathCch, "PathCchSkipRoot", path, result)
-	return int32(r)
+	if path == 0 || result == 0 {
+		return hresultInvalidArgument
+	}
+	end, ok := winRootEnd(readWide(path))
+	if !ok {
+		*(*uintptr)(unsafe.Pointer(result)) = path
+		return hresultInvalidArgument
+	}
+	*(*uintptr)(unsafe.Pointer(result)) = path + uintptr(end)*2
+	return 0
 }
 
 func _PlaySoundW(tls *libc.TLS, sound, module uintptr, flags uint32) int32 {

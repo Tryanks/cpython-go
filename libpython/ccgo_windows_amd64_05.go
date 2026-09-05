@@ -38423,7 +38423,7 @@ func _config_get_env_dup(tls *libc.TLS, config uintptr, dest uintptr, wname uint
 		**(**uintptr)(__ccgo_up(dest)) = libc.UintptrFromInt32(0)
 		return TPyStatus{}
 	}
-	var1 = libc.X_wgetenv(tls, wname)
+	var1 = _ccgo__wgetenv(tls, wname)
 	if !(var1 != 0) || int32(**(**Twchar_t)(__ccgo_up(var1))) == int32('\000') {
 		**(**uintptr)(__ccgo_up(dest)) = libc.UintptrFromInt32(0)
 		return TPyStatus{}

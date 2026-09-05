@@ -172,3 +172,8 @@ until the Windows libc supplement is added.
   runtime fix was committed. The same four routes were applied to its 12
   shards; both `GOOS=windows GOARCH=amd64` and `GOARCH=arm64` cross-builds
   passed locally.
+- Run 33950181453: locale preinitialization passed. Path configuration then
+  panicked while loading `pathcch.dll` for `_PathCchSkipRoot`. Replaced both
+  PathCch wrappers with pure-Go UTF-16 path operations, and routed modernc's
+  `_wopen` (which decodes a UTF-16 pointer as narrow bytes) and `_wgetenv`
+  (whose cached environment drops an entry) before the next run.

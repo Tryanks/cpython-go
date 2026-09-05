@@ -50243,7 +50243,7 @@ func _pymain_run_startup(tls *libc.TLS, config uintptr, exitcode uintptr) (r int
 		return 0
 	}
 	startup = libc.UintptrFromInt32(0)
-	env = libc.X_wgetenv(tls, __ccgo_ts+175065)
+	env = _ccgo__wgetenv(tls, __ccgo_ts+175065)
 	if env == libc.UintptrFromInt32(0) || int32(**(**Twchar_t)(__ccgo_up(env))) == int32('\000') {
 		return 0
 	}

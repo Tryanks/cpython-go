@@ -26480,7 +26480,7 @@ func _env_to_dict(tls *libc.TLS, dict uintptr, key uintptr, and_clear int32) (r1
 		p = p + 1
 	}
 	**(**Twchar_t)(__ccgo_up(wp)) = uint16('\000')
-	v = libc.X_wgetenv(tls, bp)
+	v = _ccgo__wgetenv(tls, bp)
 	if v != 0 {
 		u = XPyUnicode_FromWideChar(tls, v, int64(-int32(1)))
 		if !(u != 0) {

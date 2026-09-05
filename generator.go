@@ -428,6 +428,8 @@ var shimmedLibc = map[string][]string{"windows": {
 	"GetShortPathNameW",
 	"OutputDebugStringW",
 	"SetErrorMode",
+	"_wgetenv",
+	"_wopen",
 	"mbstowcs",
 	"setlocale",
 	"strncat",
