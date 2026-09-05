@@ -67,8 +67,9 @@ go run ./cmd/cpython-go -c 'import json, re, os; print(json.dumps({"a": [1, 2]})
 - C `_Thread_local` variables are lowered to per-libc.TLS slots by the
   generator (libpython/tls.go), so Python threads work. fork() is not
   possible under the Go runtime: subprocess uses syscall.ForkExec
-  (libpython/fork_exec.go); os.fork raises. Modules needing external C
-  libraries are not built.
+  (libpython/fork_exec.go); os.fork raises. The zlib extension and
+  zlib-backed binascii CRC32 link to modernc.org/libz; other modules needing
+  external C libraries are not built.
 - Platform scope: darwin, linux, windows × amd64, arm64 — all six generated.
   Linux via OrbStack containers (internal/builders/linux/run.sh); Windows via
   an llvm-mingw container (internal/builders/windows/run.sh --ccgo <arch>)
@@ -82,7 +83,7 @@ go run ./cmd/cpython-go -c 'import json, re, os; print(json.dumps({"a": [1, 2]})
 
 - `go test ./...` runs a subset of `Lib/test` (e.g. test_grammar, test_int,
   test_dict, test_json, test_re) through the Go binary.
-- Embedded stdlib (zip on sys.path), no PYTHONHOME needed.
+- Embedded stdlib (deflated zip on sys.path), no PYTHONHOME needed.
 - Public Go API (`cpython.New()`, `Run(src)`), modelled after
   `modernc.org/quickjs`.
 

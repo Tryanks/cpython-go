@@ -9,7 +9,9 @@ built.
 Status: experimental. The interpreter boots, runs the pure-Python standard
 library (embedded in the binary), supports threads and `subprocess`, and passes
 most of CPython's own test suite for the core language and library modules.
-Not built: modules that need external C libraries (`zlib`, `_ssl`, `_sqlite3`,
+The `zlib` module and zlib-backed `binascii.crc32` use
+[`modernc.org/libz`](https://pkg.go.dev/modernc.org/libz). Not built: other
+modules that need external C libraries (`_ssl`, `_sqlite3`,
 `_ctypes`, `_bz2`, `_lzma`, `_decimal` (the pure-Python `_pydecimal` is used),
 `readline`, `_curses`, `_tkinter`); `os.fork` (impossible under the Go
 runtime; `subprocess` works via `syscall.ForkExec`).
@@ -70,15 +72,15 @@ gnu-sed`) and ~30 minutes:
 ```
 git clone --depth 1 --branch 3.14 https://github.com/python/cpython /tmp/cpython-3.14
 CPYTHON_SRC=/tmp/cpython-3.14 go run generator.go
-go run ./internal/cmd/mkstdlib -o stdlib/python314.zip.gz tmp/cpython/Lib
+go run ./internal/cmd/mkstdlib -o stdlib/python314.zip tmp/cpython/Lib
 ```
 
 `generator.go` copies the sources to `tmp/cpython`, applies
 `internal/patch/*.diff`, runs `configure` natively, then `make libpython3.14.a`
 under `ccgo -exec` and links the archives into `libpython/ccgo_<os>_<arch>.go`.
-Hand-written libc supplements for darwin live in `libpython/libc_darwin.go`;
-`generator.go`'s `shimmedLibc` list routes libc calls that
-`modernc.org/libc` does not implement well on darwin to them.
+The generated interpreter links zlib calls to `modernc.org/libz`. Hand-written
+libc supplements live in `libpython/libc_*.go`; `generator.go`'s `shimmedLibc`
+lists route libc calls that `modernc.org/libc` does not implement well to them.
 
 ## Layout
 
