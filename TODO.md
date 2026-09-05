@@ -70,19 +70,20 @@ is parked here.
 - Locale collation emulates en_US.UTF-8 primary/base, accent, and case levels
   for Latin-1 and Latin Extended-A. ISO-8859-1 byte ctype folding is supported
   for `re.LOCALE`; `test_locale` and `test_re` pass on Darwin and Linux arm64.
-- test_datetime (3): StaticTypes/ExtensionModule tests (test modules absent).
-- test_ast: the 500k structural-depth cases are iterative from the ccgo TLS
-  stack model's perspective and need an explicit compiler depth guard.
-- test_inspect: source for frozen `_collections_abc` is unavailable through
-  its aliased `collections.abc` name; one subprocess-origin assertion also
-  differs because the child uses the embedded stdlib.
+- Static-capable CPython test extensions are enabled. The relative-heap-type
+  fixtures in `_testlimitedcapi` remain disabled under CCGO because ccgo
+  mislowers negative `PyType_Spec.basicsize`; `_testcapi`'s pyatomic fixture is
+  omitted because ccgo drops the inline atomic bodies. Extensions that CPython
+  forces shared remain unavailable until cpython-go has dynamic loading.
+- test_capi now starts, but `test_file.test_py_fopen` reaches a known
+  modernc-libc Darwin `fopen` panic before the package can finish.
 - test_sys: `_stdlib_dir` describes the embedded home while the externally
-  supplied test `PYTHONPATH` makes `os.__file__` point at the source checkout;
-  the other failure requires omitted `_testcapi` modules.
+  supplied test `PYTHONPATH` makes `os.__file__` point at the source checkout.
 - test_json/test_argparse: one or a few failures each, not yet triaged.
 - Tests that spawn `sys.executable -I/-E` need the test package inside the
   binary: build with `-tags cpython_test` after `make stdlib-tests`
-  (package-style test discovery inside the zip still fails for some suites).
+  (package-style discovery such as `test_unittest` still fails because its
+  `start_dir` is a path inside the zip rather than a real directory).
 
 ## Embedding API
 

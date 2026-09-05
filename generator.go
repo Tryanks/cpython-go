@@ -135,6 +135,15 @@ var (
 		"py_cv_module_nis=n/a",
 		"py_cv_module_readline=n/a",
 		"py_cv_module__zstd=n/a",
+		// These test extensions are forced into the *shared* block by
+		// Modules/Setup.stdlib.in. cpython-go has no dynamic loader, so keep
+		// them unavailable while building the static-capable test modules.
+		"py_cv_module__ctypes_test=n/a",
+		"py_cv_module__testimportmultiple=n/a",
+		"py_cv_module__testmultiphase=n/a",
+		"py_cv_module__testsinglephase=n/a",
+		"py_cv_module_xxlimited=n/a",
+		"py_cv_module_xxlimited_35=n/a",
 	}
 	// configureEnvOS: functions modernc.org/libc lacks on a platform; CPython
 	// has fallbacks for all of them.
@@ -196,7 +205,7 @@ var (
 	configureArgs = []string{
 		"--enable-ipv6",
 		"--disable-shared",
-		"--disable-test-modules",
+		"--enable-test-modules",
 		"--with-static-libpython",
 		"--with-system-libmpdec=no",
 		"--without-computed-gotos",
@@ -794,6 +803,7 @@ func prepareSource() {
 			fail(1, "patch %s: %v", p, err)
 		}
 	}
+	uniquifyTestModuleSources()
 	if goos == "windows" {
 		cmd := exec.Command("autoreconf", "-vfi")
 		cmd.Dir = srcCopy
@@ -802,6 +812,42 @@ func prepareSource() {
 		if err := cmd.Run(); err != nil {
 			fail(1, "autoreconf: %v", err)
 		}
+	}
+}
+
+// uniquifyTestModuleSources gives every multipart test-extension source a
+// globally unique basename. ccgo extracts static archive members by basename,
+// while CPython intentionally has names such as Objects/abstract.o,
+// _testcapi/abstract.o, and _testlimitedcapi/abstract.o in the same archive.
+func uniquifyTestModuleSources() {
+	setupPath := filepath.Join(srcCopy, "Modules", "Setup.stdlib.in")
+	b, err := os.ReadFile(setupPath)
+	if err != nil {
+		fail(1, "read test module setup: %v", err)
+	}
+	setup := string(b)
+	for _, dir := range []string{"_testcapi", "_testinternalcapi", "_testlimitedcapi"} {
+		entries, err := os.ReadDir(filepath.Join(srcCopy, "Modules", dir))
+		if err != nil {
+			fail(1, "read %s sources: %v", dir, err)
+		}
+		prefix := strings.TrimPrefix(dir, "_") + "_"
+		for _, entry := range entries {
+			name := entry.Name()
+			if entry.IsDir() || !strings.HasSuffix(name, ".c") {
+				continue
+			}
+			newName := prefix + name
+			oldPath := filepath.Join(srcCopy, "Modules", dir, name)
+			newPath := filepath.Join(srcCopy, "Modules", dir, newName)
+			if err := os.Rename(oldPath, newPath); err != nil {
+				fail(1, "rename %s source: %v", dir, err)
+			}
+			setup = strings.ReplaceAll(setup, dir+"/"+name, dir+"/"+newName)
+		}
+	}
+	if err := os.WriteFile(setupPath, []byte(setup), 0o660); err != nil {
+		fail(1, "write test module setup: %v", err)
 	}
 }
 

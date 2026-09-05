@@ -506,6 +506,251 @@ diff --color -ruN a/Modules/overlapped.c b/Modules/overlapped.c
 _decimal.c: plain char is signed on the supported targets.  Compare the
 temporary invalid UTF-8 fill byte as unsigned so ccgo recognizes 0xff and
 restores embedded NUL fill characters before decoding the result.
+_testinternalcapi.c: the native bootstrap helper links getpath_noop.o and
+does not provide _Py_Get_Getpath_CodeObject.  Keep the real call in ccgo's
+final archive, but compile an unused None-returning stub for the native helper.
+_testcapi/pyatomic.c: ccgo drops the static-inline atomic helper bodies that
+this API smoke-test part deliberately instantiates. Keep the full native part,
+but expose a no-op registration stub to the ccgo translation.
+_testlimitedcapi.c, vectorcall_limited.c: ccgo mislowers the negative
+PyType_Spec.basicsize used by relative heap types, so initializing those
+optional fixtures raises errors and prevents importing the whole module. Skip
+only the relative heap-type part and relative vectorcall fixture under CCGO.
+diff --color -ruN a/Modules/_testcapi/pyatomic.c b/Modules/_testcapi/pyatomic.c
+--- a/Modules/_testcapi/pyatomic.c
++++ b/Modules/_testcapi/pyatomic.c
+@@ -5,6 +5,14 @@
+ 
+ #include "parts.h"
+ 
++#ifdef __CCGO__
++int
++_PyTestCapi_Init_PyAtomic(PyObject *mod)
++{
++    return 0;
++}
++#else
++
+ // We define atomic bitwise operations on these types
+ #define FOR_BITWISE_TYPES(V)    \
+     V(uint8, uint8_t)           \
+@@ -191,3 +199,4 @@
+     }
+     return 0;
+ }
++#endif
+diff --color -ruN a/Modules/_testinternalcapi.c b/Modules/_testinternalcapi.c
+--- a/Modules/_testinternalcapi.c
++++ b/Modules/_testinternalcapi.c
+@@ -557,7 +557,11 @@
+ 
+ static PyObject *
+ get_getpath_codeobject(PyObject *self, PyObject *Py_UNUSED(args)) {
++#ifdef __CCGO__
+     return _Py_Get_Getpath_CodeObject();
++#else
++    Py_RETURN_NONE;
++#endif
+ }
+ 
+ 
+
+diff --color -ruN a/Modules/_testlimitedcapi.c b/Modules/_testlimitedcapi.c
+--- a/Modules/_testlimitedcapi.c
++++ b/Modules/_testlimitedcapi.c
+@@ -56,9 +56,11 @@
+     if (_PyTestLimitedCAPI_Init_Float(mod) < 0) {
+         return NULL;
+     }
++#ifndef __CCGO__
+     if (_PyTestLimitedCAPI_Init_HeaptypeRelative(mod) < 0) {
+         return NULL;
+     }
++#endif
+     if (_PyTestLimitedCAPI_Init_Import(mod) < 0) {
+         return NULL;
+     }
+
+diff --color -ruN a/Modules/_testlimitedcapi/vectorcall_limited.c b/Modules/_testlimitedcapi/vectorcall_limited.c
+--- a/Modules/_testlimitedcapi/vectorcall_limited.c
++++ b/Modules/_testlimitedcapi/vectorcall_limited.c
+@@ -235,6 +235,7 @@
+     }
+     Py_DECREF(LimitedVectorCallClass);
+ 
++#ifndef __CCGO__
+     PyObject *LimitedRelativeVectorCallClass = PyType_FromModuleAndSpec(
+         m, &LimitedRelativeVectorCallClass_spec, NULL);
+     if (!LimitedRelativeVectorCallClass) {
+@@ -245,6 +246,7 @@
+         return -1;
+     }
+     Py_DECREF(LimitedRelativeVectorCallClass);
++#endif
+ 
+     return 0;
+ }
+
+pycore_ceval.h, pystate.h, symtable.c, codegen.c: CPython 3.14 checks C
+recursion through the machine stack pointer. ccgo has no C stack, and its
+virtual pointer does not deepen for recursive compiler walks. Add a separate
+per-thread CCGO recursion-depth counter and balanced wrappers around the
+recursive expression visitors. It must not share py_recursion_remaining,
+which already tracks Python frames. The wrappers are needed because 3.14's
+ordinary C-stack enter/leave calls deliberately need not balance on early
+returns now that their native implementation only samples the stack pointer.
+diff --color -ruN a/Include/cpython/pystate.h b/Include/cpython/pystate.h
+--- a/Include/cpython/pystate.h
++++ b/Include/cpython/pystate.h
+@@ -120,6 +120,9 @@
+ 
+     int py_recursion_remaining;
+     int py_recursion_limit;
++#ifdef CCGO
++    int ccgo_c_recursion_depth;
++#endif
+     int recursion_headroom; /* Allow 50 more calls to handle any errors. */
+ 
+     /* 'tracing' keeps track of the execution depth when tracing/profiling.
+diff --color -ruN a/Include/internal/pycore_ceval.h b/Include/internal/pycore_ceval.h
+--- a/Include/internal/pycore_ceval.h
++++ b/Include/internal/pycore_ceval.h
+@@ -219,6 +219,28 @@
+ int _Py_CheckRecursiveCallPy(
+     PyThreadState *tstate);
+ 
++#ifdef CCGO
++static inline int
++_Py_EnterRecursiveCallCCGO(PyThreadState *tstate, const char *where)
++{
++    if (++tstate->ccgo_c_recursion_depth > Py_DEFAULT_RECURSION_LIMIT) {
++        // A failed entry has no matching leave, so undo it here.
++        tstate->ccgo_c_recursion_depth--;
++        PyErr_Format(PyExc_RecursionError,
++                     "maximum recursion depth exceeded%s", where);
++        return 1;
++    }
++    return 0;
++}
++
++static inline void
++_Py_LeaveRecursiveCallCCGO(PyThreadState *tstate)
++{
++    assert(tstate->ccgo_c_recursion_depth > 0);
++    tstate->ccgo_c_recursion_depth--;
++}
++#endif
++
+ static inline int _Py_EnterRecursiveCallTstate(PyThreadState *tstate,
+                                                const char *where) {
+     return (_Py_MakeRecCheck(tstate) && _Py_CheckRecursiveCall(tstate, where));
+
+diff --color -ruN a/Python/codegen.c b/Python/codegen.c
+--- a/Python/codegen.c
++++ b/Python/codegen.c
+@@ -5177,7 +5177,7 @@
+ }
+ 
+ static int
+-codegen_visit_expr(compiler *c, expr_ty e)
++codegen_visit_expr_impl(compiler *c, expr_ty e)
+ {
+     if (Py_EnterRecursiveCall(" during compilation")) {
+         return ERROR;
+@@ -5327,6 +5327,22 @@
+         return codegen_tuple(c, e);
+     }
+     return SUCCESS;
++}
++
++static int
++codegen_visit_expr(compiler *c, expr_ty e)
++{
++#ifdef CCGO
++    PyThreadState *tstate = _PyThreadState_GET();
++    if (_Py_EnterRecursiveCallCCGO(tstate, " during compilation")) {
++        return ERROR;
++    }
++    int result = codegen_visit_expr_impl(c, e);
++    _Py_LeaveRecursiveCallCCGO(tstate);
++    return result;
++#else
++    return codegen_visit_expr_impl(c, e);
++#endif
+ }
+ 
+ static bool
+diff --color -ruN a/Python/Python-ast.c b/Python/Python-ast.c
+--- a/Python/Python-ast.c
++++ b/Python/Python-ast.c
+@@ -9571,7 +9571,7 @@
+ }
+ 
+ PyObject*
+-ast2obj_expr(struct ast_state *state, void* _o)
++ast2obj_expr_impl(struct ast_state *state, void* _o)
+ {
+     expr_ty o = (expr_ty)_o;
+     PyObject *result = NULL, *value = NULL;
+@@ -10163,6 +10163,22 @@
+     Py_XDECREF(result);
+     return NULL;
+ }
++
++PyObject*
++ast2obj_expr(struct ast_state *state, void* _o)
++{
++#ifdef CCGO
++    PyThreadState *tstate = _PyThreadState_GET();
++    if (_Py_EnterRecursiveCallCCGO(tstate, " during AST construction")) {
++        return NULL;
++    }
++    PyObject *result = ast2obj_expr_impl(state, _o);
++    _Py_LeaveRecursiveCallCCGO(tstate);
++    return result;
++#else
++    return ast2obj_expr_impl(state, _o);
++#endif
++}
+ 
+ PyObject*
+ ast2obj_comprehension(struct ast_state *state, void* _o)
+diff --color -ruN a/Python/symtable.c b/Python/symtable.c
+--- a/Python/symtable.c
++++ b/Python/symtable.c
+@@ -2422,7 +2422,7 @@
+ }
+ 
+ static int
+-symtable_visit_expr(struct symtable *st, expr_ty e)
++symtable_visit_expr_impl(struct symtable *st, expr_ty e)
+ {
+     ENTER_RECURSIVE();
+     switch (e->kind) {
+@@ -2607,6 +2607,22 @@
+     }
+     LEAVE_RECURSIVE();
+     return 1;
++}
++
++static int
++symtable_visit_expr(struct symtable *st, expr_ty e)
++{
++#ifdef CCGO
++    PyThreadState *tstate = _PyThreadState_GET();
++    if (_Py_EnterRecursiveCallCCGO(tstate, " during compilation")) {
++        return 0;
++    }
++    int result = symtable_visit_expr_impl(st, e);
++    _Py_LeaveRecursiveCallCCGO(tstate);
++    return result;
++#else
++    return symtable_visit_expr_impl(st, e);
++#endif
+ }
+ 
+ static int
+
 diff --color -ruN a/Modules/_decimal/_decimal.c b/Modules/_decimal/_decimal.c
 --- a/Modules/_decimal/_decimal.c
 +++ b/Modules/_decimal/_decimal.c
