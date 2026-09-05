@@ -502,3 +502,13 @@ diff --color -ruN a/Modules/overlapped.c b/Modules/overlapped.c
 +#else
 @@ -213,0 +240 @@
 +#endif
+
+_decimal.c: plain char is signed on the supported targets.  Compare the
+temporary invalid UTF-8 fill byte as unsigned so ccgo recognizes 0xff and
+restores embedded NUL fill characters before decoding the result.
+diff --color -ruN a/Modules/_decimal/_decimal.c b/Modules/_decimal/_decimal.c
+--- a/Modules/_decimal/_decimal.c
++++ b/Modules/_decimal/_decimal.c
+@@ -3437 +3437 @@
+-         if (*dest == '\xff') *dest = '\0';
++         if ((unsigned char)*dest == 0xff) *dest = '\0';

@@ -1633,6 +1633,7 @@ func _ccgo_getaddrinfo(tls *libc.TLS, node, service, hints, result uintptr) int3
 		port = value
 	}
 	var ips []net.IP
+	var scopeID uint32
 	if node == 0 {
 		if family != unix.AF_INET {
 			if flags&1 != 0 { // AI_PASSIVE
@@ -1650,6 +1651,19 @@ func _ccgo_getaddrinfo(tls *libc.TLS, node, service, hints, result uintptr) int3
 		}
 	} else {
 		name := libc.GoString(node)
+		if percent := strings.LastIndexByte(name, '%'); percent >= 0 {
+			address, zone := name[:percent], name[percent+1:]
+			if ip := net.ParseIP(address); ip != nil && ip.To4() == nil && zone != "" {
+				if value, err := strconv.ParseUint(zone, 10, 32); err == nil {
+					scopeID = uint32(value)
+				} else if iface, err := net.InterfaceByName(zone); err == nil {
+					scopeID = uint32(iface.Index)
+				} else {
+					return 8 // EAI_NONAME
+				}
+				name = address
+			}
+		}
 		if ip := net.ParseIP(name); ip != nil {
 			ips = []net.IP{ip}
 		} else if flags&4 != 0 { // AI_NUMERICHOST
@@ -1720,6 +1734,7 @@ func _ccgo_getaddrinfo(tls *libc.TLS, node, service, hints, result uintptr) int3
 				sin6 := (*Tsockaddr_in6)(unsafe.Pointer(sa))
 				sin6.Fsin6_len = uint8(addressSize)
 				sin6.Fsin6_family = unix.AF_INET6
+				sin6.Fsin6_scope_id = scopeID
 				copy(cBytes(uintptr(unsafe.Pointer(&sin6.Fsin6_addr)), 16), ip.To16())
 			}
 			a := (*Taddrinfo)(unsafe.Pointer(ai))
@@ -1787,7 +1802,11 @@ func _ccgo_getnameinfo(tls *libc.TLS, address uintptr, addressLen uint32, host u
 		sin6 := (*Tsockaddr_in6)(unsafe.Pointer(address))
 		hostValue = net.IP(cBytes(uintptr(unsafe.Pointer(&sin6.Fsin6_addr)), 16)).String()
 		if sin6.Fsin6_scope_id != 0 {
-			hostValue += "%" + strconv.FormatUint(uint64(sin6.Fsin6_scope_id), 10)
+			zone := strconv.FormatUint(uint64(sin6.Fsin6_scope_id), 10)
+			if iface, err := net.InterfaceByIndex(int(sin6.Fsin6_scope_id)); err == nil {
+				zone = iface.Name
+			}
+			hostValue += "%" + zone
 		}
 	default:
 		return 5 // EAI_FAMILY
