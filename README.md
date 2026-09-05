@@ -21,7 +21,7 @@ built: other modules that need external C libraries (`_ssl`, `_ctypes`,
 |---------------|-----------|------------------|--------------------|
 | darwin/arm64  | yes       | yes              | 83 of 107 modules fully pass |
 | darwin/amd64  | yes       | yes (local)      | 51 of 75 modules fully pass |
-| linux/amd64   | yes       | yes              | not run yet        |
+| linux/amd64   | yes       | yes              | 48 of 75 modules fully pass |
 | linux/arm64   | yes       | yes              | 44 of 72 modules fully pass |
 | windows/amd64 | yes       | yes              | 38 of 71 modules fully pass |
 | windows/arm64 | yes       | yes              | 38 of 71 modules fully pass |
