@@ -6,7 +6,8 @@ in the same way [modernc.org/sqlite](https://pkg.go.dev/modernc.org/sqlite)
 and [modernc.org/libquickjs](https://pkg.go.dev/modernc.org/libquickjs) are
 built.
 
-Status: experimental. The interpreter boots, runs the pure-Python standard
+Status: experimental, delivered as a one-off (v0.1.0) and not maintained
+further; issues and pull requests will not be acted on. The interpreter boots, runs the pure-Python standard
 library (embedded in the binary), supports threads and `subprocess`, and passes
 most of CPython's own test suite for the core language and library modules.
 Sockets support IPv4 and IPv6, including dual-family `getaddrinfo`, IPv6
